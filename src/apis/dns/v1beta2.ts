@@ -130,23 +130,23 @@ export namespace dns_v1beta2 {
     /**
      * Unique identifier for the resource; defined by the server (output only).
      */
-    id?: string;
+    id?: string | null;
     /**
      * If the DNS queries for the zone will be served.
      */
-    isServing?: boolean;
+    isServing?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#change&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The time that this operation was started by the server (output only). This is in RFC3339 text format.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Status of the operation (output only). A status of &quot;done&quot; means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.
      */
-    status?: string;
+    status?: string | null;
   }
   /**
    * The response to a request to enumerate Changes to a ResourceRecordSets collection.
@@ -160,11 +160,11 @@ export namespace dns_v1beta2 {
     /**
      * Type of resource.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A DNSSEC key pair.
@@ -173,15 +173,15 @@ export namespace dns_v1beta2 {
     /**
      * String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time.
      */
-    algorithm?: string;
+    algorithm?: string | null;
     /**
      * The time that this resource was created in the control plane. This is in RFC3339 text format. Output only.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the resource&#39;s function.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Output only.
      */
@@ -189,41 +189,41 @@ export namespace dns_v1beta2 {
     /**
      * Unique identifier for the resource; defined by the server (output only).
      */
-    id?: string;
+    id?: string | null;
     /**
      * Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.
      */
-    isActive?: boolean;
+    isActive?: boolean | null;
     /**
      * Length of the key in bits. Specified at creation time then immutable.
      */
-    keyLength?: number;
+    keyLength?: number | null;
     /**
      * The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone&#39;s DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B. Output only.
      */
-    keyTag?: number;
+    keyTag?: number | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#dnsKey&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Base64 encoded public half of this key. Output only.
      */
-    publicKey?: string;
+    publicKey?: string | null;
     /**
      * One of &quot;KEY_SIGNING&quot; or &quot;ZONE_SIGNING&quot;. Keys of type KEY_SIGNING have the Secure Entry Point flag set and, when active, will be used to sign only resource record sets of type DNSKEY. Otherwise, the Secure Entry Point flag will be cleared and this key will be used to sign only resource record sets of other types. Immutable after creation time.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$DnsKeyDigest {
     /**
      * The base-16 encoded bytes of this digest. Suitable for use in a DS resource record.
      */
-    digest?: string;
+    digest?: string | null;
     /**
      * Specifies the algorithm used to calculate this digest.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The response to a request to enumerate DnsKeys in a ManagedZone.
@@ -237,11 +237,11 @@ export namespace dns_v1beta2 {
     /**
      * Type of resource.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Parameters for DnsKey key generation. Used for generating initial keys for a new ManagedZone and as default when adding a new DnsKey.
@@ -250,19 +250,19 @@ export namespace dns_v1beta2 {
     /**
      * String mnemonic specifying the DNSSEC algorithm of this key.
      */
-    algorithm?: string;
+    algorithm?: string | null;
     /**
      * Length of the keys in bits.
      */
-    keyLength?: number;
+    keyLength?: number | null;
     /**
      * Specifies whether this is a key signing key (KSK) or a zone signing key (ZSK). Key signing keys have the Secure Entry Point flag set and, when active, will only be used to sign resource record sets of type DNSKEY. Zone signing keys do not have the Secure Entry Point flag set and will be used to sign all other types of resource record sets.
      */
-    keyType?: string;
+    keyType?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#dnsKeySpec&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A zone is a subtree of the DNS namespace under one administrative responsibility. A ManagedZone is a resource that represents a DNS zone hosted by the Cloud DNS service.
@@ -271,15 +271,15 @@ export namespace dns_v1beta2 {
     /**
      * The time that this resource was created on the server. This is in RFC3339 text format. Output only.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the managed zone&#39;s function.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The DNS name of this managed zone, for instance &quot;example.com.&quot;.
      */
-    dnsName?: string;
+    dnsName?: string | null;
     /**
      * DNSSEC configuration.
      */
@@ -291,27 +291,27 @@ export namespace dns_v1beta2 {
     /**
      * Unique identifier for the resource; defined by the server (output only)
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZone&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * User labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * User assigned name for this resource. Must be unique within the project. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Delegate your managed_zone to these virtual name servers; defined by the server (output only)
      */
-    nameServers?: string[];
+    nameServers?: string[] | null;
     /**
      * Optionally specifies the NameServerSet for this ManagedZone. A NameServerSet is a set of DNS name servers that all host the same ManagedZones. Most users will leave this field unset.
      */
-    nameServerSet?: string;
+    nameServerSet?: string | null;
     /**
      * The presence of this field indicates that DNS Peering is enabled for this zone. The value of this field contains the network to peer with.
      */
@@ -323,31 +323,31 @@ export namespace dns_v1beta2 {
     /**
      * The zone&#39;s visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
      */
-    visibility?: string;
+    visibility?: string | null;
   }
   export interface Schema$ManagedZoneDnsSecConfig {
     /**
-     * Specifies parameters that will be used for generating initial DnsKeys for this ManagedZone. Can only be changed while state is OFF.
+     * Specifies parameters for generating initial DnsKeys for this ManagedZone. Can only be changed while the state is OFF.
      */
     defaultKeySpecs?: Schema$DnsKeySpec[];
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZoneDnsSecConfig&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
-     * Specifies the mechanism used to provide authenticated denial-of-existence responses. Can only be changed while state is OFF.
+     * Specifies the mechanism for authenticated denial-of-existence responses. Can only be changed while the state is OFF.
      */
-    nonExistence?: string;
+    nonExistence?: string | null;
     /**
      * Specifies whether DNSSEC is enabled, and what mode it is in.
      */
-    state?: string;
+    state?: string | null;
   }
   export interface Schema$ManagedZoneForwardingConfig {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZoneForwardingConfig&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * List of target name servers to forward to. Cloud DNS will select the best available name server if more than one target is given.
      */
@@ -357,22 +357,22 @@ export namespace dns_v1beta2 {
     /**
      * IPv4 address of a target name server.
      */
-    ipv4Address?: string;
+    ipv4Address?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZoneForwardingConfigNameServerTarget&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$ManagedZoneOperationsListResponse {
     header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The operation resources.
      */
@@ -382,7 +382,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePeeringConfig&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The network with which to peer.
      */
@@ -390,23 +390,23 @@ export namespace dns_v1beta2 {
   }
   export interface Schema$ManagedZonePeeringConfigTargetNetwork {
     /**
-     * If this zone has been deactivated (possibly because the producer network it targeted was deleted), the time at which it was deactivated. If the peering connection is still active, this will be the empty string. This is in RFC3339 text format. Output only.
+     * The time at which the zone was deactivated, in RFC 3339 date-time format. An empty string indicates that the peering connection is active. The producer network can deactivate a zone. The zone is automatically deactivated if the producer network that the zone targeted is deleted. Output only.
      */
-    deactivateTime?: string;
+    deactivateTime?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePeeringConfigTargetNetwork&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The fully qualified URL of the VPC network to forward queries to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
      */
-    networkUrl?: string;
+    networkUrl?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfig {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePrivateVisibilityConfig&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The list of VPC networks that can see this zone.
      */
@@ -416,18 +416,18 @@ export namespace dns_v1beta2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePrivateVisibilityConfigNetwork&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
      */
-    networkUrl?: string;
+    networkUrl?: string | null;
   }
   export interface Schema$ManagedZonesListResponse {
     header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The managed zone resources.
      */
@@ -435,7 +435,7 @@ export namespace dns_v1beta2 {
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * An operation represents a successful mutation performed on a Cloud DNS resource. Operations provide: - An audit log of server resource mutations. - A way to recover/retry API calls in the case where the response is never received by the caller. Use the caller specified client_operation_id.
@@ -448,27 +448,27 @@ export namespace dns_v1beta2 {
     /**
      * Unique identifier for the resource. This is the client_operation_id if the client specified it when the mutation was initiated, otherwise, it is generated by the server. The name must be 1-63 characters long and match the regular expression [-a-z0-9]? (output only)
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#operation&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The time that this operation was started by the server. This is in RFC3339 text format (output only).
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Status of the operation. Can be one of the following: &quot;PENDING&quot; or &quot;DONE&quot; (output only). A status of &quot;DONE&quot; means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Type of the operation. Operations include insert, update, and delete (output only).
      */
-    type?: string;
+    type?: string | null;
     /**
      * User who requested the operation, for example: user@example.com. cloud-dns-system for operations automatically done by the system. (output only)
      */
-    user?: string;
+    user?: string | null;
     /**
      * Only populated if the operation targeted a ManagedZone (output only).
      */
@@ -499,11 +499,11 @@ export namespace dns_v1beta2 {
     /**
      * Type of resource.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The policy resources.
      */
@@ -528,27 +528,27 @@ export namespace dns_v1beta2 {
     /**
      * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the policy&#39;s function.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Allows networks bound to this policy to receive DNS queries sent by VMs or applications over VPN connections. When enabled, a virtual IP address will be allocated from each of the sub-networks that are bound to this policy.
      */
-    enableInboundForwarding?: boolean;
+    enableInboundForwarding?: boolean | null;
     /**
      * Controls whether logging is enabled for the networks bound to this policy. Defaults to no logging if not set.
      */
-    enableLogging?: boolean;
+    enableLogging?: boolean | null;
     /**
      * Unique identifier for the resource; defined by the server (output only).
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#policy&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * User assigned name for this policy.
      */
-    name?: string;
+    name?: string | null;
     /**
      * List of network names specifying networks to which this policy is applied.
      */
@@ -558,7 +558,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#policyAlternativeNameServerConfig&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded to a name server that you choose. Names such as .internal are not available when an alternative name server is specified.
      */
@@ -568,21 +568,21 @@ export namespace dns_v1beta2 {
     /**
      * IPv4 address to forward to.
      */
-    ipv4Address?: string;
+    ipv4Address?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#policyAlternativeNameServerConfigTargetNameServer&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$PolicyNetwork {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#policyNetwork&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
      */
-    networkUrl?: string;
+    networkUrl?: string | null;
   }
   /**
    * A project resource. The project is a top level container for resources including Cloud DNS ManagedZones. Projects can be created only in the APIs console.
@@ -591,15 +591,15 @@ export namespace dns_v1beta2 {
     /**
      * User assigned unique identifier for the resource (output only).
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#project&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Unique numeric identifier for the resource; defined by the server (output only).
      */
-    number?: string;
+    number?: string | null;
     /**
      * Quotas assigned to this project (output only).
      */
@@ -612,59 +612,59 @@ export namespace dns_v1beta2 {
     /**
      * Maximum allowed number of DnsKeys per ManagedZone.
      */
-    dnsKeysPerManagedZone?: number;
+    dnsKeysPerManagedZone?: number | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#quota&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Maximum allowed number of managed zones in the project.
      */
-    managedZones?: number;
+    managedZones?: number | null;
     /**
      * Maximum allowed number of managed zones which can be attached to a network.
      */
-    managedZonesPerNetwork?: number;
+    managedZonesPerNetwork?: number | null;
     /**
      * Maximum allowed number of networks to which a privately scoped zone can be attached.
      */
-    networksPerManagedZone?: number;
+    networksPerManagedZone?: number | null;
     /**
      * Maximum allowed number of networks per policy.
      */
-    networksPerPolicy?: number;
+    networksPerPolicy?: number | null;
     /**
      * Maximum allowed number of policies per project.
      */
-    policies?: number;
+    policies?: number | null;
     /**
      * Maximum allowed number of ResourceRecords per ResourceRecordSet.
      */
-    resourceRecordsPerRrset?: number;
+    resourceRecordsPerRrset?: number | null;
     /**
      * Maximum allowed number of ResourceRecordSets to add per ChangesCreateRequest.
      */
-    rrsetAdditionsPerChange?: number;
+    rrsetAdditionsPerChange?: number | null;
     /**
      * Maximum allowed number of ResourceRecordSets to delete per ChangesCreateRequest.
      */
-    rrsetDeletionsPerChange?: number;
+    rrsetDeletionsPerChange?: number | null;
     /**
      * Maximum allowed number of ResourceRecordSets per zone in the project.
      */
-    rrsetsPerManagedZone?: number;
+    rrsetsPerManagedZone?: number | null;
     /**
      * Maximum allowed number of target name servers per managed forwarding zone.
      */
-    targetNameServersPerManagedZone?: number;
+    targetNameServersPerManagedZone?: number | null;
     /**
      * Maximum allowed number of alternative target name servers per policy.
      */
-    targetNameServersPerPolicy?: number;
+    targetNameServersPerPolicy?: number | null;
     /**
      * Maximum allowed size for total rrdata in one ChangesCreateRequest in bytes.
      */
-    totalRrdataSizePerChange?: number;
+    totalRrdataSizePerChange?: number | null;
     /**
      * DNSSEC algorithm and key length types that can be used for DnsKeys.
      */
@@ -677,38 +677,38 @@ export namespace dns_v1beta2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dns#resourceRecordSet&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * For example, www.example.com.
      */
-    name?: string;
+    name?: string | null;
     /**
      * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
      */
-    rrdatas?: string[];
+    rrdatas?: string[] | null;
     /**
      * As defined in RFC 4034 (section 3.2).
      */
-    signatureRrdatas?: string[];
+    signatureRrdatas?: string[] | null;
     /**
      * Number of seconds that this ResourceRecordSet can be cached by resolvers.
      */
-    ttl?: number;
+    ttl?: number | null;
     /**
      * The identifier of a supported record type. See the list of Supported DNS record types.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$ResourceRecordSetsListResponse {
     header?: Schema$ResponseHeader;
     /**
      * Type of resource.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.  In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The resource record set resources.
      */
@@ -721,7 +721,7 @@ export namespace dns_v1beta2 {
     /**
      * For mutating operation requests that completed successfully. This is the client_operation_id if the client specified it, otherwise it is generated by the server (output only).
      */
-    operationId?: string;
+    operationId?: string | null;
   }
 
   export class Resource$Changes {

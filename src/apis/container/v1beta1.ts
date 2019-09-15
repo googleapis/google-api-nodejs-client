@@ -124,11 +124,11 @@ export namespace container_v1beta1 {
     /**
      * The number of the accelerator cards exposed to an instance.
      */
-    acceleratorCount?: string;
+    acceleratorCount?: string | null;
     /**
      * The accelerator type resource name. List of supported accelerators [here](/compute/docs/gpus/#Introduction)
      */
-    acceleratorType?: string;
+    acceleratorType?: string | null;
   }
   /**
    * Configuration for the addons that can be automatically spun up in the cluster, enabling additional functionality.
@@ -166,11 +166,11 @@ export namespace container_v1beta1 {
     /**
      * Whether this cluster should return group membership lookups during authentication using a group of security groups.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * The name of the security group-of-groups to be used. Only relevant if enabled = true.
      */
-    securityGroup?: string;
+    securityGroup?: string | null;
   }
   /**
    * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
@@ -179,11 +179,11 @@ export namespace container_v1beta1 {
     /**
      * Scopes that are used by NAP when creating node pools. If oauth_scopes are specified, service_account should be empty.
      */
-    oauthScopes?: string[];
+    oauthScopes?: string[] | null;
     /**
      * The Google Cloud Platform Service Account to be used by the node VMs. If service_account is specified, scopes should be empty.
      */
-    serviceAccount?: string;
+    serviceAccount?: string | null;
   }
   /**
    * AutoUpgradeOptions defines the set of options for the user to control how the Auto Upgrades will proceed.
@@ -192,11 +192,11 @@ export namespace container_v1beta1 {
     /**
      * [Output only] This field is set when upgrades are about to commence with the approximate start time for the upgrades, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
-    autoUpgradeStartTime?: string;
+    autoUpgradeStartTime?: string | null;
     /**
      * [Output only] This field is set when upgrades are about to commence with the description of the upgrade.
      */
-    description?: string;
+    description?: string | null;
   }
   /**
    * Parameters for using BigQuery as the destination of resource usage export.
@@ -205,7 +205,7 @@ export namespace container_v1beta1 {
     /**
      * The ID of a BigQuery Dataset.
      */
-    datasetId?: string;
+    datasetId?: string | null;
   }
   /**
    * Configuration for Binary Authorization.
@@ -214,7 +214,7 @@ export namespace container_v1beta1 {
     /**
      * Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Google Binauthz.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * CancelOperationRequest cancels a single operation.
@@ -223,19 +223,19 @@ export namespace container_v1beta1 {
     /**
      * The name (project, location, operation id) of the operation to cancel. Specified in the format &#39;projects/x/locations/x/operations/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * CidrBlock contains an optional name and one CIDR block.
@@ -244,11 +244,11 @@ export namespace container_v1beta1 {
     /**
      * cidr_block must be specified in CIDR notation.
      */
-    cidrBlock?: string;
+    cidrBlock?: string | null;
     /**
      * display_name is an optional field for users to identify CIDR blocks.
      */
-    displayName?: string;
+    displayName?: string | null;
   }
   /**
    * Configuration for client certificates on the cluster.
@@ -257,7 +257,7 @@ export namespace container_v1beta1 {
     /**
      * Issue a client certificate.
      */
-    issueClientCertificate?: boolean;
+    issueClientCertificate?: boolean | null;
   }
   /**
    * Configuration options for the Cloud Run feature.
@@ -266,7 +266,7 @@ export namespace container_v1beta1 {
     /**
      * Whether Cloud Run addon is enabled for this cluster.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
   }
   /**
    * A Google Kubernetes Engine cluster.
@@ -291,7 +291,7 @@ export namespace container_v1beta1 {
     /**
      * The IP address range of the container pods in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`). Leave blank to have one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
      */
-    clusterIpv4Cidr?: string;
+    clusterIpv4Cidr?: string | null;
     /**
      * Which conditions caused the current cluster state.
      */
@@ -299,19 +299,19 @@ export namespace container_v1beta1 {
     /**
      * [Output only] The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * [Output only] The current software version of the master endpoint.
      */
-    currentMasterVersion?: string;
+    currentMasterVersion?: string | null;
     /**
      * [Output only]  The number of nodes currently in the cluster. Deprecated. Call Kubernetes API directly to retrieve node information.
      */
-    currentNodeCount?: number;
+    currentNodeCount?: number | null;
     /**
      * [Output only] Deprecated, use [NodePool.version](/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools) instead. The current version of the node software components. If they are currently at multiple versions because they&#39;re in the process of being upgraded, this reflects the minimum version of all nodes.
      */
-    currentNodeVersion?: string;
+    currentNodeVersion?: string | null;
     /**
      * Configuration of etcd encryption.
      */
@@ -323,35 +323,35 @@ export namespace container_v1beta1 {
     /**
      * An optional description of this cluster.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Kubernetes alpha features are enabled on this cluster. This includes alpha API groups (e.g. v1beta1) and features that may not be production ready in the kubernetes version of the master and nodes. The cluster has no SLA for uptime and master/node upgrades are disabled. Alpha enabled clusters are automatically deleted thirty days after creation.
      */
-    enableKubernetesAlpha?: boolean;
+    enableKubernetesAlpha?: boolean | null;
     /**
      * Enable the ability to use Cloud TPUs in this cluster.
      */
-    enableTpu?: boolean;
+    enableTpu?: boolean | null;
     /**
      * [Output only] The IP address of this cluster&#39;s master endpoint. The endpoint can be accessed from the internet at `https://username:password@endpoint/`.  See the `masterAuth` property of this resource for username and password information.
      */
-    endpoint?: string;
+    endpoint?: string | null;
     /**
      * [Output only] The time the cluster will be automatically deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
-    expireTime?: string;
+    expireTime?: string | null;
     /**
      * The initial Kubernetes version for this cluster.  Valid versions are those found in validMasterVersions returned by getServerConfig.  The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion.  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;&quot;,&quot;-&quot;: picks the default Kubernetes version
      */
-    initialClusterVersion?: string;
+    initialClusterVersion?: string | null;
     /**
      * The number of nodes to create in this cluster. You must ensure that your Compute Engine &lt;a href=&quot;/compute/docs/resource-quotas&quot;&gt;resource quota&lt;/a&gt; is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;node_config&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time.  This field is deprecated, use node_pool.initial_node_count instead.
      */
-    initialNodeCount?: number;
+    initialNodeCount?: number | null;
     /**
      * Deprecated. Use node_pools.instance_group_urls.
      */
-    instanceGroupUrls?: string[];
+    instanceGroupUrls?: string[] | null;
     /**
      * Configuration for cluster IP allocation.
      */
@@ -359,7 +359,7 @@ export namespace container_v1beta1 {
     /**
      * The fingerprint of the set of labels for this cluster.
      */
-    labelFingerprint?: string;
+    labelFingerprint?: string | null;
     /**
      * Configuration for the legacy ABAC authorization mode.
      */
@@ -367,15 +367,15 @@ export namespace container_v1beta1 {
     /**
      * [Output only] The name of the Google Compute Engine [zone](/compute/docs/regions-zones/regions-zones#available) or [region](/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.
      */
-    location?: string;
+    location?: string | null;
     /**
      * The list of Google Compute Engine [zones](/compute/docs/zones#available) in which the cluster&#39;s nodes should be located.
      */
-    locations?: string[];
+    locations?: string[] | null;
     /**
      * The logging service the cluster should use to write logs. Currently available options:  * `logging.googleapis.com` - the Google Cloud Logging service. * `none` - no logs will be exported from the cluster. * if left as an empty string,`logging.googleapis.com` will be used.
      */
-    loggingService?: string;
+    loggingService?: string | null;
     /**
      * Configure the maintenance policy for this cluster.
      */
@@ -391,19 +391,19 @@ export namespace container_v1beta1 {
     /**
      * The IP prefix in CIDR notation to use for the hosted master network. This prefix will be used for assigning private IP addresses to the master or set of masters, as well as the ILB VIP. This field is deprecated, use private_cluster_config.master_ipv4_cidr_block instead.
      */
-    masterIpv4CidrBlock?: string;
+    masterIpv4CidrBlock?: string | null;
     /**
      * The monitoring service the cluster should use to write metrics. Currently available options:  * `monitoring.googleapis.com` - the Google Cloud Monitoring service. * `none` - no metrics will be exported from the cluster. * if left as an empty string, `monitoring.googleapis.com` will be used.
      */
-    monitoringService?: string;
+    monitoringService?: string | null;
     /**
      * The name of this cluster. The name must be unique within this project and zone, and can be up to 40 characters with the following restrictions:  * Lowercase letters, numbers, and hyphens only. * Must start with a letter. * Must end with a number or a letter.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. If left unspecified, the `default` network will be used. On output this shows the network ID instead of the name.
      */
-    network?: string;
+    network?: string | null;
     /**
      * Configuration for cluster networking.
      */
@@ -419,7 +419,7 @@ export namespace container_v1beta1 {
     /**
      * [Output only] The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range. This field will only be set when cluster is in route-based network mode.
      */
-    nodeIpv4CidrSize?: number;
+    nodeIpv4CidrSize?: number | null;
     /**
      * The node pools associated with this cluster. This field should not be set if &quot;node_config&quot; or &quot;initial_node_count&quot; are specified.
      */
@@ -431,7 +431,7 @@ export namespace container_v1beta1 {
     /**
      * If this is a private cluster setup. Private clusters are clusters that, by default have no external IP addresses on the nodes and where nodes and the master communicate over private IP addresses. This field is deprecated, use private_cluster_config.enable_private_nodes instead.
      */
-    privateCluster?: boolean;
+    privateCluster?: boolean | null;
     /**
      * Configuration for private cluster.
      */
@@ -443,7 +443,7 @@ export namespace container_v1beta1 {
     /**
      * The resource labels for the cluster to use to annotate any related Google Compute Engine resources.
      */
-    resourceLabels?: {[key: string]: string};
+    resourceLabels?: {[key: string]: string} | null;
     /**
      * Configuration for exporting resource usages. Resource usage export is disabled when this config unspecified.
      */
@@ -451,11 +451,11 @@ export namespace container_v1beta1 {
     /**
      * [Output only] Server-defined URL for the resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * [Output only] The IP address range of the Kubernetes services in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.
      */
-    servicesIpv4Cidr?: string;
+    servicesIpv4Cidr?: string | null;
     /**
      * Shielded Nodes configuration.
      */
@@ -463,15 +463,15 @@ export namespace container_v1beta1 {
     /**
      * [Output only] The current status of this cluster.
      */
-    status?: string;
+    status?: string | null;
     /**
      * [Output only] Additional information about the current status of this cluster, if available.
      */
-    statusMessage?: string;
+    statusMessage?: string | null;
     /**
      * The name of the Google Compute Engine [subnetwork](/compute/docs/subnetworks) to which the cluster is connected. On output this shows the subnetwork ID instead of the name.
      */
-    subnetwork?: string;
+    subnetwork?: string | null;
     /**
      * Cluster tier settings.
      */
@@ -479,7 +479,7 @@ export namespace container_v1beta1 {
     /**
      * [Output only] The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`).
      */
-    tpuIpv4CidrBlock?: string;
+    tpuIpv4CidrBlock?: string | null;
     /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
@@ -491,7 +491,7 @@ export namespace container_v1beta1 {
     /**
      * [Output only] The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field is deprecated, use location instead.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * ClusterAutoscaling contains global, per-cluster information required by Cluster Autoscaler to automatically adjust the size of the cluster and create/delete node pools based on the current needs.
@@ -500,7 +500,7 @@ export namespace container_v1beta1 {
     /**
      * The list of Google Compute Engine [zones](/compute/docs/zones#available) in which the NodePool&#39;s nodes can be created by NAP.
      */
-    autoprovisioningLocations?: string[];
+    autoprovisioningLocations?: string[] | null;
     /**
      * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
      */
@@ -508,7 +508,7 @@ export namespace container_v1beta1 {
     /**
      * Enables automatic node pool creation and deletion.
      */
-    enableNodeAutoprovisioning?: boolean;
+    enableNodeAutoprovisioning?: boolean | null;
     /**
      * Contains global constraints regarding minimum and maximum amount of resources in the cluster.
      */
@@ -537,7 +537,7 @@ export namespace container_v1beta1 {
     /**
      * The desired image type for the node pool. NOTE: Set the &quot;desired_node_pool&quot; field as well.
      */
-    desiredImageType?: string;
+    desiredImageType?: string | null;
     /**
      * The desired config of Intra-node visibility.
      */
@@ -545,11 +545,11 @@ export namespace container_v1beta1 {
     /**
      * The desired list of Google Compute Engine [zones](/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed.  This list must always include the cluster&#39;s primary zone.
      */
-    desiredLocations?: string[];
+    desiredLocations?: string[] | null;
     /**
      * The logging service the cluster should use to write metrics. Currently available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the Google Cloud Logging service with Kubernetes-native resource model in Stackdriver * &quot;logging.googleapis.com&quot; - the Google Cloud Logging service * &quot;none&quot; - no logs will be exported from the cluster
      */
-    desiredLoggingService?: string;
+    desiredLoggingService?: string | null;
     /**
      * The desired configuration options for master authorized networks feature.
      */
@@ -557,11 +557,11 @@ export namespace container_v1beta1 {
     /**
      * The Kubernetes version to change the master to. The only valid value is the latest supported version.  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the default Kubernetes version
      */
-    desiredMasterVersion?: string;
+    desiredMasterVersion?: string | null;
     /**
      * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - the Google Cloud Monitoring service with Kubernetes-native resource model in Stackdriver * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
      */
-    desiredMonitoringService?: string;
+    desiredMonitoringService?: string | null;
     /**
      * Autoscaler configuration for the node pool specified in desired_node_pool_id. If there is only one pool in the cluster and desired_node_pool_id is not provided then the change applies to that single node pool.
      */
@@ -569,11 +569,11 @@ export namespace container_v1beta1 {
     /**
      * The node pool to be upgraded. This field is mandatory if &quot;desired_node_version&quot;, &quot;desired_image_family&quot;, &quot;desired_node_pool_autoscaling&quot;, or &quot;desired_workload_metadata_config&quot; is specified and there is more than one node pool on the cluster.
      */
-    desiredNodePoolId?: string;
+    desiredNodePoolId?: string | null;
     /**
      * The Kubernetes version to change the nodes to (typically an upgrade).  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the Kubernetes master version
      */
-    desiredNodeVersion?: string;
+    desiredNodeVersion?: string | null;
     /**
      * The desired configuration options for the PodSecurityPolicy feature.
      */
@@ -606,19 +606,19 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * Parameters for controlling consumption metering.
@@ -627,7 +627,7 @@ export namespace container_v1beta1 {
     /**
      * Whether to enable consumption metering for this cluster. If enabled, a second BigQuery table will be created to hold resource consumption records.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * CreateClusterRequest creates a cluster.
@@ -640,15 +640,15 @@ export namespace container_v1beta1 {
     /**
      * The parent (project and location) where the cluster will be created. Specified in the format &#39;projects/x/locations/*&#39;.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * CreateNodePoolRequest creates a node pool for a cluster.
@@ -657,7 +657,7 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The node pool to create.
      */
@@ -665,15 +665,15 @@ export namespace container_v1beta1 {
     /**
      * The parent (project, location, cluster id) where the node pool will be created. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * Time window specified for daily maintenance operations.
@@ -682,11 +682,11 @@ export namespace container_v1beta1 {
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * Time within the maintenance window to start the maintenance operations. It must be in format &quot;HH:MM&quot;, where HH : [00-23] and MM : [00-59] GMT.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * Configuration of etcd encryption.
@@ -695,11 +695,11 @@ export namespace container_v1beta1 {
     /**
      * Name of CloudKMS key to use for the encryption of secrets in etcd. Ex. projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key
      */
-    keyName?: string;
+    keyName?: string | null;
     /**
      * Denotes the state of etcd encryption.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -712,11 +712,11 @@ export namespace container_v1beta1 {
     /**
      * The feature that is being configured with this value.
      */
-    feature?: string;
+    feature?: string | null;
     /**
      * The tier in which the configured feature resides.
      */
-    tier?: string;
+    tier?: string | null;
   }
   /**
    * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517
@@ -742,31 +742,31 @@ export namespace container_v1beta1 {
     /**
      * Supported claims.
      */
-    claims_supported?: string[];
+    claims_supported?: string[] | null;
     /**
      * Supported grant types.
      */
-    grant_types?: string[];
+    grant_types?: string[] | null;
     /**
      * supported ID Token signing Algorithms.
      */
-    id_token_signing_alg_values_supported?: string[];
+    id_token_signing_alg_values_supported?: string[] | null;
     /**
      * OIDC Issuer.
      */
-    issuer?: string;
+    issuer?: string | null;
     /**
      * JSON Web Key uri.
      */
-    jwks_uri?: string;
+    jwks_uri?: string | null;
     /**
      * Supported response types.
      */
-    response_types_supported?: string[];
+    response_types_supported?: string[] | null;
     /**
      * Supported subject types.
      */
-    subject_types_supported?: string[];
+    subject_types_supported?: string[] | null;
   }
   /**
    * Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
@@ -775,7 +775,7 @@ export namespace container_v1beta1 {
     /**
      * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster. When enabled, it ensures that a Heapster pod is running in the cluster, which is also used by the Cloud Monitoring service.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
   }
   /**
    * RFC-2616: cache control support
@@ -784,15 +784,15 @@ export namespace container_v1beta1 {
     /**
      * 14.6 response cache age, in seconds since the response is generated
      */
-    age?: string;
+    age?: string | null;
     /**
      * 14.9 request and response directives
      */
-    directive?: string;
+    directive?: string | null;
     /**
      * 14.21 response cache expires, in RFC 1123 date format
      */
-    expires?: string;
+    expires?: string | null;
   }
   /**
    * Configuration options for the HTTP (L7) load balancing controller addon, which makes it easy to set up HTTP load balancers for services in a cluster.
@@ -801,7 +801,7 @@ export namespace container_v1beta1 {
     /**
      * Whether the HTTP Load Balancing controller is enabled in the cluster. When enabled, it runs a small pod in the cluster that manages the load balancers.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
   }
   /**
    * IntraNodeVisibilityConfig contains the desired config of the intra-node visibility on this cluster.
@@ -810,7 +810,7 @@ export namespace container_v1beta1 {
     /**
      * Enables intra node visibility for this cluster.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * Configuration for controlling how IPs are allocated in the cluster.
@@ -819,55 +819,55 @@ export namespace container_v1beta1 {
     /**
      * If true, allow allocation of cluster CIDR ranges that overlap with certain kinds of network routes. By default we do not allow cluster CIDR ranges to intersect with any user declared routes. With allow_route_overlap == true, we allow overlapping with CIDR ranges that are larger than the cluster CIDR range.  If this field is set to true, then cluster and services CIDRs must be fully-specified (e.g. `10.96.0.0/14`, but not `/14`), which means: 1) When `use_ip_aliases` is true, `cluster_ipv4_cidr_block` and    `services_ipv4_cidr_block` must be fully-specified. 2) When `use_ip_aliases` is false, `cluster.cluster_ipv4_cidr` muse be    fully-specified.
      */
-    allowRouteOverlap?: boolean;
+    allowRouteOverlap?: boolean | null;
     /**
      * This field is deprecated, use cluster_ipv4_cidr_block.
      */
-    clusterIpv4Cidr?: string;
+    clusterIpv4Cidr?: string | null;
     /**
      * The IP address range for the cluster pod IPs. If this field is set, then `cluster.cluster_ipv4_cidr` must be left blank.  This field is only applicable when `use_ip_aliases` is true.  Set to blank to have a range chosen with the default size.  Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask.  Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
-    clusterIpv4CidrBlock?: string;
+    clusterIpv4CidrBlock?: string | null;
     /**
      * The name of the secondary range to be used for the cluster CIDR block.  The secondary range will be used for pod IP addresses. This must be an existing secondary range associated with the cluster subnetwork.  This field is only applicable with use_ip_aliases and create_subnetwork is false.
      */
-    clusterSecondaryRangeName?: string;
+    clusterSecondaryRangeName?: string | null;
     /**
      * Whether a new subnetwork will be created automatically for the cluster.  This field is only applicable when `use_ip_aliases` is true.
      */
-    createSubnetwork?: boolean;
+    createSubnetwork?: boolean | null;
     /**
      * This field is deprecated, use node_ipv4_cidr_block.
      */
-    nodeIpv4Cidr?: string;
+    nodeIpv4Cidr?: string | null;
     /**
      * The IP address range of the instance IPs in this cluster.  This is applicable only if `create_subnetwork` is true.  Set to blank to have a range chosen with the default size.  Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask.  Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
-    nodeIpv4CidrBlock?: string;
+    nodeIpv4CidrBlock?: string | null;
     /**
      * This field is deprecated, use services_ipv4_cidr_block.
      */
-    servicesIpv4Cidr?: string;
+    servicesIpv4Cidr?: string | null;
     /**
      * The IP address range of the services IPs in this cluster. If blank, a range will be automatically chosen with the default size.  This field is only applicable when `use_ip_aliases` is true.  Set to blank to have a range chosen with the default size.  Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask.  Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
-    servicesIpv4CidrBlock?: string;
+    servicesIpv4CidrBlock?: string | null;
     /**
      * The name of the secondary range to be used as for the services CIDR block.  The secondary range will be used for service ClusterIPs. This must be an existing secondary range associated with the cluster subnetwork.  This field is only applicable with use_ip_aliases and create_subnetwork is false.
      */
-    servicesSecondaryRangeName?: string;
+    servicesSecondaryRangeName?: string | null;
     /**
      * A custom subnetwork name to be used if `create_subnetwork` is true.  If this field is empty, then an automatic name will be chosen for the new subnetwork.
      */
-    subnetworkName?: string;
+    subnetworkName?: string | null;
     /**
      * The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size.  This field is only applicable when `use_ip_aliases` is true.  If unspecified, the range will use the default size.  Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask.  Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
-    tpuIpv4CidrBlock?: string;
+    tpuIpv4CidrBlock?: string | null;
     /**
      * Whether alias IPs will be used for pod IPs in the cluster.
      */
-    useIpAliases?: boolean;
+    useIpAliases?: boolean | null;
   }
   /**
    * Configuration options for Istio addon.
@@ -876,11 +876,11 @@ export namespace container_v1beta1 {
     /**
      * The specified Istio auth mode, either none, or mutual TLS.
      */
-    auth?: string;
+    auth?: string | null;
     /**
      * Whether Istio is enabled for this cluster.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
   }
   /**
    * Jwk is a JSON Web Key as specified in RFC 7517
@@ -889,39 +889,39 @@ export namespace container_v1beta1 {
     /**
      * Algorithm.
      */
-    alg?: string;
+    alg?: string | null;
     /**
      * Used for ECDSA keys.
      */
-    crv?: string;
+    crv?: string | null;
     /**
      * Used for RSA keys.
      */
-    e?: string;
+    e?: string | null;
     /**
      * Key ID.
      */
-    kid?: string;
+    kid?: string | null;
     /**
      * Key Type.
      */
-    kty?: string;
+    kty?: string | null;
     /**
      * Used for RSA keys.
      */
-    n?: string;
+    n?: string | null;
     /**
      * Permitted uses for the public keys.
      */
-    use?: string;
+    use?: string | null;
     /**
      * Used for ECDSA keys.
      */
-    x?: string;
+    x?: string | null;
     /**
      * Used for ECDSA keys.
      */
-    y?: string;
+    y?: string | null;
   }
   /**
    * Configuration for the Kubernetes Dashboard.
@@ -930,7 +930,7 @@ export namespace container_v1beta1 {
     /**
      * Whether the Kubernetes Dashboard is enabled for this cluster.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
   }
   /**
    * Configuration for the legacy Attribute Based Access Control authorization mode.
@@ -939,7 +939,7 @@ export namespace container_v1beta1 {
     /**
      * Whether the ABAC authorizer is enabled for this cluster. When enabled, identities in the system, including service accounts, nodes, and controllers, will have statically granted permissions beyond those provided by the RBAC configuration or IAM.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * ListClustersResponse is the result of ListClustersRequest.
@@ -952,7 +952,7 @@ export namespace container_v1beta1 {
     /**
      * If any zones are listed here, the list of clusters returned may be missing those zones.
      */
-    missingZones?: string[];
+    missingZones?: string[] | null;
   }
   /**
    * ListLocationsResponse returns the list of all GKE locations and their recommendation state.
@@ -965,7 +965,7 @@ export namespace container_v1beta1 {
     /**
      * Only return ListLocationsResponse that occur after the page_token. This value should be populated from the ListLocationsResponse.next_page_token if that response token was set (which happens when listing more Locations than fit in a single ListLocationsResponse).
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * ListNodePoolsResponse is the result of ListNodePoolsRequest.
@@ -983,7 +983,7 @@ export namespace container_v1beta1 {
     /**
      * If any zones are listed here, the list of operations returned may be missing the operations from those zones.
      */
-    missingZones?: string[];
+    missingZones?: string[] | null;
     /**
      * A list of operations in the project in the specified zone.
      */
@@ -996,7 +996,7 @@ export namespace container_v1beta1 {
     /**
      * This token allows you to get the next page of results for list requests. If the number of results is larger than `page_size`, use the `next_page_token` as a value for the query parameter `page_token` in the next request. The value will become empty when there are no more pages.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of usable subnetworks in the specified network project.
      */
@@ -1009,15 +1009,15 @@ export namespace container_v1beta1 {
     /**
      * Contains the name of the resource requested. Specified in the format &#39;projects/x/locations/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Whether the location is recomended for GKE cluster scheduling.
      */
-    recommended?: boolean;
+    recommended?: boolean | null;
     /**
      * Contains the type of location this Location is for. Regional or Zonal.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * MaintenancePolicy defines the maintenance policy to be used for the cluster.
@@ -1044,7 +1044,7 @@ export namespace container_v1beta1 {
     /**
      * [Output only] Base64-encoded public certificate used by clients to authenticate to the cluster endpoint.
      */
-    clientCertificate?: string;
+    clientCertificate?: string | null;
     /**
      * Configuration for client certificate authentication on the cluster. For clusters before v1.12, if no configuration is specified, a client certificate is issued.
      */
@@ -1052,16 +1052,16 @@ export namespace container_v1beta1 {
     /**
      * [Output only] Base64-encoded private key used by clients to authenticate to the cluster endpoint.
      */
-    clientKey?: string;
-    clusterCaCertificate?: string;
+    clientKey?: string | null;
+    clusterCaCertificate?: string | null;
     /**
      * The password to use for HTTP basic authentication to the master endpoint. Because the master endpoint is open to the Internet, you should create a strong password.  If a password is provided for cluster creation, username must be non-empty.
      */
-    password?: string;
+    password?: string | null;
     /**
      * The username to use for HTTP basic authentication to the master endpoint. For clusters v1.6.0 and later, basic authentication can be disabled by leaving username unspecified (or setting it to the empty string).
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * Configuration options for the master authorized networks feature. Enabled master authorized networks will disallow all external traffic to access Kubernetes master through HTTPS except traffic from the given CIDR blocks, Google Compute Engine Public IPs and Google Prod IPs.
@@ -1074,7 +1074,7 @@ export namespace container_v1beta1 {
     /**
      * Whether or not master authorized networks is enabled.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * Constraints applied to pods.
@@ -1083,7 +1083,7 @@ export namespace container_v1beta1 {
     /**
      * Constraint enforced on the max num of pods per node.
      */
-    maxPodsPerNode?: string;
+    maxPodsPerNode?: string | null;
   }
   /**
    * Progress metric is (string, int|float|string) pair.
@@ -1092,19 +1092,19 @@ export namespace container_v1beta1 {
     /**
      * For metrics with floating point value.
      */
-    doubleValue?: number;
+    doubleValue?: number | null;
     /**
      * For metrics with integer value.
      */
-    intValue?: string;
+    intValue?: string | null;
     /**
      * Metric name, required. e.g., &quot;nodes total&quot;, &quot;percent done&quot;
      */
-    name?: string;
+    name?: string | null;
     /**
      * For metrics with custom values (ratios, visual progress, etc.).
      */
-    stringValue?: string;
+    stringValue?: string | null;
   }
   /**
    * NetworkConfig reports the relative names of network &amp; subnetwork.
@@ -1113,15 +1113,15 @@ export namespace container_v1beta1 {
     /**
      * Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
      */
-    enableIntraNodeVisibility?: boolean;
+    enableIntraNodeVisibility?: boolean | null;
     /**
      * Output only. The relative name of the Google Compute Engine network(/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */
-    network?: string;
+    network?: string | null;
     /**
      * Output only. The relative name of the Google Compute Engine [subnetwork](/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
-    subnetwork?: string;
+    subnetwork?: string | null;
   }
   /**
    * Configuration options for the NetworkPolicy feature. https://kubernetes.io/docs/concepts/services-networking/networkpolicies/
@@ -1130,11 +1130,11 @@ export namespace container_v1beta1 {
     /**
      * Whether network policy is enabled on the cluster.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * The selected network policy provider.
      */
-    provider?: string;
+    provider?: string | null;
   }
   /**
    * Configuration for NetworkPolicy. This only tracks whether the addon is enabled or not on the Master, it does not track whether network policy is enabled for the nodes.
@@ -1143,7 +1143,7 @@ export namespace container_v1beta1 {
     /**
      * Whether NetworkPolicy is enabled for this cluster.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
   }
   /**
    * Parameters that describe the nodes in a cluster.
@@ -1156,43 +1156,43 @@ export namespace container_v1beta1 {
     /**
      * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB.  If unspecified, the default disk size is 100GB.
      */
-    diskSizeGb?: number;
+    diskSizeGb?: number | null;
     /**
      * Type of the disk attached to each node (e.g. &#39;pd-standard&#39; or &#39;pd-ssd&#39;)  If unspecified, the default disk type is &#39;pd-standard&#39;
      */
-    diskType?: string;
+    diskType?: string | null;
     /**
      * The image type to use for this node. Note that for a given image type, the latest version of it will be used.
      */
-    imageType?: string;
+    imageType?: string | null;
     /**
      * The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it&#39;s best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The number of local SSD disks to be attached to the node.  The limit for this value is dependant upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits for more information.
      */
-    localSsdCount?: number;
+    localSsdCount?: number | null;
     /**
      * The name of a Google Compute Engine [machine type](/compute/docs/machine-types) (e.g. `n1-standard-1`).  If unspecified, the default machine type is `n1-standard-1`.
      */
-    machineType?: string;
+    machineType?: string | null;
     /**
      * The metadata key/value pairs assigned to instances in the cluster.  Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys:  &quot;cluster-location&quot;  &quot;cluster-name&quot;  &quot;cluster-uid&quot;  &quot;configure-sh&quot;  &quot;containerd-configure-sh&quot;  &quot;enable-oslogin&quot;  &quot;gci-ensure-gke-docker&quot;  &quot;gci-update-strategy&quot;  &quot;instance-template&quot;  &quot;kube-env&quot;  &quot;startup-script&quot;  &quot;user-data&quot;  &quot;disable-address-manager&quot;  &quot;windows-startup-script-ps1&quot;  &quot;common-psm1&quot;  &quot;k8s-node-setup-psm1&quot;  &quot;install-ssh-psm1&quot;  &quot;user-profile-psm1&quot;  &quot;serial-port-logging-enable&quot; Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value&#39;s size must be less than or equal to 32 KB.  The total size of all keys and values must be less than 512 KB.
      */
-    metadata?: {[key: string]: string};
+    metadata?: {[key: string]: string} | null;
     /**
      * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as &lt;code&gt;minCpuPlatform: &amp;quot;Intel Haswell&amp;quot;&lt;/code&gt; or &lt;code&gt;minCpuPlatform: &amp;quot;Intel Sandy Bridge&amp;quot;&lt;/code&gt;. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      */
-    minCpuPlatform?: string;
+    minCpuPlatform?: string | null;
     /**
      * The set of Google API scopes to be made available on all of the node VMs under the &quot;default&quot; service account.  The following scopes are recommended, but not required, and by default are not included:  * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](/container-registry/)).  If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
      */
-    oauthScopes?: string[];
+    oauthScopes?: string[] | null;
     /**
      * Whether the nodes are created as preemptible VM instances. See: https://cloud.google.com/compute/docs/instances/preemptible for more inforamtion about preemptible VM instances.
      */
-    preemptible?: boolean;
+    preemptible?: boolean | null;
     /**
      * Sandbox configuration for this node.
      */
@@ -1200,7 +1200,7 @@ export namespace container_v1beta1 {
     /**
      * The Google Cloud Platform Service Account to be used by the node VMs. If no Service Account is specified, the &quot;default&quot; service account is used.
      */
-    serviceAccount?: string;
+    serviceAccount?: string | null;
     /**
      * Shielded Instance options.
      */
@@ -1208,7 +1208,7 @@ export namespace container_v1beta1 {
     /**
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster or node pool creation. Each tag within the list must comply with RFC1035.
      */
-    tags?: string[];
+    tags?: string[] | null;
     /**
      * List of kubernetes taints to be applied to each node.  For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      */
@@ -1225,11 +1225,11 @@ export namespace container_v1beta1 {
     /**
      * Whether the nodes will be automatically repaired.
      */
-    autoRepair?: boolean;
+    autoRepair?: boolean | null;
     /**
      * Whether the nodes will be automatically upgraded.
      */
-    autoUpgrade?: boolean;
+    autoUpgrade?: boolean | null;
     /**
      * Specifies the Auto Upgrade knobs for the node pool.
      */
@@ -1254,15 +1254,15 @@ export namespace container_v1beta1 {
     /**
      * The initial node count for the pool. You must ensure that your Compute Engine &lt;a href=&quot;/compute/docs/resource-quotas&quot;&gt;resource quota&lt;/a&gt; is sufficient for this number of instances. You must also have available firewall and routes quota.
      */
-    initialNodeCount?: number;
+    initialNodeCount?: number | null;
     /**
      * [Output only] The resource URLs of the [managed instance groups](/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool.
      */
-    instanceGroupUrls?: string[];
+    instanceGroupUrls?: string[] | null;
     /**
      * The list of Google Compute Engine [zones](/compute/docs/zones#available) in which the NodePool&#39;s nodes should be located.
      */
-    locations?: string[];
+    locations?: string[] | null;
     /**
      * NodeManagement configuration for this NodePool.
      */
@@ -1274,27 +1274,27 @@ export namespace container_v1beta1 {
     /**
      * The name of the node pool.
      */
-    name?: string;
+    name?: string | null;
     /**
      * [Output only] The pod CIDR block size per node in this node pool.
      */
-    podIpv4CidrSize?: number;
+    podIpv4CidrSize?: number | null;
     /**
      * [Output only] Server-defined URL for the resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * [Output only] The status of the nodes in this pool instance.
      */
-    status?: string;
+    status?: string | null;
     /**
      * [Output only] Additional information about the current status of this node pool instance, if available.
      */
-    statusMessage?: string;
+    statusMessage?: string | null;
     /**
      * The version of the Kubernetes of this node.
      */
-    version?: string;
+    version?: string | null;
   }
   /**
    * NodePoolAutoscaling contains information required by cluster autoscaler to adjust the size of the node pool to the current cluster usage.
@@ -1303,19 +1303,19 @@ export namespace container_v1beta1 {
     /**
      * Can this node pool be deleted automatically.
      */
-    autoprovisioned?: boolean;
+    autoprovisioned?: boolean | null;
     /**
      * Is autoscaling enabled for this node pool.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * Maximum number of nodes in the NodePool. Must be &gt;= min_node_count. There has to enough quota to scale up the cluster.
      */
-    maxNodeCount?: number;
+    maxNodeCount?: number | null;
     /**
      * Minimum number of nodes in the NodePool. Must be &gt;= 1 and &lt;= max_node_count.
      */
-    minNodeCount?: number;
+    minNodeCount?: number | null;
   }
   /**
    * Kubernetes taint is comprised of three fields: key, value, and effect. Effect can only be one of three types:  NoSchedule, PreferNoSchedule or NoExecute.  For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -1324,15 +1324,15 @@ export namespace container_v1beta1 {
     /**
      * Effect for taint.
      */
-    effect?: string;
+    effect?: string | null;
     /**
      * Key for taint.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Value for taint.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * This operation resource represents operations that may have happened or are happening on the cluster. All fields are output only.
@@ -1345,19 +1345,19 @@ export namespace container_v1beta1 {
     /**
      * Detailed operation progress, if available.
      */
-    detail?: string;
+    detail?: string | null;
     /**
      * [Output only] The time the operation completed, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * [Output only] The name of the Google Compute Engine [zone](/compute/docs/regions-zones/regions-zones#available) or [region](/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.
      */
-    location?: string;
+    location?: string | null;
     /**
      * The server-assigned ID for the operation.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Which conditions caused the current node pool state.
      */
@@ -1365,7 +1365,7 @@ export namespace container_v1beta1 {
     /**
      * The operation type.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * [Output only] Progress information for an operation.
      */
@@ -1373,27 +1373,27 @@ export namespace container_v1beta1 {
     /**
      * Server-defined URL for the resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * [Output only] The time the operation started, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The current status of the operation.
      */
-    status?: string;
+    status?: string | null;
     /**
      * If an error has occurred, a textual description of the error.
      */
-    statusMessage?: string;
+    statusMessage?: string | null;
     /**
      * Server-defined URL for the target of the operation.
      */
-    targetLink?: string;
+    targetLink?: string | null;
     /**
      * The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation is taking place. This field is deprecated, use location instead.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * Information about operation (or operation stage) progress.
@@ -1406,7 +1406,7 @@ export namespace container_v1beta1 {
     /**
      * A non-parameterized string describing an operation stage. Unset for single-stage operations.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Substages of an operation or a stage.
      */
@@ -1414,7 +1414,7 @@ export namespace container_v1beta1 {
     /**
      * Status of an operation stage. Unset for single-stage operations.
      */
-    status?: string;
+    status?: string | null;
   }
   /**
    * Configuration for the PodSecurityPolicy feature.
@@ -1423,7 +1423,7 @@ export namespace container_v1beta1 {
     /**
      * Enable the PodSecurityPolicy controller for this cluster. If enabled, pods must be valid under a PodSecurityPolicy to be created.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * PremiumConfig is the configuration for all premium features and tiers.
@@ -1445,27 +1445,27 @@ export namespace container_v1beta1 {
     /**
      * Whether to enable route sharing over the network peering.
      */
-    enablePeeringRouteSharing?: boolean;
+    enablePeeringRouteSharing?: boolean | null;
     /**
      * Whether the master&#39;s internal IP address is used as the cluster endpoint.
      */
-    enablePrivateEndpoint?: boolean;
+    enablePrivateEndpoint?: boolean | null;
     /**
      * Whether nodes have internal IP addresses only. If enabled, all nodes are given only RFC 1918 private addresses and communicate with the master via private networking.
      */
-    enablePrivateNodes?: boolean;
+    enablePrivateNodes?: boolean | null;
     /**
      * The IP range in CIDR notation to use for the hosted master network. This range will be used for assigning internal IP addresses to the master or set of masters, as well as the ILB VIP. This range must not overlap with any other ranges in use within the cluster&#39;s network.
      */
-    masterIpv4CidrBlock?: string;
+    masterIpv4CidrBlock?: string | null;
     /**
      * Output only. The internal IP address of this cluster&#39;s master endpoint.
      */
-    privateEndpoint?: string;
+    privateEndpoint?: string | null;
     /**
      * Output only. The external IP address of this cluster&#39;s master endpoint.
      */
-    publicEndpoint?: string;
+    publicEndpoint?: string | null;
   }
   /**
    * ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk and frequency of updates.  When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled. Updates to version related fields (e.g. current_master_version) return an error.
@@ -1474,7 +1474,7 @@ export namespace container_v1beta1 {
     /**
      * channel specifies which release channel the cluster is subscribed to.
      */
-    channel?: string;
+    channel?: string | null;
   }
   /**
    * ReleaseChannelConfig exposes configuration for a release channel.
@@ -1483,11 +1483,11 @@ export namespace container_v1beta1 {
     /**
      * The release channel this configuration applies to.
      */
-    channel?: string;
+    channel?: string | null;
     /**
      * The default version for newly created clusters on the channel.
      */
-    defaultVersion?: string;
+    defaultVersion?: string | null;
   }
   /**
    * Contains information about amount of some resource in the cluster. For memory, value should be in GB.
@@ -1496,15 +1496,15 @@ export namespace container_v1beta1 {
     /**
      * Maximum amount of the resource in the cluster.
      */
-    maximum?: string;
+    maximum?: string | null;
     /**
      * Minimum amount of the resource in the cluster.
      */
-    minimum?: string;
+    minimum?: string | null;
     /**
      * Resource name &quot;cpu&quot;, &quot;memory&quot; or gpu-specific string.
      */
-    resourceType?: string;
+    resourceType?: string | null;
   }
   /**
    * Configuration for exporting cluster resource usages.
@@ -1521,7 +1521,7 @@ export namespace container_v1beta1 {
     /**
      * Whether to enable network egress metering for this cluster. If enabled, a daemonset will be created in the cluster to meter network egress traffic.
      */
-    enableNetworkEgressMetering?: boolean;
+    enableNetworkEgressMetering?: boolean | null;
   }
   /**
    * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed NodePool upgrade. This will be an no-op if the last upgrade successfully completed.
@@ -1530,23 +1530,23 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
      */
-    nodePoolId?: string;
+    nodePoolId?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SandboxConfig contains configurations of the sandbox to use for the node.
@@ -1555,7 +1555,7 @@ export namespace container_v1beta1 {
     /**
      * Type of the sandbox to use for the node (e.g. &#39;gvisor&#39;)
      */
-    sandboxType?: string;
+    sandboxType?: string | null;
   }
   /**
    * Kubernetes Engine service configuration.
@@ -1568,11 +1568,11 @@ export namespace container_v1beta1 {
     /**
      * Version of Kubernetes the service deploys by default.
      */
-    defaultClusterVersion?: string;
+    defaultClusterVersion?: string | null;
     /**
      * Default image type.
      */
-    defaultImageType?: string;
+    defaultImageType?: string | null;
     /**
      * Premium configuration for service.
      */
@@ -1580,15 +1580,15 @@ export namespace container_v1beta1 {
     /**
      * List of valid image types.
      */
-    validImageTypes?: string[];
+    validImageTypes?: string[] | null;
     /**
      * List of valid master versions.
      */
-    validMasterVersions?: string[];
+    validMasterVersions?: string[] | null;
     /**
      * List of valid node upgrade target versions.
      */
-    validNodeVersions?: string[];
+    validNodeVersions?: string[] | null;
   }
   /**
    * SetAddonsRequest sets the addons associated with the cluster.
@@ -1601,19 +1601,19 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster) of the cluster to set addons. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetLabelsRequest sets the Google Cloud Platform labels on a Google Container Engine cluster, which will in turn set them for Google Compute Engine resources used by that cluster
@@ -1622,27 +1622,27 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Kubernetes Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash when updating or changing labels. Make a &lt;code&gt;get()&lt;/code&gt; request to the resource to get the latest fingerprint.
      */
-    labelFingerprint?: string;
+    labelFingerprint?: string | null;
     /**
      * The name (project, location, cluster id) of the cluster to set labels. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The labels to set for that cluster.
      */
-    resourceLabels?: {[key: string]: string};
+    resourceLabels?: {[key: string]: string} | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetLegacyAbacRequest enables or disables the ABAC authorization mechanism for a cluster.
@@ -1651,23 +1651,23 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * Whether ABAC authorization will be enabled in the cluster.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetLocationsRequest sets the locations of the cluster.
@@ -1676,23 +1676,23 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The desired list of Google Compute Engine [zones](/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed.  This list must always include the cluster&#39;s primary zone.
      */
-    locations?: string[];
+    locations?: string[] | null;
     /**
      * The name (project, location, cluster) of the cluster to set locations. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetLoggingServiceRequest sets the logging service of a cluster.
@@ -1701,23 +1701,23 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The logging service the cluster should use to write metrics. Currently available options:  * &quot;logging.googleapis.com&quot; - the Google Cloud Logging service * &quot;none&quot; - no metrics will be exported from the cluster
      */
-    loggingService?: string;
+    loggingService?: string | null;
     /**
      * The name (project, location, cluster) of the cluster to set logging. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetMaintenancePolicyRequest sets the maintenance policy for a cluster.
@@ -1726,7 +1726,7 @@ export namespace container_v1beta1 {
     /**
      * The name of the cluster to update.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The maintenance policy to be set for the cluster. An empty field clears the existing maintenance policy.
      */
@@ -1734,15 +1734,15 @@ export namespace container_v1beta1 {
     /**
      * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetMasterAuthRequest updates the admin password of a cluster.
@@ -1751,19 +1751,19 @@ export namespace container_v1beta1 {
     /**
      * The exact form of action to be taken on the master auth.
      */
-    action?: string;
+    action?: string | null;
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster) of the cluster to set auth. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * A description of the update.
      */
@@ -1771,7 +1771,7 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetMonitoringServiceRequest sets the monitoring service of a cluster.
@@ -1780,23 +1780,23 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
      */
-    monitoringService?: string;
+    monitoringService?: string | null;
     /**
      * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetNetworkPolicyRequest enables/disables network policy for a cluster.
@@ -1805,11 +1805,11 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Configuration options for the NetworkPolicy feature.
      */
@@ -1817,11 +1817,11 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetNodePoolAutoscalingRequest sets the autoscaler settings of a node pool.
@@ -1834,23 +1834,23 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      */
-    nodePoolId?: string;
+    nodePoolId?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetNodePoolManagementRequest sets the node management properties of a node pool.
@@ -1859,7 +1859,7 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * NodeManagement configuration for the node pool.
      */
@@ -1867,19 +1867,19 @@ export namespace container_v1beta1 {
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
      */
-    nodePoolId?: string;
+    nodePoolId?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetNodePoolSizeRequest sets the size a node pool.
@@ -1888,27 +1888,27 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The desired node count for the pool.
      */
-    nodeCount?: number;
+    nodeCount?: number | null;
     /**
      * Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
      */
-    nodePoolId?: string;
+    nodePoolId?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * A set of Shielded Instance options.
@@ -1917,11 +1917,11 @@ export namespace container_v1beta1 {
     /**
      * Defines whether the instance has integrity monitoring enabled.  Enables monitoring and attestation of the boot integrity of the instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the instance is created.
      */
-    enableIntegrityMonitoring?: boolean;
+    enableIntegrityMonitoring?: boolean | null;
     /**
      * Defines whether the instance has Secure Boot enabled.  Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails.
      */
-    enableSecureBoot?: boolean;
+    enableSecureBoot?: boolean | null;
   }
   /**
    * Configuration of Shielded Nodes feature.
@@ -1930,7 +1930,7 @@ export namespace container_v1beta1 {
     /**
      * Whether Shielded Nodes features are enabled on all nodes in this cluster.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * StartIPRotationRequest creates a new IP for the cluster and then performs a node upgrade on each node pool to point to the new IP.
@@ -1939,23 +1939,23 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Whether to rotate credentials during IP rotation.
      */
-    rotateCredentials?: boolean;
+    rotateCredentials?: boolean | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * StatusCondition describes why a cluster or a node pool has a certain status (e.g., ERROR or DEGRADED).
@@ -1964,11 +1964,11 @@ export namespace container_v1beta1 {
     /**
      * Machine-friendly representation of the condition
      */
-    code?: string;
+    code?: string | null;
     /**
      * Human-friendly representation of the condition
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * TierConfig is the configuration for a tier offering.  For example the GKE standard or advanced offerings which contain different levels of functionality and possibly cost.
@@ -1977,11 +1977,11 @@ export namespace container_v1beta1 {
     /**
      * The tier from which the tier being configured inherits.  The configured tier will inherit all the features from its parent tier.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * The tier that is being configured with this value.
      */
-    tier?: string;
+    tier?: string | null;
   }
   /**
    * Cluster tier settings.
@@ -1990,7 +1990,7 @@ export namespace container_v1beta1 {
     /**
      * Cluster tier.
      */
-    tier?: string;
+    tier?: string | null;
   }
   /**
    * UpdateClusterRequest updates the settings of a cluster.
@@ -1999,15 +1999,15 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The name (project, location, cluster) of the cluster to update. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * A description of the update.
      */
@@ -2015,7 +2015,7 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * UpdateMasterRequest updates the master of the cluster.
@@ -2024,23 +2024,23 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The Kubernetes version to change the master to.  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the default Kubernetes version
      */
-    masterVersion?: string;
+    masterVersion?: string | null;
     /**
      * The name (project, location, cluster) of the cluster to update. Specified in the format &#39;projects/x/locations/x/clusters/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * SetNodePoolVersionRequest updates the version of a node pool.
@@ -2049,31 +2049,31 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The desired image type for the node pool.
      */
-    imageType?: string;
+    imageType?: string | null;
     /**
      * The desired list of Google Compute Engine [zones](/compute/docs/zones#available) in which the node pool&#39;s nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
      */
-    locations?: string[];
+    locations?: string[] | null;
     /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      */
-    nodePoolId?: string;
+    nodePoolId?: string | null;
     /**
      * The Kubernetes version to change the nodes to (typically an upgrade).  Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior:  - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the Kubernetes master version
      */
-    nodeVersion?: string;
+    nodeVersion?: string | null;
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The desired image type for the node pool.
      */
@@ -2081,7 +2081,7 @@ export namespace container_v1beta1 {
     /**
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * UsableSubnetwork resource returns the subnetwork name, its associated network and the primary CIDR range.
@@ -2090,11 +2090,11 @@ export namespace container_v1beta1 {
     /**
      * The range of internal addresses that are owned by this subnetwork.
      */
-    ipCidrRange?: string;
+    ipCidrRange?: string | null;
     /**
      * Network Name. Example: projects/my-project/global/networks/my-network
      */
-    network?: string;
+    network?: string | null;
     /**
      * Secondary IP ranges.
      */
@@ -2102,11 +2102,11 @@ export namespace container_v1beta1 {
     /**
      * A human readable status message representing the reasons for cases where the caller cannot use the secondary ranges under the subnet. For example if the secondary_ip_ranges is empty due to a permission issue, an insufficient permission message will be given by status_message.
      */
-    statusMessage?: string;
+    statusMessage?: string | null;
     /**
      * Subnetwork Name. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
-    subnetwork?: string;
+    subnetwork?: string | null;
   }
   /**
    * Secondary IP range of a usable subnetwork.
@@ -2115,15 +2115,15 @@ export namespace container_v1beta1 {
     /**
      * The range of IP addresses belonging to this subnetwork secondary range.
      */
-    ipCidrRange?: string;
+    ipCidrRange?: string | null;
     /**
      * The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance.
      */
-    rangeName?: string;
+    rangeName?: string | null;
     /**
      * This field is to determine the status of the secondary range programmably.
      */
-    status?: string;
+    status?: string | null;
   }
   /**
    * VerticalPodAutoscaling contains global, per-cluster information required by Vertical Pod Autoscaler to automatically adjust the resources of pods controlled by it.
@@ -2132,7 +2132,7 @@ export namespace container_v1beta1 {
     /**
      * Enables vertical pod autoscaling.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
@@ -2141,7 +2141,7 @@ export namespace container_v1beta1 {
     /**
      * IAM Identity Namespace to attach all Kubernetes Service Accounts to.
      */
-    identityNamespace?: string;
+    identityNamespace?: string | null;
   }
   /**
    * WorkloadMetadataConfig defines the metadata configuration to expose to workloads on the node pool.
@@ -2150,7 +2150,7 @@ export namespace container_v1beta1 {
     /**
      * NodeMetadata is the configuration for how to expose metadata to the workloads running on the node.
      */
-    nodeMetadata?: string;
+    nodeMetadata?: string | null;
   }
 
   export class Resource$Projects {

@@ -141,11 +141,11 @@ export namespace verifiedaccess_v1 {
     /**
      * The data to be signed.
      */
-    data?: string;
+    data?: string | null;
     /**
      * The signature of the data field.
      */
-    signature?: string;
+    signature?: string | null;
   }
   /**
    * signed ChallengeResponse
@@ -158,7 +158,7 @@ export namespace verifiedaccess_v1 {
     /**
      * Service can optionally provide identity information about the device or user associated with the key. For an EMK, this value is the enrolled domain. For an EUK, this value is the user&#39;s email address. If present, this value will be checked against contents of the response, and verification will fail if there is no match.
      */
-    expectedIdentity?: string;
+    expectedIdentity?: string | null;
   }
   /**
    * Result message for VerifiedAccess.VerifyChallengeResponse.
@@ -167,19 +167,19 @@ export namespace verifiedaccess_v1 {
     /**
      * Device enrollment id is returned in this field (for the machine response only).
      */
-    deviceEnrollmentId?: string;
+    deviceEnrollmentId?: string | null;
     /**
      * Device permanent id is returned in this field (for the machine response only).
      */
-    devicePermanentId?: string;
+    devicePermanentId?: string | null;
     /**
      * Certificate Signing Request (in the SPKAC format, base64 encoded) is returned in this field. This field will be set only if device has included CSR in its challenge response. (the option to include CSR is now available for both user and machine responses)
      */
-    signedPublicKeyAndChallenge?: string;
+    signedPublicKeyAndChallenge?: string | null;
     /**
      * For EMCert check, device permanent id is returned here. For EUCert check, signed_public_key_and_challenge [base64 encoded] is returned if present, otherwise empty string is returned. This field is deprecated, please use device_permanent_id or signed_public_key_and_challenge fields.
      */
-    verificationOutput?: string;
+    verificationOutput?: string | null;
   }
 
   export class Resource$Challenge {

@@ -126,11 +126,11 @@ export namespace clouddebugger_v2 {
     /**
      * The alias kind.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The alias name.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Represents the breakpoint specification, status and results.
@@ -139,15 +139,15 @@ export namespace clouddebugger_v2 {
     /**
      * Action that the agent should perform when the code at the breakpoint location is hit.
      */
-    action?: string;
+    action?: string | null;
     /**
      * Condition that triggers the breakpoint. The condition is a compound boolean expression composed using expressions in a programming language at the source location.
      */
-    condition?: string;
+    condition?: string | null;
     /**
      * Time this breakpoint was created by the server in seconds resolution.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Values of evaluated expressions at breakpoint time. The evaluated expressions appear in exactly the same order they are listed in the `expressions` field. The `name` field holds the original expression text, the `value` or `members` field holds the result of the evaluated expression. If the expression cannot be evaluated, the `status` inside the `Variable` will indicate an error and contain the error text.
      */
@@ -155,23 +155,23 @@ export namespace clouddebugger_v2 {
     /**
      * List of read-only expressions to evaluate at the breakpoint location. The expressions are composed using expressions in the programming language at the source location. If the breakpoint action is `LOG`, the evaluated expressions are included in log statements.
      */
-    expressions?: string[];
+    expressions?: string[] | null;
     /**
      * Time this breakpoint was finalized as seen by the server in seconds resolution.
      */
-    finalTime?: string;
+    finalTime?: string | null;
     /**
      * Breakpoint identifier, unique in the scope of the debuggee.
      */
-    id?: string;
+    id?: string | null;
     /**
      * When true, indicates that this is a final result and the breakpoint state will not change from here on.
      */
-    isFinalState?: boolean;
+    isFinalState?: boolean | null;
     /**
      * A set of custom breakpoint properties, populated by the agent, to be displayed to the user.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Breakpoint source location.
      */
@@ -179,11 +179,11 @@ export namespace clouddebugger_v2 {
     /**
      * Indicates the severity of the log. Only relevant when action is `LOG`.
      */
-    logLevel?: string;
+    logLevel?: string | null;
     /**
      * Only relevant when action is `LOG`. Defines the message to log when the breakpoint hits. The message may include parameter placeholders `$0`, `$1`, etc. These placeholders are replaced with the evaluated value of the appropriate expression. Expressions not referenced in `log_message_format` are not logged.  Example: `Message received, id = $0, count = $1` with `expressions` = `[ message.id, message.count ]`.
      */
-    logMessageFormat?: string;
+    logMessageFormat?: string | null;
     /**
      * The stack at breakpoint time, where stack_frames[0] represents the most recently entered function.
      */
@@ -195,7 +195,7 @@ export namespace clouddebugger_v2 {
     /**
      * E-mail address of the user that created this breakpoint
      */
-    userEmail?: string;
+    userEmail?: string | null;
     /**
      * The `variable_table` exists to aid with computation, memory and network traffic optimization.  It enables storing a variable once and reference it from multiple variables, including variables stored in the `variable_table` itself. For example, the same `this` object, which may appear at many levels of the stack, can have all of its data stored once in this table.  The stack frame variables then would hold only a reference to it.  The variable `var_table_index` field is an index into this repeated field. The stored objects are nameless and get their name from the referencing variable. The effective variable is a merge of the referencing variable and the referenced variable.
      */
@@ -212,7 +212,7 @@ export namespace clouddebugger_v2 {
     /**
      * The name of an alias (branch, tag, etc.).
      */
-    aliasName?: string;
+    aliasName?: string | null;
     /**
      * The ID of the repo.
      */
@@ -220,7 +220,7 @@ export namespace clouddebugger_v2 {
     /**
      * A revision ID.
      */
-    revisionId?: string;
+    revisionId?: string | null;
   }
   /**
    * A CloudWorkspaceId is a unique identifier for a cloud workspace. A cloud workspace is a place associated with a repo where modified files can be stored before they are committed.
@@ -229,7 +229,7 @@ export namespace clouddebugger_v2 {
     /**
      * The unique name of the workspace within the repo.  This is the name chosen by the client in the Source API&#39;s CreateWorkspace method.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The ID of the repo containing the workspace.
      */
@@ -242,7 +242,7 @@ export namespace clouddebugger_v2 {
     /**
      * The ID of the snapshot. An empty snapshot_id refers to the most recent snapshot.
      */
-    snapshotId?: string;
+    snapshotId?: string | null;
     /**
      * The ID of the workspace.
      */
@@ -255,11 +255,11 @@ export namespace clouddebugger_v2 {
     /**
      * Version ID of the agent. Schema: `domain/language-platform/vmajor.minor` (for example `google.com/java-gcp/v1.1`).
      */
-    agentVersion?: string;
+    agentVersion?: string | null;
     /**
      * Human readable description of the debuggee. Including a human-readable project name, environment name and version information is recommended.
      */
-    description?: string;
+    description?: string | null;
     /**
      * References to the locations and revisions of the source code used in the deployed application.
      */
@@ -267,23 +267,23 @@ export namespace clouddebugger_v2 {
     /**
      * Unique identifier for the debuggee generated by the controller service.
      */
-    id?: string;
+    id?: string | null;
     /**
      * If set to `true`, indicates that the agent should disable itself and detach from the debuggee.
      */
-    isDisabled?: boolean;
+    isDisabled?: boolean | null;
     /**
      * If set to `true`, indicates that Controller service does not detect any activity from the debuggee agents and the application is possibly stopped.
      */
-    isInactive?: boolean;
+    isInactive?: boolean | null;
     /**
      * A set of custom debuggee properties, populated by the agent, to be displayed to the user.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Project the debuggee is associated with. Use project number or id when registering a Google Cloud Platform project.
      */
-    project?: string;
+    project?: string | null;
     /**
      * References to the locations and revisions of the source code used in the deployed application.
      */
@@ -295,7 +295,7 @@ export namespace clouddebugger_v2 {
     /**
      * Uniquifier to further distinguish the application. It is possible that different applications might have identical values in the debuggee message, thus, incorrectly identified as a single application by the Controller service. This field adds salt to further distinguish the application. Agents should consider seeding this field with value that identifies the code, binary, configuration and environment.
      */
-    uniquifier?: string;
+    uniquifier?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -312,7 +312,7 @@ export namespace clouddebugger_v2 {
     /**
      * Labels with user defined metadata.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Represents a message with parameters.
@@ -321,11 +321,11 @@ export namespace clouddebugger_v2 {
     /**
      * Format template for the message. The `format` uses placeholders `$0`, `$1`, etc. to reference parameters. `$$` can be used to denote the `$` character.  Examples:  *   `Failed to load &#39;$0&#39; which helps debug $1 the first time it     is loaded.  Again, $0 is very important.` *   `Please pay $$10 to use $0 instead of $1.`
      */
-    format?: string;
+    format?: string | null;
     /**
      * Optional parameters to be embedded into the message.
      */
-    parameters?: string[];
+    parameters?: string[] | null;
   }
   /**
    * A SourceContext referring to a Gerrit project.
@@ -338,19 +338,19 @@ export namespace clouddebugger_v2 {
     /**
      * The name of an alias (branch, tag, etc.).
      */
-    aliasName?: string;
+    aliasName?: string | null;
     /**
      * The full project name within the host. Projects may be nested, so &quot;project/subproject&quot; is a valid project name. The &quot;repo name&quot; is hostURI/project.
      */
-    gerritProject?: string;
+    gerritProject?: string | null;
     /**
      * The URI of a running Gerrit instance.
      */
-    hostUri?: string;
+    hostUri?: string | null;
     /**
      * A revision (commit) ID.
      */
-    revisionId?: string;
+    revisionId?: string | null;
   }
   /**
    * Response for getting breakpoint information.
@@ -368,11 +368,11 @@ export namespace clouddebugger_v2 {
     /**
      * Git commit hash. required.
      */
-    revisionId?: string;
+    revisionId?: string | null;
     /**
      * Git repository URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Response for listing active breakpoints.
@@ -385,11 +385,11 @@ export namespace clouddebugger_v2 {
     /**
      * A token that can be used in the next method call to block until the list of breakpoints changes.
      */
-    nextWaitToken?: string;
+    nextWaitToken?: string | null;
     /**
      * If set to `true`, indicates that there is no change to the list of active breakpoints and the server-selected timeout has expired. The `breakpoints` field would be empty and should be ignored.
      */
-    waitExpired?: boolean;
+    waitExpired?: boolean | null;
   }
   /**
    * Response for listing breakpoints.
@@ -402,7 +402,7 @@ export namespace clouddebugger_v2 {
     /**
      * A wait token that can be used in the next call to `list` (REST) or `ListBreakpoints` (RPC) to block until the list of breakpoints has changes.
      */
-    nextWaitToken?: string;
+    nextWaitToken?: string | null;
   }
   /**
    * Response for listing debuggees.
@@ -420,11 +420,11 @@ export namespace clouddebugger_v2 {
     /**
      * The ID of the project.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The name of the repo. Leave empty for the default repo.
      */
-    repoName?: string;
+    repoName?: string | null;
   }
   /**
    * Request to register a debuggee.
@@ -455,7 +455,7 @@ export namespace clouddebugger_v2 {
     /**
      * A server-assigned, globally unique identifier.
      */
-    uid?: string;
+    uid?: string | null;
   }
   /**
    * Response for setting a breakpoint.
@@ -494,15 +494,15 @@ export namespace clouddebugger_v2 {
     /**
      * Column within a line. The first column in a line as the value `1`. Agents that do not support setting breakpoints on specific columns ignore this field.
      */
-    column?: number;
+    column?: number | null;
     /**
      * Line inside the file. The first line in the file has the value `1`.
      */
-    line?: number;
+    line?: number | null;
     /**
      * Path to the source file within the source context of the target binary.
      */
-    path?: string;
+    path?: string | null;
   }
   /**
    * Represents a stack frame context.
@@ -515,7 +515,7 @@ export namespace clouddebugger_v2 {
     /**
      * Demangled function name at the call site.
      */
-    function?: string;
+    function?: string | null;
     /**
      * Set of local variables at the stack frame location. Note that this might not be populated for all stack frames.
      */
@@ -536,11 +536,11 @@ export namespace clouddebugger_v2 {
     /**
      * Distinguishes errors from informational messages.
      */
-    isError?: boolean;
+    isError?: boolean | null;
     /**
      * Reference to which the message applies.
      */
-    refersTo?: string;
+    refersTo?: string | null;
   }
   /**
    * Request to update an active breakpoint.
@@ -566,7 +566,7 @@ export namespace clouddebugger_v2 {
     /**
      * Name of the variable, if any.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Status associated with the variable. This field will usually stay unset. A status of a single variable only applies to that variable or expression. The rest of breakpoint data still remains valid. Variables might be reported in error state even when breakpoint is not in final state.  The message may refer to variable name with `refers_to` set to `VARIABLE_NAME`. Alternatively `refers_to` will be set to `VARIABLE_VALUE`. In either case variable value and members will be unset.  Example of error message applied to name: `Invalid expression syntax`.  Example of information message applied to value: `Not captured`.  Examples of error message applied to value:  *   `Malformed string`, *   `Field f not found in class C` *   `Null pointer dereference`
      */
@@ -574,15 +574,15 @@ export namespace clouddebugger_v2 {
     /**
      * Variable type (e.g. `MyClass`). If the variable is split with `var_table_index`, `type` goes next to `value`. The interpretation of a type is agent specific. It is recommended to include the dynamic type rather than a static type of an object.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Simple value of the variable.
      */
-    value?: string;
+    value?: string | null;
     /**
      * Reference to a variable in the shared variable table. More than one variable can reference the same variable in the table. The `var_table_index` field is an index into `variable_table` in Breakpoint.
      */
-    varTableIndex?: number;
+    varTableIndex?: number | null;
   }
 
   export class Resource$Controller {

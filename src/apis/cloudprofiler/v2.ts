@@ -128,7 +128,7 @@ export namespace cloudprofiler_v2 {
     /**
      * One or more profile types that the agent is capable of providing.
      */
-    profileType?: string[];
+    profileType?: string[] | null;
   }
   /**
    * Deployment contains the deployment identification information.
@@ -137,15 +137,15 @@ export namespace cloudprofiler_v2 {
     /**
      * Labels identify the deployment within the user universe and same target. Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`. Value for an individual label must be &lt;= 512 bytes, the total size of all label names and values must be &lt;= 1024 bytes.  Label named &quot;language&quot; can be used to record the programming language of the profiled deployment. The standard choices for the value include &quot;java&quot;, &quot;go&quot;, &quot;python&quot;, &quot;ruby&quot;, &quot;nodejs&quot;, &quot;php&quot;, &quot;dotnet&quot;.  For deployments running on Google Cloud Platform, &quot;zone&quot; or &quot;region&quot; label should be present describing the deployment location. An example of a zone is &quot;us-central1-a&quot;, an example of a region is &quot;us-central1&quot; or &quot;us-central&quot;.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Project ID is the ID of a cloud project. Validation regex: `^a-z{4,61}[a-z0-9]$`.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Target is the service name used to group related deployments: * Service name for GAE Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct GCE profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.
      */
-    target?: string;
+    target?: string | null;
   }
   /**
    * Profile resource.
@@ -158,23 +158,23 @@ export namespace cloudprofiler_v2 {
     /**
      * Duration of the profiling session. Input (for the offline mode) or output (for the online mode). The field represents requested profiling duration. It may slightly differ from the effective profiling duration, which is recorded in the profile data, in case the profiling can&#39;t be stopped immediately (e.g. in case stopping the profiling is handled asynchronously).
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set.  See documentation on deployment labels for validation rules and limits.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. Opaque, server-assigned, unique ID for this profile.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Input only. Profile bytes, as a gzip compressed serialized proto, the format is https://github.com/google/pprof/blob/master/proto/profile.proto.
      */
-    profileBytes?: string;
+    profileBytes?: string | null;
     /**
      * Type of profile. For offline mode, this must be specified when creating the profile. For online mode it is assigned and returned by the server.
      */
-    profileType?: string;
+    profileType?: string | null;
   }
 
   export class Resource$Projects {

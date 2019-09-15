@@ -121,40 +121,45 @@ export namespace pagespeedonline_v4 {
       }>;
       type?: string;
       value?: string;
-    }>;
+    }> | null;
     /**
      * A localized format string with {{FOO}} placeholders, where &#39;FOO&#39; is the key of the argument whose value should be substituted. For HYPERLINK arguments, the format string will instead contain {{BEGIN_FOO}} and {{END_FOO}} for the argument with key &#39;FOO&#39;.
      */
-    format?: string;
+    format?: string | null;
   }
   export interface Schema$PagespeedApiImageV4 {
     /**
      * Image data base64 encoded.
      */
-    data?: string;
+    data?: string | null;
     /**
      * Height of screenshot in pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * Unique string key, if any, identifying this image.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Mime type of image data (e.g. &quot;image/jpeg&quot;).
      */
-    mime_type?: string;
-    page_rect?: {height?: number; left?: number; top?: number; width?: number};
+    mime_type?: string | null;
+    page_rect?: {
+      height?: number;
+      left?: number;
+      top?: number;
+      width?: number;
+    } | null;
     /**
      * Width of screenshot in pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   export interface Schema$PagespeedApiPagespeedResponseV4 {
     /**
      * The captcha verify result
      */
-    captchaResult?: string;
+    captchaResult?: string | null;
     /**
      * Localized PageSpeed results. Contains a ruleResults entry for each PageSpeed rule instantiated and run by the server.
      */
@@ -176,19 +181,19 @@ export namespace pagespeedonline_v4 {
           }>;
         };
       };
-    };
+    } | null;
     /**
      * Canonicalized and final URL for the document, after following page redirects (if any).
      */
-    id?: string;
+    id?: string | null;
     /**
      * List of rules that were specified in the request, but which the server did not know how to instantiate.
      */
-    invalidRules?: string[];
+    invalidRules?: string[] | null;
     /**
      * Kind of result.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metrics of end users&#39; page loading experience.
      */
@@ -207,7 +212,7 @@ export namespace pagespeedonline_v4 {
         };
       };
       overall_category?: string;
-    };
+    } | null;
     /**
      * Summary statistics for the page, such as number of JavaScript bytes, number of HTML bytes, etc.
      */
@@ -233,15 +238,15 @@ export namespace pagespeedonline_v4 {
       textResponseBytes?: string;
       totalRequestBytes?: string;
       transientFetchFailureUrls?: string[];
-    };
+    } | null;
     /**
      * Response code for the document. 200 indicates a normal page load. 4xx/5xx indicates an error.
      */
-    responseCode?: number;
+    responseCode?: number | null;
     /**
      * A map with one entry for each rule group in these results.
      */
-    ruleGroups?: {[key: string]: {pass?: boolean; score?: number}};
+    ruleGroups?: {[key: string]: {pass?: boolean; score?: number}} | null;
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
@@ -253,11 +258,11 @@ export namespace pagespeedonline_v4 {
     /**
      * Title of the page, as displayed in the browser&#39;s title bar.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: {major?: number; minor?: number};
+    version?: {major?: number; minor?: number} | null;
   }
 
   export class Resource$Pagespeedapi {

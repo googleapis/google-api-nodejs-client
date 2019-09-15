@@ -121,23 +121,23 @@ export namespace bigtableadmin_v1 {
     /**
      * (`CreationOnly`) The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
      */
-    defaultStorageType?: string;
+    defaultStorageType?: string | null;
     /**
      * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
      */
-    location?: string;
+    location?: string | null;
     /**
      * (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/a-z*`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
      */
-    serveNodes?: number;
+    serveNodes?: number | null;
     /**
      * (`OutputOnly`) The current state of the cluster.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * The metadata for the Operation returned by CreateCluster.
@@ -146,7 +146,7 @@ export namespace bigtableadmin_v1 {
     /**
      * The time at which the operation failed or was completed successfully.
      */
-    finishTime?: string;
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this CreateCluster operation.
      */
@@ -154,11 +154,11 @@ export namespace bigtableadmin_v1 {
     /**
      * The time at which the original request was received.
      */
-    requestTime?: string;
+    requestTime?: string | null;
     /**
      * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one.  Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
      */
-    tables?: {[key: string]: Schema$TableProgress};
+    tables?: {[key: string]: Schema$TableProgress} | null;
   }
   /**
    * Request message for BigtableInstanceAdmin.CreateCluster.
@@ -171,11 +171,11 @@ export namespace bigtableadmin_v1 {
     /**
      * The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The unique name of the instance in which to create the new cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      */
-    parent?: string;
+    parent?: string | null;
   }
   /**
    * The metadata for the Operation returned by CreateInstance.
@@ -184,7 +184,7 @@ export namespace bigtableadmin_v1 {
     /**
      * The time at which the operation failed or was completed successfully.
      */
-    finishTime?: string;
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this CreateInstance operation.
      */
@@ -192,7 +192,7 @@ export namespace bigtableadmin_v1 {
     /**
      * The time at which the original request was received.
      */
-    requestTime?: string;
+    requestTime?: string | null;
   }
   /**
    * Request message for BigtableInstanceAdmin.CreateInstance.
@@ -201,7 +201,7 @@ export namespace bigtableadmin_v1 {
     /**
      * The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most two clusters can be specified.
      */
-    clusters?: {[key: string]: Schema$Cluster};
+    clusters?: {[key: string]: Schema$Cluster} | null;
     /**
      * The instance to create. Fields marked `OutputOnly` must be left blank.
      */
@@ -209,11 +209,11 @@ export namespace bigtableadmin_v1 {
     /**
      * The ID to be used when referring to the new instance within its project, e.g., just `myinstance` rather than `projects/myproject/instances/myinstance`.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * The unique name of the project in which to create the new instance. Values are of the form `projects/&lt;project&gt;`.
      */
-    parent?: string;
+    parent?: string | null;
   }
   /**
    * A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance.
@@ -222,23 +222,23 @@ export namespace bigtableadmin_v1 {
     /**
      * The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * (`OutputOnly`) The unique name of the instance. Values are of the form `projects/&lt;project&gt;/instances/a-z+[a-z0-9]`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * (`OutputOnly`) The current state of the instance.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The type of the instance. Defaults to `PRODUCTION`.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Request message for BigtableInstanceAdmin.PartialUpdateInstance.
@@ -251,7 +251,7 @@ export namespace bigtableadmin_v1 {
     /**
      * The subset of Instance fields which should be replaced. Must be explicitly set.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Progress info for copying a table&#39;s data to the new cluster.
@@ -260,12 +260,12 @@ export namespace bigtableadmin_v1 {
     /**
      * Estimate of the number of bytes copied so far for this table. This will eventually reach &#39;estimated_size_bytes&#39; unless the table copy is CANCELLED.
      */
-    estimatedCopiedBytes?: string;
+    estimatedCopiedBytes?: string | null;
     /**
      * Estimate of the size of the table to be copied.
      */
-    estimatedSizeBytes?: string;
-    state?: string;
+    estimatedSizeBytes?: string | null;
+    state?: string | null;
   }
   /**
    * The metadata for the Operation returned by UpdateAppProfile.
@@ -278,7 +278,7 @@ export namespace bigtableadmin_v1 {
     /**
      * The time at which the operation failed or was completed successfully.
      */
-    finishTime?: string;
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this UpdateCluster operation.
      */
@@ -286,7 +286,7 @@ export namespace bigtableadmin_v1 {
     /**
      * The time at which the original request was received.
      */
-    requestTime?: string;
+    requestTime?: string | null;
   }
   /**
    * The metadata for the Operation returned by UpdateInstance.
@@ -295,7 +295,7 @@ export namespace bigtableadmin_v1 {
     /**
      * The time at which the operation failed or was completed successfully.
      */
-    finishTime?: string;
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this UpdateInstance operation.
      */
@@ -303,6 +303,6 @@ export namespace bigtableadmin_v1 {
     /**
      * The time at which the original request was received.
      */
-    requestTime?: string;
+    requestTime?: string | null;
   }
 }

@@ -124,11 +124,80 @@ export namespace dataproc_v1 {
     /**
      * The number of the accelerator cards of this type exposed to this instance.
      */
-    acceleratorCount?: number;
+    acceleratorCount?: number | null;
     /**
      * Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes.Examples: https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80Auto Zone Exception: If you are using the Cloud Dataproc Auto Zone Placement feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-k80.
      */
-    acceleratorTypeUri?: string;
+    acceleratorTypeUri?: string | null;
+  }
+  /**
+   * Autoscaling Policy config associated with the cluster.
+   */
+  export interface Schema$AutoscalingConfig {
+    /**
+     * Optional. The autoscaling policy used by the cluster.Only resource names including projectid and location (region) are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id] projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]Note that the policy must be in the same project and Cloud Dataproc region.
+     */
+    policyUri?: string | null;
+  }
+  /**
+   * Describes an autoscaling policy for Dataproc cluster autoscaler.
+   */
+  export interface Schema$AutoscalingPolicy {
+    basicAlgorithm?: Schema$BasicAutoscalingAlgorithm;
+    /**
+     * Required. The policy id.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
+     */
+    id?: string | null;
+    /**
+     * Output only. The &quot;resource name&quot; of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     */
+    name?: string | null;
+    /**
+     * Optional. Describes how the autoscaler will operate for secondary workers.
+     */
+    secondaryWorkerConfig?: Schema$InstanceGroupAutoscalingPolicyConfig;
+    /**
+     * Required. Describes how the autoscaler will operate for primary workers.
+     */
+    workerConfig?: Schema$InstanceGroupAutoscalingPolicyConfig;
+  }
+  /**
+   * Basic algorithm for autoscaling.
+   */
+  export interface Schema$BasicAutoscalingAlgorithm {
+    /**
+     * Optional. Duration between scaling events. A scaling period starts after the update operation from the previous event has completed.Bounds: 2m, 1d. Default: 2m.
+     */
+    cooldownPeriod?: string | null;
+    /**
+     * Required. YARN autoscaling configuration.
+     */
+    yarnConfig?: Schema$BasicYarnAutoscalingConfig;
+  }
+  /**
+   * Basic autoscaling configurations for YARN.
+   */
+  export interface Schema$BasicYarnAutoscalingConfig {
+    /**
+     * Required. Timeout for YARN graceful decommissioning of Node Managers. Specifies the duration to wait for jobs to complete before forcefully removing workers (and potentially interrupting jobs). Only applicable to downscaling operations.Bounds: 0s, 1d.
+     */
+    gracefulDecommissionTimeout?: string | null;
+    /**
+     * Required. Fraction of average pending memory in the last cooldown period for which to remove workers. A scale-down factor of 1 will result in scaling down so that there is no available memory remaining after the update (more aggressive scaling). A scale-down factor of 0 disables removing workers, which can be beneficial for autoscaling a single job.Bounds: 0.0, 1.0.
+     */
+    scaleDownFactor?: number | null;
+    /**
+     * Optional. Minimum scale-down threshold as a fraction of total cluster size before scaling occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must recommend at least a 2 worker scale-down for the cluster to scale. A threshold of 0 means the autoscaler will scale down on any recommended change.Bounds: 0.0, 1.0. Default: 0.0.
+     */
+    scaleDownMinWorkerFraction?: number | null;
+    /**
+     * Required. Fraction of average pending memory in the last cooldown period for which to add workers. A scale-up factor of 1.0 will result in scaling up so that there is no pending memory remaining after the update (more aggressive scaling). A scale-up factor closer to 0 will result in a smaller magnitude of scaling up (less aggressive scaling).Bounds: 0.0, 1.0.
+     */
+    scaleUpFactor?: number | null;
+    /**
+     * Optional. Minimum scale-up threshold as a fraction of total cluster size before scaling occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must recommend at least a 2-worker scale-up for the cluster to scale. A threshold of 0 means the autoscaler will scale up on any recommended change.Bounds: 0.0, 1.0. Default: 0.0.
+     */
+    scaleUpMinWorkerFraction?: number | null;
   }
   /**
    * Associates members with a role.
@@ -141,11 +210,11 @@ export namespace dataproc_v1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is  on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone  who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google  account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service  account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group.  For example, admins@example.com. domain:{domain}: The G Suite domain (primary) that represents all the  users of that domain. For example, google.com or example.com.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to members. For example, roles/viewer, roles/editor, or roles/owner.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * A request to cancel a job.
@@ -158,11 +227,11 @@ export namespace dataproc_v1 {
     /**
      * Required. The cluster name. Cluster names within a project must be unique. Names of deleted clusters can be reused.
      */
-    clusterName?: string;
+    clusterName?: string | null;
     /**
      * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
      */
-    clusterUuid?: string;
+    clusterUuid?: string | null;
     /**
      * Required. The cluster config. Note that Cloud Dataproc may set default values, and values may change when clusters are updated.
      */
@@ -170,7 +239,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. The labels to associate with this cluster. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a cluster.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
      */
@@ -178,7 +247,7 @@ export namespace dataproc_v1 {
     /**
      * Required. The Google Cloud Platform project ID that the cluster belongs to.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Output only. Cluster status.
      */
@@ -193,9 +262,13 @@ export namespace dataproc_v1 {
    */
   export interface Schema$ClusterConfig {
     /**
+     * Optional. Autoscaling config for the policy associated with the cluster. Cluster does not autoscale if this field is unset.
+     */
+    autoscalingConfig?: Schema$AutoscalingConfig;
+    /**
      * Optional. A Google Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s staging bucket according to the Google Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Cloud Dataproc staging bucket).
      */
-    configBucket?: string;
+    configBucket?: string | null;
     /**
      * Optional. Encryption settings for the cluster.
      */
@@ -240,11 +313,11 @@ export namespace dataproc_v1 {
     /**
      * The HDFS metrics.
      */
-    hdfsMetrics?: {[key: string]: string};
+    hdfsMetrics?: {[key: string]: string} | null;
     /**
      * The YARN metrics.
      */
-    yarnMetrics?: {[key: string]: string};
+    yarnMetrics?: {[key: string]: string} | null;
   }
   /**
    * The cluster operation triggered by a workflow.
@@ -253,15 +326,15 @@ export namespace dataproc_v1 {
     /**
      * Output only. Indicates the operation is done.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * Output only. Error, if operation failed.
      */
-    error?: string;
+    error?: string | null;
     /**
      * Output only. The id of the cluster operation.
      */
-    operationId?: string;
+    operationId?: string | null;
   }
   /**
    * Metadata describing the operation.
@@ -270,23 +343,23 @@ export namespace dataproc_v1 {
     /**
      * Output only. Name of the cluster for the operation.
      */
-    clusterName?: string;
+    clusterName?: string | null;
     /**
      * Output only. Cluster UUID for the operation.
      */
-    clusterUuid?: string;
+    clusterUuid?: string | null;
     /**
      * Output only. Short description of operation.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Output only. Labels associated with the operation
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. The operation type.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * Output only. Current operation status.
      */
@@ -298,7 +371,7 @@ export namespace dataproc_v1 {
     /**
      * Output only. Errors encountered during operation execution.
      */
-    warnings?: string[];
+    warnings?: string[] | null;
   }
   /**
    * The status of the operation.
@@ -307,19 +380,19 @@ export namespace dataproc_v1 {
     /**
      * Output only. A message containing any operation metadata details.
      */
-    details?: string;
+    details?: string | null;
     /**
      * Output only. A message containing the detailed operation state.
      */
-    innerState?: string;
+    innerState?: string | null;
     /**
      * Output only. A message containing the operation state.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. The time this state was entered.
      */
-    stateStartTime?: string;
+    stateStartTime?: string | null;
   }
   /**
    * A selector that chooses target cluster for jobs based on metadata.
@@ -328,11 +401,11 @@ export namespace dataproc_v1 {
     /**
      * Required. The cluster labels. Cluster must have all labels to match.
      */
-    clusterLabels?: {[key: string]: string};
+    clusterLabels?: {[key: string]: string} | null;
     /**
      * Optional. The zone where workflow process executes. This parameter does not affect the selection of the cluster.If unspecified, the zone of the first cluster matching the selector is used.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * The status of a cluster and its instances.
@@ -341,19 +414,19 @@ export namespace dataproc_v1 {
     /**
      * Output only. Optional details of cluster&#39;s state.
      */
-    detail?: string;
+    detail?: string | null;
     /**
      * Output only. The cluster&#39;s state.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. Time when this state was entered.
      */
-    stateStartTime?: string;
+    stateStartTime?: string | null;
     /**
      * Output only. Additional state information that includes status reported by the agent.
      */
-    substate?: string;
+    substate?: string | null;
   }
   /**
    * A request to collect cluster diagnostic information.
@@ -366,7 +439,7 @@ export namespace dataproc_v1 {
     /**
      * Output only. The Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.
      */
-    outputUri?: string;
+    outputUri?: string | null;
   }
   /**
    * Specifies the config of disk options for a group of VM instances.
@@ -375,15 +448,15 @@ export namespace dataproc_v1 {
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      */
-    bootDiskSizeGb?: number;
+    bootDiskSizeGb?: number | null;
     /**
      * Optional. Type of the boot disk (default is &quot;pd-standard&quot;). Valid values: &quot;pd-ssd&quot; (Persistent Disk Solid State Drive) or &quot;pd-standard&quot; (Persistent Disk Hard Disk Drive).
      */
-    bootDiskType?: string;
+    bootDiskType?: string | null;
     /**
      * Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and HDFS (https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.
      */
-    numLocalSsds?: number;
+    numLocalSsds?: number | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
@@ -396,7 +469,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.
      */
-    gcePdKmsKeyName?: string;
+    gcePdKmsKeyName?: string | null;
   }
   /**
    * Represents an expression text. Example: title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
@@ -405,19 +478,19 @@ export namespace dataproc_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Common config settings for resources of Compute Engine cluster instances, applicable to all instances in the cluster.
@@ -426,35 +499,35 @@ export namespace dataproc_v1 {
     /**
      * Optional. If true, all instances in the cluster will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This internal_ip_only restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.
      */
-    internalIpOnly?: boolean;
+    internalIpOnly?: boolean | null;
     /**
      * The Compute Engine metadata entries to add to all instances (see Project and instance metadata (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      */
-    metadata?: {[key: string]: string};
+    metadata?: {[key: string]: string} | null;
     /**
      * Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see Using Subnetworks for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default
      */
-    networkUri?: string;
+    networkUri?: string | null;
     /**
      * Optional. The service account of the instances. Defaults to the default Compute Engine service account. Custom service accounts need permissions equivalent to the following IAM roles: roles/logging.logWriter roles/storage.objectAdmin(see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts for more information). Example: [account_id]@[project_id].iam.gserviceaccount.com
      */
-    serviceAccount?: string;
+    serviceAccount?: string | null;
     /**
      * Optional. The URIs of service account scopes to be included in Compute Engine instances. The following base set of scopes is always included: https://www.googleapis.com/auth/cloud.useraccounts.readonly https://www.googleapis.com/auth/devstorage.read_write https://www.googleapis.com/auth/logging.writeIf no scopes are specified, the following defaults are also provided: https://www.googleapis.com/auth/bigquery https://www.googleapis.com/auth/bigtable.admin.table https://www.googleapis.com/auth/bigtable.data https://www.googleapis.com/auth/devstorage.full_control
      */
-    serviceAccountScopes?: string[];
+    serviceAccountScopes?: string[] | null;
     /**
      * Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0
      */
-    subnetworkUri?: string;
+    subnetworkUri?: string | null;
     /**
      * The Compute Engine tags to add to all instances (see Tagging instances).
      */
-    tags?: string[];
+    tags?: string[] | null;
     /**
      * Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the &quot;global&quot; region. If omitted in a non-global Cloud Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f
      */
-    zoneUri?: string;
+    zoneUri?: string | null;
   }
   /**
    * Request message for GetIamPolicy method.
@@ -470,9 +543,9 @@ export namespace dataproc_v1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    requestedPolicyVersion?: number;
+    requestedPolicyVersion?: number | null;
   }
   /**
    * A Cloud Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
@@ -481,19 +554,19 @@ export namespace dataproc_v1 {
     /**
      * Optional. HCFS URIs of archives to be extracted in the working directory of Hadoop drivers and tasks. Supported file types: .jar, .tar, .tar.gz, .tgz, or .zip.
      */
-    archiveUris?: string[];
+    archiveUris?: string[] | null;
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
      */
-    args?: string[];
+    args?: string[] | null;
     /**
      * Optional. HCFS (Hadoop Compatible Filesystem) URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
      */
-    fileUris?: string[];
+    fileUris?: string[] | null;
     /**
      * Optional. Jar file URIs to add to the CLASSPATHs of the Hadoop driver and tasks.
      */
-    jarFileUris?: string[];
+    jarFileUris?: string[] | null;
     /**
      * Optional. The runtime log config for job execution.
      */
@@ -501,15 +574,15 @@ export namespace dataproc_v1 {
     /**
      * The name of the driver&#39;s main class. The jar file containing the class must be in the default CLASSPATH or specified in jar_file_uris.
      */
-    mainClass?: string;
+    mainClass?: string | null;
     /**
      * The HCFS URI of the jar file containing the main class. Examples:  &#39;gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar&#39;  &#39;hdfs:/tmp/test-samples/custom-wordcount.jar&#39;  &#39;file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar&#39;
      */
-    mainJarFileUri?: string;
+    mainJarFileUri?: string | null;
     /**
      * Optional. A mapping of property names to values, used to configure Hadoop. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site and classes in user code.
      */
-    properties?: {[key: string]: string};
+    properties?: {[key: string]: string} | null;
   }
   /**
    * A Cloud Dataproc job for running Apache Hive (https://hive.apache.org/) queries on YARN.
@@ -518,19 +591,19 @@ export namespace dataproc_v1 {
     /**
      * Optional. Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries.
      */
-    continueOnFailure?: boolean;
+    continueOnFailure?: boolean | null;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of the Hive server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes and UDFs.
      */
-    jarFileUris?: string[];
+    jarFileUris?: string[] | null;
     /**
      * Optional. A mapping of property names and values, used to configure Hive. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml, /etc/hive/conf/hive-site.xml, and classes in user code.
      */
-    properties?: {[key: string]: string};
+    properties?: {[key: string]: string} | null;
     /**
      * The HCFS URI of the script that contains Hive queries.
      */
-    queryFileUri?: string;
+    queryFileUri?: string | null;
     /**
      * A list of queries.
      */
@@ -538,7 +611,24 @@ export namespace dataproc_v1 {
     /**
      * Optional. Mapping of query variable names to values (equivalent to the Hive command: SET name=&quot;value&quot;;).
      */
-    scriptVariables?: {[key: string]: string};
+    scriptVariables?: {[key: string]: string} | null;
+  }
+  /**
+   * Configuration for the size bounds of an instance group, including its proportional size to other groups.
+   */
+  export interface Schema$InstanceGroupAutoscalingPolicyConfig {
+    /**
+     * Optional. Maximum number of instances for this group. Required for primary workers. Note that by default, clusters will not use secondary workers. Required for secondary workers if the minimum secondary instances is set.Primary workers - Bounds: [min_instances, ). Required. Secondary workers - Bounds: [min_instances, ). Default: 0.
+     */
+    maxInstances?: number | null;
+    /**
+     * Optional. Minimum number of instances for this group.Primary workers - Bounds: 2, max_instances. Default: 2. Secondary workers - Bounds: 0, max_instances. Default: 0.
+     */
+    minInstances?: number | null;
+    /**
+     * Optional. Weight for the instance group, which is used to determine the fraction of total workers in the cluster from this instance group. For example, if primary workers have weight 2, and secondary workers have weight 1, the cluster will have approximately 2 primary workers for each secondary worker.The cluster may not reach the specified balance if constrained by min/max bounds or other autoscaling settings. For example, if max_instances for secondary workers is 0, then only primary workers will be added. The cluster can also be out of balance when created.If weight is not set on any instance group, the cluster will default to equal weight for all groups: the cluster will attempt to maintain an equal number of workers in each group within the configured size bounds for each group. If weight is set for one group only, the cluster will default to zero weight on the unset group. For example if weight is set only on primary workers, the cluster will use primary workers only and no secondary workers.
+     */
+    weight?: number | null;
   }
   /**
    * Optional. The config settings for Compute Engine resources in an instance group, such as a master or worker group.
@@ -555,19 +645,19 @@ export namespace dataproc_v1 {
     /**
      * Optional. The Compute Engine image resource used for cluster instances. It can be specified or may be inferred from SoftwareConfig.image_version.
      */
-    imageUri?: string;
+    imageUri?: string | null;
     /**
      * Output only. The list of instance names. Cloud Dataproc derives the names from cluster_name, num_instances, and the instance group.
      */
-    instanceNames?: string[];
+    instanceNames?: string[] | null;
     /**
      * Optional. Specifies that this instance group contains preemptible instances.
      */
-    isPreemptible?: boolean;
+    isPreemptible?: boolean | null;
     /**
      * Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2Auto Zone Exception: If you are using the Cloud Dataproc Auto Zone Placement feature, you must use the short name of the machine type resource, for example, n1-standard-2.
      */
-    machineTypeUri?: string;
+    machineTypeUri?: string | null;
     /**
      * Output only. The config for Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
      */
@@ -575,7 +665,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
      */
-    numInstances?: number;
+    numInstances?: number | null;
   }
   /**
    * A request to instantiate a workflow template.
@@ -584,15 +674,15 @@ export namespace dataproc_v1 {
     /**
      * Optional. Map from parameter names to values that should be used for those parameters. Values may not exceed 100 characters.
      */
-    parameters?: {[key: string]: string};
+    parameters?: {[key: string]: string} | null;
     /**
      * Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
-    requestId?: string;
+    requestId?: string | null;
     /**
      * Optional. The version of workflow template to instantiate. If specified, the workflow will be instantiated only if the current version of the workflow template has the supplied version.This option cannot be used to instantiate a previous version of workflow template.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * A Cloud Dataproc job resource.
@@ -601,11 +691,11 @@ export namespace dataproc_v1 {
     /**
      * Output only. If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.
      */
-    driverControlFilesUri?: string;
+    driverControlFilesUri?: string | null;
     /**
      * Output only. A URI pointing to the location of the stdout of the job&#39;s driver program.
      */
-    driverOutputResourceUri?: string;
+    driverOutputResourceUri?: string | null;
     /**
      * Job is a Hadoop job.
      */
@@ -617,11 +707,11 @@ export namespace dataproc_v1 {
     /**
      * Output only. A UUID that uniquely identifies a job within the project over time. This is in contrast to a user-settable reference.job_id that may be reused over time.
      */
-    jobUuid?: string;
+    jobUuid?: string | null;
     /**
      * Optional. The labels to associate with this job. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Job is a Pig job.
      */
@@ -670,11 +760,11 @@ export namespace dataproc_v1 {
     /**
      * Required. The name of the cluster where the job will be submitted.
      */
-    clusterName?: string;
+    clusterName?: string | null;
     /**
      * Output only. A cluster UUID generated by the Cloud Dataproc service when the job is submitted.
      */
-    clusterUuid?: string;
+    clusterUuid?: string | null;
   }
   /**
    * Encapsulates the full scoping used to reference a job.
@@ -683,11 +773,11 @@ export namespace dataproc_v1 {
     /**
      * Optional. The job ID, which must be unique within the project.The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or hyphens (-). The maximum length is 100 characters.If not specified by the caller, the job ID will be provided by the server.
      */
-    jobId?: string;
+    jobId?: string | null;
     /**
      * Required. The ID of the Google Cloud Platform project that the job belongs to.
      */
-    projectId?: string;
+    projectId?: string | null;
   }
   /**
    * Job scheduling options.
@@ -696,7 +786,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. Maximum number of times per hour a driver may be restarted as a result of driver terminating with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.
      */
-    maxFailuresPerHour?: number;
+    maxFailuresPerHour?: number | null;
   }
   /**
    * Cloud Dataproc job status.
@@ -705,19 +795,19 @@ export namespace dataproc_v1 {
     /**
      * Output only. Optional job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
      */
-    details?: string;
+    details?: string | null;
     /**
      * Output only. A state message specifying the overall job state.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. The time when this state was entered.
      */
-    stateStartTime?: string;
+    stateStartTime?: string | null;
     /**
      * Output only. Additional state information, which includes status reported by the agent.
      */
-    substate?: string;
+    substate?: string | null;
   }
   /**
    * Specifies Kerberos related configuration.
@@ -726,63 +816,63 @@ export namespace dataproc_v1 {
     /**
      * Optional. The admin server (IP or hostname) for the remote trusted realm in a cross realm trust relationship.
      */
-    crossRealmTrustAdminServer?: string;
+    crossRealmTrustAdminServer?: string | null;
     /**
      * Optional. The KDC (IP or hostname) for the remote trusted realm in a cross realm trust relationship.
      */
-    crossRealmTrustKdc?: string;
+    crossRealmTrustKdc?: string | null;
     /**
      * Optional. The remote realm the Dataproc on-cluster KDC will trust, should the user enable cross realm trust.
      */
-    crossRealmTrustRealm?: string;
+    crossRealmTrustRealm?: string | null;
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the shared password between the on-cluster Kerberos realm and the remote trusted realm, in a cross realm trust relationship.
      */
-    crossRealmTrustSharedPasswordUri?: string;
+    crossRealmTrustSharedPasswordUri?: string | null;
     /**
      * Optional. Flag to indicate whether to Kerberize the cluster.
      */
-    enableKerberos?: boolean;
+    enableKerberos?: boolean | null;
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the master key of the KDC database.
      */
-    kdcDbKeyUri?: string;
+    kdcDbKeyUri?: string | null;
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided key. For the self-signed certificate, this password is generated by Dataproc.
      */
-    keyPasswordUri?: string;
+    keyPasswordUri?: string | null;
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided keystore. For the self-signed certificate, this password is generated by Dataproc.
      */
-    keystorePasswordUri?: string;
+    keystorePasswordUri?: string | null;
     /**
      * Optional. The Cloud Storage URI of the keystore file used for SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
      */
-    keystoreUri?: string;
+    keystoreUri?: string | null;
     /**
      * Required. The uri of the KMS key used to encrypt various sensitive files.
      */
-    kmsKeyUri?: string;
+    kmsKeyUri?: string | null;
     /**
      * Optional. The name of the on-cluster Kerberos realm. If not specified, the uppercased domain of hostnames will be the realm.
      */
-    realm?: string;
+    realm?: string | null;
     /**
      * Required. The Cloud Storage URI of a KMS encrypted file containing the root principal password.
      */
-    rootPrincipalPasswordUri?: string;
+    rootPrincipalPasswordUri?: string | null;
     /**
      * Optional. The lifetime of the ticket granting ticket, in hours. If not specified, or user specifies 0, then default value 10 will be used.
      */
-    tgtLifetimeHours?: number;
+    tgtLifetimeHours?: number | null;
     /**
      * Optional. The Cloud Storage URI of a KMS encrypted file containing the password to the user provided truststore. For the self-signed certificate, this password is generated by Dataproc.
      */
-    truststorePasswordUri?: string;
+    truststorePasswordUri?: string | null;
     /**
      * Optional. The Cloud Storage URI of the truststore file used for SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
      */
-    truststoreUri?: string;
+    truststoreUri?: string | null;
   }
   /**
    * Specifies the cluster auto-delete schedule configuration.
@@ -791,19 +881,32 @@ export namespace dataproc_v1 {
     /**
      * Optional. The time when cluster will be auto-deleted.
      */
-    autoDeleteTime?: string;
+    autoDeleteTime?: string | null;
     /**
      * Optional. The lifetime duration of cluster. The cluster will be auto-deleted at the end of this period. Valid range: 10m, 14d.Example: &quot;1d&quot;, to delete the cluster 1 day after its creation..
      */
-    autoDeleteTtl?: string;
+    autoDeleteTtl?: string | null;
     /**
      * Optional. The duration to keep the cluster alive while idling. Passing this threshold will cause the cluster to be deleted. Valid range: 10m, 14d.Example: &quot;10m&quot;, the minimum value, to delete the cluster when it has had no jobs running for 10 minutes.
      */
-    idleDeleteTtl?: string;
+    idleDeleteTtl?: string | null;
     /**
      * Output only. The time when cluster became idle (most recent job finished) and became eligible for deletion due to idleness.
      */
-    idleStartTime?: string;
+    idleStartTime?: string | null;
+  }
+  /**
+   * A response to a request to list autoscaling policies in a project.
+   */
+  export interface Schema$ListAutoscalingPoliciesResponse {
+    /**
+     * Output only. This token is included in the response if there are more results to fetch.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Autoscaling policies list.
+     */
+    policies?: Schema$AutoscalingPolicy[];
   }
   /**
    * The list of all clusters in a project.
@@ -816,7 +919,7 @@ export namespace dataproc_v1 {
     /**
      * Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListClustersRequest.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A list of jobs in a project.
@@ -829,7 +932,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListJobsRequest&lt;/code&gt;.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -838,7 +941,7 @@ export namespace dataproc_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -851,7 +954,7 @@ export namespace dataproc_v1 {
     /**
      * Output only. This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent &lt;code&gt;ListWorkflowTemplatesRequest&lt;/code&gt;.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Output only. WorkflowTemplates list.
      */
@@ -864,7 +967,7 @@ export namespace dataproc_v1 {
     /**
      * The per-package log levels for the driver. This may include &quot;root&quot; package name to configure rootLogger. Examples:  &#39;com.google = FATAL&#39;, &#39;root = INFO&#39;, &#39;org.apache = DEBUG&#39;
      */
-    driverLogLevels?: {[key: string]: string};
+    driverLogLevels?: {[key: string]: string} | null;
   }
   /**
    * Cluster that is managed by the workflow.
@@ -873,7 +976,7 @@ export namespace dataproc_v1 {
     /**
      * Required. The cluster name prefix. A unique cluster name will be formed by appending a random suffix.The name must contain only lower-case letters (a-z), numbers (0-9), and hyphens (-). Must begin with a letter. Cannot begin or end with hyphen. Must consist of between 2 and 35 characters.
      */
-    clusterName?: string;
+    clusterName?: string | null;
     /**
      * Required. The cluster configuration.
      */
@@ -881,7 +984,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. The labels to associate with this cluster.Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a given cluster.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Specifies the resources used to actively manage an instance group.
@@ -890,11 +993,11 @@ export namespace dataproc_v1 {
     /**
      * Output only. The name of the Instance Group Manager for this group.
      */
-    instanceGroupManagerName?: string;
+    instanceGroupManagerName?: string | null;
     /**
      * Output only. The name of the Instance Template used for the Managed Instance Group.
      */
-    instanceTemplateName?: string;
+    instanceTemplateName?: string | null;
   }
   /**
    * Specifies an executable to run on a fully configured node and a timeout period for executable completion.
@@ -903,11 +1006,11 @@ export namespace dataproc_v1 {
     /**
      * Required. Cloud Storage URI of executable file.
      */
-    executableFile?: string;
+    executableFile?: string | null;
     /**
      * Optional. Amount of time executable has to complete. Default is 10 minutes. Cluster creation fails with an explanatory error message (the name of the executable that caused the error and the exceeded timeout period) if the executable is not completed at end of the timeout period.
      */
-    executionTimeout?: string;
+    executionTimeout?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -916,7 +1019,7 @@ export namespace dataproc_v1 {
     /**
      * If the value is false, it means the operation is still in progress. If true, the operation is completed, and either error or response is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -924,15 +1027,15 @@ export namespace dataproc_v1 {
     /**
      * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should be a resource name ending with operations/{unique_id}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A job executed by the workflow.
@@ -949,7 +1052,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. The labels to associate with this job.Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a given job.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Job is a Pig job.
      */
@@ -957,7 +1060,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. The optional list of prerequisite job step_ids. If not specified, the job will start at the beginning of workflow.
      */
-    prerequisiteStepIds?: string[];
+    prerequisiteStepIds?: string[] | null;
     /**
      * Job is a Pyspark job.
      */
@@ -977,7 +1080,7 @@ export namespace dataproc_v1 {
     /**
      * Required. The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job goog-dataproc-workflow-step-id label, and in prerequisiteStepIds field from other steps.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
      */
-    stepId?: string;
+    stepId?: string | null;
   }
   /**
    * Configuration for parameter validation.
@@ -999,11 +1102,11 @@ export namespace dataproc_v1 {
     /**
      * Optional. Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries.
      */
-    continueOnFailure?: boolean;
+    continueOnFailure?: boolean | null;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of the Pig Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.
      */
-    jarFileUris?: string[];
+    jarFileUris?: string[] | null;
     /**
      * Optional. The runtime log config for job execution.
      */
@@ -1011,11 +1114,11 @@ export namespace dataproc_v1 {
     /**
      * Optional. A mapping of property names to values, used to configure Pig. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml, /etc/pig/conf/pig.properties, and classes in user code.
      */
-    properties?: {[key: string]: string};
+    properties?: {[key: string]: string} | null;
     /**
      * The HCFS URI of the script that contains the Pig queries.
      */
-    queryFileUri?: string;
+    queryFileUri?: string | null;
     /**
      * A list of queries.
      */
@@ -1023,7 +1126,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. Mapping of query variable names to values (equivalent to the Pig command: name=[value]).
      */
-    scriptVariables?: {[key: string]: string};
+    scriptVariables?: {[key: string]: string} | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.A Policy consists of a list of bindings. A binding binds a list of members to a role, where the members can be user accounts, Google groups, Google domains, and service accounts. A role is a named list of permissions defined by IAM.JSON Example {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;roles/owner&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/viewer&quot;,       &quot;members&quot;: [&quot;user:sean@example.com&quot;]     }   ] } YAML Example bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-other-app@appspot.gserviceaccount.com   role: roles/owner - members:   - user:sean@example.com   role: roles/viewer For a description of IAM and its features, see the IAM developer&#39;s guide (https://cloud.google.com/iam/docs).
@@ -1036,11 +1139,11 @@ export namespace dataproc_v1 {
     /**
      * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * A Cloud Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.
@@ -1049,19 +1152,19 @@ export namespace dataproc_v1 {
     /**
      * Optional. HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
      */
-    archiveUris?: string[];
+    archiveUris?: string[] | null;
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments, such as --conf, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
      */
-    args?: string[];
+    args?: string[] | null;
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of Python drivers and distributed tasks. Useful for naively parallel tasks.
      */
-    fileUris?: string[];
+    fileUris?: string[] | null;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
      */
-    jarFileUris?: string[];
+    jarFileUris?: string[] | null;
     /**
      * Optional. The runtime log config for job execution.
      */
@@ -1069,15 +1172,15 @@ export namespace dataproc_v1 {
     /**
      * Required. The HCFS URI of the main Python file to use as the driver. Must be a .py file.
      */
-    mainPythonFileUri?: string;
+    mainPythonFileUri?: string | null;
     /**
      * Optional. A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: {[key: string]: string};
+    properties?: {[key: string]: string} | null;
     /**
      * Optional. HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
      */
-    pythonFileUris?: string[];
+    pythonFileUris?: string[] | null;
   }
   /**
    * A list of queries to run on a cluster.
@@ -1086,7 +1189,7 @@ export namespace dataproc_v1 {
     /**
      * Required. The queries to execute. You do not need to terminate a query with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of an Cloud Dataproc API snippet that uses a QueryList to specify a HiveJob: &quot;hiveJob&quot;: {   &quot;queryList&quot;: {     &quot;queries&quot;: [       &quot;query1&quot;,       &quot;query2&quot;,       &quot;query3;query4&quot;,     ]   } }
      */
-    queries?: string[];
+    queries?: string[] | null;
   }
   /**
    * Validation based on regular expressions.
@@ -1095,7 +1198,7 @@ export namespace dataproc_v1 {
     /**
      * Required. RE2 regular expressions used to validate the parameter&#39;s value. The value must match the regex in its entirety (substring matches are not sufficient).
      */
-    regexes?: string[];
+    regexes?: string[] | null;
   }
   /**
    * Security related configuration, including Kerberos.
@@ -1122,15 +1225,15 @@ export namespace dataproc_v1 {
     /**
      * Optional. The version of software inside the cluster. It must be one of the supported Cloud Dataproc Versions, such as &quot;1.2&quot; (including a subminor version, such as &quot;1.2.29&quot;), or the &quot;preview&quot; version. If unspecified, it defaults to the latest Debian version.
      */
-    imageVersion?: string;
+    imageVersion?: string | null;
     /**
      * The set of optional components to activate on the cluster.
      */
-    optionalComponents?: string[];
+    optionalComponents?: string[] | null;
     /**
      * Optional. The properties to set on daemon config files.Property keys are specified in prefix:property format, for example core:hadoop.tmp.dir. The following are supported prefixes and their mappings: capacity-scheduler: capacity-scheduler.xml core: core-site.xml distcp: distcp-default.xml hdfs: hdfs-site.xml hive: hive-site.xml mapred: mapred-site.xml pig: pig.properties spark: spark-defaults.conf yarn: yarn-site.xmlFor more information, see Cluster properties.
      */
-    properties?: {[key: string]: string};
+    properties?: {[key: string]: string} | null;
   }
   /**
    * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/) applications on YARN.
@@ -1139,19 +1242,19 @@ export namespace dataproc_v1 {
     /**
      * Optional. HCFS URIs of archives to be extracted in the working directory of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
      */
-    archiveUris?: string[];
+    archiveUris?: string[] | null;
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments, such as --conf, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
      */
-    args?: string[];
+    args?: string[] | null;
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of Spark drivers and distributed tasks. Useful for naively parallel tasks.
      */
-    fileUris?: string[];
+    fileUris?: string[] | null;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Spark driver and tasks.
      */
-    jarFileUris?: string[];
+    jarFileUris?: string[] | null;
     /**
      * Optional. The runtime log config for job execution.
      */
@@ -1159,15 +1262,15 @@ export namespace dataproc_v1 {
     /**
      * The name of the driver&#39;s main class. The jar file that contains the class must be in the default CLASSPATH or specified in jar_file_uris.
      */
-    mainClass?: string;
+    mainClass?: string | null;
     /**
      * The HCFS URI of the jar file that contains the main class.
      */
-    mainJarFileUri?: string;
+    mainJarFileUri?: string | null;
     /**
      * Optional. A mapping of property names to values, used to configure Spark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties?: {[key: string]: string};
+    properties?: {[key: string]: string} | null;
   }
   /**
    * A Cloud Dataproc job for running Apache Spark SQL (http://spark.apache.org/sql/) queries.
@@ -1176,7 +1279,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      */
-    jarFileUris?: string[];
+    jarFileUris?: string[] | null;
     /**
      * Optional. The runtime log config for job execution.
      */
@@ -1184,11 +1287,11 @@ export namespace dataproc_v1 {
     /**
      * Optional. A mapping of property names to values, used to configure Spark SQL&#39;s SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
      */
-    properties?: {[key: string]: string};
+    properties?: {[key: string]: string} | null;
     /**
      * The HCFS URI of the script that contains SQL queries.
      */
-    queryFileUri?: string;
+    queryFileUri?: string | null;
     /**
      * A list of queries.
      */
@@ -1196,7 +1299,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. Mapping of query variable names to values (equivalent to the Spark SQL command: SET name=&quot;value&quot;;).
      */
-    scriptVariables?: {[key: string]: string};
+    scriptVariables?: {[key: string]: string} | null;
   }
   /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
@@ -1205,15 +1308,15 @@ export namespace dataproc_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A request to submit a job.
@@ -1226,7 +1329,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. A unique id used to identify the request. If the server receives two SubmitJobRequest requests with the same id, then the second request will be ignored and the first Job created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   /**
    * A configurable parameter that replaces one or more fields in the template. Parameterizable fields: - Labels - File uris - Job properties - Job arguments - Script variables - Main class (in HadoopJob and SparkJob) - Zone (in ClusterSelector)
@@ -1235,15 +1338,15 @@ export namespace dataproc_v1 {
     /**
      * Optional. Brief description of the parameter. Must not exceed 1024 characters.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Required. Paths to all fields that the parameter replaces. A field is allowed to appear in at most one parameter&#39;s list of field paths.A field path is similar in syntax to a google.protobuf.FieldMask. For example, a field path that references the zone field of a workflow template&#39;s cluster selector would be specified as placement.clusterSelector.zone.Also, field paths can reference fields using the following syntax: Values in maps can be referenced by key: labels&#39;key&#39; placement.clusterSelector.clusterLabels&#39;key&#39; placement.managedCluster.labels&#39;key&#39; placement.clusterSelector.clusterLabels&#39;key&#39; jobs&#39;step-id&#39;.labels&#39;key&#39; Jobs in the jobs list can be referenced by step-id: jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri jobs&#39;step-id&#39;.hiveJob.queryFileUri jobs&#39;step-id&#39;.pySparkJob.mainPythonFileUri jobs&#39;step-id&#39;.hadoopJob.jarFileUris0 jobs&#39;step-id&#39;.hadoopJob.archiveUris0 jobs&#39;step-id&#39;.hadoopJob.fileUris0 jobs&#39;step-id&#39;.pySparkJob.pythonFileUris0 Items in repeated fields can be referenced by a zero-based index: jobs&#39;step-id&#39;.sparkJob.args0 Other examples: jobs&#39;step-id&#39;.hadoopJob.properties&#39;key&#39; jobs&#39;step-id&#39;.hadoopJob.args0 jobs&#39;step-id&#39;.hiveJob.scriptVariables&#39;key&#39; jobs&#39;step-id&#39;.hadoopJob.mainJarFileUri placement.clusterSelector.zoneIt may not be possible to parameterize maps and repeated fields in their entirety since only individual map values and individual items in repeated fields can be referenced. For example, the following field paths are invalid: placement.clusterSelector.clusterLabels jobs&#39;step-id&#39;.sparkJob.args
      */
-    fields?: string[];
+    fields?: string[] | null;
     /**
      * Required. Parameter name. The parameter name is used as the key, and paired with the parameter value, which are passed to the template when the template is instantiated. The name must contain only capital letters (A-Z), numbers (0-9), and underscores (_), and must not start with a number. The maximum length is 40 characters.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Optional. Validation rules to be applied to this parameter&#39;s value.
      */
@@ -1256,7 +1359,7 @@ export namespace dataproc_v1 {
     /**
      * The set of permissions to check for the resource. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see IAM Overview (https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for TestIamPermissions method.
@@ -1265,7 +1368,7 @@ export namespace dataproc_v1 {
     /**
      * A subset of TestPermissionsRequest.permissions that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Validation based on a list of allowed values.
@@ -1274,7 +1377,7 @@ export namespace dataproc_v1 {
     /**
      * Required. List of allowed values for the parameter.
      */
-    values?: string[];
+    values?: string[] | null;
   }
   /**
    * The workflow graph.
@@ -1292,11 +1395,11 @@ export namespace dataproc_v1 {
     /**
      * Output only. The name of the target cluster.
      */
-    clusterName?: string;
+    clusterName?: string | null;
     /**
      * Output only. The UUID of target cluster.
      */
-    clusterUuid?: string;
+    clusterUuid?: string | null;
     /**
      * Output only. The create cluster operation metadata.
      */
@@ -1308,7 +1411,7 @@ export namespace dataproc_v1 {
     /**
      * Output only. Workflow end time.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. The workflow graph.
      */
@@ -1316,23 +1419,23 @@ export namespace dataproc_v1 {
     /**
      * Map from parameter names to values that were used for those parameters.
      */
-    parameters?: {[key: string]: string};
+    parameters?: {[key: string]: string} | null;
     /**
      * Output only. Workflow start time.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Output only. The workflow state.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. The resource name of the workflow template as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
-    template?: string;
+    template?: string | null;
     /**
      * Output only. The version of template at the time of workflow instantiation.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * The workflow node.
@@ -1341,23 +1444,23 @@ export namespace dataproc_v1 {
     /**
      * Output only. The error detail.
      */
-    error?: string;
+    error?: string | null;
     /**
      * Output only. The job id; populated after the node enters RUNNING state.
      */
-    jobId?: string;
+    jobId?: string | null;
     /**
      * Output only. Node&#39;s prerequisite nodes.
      */
-    prerequisiteStepIds?: string[];
+    prerequisiteStepIds?: string[] | null;
     /**
      * Output only. The node state.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. The name of the node.
      */
-    stepId?: string;
+    stepId?: string | null;
   }
   /**
    * A Cloud Dataproc workflow template resource.
@@ -1366,11 +1469,11 @@ export namespace dataproc_v1 {
     /**
      * Output only. The time template was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Required. The template id.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Required. The Directed Acyclic Graph of Jobs to submit.
      */
@@ -1378,11 +1481,11 @@ export namespace dataproc_v1 {
     /**
      * Optional. The labels to associate with this template. These labels will be propagated to all jobs and clusters created by the workflow instance.Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels can be associated with a template.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
      */
-    name?: string;
+    name?: string | null;
     /**
      * Optional. Template parameters whose values are substituted into the template. Values for parameters must be provided when the template is instantiated.
      */
@@ -1394,11 +1497,11 @@ export namespace dataproc_v1 {
     /**
      * Output only. The time template was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Optional. Used to perform a consistent read-modify-write.This field should be left blank for a CreateWorkflowTemplate request. It is required for an UpdateWorkflowTemplate request, and must match the current server version. A typical update template flow would fetch the current template with a GetWorkflowTemplate request, which will return the current template with the version field filled in with the current server version. The user updates other fields in the template, then returns it as part of the UpdateWorkflowTemplate request.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Specifies workflow execution target.Either managed_cluster or cluster_selector is required.
@@ -1420,19 +1523,19 @@ export namespace dataproc_v1 {
     /**
      * Required. The application name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Required. The numerical progress of the application, from 1 to 100.
      */
-    progress?: number;
+    progress?: number | null;
     /**
      * Required. The application state.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.
      */
-    trackingUrl?: string;
+    trackingUrl?: string | null;
   }
 
   export class Resource$Projects {
@@ -1448,13 +1551,907 @@ export namespace dataproc_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    autoscalingPolicies: Resource$Projects$Locations$Autoscalingpolicies;
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.autoscalingPolicies = new Resource$Projects$Locations$Autoscalingpolicies(
+        this.context
+      );
       this.workflowTemplates = new Resource$Projects$Locations$Workflowtemplates(
         this.context
       );
     }
+  }
+
+  export class Resource$Projects$Locations$Autoscalingpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataproc.projects.locations.autoscalingPolicies.create
+     * @desc Creates new autoscaling policy.
+     * @alias dataproc.projects.locations.autoscalingPolicies.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.create, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     * @param {().AutoscalingPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    create(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Create,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Create
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/autoscalingPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.locations.autoscalingPolicies.delete
+     * @desc Deletes an autoscaling policy. It is an error to delete an autoscaling policy that is in use by one or more clusters.
+     * @alias dataproc.projects.locations.autoscalingPolicies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.locations.autoscalingPolicies.get
+     * @desc Retrieves autoscaling policy.
+     * @alias dataproc.projects.locations.autoscalingPolicies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    get(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Get,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Get
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.locations.autoscalingPolicies.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Dataproc API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dataproc
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var dataproc = google.dataproc('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for
+     *     // the appropriate value for this field.
+     *     resource_: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   dataproc.projects.locations.autoscalingPolicies.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias dataproc.projects.locations.autoscalingPolicies.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.locations.autoscalingPolicies.list
+     * @desc Lists autoscaling policies in the project.
+     * @alias dataproc.projects.locations.autoscalingPolicies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response. Must be less than or equal to 1000. Defaults to 100.
+     * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+     * @param {string} params.parent Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.list, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.list, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$List
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/autoscalingPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * dataproc.projects.locations.autoscalingPolicies.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Dataproc API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dataproc
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var dataproc = google.dataproc('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for
+     *     // the appropriate value for this field.
+     *     resource_: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   dataproc.projects.locations.autoscalingPolicies.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias dataproc.projects.locations.autoscalingPolicies.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.locations.autoscalingPolicies.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Dataproc API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dataproc
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var dataproc = google.dataproc('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation
+     *     // documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   dataproc.projects.locations.autoscalingPolicies.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias dataproc.projects.locations.autoscalingPolicies.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.locations.autoscalingPolicies.update
+     * @desc Updates (replaces) autoscaling policy.Disabled check for update_mask, because all updates will be full replacements.
+     * @alias dataproc.projects.locations.autoscalingPolicies.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     * @param {().AutoscalingPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params?: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    update(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Locations$Autoscalingpolicies$Update,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Autoscalingpolicies$Update
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.create, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutoscalingPolicy;
+  }
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return in each response. Must be less than or equal to 1000. Defaults to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, returned by a previous call, to request the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.list, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.list, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Autoscalingpolicies$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutoscalingPolicy;
   }
 
   export class Resource$Projects$Locations$Workflowtemplates {
@@ -2910,12 +3907,16 @@ export namespace dataproc_v1 {
 
   export class Resource$Projects$Regions {
     context: APIRequestContext;
+    autoscalingPolicies: Resource$Projects$Regions$Autoscalingpolicies;
     clusters: Resource$Projects$Regions$Clusters;
     jobs: Resource$Projects$Regions$Jobs;
     operations: Resource$Projects$Regions$Operations;
     workflowTemplates: Resource$Projects$Regions$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.autoscalingPolicies = new Resource$Projects$Regions$Autoscalingpolicies(
+        this.context
+      );
       this.clusters = new Resource$Projects$Regions$Clusters(this.context);
       this.jobs = new Resource$Projects$Regions$Jobs(this.context);
       this.operations = new Resource$Projects$Regions$Operations(this.context);
@@ -2923,6 +3924,896 @@ export namespace dataproc_v1 {
         this.context
       );
     }
+  }
+
+  export class Resource$Projects$Regions$Autoscalingpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataproc.projects.regions.autoscalingPolicies.create
+     * @desc Creates new autoscaling policy.
+     * @alias dataproc.projects.regions.autoscalingPolicies.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.create, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     * @param {().AutoscalingPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    create(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Create,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Create
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/autoscalingPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.autoscalingPolicies.delete
+     * @desc Deletes an autoscaling policy. It is an error to delete an autoscaling policy that is in use by one or more clusters.
+     * @alias dataproc.projects.regions.autoscalingPolicies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.autoscalingPolicies.get
+     * @desc Retrieves autoscaling policy.
+     * @alias dataproc.projects.regions.autoscalingPolicies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    get(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Get,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Get
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.autoscalingPolicies.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Dataproc API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dataproc
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var dataproc = google.dataproc('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for
+     *     // the appropriate value for this field.
+     *     resource_: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   dataproc.projects.regions.autoscalingPolicies.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias dataproc.projects.regions.autoscalingPolicies.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.autoscalingPolicies.list
+     * @desc Lists autoscaling policies in the project.
+     * @alias dataproc.projects.regions.autoscalingPolicies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return in each response. Must be less than or equal to 1000. Defaults to 100.
+     * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
+     * @param {string} params.parent Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.list, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.list, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAutoscalingPoliciesResponse>;
+    list(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$List
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAutoscalingPoliciesResponse>
+    ): void | GaxiosPromise<Schema$ListAutoscalingPoliciesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/autoscalingPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListAutoscalingPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.autoscalingPolicies.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Dataproc API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dataproc
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var dataproc = google.dataproc('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for
+     *     // the appropriate value for this field.
+     *     resource_: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   dataproc.projects.regions.autoscalingPolicies.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias dataproc.projects.regions.autoscalingPolicies.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.autoscalingPolicies.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Cloud Dataproc API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dataproc
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * const {google} = require('googleapis');
+     * var dataproc = google.dataproc('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation
+     *     // documentation for the appropriate value for this field.
+     *     resource_: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscaling-policy',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient,
+     *   };
+     *
+     *   dataproc.projects.regions.autoscalingPolicies.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.error(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getClient({
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
+     *   }).then(client => {
+     *     callback(client);
+     *   }).catch(err => {
+     *     console.error('authentication failed: ', err);
+     *   });
+     * }
+     * @alias dataproc.projects.regions.autoscalingPolicies.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.autoscalingPolicies.update
+     * @desc Updates (replaces) autoscaling policy.Disabled check for update_mask, because all updates will be full replacements.
+     * @alias dataproc.projects.regions.autoscalingPolicies.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     * @param {().AutoscalingPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params?: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutoscalingPolicy>;
+    update(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    update(
+      params: Params$Resource$Projects$Regions$Autoscalingpolicies$Update,
+      callback: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$AutoscalingPolicy>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Autoscalingpolicies$Update
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AutoscalingPolicy>,
+      callback?: BodyResponseCallback<Schema$AutoscalingPolicy>
+    ): void | GaxiosPromise<Schema$AutoscalingPolicy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutoscalingPolicy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$AutoscalingPolicy>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.create, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutoscalingPolicy;
+  }
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.delete, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies.get, the resource name  of the policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return in each response. Must be less than or equal to 1000. Defaults to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, returned by a previous call, to request the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.list, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.list, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Autoscalingpolicies$Update
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutoscalingPolicy;
   }
 
   export class Resource$Projects$Regions$Clusters {

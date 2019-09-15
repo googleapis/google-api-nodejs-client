@@ -105,7 +105,7 @@ export namespace fitness_v1 {
     /**
      * Available for Bucket.Type.ACTIVITY_TYPE, Bucket.Type.ACTIVITY_SEGMENT
      */
-    activity?: number;
+    activity?: number | null;
     /**
      * There will be one dataset per AggregateBy in the request.
      */
@@ -113,7 +113,7 @@ export namespace fitness_v1 {
     /**
      * The end time for the aggregated data, in milliseconds since epoch, inclusive.
      */
-    endTimeMillis?: string;
+    endTimeMillis?: string | null;
     /**
      * Available for Bucket.Type.SESSION
      */
@@ -121,11 +121,11 @@ export namespace fitness_v1 {
     /**
      * The start time for the aggregated data, in milliseconds since epoch, inclusive.
      */
-    startTimeMillis?: string;
+    startTimeMillis?: string | null;
     /**
      * The type of a bucket signifies how the data aggregation is performed in the bucket.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The specification of which data to aggregate.
@@ -134,11 +134,11 @@ export namespace fitness_v1 {
     /**
      * A data source ID to aggregate. Mutually exclusive of dataTypeName. Only data from the specified data source ID will be included in the aggregation. The dataset in the response will have the same data source ID.
      */
-    dataSourceId?: string;
+    dataSourceId?: string | null;
     /**
      * The data type to aggregate. All data sources providing this data type will contribute data to the aggregation. The response will contain a single dataset for this data type name. The dataset will have a data source ID of derived:com.google.:com.google.android.gms:aggregated
      */
-    dataTypeName?: string;
+    dataTypeName?: string | null;
   }
   /**
    * Next id: 10
@@ -167,15 +167,15 @@ export namespace fitness_v1 {
     /**
      * The end of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive.
      */
-    endTimeMillis?: string;
+    endTimeMillis?: string | null;
     /**
      * DO NOT POPULATE THIS FIELD. It is ignored.
      */
-    filteredDataQualityStandard?: string[];
+    filteredDataQualityStandard?: string[] | null;
     /**
      * The start of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive.
      */
-    startTimeMillis?: string;
+    startTimeMillis?: string | null;
   }
   export interface Schema$AggregateResponse {
     /**
@@ -187,50 +187,50 @@ export namespace fitness_v1 {
     /**
      * An optional URI that can be used to link back to the application.
      */
-    detailsUrl?: string;
+    detailsUrl?: string | null;
     /**
      * The name of this application. This is required for REST clients, but we do not enforce uniqueness of this name. It is provided as a matter of convenience for other developers who would like to identify which REST created an Application or Data Source.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Package name for this application. This is used as a unique identifier when created by Android applications, but cannot be specified by REST clients. REST clients will have their developer project number reflected into the Data Source data stream IDs, instead of the packageName.
      */
-    packageName?: string;
+    packageName?: string | null;
     /**
      * Version of the application. You should update this field whenever the application changes in a way that affects the computation of the data.
      */
-    version?: string;
+    version?: string | null;
   }
   export interface Schema$BucketByActivity {
     /**
      * The default activity stream will be used if a specific activityDataSourceId is not specified.
      */
-    activityDataSourceId?: string;
+    activityDataSourceId?: string | null;
     /**
      * Specifies that only activity segments of duration longer than minDurationMillis are considered and used as a container for aggregated data.
      */
-    minDurationMillis?: string;
+    minDurationMillis?: string | null;
   }
   export interface Schema$BucketBySession {
     /**
      * Specifies that only sessions of duration longer than minDurationMillis are considered and used as a container for aggregated data.
      */
-    minDurationMillis?: string;
+    minDurationMillis?: string | null;
   }
   export interface Schema$BucketByTime {
     /**
      * Specifies that result buckets aggregate data by exactly durationMillis time frames. Time frames that contain no data will be included in the response with an empty dataset.
      */
-    durationMillis?: string;
+    durationMillis?: string | null;
     period?: Schema$BucketByTimePeriod;
   }
   export interface Schema$BucketByTimePeriod {
     /**
      * org.joda.timezone.DateTimeZone
      */
-    timeZoneId?: string;
-    type?: string;
-    value?: number;
+    timeZoneId?: string | null;
+    type?: string | null;
+    value?: number | null;
   }
   /**
    * Represents a single data point, generated by a particular data source. A data point holds a value for each field, an end timestamp and an optional start time. The exact semantics of each of these attributes are specified in the documentation for the particular data type.  A data point can represent an instantaneous measurement, reading or input observation, as well as averages or aggregates over a time interval. Check the data type documentation to determine which is the case for a particular data type.  Data points always contain one value for each field of the data type.
@@ -239,31 +239,31 @@ export namespace fitness_v1 {
     /**
      * DO NOT USE THIS FIELD. It is ignored, and not stored.
      */
-    computationTimeMillis?: string;
+    computationTimeMillis?: string | null;
     /**
      * The data type defining the format of the values in this data point.
      */
-    dataTypeName?: string;
+    dataTypeName?: string | null;
     /**
      * The end time of the interval represented by this data point, in nanoseconds since epoch.
      */
-    endTimeNanos?: string;
+    endTimeNanos?: string | null;
     /**
      * Indicates the last time this data point was modified. Useful only in contexts where we are listing the data changes, rather than representing the current state of the data.
      */
-    modifiedTimeMillis?: string;
+    modifiedTimeMillis?: string | null;
     /**
      * If the data point is contained in a dataset for a derived data source, this field will be populated with the data source stream ID that created the data point originally.  WARNING: do not rely on this field for anything other than debugging. The value of this field, if it is set at all, is an implementation detail and is not guaranteed to remain consistent.
      */
-    originDataSourceId?: string;
+    originDataSourceId?: string | null;
     /**
      * The raw timestamp from the original SensorEvent.
      */
-    rawTimestampNanos?: string;
+    rawTimestampNanos?: string | null;
     /**
      * The start time of the interval represented by this data point, in nanoseconds since epoch.
      */
-    startTimeNanos?: string;
+    startTimeNanos?: string | null;
     /**
      * Values of each data type field for the data point. It is expected that each value corresponding to a data type field will occur in the same order that the field is listed with in the data type specified in a data source.  Only one of integer and floating point fields will be populated, depending on the format enum value within data source&#39;s type field.
      */
@@ -276,19 +276,19 @@ export namespace fitness_v1 {
     /**
      * The data stream ID of the data source that created the points in this dataset.
      */
-    dataSourceId?: string;
+    dataSourceId?: string | null;
     /**
      * The largest end time of all data points in this possibly partial representation of the dataset. Time is in nanoseconds from epoch. This should also match the second part of the dataset identifier.
      */
-    maxEndTimeNs?: string;
+    maxEndTimeNs?: string | null;
     /**
      * The smallest start time of all data points in this possibly partial representation of the dataset. Time is in nanoseconds from epoch. This should also match the first part of the dataset identifier.
      */
-    minStartTimeNs?: string;
+    minStartTimeNs?: string | null;
     /**
      * This token will be set when a dataset is received in response to a GET request and the dataset is too large to be included in a single response. Provide this value in a subsequent GET request to return the next page of data points within this dataset.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A partial list of data points contained in the dataset, ordered by largest endTimeNanos first. This list is considered complete when retrieving a small dataset and partial when patching a dataset or retrieving a dataset that is too large to include in a single response.
      */
@@ -305,15 +305,15 @@ export namespace fitness_v1 {
     /**
      * DO NOT POPULATE THIS FIELD. It is never populated in responses from the platform, and is ignored in queries. It will be removed in a future version entirely.
      */
-    dataQualityStandard?: string[];
+    dataQualityStandard?: string[] | null;
     /**
      * A unique identifier for the data stream produced by this data source. The identifier includes:    - The physical device&#39;s manufacturer, model, and serial number (UID).  - The application&#39;s package name or name. Package name is used when the data source was created by an Android application. The developer project number is used when the data source was created by a REST client.  - The data source&#39;s type.  - The data source&#39;s stream name.  Note that not all attributes of the data source are used as part of the stream identifier. In particular, the version of the hardware/the application isn&#39;t used. This allows us to preserve the same stream through version updates. This also means that two DataSource objects may represent the same data stream even if they&#39;re not equal.  The exact format of the data stream ID created by an Android application is: type:dataType.name:application.packageName:device.manufacturer:device.model:device.uid:dataStreamName   The exact format of the data stream ID created by a REST client is: type:dataType.name:developer project number:device.manufacturer:device.model:device.uid:dataStreamName   When any of the optional fields that make up the data stream ID are absent, they will be omitted from the data stream ID. The minimum viable data stream ID would be: type:dataType.name:developer project number  Finally, the developer project number is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form.
      */
-    dataStreamId?: string;
+    dataStreamId?: string | null;
     /**
      * The stream name uniquely identifies this particular data source among other data sources of the same type from the same underlying producer. Setting the stream name is optional, but should be done whenever an application exposes two streams for the same data type, or when a device has two equivalent sensors.
      */
-    dataStreamName?: string;
+    dataStreamName?: string | null;
     /**
      * The data type defines the schema for a stream of data being collected by, inserted into, or queried from the Fitness API.
      */
@@ -325,11 +325,11 @@ export namespace fitness_v1 {
     /**
      * An end-user visible name for this data source.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A constant describing the type of this data source. Indicates whether this data source produces raw or derived data.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$DataType {
     /**
@@ -339,7 +339,7 @@ export namespace fitness_v1 {
     /**
      * Each data type has a unique, namespaced, name. All data types in the com.google namespace are shared as part of the platform.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * In case of multi-dimensional data (such as an accelerometer with x, y, and z axes) each field represents one dimension. Each data type field has a unique name which identifies it. The field also defines the format of the data (int, float, etc.).  This message is only instantiated in code and not used for wire comms or stored in any way.
@@ -348,12 +348,12 @@ export namespace fitness_v1 {
     /**
      * The different supported formats for each field in a data type.
      */
-    format?: string;
+    format?: string | null;
     /**
      * Defines the name and format of data. Unlike data type names, field names are not namespaced, and only need to be unique within the data type.
      */
-    name?: string;
-    optional?: boolean;
+    name?: string | null;
+    optional?: boolean | null;
   }
   /**
    * Representation of an integrated device (such as a phone or a wearable) that can hold sensors. Each sensor is exposed as a data source.  The main purpose of the device information contained in this class is to identify the hardware of a particular data source. This can be useful in different ways, including:   - Distinguishing two similar sensors on different devices (the step counter on two nexus 5 phones, for instance) - Display the source of data to the user (by using the device make / model) - Treat data differently depending on sensor type (accelerometers on a watch may give different patterns than those on a phone) - Build different analysis models for each device/version.
@@ -362,29 +362,29 @@ export namespace fitness_v1 {
     /**
      * Manufacturer of the product/hardware.
      */
-    manufacturer?: string;
+    manufacturer?: string | null;
     /**
      * End-user visible model name for the device.
      */
-    model?: string;
+    model?: string | null;
     /**
      * A constant representing the type of the device.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The serial number or other unique ID for the hardware. This field is obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the uid field in clear and normal form.
      */
-    uid?: string;
+    uid?: string | null;
     /**
      * Version string for the device hardware/software.
      */
-    version?: string;
+    version?: string | null;
   }
   export interface Schema$ListDataPointChangesResponse {
     /**
      * The data stream ID of the data source with data point changes.
      */
-    dataSourceId?: string;
+    dataSourceId?: string | null;
     /**
      * Deleted data points for the user. Note, for modifications this should be parsed before handling insertions.
      */
@@ -396,7 +396,7 @@ export namespace fitness_v1 {
     /**
      * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListDataSourcesResponse {
     /**
@@ -412,11 +412,11 @@ export namespace fitness_v1 {
     /**
      * Flag to indicate server has more data to transfer
      */
-    hasMoreData?: boolean;
+    hasMoreData?: boolean | null;
     /**
      * The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Sessions with an end time that is between startTime and endTime of the request.
      */
@@ -429,7 +429,7 @@ export namespace fitness_v1 {
     /**
      * Floating point value.
      */
-    fpVal?: number;
+    fpVal?: number | null;
   }
   /**
    * Sessions contain metadata, such as a user-friendly name and time interval information.
@@ -438,11 +438,11 @@ export namespace fitness_v1 {
     /**
      * Session active time. While start_time_millis and end_time_millis define the full session time, the active time can be shorter and specified by active_time_millis. If the inactive time during the session is known, it should also be inserted via a com.google.activity.segment data point with a STILL activity value
      */
-    activeTimeMillis?: string;
+    activeTimeMillis?: string | null;
     /**
      * The type of activity this session represents.
      */
-    activityType?: number;
+    activityType?: number | null;
     /**
      * The application that created the session.
      */
@@ -450,27 +450,27 @@ export namespace fitness_v1 {
     /**
      * A description for this session.
      */
-    description?: string;
+    description?: string | null;
     /**
      * An end time, in milliseconds since epoch, inclusive.
      */
-    endTimeMillis?: string;
+    endTimeMillis?: string | null;
     /**
      * A client-generated identifier that is unique across all sessions owned by this particular user.
      */
-    id?: string;
+    id?: string | null;
     /**
      * A timestamp that indicates when the session was last modified.
      */
-    modifiedTimeMillis?: string;
+    modifiedTimeMillis?: string | null;
     /**
      * A human readable name of the session.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A start time, in milliseconds since epoch, inclusive.
      */
-    startTimeMillis?: string;
+    startTimeMillis?: string | null;
   }
   /**
    * Holder object for the value of a single field in a data point.  A field value has a particular format and is only ever set to one of an integer or a floating point value. LINT.IfChange
@@ -479,11 +479,11 @@ export namespace fitness_v1 {
     /**
      * Floating point value. When this is set, other values must not be set.
      */
-    fpVal?: number;
+    fpVal?: number | null;
     /**
      * Integer value. When this is set, other values must not be set.
      */
-    intVal?: number;
+    intVal?: number | null;
     /**
      * Map value. The valid key space and units for the corresponding value of each entry should be documented as part of the data type definition. Keys should be kept small whenever possible. Data streams with large keys and high data frequency may be down sampled.
      */
@@ -491,10 +491,10 @@ export namespace fitness_v1 {
     /**
      * String value. When this is set, other values must not be set. Strings should be kept small whenever possible. Data streams with large string values and high data frequency may be down sampled.
      */
-    stringVal?: string;
+    stringVal?: string | null;
   }
   export interface Schema$ValueMapValEntry {
-    key?: string;
+    key?: string | null;
     value?: Schema$MapValue;
   }
 

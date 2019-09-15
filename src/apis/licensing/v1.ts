@@ -108,35 +108,35 @@ export namespace licensing_v1 {
     /**
      * ETag of the resource.
      */
-    etags?: string;
+    etags?: string | null;
     /**
      * Identifies the resource as a LicenseAssignment.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Id of the product.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * Display Name of the product.
      */
-    productName?: string;
+    productName?: string | null;
     /**
      * Link to this page.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Id of the sku of the product.
      */
-    skuId?: string;
+    skuId?: string | null;
     /**
      * Display Name of the sku of the product.
      */
-    skuName?: string;
+    skuName?: string | null;
     /**
      * Email id of the user.
      */
-    userId?: string;
+    userId?: string | null;
   }
   /**
    * Template for LicenseAssignment Insert request
@@ -145,7 +145,7 @@ export namespace licensing_v1 {
     /**
      * Email id of the user
      */
-    userId?: string;
+    userId?: string | null;
   }
   /**
    * LicesnseAssignment List for a given product/sku for a customer.
@@ -154,7 +154,7 @@ export namespace licensing_v1 {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The LicenseAssignments in this page of results.
      */
@@ -162,11 +162,11 @@ export namespace licensing_v1 {
     /**
      * Identifies the resource as a collection of LicenseAssignments.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
 
   export class Resource$Licenseassignments {

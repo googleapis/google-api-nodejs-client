@@ -124,7 +124,7 @@ export namespace securitycenter_v1 {
     /**
      * The time at which the asset was created in Cloud SCC.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
      */
@@ -132,11 +132,11 @@ export namespace securitycenter_v1 {
     /**
      * The relative resource name of this asset. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/assets/456&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Resource managed properties. These properties are managed and defined by the GCP resource and cannot be modified by the user.
      */
-    resourceProperties?: {[key: string]: any};
+    resourceProperties?: {[key: string]: any} | null;
     /**
      * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
      */
@@ -148,7 +148,7 @@ export namespace securitycenter_v1 {
     /**
      * The time at which the asset was last updated, added, or deleted in Cloud SCC.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The configuration used for Asset Discovery runs.
@@ -157,11 +157,11 @@ export namespace securitycenter_v1 {
     /**
      * The mode to use for filtering asset discovery.
      */
-    inclusionMode?: string;
+    inclusionMode?: string | null;
     /**
      * The project ids to use for filtering asset discovery.
      */
-    projectIds?: string[];
+    projectIds?: string[] | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
@@ -174,7 +174,7 @@ export namespace securitycenter_v1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
@@ -183,11 +183,11 @@ export namespace securitycenter_v1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -200,11 +200,11 @@ export namespace securitycenter_v1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -217,19 +217,19 @@ export namespace securitycenter_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
@@ -238,31 +238,31 @@ export namespace securitycenter_v1 {
     /**
      * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: &quot;XSS_FLASH_INJECTION&quot;
      */
-    category?: string;
+    category?: string | null;
     /**
      * The time at which the finding was created in Cloud SCC.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.
      */
-    eventTime?: string;
+    eventTime?: string | null;
     /**
      * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
      */
-    externalUri?: string;
+    externalUri?: string | null;
     /**
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/sources/456/findings/789&quot;
      */
-    name?: string;
+    name?: string | null;
     /**
      * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/123/sources/456&quot;
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * The full resource name of the Google Cloud Platform (GCP) resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name This field is immutable after creation time.
      */
-    resourceName?: string;
+    resourceName?: string | null;
     /**
      * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
      */
@@ -270,11 +270,11 @@ export namespace securitycenter_v1 {
     /**
      * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
      */
-    sourceProperties?: {[key: string]: any};
+    sourceProperties?: {[key: string]: any} | null;
     /**
      * The state of the finding.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -292,7 +292,7 @@ export namespace securitycenter_v1 {
     /**
      * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      */
-    requestedPolicyVersion?: number;
+    requestedPolicyVersion?: number | null;
   }
   /**
    * Response of asset discovery run
@@ -301,11 +301,11 @@ export namespace securitycenter_v1 {
     /**
      * The duration between asset discovery run start and end
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * The state of an asset discovery run.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -314,11 +314,11 @@ export namespace securitycenter_v1 {
     /**
      * The duration between asset discovery run start and end
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * The state of an asset discovery run.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Request message for grouping by assets.
@@ -327,27 +327,27 @@ export namespace securitycenter_v1 {
     /**
      * When compare_duration is set, the GroupResult&#39;s &quot;state_change&quot; property is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don&#39;t affect the result. For example, the results aren&#39;t affected if the asset is removed and re-created again.  Possible &quot;state_change&quot; values when compare_duration is specified:  * &quot;ADDED&quot;:   indicates that the asset was not present at the start of                compare_duration, but present at reference_time. * &quot;REMOVED&quot;: indicates that the asset was present at the start of                compare_duration, but not present at reference_time. * &quot;ACTIVE&quot;:  indicates that the asset was present at both the                start and the end of the time period defined by                compare_duration and reference_time.  If compare_duration is not specified, then the only possible state_change is &quot;UNUSED&quot;, which will be the state_change set for all assets present at read_time.  If this field is set then `state_change` must be a specified field in `group_by`.
      */
-    compareDuration?: string;
+    compareDuration?: string | null;
     /**
      * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * update_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;update_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;update_time = 1560208038000&quot;  * create_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;create_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;create_time = 1560208038000&quot;  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=` * security_marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * Expression that defines what assets fields to use for grouping. The string value should follow SQL syntax: comma separated list of fields. For example: &quot;security_center_properties.resource_project,security_center_properties.project&quot;.  The following fields are supported when compare_duration is not set:  * security_center_properties.resource_project * security_center_properties.resource_type * security_center_properties.resource_parent  The following fields are supported when compare_duration is set:  * security_center_properties.resource_type
      */
-    groupBy?: string;
+    groupBy?: string | null;
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * The value returned by the last `GroupAssetsResponse`; indicates that this is a continuation of a prior `GroupAssets` call, and that the system should return the next page of data.
      */
-    pageToken?: string;
+    pageToken?: string | null;
     /**
      * Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API&#39;s version of NOW.
      */
-    readTime?: string;
+    readTime?: string | null;
   }
   /**
    * Response message for grouping by assets.
@@ -360,15 +360,15 @@ export namespace securitycenter_v1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Time used for executing the groupBy request.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * The total number of results matching the query.
      */
-    totalSize?: number;
+    totalSize?: number | null;
   }
   /**
    * Request message for grouping by findings.
@@ -377,27 +377,27 @@ export namespace securitycenter_v1 {
     /**
      * When compare_duration is set, the GroupResult&#39;s &quot;state_change&quot; attribute is updated to indicate whether the finding had its state changed, the finding&#39;s state remained unchanged, or if the finding was added during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don&#39;t affect the result. For example, the results aren&#39;t affected if the finding is made inactive and then active again.  Possible &quot;state_change&quot; values when compare_duration is specified:  * &quot;CHANGED&quot;:   indicates that the finding was present at the start of                  compare_duration, but changed its state at read_time. * &quot;UNCHANGED&quot;: indicates that the finding was present at the start of                  compare_duration and did not change state at read_time. * &quot;ADDED&quot;:     indicates that the finding was not present at the start                  of compare_duration, but was present at read_time.  If compare_duration is not specified, then the only possible state_change is &quot;UNUSED&quot;,  which will be the state_change set for all findings present at read_time.  If this field is set then `state_change` must be a specified field in `group_by`.
      */
-    compareDuration?: string;
+    compareDuration?: string | null;
     /**
      * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * parent: `=`, `:` * resource_name: `=`, `:` * state: `=`, `:` * category: `=`, `:` * external_uri: `=`, `:` * event_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;event_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;event_time = 1560208038000&quot;  * security_marks: `=`, `:` * source_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`  For example, `source_properties.size = 100` is a valid filter string.
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * Expression that defines what assets fields to use for grouping (including `state_change`). The string value should follow SQL syntax: comma separated list of fields. For example: &quot;parent,resource_name&quot;.  The following fields are supported:  * resource_name * category * state * parent  The following fields are supported when compare_duration is set:  * state_change
      */
-    groupBy?: string;
+    groupBy?: string | null;
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * The value returned by the last `GroupFindingsResponse`; indicates that this is a continuation of a prior `GroupFindings` call, and that the system should return the next page of data.
      */
-    pageToken?: string;
+    pageToken?: string | null;
     /**
      * Time used as a reference point when filtering findings. The filter is limited to findings existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API&#39;s version of NOW.
      */
-    readTime?: string;
+    readTime?: string | null;
   }
   /**
    * Response message for group by findings.
@@ -410,15 +410,15 @@ export namespace securitycenter_v1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Time used for executing the groupBy request.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * The total number of results matching the query.
      */
-    totalSize?: number;
+    totalSize?: number | null;
   }
   /**
    * Result containing the properties and count of a groupBy request.
@@ -427,11 +427,11 @@ export namespace securitycenter_v1 {
     /**
      * Total count of resources for the given properties.
      */
-    count?: string;
+    count?: string | null;
     /**
      * Properties matching the groupBy fields in the request.
      */
-    properties?: {[key: string]: any};
+    properties?: {[key: string]: any} | null;
   }
   /**
    * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
@@ -440,7 +440,7 @@ export namespace securitycenter_v1 {
     /**
      * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/reference/rest/v1/Policy for format details.
      */
-    policyBlob?: string;
+    policyBlob?: string | null;
   }
   /**
    * Response message for listing assets.
@@ -453,15 +453,15 @@ export namespace securitycenter_v1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Time used for executing the list request.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * The total number of assets matching the query.
      */
-    totalSize?: number;
+    totalSize?: number | null;
   }
   /**
    * Result containing the Asset and its State.
@@ -474,7 +474,7 @@ export namespace securitycenter_v1 {
     /**
      * State change of the asset between the points in time.
      */
-    stateChange?: string;
+    stateChange?: string | null;
   }
   /**
    * Response message for listing findings.
@@ -487,15 +487,15 @@ export namespace securitycenter_v1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Time used for executing the list request.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * The total number of findings matching the query.
      */
-    totalSize?: number;
+    totalSize?: number | null;
   }
   /**
    * Result containing the Finding and its StateChange.
@@ -508,7 +508,7 @@ export namespace securitycenter_v1 {
     /**
      * State change of the finding between the points in time.
      */
-    stateChange?: string;
+    stateChange?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -517,7 +517,7 @@ export namespace securitycenter_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -530,7 +530,7 @@ export namespace securitycenter_v1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Sources belonging to the requested parent.
      */
@@ -543,7 +543,7 @@ export namespace securitycenter_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -551,15 +551,15 @@ export namespace securitycenter_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * User specified settings that are attached to the Cloud Security Command Center (Cloud SCC) organization.
@@ -572,11 +572,11 @@ export namespace securitycenter_v1 {
     /**
      * A flag that indicates if Asset Discovery should be enabled. If the flag is set to `true`, then discovery of assets will occur. If it is set to `false, all historical assets will remain, but discovery of future assets will not occur.
      */
-    enableAssetDiscovery?: boolean;
+    enableAssetDiscovery?: boolean | null;
     /**
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/organizationSettings&quot;.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -593,11 +593,11 @@ export namespace securitycenter_v1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Deprecated.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Request message for running asset discovery for an organization.
@@ -610,23 +610,23 @@ export namespace securitycenter_v1 {
     /**
      * The full resource name of the GCP resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
-    resourceName?: string;
+    resourceName?: string | null;
     /**
      * Owners of the Google Cloud resource.
      */
-    resourceOwners?: string[];
+    resourceOwners?: string[] | null;
     /**
      * The full resource name of the immediate parent of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
-    resourceParent?: string;
+    resourceParent?: string | null;
     /**
      * The full resource name of the project the resource belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
-    resourceProject?: string;
+    resourceProject?: string | null;
     /**
      * The type of the GCP resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Cloud SCC and/or the producer of the resource and is immutable after create time.
      */
-    resourceType?: string;
+    resourceType?: string | null;
   }
   /**
    * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
@@ -635,11 +635,11 @@ export namespace securitycenter_v1 {
     /**
      * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:   - Keys and values are treated as case insensitive   - Keys must be between 1 - 256 characters (inclusive)   - Keys must be letters, numbers, underscores, or dashes   - Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
      */
-    marks?: {[key: string]: string};
+    marks?: {[key: string]: string} | null;
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/123/assets/456/securityMarks&quot; &quot;organizations/123/sources/456/findings/789/securityMarks&quot;.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Request message for updating a finding&#39;s state.
@@ -648,11 +648,11 @@ export namespace securitycenter_v1 {
     /**
      * The time at which the updated state takes effect.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The desired State of the finding.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -665,7 +665,7 @@ export namespace securitycenter_v1 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Cloud Security Command Center&#39;s (Cloud SCC) finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, etc.
@@ -674,15 +674,15 @@ export namespace securitycenter_v1 {
     /**
      * The description of the source (max of 1024 characters). Example: &quot;Cloud Security Scanner is a web security scanner for common vulnerabilities in App Engine applications. It can automatically scan and detect four common vulnerabilities, including cross-site-scripting (XSS), Flash injection, mixed content (HTTP in HTTPS), and outdated/insecure libraries.&quot;
      */
-    description?: string;
+    description?: string | null;
     /**
      * The source&#39;s display name. A source&#39;s display name must be unique amongst its siblings, for example, two sources with the same parent can&#39;t share the same display name. The display name must have a length between 1 and 64 characters (inclusive).
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/sources/456&quot;
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -691,15 +691,15 @@ export namespace securitycenter_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -708,7 +708,7 @@ export namespace securitycenter_v1 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -717,7 +717,7 @@ export namespace securitycenter_v1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
 
   export class Resource$Organizations {

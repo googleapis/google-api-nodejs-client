@@ -160,7 +160,7 @@ export namespace datastore_v1 {
     /**
      * The transaction identifier (always present).
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * The request for Datastore.Commit.
@@ -169,7 +169,7 @@ export namespace datastore_v1 {
     /**
      * The type of commit to perform. Defaults to `TRANSACTIONAL`.
      */
-    mode?: string;
+    mode?: string | null;
     /**
      * The mutations to perform.  When mode is `TRANSACTIONAL`, mutations affecting a single entity are applied in order. The following sequences of mutations affecting a single entity are not permitted in a single `Commit` request:  - `insert` followed by `insert` - `update` followed by `insert` - `upsert` followed by `insert` - `delete` followed by `update`  When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single entity.
      */
@@ -177,7 +177,7 @@ export namespace datastore_v1 {
     /**
      * The identifier of the transaction associated with the commit. A transaction identifier is returned by a call to Datastore.BeginTransaction.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * The response for Datastore.Commit.
@@ -186,7 +186,7 @@ export namespace datastore_v1 {
     /**
      * The number of index entries updated during the commit, or zero if none were updated.
      */
-    indexUpdates?: number;
+    indexUpdates?: number | null;
     /**
      * The result of performing the mutations. The i-th mutation result corresponds to the i-th mutation in the request.
      */
@@ -203,7 +203,7 @@ export namespace datastore_v1 {
     /**
      * The operator for combining multiple filters.
      */
-    op?: string;
+    op?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -220,7 +220,7 @@ export namespace datastore_v1 {
     /**
      * The entity&#39;s properties. The map&#39;s keys are property names. A property name matching regex `__.*__` is reserved. A reserved property name is forbidden in certain documented contexts. The name must not contain more than 500 characters. The name cannot be `&quot;&quot;`.
      */
-    properties?: {[key: string]: Schema$Value};
+    properties?: {[key: string]: Schema$Value} | null;
   }
   /**
    * The result of fetching an entity from Datastore.
@@ -229,7 +229,7 @@ export namespace datastore_v1 {
     /**
      * A cursor that points to the position after the result entity. Set only when the `EntityResult` is part of a `QueryResultBatch` message.
      */
-    cursor?: string;
+    cursor?: string | null;
     /**
      * The resulting entity.
      */
@@ -237,7 +237,7 @@ export namespace datastore_v1 {
     /**
      * The version of the entity, a strictly positive number that monotonically increases with changes to the entity.  This field is set for `FULL` entity results.  For missing entities in `LookupResponse`, this is the version of the snapshot that was used to look up the entity, and it is always set except for eventually consistent reads.
      */
-    version?: string;
+    version?: string | null;
   }
   /**
    * A holder for any type of filter.
@@ -259,23 +259,23 @@ export namespace datastore_v1 {
     /**
      * The time the operation ended, either successfully or otherwise.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The client-assigned labels which were provided when the operation was created. May also include additional labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The type of the operation. Can be used as a filter in ListOperationsRequest.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * The time that work began on the operation.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The current state of the Operation.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage:  Entire project:   kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:   kinds=[], namespace_ids=[&#39;Baz&#39;]
@@ -284,11 +284,11 @@ export namespace datastore_v1 {
     /**
      * If empty, then this represents all kinds.
      */
-    kinds?: string[];
+    kinds?: string[] | null;
     /**
      * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
      */
-    namespaceIds?: string[];
+    namespaceIds?: string[] | null;
   }
   /**
    * Metadata for ExportEntities operations.
@@ -305,7 +305,7 @@ export namespace datastore_v1 {
     /**
      * Location for the export metadata and data files. This will be the same value as the google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix field. The final output location is provided in google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
      */
-    outputUrlPrefix?: string;
+    outputUrlPrefix?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -322,7 +322,7 @@ export namespace datastore_v1 {
     /**
      * Location of the output metadata file. This can be used to begin an import into Cloud Datastore (this project or another project). See google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url. Only present if the operation completed successfully.
      */
-    outputUrl?: string;
+    outputUrl?: string | null;
   }
   /**
    * Metadata for ImportEntities operations.
@@ -339,7 +339,7 @@ export namespace datastore_v1 {
     /**
      * The location of the import metadata file. This will be the same value as the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url field.
      */
-    inputUrl?: string;
+    inputUrl?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -356,11 +356,11 @@ export namespace datastore_v1 {
     /**
      * The amount of work that has been completed. Note that this may be greater than work_estimated.
      */
-    workCompleted?: string;
+    workCompleted?: string | null;
     /**
      * An estimate of how much work needs to be performed. May be zero if the work estimate is unavailable.
      */
-    workEstimated?: string;
+    workEstimated?: string | null;
   }
   /**
    * Metadata common to all Datastore Admin operations.
@@ -369,23 +369,23 @@ export namespace datastore_v1 {
     /**
      * The time the operation ended, either successfully or otherwise.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The client-assigned labels which were provided when the operation was created. May also include additional labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The type of the operation. Can be used as a filter in ListOperationsRequest.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * The time that work began on the operation.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The current state of the Operation.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage:  Entire project:   kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:   kinds=[], namespace_ids=[&#39;Baz&#39;]
@@ -394,11 +394,11 @@ export namespace datastore_v1 {
     /**
      * If empty, then this represents all kinds.
      */
-    kinds?: string[];
+    kinds?: string[] | null;
     /**
      * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
      */
-    namespaceIds?: string[];
+    namespaceIds?: string[] | null;
   }
   /**
    * Metadata for ExportEntities operations.
@@ -415,7 +415,7 @@ export namespace datastore_v1 {
     /**
      * Location for the export metadata and data files. This will be the same value as the google.datastore.admin.v1.ExportEntitiesRequest.output_url_prefix field. The final output location is provided in google.datastore.admin.v1.ExportEntitiesResponse.output_url.
      */
-    outputUrlPrefix?: string;
+    outputUrlPrefix?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -436,11 +436,11 @@ export namespace datastore_v1 {
     /**
      * Client-assigned labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Location for the export metadata and data files.  The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So output_url_prefix should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace). For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  The resulting files will be nested deeper than the specified URL prefix. The final output URL will be provided in the google.datastore.admin.v1.ExportEntitiesResponse.output_url field. That value should be used for subsequent ImportEntities operations.  By nesting the data files deeper, the same Cloud Storage bucket can be used in multiple ExportEntities operations without conflict.
      */
-    outputUrlPrefix?: string;
+    outputUrlPrefix?: string | null;
   }
   /**
    * The response for google.datastore.admin.v1.DatastoreAdmin.ExportEntities.
@@ -449,7 +449,7 @@ export namespace datastore_v1 {
     /**
      * Location of the output metadata file. This can be used to begin an import into Cloud Datastore (this project or another project). See google.datastore.admin.v1.ImportEntitiesRequest.input_url. Only present if the operation completed successfully.
      */
-    outputUrl?: string;
+    outputUrl?: string | null;
   }
   /**
    * Metadata for ImportEntities operations.
@@ -466,7 +466,7 @@ export namespace datastore_v1 {
     /**
      * The location of the import metadata file. This will be the same value as the google.datastore.admin.v1.ExportEntitiesResponse.output_url field.
      */
-    inputUrl?: string;
+    inputUrl?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -487,11 +487,11 @@ export namespace datastore_v1 {
     /**
      * The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So input_url should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written by the ExportEntities operation. For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  For more information, see google.datastore.admin.v1.ExportEntitiesResponse.output_url.
      */
-    inputUrl?: string;
+    inputUrl?: string | null;
     /**
      * Client-assigned labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
   }
   /**
    * A minimal index definition.
@@ -500,19 +500,19 @@ export namespace datastore_v1 {
     /**
      * The index&#39;s ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED. Required.
      */
-    ancestor?: string;
+    ancestor?: string | null;
     /**
      * The resource ID of the index. Output only.
      */
-    indexId?: string;
+    indexId?: string | null;
     /**
      * The entity kind to which this index applies. Required.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Project ID. Output only.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * An ordered sequence of property names and their index attributes. Required.
      */
@@ -520,7 +520,7 @@ export namespace datastore_v1 {
     /**
      * The state of the index. Output only.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * A property of an index.
@@ -529,11 +529,11 @@ export namespace datastore_v1 {
     /**
      * The indexed property&#39;s direction.  Must not be DIRECTION_UNSPECIFIED. Required.
      */
-    direction?: string;
+    direction?: string | null;
     /**
      * The property name to index. Required.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Metadata for Index operations.
@@ -546,7 +546,7 @@ export namespace datastore_v1 {
     /**
      * The index resource ID that this operation is acting on.
      */
-    indexId?: string;
+    indexId?: string | null;
     /**
      * An estimate of the number of entities processed.
      */
@@ -563,7 +563,7 @@ export namespace datastore_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Measures the progress of a particular metric.
@@ -572,11 +572,11 @@ export namespace datastore_v1 {
     /**
      * The amount of work that has been completed. Note that this may be greater than work_estimated.
      */
-    workCompleted?: string;
+    workCompleted?: string | null;
     /**
      * An estimate of how much work needs to be performed. May be zero if the work estimate is unavailable.
      */
-    workEstimated?: string;
+    workEstimated?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -585,7 +585,7 @@ export namespace datastore_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -598,7 +598,7 @@ export namespace datastore_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -606,15 +606,15 @@ export namespace datastore_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A [GQL query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
@@ -623,11 +623,11 @@ export namespace datastore_v1 {
     /**
      * When false, the query string must not contain any literals and instead must bind all values. For example, `SELECT * FROM Kind WHERE a = &#39;string literal&#39;` is not allowed, while `SELECT * FROM Kind WHERE a = @value` is.
      */
-    allowLiterals?: boolean;
+    allowLiterals?: boolean | null;
     /**
      * For each non-reserved named binding site in the query string, there must be a named parameter with that name, but not necessarily the inverse.  Key must match regex `A-Za-z_$*`, must not match regex `__.*__`, and must not be `&quot;&quot;`.
      */
-    namedBindings?: {[key: string]: Schema$GqlQueryParameter};
+    namedBindings?: {[key: string]: Schema$GqlQueryParameter} | null;
     /**
      * Numbered binding site @1 references the first numbered parameter, effectively using 1-based indexing, rather than the usual 0.  For each binding site numbered i in `query_string`, there must be an i-th numbered parameter. The inverse must also be true.
      */
@@ -635,7 +635,7 @@ export namespace datastore_v1 {
     /**
      * A string of the format described [here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
      */
-    queryString?: string;
+    queryString?: string | null;
   }
   /**
    * A binding parameter for a GQL query.
@@ -644,7 +644,7 @@ export namespace datastore_v1 {
     /**
      * A query cursor. Query cursors are returned in query result batches.
      */
-    cursor?: string;
+    cursor?: string | null;
     /**
      * A value parameter.
      */
@@ -670,7 +670,7 @@ export namespace datastore_v1 {
     /**
      * The name of the kind.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
@@ -679,11 +679,11 @@ export namespace datastore_v1 {
     /**
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      */
-    latitude?: number;
+    latitude?: number | null;
     /**
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
-    longitude?: number;
+    longitude?: number | null;
   }
   /**
    * The request for Datastore.Lookup.
@@ -722,7 +722,7 @@ export namespace datastore_v1 {
     /**
      * The version of the entity that this mutation is being applied to. If this does not match the current version on the server, the mutation conflicts.
      */
-    baseVersion?: string;
+    baseVersion?: string | null;
     /**
      * The key of the entity to delete. The entity may or may not already exist. Must have a complete key path and must not be reserved/read-only.
      */
@@ -747,7 +747,7 @@ export namespace datastore_v1 {
     /**
      * Whether a conflict was detected for this mutation. Always false when a conflict detection strategy field is not set in the mutation.
      */
-    conflictDetected?: boolean;
+    conflictDetected?: boolean | null;
     /**
      * The automatically allocated key. Set only when the mutation allocated a key.
      */
@@ -755,7 +755,7 @@ export namespace datastore_v1 {
     /**
      * The version of the entity on the server after processing the mutation. If the mutation doesn&#39;t change anything on the server, then the version will be the version of the current entity or, if no entity is present, a version that is strictly greater than the version of any previous entity and less than the version of any possible future entity.
      */
-    version?: string;
+    version?: string | null;
   }
   /**
    * A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty.  A partition ID contains several dimensions: project ID and namespace ID.  Partition dimensions:  - May be `&quot;&quot;`. - Must be valid UTF-8 bytes. - Must have values that match regex `[A-Za-z\d\.\-_]{1,100}` If the value of any dimension matches regex `__.*__`, the partition is reserved/read-only. A reserved/read-only partition ID is forbidden in certain documented contexts.  Foreign partition IDs (in which the project ID does not match the context project ID ) are discouraged. Reads and writes of foreign partition IDs may fail if the project is not in an active state.
@@ -764,11 +764,11 @@ export namespace datastore_v1 {
     /**
      * If not empty, the ID of the namespace to which the entities belong.
      */
-    namespaceId?: string;
+    namespaceId?: string | null;
     /**
      * The ID of the project to which the entities belong.
      */
-    projectId?: string;
+    projectId?: string | null;
   }
   /**
    * A (kind, ID/name) pair used to construct a key path.  If either name or ID is set, the element is complete. If neither is set, the element is incomplete.
@@ -777,15 +777,15 @@ export namespace datastore_v1 {
     /**
      * The auto-allocated ID of the entity. Never equal to zero. Values less than zero are discouraged and may not be supported in the future.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `&quot;&quot;`.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `&quot;&quot;`.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A representation of a property in a projection.
@@ -803,7 +803,7 @@ export namespace datastore_v1 {
     /**
      * The operator to filter by.
      */
-    op?: string;
+    op?: string | null;
     /**
      * The property to filter by.
      */
@@ -820,7 +820,7 @@ export namespace datastore_v1 {
     /**
      * The direction to order by. Defaults to `ASCENDING`.
      */
-    direction?: string;
+    direction?: string | null;
     /**
      * The property to order by.
      */
@@ -833,7 +833,7 @@ export namespace datastore_v1 {
     /**
      * The name of the property. If name includes &quot;.&quot;s, it may be interpreted as a property name path.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A query for entities.
@@ -846,7 +846,7 @@ export namespace datastore_v1 {
     /**
      * An ending point for the query results. Query cursors are returned in query result batches and [can only be used to limit the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      */
-    endCursor?: string;
+    endCursor?: string | null;
     /**
      * The filter to apply.
      */
@@ -858,11 +858,11 @@ export namespace datastore_v1 {
     /**
      * The maximum number of results to return. Applies after all other constraints. Optional. Unspecified is interpreted as no limit. Must be &gt;= 0 if specified.
      */
-    limit?: number;
+    limit?: number | null;
     /**
      * The number of results to skip. Applies before limit, but after all other constraints. Optional. Must be &gt;= 0 if specified.
      */
-    offset?: number;
+    offset?: number | null;
     /**
      * The order to apply to the query results (if empty, order is unspecified).
      */
@@ -874,7 +874,7 @@ export namespace datastore_v1 {
     /**
      * A starting point for the query results. Query cursors are returned in query result batches and [can only be used to continue the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      */
-    startCursor?: string;
+    startCursor?: string | null;
   }
   /**
    * A batch of results produced by a query.
@@ -883,7 +883,7 @@ export namespace datastore_v1 {
     /**
      * A cursor that points to the position after the last result in the batch.
      */
-    endCursor?: string;
+    endCursor?: string | null;
     /**
      * The results for this batch.
      */
@@ -891,23 +891,23 @@ export namespace datastore_v1 {
     /**
      * The result type for every entity in `entity_results`.
      */
-    entityResultType?: string;
+    entityResultType?: string | null;
     /**
      * The state of the query after the current batch.
      */
-    moreResults?: string;
+    moreResults?: string | null;
     /**
      * A cursor that points to the position after the last skipped result. Will be set when `skipped_results` != 0.
      */
-    skippedCursor?: string;
+    skippedCursor?: string | null;
     /**
      * The number of results skipped, typically because of an offset.
      */
-    skippedResults?: number;
+    skippedResults?: number | null;
     /**
      * The version number of the snapshot this batch was returned from. This applies to the range of results from the query&#39;s `start_cursor` (or the beginning of the query if no cursor was given) to this batch&#39;s `end_cursor` (not the query&#39;s `end_cursor`).  In a single transaction, subsequent query result batches for the same query can have a greater snapshot version number. Each batch&#39;s snapshot version is valid for all preceding batches. The value will be zero for eventually consistent queries.
      */
-    snapshotVersion?: string;
+    snapshotVersion?: string | null;
   }
   /**
    * Options specific to read-only transactions.
@@ -920,11 +920,11 @@ export namespace datastore_v1 {
     /**
      * The non-transactional read consistency to use. Cannot be set to `STRONG` for global queries.
      */
-    readConsistency?: string;
+    readConsistency?: string | null;
     /**
      * The identifier of the transaction in which to read. A transaction identifier is returned by a call to Datastore.BeginTransaction.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * Options specific to read / write transactions.
@@ -933,7 +933,7 @@ export namespace datastore_v1 {
     /**
      * The transaction identifier of the transaction being retried.
      */
-    previousTransaction?: string;
+    previousTransaction?: string | null;
   }
   /**
    * The request for Datastore.ReserveIds.
@@ -942,7 +942,7 @@ export namespace datastore_v1 {
     /**
      * If not empty, the ID of the database against which to make the request.
      */
-    databaseId?: string;
+    databaseId?: string | null;
     /**
      * A list of keys with complete key paths whose numeric IDs should not be auto-allocated.
      */
@@ -959,7 +959,7 @@ export namespace datastore_v1 {
     /**
      * The transaction identifier, returned by a call to Datastore.BeginTransaction.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * The response for Datastore.Rollback. (an empty message).
@@ -1006,15 +1006,15 @@ export namespace datastore_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Options for beginning a new transaction.  Transactions can be created explicitly with calls to Datastore.BeginTransaction or implicitly by setting ReadOptions.new_transaction in read requests.
@@ -1040,15 +1040,15 @@ export namespace datastore_v1 {
     /**
      * A blob value. May have at most 1,000,000 bytes. When `exclude_from_indexes` is false, may have at most 1500 bytes. In JSON requests, must be base64-encoded.
      */
-    blobValue?: string;
+    blobValue?: string | null;
     /**
      * A boolean value.
      */
-    booleanValue?: boolean;
+    booleanValue?: boolean | null;
     /**
      * A double value.
      */
-    doubleValue?: number;
+    doubleValue?: number | null;
     /**
      * An entity value.  - May have no key. - May have a key with an incomplete key path. - May have a reserved/read-only key.
      */
@@ -1056,7 +1056,7 @@ export namespace datastore_v1 {
     /**
      * If the value should be excluded from all indexes including those defined explicitly.
      */
-    excludeFromIndexes?: boolean;
+    excludeFromIndexes?: boolean | null;
     /**
      * A geo point value representing a point on the surface of Earth.
      */
@@ -1064,7 +1064,7 @@ export namespace datastore_v1 {
     /**
      * An integer value.
      */
-    integerValue?: string;
+    integerValue?: string | null;
     /**
      * A key value.
      */
@@ -1072,19 +1072,19 @@ export namespace datastore_v1 {
     /**
      * The `meaning` field should only be populated for backwards compatibility.
      */
-    meaning?: number;
+    meaning?: number | null;
     /**
      * A null value.
      */
-    nullValue?: string;
+    nullValue?: string | null;
     /**
      * A UTF-8 encoded string value. When `exclude_from_indexes` is false (it is indexed) , may have at most 1500 bytes. Otherwise, may be set to at least 1,000,000 bytes.
      */
-    stringValue?: string;
+    stringValue?: string | null;
     /**
      * A timestamp value. When stored in the Datastore, precise only to microseconds; any additional precision is rounded down.
      */
-    timestampValue?: string;
+    timestampValue?: string | null;
   }
 
   export class Resource$Projects {

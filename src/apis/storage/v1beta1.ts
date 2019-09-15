@@ -126,35 +126,35 @@ export namespace storage_v1beta1 {
     /**
      * The name of the bucket.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For buckets, this is always storage#bucket.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The location of the bucket. Object data for objects in the bucket resides in physical storage in this location. Can be US or EU. Defaults to US.
      */
-    location?: string;
+    location?: string | null;
     /**
      * The owner of the bucket. This will always be the project team&#39;s owner group.
      */
-    owner?: {entity?: string; entityId?: string};
+    owner?: {entity?: string; entityId?: string} | null;
     /**
      * The project the bucket belongs to.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The URI of this bucket.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Creation time of the bucket in RFC 3339 format.
      */
-    timeCreated?: string;
+    timeCreated?: string | null;
     /**
      * The bucket&#39;s website configuration.
      */
-    website?: {mainPageSuffix?: string; notFoundPage?: string};
+    website?: {mainPageSuffix?: string; notFoundPage?: string} | null;
   }
   /**
    * An access-control entry.
@@ -163,39 +163,39 @@ export namespace storage_v1beta1 {
     /**
      * The name of the bucket.
      */
-    bucket?: string;
+    bucket?: string | null;
     /**
      * The domain associated with the entity, if any.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * The email address associated with the entity, if any.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
-    entity?: string;
+    entity?: string | null;
     /**
      * The ID for the entity, if any.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * The ID of the access-control entry.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The access permission for the entity. Can be READER, WRITER, or OWNER.
      */
-    role?: string;
+    role?: string | null;
     /**
      * The link to this access-control entry.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * An access-control list.
@@ -208,7 +208,7 @@ export namespace storage_v1beta1 {
     /**
      * The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A list of buckets.
@@ -221,11 +221,11 @@ export namespace storage_v1beta1 {
     /**
      * The kind of item this is. For lists of buckets, this is always storage#buckets.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * An object.
@@ -238,31 +238,31 @@ export namespace storage_v1beta1 {
     /**
      * The bucket containing this object.
      */
-    bucket?: string;
+    bucket?: string | null;
     /**
      * Cache-Control directive for the object data.
      */
-    cacheControl?: string;
+    cacheControl?: string | null;
     /**
      * Content-Disposition of the object data.
      */
-    contentDisposition?: string;
+    contentDisposition?: string | null;
     /**
      * Content-Encoding of the object data.
      */
-    contentEncoding?: string;
+    contentEncoding?: string | null;
     /**
      * Content-Language of the object data.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * The ID of the object.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For objects, this is always storage#object.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.
      */
@@ -274,23 +274,23 @@ export namespace storage_v1beta1 {
       length?: string;
       link?: string;
       timeCreated?: string;
-    };
+    } | null;
     /**
      * User-provided metadata, in key/value pairs.
      */
-    metadata?: {[key: string]: string};
+    metadata?: {[key: string]: string} | null;
     /**
      * The name of this object. Required if not specified by URL parameter.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The owner of the object. This will always be the uploader of the object.
      */
-    owner?: {entity?: string; entityId?: string};
+    owner?: {entity?: string; entityId?: string} | null;
     /**
      * The link to this object.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * An access-control entry.
@@ -299,43 +299,43 @@ export namespace storage_v1beta1 {
     /**
      * The name of the bucket.
      */
-    bucket?: string;
+    bucket?: string | null;
     /**
      * The domain associated with the entity, if any.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * The email address associated with the entity, if any.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
-    entity?: string;
+    entity?: string | null;
     /**
      * The ID for the entity, if any.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * The ID of the access-control entry.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the object.
      */
-    object?: string;
+    object?: string | null;
     /**
      * The access permission for the entity. Can be READER or OWNER.
      */
-    role?: string;
+    role?: string | null;
     /**
      * The link to this access-control entry.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * An access-control list.
@@ -348,7 +348,7 @@ export namespace storage_v1beta1 {
     /**
      * The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A list of objects.
@@ -361,15 +361,15 @@ export namespace storage_v1beta1 {
     /**
      * The kind of item this is. For lists of objects, this is always storage#objects.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
      */
-    prefixes?: string[];
+    prefixes?: string[] | null;
   }
 
   export class Resource$Bucketaccesscontrols {

@@ -136,7 +136,7 @@ export namespace cloudsearch_v1 {
     /**
      * Indicates the operator name required in the query in order to isolate the boolean property. For example, if operatorName is *closed* and the property&#39;s name is *isClosed*, then queries like *closed:&amp;lt;value&amp;gt;* will show results only where the value of the property named *isClosed* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    operatorName?: string;
+    operatorName?: string | null;
   }
   /**
    * Options for boolean properties.
@@ -151,13 +151,13 @@ export namespace cloudsearch_v1 {
     /**
      * Returns true if principal has access.  Returns false otherwise.
      */
-    hasAccess?: boolean;
+    hasAccess?: boolean | null;
   }
   export interface Schema$CompositeFilter {
     /**
      * The logic operator of the sub filter.
      */
-    logicOperator?: string;
+    logicOperator?: string | null;
     /**
      * Sub filters.
      */
@@ -183,19 +183,19 @@ export namespace cloudsearch_v1 {
     /**
      * If true, Indexing API rejects any modification calls to this datasource such as create, update, and delete. Disabling this does not imply halting process of previously accepted data.
      */
-    disableModifications?: boolean;
+    disableModifications?: boolean | null;
     /**
      * Disable serving any search or assist results.
      */
-    disableServing?: boolean;
+    disableServing?: boolean | null;
     /**
      * Required. Display name of the datasource The maximum length is 300 characters.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * List of service accounts that have indexing access.
      */
-    indexingServiceAccounts?: string[];
+    indexingServiceAccounts?: string[] | null;
     /**
      * This field restricts visibility to items at the datasource level. Items within the datasource are restricted to the union of users and groups included in this field. Note that, this does not ensure access to a specific item, as users need to have ACL permissions on the contained items. This ensures a high level access on the entire datasource, and that the individual items are not shared outside this visibility.
      */
@@ -203,15 +203,15 @@ export namespace cloudsearch_v1 {
     /**
      * Name of the datasource resource. Format: datasources/{source_id}. &lt;br /&gt;The name is ignored when creating a datasource.
      */
-    name?: string;
+    name?: string | null;
     /**
      * IDs of the Long Running Operations (LROs) currently running for this schema.
      */
-    operationIds?: string[];
+    operationIds?: string[] | null;
     /**
      * A short name or alias for the source.  This value will be used to match the &#39;source&#39; operator. For example, if the short name is *&amp;lt;value&amp;gt;* then queries like *source:&amp;lt;value&amp;gt;* will only return results for this source. The value must be unique across all datasources. The value must only contain alphanumeric characters (a-zA-Z0-9). The value cannot start with &#39;google&#39; and cannot be one of the following: mail, gmail, docs, drive, groups, sites, calendar, hangouts, gplus, keep, people, teams. Its maximum length is 32 characters.
      */
-    shortName?: string;
+    shortName?: string | null;
   }
   /**
    * Aggregation of items by status code as of the specified date.
@@ -246,15 +246,15 @@ export namespace cloudsearch_v1 {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
      */
-    day?: number;
+    day?: number | null;
     /**
      * Month of date. Must be from 1 to 12.
      */
-    month?: number;
+    month?: number | null;
     /**
      * Year of date. Must be from 1 to 9999.
      */
-    year?: number;
+    year?: number | null;
   }
   /**
    * Optional. Provides a search operator for date properties. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
@@ -263,15 +263,15 @@ export namespace cloudsearch_v1 {
     /**
      * Indicates the operator name required in the query in order to isolate the date property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* is later than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    greaterThanOperatorName?: string;
+    greaterThanOperatorName?: string | null;
     /**
      * Indicates the operator name required in the query in order to isolate the date property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* is earlier than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    lessThanOperatorName?: string;
+    lessThanOperatorName?: string | null;
     /**
      * Indicates the actual string required in the query in order to isolate the date property. For example, suppose an issue tracking schema object has a property named *closeDate* that specifies an operator with an operatorName of *closedon*. For searches on that data, queries like *closedon:&amp;lt;value&amp;gt;* will show results only where the value of the *closeDate* property matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the indexed datasource. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    operatorName?: string;
+    operatorName?: string | null;
   }
   /**
    * Options for date properties.
@@ -295,13 +295,13 @@ export namespace cloudsearch_v1 {
     /**
      * If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      */
-    enableDebugging?: boolean;
+    enableDebugging?: boolean | null;
   }
   export interface Schema$DeleteQueueItemsRequest {
     /**
      * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
      */
-    connectorName?: string;
+    connectorName?: string | null;
     /**
      * Common debug options.
      */
@@ -309,7 +309,7 @@ export namespace cloudsearch_v1 {
     /**
      * Name of a queue to delete items from.
      */
-    queue?: string;
+    queue?: string | null;
   }
   /**
    * A reference to a top-level property within the object that should be displayed in search results. The values of the chosen properties will be displayed in the search results along with the dislpay label for that property if one is specified. If a display label is not specified, only the values will be shown.
@@ -318,7 +318,7 @@ export namespace cloudsearch_v1 {
     /**
      * The name of the top-level property as defined in a property definition for the object. If the name is not a defined property in the schema, an error will be given when attempting to update the schema.
      */
-    propertyName?: string;
+    propertyName?: string | null;
   }
   /**
    * Used to provide a search operator for double properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
@@ -327,7 +327,7 @@ export namespace cloudsearch_v1 {
     /**
      * Indicates the operator name required in the query in order to use the double property in sorting or as a facet. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    operatorName?: string;
+    operatorName?: string | null;
   }
   /**
    * Options for double properties.
@@ -342,31 +342,31 @@ export namespace cloudsearch_v1 {
    * List of double values.
    */
   export interface Schema$DoubleValues {
-    values?: number[];
+    values?: number[] | null;
   }
   /**
    * Drive follow-up search restricts (e.g. &quot;followup:suggestions&quot;).
    */
   export interface Schema$DriveFollowUpRestrict {
-    type?: string;
+    type?: string | null;
   }
   /**
    * Drive location search restricts (e.g. &quot;is:starred&quot;).
    */
   export interface Schema$DriveLocationRestrict {
-    type?: string;
+    type?: string | null;
   }
   /**
    * Drive mime-type search restricts (e.g. &quot;type:pdf&quot;).
    */
   export interface Schema$DriveMimeTypeRestrict {
-    type?: string;
+    type?: string | null;
   }
   /**
    * The time span search restrict (e.g. &quot;after:2017-09-11 before:2017-09-12&quot;).
    */
   export interface Schema$DriveTimeSpanRestrict {
-    type?: string;
+    type?: string | null;
   }
   /**
    * A person&#39;s email address.
@@ -375,7 +375,7 @@ export namespace cloudsearch_v1 {
     /**
      * The email address.
      */
-    emailAddress?: string;
+    emailAddress?: string | null;
   }
   /**
    * Used to provide a search operator for enum properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched. For example, if you provide no operator for a *priority* enum property with possible values *p0* and *p1*, a query that contains the term *p0* will return items that have *p0* as the value of the *priority* property, as well as any items that contain the string *p0* in other fields. If you provide an operator name for the enum, such as *priority*, then search users can use that operator to refine results to only items that have *p0* as this property&#39;s value, with the query *priority:p0*.
@@ -384,7 +384,7 @@ export namespace cloudsearch_v1 {
     /**
      * Indicates the operator name required in the query in order to isolate the enum property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&amp;lt;value&amp;gt;* will show results only where the value of the property named *priorityVal* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    operatorName?: string;
+    operatorName?: string | null;
   }
   /**
    * Options for enum properties, which allow you to define a restricted set of strings to match user queries, set rankings for those string values, and define an operator name to be paired with those strings so that users can narrow results to only items with a specific value. For example, for items in a request tracking system with priority information, you could define *p0* as an allowable enum value and tie this enum to the operator name *priority* so that search users could add *priority:p0* to their query to restrict the set of results to only those items indexed with the value *p0*.
@@ -397,7 +397,7 @@ export namespace cloudsearch_v1 {
     /**
      * Used to specify the ordered ranking for the enumeration that determines how the integer values provided in the possible EnumValuePairs are used to rank results. If specified, integer values must be provided for all possible EnumValuePair values given for this property. Can only be used if isRepeatable is false.
      */
-    orderedRanking?: string;
+    orderedRanking?: string | null;
     /**
      * The list of possible values for the enumeration property. All EnumValuePairs must provide a string value. If you specify an integer value for one EnumValuePair, then all possible EnumValuePairs must provide an integer value. Both the string value and integer value must be unique over all possible values. Once set, possible values cannot be removed or modified. If you supply an ordered ranking and think you might insert additional enum values in the future, leave gaps in the initial integer values to allow adding a value in between previously registered values. The maximum number of elements is 100.
      */
@@ -410,11 +410,11 @@ export namespace cloudsearch_v1 {
     /**
      * The integer value of the EnumValuePair which must be non-negative. Optional.
      */
-    integerValue?: number;
+    integerValue?: number | null;
     /**
      * The string value of the EnumValuePair. The maximum length is 32 characters.
      */
-    stringValue?: string;
+    stringValue?: string | null;
   }
   /**
    * List of enum values.
@@ -423,7 +423,7 @@ export namespace cloudsearch_v1 {
     /**
      * The maximum allowable length for string values is 32 characters.
      */
-    values?: string[];
+    values?: string[] | null;
   }
   /**
    * Error information about the response.
@@ -435,7 +435,7 @@ export namespace cloudsearch_v1 {
    * Error message per source response.
    */
   export interface Schema$ErrorMessage {
-    errorMessage?: string;
+    errorMessage?: string | null;
     source?: Schema$Source;
   }
   /**
@@ -445,11 +445,11 @@ export namespace cloudsearch_v1 {
     /**
      * Number of results that match the bucket value. Counts are only returned for searches when count accuracy is ensured. Can be empty.
      */
-    count?: number;
+    count?: number | null;
     /**
      * Percent of results that match the bucket value. This value is between (0-100]. Percentages are returned for all searches, but are an estimate. Because percentages are always returned, you should render percentages instead of counts.
      */
-    percentage?: number;
+    percentage?: number | null;
     value?: Schema$Value;
   }
   /**
@@ -459,19 +459,19 @@ export namespace cloudsearch_v1 {
     /**
      * Maximum number of facet buckets that should be returned for this facet. Defaults to 10. Maximum value is 100.
      */
-    numFacetBuckets?: number;
+    numFacetBuckets?: number | null;
     /**
      * If object_type is set, only those objects of that type will be used to compute facets. If empty, then all objects will be used to compute facets.
      */
-    objectType?: string;
+    objectType?: string | null;
     /**
      * Name of the operator chosen for faceting. @see cloudsearch.SchemaPropertyOptions
      */
-    operatorName?: string;
+    operatorName?: string | null;
     /**
      * Source name to facet on. Format: datasources/{source_id} If empty, all data sources will be used.
      */
-    sourceName?: string;
+    sourceName?: string | null;
   }
   /**
    * Source specific facet response
@@ -484,25 +484,25 @@ export namespace cloudsearch_v1 {
     /**
      * Object type for which facet results are returned. Can be empty.
      */
-    objectType?: string;
+    objectType?: string | null;
     /**
      * Name of the operator chosen for faceting. @see cloudsearch.SchemaPropertyOptions
      */
-    operatorName?: string;
+    operatorName?: string | null;
     /**
      * Source name for which facet results are returned. Will not be empty.
      */
-    sourceName?: string;
+    sourceName?: string | null;
   }
   export interface Schema$FieldViolation {
     /**
      * Description of the error.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Path of field with violation.
      */
-    field?: string;
+    field?: string | null;
   }
   /**
    * A generic way of expressing filters in a query, which supports two approaches: &lt;br/&gt;&lt;br/&gt; **1. Setting a ValueFilter.** The name must match an operator_name defined in the schema for your data source. &lt;br/&gt; **2. Setting a CompositeFilter.** The filters are evaluated using the logical operator. The top-level operators can only be either an AND or a NOT. AND can appear only at the top-most level. OR can appear only under a top-level AND.
@@ -522,7 +522,7 @@ export namespace cloudsearch_v1 {
     /**
      * If object_type is set, only objects of that type are returned. This should correspond to the name of the object that was registered within the definition of schema. The maximum length is 256 characters.
      */
-    objectType?: string;
+    objectType?: string | null;
   }
   /**
    * Indicates which freshness property to use when adjusting search ranking for an item. Fresher, more recent dates indicate higher quality. Use the freshness option property that best works with your data. For fileshare documents, last modified time is most relevant. For calendar event data, the time when the event occurs is a more relevant freshness indicator. In this way, calendar events that occur closer to the time of the search query are considered higher quality and ranked accordingly.
@@ -531,11 +531,11 @@ export namespace cloudsearch_v1 {
     /**
      * The duration after which an object should be considered stale. The default value is 180 days (in seconds).
      */
-    freshnessDuration?: string;
+    freshnessDuration?: string | null;
     /**
      * This property indicates the freshness level of the object in the index. If set, this property must be a top-level property within the property definitions and it must be a timestamp type or date type. Otherwise, the Indexing API uses updateTime as the freshness indicator. The maximum length is 256 characters.  When a property is used to calculate fresheness, the value defaults to 2 years from the current time.
      */
-    freshnessProperty?: string;
+    freshnessProperty?: string | null;
   }
   export interface Schema$GetCustomerIndexStatsResponse {
     /**
@@ -553,45 +553,45 @@ export namespace cloudsearch_v1 {
    * Gmail Action restricts (i.e. read/replied/snoozed).
    */
   export interface Schema$GmailActionRestrict {
-    type?: string;
+    type?: string | null;
   }
   /**
    * Gmail Attachment restricts (i.e. has:attachment, has:drive, filename:pdf).
    */
   export interface Schema$GmailAttachmentRestrict {
-    type?: string;
+    type?: string | null;
   }
   /**
    * Gmail Folder restricts (i.e. in Drafts/Sent/Chats/User Generated Labels).
    */
   export interface Schema$GmailFolderRestrict {
-    type?: string;
+    type?: string | null;
   }
   /**
    * Gmail Intelligent restricts (i.e. smartlabels, important).
    */
   export interface Schema$GmailIntelligentRestrict {
-    type?: string;
+    type?: string | null;
   }
   /**
    * Gmail Time restricts (i.e. received today, this week).
    */
   export interface Schema$GmailTimeRestrict {
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$GSuitePrincipal {
     /**
      * This principal represents all users of the G Suite domain of the customer.
      */
-    gsuiteDomain?: boolean;
+    gsuiteDomain?: boolean | null;
     /**
      * This principal references a G Suite group account
      */
-    gsuiteGroupEmail?: string;
+    gsuiteGroupEmail?: string | null;
     /**
      * This principal references a G Suite user account
      */
-    gsuiteUserEmail?: string;
+    gsuiteUserEmail?: string | null;
   }
   /**
    * Used to provide a search operator for html properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
@@ -600,7 +600,7 @@ export namespace cloudsearch_v1 {
     /**
      * Indicates the operator name required in the query in order to isolate the html property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&amp;lt;value&amp;gt;* will show results only where the value of the property named *subjectLine* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any html properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    operatorName?: string;
+    operatorName?: string | null;
   }
   /**
    * Options for html properties.
@@ -622,19 +622,19 @@ export namespace cloudsearch_v1 {
     /**
      * The maximum allowable length for html values is 2048 characters.
      */
-    values?: string[];
+    values?: string[] | null;
   }
   export interface Schema$IndexItemOptions {
     /**
      * Specifies if the index request should allow gsuite principals that do not exist or are deleted in the index request.
      */
-    allowUnknownGsuitePrincipals?: boolean;
+    allowUnknownGsuitePrincipals?: boolean | null;
   }
   export interface Schema$IndexItemRequest {
     /**
      * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
      */
-    connectorName?: string;
+    connectorName?: string | null;
     /**
      * Common debug options.
      */
@@ -647,7 +647,7 @@ export namespace cloudsearch_v1 {
     /**
      * Required. The RequestMode for this request.
      */
-    mode?: string;
+    mode?: string | null;
   }
   /**
    * Used to provide a search operator for integer properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
@@ -656,15 +656,15 @@ export namespace cloudsearch_v1 {
     /**
      * Indicates the operator name required in the query in order to isolate the integer property using the greater-than operator. For example, if greaterThanOperatorName is *priorityabove* and the property&#39;s name is *priorityVal*, then queries like *priorityabove:&amp;lt;value&amp;gt;* will show results only where the value of the property named *priorityVal* is greater than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    greaterThanOperatorName?: string;
+    greaterThanOperatorName?: string | null;
     /**
      * Indicates the operator name required in the query in order to isolate the integer property using the less-than operator. For example, if lessThanOperatorName is *prioritybelow* and the property&#39;s name is *priorityVal*, then queries like *prioritybelow:&amp;lt;value&amp;gt;* will show results only where the value of the property named *priorityVal* is less than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    lessThanOperatorName?: string;
+    lessThanOperatorName?: string | null;
     /**
      * Indicates the operator name required in the query in order to isolate the integer property. For example, if operatorName is *priority* and the property&#39;s name is *priorityVal*, then queries like *priority:&amp;lt;value&amp;gt;* will show results only where the value of the property named *priorityVal* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    operatorName?: string;
+    operatorName?: string | null;
   }
   /**
    * Options for integer properties.
@@ -673,11 +673,11 @@ export namespace cloudsearch_v1 {
     /**
      * The maximum value of the property. The minimum and maximum values for the property are used to rank results according to the ordered ranking. Indexing requests with values greater than the maximum are accepted and ranked with the same weight as items indexed with the maximum value.
      */
-    maximumValue?: string;
+    maximumValue?: string | null;
     /**
      * The minimum value of the property. The minimum and maximum values for the property are used to rank results according to the ordered ranking. Indexing requests with values less than the minimum are accepted and ranked with the same weight as items indexed with the minimum value.
      */
-    minimumValue?: string;
+    minimumValue?: string | null;
     /**
      * If set, describes how the integer should be used as a search operator.
      */
@@ -685,13 +685,13 @@ export namespace cloudsearch_v1 {
     /**
      * Used to specify the ordered ranking for the integer. Can only be used if isRepeatable is false.
      */
-    orderedRanking?: string;
+    orderedRanking?: string | null;
   }
   /**
    * List of integer values.
    */
   export interface Schema$IntegerValues {
-    values?: string[];
+    values?: string[] | null;
   }
   /**
    * Represents an interaction between a user and an item.
@@ -700,12 +700,12 @@ export namespace cloudsearch_v1 {
     /**
      * The time when the user acted on the item.  If multiple actions of the same type exist for a single user, only the most recent action is recorded.
      */
-    interactionTime?: string;
+    interactionTime?: string | null;
     /**
      * The user that acted on the item.
      */
     principal?: Schema$Principal;
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a single object that is an item in the search index, such as a file, folder, or a database record.
@@ -722,7 +722,7 @@ export namespace cloudsearch_v1 {
     /**
      * Type for this item.
      */
-    itemType?: string;
+    itemType?: string | null;
     /**
      * Metadata information.
      */
@@ -730,15 +730,15 @@ export namespace cloudsearch_v1 {
     /**
      * Name of the Item. Format: datasources/{source_id}/items/{item_id} &lt;br /&gt;This is a required field. The maximum length is 1536 characters.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Additional state connector can store for this item. The maximum length is 10000 bytes.
      */
-    payload?: string;
+    payload?: string | null;
     /**
      * Queue this item belongs to. The maximum length is 100 characters.
      */
-    queue?: string;
+    queue?: string | null;
     /**
      * Status of the item. Output only field.
      */
@@ -750,7 +750,7 @@ export namespace cloudsearch_v1 {
     /**
      * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. &lt;br /&gt;&lt;br /&gt; Cloud Search Indexing won&#39;t index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
      */
-    version?: string;
+    version?: string | null;
   }
   /**
    * Access control list information for the item. For more information see https://developers.google.com/cloud-search/docs/guides/index-your-data#acls
@@ -759,7 +759,7 @@ export namespace cloudsearch_v1 {
     /**
      * Sets the type of access rules to apply when an item inherits its ACL from a parent. This should always be set in tandem with the inheritAclFrom field. Also, when the inheritAclFrom field is set, this field should be set to a valid AclInheritanceType.
      */
-    aclInheritanceType?: string;
+    aclInheritanceType?: string | null;
     /**
      * List of principals who are explicitly denied access to the item in search results. While principals are denied access by default, use denied readers to handle exceptions and override the list allowed readers. The maximum number of elements is 100.
      */
@@ -767,7 +767,7 @@ export namespace cloudsearch_v1 {
     /**
      * Name of the item to inherit the Access Permission List (ACL) from. Note: ACL inheritance *only* provides access permissions to child items and does not define structural relationships, nor does it provide convenient ways to delete large groups of items. Deleting an ACL parent from the index only alters the access permissions of child items that reference the parent in the inheritAclFrom field. The item is still in the index, but may not visible in search results. By contrast, deletion of a container item also deletes all items that reference the container via the containerName field. The maximum length for this field is 1536 characters.
      */
-    inheritAclFrom?: string;
+    inheritAclFrom?: string | null;
     /**
      * Optional. List of owners for the item. This field has no bearing on document access permissions. It does, however, offer a slight ranking boosts items where the querying user is an owner. The maximum number of elements is 5.
      */
@@ -785,25 +785,25 @@ export namespace cloudsearch_v1 {
      * Upload reference ID of a previously uploaded content via write method.
      */
     contentDataRef?: Schema$UploadItemRef;
-    contentFormat?: string;
+    contentFormat?: string | null;
     /**
      * Hashing info calculated and provided by the API client for content. Can be used with the items.push method to calculate modified state. The maximum length is 2048 characters.
      */
-    hash?: string;
+    hash?: string | null;
     /**
      * Content that is supplied inlined within the update method. The maximum length is 102400 bytes (100 KiB).
      */
-    inlineContent?: string;
+    inlineContent?: string | null;
   }
   export interface Schema$ItemCountByStatus {
     /**
      * Number of items matching the status code.
      */
-    count?: string;
+    count?: string | null;
     /**
      * Status of the items.
      */
-    statusCode?: string;
+    statusCode?: string | null;
   }
   /**
    * Available metadata fields for the item.
@@ -812,19 +812,19 @@ export namespace cloudsearch_v1 {
     /**
      * The name of the container for this item. Deletion of the container item leads to automatic deletion of this item.  Note: ACLs are not inherited from a container item. To provide ACL inheritance for an item, use the inheritAclFrom field. The maximum length is 1536 characters.
      */
-    containerName?: string;
+    containerName?: string | null;
     /**
      * The BCP-47 language code for the item, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. The maximum length is 32 characters.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * The time when the item was created in the source repository.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Hashing value provided by the API caller. This can be used with the items.push method to calculate modified state. The maximum length is 2048 characters.
      */
-    hash?: string;
+    hash?: string | null;
     /**
      * A list of interactions for the item.  Interactions are used to improve Search quality, but are not exposed to end users. The maximum number of elements is 1000.
      */
@@ -832,15 +832,15 @@ export namespace cloudsearch_v1 {
     /**
      * Additional keywords or phrases that should match the item. Used internally for user generated content. The maximum number of elements is 100. The maximum length is 8192 characters.
      */
-    keywords?: string[];
+    keywords?: string[] | null;
     /**
      * The original mime-type of ItemContent.content in the source repository. The maximum length is 256 characters.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * The type of the item.  This should correspond to the name of an object definition in the schema registered for the data source.  For example, if the schema for the data source contains an object definition with name &#39;document&#39;, then item indexing requests for objects of that type should set objectType to &#39;document&#39;. The maximum length is 256 characters.
      */
-    objectType?: string;
+    objectType?: string | null;
     /**
      * Additional search quality metadata of the item
      */
@@ -848,15 +848,15 @@ export namespace cloudsearch_v1 {
     /**
      * Link to the source repository serving the data.  &amp;#83;earch results apply this link to the title. The maximum length is 2048 characters.
      */
-    sourceRepositoryUrl?: string;
+    sourceRepositoryUrl?: string | null;
     /**
      * The title of the item.  If given, this will be the displayed title of the Search result. The maximum length is 2048 characters.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The time when the item was last modified in the source repository.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * This contains item&#39;s status and any errors.
@@ -865,7 +865,7 @@ export namespace cloudsearch_v1 {
     /**
      * Status code.
      */
-    code?: string;
+    code?: string | null;
     /**
      * Error details in case the item is in ERROR state.
      */
@@ -882,7 +882,7 @@ export namespace cloudsearch_v1 {
     /**
      * Hashing value provided by the API caller. This can be used with the items.push method to calculate modified state. The maximum length is 2048 characters.
      */
-    hash?: string;
+    hash?: string | null;
     /**
      * The structured data object that should conform to a registered object definition in the schema for the data source.
      */
@@ -892,42 +892,42 @@ export namespace cloudsearch_v1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     sources?: Schema$DataSource[];
   }
   export interface Schema$ListItemNamesForUnmappedIdentityResponse {
-    itemNames?: string[];
+    itemNames?: string[] | null;
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListItemsResponse {
     items?: Schema$Item[];
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * List sources response.
    */
   export interface Schema$ListQuerySourcesResponse {
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     sources?: Schema$QuerySource[];
   }
   export interface Schema$ListSearchApplicationsResponse {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     searchApplications?: Schema$SearchApplication[];
   }
   export interface Schema$ListUnmappedIdentitiesResponse {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     unmappedIdentities?: Schema$UnmappedIdentity[];
   }
   /**
@@ -937,11 +937,11 @@ export namespace cloudsearch_v1 {
     /**
      * End of the match in the snippet.
      */
-    end?: number;
+    end?: number | null;
     /**
      * Starting position of the match in the snippet.
      */
-    start?: number;
+    start?: number | null;
   }
   /**
    * Media resource.
@@ -950,7 +950,7 @@ export namespace cloudsearch_v1 {
     /**
      * Name of the media resource.
      */
-    resourceName?: string;
+    resourceName?: string | null;
   }
   /**
    * Metadata of a matched search result.
@@ -959,7 +959,7 @@ export namespace cloudsearch_v1 {
     /**
      * The creation time for this document or object in the search result.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Options that specify how to display a structured data search result.
      */
@@ -971,11 +971,11 @@ export namespace cloudsearch_v1 {
     /**
      * Mime type of the search result.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * Object type of the search result.
      */
-    objectType?: string;
+    objectType?: string | null;
     /**
      * Owner (usually creator) of the document or object of the search result.
      */
@@ -987,7 +987,7 @@ export namespace cloudsearch_v1 {
     /**
      * The last modified date for the object in the search result. If not set in the item, the value returned here is empty. When `updateTime` is used for calculating freshness and is not set, this value defaults to 2 years from the current time.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * A metaline is a list of properties that are displayed along with the search result to provide context.
@@ -1005,13 +1005,13 @@ export namespace cloudsearch_v1 {
     /**
      * The read-only display name formatted according to the locale specified by the viewer&#39;s account or the &lt;code&gt;Accept-Language&lt;/code&gt; HTTP header.
      */
-    displayName?: string;
+    displayName?: string | null;
   }
   /**
    * A typed name-value pair for structured data.  The type of the value should be the same as the registered type for the `name` property in the object definition of `objectType`.
    */
   export interface Schema$NamedProperty {
-    booleanValue?: boolean;
+    booleanValue?: boolean | null;
     dateValues?: Schema$DateValues;
     doubleValues?: Schema$DoubleValues;
     enumValues?: Schema$EnumValues;
@@ -1020,7 +1020,7 @@ export namespace cloudsearch_v1 {
     /**
      * The name of the property.  This name should correspond to the name of the property that was registered for object definition in the schema. The maximum allowable length for this property is 256 characters.
      */
-    name?: string;
+    name?: string | null;
     objectValues?: Schema$ObjectValues;
     textValues?: Schema$TextValues;
     timestampValues?: Schema$TimestampValues;
@@ -1032,7 +1032,7 @@ export namespace cloudsearch_v1 {
     /**
      * Name for the object, which then defines its type. Item indexing requests should set the objectType field equal to this value. For example, if *name* is *Document*, then indexing requests for items of type Document should set objectType equal to *Document*. Each object definition must be uniquely named within a schema. The name must start with a letter and can only contain letters (A-Z, a-z) or numbers (0-9). The maximum length is 256 characters.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The optional object-specific options.
      */
@@ -1053,7 +1053,7 @@ export namespace cloudsearch_v1 {
     /**
      * The user friendly label to display in the search result to inidicate the type of the item. This is OPTIONAL; if not given, an object label will not be displayed on the context line of the search results. The maximum length is 32 characters.
      */
-    objectDisplayLabel?: string;
+    objectDisplayLabel?: string | null;
   }
   /**
    * The options for an object.
@@ -1090,7 +1090,7 @@ export namespace cloudsearch_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -1098,15 +1098,15 @@ export namespace cloudsearch_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * This field contains information about the person being suggested.
@@ -1128,11 +1128,11 @@ export namespace cloudsearch_v1 {
     /**
      * The resource name of the person to provide information about. See &lt;a href=&quot;https://developers.google.com/people/api/rest/v1/people/get&quot;&gt; People.get&lt;/a&gt; from Google People API.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Obfuscated ID of a person.
      */
-    obfuscatedId?: string;
+    obfuscatedId?: string | null;
     /**
      * The person&#39;s name
      */
@@ -1149,13 +1149,13 @@ export namespace cloudsearch_v1 {
     /**
      * The URL of the photo.
      */
-    url?: string;
+    url?: string | null;
   }
   export interface Schema$PollItemsRequest {
     /**
      * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
      */
-    connectorName?: string;
+    connectorName?: string | null;
     /**
      * Common debug options.
      */
@@ -1163,15 +1163,15 @@ export namespace cloudsearch_v1 {
     /**
      * Maximum number of items to return. &lt;br /&gt;The maximum and the default value is 1000
      */
-    limit?: number;
+    limit?: number | null;
     /**
      * Queue name to fetch items from.  If unspecified, PollItems will fetch from &#39;default&#39; queue. The maximum length is 100 characters.
      */
-    queue?: string;
+    queue?: string | null;
     /**
      * Limit the items polled to the ones with these statuses.
      */
-    statusCodes?: string[];
+    statusCodes?: string[] | null;
   }
   export interface Schema$PollItemsResponse {
     /**
@@ -1186,7 +1186,7 @@ export namespace cloudsearch_v1 {
     /**
      * This principal is a group identified using an external identity. The name field must specify the group resource name with this format: identitysources/{source_id}/groups/{ID}
      */
-    groupResourceName?: string;
+    groupResourceName?: string | null;
     /**
      * This principal is a GSuite user, group or domain.
      */
@@ -1194,17 +1194,17 @@ export namespace cloudsearch_v1 {
     /**
      * This principal is a user identified using an external identity. The name field must specify the user resource name with this format: identitysources/{source_id}/users/{ID}
      */
-    userResourceName?: string;
+    userResourceName?: string | null;
   }
   export interface Schema$ProcessingError {
     /**
      * Error code indicating the nature of the error.
      */
-    code?: string;
+    code?: string | null;
     /**
      * Description of the error.
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * In case the item fields are invalid, this field contains the details about the validation errors.
      */
@@ -1227,31 +1227,31 @@ export namespace cloudsearch_v1 {
     /**
      * Indicates that the property can be used for generating facets. Cannot be true for properties whose type is object. IsReturnable must be true to set this option. Only supported for Boolean, Enum, and Text properties.
      */
-    isFacetable?: boolean;
+    isFacetable?: boolean | null;
     /**
      * Indicates that multiple values are allowed for the property. For example, a document only has one description but can have multiple comments. Cannot be true for properties whose type is a boolean. If set to false, properties that contain more than one value will cause the indexing request for that item to be rejected.
      */
-    isRepeatable?: boolean;
+    isRepeatable?: boolean | null;
     /**
      * Indicates that the property identifies data that should be returned in search results via the Query API. If set to *true*, indicates that Query API users can use matching property fields in results. However, storing fields requires more space allocation and uses more bandwidth for search queries, which impacts performance over large datasets. Set to *true* here only if the field is needed for search results. Cannot be true for properties whose type is an object.
      */
-    isReturnable?: boolean;
+    isReturnable?: boolean | null;
     /**
      * Indicates that the property can be used for sorting. Cannot be true for properties that are repeatable. Cannot be true for properties whose type is object or user identifier. IsReturnable must be true to set this option. Only supported for Boolean, Date, Double, Integer, and Timestamp properties.
      */
-    isSortable?: boolean;
+    isSortable?: boolean | null;
     /**
      * Indicates that the property can be used for generating query suggestions.
      */
-    isSuggestable?: boolean;
+    isSuggestable?: boolean | null;
     /**
      * Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.  Note: This is an alpha feature and is enabled for whitelisted users only.
      */
-    isWildcardSearchable?: boolean;
+    isWildcardSearchable?: boolean | null;
     /**
      * The name of the property. Item indexing requests sent to the Indexing API should set the property name equal to this value. For example, if name is *subject_line*, then indexing requests for document items with subject fields should set the name for that field equal to *subject_line*. Use the name as the identifier for the object property. Once registered as a property for an object, you cannot re-use this name for another property within that object. The name must start with a letter and can only contain letters (A-Z, a-z) or numbers (0-9). The maximum length is 256 characters.
      */
-    name?: string;
+    name?: string | null;
     objectPropertyOptions?: Schema$ObjectPropertyOptions;
     textPropertyOptions?: Schema$TextPropertyOptions;
     timestampPropertyOptions?: Schema$TimestampPropertyOptions;
@@ -1263,7 +1263,7 @@ export namespace cloudsearch_v1 {
     /**
      * The user friendly label for the property that will be used if the property is specified to be displayed in ObjectDisplayOptions. If given, the display label will be shown in front of the property values when the property is part of the object display options. For example, if the property value is &#39;1&#39;, the value by itself may not be useful context for the user. If the display name given was &#39;priority&#39;, then the user will see &#39;priority : 1&#39; in the search results which provides clear conext to search users. This is OPTIONAL; if not given, only the property values will be displayed. The maximum length is 32 characters.
      */
-    displayLabel?: string;
+    displayLabel?: string | null;
   }
   /**
    * Represents an item to be pushed to the indexing queue.
@@ -1272,19 +1272,19 @@ export namespace cloudsearch_v1 {
     /**
      * Content hash of the item according to the repository. If specified, this is used to determine how to modify this item&#39;s status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
      */
-    contentHash?: string;
+    contentHash?: string | null;
     /**
      * Metadata hash of the item according to the repository. If specified, this is used to determine how to modify this item&#39;s status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
      */
-    metadataHash?: string;
+    metadataHash?: string | null;
     /**
      * Provides additional document state information for the connector, such as an alternate repository ID and other metadata. The maximum length is 8192 bytes.
      */
-    payload?: string;
+    payload?: string | null;
     /**
      * Queue to which this item belongs to.  The &lt;code&gt;default&lt;/code&gt; queue is chosen if this field is not specified. The maximum length is 512 characters.
      */
-    queue?: string;
+    queue?: string | null;
     /**
      * Populate this field to store Connector or repository error details. This information is displayed in the Admin Console. This field may only be populated when the Type is REPOSITORY_ERROR.
      */
@@ -1292,17 +1292,17 @@ export namespace cloudsearch_v1 {
     /**
      * Structured data hash of the item according to the repository. If specified, this is used to determine how to modify this item&#39;s status. Setting this field and the type field results in argument error. The maximum length is 2048 characters.
      */
-    structuredDataHash?: string;
+    structuredDataHash?: string | null;
     /**
      * The type of the push operation that defines the push behavior.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$PushItemRequest {
     /**
      * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
      */
-    connectorName?: string;
+    connectorName?: string | null;
     /**
      * Common debug options.
      */
@@ -1313,11 +1313,11 @@ export namespace cloudsearch_v1 {
     item?: Schema$PushItem;
   }
   export interface Schema$QueryInterpretation {
-    interpretationType?: string;
+    interpretationType?: string | null;
     /**
      * The interpretation of the query used in search. For example, queries with natural language intent like &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;. This field will not be filled when the reason is NO_RESULTS_FOUND_FOR_USER_QUERY.
      */
-    interpretedQuery?: string;
+    interpretedQuery?: string | null;
   }
   /**
    * Options to interpret user query.
@@ -1326,7 +1326,7 @@ export namespace cloudsearch_v1 {
     /**
      * Flag to disable natural language (NL) interpretation of queries. Default is false, Set to true to disable natural language interpretation. NL interpretation only applies to predefined datasources.
      */
-    disableNlInterpretation?: boolean;
+    disableNlInterpretation?: boolean | null;
   }
   /**
    * Information relevant only to a query entry.
@@ -1335,7 +1335,7 @@ export namespace cloudsearch_v1 {
     /**
      * True if the text was generated by means other than a previous user search.
      */
-    isSynthetic?: boolean;
+    isSynthetic?: boolean | null;
   }
   /**
    * The definition of a operator that can be used in a Search/Suggest request.
@@ -1344,47 +1344,47 @@ export namespace cloudsearch_v1 {
     /**
      * Display name of the operator
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Potential list of values for the opeatror field. This field is only filled when we can safely enumerate all the possible values of this operator.
      */
-    enumValues?: string[];
+    enumValues?: string[] | null;
     /**
      * Indicates the operator name that can be used to  isolate the property using the greater-than operator.
      */
-    greaterThanOperatorName?: string;
+    greaterThanOperatorName?: string | null;
     /**
      * Can this operator be used to get facets.
      */
-    isFacetable?: boolean;
+    isFacetable?: boolean | null;
     /**
      * Indicates if multiple values can be set for this property.
      */
-    isRepeatable?: boolean;
+    isRepeatable?: boolean | null;
     /**
      * Will the property associated with this facet be returned as part of search results.
      */
-    isReturnable?: boolean;
+    isReturnable?: boolean | null;
     /**
      * Can this operator be used to sort results.
      */
-    isSortable?: boolean;
+    isSortable?: boolean | null;
     /**
      * Can get suggestions for this field.
      */
-    isSuggestable?: boolean;
+    isSuggestable?: boolean | null;
     /**
      * Indicates the operator name that can be used to  isolate the property using the less-than operator.
      */
-    lessThanOperatorName?: string;
+    lessThanOperatorName?: string | null;
     /**
      * The name of the operator.
      */
-    operatorName?: string;
+    operatorName?: string | null;
     /**
      * Type of the operator.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * List of sources that the user can search using the query API.
@@ -1393,7 +1393,7 @@ export namespace cloudsearch_v1 {
     /**
      * Display name of the data source.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * List of all operators applicable for this source.
      */
@@ -1401,7 +1401,7 @@ export namespace cloudsearch_v1 {
     /**
      * A short name or alias for the source.  This value can be used with the &#39;source&#39; operator.
      */
-    shortName?: string;
+    shortName?: string | null;
     /**
      * Name of the source
      */
@@ -1418,15 +1418,15 @@ export namespace cloudsearch_v1 {
     /**
      * Message that describes the error. The maximum allowable length of the message is 8192 characters.
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * Error codes.  Matches the definition of HTTP status codes.
      */
-    httpStatusCode?: number;
+    httpStatusCode?: number | null;
     /**
      * Type of error.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Shared request options for all RPC methods.
@@ -1439,15 +1439,15 @@ export namespace cloudsearch_v1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Id of the application created using SearchApplicationsService.
      */
-    searchApplicationId?: string;
+    searchApplicationId?: string | null;
     /**
-     * Current user&#39;s time zone id, such as &quot;America/Los_Angeles&quot; or &quot;Australia/Sydney&quot;. These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml)
+     * Current user&#39;s time zone id, such as &quot;America/Los_Angeles&quot; or &quot;Australia/Sydney&quot;. These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
      */
-    timeZone?: string;
+    timeZone?: string | null;
   }
   export interface Schema$ResetSearchApplicationRequest {
     /**
@@ -1462,7 +1462,7 @@ export namespace cloudsearch_v1 {
     /**
      * General debug info formatted for display.
      */
-    formattedDebugInfo?: string;
+    formattedDebugInfo?: string | null;
   }
   /**
    * Information relevant only to a restrict entry. NextId: 12
@@ -1489,7 +1489,7 @@ export namespace cloudsearch_v1 {
     /**
      * The search restrict (e.g. &quot;after:2017-09-11 before:2017-09-12&quot;).
      */
-    searchOperator?: string;
+    searchOperator?: string | null;
   }
   /**
    * Result count information
@@ -1507,7 +1507,7 @@ export namespace cloudsearch_v1 {
     /**
      * General debug info formatted for display.
      */
-    formattedDebugInfo?: string;
+    formattedDebugInfo?: string | null;
   }
   /**
    * Display Fields for Search Results
@@ -1516,11 +1516,11 @@ export namespace cloudsearch_v1 {
     /**
      * The display label for the property.
      */
-    label?: string;
+    label?: string | null;
     /**
      * The operator name of the property.
      */
-    operatorName?: string;
+    operatorName?: string | null;
     /**
      * The name value pair for the property.
      */
@@ -1540,13 +1540,13 @@ export namespace cloudsearch_v1 {
     /**
      * The display label for the object.
      */
-    objectTypeLabel?: string;
+    objectTypeLabel?: string | null;
   }
   export interface Schema$RetrievalImportance {
     /**
      * Indicates the ranking importance given to property when it is matched during retrieval. Once set, the token importance of a property cannot be changed.
      */
-    importance?: string;
+    importance?: string | null;
   }
   /**
    * The schema definition for a data source.
@@ -1559,7 +1559,7 @@ export namespace cloudsearch_v1 {
     /**
      * IDs of the Long Running Operations (LROs) currently running for this schema. After modifying the schema, wait for operations to complete before indexing additional content.
      */
-    operationIds?: string[];
+    operationIds?: string[] | null;
   }
   /**
    * Scoring configurations for a source while processing a Search or Suggest request.
@@ -1568,11 +1568,11 @@ export namespace cloudsearch_v1 {
     /**
      * Whether to use freshness as a ranking signal. By default, freshness is used as a ranking signal. Note that this setting is not available in the Admin UI.
      */
-    disableFreshness?: boolean;
+    disableFreshness?: boolean | null;
     /**
      * Whether to personalize the results. By default, personal signals will be used to boost results.
      */
-    disablePersonalization?: boolean;
+    disablePersonalization?: boolean | null;
   }
   /**
    * SearchApplication
@@ -1593,15 +1593,15 @@ export namespace cloudsearch_v1 {
     /**
      * Display name of the Search Application. The maximum length is 300 characters.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Name of the Search Application. &lt;br /&gt;Format: searchapplications/{application_id}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * IDs of the Long Running Operations (LROs) currently running for this schema. Output only field.
      */
-    operationIds?: string[];
+    operationIds?: string[] | null;
     /**
      * Configuration for ranking results.
      */
@@ -1619,18 +1619,18 @@ export namespace cloudsearch_v1 {
     /**
      * The next_page_token value returned from a previous request, if any.
      */
-    pageToken?: string;
+    pageToken?: string | null;
     /**
      * Specify the full view URL to find the corresponding item. The maximum length is 2048 characters.
      */
-    viewUrl?: string;
+    viewUrl?: string | null;
   }
   export interface Schema$SearchItemsByViewUrlResponse {
     items?: Schema$Item[];
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Additional search quality metadata of the item.
@@ -1639,7 +1639,7 @@ export namespace cloudsearch_v1 {
     /**
      * An indication of the quality of the item, used to influence search quality. Value should be between 0.0 (lowest quality) and 1.0 (highest quality). The default value is 0.0.
      */
-    quality?: number;
+    quality?: number | null;
   }
   /**
    * The search API request.
@@ -1653,11 +1653,11 @@ export namespace cloudsearch_v1 {
     /**
      * Maximum number of search results to return in one page. Valid values are between 1 and 100, inclusive. Default value is 10.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * The raw query string. See supported search operators in the [Cloud search Cheat Sheet](https://gsuite.google.com/learning-center/products/cloudsearch/cheat-sheet/)
      */
-    query?: string;
+    query?: string | null;
     /**
      * Options to interpret the user query.
      */
@@ -1673,7 +1673,7 @@ export namespace cloudsearch_v1 {
     /**
      * Starting index of the results.
      */
-    start?: number;
+    start?: number | null;
   }
   /**
    * The search API response.
@@ -1694,7 +1694,7 @@ export namespace cloudsearch_v1 {
     /**
      * Whether there are more search results matching the query.
      */
-    hasMoreResults?: boolean;
+    hasMoreResults?: boolean | null;
     /**
      * Query interpretation result for user query. Empty if query interpretation is disabled.
      */
@@ -1702,11 +1702,11 @@ export namespace cloudsearch_v1 {
     /**
      * The estimated result count for this query.
      */
-    resultCountEstimate?: string;
+    resultCountEstimate?: string | null;
     /**
      * The exact result count for this query.
      */
-    resultCountExact?: string;
+    resultCountExact?: string | null;
     /**
      * Expanded result count information.
      */
@@ -1747,11 +1747,11 @@ export namespace cloudsearch_v1 {
     /**
      * Title of the search result.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The URL of the search result. The URL contains a Google redirect to the actual item. This URL is signed and shouldn&#39;t be changed.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Snippet of the search result, which summarizes the content of the resulting page.
@@ -1764,17 +1764,17 @@ export namespace cloudsearch_v1 {
     /**
      * The snippet of the document. The snippet of the document. May contain escaped HTML character that should be unescaped prior to rendering.
      */
-    snippet?: string;
+    snippet?: string | null;
   }
   export interface Schema$SortOptions {
     /**
      * Name of the operator corresponding to the field to sort on. The corresponding property must be marked as sortable.
      */
-    operatorName?: string;
+    operatorName?: string | null;
     /**
      * Ascending is the default sort order
      */
-    sortOrder?: string;
+    sortOrder?: string | null;
   }
   /**
    * Defines sources for the suggest/search APIs.
@@ -1783,11 +1783,11 @@ export namespace cloudsearch_v1 {
     /**
      * Source name for content indexed by the Indexing API.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Predefined content source for Google Apps.
      */
-    predefinedSource?: string;
+    predefinedSource?: string | null;
   }
   /**
    * Configurations for a source while processing a Search or Suggest request.
@@ -1813,11 +1813,11 @@ export namespace cloudsearch_v1 {
     /**
      * Maximum number of results allowed from a source. No limits will be set on results if this value is less than or equal to 0.
      */
-    numResults?: number;
+    numResults?: number | null;
     /**
      * Maximum number of suggestions allowed from a source. No limits will be set on results if this value is less than or equal to 0.
      */
-    numSuggestions?: number;
+    numSuggestions?: number | null;
   }
   /**
    * Per source result count information.
@@ -1826,15 +1826,15 @@ export namespace cloudsearch_v1 {
     /**
      * Whether there are more search results for this source.
      */
-    hasMoreResults?: boolean;
+    hasMoreResults?: boolean | null;
     /**
      * The estimated result count for this source.
      */
-    resultCountEstimate?: string;
+    resultCountEstimate?: string | null;
     /**
      * The exact result count for this source.
      */
-    resultCountExact?: string;
+    resultCountExact?: string | null;
     /**
      * The source the result count information is associated with.
      */
@@ -1847,13 +1847,13 @@ export namespace cloudsearch_v1 {
     /**
      * Importance of the source.
      */
-    sourceImportance?: string;
+    sourceImportance?: string | null;
   }
   export interface Schema$SpellResult {
     /**
      * The suggested spelling of the query.
      */
-    suggestedQuery?: string;
+    suggestedQuery?: string | null;
   }
   /**
    * Start upload file request.
@@ -1862,7 +1862,7 @@ export namespace cloudsearch_v1 {
     /**
      * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
      */
-    connectorName?: string;
+    connectorName?: string | null;
     /**
      * Common debug options.
      */
@@ -1875,15 +1875,15 @@ export namespace cloudsearch_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A structured data object consisting of named properties.
@@ -1914,7 +1914,7 @@ export namespace cloudsearch_v1 {
     /**
      * Partial query for which autocomplete suggestions will be shown. For example, if the query is &quot;sea&quot;, then the server might return &quot;season&quot;, &quot;search&quot;, &quot;seagull&quot; and so on.
      */
-    query?: string;
+    query?: string | null;
     /**
      * Request options, such as the search application and user timezone.
      */
@@ -1948,7 +1948,7 @@ export namespace cloudsearch_v1 {
     /**
      * The suggested query that will be used for search, when the user clicks on the suggestion
      */
-    suggestedQuery?: string;
+    suggestedQuery?: string | null;
   }
   /**
    * Used to provide a search operator for text properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
@@ -1957,11 +1957,11 @@ export namespace cloudsearch_v1 {
     /**
      * If true, the text value will be tokenized as one atomic value in operator searches and facet matches. For example, if the operator name is &quot;genre&quot; and the value is &quot;science-fiction&quot; the query restrictions &quot;genre:science&quot; and &quot;genre:fiction&quot; will not match the item; &quot;genre:science-fiction&quot; will. Value matching is case-sensitive and does not remove special characters. If false, the text will be tokenized. For example, if the value is &quot;science-fiction&quot; the queries &quot;genre:science&quot; and &quot;genre:fiction&quot; will match the item.
      */
-    exactMatchWithOperator?: boolean;
+    exactMatchWithOperator?: boolean | null;
     /**
      * Indicates the operator name required in the query in order to isolate the text property. For example, if operatorName is *subject* and the property&#39;s name is *subjectLine*, then queries like *subject:&amp;lt;value&amp;gt;* will show results only where the value of the property named *subjectLine* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any text properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    operatorName?: string;
+    operatorName?: string | null;
   }
   /**
    * Options for text properties.
@@ -1983,7 +1983,7 @@ export namespace cloudsearch_v1 {
     /**
      * The maximum allowable length for text values is 2048 characters.
      */
-    values?: string[];
+    values?: string[] | null;
   }
   /**
    * Used to provide a search operator for timestamp properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
@@ -1992,15 +1992,15 @@ export namespace cloudsearch_v1 {
     /**
      * Indicates the operator name required in the query in order to isolate the timestamp property using the greater-than operator. For example, if greaterThanOperatorName is *closedafter* and the property&#39;s name is *closeDate*, then queries like *closedafter:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* is later than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    greaterThanOperatorName?: string;
+    greaterThanOperatorName?: string | null;
     /**
      * Indicates the operator name required in the query in order to isolate the timestamp property using the less-than operator. For example, if lessThanOperatorName is *closedbefore* and the property&#39;s name is *closeDate*, then queries like *closedbefore:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* is earlier than *&amp;lt;value&amp;gt;*. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    lessThanOperatorName?: string;
+    lessThanOperatorName?: string | null;
     /**
      * Indicates the operator name required in the query in order to isolate the timestamp property. For example, if operatorName is *closedon* and the property&#39;s name is *closeDate*, then queries like *closedon:&amp;lt;value&amp;gt;* will show results only where the value of the property named *closeDate* matches *&amp;lt;value&amp;gt;*. By contrast, a search that uses the same *&amp;lt;value&amp;gt;* without an operator will return all items where *&amp;lt;value&amp;gt;* matches the value of any String properties or text within the content field for the item. The operator name can only contain lowercase letters (a-z). The maximum length is 32 characters.
      */
-    operatorName?: string;
+    operatorName?: string | null;
   }
   /**
    * Options for timestamp properties.
@@ -2015,7 +2015,7 @@ export namespace cloudsearch_v1 {
    * List of timestamp values.
    */
   export interface Schema$TimestampValues {
-    values?: string[];
+    values?: string[] | null;
   }
   export interface Schema$UnmappedIdentity {
     /**
@@ -2025,13 +2025,13 @@ export namespace cloudsearch_v1 {
     /**
      * The resolution status for the external identity.
      */
-    resolutionStatusCode?: string;
+    resolutionStatusCode?: string | null;
   }
   export interface Schema$UnreserveItemsRequest {
     /**
      * Name of connector making this call. &lt;br /&gt;Format: datasources/{source_id}/connectors/{ID}
      */
-    connectorName?: string;
+    connectorName?: string | null;
     /**
      * Common debug options.
      */
@@ -2039,7 +2039,7 @@ export namespace cloudsearch_v1 {
     /**
      * Name of a queue to unreserve items from.
      */
-    queue?: string;
+    queue?: string | null;
   }
   export interface Schema$UpdateDataSourceRequest {
     /**
@@ -2060,7 +2060,7 @@ export namespace cloudsearch_v1 {
     /**
      * If true, the request will be validated without side effects.
      */
-    validateOnly?: boolean;
+    validateOnly?: boolean | null;
   }
   /**
    * Represents an upload session reference. This reference is created via upload method. Updating of item content may refer to this uploaded content via contentDataRef.
@@ -2069,24 +2069,24 @@ export namespace cloudsearch_v1 {
     /**
      * Name of the content reference. The maximum length is 2048 characters.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Definition of a single value with generic type.
    */
   export interface Schema$Value {
-    booleanValue?: boolean;
+    booleanValue?: boolean | null;
     dateValue?: Schema$Date;
-    doubleValue?: number;
-    integerValue?: string;
-    stringValue?: string;
-    timestampValue?: string;
+    doubleValue?: number | null;
+    integerValue?: string | null;
+    stringValue?: string | null;
+    timestampValue?: string | null;
   }
   export interface Schema$ValueFilter {
     /**
      * The `operator_name` applied to the query, such as *price_greater_than*. The filter can work against both types of filters defined in the schema for your data source: &lt;br/&gt;&lt;br/&gt; 1. `operator_name`, where the query filters results by the property that matches the value. &lt;br/&gt; 2. `greater_than_operator_name` or `less_than_operator_name` in your schema. The query filters the results for the property values that are greater than or less than  the supplied value in the query.
      */
-    operatorName?: string;
+    operatorName?: string | null;
     /**
      * The value to be compared with.
      */
@@ -4269,7 +4269,7 @@ export namespace cloudsearch_v1 {
      * @param {boolean=} params.requestOptions.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
      * @param {string=} params.requestOptions.searchApplicationId Id of the application created using SearchApplicationsService.
-     * @param {string=} params.requestOptions.timeZone Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml)
+     * @param {string=} params.requestOptions.timeZone Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4360,7 +4360,7 @@ export namespace cloudsearch_v1 {
      */
     'requestOptions.searchApplicationId'?: string;
     /**
-     * Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml)
+     * Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
      */
     'requestOptions.timeZone'?: string;
   }

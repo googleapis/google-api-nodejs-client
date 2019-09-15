@@ -130,27 +130,27 @@ export namespace classroom_v1 {
     /**
      * Absolute link to this announcement in the Classroom web UI. This is only populated if `state` is `PUBLISHED`.  Read-only.
      */
-    alternateLink?: string;
+    alternateLink?: string | null;
     /**
      * Assignee mode of the announcement. If unspecified, the default value is `ALL_STUDENTS`.
      */
-    assigneeMode?: string;
+    assigneeMode?: string | null;
     /**
      * Identifier of the course.  Read-only.
      */
-    courseId?: string;
+    courseId?: string | null;
     /**
      * Timestamp when this announcement was created.  Read-only.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * Identifier for the user that created the announcement.  Read-only.
      */
-    creatorUserId?: string;
+    creatorUserId?: string | null;
     /**
      * Classroom-assigned identifier of this announcement, unique per course.  Read-only.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifiers of students with access to the announcement. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field will be able to see the announcement.
      */
@@ -162,19 +162,19 @@ export namespace classroom_v1 {
     /**
      * Optional timestamp when this announcement is scheduled to be published.
      */
-    scheduledTime?: string;
+    scheduledTime?: string | null;
     /**
      * Status of this announcement. If unspecified, the default state is `DRAFT`.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Description of this announcement. The text must be a valid UTF-8 string containing no more than 30,000 characters.
      */
-    text?: string;
+    text?: string | null;
     /**
      * Timestamp of the most recent change to this announcement.  Read-only.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Additional details for assignments.
@@ -222,7 +222,7 @@ export namespace classroom_v1 {
     /**
      * The `name` field of a Cloud Pub/Sub [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      */
-    topicName?: string;
+    topicName?: string | null;
   }
   /**
    * A Course in Classroom.
@@ -231,15 +231,15 @@ export namespace classroom_v1 {
     /**
      * Absolute link to this course in the Classroom web UI.  Read-only.
      */
-    alternateLink?: string;
+    alternateLink?: string | null;
     /**
      * The Calendar ID for a calendar that all course members can see, to which Classroom adds events for course work and announcements in the course.  Read-only.
      */
-    calendarId?: string;
+    calendarId?: string | null;
     /**
      * The email address of a Google group containing all members of the course. This group does not accept email and can only be used for permissions.  Read-only.
      */
-    courseGroupEmail?: string;
+    courseGroupEmail?: string | null;
     /**
      * Sets of materials that appear on the &quot;about&quot; page of this course.  Read-only.
      */
@@ -247,47 +247,47 @@ export namespace classroom_v1 {
     /**
      * State of the course. If unspecified, the default state is `PROVISIONED`.
      */
-    courseState?: string;
+    courseState?: string | null;
     /**
      * Creation time of the course. Specifying this field in a course update mask results in an error.  Read-only.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * Optional description. For example, &quot;We&#39;ll be learning about the structure of living creatures from a combination of textbooks, guest lectures, and lab work. Expect to be excited!&quot; If set, this field must be a valid UTF-8 string and no longer than 30,000 characters.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Optional heading for the description. For example, &quot;Welcome to 10th Grade Biology.&quot; If set, this field must be a valid UTF-8 string and no longer than 3600 characters.
      */
-    descriptionHeading?: string;
+    descriptionHeading?: string | null;
     /**
      * Enrollment code to use when joining this course. Specifying this field in a course update mask results in an error.  Read-only.
      */
-    enrollmentCode?: string;
+    enrollmentCode?: string | null;
     /**
      * Whether or not guardian notifications are enabled for this course.  Read-only.
      */
-    guardiansEnabled?: boolean;
+    guardiansEnabled?: boolean | null;
     /**
      * Identifier for this course assigned by Classroom.  When creating a course, you may optionally set this identifier to an alias string in the request to create a corresponding alias. The `id` is still assigned by Classroom and cannot be updated after the course is created.  Specifying this field in a course update mask results in an error.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Name of the course. For example, &quot;10th Grade Biology&quot;. The name is required. It must be between 1 and 750 characters and a valid UTF-8 string.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The identifier of the owner of a course.  When specified as a parameter of a create course request, this field is required. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user  This must be set in a create request. Admins can also specify this field in a patch course request to transfer ownership. In other contexts, it is read-only.
      */
-    ownerId?: string;
+    ownerId?: string | null;
     /**
      * Optional room location. For example, &quot;301&quot;. If set, this field must be a valid UTF-8 string and no longer than 650 characters.
      */
-    room?: string;
+    room?: string | null;
     /**
      * Section of the course. For example, &quot;Period 2&quot;. If set, this field must be a valid UTF-8 string and no longer than 2800 characters.
      */
-    section?: string;
+    section?: string | null;
     /**
      * Information about a Drive Folder that is shared with all teachers of the course.  This field will only be set for teachers of the course and domain administrators.  Read-only.
      */
@@ -295,11 +295,11 @@ export namespace classroom_v1 {
     /**
      * The email address of a Google group containing all teachers of the course. This group does not accept email and can only be used for permissions.  Read-only.
      */
-    teacherGroupEmail?: string;
+    teacherGroupEmail?: string | null;
     /**
      * Time of the most recent update to this course. Specifying this field in a course update mask results in an error.  Read-only.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Alternative identifier for a course.  An alias uniquely identifies a course. It must be unique within one of the following scopes:  * domain: A domain-scoped alias is visible to all users within the alias creator&#39;s domain and can be created only by a domain admin. A domain-scoped alias is often used when a course has an identifier external to Classroom.  * project: A project-scoped alias is visible to any request from an application using the Developer Console project ID that created the alias and can be created by any project. A project-scoped alias is often used when an application has alternative identifiers. A random value can also be used to avoid duplicate courses in the event of transmission failures, as retrying a request will return `ALREADY_EXISTS` if a previous one has succeeded.
@@ -308,7 +308,7 @@ export namespace classroom_v1 {
     /**
      * Alias string. The format of the string indicates the desired alias scoping.  * `d:&lt;name&gt;` indicates a domain-scoped alias.   Example: `d:math_101` * `p:&lt;name&gt;` indicates a project-scoped alias.   Example: `p:abc123`  This field has a maximum length of 256 characters.
      */
-    alias?: string;
+    alias?: string | null;
   }
   /**
    * A material attached to a course as part of a material set.
@@ -342,7 +342,7 @@ export namespace classroom_v1 {
     /**
      * Title for this set.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Information about a `Feed` with a `feed_type` of `COURSE_ROSTER_CHANGES`.
@@ -351,7 +351,7 @@ export namespace classroom_v1 {
     /**
      * The `course_id` of the course to subscribe to roster changes for.
      */
-    courseId?: string;
+    courseId?: string | null;
   }
   /**
    * Course work created by a teacher for students of the course.
@@ -360,11 +360,11 @@ export namespace classroom_v1 {
     /**
      * Absolute link to this course work in the Classroom web UI. This is only populated if `state` is `PUBLISHED`.  Read-only.
      */
-    alternateLink?: string;
+    alternateLink?: string | null;
     /**
      * Assignee mode of the coursework. If unspecified, the default value is `ALL_STUDENTS`.
      */
-    assigneeMode?: string;
+    assigneeMode?: string | null;
     /**
      * Assignment details. This is populated only when `work_type` is `ASSIGNMENT`.  Read-only.
      */
@@ -372,23 +372,23 @@ export namespace classroom_v1 {
     /**
      * Whether this course work item is associated with the Developer Console project making the request.  See google.classroom.Work.CreateCourseWork for more details.  Read-only.
      */
-    associatedWithDeveloper?: boolean;
+    associatedWithDeveloper?: boolean | null;
     /**
      * Identifier of the course.  Read-only.
      */
-    courseId?: string;
+    courseId?: string | null;
     /**
      * Timestamp when this course work was created.  Read-only.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * Identifier for the user that created the coursework.  Read-only.
      */
-    creatorUserId?: string;
+    creatorUserId?: string | null;
     /**
      * Optional description of this course work. If set, the description must be a valid UTF-8 string containing no more than 30,000 characters.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Optional date, in UTC, that submissions for this course work are due. This must be specified if `due_time` is specified.
      */
@@ -400,7 +400,7 @@ export namespace classroom_v1 {
     /**
      * Classroom-assigned identifier of this course work, unique per course.  Read-only.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifiers of students with access to the coursework. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field will be assigned the coursework.
      */
@@ -412,7 +412,7 @@ export namespace classroom_v1 {
     /**
      * Maximum grade for this course work. If zero or unspecified, this assignment is considered ungraded. This must be a non-negative integer value.
      */
-    maxPoints?: number;
+    maxPoints?: number | null;
     /**
      * Multiple choice question details. For read operations, this field is populated only when `work_type` is `MULTIPLE_CHOICE_QUESTION`. For write operations, this field must be specified when creating course work with a `work_type` of `MULTIPLE_CHOICE_QUESTION`, and it must not be set otherwise.
      */
@@ -420,31 +420,31 @@ export namespace classroom_v1 {
     /**
      * Optional timestamp when this course work is scheduled to be published.
      */
-    scheduledTime?: string;
+    scheduledTime?: string | null;
     /**
      * Status of this course work. If unspecified, the default state is `DRAFT`.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Setting to determine when students are allowed to modify submissions. If unspecified, the default value is `MODIFIABLE_UNTIL_TURNED_IN`.
      */
-    submissionModificationMode?: string;
+    submissionModificationMode?: string | null;
     /**
      * Title of this course work. The title must be a valid UTF-8 string containing between 1 and 3000 characters.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Identifier for the topic that this coursework is associated with. Must match an existing topic in the course.
      */
-    topicId?: string;
+    topicId?: string | null;
     /**
      * Timestamp of the most recent change to this course work.  Read-only.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Type of this course work.  The type is set when the course work is created and cannot be changed.
      */
-    workType?: string;
+    workType?: string | null;
   }
   /**
    * Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`.
@@ -453,7 +453,7 @@ export namespace classroom_v1 {
     /**
      * The `course_id` of the course to subscribe to work changes for.
      */
-    courseId?: string;
+    courseId?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
@@ -462,15 +462,15 @@ export namespace classroom_v1 {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
      */
-    day?: number;
+    day?: number | null;
     /**
      * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
      */
-    month?: number;
+    month?: number | null;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
      */
-    year?: number;
+    year?: number | null;
   }
   /**
    * Representation of a Google Drive file.
@@ -479,19 +479,19 @@ export namespace classroom_v1 {
     /**
      * URL that can be used to access the Drive item.  Read-only.
      */
-    alternateLink?: string;
+    alternateLink?: string | null;
     /**
      * Drive API resource ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * URL of a thumbnail image of the Drive item.  Read-only.
      */
-    thumbnailUrl?: string;
+    thumbnailUrl?: string | null;
     /**
      * Title of the Drive item.  Read-only.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Representation of a Google Drive folder.
@@ -500,15 +500,15 @@ export namespace classroom_v1 {
     /**
      * URL that can be used to access the Drive folder.  Read-only.
      */
-    alternateLink?: string;
+    alternateLink?: string | null;
     /**
      * Drive API resource ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Title of the Drive folder.  Read-only.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -529,7 +529,7 @@ export namespace classroom_v1 {
     /**
      * The type of feed.
      */
-    feedType?: string;
+    feedType?: string | null;
   }
   /**
    * Google Forms item.
@@ -538,19 +538,19 @@ export namespace classroom_v1 {
     /**
      * URL of the form.
      */
-    formUrl?: string;
+    formUrl?: string | null;
     /**
      * URL of the form responses document. Only set if respsonses have been recorded and only when the requesting user is an editor of the form.  Read-only.
      */
-    responseUrl?: string;
+    responseUrl?: string | null;
     /**
      * URL of a thumbnail image of the Form.  Read-only.
      */
-    thumbnailUrl?: string;
+    thumbnailUrl?: string | null;
     /**
      * Title of the Form.  Read-only.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Global user permission description.
@@ -559,7 +559,7 @@ export namespace classroom_v1 {
     /**
      * Permission value.
      */
-    permission?: string;
+    permission?: string | null;
   }
   /**
    * The history of each grade on this submission.
@@ -568,23 +568,23 @@ export namespace classroom_v1 {
     /**
      * The teacher who made the grade change.
      */
-    actorUserId?: string;
+    actorUserId?: string | null;
     /**
      * The type of grade change at this time in the submission grade history.
      */
-    gradeChangeType?: string;
+    gradeChangeType?: string | null;
     /**
      * When the grade of the submission was changed.
      */
-    gradeTimestamp?: string;
+    gradeTimestamp?: string | null;
     /**
      * The denominator of the grade at this time in the submission grade history.
      */
-    maxPoints?: number;
+    maxPoints?: number | null;
     /**
      * The numerator of the grade at this time in the submission grade history.
      */
-    pointsEarned?: number;
+    pointsEarned?: number | null;
   }
   /**
    * Association between a student and a guardian of that student. The guardian may receive information about the student&#39;s course work.
@@ -593,7 +593,7 @@ export namespace classroom_v1 {
     /**
      * Identifier for the guardian.
      */
-    guardianId?: string;
+    guardianId?: string | null;
     /**
      * User profile for the guardian.
      */
@@ -601,11 +601,11 @@ export namespace classroom_v1 {
     /**
      * The email address to which the initial guardian invitation was sent. This field is only visible to domain administrators.
      */
-    invitedEmailAddress?: string;
+    invitedEmailAddress?: string | null;
     /**
      * Identifier for the student to whom the guardian relationship applies.
      */
-    studentId?: string;
+    studentId?: string | null;
   }
   /**
    * An invitation to become the guardian of a specified user, sent to a specified email address.
@@ -614,23 +614,23 @@ export namespace classroom_v1 {
     /**
      * The time that this invitation was created.  Read-only.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * Unique identifier for this invitation.  Read-only.
      */
-    invitationId?: string;
+    invitationId?: string | null;
     /**
      * Email address that the invitation was sent to. This field is only visible to domain administrators.
      */
-    invitedEmailAddress?: string;
+    invitedEmailAddress?: string | null;
     /**
      * The state that this invitation is in.
      */
-    state?: string;
+    state?: string | null;
     /**
      * ID of the student (in standard format)
      */
-    studentId?: string;
+    studentId?: string | null;
   }
   /**
    * Assignee details about a coursework/announcement. This field is set if and only if `assigneeMode` is `INDIVIDUAL_STUDENTS`.
@@ -639,7 +639,7 @@ export namespace classroom_v1 {
     /**
      * Identifiers for the students that have access to the coursework/announcement.
      */
-    studentIds?: string[];
+    studentIds?: string[] | null;
   }
   /**
    * An invitation to join a course.
@@ -648,19 +648,19 @@ export namespace classroom_v1 {
     /**
      * Identifier of the course to invite the user to.
      */
-    courseId?: string;
+    courseId?: string | null;
     /**
      * Identifier assigned by Classroom.  Read-only.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Role to invite the user to have. Must not be `COURSE_ROLE_UNSPECIFIED`.
      */
-    role?: string;
+    role?: string | null;
     /**
      * Identifier of the invited user.  When specified as a parameter of a request, this identifier can be set to one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
      */
-    userId?: string;
+    userId?: string | null;
   }
   /**
    * URL item.
@@ -669,15 +669,15 @@ export namespace classroom_v1 {
     /**
      * URL of a thumbnail image of the target URL.  Read-only.
      */
-    thumbnailUrl?: string;
+    thumbnailUrl?: string | null;
     /**
      * Title of the target of the URL.  Read-only.
      */
-    title?: string;
+    title?: string | null;
     /**
      * URL to link to. This must be a valid UTF-8 string containing between 1 and 2024 characters.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Response when listing course work.
@@ -690,7 +690,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response when listing course aliases.
@@ -703,7 +703,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response when listing courses.
@@ -716,7 +716,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response when listing course work.
@@ -729,7 +729,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response when listing guardian invitations.
@@ -742,7 +742,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response when listing guardians.
@@ -755,7 +755,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response when listing invitations.
@@ -768,7 +768,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response when listing students.
@@ -777,7 +777,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Students who match the list request.
      */
@@ -790,7 +790,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Student work that matches the request.
      */
@@ -803,7 +803,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Teachers who match the list request.
      */
@@ -816,7 +816,7 @@ export namespace classroom_v1 {
     /**
      * Token identifying the next page of results to return. If empty, no further results are available.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Topic items that match the request.
      */
@@ -850,7 +850,7 @@ export namespace classroom_v1 {
     /**
      * Mode of the announcement describing whether it will be accessible by all students or specified individual students.
      */
-    assigneeMode?: string;
+    assigneeMode?: string | null;
     /**
      * Set which students can view or cannot view the announcement. Must be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`.
      */
@@ -872,7 +872,7 @@ export namespace classroom_v1 {
     /**
      * Mode of the coursework describing whether it will be assigned to all students or specified individual students.
      */
-    assigneeMode?: string;
+    assigneeMode?: string | null;
     /**
      * Set which students are assigned or not assigned to the coursework. Must be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`.
      */
@@ -885,11 +885,11 @@ export namespace classroom_v1 {
     /**
      * Ids of students to be added as having access to this coursework/announcement.
      */
-    addStudentIds?: string[];
+    addStudentIds?: string[] | null;
     /**
      * Ids of students to be removed from having access to this coursework/announcement.
      */
-    removeStudentIds?: string[];
+    removeStudentIds?: string[] | null;
   }
   /**
    * Additional details for multiple-choice questions.
@@ -898,7 +898,7 @@ export namespace classroom_v1 {
     /**
      * Possible choices.
      */
-    choices?: string[];
+    choices?: string[] | null;
   }
   /**
    * Student work for a multiple-choice question.
@@ -907,7 +907,7 @@ export namespace classroom_v1 {
     /**
      * Student&#39;s select choice.
      */
-    answer?: string;
+    answer?: string | null;
   }
   /**
    * Details of the user&#39;s name.
@@ -916,15 +916,15 @@ export namespace classroom_v1 {
     /**
      * The user&#39;s last name.  Read-only.
      */
-    familyName?: string;
+    familyName?: string | null;
     /**
      * The user&#39;s full name formed by concatenating the first and last name values.  Read-only.
      */
-    fullName?: string;
+    fullName?: string | null;
     /**
      * The user&#39;s first name.  Read-only.
      */
-    givenName?: string;
+    givenName?: string | null;
   }
   /**
    * Request to reclaim a student submission.
@@ -941,7 +941,7 @@ export namespace classroom_v1 {
     /**
      * The time until which the `Registration` is effective.  This is a read-only field assigned by the server.
      */
-    expiryTime?: string;
+    expiryTime?: string | null;
     /**
      * Specification for the class of notifications that Classroom should deliver to the destination.
      */
@@ -949,7 +949,7 @@ export namespace classroom_v1 {
     /**
      * A server-generated unique identifier for this `Registration`.  Read-only.
      */
-    registrationId?: string;
+    registrationId?: string | null;
   }
   /**
    * Request to return a student submission.
@@ -966,7 +966,7 @@ export namespace classroom_v1 {
     /**
      * Mechanism by which students access the Drive item.
      */
-    shareMode?: string;
+    shareMode?: string | null;
   }
   /**
    * Student work for a short answer question.
@@ -975,7 +975,7 @@ export namespace classroom_v1 {
     /**
      * Student response to a short-answer question.
      */
-    answer?: string;
+    answer?: string | null;
   }
   /**
    * The history of each state this submission has been in.
@@ -984,15 +984,15 @@ export namespace classroom_v1 {
     /**
      * The teacher or student who made the change
      */
-    actorUserId?: string;
+    actorUserId?: string | null;
     /**
      * The workflow pipeline stage.
      */
-    state?: string;
+    state?: string | null;
     /**
      * When the submission entered this state.
      */
-    stateTimestamp?: string;
+    stateTimestamp?: string | null;
   }
   /**
    * Student in a course.
@@ -1001,7 +1001,7 @@ export namespace classroom_v1 {
     /**
      * Identifier of the course.  Read-only.
      */
-    courseId?: string;
+    courseId?: string | null;
     /**
      * Global user information for the student.  Read-only.
      */
@@ -1013,7 +1013,7 @@ export namespace classroom_v1 {
     /**
      * Identifier of the user.  When specified as a parameter of a request, this identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
      */
-    userId?: string;
+    userId?: string | null;
   }
   /**
    * Student submission for course work.  StudentSubmission items are generated when a CourseWork item is created.  StudentSubmissions that have never been accessed (i.e. with `state` = NEW) may not have a creation time or update time.
@@ -1022,11 +1022,11 @@ export namespace classroom_v1 {
     /**
      * Absolute link to the submission in the Classroom web UI.  Read-only.
      */
-    alternateLink?: string;
+    alternateLink?: string | null;
     /**
      * Optional grade. If unset, no grade was set. This value must be non-negative. Decimal (i.e. non-integer) values are allowed, but will be rounded to two decimal places.  This may be modified only by course teachers.
      */
-    assignedGrade?: number;
+    assignedGrade?: number | null;
     /**
      * Submission content when course_work_type is ASSIGNMENT.  Students can modify this content using google.classroom.Work.ModifyAttachments.
      */
@@ -1034,35 +1034,35 @@ export namespace classroom_v1 {
     /**
      * Whether this student submission is associated with the Developer Console project making the request.  See google.classroom.Work.CreateCourseWork for more details.  Read-only.
      */
-    associatedWithDeveloper?: boolean;
+    associatedWithDeveloper?: boolean | null;
     /**
      * Identifier of the course.  Read-only.
      */
-    courseId?: string;
+    courseId?: string | null;
     /**
      * Identifier for the course work this corresponds to.  Read-only.
      */
-    courseWorkId?: string;
+    courseWorkId?: string | null;
     /**
      * Type of course work this submission is for.  Read-only.
      */
-    courseWorkType?: string;
+    courseWorkType?: string | null;
     /**
      * Creation time of this submission. This may be unset if the student has not accessed this item.  Read-only.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * Optional pending grade. If unset, no grade was set. This value must be non-negative. Decimal (i.e. non-integer) values are allowed, but will be rounded to two decimal places.  This is only visible to and modifiable by course teachers.
      */
-    draftGrade?: number;
+    draftGrade?: number | null;
     /**
      * Classroom-assigned Identifier for the student submission. This is unique among submissions for the relevant course work.  Read-only.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Whether this submission is late.  Read-only.
      */
-    late?: boolean;
+    late?: boolean | null;
     /**
      * Submission content when course_work_type is MULTIPLE_CHOICE_QUESTION.
      */
@@ -1074,7 +1074,7 @@ export namespace classroom_v1 {
     /**
      * State of this submission.  Read-only.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The history of the submission (includes state and grade histories).  Read-only.
      */
@@ -1082,11 +1082,11 @@ export namespace classroom_v1 {
     /**
      * Last update time of this submission. This may be unset if the student has not accessed this item.  Read-only.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Identifier for the student that owns this submission.  Read-only.
      */
-    userId?: string;
+    userId?: string | null;
   }
   /**
    * The history of the submission. This currently includes state and grade histories.
@@ -1108,7 +1108,7 @@ export namespace classroom_v1 {
     /**
      * Identifier of the course.  Read-only.
      */
-    courseId?: string;
+    courseId?: string | null;
     /**
      * Global user information for the teacher.  Read-only.
      */
@@ -1116,7 +1116,7 @@ export namespace classroom_v1 {
     /**
      * Identifier of the user.  When specified as a parameter of a request, this identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
      */
-    userId?: string;
+    userId?: string | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -1125,19 +1125,19 @@ export namespace classroom_v1 {
     /**
      * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
      */
-    hours?: number;
+    hours?: number | null;
     /**
      * Minutes of hour of day. Must be from 0 to 59.
      */
-    minutes?: number;
+    minutes?: number | null;
     /**
      * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
      */
-    nanos?: number;
+    nanos?: number | null;
     /**
      * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
      */
-    seconds?: number;
+    seconds?: number | null;
   }
   /**
    * Topic created by a teacher for the course
@@ -1146,19 +1146,19 @@ export namespace classroom_v1 {
     /**
      * Identifier of the course.  Read-only.
      */
-    courseId?: string;
+    courseId?: string | null;
     /**
      * The name of the topic, generated by the user. Leading and trailing whitespaces, if any, will be trimmed. Also, multiple consecutive whitespaces will be collapsed into one inside the name. The result must be a non-empty string. Topic names are case sensitive, and must be no longer than 100 characters.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Unique identifier for the topic.  Read-only.
      */
-    topicId?: string;
+    topicId?: string | null;
     /**
      * The time the topic was last updated by the system.  Read-only.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Request to turn in a student submission.
@@ -1171,11 +1171,11 @@ export namespace classroom_v1 {
     /**
      * Email address of the user.  Read-only.
      */
-    emailAddress?: string;
+    emailAddress?: string | null;
     /**
      * Identifier of the user.  Read-only.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Name of the user.  Read-only.
      */
@@ -1187,11 +1187,11 @@ export namespace classroom_v1 {
     /**
      * URL of user&#39;s profile photo.  Read-only.
      */
-    photoUrl?: string;
+    photoUrl?: string | null;
     /**
      * Represents whether a G Suite for Education user&#39;s domain administrator has explicitly verified them as being a teacher. If the user is not a member of a G Suite for Education domain, than this field will always be false.  Read-only
      */
-    verifiedTeacher?: boolean;
+    verifiedTeacher?: boolean | null;
   }
   /**
    * YouTube video item.
@@ -1200,19 +1200,19 @@ export namespace classroom_v1 {
     /**
      * URL that can be used to view the YouTube video.  Read-only.
      */
-    alternateLink?: string;
+    alternateLink?: string | null;
     /**
      * YouTube API resource ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * URL of a thumbnail image of the YouTube video.  Read-only.
      */
-    thumbnailUrl?: string;
+    thumbnailUrl?: string | null;
     /**
      * Title of the YouTube video.  Read-only.
      */
-    title?: string;
+    title?: string | null;
   }
 
   export class Resource$Courses {

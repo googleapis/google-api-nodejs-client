@@ -128,7 +128,7 @@ export namespace cloudasset_v1 {
     /**
      * Type of the asset. Example: &quot;compute.googleapis.com/Disk&quot;.
      */
-    assetType?: string;
+    assetType?: string | null;
     /**
      * Representation of the actual Cloud IAM policy set on a cloud resource. For each resource, there must be at most one Cloud IAM policy set on it.
      */
@@ -136,7 +136,7 @@ export namespace cloudasset_v1 {
     /**
      * The full name of the asset. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Representation of the Cloud Organization Policy set on an asset. For each asset, there could be multiple Organization policies with different constraints.
      */
@@ -158,7 +158,7 @@ export namespace cloudasset_v1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
@@ -167,11 +167,11 @@ export namespace cloudasset_v1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Batch get assets history response.
@@ -189,15 +189,15 @@ export namespace cloudasset_v1 {
     /**
      * Required. The BigQuery dataset in format &quot;projects/projectId/datasets/datasetId&quot;, to which the snapshot result should be exported. If this dataset does not exist, the export call returns an error.
      */
-    dataset?: string;
+    dataset?: string | null;
     /**
      * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is not set and the destination table already exists, the export call returns an error.
      */
-    force?: boolean;
+    force?: boolean | null;
     /**
      * Required. The BigQuery table to which the snapshot result should be written. If this table does not exist, a new table with the given name will be created.
      */
-    table?: string;
+    table?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -210,11 +210,11 @@ export namespace cloudasset_v1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * Export asset request.
@@ -223,11 +223,11 @@ export namespace cloudasset_v1 {
     /**
      * A list of asset types of which to take a snapshot for. For example: &quot;compute.googleapis.com/Disk&quot;. If specified, only matching assets will be returned. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview) for all supported asset types.
      */
-    assetTypes?: string[];
+    assetTypes?: string[] | null;
     /**
      * Asset content type. If not specified, no content but the asset name will be returned.
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * Required. Output configuration indicating where the results will be output to. All results will be in newline delimited JSON format.
      */
@@ -235,7 +235,7 @@ export namespace cloudasset_v1 {
     /**
      * Timestamp to take an asset snapshot. This can only be set to a timestamp between 2018-10-02 UTC (inclusive) and the current time. If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
      */
-    readTime?: string;
+    readTime?: string | null;
   }
   /**
    * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
@@ -244,19 +244,19 @@ export namespace cloudasset_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * A Cloud Storage location.
@@ -265,11 +265,11 @@ export namespace cloudasset_v1 {
     /**
      * The uri of the Cloud Storage object. It&#39;s the same uri that is used by gsutil. For example: &quot;gs://bucket_name/object_name&quot;. See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
      */
-    uri?: string;
+    uri?: string | null;
     /**
      * The uri prefix of all generated Cloud Storage objects. For example: &quot;gs://bucket_name/object_name_prefix&quot;. Each object uri is in format: &quot;gs://bucket_name/object_name_prefix/&lt;asset type&gt;/&lt;shard number&gt; and only contains assets for that type. &lt;shard number&gt; starts from 0. For example: &quot;gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0&quot; is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name &quot;gs://bucket_name/object_name_prefix&quot; already exists.
      */
-    uriPrefix?: string;
+    uriPrefix?: string | null;
   }
   /**
    * Used in `policy_type` to specify how `boolean_policy` will behave at this resource.
@@ -278,7 +278,7 @@ export namespace cloudasset_v1 {
     /**
      * If `true`, then the `Policy` is enforced. If `false`, then any configuration is acceptable.  Suppose you have a `Constraint` `constraints/compute.disableSerialPortAccess` with `constraint_default` set to `ALLOW`. A `Policy` for that `Constraint` exhibits the following behavior:   - If the `Policy` at this resource has enforced set to `false`, serial     port connection attempts will be allowed.   - If the `Policy` at this resource has enforced set to `true`, serial     port connection attempts will be refused.   - If the `Policy` at this resource is `RestoreDefault`, serial port     connection attempts will be allowed.   - If no `Policy` is set at this resource or anywhere higher in the     resource hierarchy, serial port connection attempts will be allowed.   - If no `Policy` is set at this resource, but one exists higher in the     resource hierarchy, the behavior is as if the`Policy` were set at     this resource.  The following examples demonstrate the different possible layerings:  Example 1 (nearest `Constraint` wins):   `organizations/foo` has a `Policy` with:     {enforced: false}   `projects/bar` has no `Policy` set. The constraint at `projects/bar` and `organizations/foo` will not be enforced.  Example 2 (enforcement gets replaced):   `organizations/foo` has a `Policy` with:     {enforced: false}   `projects/bar` has a `Policy` with:     {enforced: true} The constraint at `organizations/foo` is not enforced. The constraint at `projects/bar` is enforced.  Example 3 (RestoreDefault):   `organizations/foo` has a `Policy` with:     {enforced: true}   `projects/bar` has a `Policy` with:     {RestoreDefault: {}} The constraint at `organizations/foo` is enforced. The constraint at `projects/bar` is not enforced, because `constraint_default` for the `Constraint` is `ALLOW`.
      */
-    enforced?: boolean;
+    enforced?: boolean | null;
   }
   /**
    * Used in `policy_type` to specify how `list_policy` behaves at this resource.  `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a &quot;:&quot;. Values prefixed with &quot;is:&quot; are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats:     - “projects/&lt;project-id&gt;”, e.g. “projects/tokyo-rain-123”     - “folders/&lt;folder-id&gt;”, e.g. “folders/1234”     - “organizations/&lt;organization-id&gt;”, e.g. “organizations/1234” The `supports_under` field of the associated `Constraint`  defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset.
@@ -287,23 +287,23 @@ export namespace cloudasset_v1 {
     /**
      * List of values allowed  at this resource. Can only be set if `all_values` is set to `ALL_VALUES_UNSPECIFIED`.
      */
-    allowedValues?: string[];
+    allowedValues?: string[] | null;
     /**
      * The policy all_values state.
      */
-    allValues?: string;
+    allValues?: string | null;
     /**
      * List of values denied at this resource. Can only be set if `all_values` is set to `ALL_VALUES_UNSPECIFIED`.
      */
-    deniedValues?: string[];
+    deniedValues?: string[] | null;
     /**
      * Determines the inheritance behavior for this `Policy`.  By default, a `ListPolicy` set at a resource supercedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy.  Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`.  For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied.  The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`:  Example 1 (no inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has `inherit_from_parent` `false` and values:     {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a `Policy` with values:     {value: “E3” value: ”E4” inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and denied values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no policy inherits parent policy):   `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy   O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:     {allowed_values: &quot;under:projects/P3&quot;}     {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`,   `folders/F1`, `projects/P1`.
      */
-    inheritFromParent?: boolean;
+    inheritFromParent?: boolean | null;
     /**
      * Optional. The Google Cloud Console will try to default to a configuration that matches the value specified in this `Policy`. If `suggested_value` is not set, it will inherit the value specified higher in the hierarchy, unless `inherit_from_parent` is `false`.
      */
-    suggestedValue?: string;
+    suggestedValue?: string | null;
   }
   /**
    * Defines a Cloud Organization `Policy` which is used to specify `Constraints` for configurations of Cloud Platform resources.
@@ -316,11 +316,11 @@ export namespace cloudasset_v1 {
     /**
      * The name of the `Constraint` the `Policy` is configuring, for example, `constraints/serviceuser.services`.  Immutable after creation.
      */
-    constraint?: string;
+    constraint?: string | null;
     /**
      * An opaque tag indicating the current version of the `Policy`, used for concurrency control.  When the `Policy` is returned from either a `GetPolicy` or a `ListOrgPolicy` request, this `etag` indicates the version of the current `Policy` to use when executing a read-modify-write loop.  When the `Policy` is returned from a `GetEffectivePolicy` request, the `etag` will be unset.  When the `Policy` is used in a `SetOrgPolicy` method, use the `etag` value that was returned from a `GetOrgPolicy` request as part of a read-modify-write loop for concurrency control. Not setting the `etag`in a `SetOrgPolicy` request will result in an unconditional write of the `Policy`.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * List of values either allowed or disallowed.
      */
@@ -332,11 +332,11 @@ export namespace cloudasset_v1 {
     /**
      * The time stamp the `Policy` was previously updated. This is set by the server, not specified by the caller, and represents the last time a call to `SetOrgPolicy` was made for that `Policy`. Any value set by the client will be ignored.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Version of the `Policy`. Default version is 0;
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific `Constraint` at this resource.  Suppose that `constraint_default` is set to `ALLOW` for the `Constraint` `constraints/serviceuser.services`. Suppose that organization foo.com sets a `Policy` at their Organization resource node that restricts the allowed service activations to deny all service activations. They could then set a `Policy` with the `policy_type` `restore_default` on several experimental projects, restoring the `constraint_default` enforcement of the `Constraint` for only those projects, allowing those projects to have all services activated.
@@ -353,23 +353,23 @@ export namespace cloudasset_v1 {
     /**
      * Output only. Time the `AccessLevel` was created in UTC.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Description of the `AccessLevel` and its use. Does not affect behavior.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
      */
-    name?: string;
+    name?: string | null;
     /**
      * Human readable title. Must be unique within the Policy.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Output only. Time the `AccessLevel` was updated in UTC.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use GCP services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
@@ -378,23 +378,23 @@ export namespace cloudasset_v1 {
     /**
      * Output only. Time the `AccessPolicy` was created in UTC.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      */
-    name?: string;
+    name?: string | null;
     /**
      * Required. The parent of this `AccessPolicy` in the Cloud Resource Hierarchy. Currently immutable once created. Format: `organizations/{organization_id}`
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * Required. Human readable title. Does not affect behavior.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Output only. Time the `AccessPolicy` was updated in UTC.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
@@ -403,7 +403,7 @@ export namespace cloudasset_v1 {
     /**
      * How the `conditions` list should be combined to determine if a request is granted this `AccessLevel`. If AND is used, each `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. If OR is used, at least one `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. Default behavior is AND.
      */
-    combiningFunction?: string;
+    combiningFunction?: string | null;
     /**
      * Required. A list of requirements for the `AccessLevel` to be granted.
      */
@@ -420,23 +420,23 @@ export namespace cloudasset_v1 {
     /**
      * CIDR block IP subnetwork specification. May be IPv4 or IPv6. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (i.e. all the host bits must be zero) or the input is considered malformed. For example, &quot;192.0.2.0/24&quot; is accepted but &quot;192.0.2.1/24&quot; is not. Similarly, for IPv6, &quot;2001:db8::/32&quot; is accepted whereas &quot;2001:db8::1/32&quot; is not. The originating IP of a request must be in one of the listed subnets in order for this Condition to be true. If empty, all IP addresses are allowed.
      */
-    ipSubnetworks?: string[];
+    ipSubnetworks?: string[] | null;
     /**
      * The request must be made by one of the provided user or service accounts. Groups are not supported. Syntax: `user:{emailid}` `serviceAccount:{emailid}` If not specified, a request may come from any user.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Whether to negate the Condition. If true, the Condition becomes a NAND over its non-empty fields, each field must be false for the Condition overall to be satisfied. Defaults to false.
      */
-    negate?: boolean;
+    negate?: boolean | null;
     /**
      * The request must originate from one of the provided countries/regions. Must be valid ISO 3166-1 alpha-2 codes.
      */
-    regions?: string[];
+    regions?: string[] | null;
     /**
      * A list of other access levels defined in the same `Policy`, referenced by resource name. Referencing an `AccessLevel` which does not exist is an error. All access levels listed must be granted for the Condition to be true. Example: &quot;`accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME&quot;`
      */
-    requiredAccessLevels?: string[];
+    requiredAccessLevels?: string[] | null;
   }
   /**
    * `DevicePolicy` specifies device specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels, it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is { os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED}, then the DevicePolicy will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
@@ -445,11 +445,11 @@ export namespace cloudasset_v1 {
     /**
      * Allowed device management levels, an empty list allows all management levels.
      */
-    allowedDeviceManagementLevels?: string[];
+    allowedDeviceManagementLevels?: string[] | null;
     /**
      * Allowed encryptions statuses, an empty list allows all statuses.
      */
-    allowedEncryptionStatuses?: string[];
+    allowedEncryptionStatuses?: string[] | null;
     /**
      * Allowed OS versions, an empty list allows all types and all versions.
      */
@@ -457,15 +457,15 @@ export namespace cloudasset_v1 {
     /**
      * Whether the device needs to be approved by the customer admin.
      */
-    requireAdminApproval?: boolean;
+    requireAdminApproval?: boolean | null;
     /**
      * Whether the device needs to be corp owned.
      */
-    requireCorpOwned?: boolean;
+    requireCorpOwned?: boolean | null;
     /**
      * Whether or not screenlock is required for the DevicePolicy to be true. Defaults to `false`.
      */
-    requireScreenlock?: boolean;
+    requireScreenlock?: boolean | null;
   }
   /**
    * A restriction on the OS type and version of devices making requests.
@@ -474,15 +474,15 @@ export namespace cloudasset_v1 {
     /**
      * The minimum allowed OS version. If not set, any version of this OS satisfies the constraint. Format: `&quot;major.minor.patch&quot;`. Examples: `&quot;10.5.301&quot;`, `&quot;9.2.1&quot;`.
      */
-    minimumVersion?: string;
+    minimumVersion?: string | null;
     /**
      * Required. The allowed OS type.
      */
-    osType?: string;
+    osType?: string | null;
     /**
      * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to Dasher domain policies, and the caller has permission to call the API targeted by the request.
      */
-    requireVerifiedChromeOs?: boolean;
+    requireVerifiedChromeOs?: boolean | null;
   }
   /**
    * `ServicePerimeter` describes a set of GCP resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single GCP project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only GCP projects as members, a single GCP project may belong to multiple Service Perimeter Bridges.
@@ -491,19 +491,19 @@ export namespace cloudasset_v1 {
     /**
      * Output only. Time the `ServicePerimeter` was created in UTC.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Description of the `ServicePerimeter` and its use. Does not affect behavior.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      */
-    name?: string;
+    name?: string | null;
     /**
      * Perimeter type indicator. A single project is allowed to be a member of single regular perimeter, but multiple service perimeter bridges. A project cannot be a included in a perimeter bridge without being included in regular perimeter. For perimeter bridges, the restricted service list as well as access level lists must be empty.
      */
-    perimeterType?: string;
+    perimeterType?: string | null;
     /**
      * Current ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine perimeter content and boundaries.
      */
@@ -511,11 +511,11 @@ export namespace cloudasset_v1 {
     /**
      * Human readable title. Must be unique within the Policy.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Output only. Time the `ServicePerimeter` was updated in UTC.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * `ServicePerimeterConfig` specifies a set of GCP resources that describe specific Service Perimeter configuration.
@@ -524,15 +524,15 @@ export namespace cloudasset_v1 {
     /**
      * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via GCP calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
      */
-    accessLevels?: string[];
+    accessLevels?: string[] | null;
     /**
      * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
      */
-    resources?: string[];
+    resources?: string[] | null;
     /**
      * GCP services that are subject to the Service Perimeter restrictions. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
      */
-    restrictedServices?: string[];
+    restrictedServices?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -541,7 +541,7 @@ export namespace cloudasset_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -549,15 +549,15 @@ export namespace cloudasset_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Output configuration for export assets destination.
@@ -587,11 +587,11 @@ export namespace cloudasset_v1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Representation of a cloud resource.
@@ -600,27 +600,27 @@ export namespace cloudasset_v1 {
     /**
      * The content of the resource, in which some sensitive fields are scrubbed away and may not be present.
      */
-    data?: {[key: string]: any};
+    data?: {[key: string]: any} | null;
     /**
      * The URL of the discovery document containing the resource&#39;s JSON schema. For example: `&quot;https://www.googleapis.com/discovery/v1/apis/compute/v1/rest&quot;`. It will be left unspecified for resources without a discovery-based API, such as Cloud Bigtable.
      */
-    discoveryDocumentUri?: string;
+    discoveryDocumentUri?: string | null;
     /**
      * The JSON schema name listed in the discovery document. Example: &quot;Project&quot;. It will be left unspecified for resources (such as Cloud Bigtable) without a discovery-based API.
      */
-    discoveryName?: string;
+    discoveryName?: string | null;
     /**
      * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.  For GCP assets, it is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). For example: `&quot;//cloudresourcemanager.googleapis.com/projects/my_project_123&quot;`.  For third-party assets, it is up to the users to define.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * The REST URL for accessing the resource. An HTTP GET operation using this URL returns the resource itself. Example: `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`. It will be left unspecified for resources without a REST API.
      */
-    resourceUrl?: string;
+    resourceUrl?: string | null;
     /**
      * The API version. Example: &quot;v1&quot;.
      */
-    version?: string;
+    version?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -629,15 +629,15 @@ export namespace cloudasset_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Temporal asset. In addition to the asset, the temporal asset includes the status of the asset and valid from and to time of it.
@@ -650,7 +650,7 @@ export namespace cloudasset_v1 {
     /**
      * If the asset is deleted or not.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * The time window when the asset data and state was observed.
      */
@@ -663,11 +663,11 @@ export namespace cloudasset_v1 {
     /**
      * End time of the time window (inclusive). Current timestamp if not specified.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Start time of the time window (exclusive).
      */
-    startTime?: string;
+    startTime?: string | null;
   }
 
   export class Resource$Operations {

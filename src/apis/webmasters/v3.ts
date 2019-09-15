@@ -106,26 +106,26 @@ export namespace webmasters_v3 {
   }
 
   export interface Schema$ApiDataRow {
-    clicks?: number;
-    ctr?: number;
-    impressions?: number;
-    keys?: string[];
-    position?: number;
+    clicks?: number | null;
+    ctr?: number | null;
+    impressions?: number | null;
+    keys?: string[] | null;
+    position?: number | null;
   }
   export interface Schema$ApiDimensionFilter {
-    dimension?: string;
-    expression?: string;
-    operator?: string;
+    dimension?: string | null;
+    expression?: string | null;
+    operator?: string | null;
   }
   export interface Schema$ApiDimensionFilterGroup {
     filters?: Schema$ApiDimensionFilter[];
-    groupType?: string;
+    groupType?: string | null;
   }
   export interface Schema$SearchAnalyticsQueryRequest {
     /**
      * [Optional; Default is &quot;auto&quot;] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see  the help documentation to learn how data is calculated differently by site versus by page.  Note: If you group or filter by page, you cannot aggregate by property.  If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid.
      */
-    aggregationType?: string;
+    aggregationType?: string | null;
     /**
      * [Optional] Zero or more filters to apply to the dimension grouping values; for example, &#39;query contains &quot;buy&quot;&#39; to see only data where the query string contains the substring &quot;buy&quot; (not case-sensitive). You can filter by a dimension without grouping by it.
      */
@@ -133,27 +133,27 @@ export namespace webmasters_v3 {
     /**
      * [Optional] Zero or more dimensions to group results by. Dimensions are the group-by values in the Search Analytics page. Dimensions are combined to create a unique row key for each row. Results are grouped in the order that you supply these dimensions.
      */
-    dimensions?: string[];
+    dimensions?: string[] | null;
     /**
      * [Required] End date of the requested date range, in YYYY-MM-DD format, in PST (UTC - 8:00). Must be greater than or equal to the start date. This value is included in the range.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * [Optional; Default is 1000] The maximum number of rows to return. Must be a number from 1 to 5,000 (inclusive).
      */
-    rowLimit?: number;
+    rowLimit?: number | null;
     /**
      * [Optional; Default is &quot;web&quot;] The search type to filter for.
      */
-    searchType?: string;
+    searchType?: string | null;
     /**
      * [Required] Start date of the requested date range, in YYYY-MM-DD format, in PST time (UTC - 8:00). Must be less than or equal to the end date. This value is included in the range.
      */
-    startDate?: string;
+    startDate?: string | null;
     /**
      * [Optional; Default is 0] Zero-based index of the first row in the response. Must be a non-negative number.
      */
-    startRow?: number;
+    startRow?: number | null;
   }
   /**
    * A list of rows, one per result, grouped by key. Metrics in each row are aggregated for all data grouped by that key either by page or property, as specified by the aggregation type parameter.
@@ -162,7 +162,7 @@ export namespace webmasters_v3 {
     /**
      * How the results were aggregated.
      */
-    responseAggregationType?: string;
+    responseAggregationType?: string | null;
     /**
      * A list of rows grouped by the key values in the order given in the query.
      */
@@ -193,11 +193,11 @@ export namespace webmasters_v3 {
     /**
      * The user&#39;s permission level for the site.
      */
-    permissionLevel?: string;
+    permissionLevel?: string | null;
     /**
      * The URL of the site.
      */
-    siteUrl?: string;
+    siteUrl?: string | null;
   }
   /**
    * Contains detailed information about a specific URL submitted as a sitemap.
@@ -210,35 +210,35 @@ export namespace webmasters_v3 {
     /**
      * Number of errors in the sitemap. These are issues with the sitemap itself that need to be fixed before it can be processed correctly.
      */
-    errors?: string;
+    errors?: string | null;
     /**
      * If true, the sitemap has not been processed.
      */
-    isPending?: boolean;
+    isPending?: boolean | null;
     /**
      * If true, the sitemap is a collection of sitemaps.
      */
-    isSitemapsIndex?: boolean;
+    isSitemapsIndex?: boolean | null;
     /**
      * Date &amp; time in which this sitemap was last downloaded. Date format is in RFC 3339 format (yyyy-mm-dd).
      */
-    lastDownloaded?: string;
+    lastDownloaded?: string | null;
     /**
      * Date &amp; time in which this sitemap was submitted. Date format is in RFC 3339 format (yyyy-mm-dd).
      */
-    lastSubmitted?: string;
+    lastSubmitted?: string | null;
     /**
      * The url of the sitemap.
      */
-    path?: string;
+    path?: string | null;
     /**
      * The type of the sitemap. For example: rssFeed.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Number of warnings for the sitemap. These are generally non-critical issues with URLs in the sitemaps.
      */
-    warnings?: string;
+    warnings?: string | null;
   }
   /**
    * Information about the various content types in the sitemap.
@@ -247,15 +247,15 @@ export namespace webmasters_v3 {
     /**
      * The number of URLs from the sitemap that were indexed (of the content type).
      */
-    indexed?: string;
+    indexed?: string | null;
     /**
      * The number of URLs in the sitemap (of the content type).
      */
-    submitted?: string;
+    submitted?: string | null;
     /**
      * The specific type of content in this sitemap. For example: web.
      */
-    type?: string;
+    type?: string | null;
   }
 
   export class Resource$Searchanalytics {

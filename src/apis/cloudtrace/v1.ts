@@ -128,7 +128,7 @@ export namespace cloudtrace_v1 {
     /**
      * If defined, indicates that there are more traces that match the request and that this value should be passed to the next request to continue retrieving additional traces.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of trace records as specified by the view parameter.
      */
@@ -141,7 +141,7 @@ export namespace cloudtrace_v1 {
     /**
      * Project ID of the Cloud project where the trace data is stored.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Collection of spans in the trace.
      */
@@ -149,7 +149,7 @@ export namespace cloudtrace_v1 {
     /**
      * Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string. For example, `382d4f4c6b7bb2f4a972559d9085001d`.
      */
-    traceId?: string;
+    traceId?: string | null;
   }
   /**
    * List of new or updated traces.
@@ -167,31 +167,31 @@ export namespace cloudtrace_v1 {
     /**
      * End time of the span in nanoseconds from the UNIX epoch.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 kilobytes (10MB for `/stacktrace` values).  Some predefined label keys exist, or you may create your own. When creating your own, we recommend the following formats:  * `/category/product/key` for agents of well-known products (e.g.   `/db/mongodb/read_size`). * `short_host/path/key` for domain-specific keys (e.g.   `foo.com/myproduct/bar`)  Predefined labels include:  *   `/agent` *   `/component` *   `/error/message` *   `/error/name` *   `/http/client_city` *   `/http/client_country` *   `/http/client_protocol` *   `/http/client_region` *   `/http/host` *   `/http/method` *   `/http/path` *   `/http/redirected_url` *   `/http/request/size` *   `/http/response/size` *   `/http/route` *   `/http/status_code` *   `/http/url` *   `/http/user_agent` *   `/pid` *   `/stacktrace` *   `/tid`
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Name of the span. Must be less than 128 bytes. The span name is sanitized and displayed in the Stackdriver Trace tool in the Google Cloud Platform Console. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans.
      */
-    name?: string;
+    name?: string | null;
     /**
      * ID of the parent span, if any. Optional.
      */
-    parentSpanId?: string;
+    parentSpanId?: string | null;
     /**
      * Identifier for the span. Must be a 64-bit integer other than 0 and unique within a trace. For example, `2205310701640571284`.
      */
-    spanId?: string;
+    spanId?: string | null;
     /**
      * Start time of the span in nanoseconds from the UNIX epoch.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
 
   export class Resource$Projects {

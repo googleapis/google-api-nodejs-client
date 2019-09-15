@@ -121,15 +121,15 @@ export namespace appsactivity_v1 {
     /**
      * Additional event types. Some events may have multiple types when multiple actions are part of a single event. For example, creating a document, renaming it, and sharing it may be part of a single file-creation event.
      */
-    additionalEventTypes?: string[];
+    additionalEventTypes?: string[] | null;
     /**
      * The time at which the event occurred formatted as Unix time in milliseconds.
      */
-    eventTimeMillis?: string;
+    eventTimeMillis?: string | null;
     /**
      * Whether this event is caused by a user being deleted.
      */
-    fromUserDeletion?: boolean;
+    fromUserDeletion?: boolean | null;
     /**
      * Extra information for move type events, such as changes in an object&#39;s parents.
      */
@@ -141,7 +141,7 @@ export namespace appsactivity_v1 {
     /**
      * The main type of event that occurred.
      */
-    primaryEventType?: string;
+    primaryEventType?: string | null;
     /**
      * Extra information for rename type events, such as the old and new names.
      */
@@ -166,7 +166,7 @@ export namespace appsactivity_v1 {
     /**
      * Token for the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Contains information about changes in an object&#39;s parents as a result of a move type event.
@@ -188,15 +188,15 @@ export namespace appsactivity_v1 {
     /**
      * The parent&#39;s ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Whether this is the root folder.
      */
-    isRoot?: boolean;
+    isRoot?: boolean | null;
     /**
      * The parent&#39;s title.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Contains information about the permissions and type of access allowed with regards to a Google Drive object. This is a subset of the fields contained in a corresponding Drive Permissions object.
@@ -205,19 +205,19 @@ export namespace appsactivity_v1 {
     /**
      * The name of the user or group the permission applies to.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The ID for this permission. Corresponds to the Drive API&#39;s permission ID returned as part of the Drive Permissions resource.
      */
-    permissionId?: string;
+    permissionId?: string | null;
     /**
      * Indicates the Google Drive permissions role. The role determines a user&#39;s ability to read, write, or comment on the file.
      */
-    role?: string;
+    role?: string | null;
     /**
      * Indicates how widely permissions are granted.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The user&#39;s information if the type is USER.
      */
@@ -225,7 +225,7 @@ export namespace appsactivity_v1 {
     /**
      * Whether the permission requires a link to the file.
      */
-    withLink?: boolean;
+    withLink?: boolean | null;
   }
   /**
    * Contains information about a Drive object&#39;s permissions that changed as a result of a permissionChange type event.
@@ -247,7 +247,7 @@ export namespace appsactivity_v1 {
     /**
      * The URL of the photo.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Contains information about a renametype event.
@@ -256,11 +256,11 @@ export namespace appsactivity_v1 {
     /**
      * The new title.
      */
-    newTitle?: string;
+    newTitle?: string | null;
     /**
      * The old title.
      */
-    oldTitle?: string;
+    oldTitle?: string | null;
   }
   /**
    * Information about the object modified by the event.
@@ -269,15 +269,15 @@ export namespace appsactivity_v1 {
     /**
      * The ID of the target. For example, in Google Drive, this is the file or folder ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The MIME type of the target.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * The name of the target. For example, in Google Drive, this is the title of the file.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A representation of a user.
@@ -286,19 +286,19 @@ export namespace appsactivity_v1 {
     /**
      * A boolean which indicates whether the specified User was deleted. If true, name, photo and permission_id will be omitted.
      */
-    isDeleted?: boolean;
+    isDeleted?: boolean | null;
     /**
      * Whether the user is the authenticated user.
      */
-    isMe?: boolean;
+    isMe?: boolean | null;
     /**
      * The displayable name of the user.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The permission ID associated with this user. Equivalent to the Drive API&#39;s permission ID for this user, returned as part of the Drive Permissions resource.
      */
-    permissionId?: string;
+    permissionId?: string | null;
     /**
      * The profile photo of the user. Not present if the user has no profile photo.
      */

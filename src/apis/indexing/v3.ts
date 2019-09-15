@@ -133,15 +133,15 @@ export namespace indexing_v3 {
     /**
      * Creation timestamp for this notification. Users should _not_ specify it, the field is ignored at the request time.
      */
-    notifyTime?: string;
+    notifyTime?: string | null;
     /**
      * The URL life cycle event that Google is being notified about.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The object of this notification. The URL must be owned by the publisher of this notification and, in case of `URL_UPDATED` notifications, it _must_ be crawlable by Google.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Summary of the most recent Indexing API notifications successfully received, for a given URL.
@@ -158,7 +158,7 @@ export namespace indexing_v3 {
     /**
      * URL to which this metadata refers.
      */
-    url?: string;
+    url?: string | null;
   }
 
   export class Resource$Urlnotifications {

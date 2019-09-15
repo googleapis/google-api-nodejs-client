@@ -126,31 +126,31 @@ export namespace adexperiencereport_v1 {
     /**
      * The site&#39;s Ad Experience Report status on this platform.
      */
-    betterAdsStatus?: string;
+    betterAdsStatus?: string | null;
     /**
      * The time at which [enforcement](https://support.google.com/webtools/answer/7308033) against the site began or will begin on this platform.  Not set when the filter_status is OFF.
      */
-    enforcementTime?: string;
+    enforcementTime?: string | null;
     /**
      * The site&#39;s [enforcement status](https://support.google.com/webtools/answer/7308033) on this platform.
      */
-    filterStatus?: string;
+    filterStatus?: string | null;
     /**
      * The time at which the site&#39;s status last changed on this platform.
      */
-    lastChangeTime?: string;
+    lastChangeTime?: string | null;
     /**
      * The site&#39;s regions on this platform.  No longer populated, because there is no longer any semantic difference between sites in different regions.
      */
-    region?: string[];
+    region?: string[] | null;
     /**
      * A link to the full Ad Experience Report for the site on this platform..  Not set in ViolatingSitesResponse.  Note that you must complete the [Search Console verification process](https://support.google.com/webmasters/answer/9008080) for the site before you can access the full report.
      */
-    reportUrl?: string;
+    reportUrl?: string | null;
     /**
      * Whether the site is currently under review on this platform.
      */
-    underReview?: boolean;
+    underReview?: boolean | null;
   }
   /**
    * Response message for GetSiteSummary.
@@ -167,7 +167,7 @@ export namespace adexperiencereport_v1 {
     /**
      * The name of the reviewed site, e.g. `google.com`.
      */
-    reviewedSite?: string;
+    reviewedSite?: string | null;
   }
   /**
    * Response message for ListViolatingSites.

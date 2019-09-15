@@ -118,27 +118,27 @@ export namespace fusiontables_v2 {
     /**
      * Color of line or the interior of a polygon in #RRGGBB format.
      */
-    color?: string;
+    color?: string | null;
     /**
      * Icon name used for a point.
      */
-    icon?: string;
+    icon?: string | null;
     /**
      * Maximum value in the selected column for a row to be styled according to the bucket color, opacity, icon, or weight.
      */
-    max?: number;
+    max?: number | null;
     /**
      * Minimum value in the selected column for a row to be styled according to the bucket color, opacity, icon, or weight.
      */
-    min?: number;
+    min?: number | null;
     /**
      * Opacity of the color: 0.0 (transparent) to 1.0 (opaque).
      */
-    opacity?: number;
+    opacity?: number | null;
     /**
      * Width of a line (in pixels).
      */
-    weight?: number;
+    weight?: number | null;
   }
   /**
    * Specifies the details of a column in a table.
@@ -147,51 +147,51 @@ export namespace fusiontables_v2 {
     /**
      * Identifier of the base column. If present, this column is derived from the specified base column.
      */
-    baseColumn?: {columnId?: number; tableIndex?: number};
+    baseColumn?: {columnId?: number; tableIndex?: number} | null;
     /**
      * Identifier for the column.
      */
-    columnId?: number;
+    columnId?: number | null;
     /**
      * JSON schema for interpreting JSON in this column.
      */
-    columnJsonSchema?: string;
+    columnJsonSchema?: string | null;
     /**
      * JSON object containing custom column properties.
      */
-    columnPropertiesJson?: string;
+    columnPropertiesJson?: string | null;
     /**
      * Column description.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Format pattern. Acceptable values are DT_DATE_MEDIUMe.g Dec 24, 2008 DT_DATE_SHORTfor example 12/24/08 DT_DATE_TIME_MEDIUMfor example Dec 24, 2008 8:30:45 PM DT_DATE_TIME_SHORTfor example 12/24/08 8:30 PM DT_DAY_MONTH_2_DIGIT_YEARfor example 24/12/08 DT_DAY_MONTH_2_DIGIT_YEAR_TIMEfor example 24/12/08 20:30 DT_DAY_MONTH_2_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/08 8:30 PM DT_DAY_MONTH_4_DIGIT_YEARfor example 24/12/2008 DT_DAY_MONTH_4_DIGIT_YEAR_TIMEfor example 24/12/2008 20:30 DT_DAY_MONTH_4_DIGIT_YEAR_TIME_MERIDIANfor example 24/12/2008 8:30 PM DT_ISO_YEAR_MONTH_DAYfor example 2008-12-24 DT_ISO_YEAR_MONTH_DAY_TIMEfor example 2008-12-24 20:30:45 DT_MONTH_DAY_4_DIGIT_YEARfor example 12/24/2008 DT_TIME_LONGfor example 8:30:45 PM UTC-6 DT_TIME_MEDIUMfor example 8:30:45 PM DT_TIME_SHORTfor example 8:30 PM DT_YEAR_ONLYfor example 2008 HIGHLIGHT_UNTYPED_CELLSHighlight cell data that does not match the data type NONENo formatting (default) NUMBER_CURRENCYfor example $1234.56 NUMBER_DEFAULTfor example 1,234.56 NUMBER_INTEGERfor example 1235 NUMBER_NO_SEPARATORfor example 1234.56 NUMBER_PERCENTfor example 123,456% NUMBER_SCIENTIFICfor example 1E3 STRING_EIGHT_LINE_IMAGEDisplays thumbnail images as tall as eight lines of text STRING_FOUR_LINE_IMAGEDisplays thumbnail images as tall as four lines of text STRING_JSON_TEXTAllows editing of text as JSON in UI STRING_JSON_LISTAllows editing of text as a JSON list in UI STRING_LINKTreats cell as a link (must start with http:// or https://) STRING_ONE_LINE_IMAGEDisplays thumbnail images as tall as one line of text STRING_VIDEO_OR_MAPDisplay a video or map thumbnail
      */
-    formatPattern?: string;
+    formatPattern?: string | null;
     /**
      * Column graph predicate. Used to map table to graph data model (subject,predicate,object) See W3C Graph-based Data Model.
      */
-    graphPredicate?: string;
+    graphPredicate?: string | null;
     /**
      * The kind of item this is. For a column, this is always fusiontables#column.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of the column.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Type of the column.
      */
-    type?: string;
+    type?: string | null;
     /**
      * If true, data entered via the web application is validated.
      */
-    validateData?: boolean;
+    validateData?: boolean | null;
     /**
      * List of valid values used to validate data and supply a drop-down list of values in the web application.
      */
-    validValues?: string[];
+    validValues?: string[] | null;
   }
   /**
    * Represents a list of columns in a table.
@@ -204,15 +204,15 @@ export namespace fusiontables_v2 {
     /**
      * The kind of item this is. For a column list, this is always fusiontables#columnList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Total number of columns for the table.
      */
-    totalItems?: number;
+    totalItems?: number | null;
   }
   /**
    * Represents a Geometry object.
@@ -221,12 +221,12 @@ export namespace fusiontables_v2 {
     /**
      * The list of geometries in this geometry collection.
      */
-    geometries?: any[];
-    geometry?: any;
+    geometries?: any[] | null;
+    geometry?: any | null;
     /**
      * Type: A collection of geometries.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents an import request.
@@ -235,11 +235,11 @@ export namespace fusiontables_v2 {
     /**
      * The kind of item this is. For an import, this is always fusiontables#import.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The number of rows received from the import request.
      */
-    numRowsReceived?: string;
+    numRowsReceived?: string | null;
   }
   /**
    * Represents a line geometry.
@@ -248,11 +248,11 @@ export namespace fusiontables_v2 {
     /**
      * The coordinates that define the line.
      */
-    coordinates?: number[][];
+    coordinates?: number[][] | null;
     /**
      * Type: A line geometry.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a LineStyle within a StyleSetting
@@ -261,7 +261,7 @@ export namespace fusiontables_v2 {
     /**
      * Color of the line in #RRGGBB format.
      */
-    strokeColor?: string;
+    strokeColor?: string | null;
     /**
      * Column-value, gradient or buckets styler that is used to determine the line color and opacity.
      */
@@ -269,11 +269,11 @@ export namespace fusiontables_v2 {
     /**
      * Opacity of the line : 0.0 (transparent) to 1.0 (opaque).
      */
-    strokeOpacity?: number;
+    strokeOpacity?: number | null;
     /**
      * Width of the line in pixels.
      */
-    strokeWeight?: number;
+    strokeWeight?: number | null;
     /**
      * Column-value or bucket styler that is used to determine the width of the line.
      */
@@ -286,11 +286,11 @@ export namespace fusiontables_v2 {
     /**
      * The coordinates that define the point.
      */
-    coordinates?: number[];
+    coordinates?: number[] | null;
     /**
      * Point: A point geometry.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a PointStyle within a StyleSetting
@@ -299,7 +299,7 @@ export namespace fusiontables_v2 {
     /**
      * Name of the icon. Use values defined in http://www.google.com/fusiontables/DataSource?dsrcid=308519
      */
-    iconName?: string;
+    iconName?: string | null;
     /**
      * Column or a bucket value from which the icon name is to be determined.
      */
@@ -312,11 +312,11 @@ export namespace fusiontables_v2 {
     /**
      * The coordinates that define the polygon.
      */
-    coordinates?: number[][][];
+    coordinates?: number[][][] | null;
     /**
      * Type: A polygon geometry.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a PolygonStyle within a StyleSetting
@@ -325,7 +325,7 @@ export namespace fusiontables_v2 {
     /**
      * Color of the interior of the polygon in #RRGGBB format.
      */
-    fillColor?: string;
+    fillColor?: string | null;
     /**
      * Column-value, gradient, or bucket styler that is used to determine the interior color and opacity of the polygon.
      */
@@ -333,11 +333,11 @@ export namespace fusiontables_v2 {
     /**
      * Opacity of the interior of the polygon: 0.0 (transparent) to 1.0 (opaque).
      */
-    fillOpacity?: number;
+    fillOpacity?: number | null;
     /**
      * Color of the polygon border in #RRGGBB format.
      */
-    strokeColor?: string;
+    strokeColor?: string | null;
     /**
      * Column-value, gradient or buckets styler that is used to determine the border color and opacity.
      */
@@ -345,11 +345,11 @@ export namespace fusiontables_v2 {
     /**
      * Opacity of the polygon border: 0.0 (transparent) to 1.0 (opaque).
      */
-    strokeOpacity?: number;
+    strokeOpacity?: number | null;
     /**
      * Width of the polyon border in pixels.
      */
-    strokeWeight?: number;
+    strokeWeight?: number | null;
     /**
      * Column-value or bucket styler that is used to determine the width of the polygon border.
      */
@@ -362,15 +362,15 @@ export namespace fusiontables_v2 {
     /**
      * Columns in the table.
      */
-    columns?: string[];
+    columns?: string[] | null;
     /**
      * The kind of item this is. For responses to SQL queries, this is always fusiontables#sqlresponse.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The rows in the table. For each cell we print out whatever cell value (e.g., numeric, string) exists. Thus it is important that each cell contains only one value.
      */
-    rows?: any[][];
+    rows?: any[][] | null;
   }
   /**
    * Represents a StyleFunction within a StyleSetting
@@ -383,7 +383,7 @@ export namespace fusiontables_v2 {
     /**
      * Name of the column whose value is used in the style.
      */
-    columnName?: string;
+    columnName?: string | null;
     /**
      * Gradient function that interpolates a range of colors based on column value.
      */
@@ -391,11 +391,11 @@ export namespace fusiontables_v2 {
       colors?: Array<{color?: string; opacity?: number}>;
       max?: number;
       min?: number;
-    };
+    } | null;
     /**
      * Stylers can be one of three kinds: &quot;fusiontables#fromColumn if the column value is to be used as is, i.e., the column values can have colors in #RRGGBBAA format or integer line widths or icon names; fusiontables#gradient if the styling of the row is to be based on applying the gradient function on the column value; or fusiontables#buckets if the styling is to based on the bucket into which the the column value falls.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Represents a complete StyleSettings object. The primary key is a combination of the tableId and a styleId.
@@ -404,7 +404,7 @@ export namespace fusiontables_v2 {
     /**
      * The kind of item this is. A StyleSetting contains the style definitions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Style definition for points in the table.
      */
@@ -412,7 +412,7 @@ export namespace fusiontables_v2 {
     /**
      * Optional name for the style setting.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Style definition for polygons in the table.
      */
@@ -424,11 +424,11 @@ export namespace fusiontables_v2 {
     /**
      * Identifier for the style setting (unique only within tables).
      */
-    styleId?: number;
+    styleId?: number | null;
     /**
      * Identifier for the table.
      */
-    tableId?: string;
+    tableId?: string | null;
   }
   /**
    * Represents a list of styles for a given table.
@@ -441,15 +441,15 @@ export namespace fusiontables_v2 {
     /**
      * The kind of item this is. For a style list, this is always fusiontables#styleSettingList .
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. No token is displayed if there are no more styles left.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Total number of styles for the table.
      */
-    totalItems?: number;
+    totalItems?: number | null;
   }
   /**
    * Represents a table.
@@ -458,19 +458,19 @@ export namespace fusiontables_v2 {
     /**
      * Attribution assigned to the table.
      */
-    attribution?: string;
+    attribution?: string | null;
     /**
      * Optional link for attribution.
      */
-    attributionLink?: string;
+    attributionLink?: string | null;
     /**
      * Base table identifier if this table is a view or merged table.
      */
-    baseTableIds?: string[];
+    baseTableIds?: string[] | null;
     /**
      * Default JSON schema for validating all JSON column properties.
      */
-    columnPropertiesJsonSchema?: string;
+    columnPropertiesJsonSchema?: string | null;
     /**
      * Columns in the table.
      */
@@ -478,35 +478,35 @@ export namespace fusiontables_v2 {
     /**
      * Description assigned to the table.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Variable for whether table is exportable.
      */
-    isExportable?: boolean;
+    isExportable?: boolean | null;
     /**
      * The kind of item this is. For a table, this is always fusiontables#table.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name assigned to a table.
      */
-    name?: string;
+    name?: string | null;
     /**
      * SQL that encodes the table definition for derived tables.
      */
-    sql?: string;
+    sql?: string | null;
     /**
      * Encrypted unique alphanumeric identifier for the table.
      */
-    tableId?: string;
+    tableId?: string | null;
     /**
      * JSON object containing custom table properties.
      */
-    tablePropertiesJson?: string;
+    tablePropertiesJson?: string | null;
     /**
      * JSON schema for validating the JSON table properties.
      */
-    tablePropertiesJsonSchema?: string;
+    tablePropertiesJsonSchema?: string | null;
   }
   /**
    * Represents a list of tables.
@@ -519,11 +519,11 @@ export namespace fusiontables_v2 {
     /**
      * The kind of item this is. For table list, this is always fusiontables#tableList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A background task on a table, initiated for time- or resource-consuming operations such as changing column types or deleting all rows.
@@ -532,23 +532,23 @@ export namespace fusiontables_v2 {
     /**
      * Type of the resource. This is always &quot;fusiontables#task&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Task percentage completion.
      */
-    progress?: string;
+    progress?: string | null;
     /**
      * false while the table is busy with some other task. true if this background task is currently running.
      */
-    started?: boolean;
+    started?: boolean | null;
     /**
      * Identifier for the task.
      */
-    taskId?: string;
+    taskId?: string | null;
     /**
      * Type of background task.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a list of tasks for a table.
@@ -561,15 +561,15 @@ export namespace fusiontables_v2 {
     /**
      * Type of the resource. This is always &quot;fusiontables#taskList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Total number of tasks for the table.
      */
-    totalItems?: number;
+    totalItems?: number | null;
   }
   /**
    * Represents the contents of InfoWindow templates.
@@ -578,27 +578,27 @@ export namespace fusiontables_v2 {
     /**
      * List of columns from which the template is to be automatically constructed. Only one of body or automaticColumns can be specified.
      */
-    automaticColumnNames?: string[];
+    automaticColumnNames?: string[] | null;
     /**
      * Body of the template. It contains HTML with {column_name} to insert values from a particular column. The body is sanitized to remove certain tags, e.g., script. Only one of body or automaticColumns can be specified.
      */
-    body?: string;
+    body?: string | null;
     /**
      * The kind of item this is. For a template, this is always fusiontables#template.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Optional name assigned to a template.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Identifier for the table for which the template is defined.
      */
-    tableId?: string;
+    tableId?: string | null;
     /**
      * Identifier for the template, unique within the context of a particular table.
      */
-    templateId?: number;
+    templateId?: number | null;
   }
   /**
    * Represents a list of templates for a given table.
@@ -611,15 +611,15 @@ export namespace fusiontables_v2 {
     /**
      * The kind of item this is. For a template list, this is always fusiontables#templateList .
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. No token is displayed if there are no more pages left.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Total number of templates for the table.
      */
-    totalItems?: number;
+    totalItems?: number | null;
   }
 
   export class Resource$Column {

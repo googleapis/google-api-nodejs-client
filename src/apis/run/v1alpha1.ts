@@ -126,8 +126,8 @@ export namespace run_v1alpha1 {
     /**
      * Deprecated - use url instead.
      */
-    hostname?: string;
-    url?: string;
+    hostname?: string | null;
+    url?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
@@ -140,7 +140,7 @@ export namespace run_v1alpha1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
@@ -149,11 +149,11 @@ export namespace run_v1alpha1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via [Webmaster Central](https://www.google.com/webmasters/verification/home).
@@ -162,11 +162,11 @@ export namespace run_v1alpha1 {
     /**
      * Relative name of the domain authorized for use. Example: `example.com`.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Read only. Full path to the `AuthorizedDomain` resource in the API. Example: `apps/myapp/authorizedDomains/example.com`.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -179,11 +179,11 @@ export namespace run_v1alpha1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * Adds and removes POSIX capabilities from running containers.
@@ -192,11 +192,11 @@ export namespace run_v1alpha1 {
     /**
      * Added capabilities +optional
      */
-    add?: string[];
+    add?: string[] | null;
     /**
      * Removed capabilities +optional
      */
-    drop?: string[];
+    drop?: string[] | null;
   }
   /**
    * ConfigMapEnvSource selects a ConfigMap to populate the environment variables with.  The contents of the target ConfigMap&#39;s Data field will represent the key-value pairs as environment variables.
@@ -209,7 +209,7 @@ export namespace run_v1alpha1 {
     /**
      * Specify whether the ConfigMap must be defined +optional
      */
-    optional?: boolean;
+    optional?: boolean | null;
   }
   /**
    * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Selects a key from a ConfigMap.
@@ -218,7 +218,7 @@ export namespace run_v1alpha1 {
     /**
      * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  The key to select.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  The ConfigMap to select from.
      */
@@ -226,7 +226,7 @@ export namespace run_v1alpha1 {
     /**
      * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Specify whether the ConfigMap or its key must be defined +optional
      */
-    optional?: boolean;
+    optional?: boolean | null;
   }
   /**
    * Adapts a ConfigMap into a volume. The contents of the target ConfigMap&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths.
@@ -235,7 +235,7 @@ export namespace run_v1alpha1 {
     /**
      * Mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
      */
-    defaultMode?: number;
+    defaultMode?: number | null;
     /**
      * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.
      */
@@ -243,11 +243,11 @@ export namespace run_v1alpha1 {
     /**
      * Name of the config.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Specify whether the Secret or its keys must be defined.
      */
-    optional?: boolean;
+    optional?: boolean | null;
   }
   /**
    * Configuration represents the &quot;floating HEAD&quot; of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration&#39;s spec. The &quot;latest created&quot; revision&#39;s name is available under status, as is the &quot;latest ready&quot; revision&#39;s name. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#configuration
@@ -256,11 +256,11 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The kind of resource, in this case always &quot;Configuration&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Configuration, including name, namespace, labels, and annotations.
      */
@@ -281,27 +281,27 @@ export namespace run_v1alpha1 {
     /**
      * Last time the condition transitioned from one status to another. +optional
      */
-    lastTransitionTime?: string;
+    lastTransitionTime?: string | null;
     /**
      * Human-readable message indicating details about last transition. +optional
      */
-    message?: string;
+    message?: string | null;
     /**
      * One-word CamelCase reason for the condition&#39;s last transition. +optional
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * How to interpret failures of this condition, one of Error, Warning, Info +optional
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * Status of the condition, one of True, False, Unknown.
      */
-    status?: string;
+    status?: string | null;
     /**
      * ConfigurationConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include:&quot;Ready&quot;
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * ConfigurationSpec holds the desired state of the Configuration (from the client).
@@ -310,7 +310,7 @@ export namespace run_v1alpha1 {
     /**
      * Deprecated and not currently populated by Cloud Run. See metadata.generation instead, which is the sequence number containing the latest generation of the desired state.  Read-only.
      */
-    generation?: number;
+    generation?: number | null;
     /**
      * RevisionTemplate holds the latest specification for the Revision to be stamped out. The template references the container image, and may also include labels and annotations that should be attached to the Revision. To correlate a Revision, and/or to force a Revision to be created when the spec doesn&#39;t otherwise change, a nonce label may be provided in the template metadata. For more details, see: https://github.com/knative/serving/blob/master/docs/client-conventions.md#associate-modifications-with-revisions  Cloud Run does not currently support referencing a build that is responsible for materializing the container image from source.
      */
@@ -331,15 +331,15 @@ export namespace run_v1alpha1 {
     /**
      * LatestCreatedRevisionName is the last revision that was created from this Configuration. It might not be ready yet, for that use LatestReadyRevisionName.
      */
-    latestCreatedRevisionName?: string;
+    latestCreatedRevisionName?: string | null;
     /**
      * LatestReadyRevisionName holds the name of the latest Revision stamped out from this Configuration that has had its &quot;Ready&quot; condition become &quot;True&quot;.
      */
-    latestReadyRevisionName?: string;
+    latestReadyRevisionName?: string | null;
     /**
      * ObservedGeneration is the &#39;Generation&#39; of the Configuration that was last processed by the controller. The observed generation is updated even if the controller failed to process the spec and create the Revision.  Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition&#39;s status is True or False.
      */
-    observedGeneration?: number;
+    observedGeneration?: number | null;
   }
   /**
    * A single application container. This specifies both the container to run, the command to run in the container and the arguments to supply to it. Note that additional arguments may be supplied by the system to the container at runtime.
@@ -348,11 +348,11 @@ export namespace run_v1alpha1 {
     /**
      * Arguments to the entrypoint. The docker image&#39;s CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container&#39;s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell +optional
      */
-    args?: string[];
+    args?: string[] | null;
     /**
      * Entrypoint array. Not executed within a shell. The docker image&#39;s ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container&#39;s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell +optional
      */
-    command?: string[];
+    command?: string[] | null;
     /**
      * List of environment variables to set in the container. Cannot be updated. +optional
      */
@@ -364,11 +364,11 @@ export namespace run_v1alpha1 {
     /**
      * Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images
      */
-    image?: string;
+    image?: string | null;
     /**
      * Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images +optional
      */
-    imagePullPolicy?: string;
+    imagePullPolicy?: string | null;
     /**
      * Actions that the management system should take in response to container lifecycle events. Cannot be updated. +optional
      */
@@ -380,7 +380,7 @@ export namespace run_v1alpha1 {
     /**
      * Name of the container specified as a DNS_LABEL. Each container must have a unique name (DNS_LABEL). Cannot be updated.
      */
-    name?: string;
+    name?: string | null;
     /**
      * List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default &quot;0.0.0.0&quot; address inside a container will be accessible from the network. Cannot be updated. +optional
      */
@@ -400,23 +400,23 @@ export namespace run_v1alpha1 {
     /**
      * Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false. +optional
      */
-    stdin?: boolean;
+    stdin?: boolean | null;
     /**
      * Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false +optional
      */
-    stdinOnce?: boolean;
+    stdinOnce?: boolean | null;
     /**
      * Optional: Path at which the file to which the container&#39;s termination message will be written is mounted into the container&#39;s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated. +optional
      */
-    terminationMessagePath?: string;
+    terminationMessagePath?: string | null;
     /**
      * Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated. +optional
      */
-    terminationMessagePolicy?: string;
+    terminationMessagePolicy?: string | null;
     /**
      * Whether this container should allocate a TTY for itself, also requires &#39;stdin&#39; to be true. Default is false. +optional
      */
-    tty?: boolean;
+    tty?: boolean | null;
     /**
      * volumeDevices is the list of block devices to be used by the container. This is an alpha feature and may change in the future. +optional
      */
@@ -428,7 +428,7 @@ export namespace run_v1alpha1 {
     /**
      * Container&#39;s working directory. If not specified, the container runtime&#39;s default will be used, which might be configured in the container image. Cannot be updated. +optional
      */
-    workingDir?: string;
+    workingDir?: string | null;
   }
   /**
    * ContainerPort represents a network port in a single container.
@@ -437,23 +437,23 @@ export namespace run_v1alpha1 {
     /**
      * Number of port to expose on the pod&#39;s IP address. This must be a valid port number, 0 &lt; x &lt; 65536.
      */
-    containerPort?: number;
+    containerPort?: number | null;
     /**
      * What host IP to bind the external port to. +optional
      */
-    hostIP?: string;
+    hostIP?: string | null;
     /**
      * Number of port to expose on the host. If specified, this must be a valid port number, 0 &lt; x &lt; 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. +optional
      */
-    hostPort?: number;
+    hostPort?: number | null;
     /**
      * If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services. +optional
      */
-    name?: string;
+    name?: string | null;
     /**
      * Protocol for port. Must be UDP or TCP. Defaults to &quot;TCP&quot;. +optional
      */
-    protocol?: string;
+    protocol?: string | null;
   }
   /**
    * Resource to hold the state and status of a user&#39;s domain mapping.
@@ -462,11 +462,11 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;domains.cloudrun.com/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The kind of resource, in this case &quot;DomainMapping&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this BuildTemplate.
      */
@@ -487,27 +487,27 @@ export namespace run_v1alpha1 {
     /**
      * Last time the condition transitioned from one status to another. +optional
      */
-    lastTransitionTime?: string;
+    lastTransitionTime?: string | null;
     /**
      * Human readable message indicating details about the current status. +optional
      */
-    message?: string;
+    message?: string | null;
     /**
      * One-word CamelCase reason for the condition&#39;s current status. +optional
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * How to interpret failures of this condition, one of Error, Warning, Info +optional
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * Status of the condition, one of True, False, Unknown.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Type of domain mapping condition.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The desired state of the Domain Mapping.
@@ -516,15 +516,15 @@ export namespace run_v1alpha1 {
     /**
      * The mode of the certificate.
      */
-    certificateMode?: string;
+    certificateMode?: string | null;
     /**
      * If set, the mapping will override any mapping set before this spec was set. It is recommended that the user leaves this empty to receive an error warning about a potential conflict and only set it once the respective UI has given such a warning.
      */
-    forceOverride?: boolean;
+    forceOverride?: boolean | null;
     /**
      * The name of the Knative Route that this DomainMapping applies to. The route must exist.
      */
-    routeName?: string;
+    routeName?: string | null;
   }
   /**
    * The current state of the Domain Mapping.
@@ -537,11 +537,11 @@ export namespace run_v1alpha1 {
     /**
      * The name of the route that the mapping currently points to.
      */
-    mappedRouteName?: string;
+    mappedRouteName?: string | null;
     /**
      * ObservedGeneration is the &#39;Generation&#39; of the DomainMapping that was last processed by the controller.  Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False.
      */
-    observedGeneration?: number;
+    observedGeneration?: number | null;
     /**
      * The resource records required to configure this domain mapping. These records must be added to the domain&#39;s DNS configuration in order to serve the application via this domain mapping.
      */
@@ -562,7 +562,7 @@ export namespace run_v1alpha1 {
     /**
      * An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER. +optional
      */
-    prefix?: string;
+    prefix?: string | null;
     /**
      * The Secret to select from +optional
      */
@@ -575,11 +575,11 @@ export namespace run_v1alpha1 {
     /**
      * Name of the environment variable. Must be a C_IDENTIFIER.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to &quot;&quot;. +optional
      */
-    value?: string;
+    value?: string | null;
     /**
      * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Source for the environment variable&#39;s value. Cannot be used if value is not empty. +optional
      */
@@ -602,11 +602,11 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The kind of resource, in this case &quot;EventType&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this EventType.
      */
@@ -620,11 +620,11 @@ export namespace run_v1alpha1 {
     /**
      * The API version of the importer CRD.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The kind of the importer CRD.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Parameters required to create an importer for the EventType.
      */
@@ -634,21 +634,21 @@ export namespace run_v1alpha1 {
     /**
      * Description of the parameter. E.g. &quot;Google Cloud Project Id.&quot;
      */
-    description?: string;
+    description?: string | null;
     /**
      * Name of the parameter. E.g. googleCloudProject.
      */
-    name?: string;
+    name?: string | null;
   }
   export interface Schema$EventTypeSpec {
     /**
      * Refers to the Broker that can provide the EventType.
      */
-    broker?: string;
+    broker?: string | null;
     /**
      * Description is a string describing what the EventType is about. +optional
      */
-    description?: string;
+    description?: string | null;
     /**
      * The importer that provides this EventType to the eventing mesh.
      */
@@ -656,15 +656,15 @@ export namespace run_v1alpha1 {
     /**
      * Schema is a URI with the EventType schema. It may be a JSON schema, a protobuf schema, etc. +optional
      */
-    schema?: string;
+    schema?: string | null;
     /**
      * Source is a valid URI. Refers to the CloudEvent source as it enters into the eventing mesh.
      */
-    source?: string;
+    source?: string | null;
     /**
      * Type is authoritative. This refers to the CloudEvent type as it enters into the eventing mesh.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * ExecAction describes a &quot;run in container&quot; action.
@@ -673,7 +673,7 @@ export namespace run_v1alpha1 {
     /**
      * Command is the command line to execute inside the container, the working directory for the command  is root (&#39;/&#39;) in the container&#39;s filesystem. The command is simply exec&#39;d, it is not run inside a shell, so traditional shell instructions (&#39;|&#39;, etc) won&#39;t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. +optional
      */
-    command?: string;
+    command?: string | null;
   }
   /**
    * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
@@ -682,19 +682,19 @@ export namespace run_v1alpha1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -703,15 +703,15 @@ export namespace run_v1alpha1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Handler defines a specific action that should be taken
@@ -737,7 +737,7 @@ export namespace run_v1alpha1 {
     /**
      * Host name to connect to, defaults to the pod IP. You probably want to set &quot;Host&quot; in httpHeaders instead. +optional
      */
-    host?: string;
+    host?: string | null;
     /**
      * Custom headers to set in the request. HTTP allows repeated headers. +optional
      */
@@ -745,7 +745,7 @@ export namespace run_v1alpha1 {
     /**
      * Path to access on the HTTP server. +optional
      */
-    path?: string;
+    path?: string | null;
     /**
      * Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
      */
@@ -753,7 +753,7 @@ export namespace run_v1alpha1 {
     /**
      * Scheme to use for connecting to the host. Defaults to HTTP. +optional
      */
-    scheme?: string;
+    scheme?: string | null;
   }
   /**
    * HTTPHeader describes a custom header to be used in HTTP probes
@@ -762,11 +762,11 @@ export namespace run_v1alpha1 {
     /**
      * The header field name
      */
-    name?: string;
+    name?: string | null;
     /**
      * The header field value
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Initializer is information about an initializer that has not yet completed.
@@ -775,7 +775,7 @@ export namespace run_v1alpha1 {
     /**
      * name of the process that is responsible for initializing this object.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Initializers tracks the progress of initialization.
@@ -793,15 +793,15 @@ export namespace run_v1alpha1 {
     /**
      * The int value.
      */
-    intVal?: number;
+    intVal?: number | null;
     /**
      * The string value.
      */
-    strVal?: string;
+    strVal?: string | null;
     /**
      * The type of the value.
      */
-    type?: number;
+    type?: number | null;
   }
   /**
    * Maps a string key to a path within a volume.
@@ -810,15 +810,15 @@ export namespace run_v1alpha1 {
     /**
      * The key to project.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. +optional
      */
-    mode?: number;
+    mode?: number | null;
     /**
      * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element &#39;..&#39;. May not start with the string &#39;..&#39;.
      */
-    path?: string;
+    path?: string | null;
   }
   /**
    * Lifecycle describes actions that the management system should take in response to container lifecycle events. For the PostStart and PreStop lifecycle handlers, management of the container blocks until the action is complete, unless the container process fails, in which case the handler is aborted.
@@ -844,7 +844,7 @@ export namespace run_v1alpha1 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * ListConfigurationsResponse is a list of Configuration resources.
@@ -853,7 +853,7 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * List of Configurations.
      */
@@ -861,7 +861,7 @@ export namespace run_v1alpha1 {
     /**
      * The kind of this resource, in this case &quot;ConfigurationList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Configuration list.
      */
@@ -869,11 +869,11 @@ export namespace run_v1alpha1 {
     /**
      * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
      */
-    regionDetails?: {[key: string]: Schema$RegionDetails};
+    regionDetails?: {[key: string]: Schema$RegionDetails} | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * ListDomainMappingsResponse is a list of DomainMapping resources.
@@ -882,7 +882,7 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;domains.cloudrun.com/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * List of DomainMappings.
      */
@@ -890,7 +890,7 @@ export namespace run_v1alpha1 {
     /**
      * The kind of this resource, in this case &quot;DomainMappingList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this DomainMapping list.
      */
@@ -898,7 +898,7 @@ export namespace run_v1alpha1 {
     /**
      * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
      */
-    regionDetails?: {[key: string]: Schema$RegionDetails};
+    regionDetails?: {[key: string]: Schema$RegionDetails} | null;
   }
   /**
    * ListEventTypesResponse is a list of EventType resources.
@@ -907,7 +907,7 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * List of EventTypes.
      */
@@ -915,7 +915,7 @@ export namespace run_v1alpha1 {
     /**
      * The kind of this resource, in this case &quot;EventTypeList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this EventType list.
      */
@@ -923,11 +923,11 @@ export namespace run_v1alpha1 {
     /**
      * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
      */
-    regionDetails?: {[key: string]: Schema$RegionDetails};
+    regionDetails?: {[key: string]: Schema$RegionDetails} | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -940,7 +940,7 @@ export namespace run_v1alpha1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.
@@ -949,15 +949,15 @@ export namespace run_v1alpha1 {
     /**
      * continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response.
      */
-    continue?: string;
+    continue?: string | null;
     /**
      * String that identifies the server&#39;s internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
      */
-    resourceVersion?: string;
+    resourceVersion?: string | null;
     /**
      * SelfLink is a URL representing this object. Populated by the system. Read-only. +optional
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * ListRevisionsResponse is a list of Revision resources.
@@ -966,7 +966,7 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * List of Revisions.
      */
@@ -974,7 +974,7 @@ export namespace run_v1alpha1 {
     /**
      * The kind of this resource, in this case &quot;RevisionList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this revision list.
      */
@@ -982,11 +982,11 @@ export namespace run_v1alpha1 {
     /**
      * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
      */
-    regionDetails?: {[key: string]: Schema$RegionDetails};
+    regionDetails?: {[key: string]: Schema$RegionDetails} | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * ListRoutesResponse is a list of Route resources.
@@ -995,7 +995,7 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * List of Routes.
      */
@@ -1003,7 +1003,7 @@ export namespace run_v1alpha1 {
     /**
      * The kind of this resource, in this case always &quot;RouteList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Route list.
      */
@@ -1011,11 +1011,11 @@ export namespace run_v1alpha1 {
     /**
      * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
      */
-    regionDetails?: {[key: string]: Schema$RegionDetails};
+    regionDetails?: {[key: string]: Schema$RegionDetails} | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * A list of Service resources.
@@ -1024,7 +1024,7 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * List of Services.
      */
@@ -1032,7 +1032,7 @@ export namespace run_v1alpha1 {
     /**
      * The kind of this resource, in this case &quot;ServiceList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Service list.
      */
@@ -1040,11 +1040,11 @@ export namespace run_v1alpha1 {
     /**
      * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
      */
-    regionDetails?: {[key: string]: Schema$RegionDetails};
+    regionDetails?: {[key: string]: Schema$RegionDetails} | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * ListTriggersResponse is a list of Trigger resources.
@@ -1053,7 +1053,7 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * List of Triggers.
      */
@@ -1061,7 +1061,7 @@ export namespace run_v1alpha1 {
     /**
      * The kind of this resource, in this case &quot;TriggerList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Trigger list.
      */
@@ -1069,11 +1069,11 @@ export namespace run_v1alpha1 {
     /**
      * Details for the regions used during a global call including any failures. This is not populated when targeting a specific region.
      */
-    regionDetails?: {[key: string]: Schema$RegionDetails};
+    regionDetails?: {[key: string]: Schema$RegionDetails} | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.
@@ -1082,7 +1082,7 @@ export namespace run_v1alpha1 {
     /**
      * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -1091,23 +1091,23 @@ export namespace run_v1alpha1 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.
@@ -1116,35 +1116,35 @@ export namespace run_v1alpha1 {
     /**
      * Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations +optional
      */
-    annotations?: {[key: string]: string};
+    annotations?: {[key: string]: string} | null;
     /**
      * Not currently supported by Cloud Run.  The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request. +optional
      */
-    clusterName?: string;
+    clusterName?: string | null;
     /**
      * CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.  Populated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata +optional
      */
-    creationTimestamp?: string;
+    creationTimestamp?: string | null;
     /**
      * Not currently supported by Cloud Run.  Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only. +optional
      */
-    deletionGracePeriodSeconds?: number;
+    deletionGracePeriodSeconds?: number | null;
     /**
      * DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This field is set by the server when a graceful deletion is requested by the user, and is not directly settable by a client. The resource is expected to be deleted (no longer visible from resource lists, and not reachable by name) after the time in this field, once the finalizers list is empty. As long as the finalizers list contains items, deletion is blocked. Once the deletionTimestamp is set, this value may not be unset or be set further into the future, although it may be shortened or the resource may be deleted prior to this time. For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react by sending a graceful termination signal to the containers in the pod. After that 30 seconds, the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup, remove the pod from the API. In the presence of network partitions, this object may still exist after this timestamp, until an administrator or automated process can determine the resource is fully terminated. If not set, graceful deletion of the object has not been requested.  Populated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata +optional
      */
-    deletionTimestamp?: string;
+    deletionTimestamp?: string | null;
     /**
      * Not currently supported by Cloud Run.  Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. +optional +patchStrategy=merge
      */
-    finalizers?: string[];
+    finalizers?: string[] | null;
     /**
      * Not currently supported by Cloud Run.  GenerateName is an optional prefix, used by the server, to generate a unique name ONLY IF the Name field has not been provided. If this field is used, the name returned to the client will be different than the name passed. This value will also be combined with a unique suffix. The provided value has the same validation rules as the Name field, and may be truncated by the length of the suffix required to make the value unique on the server.  If this field is specified and the generated name exists, the server will NOT return a 409 - instead, it will either return 201 Created or 500 with Reason ServerTimeout indicating a unique name could not be found in the time allotted, and the client should retry (optionally after the time indicated in the Retry-After header).  Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#idempotency +optional  string generateName = 2;
      */
-    generateName?: string;
+    generateName?: string | null;
     /**
      * A sequence number representing a specific generation of the desired state. Populated by the system. Read-only. +optional
      */
-    generation?: number;
+    generation?: number | null;
     /**
      * Not currently supported by Cloud Run.  An initializer is a controller which enforces some system invariant at object creation time. This field is a list of initializers that have not yet acted on this object. If nil or empty, this object has been completely initialized. Otherwise, the object is considered uninitialized and is hidden (in list/watch and get calls) from clients that haven&#39;t explicitly asked to observe uninitialized objects.  When an object is created, the system will populate this list with the current set of initializers. Only privileged users may set or modify this list. Once it is empty, it may not be modified further by any user.
      */
@@ -1152,15 +1152,15 @@ export namespace run_v1alpha1 {
     /**
      * Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and routes. More info: http://kubernetes.io/docs/user-guide/labels +optional
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Name must be unique within a namespace, within a Cloud Run region. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names +optional
      */
-    name?: string;
+    name?: string | null;
     /**
      * Namespace defines the space within each name must be unique, within a Cloud Run region. In Cloud Run the namespace must be equal to either the project ID or project number.
      */
-    namespace?: string;
+    namespace?: string | null;
     /**
      * List of objects that own this object. If ALL objects in the list have been deleted, this object will be garbage collected. +optional
      */
@@ -1168,15 +1168,15 @@ export namespace run_v1alpha1 {
     /**
      * An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources.  Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
      */
-    resourceVersion?: string;
+    resourceVersion?: string | null;
     /**
      * SelfLink is a URL representing this object. Populated by the system. Read-only. +optional  string selfLink = 4;
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * UID is the unique in time and space value for this object. It is typically generated by the server on successful creation of a resource and is not allowed to change on PUT operations.  Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids +optional
      */
-    uid?: string;
+    uid?: string | null;
   }
   /**
    * ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -1185,31 +1185,31 @@ export namespace run_v1alpha1 {
     /**
      * API version of the referent. +optional
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &quot;spec.containers{name}&quot; (where &quot;name&quot; refers to the name of the container that triggered the event) or if no container name is specified &quot;spec.containers[2]&quot; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
      */
-    fieldPath?: string;
+    fieldPath?: string | null;
     /**
      * Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds +optional
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names +optional
      */
-    name?: string;
+    name?: string | null;
     /**
      * Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ +optional
      */
-    namespace?: string;
+    namespace?: string | null;
     /**
      * Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
      */
-    resourceVersion?: string;
+    resourceVersion?: string | null;
     /**
      * UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids +optional
      */
-    uid?: string;
+    uid?: string | null;
   }
   /**
    * OwnerReference contains enough information to let you identify an owning object. Currently, an owning object must be in the same namespace, so there is no namespace field.
@@ -1218,27 +1218,27 @@ export namespace run_v1alpha1 {
     /**
      * API version of the referent.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * If true, AND if the owner has the &quot;foregroundDeletion&quot; finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs &quot;delete&quot; permission of the owner, otherwise 422 (Unprocessable Entity) will be returned. +optional
      */
-    blockOwnerDeletion?: boolean;
+    blockOwnerDeletion?: boolean | null;
     /**
      * If true, this reference points to the managing controller. +optional
      */
-    controller?: boolean;
+    controller?: boolean | null;
     /**
      * Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names
      */
-    name?: string;
+    name?: string | null;
     /**
      * UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
      */
-    uid?: string;
+    uid?: string | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -1255,11 +1255,11 @@ export namespace run_v1alpha1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -1268,7 +1268,7 @@ export namespace run_v1alpha1 {
     /**
      * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. +optional
      */
-    failureThreshold?: number;
+    failureThreshold?: number | null;
     /**
      * The action taken to determine the health of a container
      */
@@ -1276,19 +1276,19 @@ export namespace run_v1alpha1 {
     /**
      * Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes +optional
      */
-    initialDelaySeconds?: number;
+    initialDelaySeconds?: number | null;
     /**
      * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. +optional
      */
-    periodSeconds?: number;
+    periodSeconds?: number | null;
     /**
      * Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1. +optional
      */
-    successThreshold?: number;
+    successThreshold?: number | null;
     /**
      * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes +optional
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | null;
   }
   /**
    * The view model of a single quantity, e.g. &quot;800 MiB&quot;. Corresponds to https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/generated.proto
@@ -1297,7 +1297,7 @@ export namespace run_v1alpha1 {
     /**
      * Stringified version of the quantity, e.g., &quot;800 MiB&quot;.
      */
-    string?: string;
+    string?: string | null;
   }
   /**
    * Information for a regional call used for a global API.
@@ -1315,15 +1315,15 @@ export namespace run_v1alpha1 {
     /**
      * Relative name of the object affected by this record. Only applicable for `CNAME` records. Example: &#39;www&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Data for this record. Values vary by record type, as defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1).
      */
-    rrdata?: string;
+    rrdata?: string | null;
     /**
      * Resource record type. Example: `AAAA`.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * ResourceRequirements describes the compute resource requirements.
@@ -1332,19 +1332,19 @@ export namespace run_v1alpha1 {
     /**
      * Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the &#39;quantity&#39; k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
-    limits?: {[key: string]: string};
+    limits?: {[key: string]: string} | null;
     /**
      * Limits describes the maximum amount of compute resources allowed. This is a temporary field created to migrate away from the map&lt;string, Quantity&gt; limits field. This is done to become compliant with k8s style API. This field is deprecated in favor of limits field.
      */
-    limitsInMap?: {[key: string]: Schema$Quantity};
+    limitsInMap?: {[key: string]: Schema$Quantity} | null;
     /**
      * Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the &#39;quantity&#39; k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
-    requests?: {[key: string]: string};
+    requests?: {[key: string]: string} | null;
     /**
      * Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. This is a temporary field created to migrate away from the map&lt;string, Quantity&gt; requests field. This is done to become compliant with k8s style API. This field is deprecated in favor of requests field.
      */
-    requestsInMap?: {[key: string]: Schema$Quantity};
+    requestsInMap?: {[key: string]: Schema$Quantity} | null;
   }
   /**
    * Revision is an immutable snapshot of code and configuration.  A revision references a container image. Revisions are created by updates to a Configuration.  Cloud Run does not currently support referencing a build that is responsible for materializing the container image from source.  See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#revision
@@ -1353,11 +1353,11 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The kind of this resource, in this case &quot;Revision&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Revision, including name, namespace, labels, and annotations.
      */
@@ -1378,27 +1378,27 @@ export namespace run_v1alpha1 {
     /**
      * Last time the condition transitioned from one status to another. +optional
      */
-    lastTransitionTime?: string;
+    lastTransitionTime?: string | null;
     /**
      * Human readable message indicating details about the current status. +optional
      */
-    message?: string;
+    message?: string | null;
     /**
      * One-word CamelCase reason for the condition&#39;s last transition. +optional
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * How to interpret failures of this condition, one of Error, Warning, Info +optional
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * Status of the condition, one of True, False, Unknown.
      */
-    status?: string;
+    status?: string | null;
     /**
      * RevisionConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include:  * &quot;Ready&quot;: True when the Revision is ready. * &quot;ResourcesAvailable&quot;: True when underlying resources have been provisioned. * &quot;ContainerHealthy&quot;: True when the Revision readiness check completes. * &quot;Active&quot;: True when the Revision may receive traffic.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * RevisionSpec holds the desired state of the Revision (from the client).
@@ -1407,7 +1407,7 @@ export namespace run_v1alpha1 {
     /**
      * ConcurrencyModel specifies the desired concurrency model (Single or Multi) for the Revision. Defaults to Multi. Deprecated in favor of ContainerConcurrency. +optional
      */
-    concurrencyModel?: string;
+    concurrencyModel?: string | null;
     /**
      * Container defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of the fields of this Container, including: name, ports, and volumeMounts. The runtime contract is documented here: https://github.com/knative/serving/blob/master/docs/runtime-contract.md
      */
@@ -1415,7 +1415,7 @@ export namespace run_v1alpha1 {
     /**
      * (Optional)  ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision.  Cloud Run fully managed: supported, defaults to 80  Cloud Run on GKE: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.
      */
-    containerConcurrency?: number;
+    containerConcurrency?: number | null;
     /**
      * Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided.
      */
@@ -1423,19 +1423,19 @@ export namespace run_v1alpha1 {
     /**
      * Deprecated and not currently populated by Cloud Run. See metadata.generation instead, which is the sequence number containing the latest generation of the desired state.  Read-only.
      */
-    generation?: number;
+    generation?: number | null;
     /**
      * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project&#39;s default service account.
      */
-    serviceAccountName?: string;
+    serviceAccountName?: string | null;
     /**
      * ServingState holds a value describing the state the resources are in for this Revision. Users must not specify this when creating a revision. It is expected that the system will manipulate this based on routability and load.  Populated by the system. Read-only.
      */
-    servingState?: string;
+    servingState?: string | null;
     /**
      * TimeoutSeconds holds the max duration the instance is allowed for responding to a request. Not currently used by Cloud Run.
      */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | null;
     volumes?: Schema$Volume[];
   }
   /**
@@ -1449,19 +1449,19 @@ export namespace run_v1alpha1 {
     /**
      * ImageDigest holds the resolved digest for the image specified within .Spec.Container.Image. The digest is resolved during the creation of Revision. This field holds the digest value regardless of whether a tag or digest was originally specified in the Container object.
      */
-    imageDigest?: string;
+    imageDigest?: string | null;
     /**
      * Specifies the generated logging url for this particular revision based on the revision url template specified in the controller&#39;s config. +optional
      */
-    logUrl?: string;
+    logUrl?: string | null;
     /**
      * ObservedGeneration is the &#39;Generation&#39; of the Revision that was last processed by the controller.  Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition&#39;s status is True or False.
      */
-    observedGeneration?: number;
+    observedGeneration?: number | null;
     /**
      * Not currently used by Cloud Run.
      */
-    serviceName?: string;
+    serviceName?: string | null;
   }
   /**
    * RevisionTemplateSpec describes the data a revision should have when created from a template. Based on: https://github.com/kubernetes/api/blob/e771f807/core/v1/types.go#L3179-L3190
@@ -1483,11 +1483,11 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The kind of this resource, in this case always &quot;Route&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Route, including name, namespace, labels, and annotations.
      */
@@ -1508,27 +1508,27 @@ export namespace run_v1alpha1 {
     /**
      * Last time the condition transitioned from one status to another. +optional
      */
-    lastTransitionTime?: string;
+    lastTransitionTime?: string | null;
     /**
      * Human-readable message indicating details about last transition. +optional
      */
-    message?: string;
+    message?: string | null;
     /**
      * One-word CamelCase reason for the condition&#39;s last transition. +optional
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * How to interpret failures of this condition, one of Error, Warning, Info +optional
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * Status of the condition, one of &quot;True&quot;, &quot;False&quot;, &quot;Unknown&quot;.
      */
-    status?: string;
+    status?: string | null;
     /**
      * RouteConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: &quot;Ready&quot;.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * RouteSpec holds the desired state of the Route (from the client).
@@ -1537,7 +1537,7 @@ export namespace run_v1alpha1 {
     /**
      * Deprecated and not currently populated by Cloud Run. See metadata.generation instead, which is the sequence number containing the latest generation of the desired state.  Read-only.
      */
-    generation?: number;
+    generation?: number | null;
     /**
      * Traffic specifies how to distribute traffic over a collection of Knative Revisions and Configurations. Cloud Run currently supports a single configurationName.
      */
@@ -1558,15 +1558,15 @@ export namespace run_v1alpha1 {
     /**
      * Deprecated - use url instead. Domain holds the top-level domain that will distribute traffic over the provided targets.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * Deprecated - use address instead. For Cloud Run, identifical to domain.
      */
-    domainInternal?: string;
+    domainInternal?: string | null;
     /**
      * ObservedGeneration is the &#39;Generation&#39; of the Route that was last processed by the controller.  Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False.  Note that providing a trafficTarget that only has a configurationName will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new &quot;latest ready&quot; revisions from the Configuration are processed without an update to the Route&#39;s spec.
      */
-    observedGeneration?: number;
+    observedGeneration?: number | null;
     /**
      * Traffic holds the configured traffic distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.
      */
@@ -1574,7 +1574,7 @@ export namespace run_v1alpha1 {
     /**
      * URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * SecretEnvSource selects a Secret to populate the environment variables with.  The contents of the target Secret&#39;s Data field will represent the key-value pairs as environment variables.
@@ -1587,7 +1587,7 @@ export namespace run_v1alpha1 {
     /**
      * Specify whether the Secret must be defined +optional
      */
-    optional?: boolean;
+    optional?: boolean | null;
   }
   /**
    * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  SecretKeySelector selects a key of a Secret.
@@ -1596,7 +1596,7 @@ export namespace run_v1alpha1 {
     /**
      * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  The key of the secret to select from.  Must be a valid secret key.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  The name of the secret in the pod&#39;s namespace to select from.
      */
@@ -1604,7 +1604,7 @@ export namespace run_v1alpha1 {
     /**
      * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Specify whether the Secret or its key must be defined +optional
      */
-    optional?: boolean;
+    optional?: boolean | null;
   }
   /**
    * The contents of the target Secret&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names.
@@ -1613,7 +1613,7 @@ export namespace run_v1alpha1 {
     /**
      * Mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
      */
-    defaultMode?: number;
+    defaultMode?: number | null;
     /**
      * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.
      */
@@ -1621,11 +1621,11 @@ export namespace run_v1alpha1 {
     /**
      * Specify whether the Secret or its keys must be defined.
      */
-    optional?: boolean;
+    optional?: boolean | null;
     /**
      * Name of the secret in the container&#39;s namespace to use.
      */
-    secretName?: string;
+    secretName?: string | null;
   }
   /**
    * SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.
@@ -1634,7 +1634,7 @@ export namespace run_v1alpha1 {
     /**
      * AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN +optional
      */
-    allowPrivilegeEscalation?: boolean;
+    allowPrivilegeEscalation?: boolean | null;
     /**
      * The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. +optional
      */
@@ -1642,23 +1642,23 @@ export namespace run_v1alpha1 {
     /**
      * Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. +optional
      */
-    privileged?: boolean;
+    privileged?: boolean | null;
     /**
      * Whether this container has a read-only root filesystem. Default is false. +optional
      */
-    readOnlyRootFilesystem?: boolean;
+    readOnlyRootFilesystem?: boolean | null;
     /**
      * The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
      */
-    runAsGroup?: number;
+    runAsGroup?: number | null;
     /**
      * Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
      */
-    runAsNonRoot?: boolean;
+    runAsNonRoot?: boolean | null;
     /**
      * The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
      */
-    runAsUser?: number;
+    runAsUser?: number | null;
     /**
      * The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. +optional
      */
@@ -1671,19 +1671,19 @@ export namespace run_v1alpha1 {
     /**
      * Level is SELinux level label that applies to the container. +optional
      */
-    level?: string;
+    level?: string | null;
     /**
      * Role is a SELinux role label that applies to the container. +optional
      */
-    role?: string;
+    role?: string | null;
     /**
      * Type is a SELinux type label that applies to the container. +optional
      */
-    type?: string;
+    type?: string | null;
     /**
      * User is a SELinux user label that applies to the container. +optional
      */
-    user?: string;
+    user?: string | null;
   }
   /**
    * Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets).  The Service&#39;s controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own.  See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#service
@@ -1692,11 +1692,11 @@ export namespace run_v1alpha1 {
     /**
      * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The kind of resource, in this case &quot;Service&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Service, including name, namespace, labels, and annotations.
      */
@@ -1717,27 +1717,27 @@ export namespace run_v1alpha1 {
     /**
      * Last time the condition transitioned from one status to another. +optional
      */
-    lastTransitionTime?: string;
+    lastTransitionTime?: string | null;
     /**
      * Human-readable message indicating details about last transition. +optional
      */
-    message?: string;
+    message?: string | null;
     /**
      * One-word CamelCase reason for the condition&#39;s last transition. +optional
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * How to interpret failures of this condition, one of Error, Warning, Info +optional
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * Status of the condition, one of True, False, Unknown.
      */
-    status?: string;
+    status?: string | null;
     /**
      * ServiceConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting  Types include: &quot;Ready&quot;, &quot;ConfigurationsReady&quot;, and &quot;RoutesReady&quot;. &quot;Ready&quot; will be true when the underlying Route and Configuration are ready.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * ServiceSpec holds the desired state of the Route (from the client), which is used to manipulate the underlying Route and Configuration(s).
@@ -1746,7 +1746,7 @@ export namespace run_v1alpha1 {
     /**
      * Deprecated and not currently populated by Cloud Run. See metadata.generation instead, which is the sequence number containing the latest generation of the desired state.  Read-only.
      */
-    generation?: number;
+    generation?: number | null;
     /**
      * Manual contains the options for configuring a manual service. See ServiceSpec for more details.  Not currently supported by Cloud Run.
      */
@@ -1787,7 +1787,7 @@ export namespace run_v1alpha1 {
     /**
      * The revision name to pin this service to until changed to a different service type.
      */
-    revisionName?: string;
+    revisionName?: string | null;
   }
   /**
    * ServiceSpecReleaseType contains the options for slowly releasing revisions. See ServiceSpec for more details.  Not currently supported by Cloud Run.
@@ -1800,11 +1800,11 @@ export namespace run_v1alpha1 {
     /**
      * Revisions is an ordered list of 1 or 2 revisions. The first is the current revision, and the second is the candidate revision. If a single revision is provided, traffic will be pinned at that revision.  &quot;@latest&quot; is a shortcut for usage that refers to the latest created revision by the configuration.
      */
-    revisions?: string[];
+    revisions?: string[] | null;
     /**
      * RolloutPercent is the percent of traffic that should be sent to the candidate revision, i.e. the 2nd revision in the revisions list. Valid values are between 0 and 99 inclusive.
      */
-    rolloutPercent?: number;
+    rolloutPercent?: number | null;
   }
   /**
    * ServiceSpecRunLatest contains the options for always having a route to the latest configuration. See ServiceSpec for more details.
@@ -1830,19 +1830,19 @@ export namespace run_v1alpha1 {
     /**
      * From RouteStatus. Domain holds the top-level domain that will distribute traffic over the provided targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * From ConfigurationStatus. LatestCreatedRevisionName is the last revision that was created from this Service&#39;s Configuration. It might not be ready yet, for that use LatestReadyRevisionName.
      */
-    latestCreatedRevisionName?: string;
+    latestCreatedRevisionName?: string | null;
     /**
      * From ConfigurationStatus. LatestReadyRevisionName holds the name of the latest Revision stamped out from this Service&#39;s Configuration that has had its &quot;Ready&quot; condition become &quot;True&quot;.
      */
-    latestReadyRevisionName?: string;
+    latestReadyRevisionName?: string | null;
     /**
      * ObservedGeneration is the &#39;Generation&#39; of the Route that was last processed by the controller.  Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False.
      */
-    observedGeneration?: number;
+    observedGeneration?: number | null;
     /**
      * From RouteStatus. Traffic holds the configured traffic distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.
      */
@@ -1850,7 +1850,7 @@ export namespace run_v1alpha1 {
     /**
      * From RouteStatus. URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1863,7 +1863,7 @@ export namespace run_v1alpha1 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   export interface Schema$SubscriberSpec {
     /**
@@ -1873,7 +1873,7 @@ export namespace run_v1alpha1 {
     /**
      * Reference to a &#39;known&#39; endpoint where no resolving is done. http://k8s-service for example http://myexternalhandler.example.com/foo/bar
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * TCPSocketAction describes an action based on opening a socket
@@ -1882,7 +1882,7 @@ export namespace run_v1alpha1 {
     /**
      * Optional: Host name to connect to, defaults to the pod IP. +optional
      */
-    host?: string;
+    host?: string | null;
     /**
      * Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
      */
@@ -1895,7 +1895,7 @@ export namespace run_v1alpha1 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -1904,7 +1904,7 @@ export namespace run_v1alpha1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * TrafficTarget holds a single entry of the routing table for a Route.
@@ -1913,41 +1913,41 @@ export namespace run_v1alpha1 {
     /**
      * ConfigurationName of a configuration to whose latest revision we will send this portion of traffic. When the &quot;status.latestReadyRevisionName&quot; of the referenced configuration changes, we will automatically migrate traffic from the prior &quot;latest ready&quot; revision to the new one. This field is never set in Route&#39;s status, only its spec. This is mutually exclusive with RevisionName.  Cloud Run currently supports a single ConfigurationName.
      */
-    configurationName?: string;
+    configurationName?: string | null;
     /**
      * LatestRevision may be optionally provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty. +optional
      */
-    latestRevision?: boolean;
+    latestRevision?: boolean | null;
     /**
      * Name is optionally used to expose a dedicated hostname for referencing this target exclusively.  Not currently supported by Cloud Run. +optional
      */
-    name?: string;
+    name?: string | null;
     /**
      * Percent specifies percent of the traffic to this Revision or Configuration. This defaults to zero if unspecified.  Cloud Run currently requires 100 percent for a single ConfigurationName TrafficTarget entry.
      */
-    percent?: number;
+    percent?: number | null;
     /**
      * RevisionName of a specific revision to which to send this portion of traffic. This is mutually exclusive with ConfigurationName.  Providing RevisionName in spec is not currently supported by Cloud Run.
      */
-    revisionName?: string;
+    revisionName?: string | null;
     /**
      * Tag is optionally used to expose a dedicated url for referencing this target exclusively.  Not currently supported in Cloud Run. +optional
      */
-    tag?: string;
+    tag?: string | null;
     /**
      * Output only. URL displays the URL for accessing named traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. http://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc.  Not currently supported in Cloud Run.
      */
-    url?: string;
+    url?: string | null;
   }
   export interface Schema$Trigger {
     /**
      * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The kind of resource, in this case &quot;Trigger&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metadata associated with this Trigger.
      */
@@ -1968,47 +1968,54 @@ export namespace run_v1alpha1 {
     /**
      * Last time the condition transitioned from one status to another. +optional
      */
-    lastTransitionTime?: string;
+    lastTransitionTime?: string | null;
     /**
      * Human readable message indicating details about the current status. +optional
      */
-    message?: string;
+    message?: string | null;
     /**
      * One-word CamelCase reason for the condition&#39;s current status. +optional
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * How to interpret failures of this condition, one of Error, Warning, Info +optional
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * Status of the condition, one of True, False, Unknown.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Type of Trigger condition.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$TriggerFilter {
+    /**
+     * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Attributes filters events by exact match on event context attributes. Each key in the map is compared with the equivalent key in the event context. An event passes the filter if all values are equal to the specified values.  Nested context attributes are not supported as keys. Only string values are supported.  +optional
+     */
+    attributes?: {[key: string]: string} | null;
+    /**
+     * SourceAndType filters events based on exact matches on the CloudEvents type and source attributes. This field has been replaced by the Attributes field.  +optional
+     */
     sourceAndType?: Schema$TriggerFilterSourceAndType;
   }
   /**
    * TriggerFilterSourceAndType filters events based on exact matches on the cloud event&#39;s type and source attributes. Only exact matches will pass the filter.
    */
   export interface Schema$TriggerFilterSourceAndType {
-    source?: string;
-    type?: string;
+    source?: string | null;
+    type?: string | null;
   }
   export interface Schema$TriggerImporterSpec {
     /**
      * Arguments to use for the importer. These must match the parameters in the EventType&#39;s importer.
      */
-    arguments?: {[key: string]: string};
+    arguments?: {[key: string]: string} | null;
     /**
      * Name of the EventType that this importer provides.
      */
-    eventTypeName?: string;
+    eventTypeName?: string | null;
   }
   /**
    * The desired state of the Trigger.
@@ -2017,7 +2024,7 @@ export namespace run_v1alpha1 {
     /**
      * Broker is the broker that this trigger receives events from. If not specified, will default to &#39;default&#39;.  Not currently supported by Cloud Run.
      */
-    broker?: string;
+    broker?: string | null;
     /**
      * Filter is the filter to apply against all events from the Broker. Only events that pass this filter will be sent to the Subscriber.
      */
@@ -2042,11 +2049,11 @@ export namespace run_v1alpha1 {
     /**
      * ObservedGeneration is the &#39;Generation&#39; of the Trigger that was last processed by the controller.
      */
-    observedGeneration?: number;
+    observedGeneration?: number | null;
     /**
      * SubscriberURI is the resolved URI of the receiver for this Trigger.
      */
-    subscriberUri?: string;
+    subscriberUri?: string | null;
   }
   /**
    * Volume represents a named volume in a container.
@@ -2056,7 +2063,7 @@ export namespace run_v1alpha1 {
     /**
      * Volume&#39;s name.
      */
-    name?: string;
+    name?: string | null;
     secret?: Schema$SecretVolumeSource;
   }
   /**
@@ -2066,11 +2073,11 @@ export namespace run_v1alpha1 {
     /**
      * devicePath is the path inside of the container that the device will be mapped to.
      */
-    devicePath?: string;
+    devicePath?: string | null;
     /**
      * name must match the name of a persistentVolumeClaim in the pod
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * VolumeMount describes a mounting of a Volume within a container.
@@ -2079,23 +2086,23 @@ export namespace run_v1alpha1 {
     /**
      * Path within the container at which the volume should be mounted.  Must not contain &#39;:&#39;.
      */
-    mountPath?: string;
+    mountPath?: string | null;
     /**
      * mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationHostToContainer is used. This field is beta in 1.10. +optional
      */
-    mountPropagation?: string;
+    mountPropagation?: string | null;
     /**
      * This must match the Name of a Volume.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false. +optional
      */
-    readOnly?: boolean;
+    readOnly?: boolean | null;
     /**
      * Path within the volume from which the container&#39;s volume should be mounted. Defaults to &quot;&quot; (volume&#39;s root). +optional
      */
-    subPath?: string;
+    subPath?: string | null;
   }
 
   export class Resource$Namespaces {

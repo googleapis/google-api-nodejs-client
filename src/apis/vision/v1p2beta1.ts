@@ -140,7 +140,7 @@ export namespace vision_v1p2beta1 {
     /**
      * This field gives the total number of pages in the file.
      */
-    totalPages?: number;
+    totalPages?: number | null;
   }
   /**
    * Response to an image annotation request.
@@ -246,15 +246,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request is finished and google.longrunning.Operation.done is set to true.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the batch request was submitted to the server.
      */
-    submitTime?: string;
+    submitTime?: string | null;
   }
   /**
    * Logical element on the page.
@@ -263,7 +263,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected block type (text, image etc) for this block.
      */
-    blockType?: string;
+    blockType?: string | null;
     /**
      * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
      */
@@ -271,7 +271,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the block. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * List of paragraphs in this block (if this blocks is of type text).
      */
@@ -301,19 +301,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation:    pixel color = alpha * (this color) + (1.0 - alpha) * (background color)  This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
      */
-    alpha?: number;
+    alpha?: number | null;
     /**
      * The amount of blue in the color as a value in the interval [0, 1].
      */
-    blue?: number;
+    blue?: number | null;
     /**
      * The amount of green in the color as a value in the interval [0, 1].
      */
-    green?: number;
+    green?: number | null;
     /**
      * The amount of red in the color as a value in the interval [0, 1].
      */
-    red?: number;
+    red?: number | null;
   }
   /**
    * Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image.
@@ -326,11 +326,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The fraction of pixels the color occupies in the image. Value in range [0, 1].
      */
-    pixelFraction?: number;
+    pixelFraction?: number | null;
     /**
      * Image-specific score for this color. Value in range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Single crop hint that is used to generate a new crop when serving an image.
@@ -343,11 +343,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of this being a salient region.  Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Fraction of importance of this salient region with respect to the original image.
      */
-    importanceFraction?: number;
+    importanceFraction?: number | null;
   }
   /**
    * Set of crop hints that are used to generate new crops when serving images.
@@ -365,11 +365,11 @@ export namespace vision_v1p2beta1 {
     /**
      * True if break prepends the element.
      */
-    isPrefix?: boolean;
+    isPrefix?: boolean | null;
     /**
      * Detected break type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Detected language for a structural component.
@@ -378,11 +378,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of detected language. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Set of dominant colors and their corresponding scores.
@@ -404,15 +404,15 @@ export namespace vision_v1p2beta1 {
     /**
      * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity textual description, expressed in its `locale` language.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The language code for the locale in which the entity textual `description` is expressed.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
      */
@@ -420,7 +420,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
      */
@@ -428,11 +428,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Overall score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
     /**
      * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
-    topicality?: number;
+    topicality?: number | null;
   }
   /**
    * A face annotation object contains the results of face detection.
@@ -441,11 +441,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Anger likelihood.
      */
-    angerLikelihood?: string;
+    angerLikelihood?: string | null;
     /**
      * Blurred likelihood.
      */
-    blurredLikelihood?: string;
+    blurredLikelihood?: string | null;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
@@ -453,7 +453,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detection confidence. Range [0, 1].
      */
-    detectionConfidence?: number;
+    detectionConfidence?: number | null;
     /**
      * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      */
@@ -461,15 +461,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Headwear likelihood.
      */
-    headwearLikelihood?: string;
+    headwearLikelihood?: string | null;
     /**
      * Joy likelihood.
      */
-    joyLikelihood?: string;
+    joyLikelihood?: string | null;
     /**
      * Face landmarking confidence. Range [0, 1].
      */
-    landmarkingConfidence?: number;
+    landmarkingConfidence?: number | null;
     /**
      * Detected face landmarks.
      */
@@ -477,27 +477,27 @@ export namespace vision_v1p2beta1 {
     /**
      * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
      */
-    panAngle?: number;
+    panAngle?: number | null;
     /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
-    rollAngle?: number;
+    rollAngle?: number | null;
     /**
      * Sorrow likelihood.
      */
-    sorrowLikelihood?: string;
+    sorrowLikelihood?: string | null;
     /**
      * Surprise likelihood.
      */
-    surpriseLikelihood?: string;
+    surpriseLikelihood?: string | null;
     /**
      * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
      */
-    tiltAngle?: number;
+    tiltAngle?: number | null;
     /**
      * Under-exposed likelihood.
      */
-    underExposedLikelihood?: string;
+    underExposedLikelihood?: string | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -506,7 +506,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * The Google Cloud Storage location where the input will be read from.
@@ -515,7 +515,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Response to a single file annotation request. A file may contain one or more images, which individually have their own responses.
@@ -536,7 +536,7 @@ export namespace vision_v1p2beta1 {
     /**
      * This field gives the total number of pages in the file.
      */
-    totalPages?: number;
+    totalPages?: number | null;
   }
   /**
    * Response to an image annotation request.
@@ -624,7 +624,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected block type (text, image etc) for this block.
      */
-    blockType?: string;
+    blockType?: string | null;
     /**
      * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
      */
@@ -632,7 +632,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the block. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * List of paragraphs in this block (if this blocks is of type text).
      */
@@ -666,11 +666,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The fraction of pixels the color occupies in the image. Value in range [0, 1].
      */
-    pixelFraction?: number;
+    pixelFraction?: number | null;
     /**
      * Image-specific score for this color. Value in range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Single crop hint that is used to generate a new crop when serving an image.
@@ -683,11 +683,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of this being a salient region.  Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Fraction of importance of this salient region with respect to the original image.
      */
-    importanceFraction?: number;
+    importanceFraction?: number | null;
   }
   /**
    * Set of crop hints that are used to generate new crops when serving images.
@@ -718,15 +718,15 @@ export namespace vision_v1p2beta1 {
     /**
      * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity textual description, expressed in its `locale` language.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The language code for the locale in which the entity textual `description` is expressed.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
      */
@@ -734,7 +734,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
      */
@@ -742,11 +742,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Overall score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
     /**
      * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
-    topicality?: number;
+    topicality?: number | null;
   }
   /**
    * A face annotation object contains the results of face detection.
@@ -755,11 +755,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Anger likelihood.
      */
-    angerLikelihood?: string;
+    angerLikelihood?: string | null;
     /**
      * Blurred likelihood.
      */
-    blurredLikelihood?: string;
+    blurredLikelihood?: string | null;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
@@ -767,7 +767,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detection confidence. Range [0, 1].
      */
-    detectionConfidence?: number;
+    detectionConfidence?: number | null;
     /**
      * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      */
@@ -775,15 +775,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Headwear likelihood.
      */
-    headwearLikelihood?: string;
+    headwearLikelihood?: string | null;
     /**
      * Joy likelihood.
      */
-    joyLikelihood?: string;
+    joyLikelihood?: string | null;
     /**
      * Face landmarking confidence. Range [0, 1].
      */
-    landmarkingConfidence?: number;
+    landmarkingConfidence?: number | null;
     /**
      * Detected face landmarks.
      */
@@ -791,27 +791,27 @@ export namespace vision_v1p2beta1 {
     /**
      * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
      */
-    panAngle?: number;
+    panAngle?: number | null;
     /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
-    rollAngle?: number;
+    rollAngle?: number | null;
     /**
      * Sorrow likelihood.
      */
-    sorrowLikelihood?: string;
+    sorrowLikelihood?: string | null;
     /**
      * Surprise likelihood.
      */
-    surpriseLikelihood?: string;
+    surpriseLikelihood?: string | null;
     /**
      * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
      */
-    tiltAngle?: number;
+    tiltAngle?: number | null;
     /**
      * Under-exposed likelihood.
      */
-    underExposedLikelihood?: string;
+    underExposedLikelihood?: string | null;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -824,7 +824,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Face landmark type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -833,7 +833,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * The Google Cloud Storage location where the input will be read from.
@@ -842,7 +842,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image.
@@ -851,11 +851,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
      */
-    pageNumber?: number;
+    pageNumber?: number | null;
     /**
      * The URI of the file used to produce the image.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Stores image properties, such as dominant colors.
@@ -873,7 +873,7 @@ export namespace vision_v1p2beta1 {
     /**
      * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The Google Cloud Storage location to read the input from.
      */
@@ -881,7 +881,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * Set of detected objects with bounding boxes.
@@ -894,19 +894,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Detected entity location information.
@@ -924,11 +924,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -937,15 +937,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request was received.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the operation result was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The desired output location and metadata.
@@ -954,7 +954,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
      */
-    batchSize?: number;
+    batchSize?: number | null;
     /**
      * The Google Cloud Storage location to write the output(s) to.
      */
@@ -971,11 +971,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the page. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * Additional information detected on the page.
      */
@@ -983,7 +983,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * Structural unit of text representing a number of words in certain order.
@@ -996,7 +996,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the paragraph. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the paragraph.
      */
@@ -1013,15 +1013,15 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
     /**
      * Z coordinate (or depth).
      */
-    z?: number;
+    z?: number | null;
   }
   /**
    * A Product contains ReferenceImages.
@@ -1030,19 +1030,19 @@ export namespace vision_v1p2beta1 {
     /**
      * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
-    productCategory?: string;
+    productCategory?: string | null;
     /**
      * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 500 product_labels.  Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
@@ -1055,11 +1055,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Results for a product search request.
@@ -1068,7 +1068,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
      */
-    indexTime?: string;
+    indexTime?: string | null;
     /**
      * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
      */
@@ -1102,19 +1102,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Information about a product.
@@ -1123,7 +1123,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the image from the product that is the closest match to the query.
      */
-    image?: string;
+    image?: string | null;
     /**
      * The Product.
      */
@@ -1131,7 +1131,7 @@ export namespace vision_v1p2beta1 {
     /**
      * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * A `Property` consists of a user-supplied name/value pair.
@@ -1140,15 +1140,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Name of the property.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Value of numeric properties.
      */
-    uint64Value?: string;
+    uint64Value?: string | null;
     /**
      * Value of the property.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
@@ -1157,23 +1157,23 @@ export namespace vision_v1p2beta1 {
     /**
      * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
      */
-    adult?: string;
+    adult?: string | null;
     /**
      * Likelihood that this is a medical image.
      */
-    medical?: string;
+    medical?: string | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
-    racy?: string;
+    racy?: string | null;
     /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
-    spoof?: string;
+    spoof?: string | null;
     /**
      * Likelihood that this image contains violent content.
      */
-    violence?: string;
+    violence?: string | null;
   }
   /**
    * A single symbol representation.
@@ -1186,7 +1186,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the symbol. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the symbol.
      */
@@ -1194,7 +1194,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The actual UTF-8 representation of the symbol.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this:     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
@@ -1207,7 +1207,7 @@ export namespace vision_v1p2beta1 {
     /**
      * UTF-8 text detected on the pages.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Detected start or end of a structural component.
@@ -1216,11 +1216,11 @@ export namespace vision_v1p2beta1 {
     /**
      * True if break prepends the element.
      */
-    isPrefix?: boolean;
+    isPrefix?: boolean | null;
     /**
      * Detected break type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Detected language for a structural component.
@@ -1229,11 +1229,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of detected language. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Additional information detected on the structural component.
@@ -1255,11 +1255,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Relevant information for the image from the Internet.
@@ -1297,15 +1297,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Canonical description of the entity, in English.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Metadata for online images.
@@ -1314,11 +1314,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the image.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result image URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Label to provide extra metadata for the web detection.
@@ -1327,11 +1327,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Label for extra metadata.
      */
-    label?: string;
+    label?: string | null;
     /**
      * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Metadata for web pages.
@@ -1344,7 +1344,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Title for the web page, may contain HTML markups.
      */
-    pageTitle?: string;
+    pageTitle?: string | null;
     /**
      * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
      */
@@ -1352,11 +1352,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result web page URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * A word representation.
@@ -1369,7 +1369,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the word. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the word.
      */
@@ -1398,7 +1398,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Pages of the file to perform image annotation.  Pages starts from 1, we assume the first page of the file is page 1. At most 5 pages are supported per request. Pages can be negative.  Page 1 means the first page. Page 2 means the second page. Page -1 means the last page. Page -2 means the second to the last page.  If the file is GIF instead of PDF or TIFF, page refers to GIF frames.  If this field is empty, by default the service performs image annotation for the first 5 pages of the file.
      */
-    pages?: number[];
+    pages?: number[] | null;
   }
   /**
    * Response to a single file annotation request. A file may contain one or more images, which individually have their own responses.
@@ -1419,7 +1419,7 @@ export namespace vision_v1p2beta1 {
     /**
      * This field gives the total number of pages in the file.
      */
-    totalPages?: number;
+    totalPages?: number | null;
   }
   /**
    * Request for performing Google Cloud Vision API tasks over a user-provided image, with user-requested features, and with context information.
@@ -1536,7 +1536,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * Individual async file annotation requests for this batch.
      */
@@ -1562,7 +1562,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * Individual image annotation requests for this batch.
      */
@@ -1575,7 +1575,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest.
      */
@@ -1597,7 +1597,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * Individual image annotation requests for this batch.
      */
@@ -1619,7 +1619,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected block type (text, image etc) for this block.
      */
-    blockType?: string;
+    blockType?: string | null;
     /**
      * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
      */
@@ -1627,7 +1627,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the block. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * List of paragraphs in this block (if this blocks is of type text).
      */
@@ -1661,11 +1661,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The fraction of pixels the color occupies in the image. Value in range [0, 1].
      */
-    pixelFraction?: number;
+    pixelFraction?: number | null;
     /**
      * Image-specific score for this color. Value in range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Single crop hint that is used to generate a new crop when serving an image.
@@ -1678,11 +1678,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of this being a salient region.  Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Fraction of importance of this salient region with respect to the original image.
      */
-    importanceFraction?: number;
+    importanceFraction?: number | null;
   }
   /**
    * Set of crop hints that are used to generate new crops when serving images.
@@ -1700,7 +1700,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Aspect ratios in floats, representing the ratio of the width to the height of the image. For example, if the desired aspect ratio is 4/3, the corresponding float value should be 1.33333.  If not specified, the best possible crop is returned. The number of provided aspect ratios is limited to a maximum of 16; any aspect ratios provided after the 16th are ignored.
      */
-    aspectRatios?: number[];
+    aspectRatios?: number[] | null;
   }
   /**
    * Set of dominant colors and their corresponding scores.
@@ -1722,15 +1722,15 @@ export namespace vision_v1p2beta1 {
     /**
      * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity textual description, expressed in its `locale` language.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The language code for the locale in which the entity textual `description` is expressed.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
      */
@@ -1738,7 +1738,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
      */
@@ -1746,11 +1746,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Overall score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
     /**
      * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
-    topicality?: number;
+    topicality?: number | null;
   }
   /**
    * A face annotation object contains the results of face detection.
@@ -1759,11 +1759,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Anger likelihood.
      */
-    angerLikelihood?: string;
+    angerLikelihood?: string | null;
     /**
      * Blurred likelihood.
      */
-    blurredLikelihood?: string;
+    blurredLikelihood?: string | null;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
@@ -1771,7 +1771,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detection confidence. Range [0, 1].
      */
-    detectionConfidence?: number;
+    detectionConfidence?: number | null;
     /**
      * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      */
@@ -1779,15 +1779,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Headwear likelihood.
      */
-    headwearLikelihood?: string;
+    headwearLikelihood?: string | null;
     /**
      * Joy likelihood.
      */
-    joyLikelihood?: string;
+    joyLikelihood?: string | null;
     /**
      * Face landmarking confidence. Range [0, 1].
      */
-    landmarkingConfidence?: number;
+    landmarkingConfidence?: number | null;
     /**
      * Detected face landmarks.
      */
@@ -1795,27 +1795,27 @@ export namespace vision_v1p2beta1 {
     /**
      * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
      */
-    panAngle?: number;
+    panAngle?: number | null;
     /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
-    rollAngle?: number;
+    rollAngle?: number | null;
     /**
      * Sorrow likelihood.
      */
-    sorrowLikelihood?: string;
+    sorrowLikelihood?: string | null;
     /**
      * Surprise likelihood.
      */
-    surpriseLikelihood?: string;
+    surpriseLikelihood?: string | null;
     /**
      * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
      */
-    tiltAngle?: number;
+    tiltAngle?: number | null;
     /**
      * Under-exposed likelihood.
      */
-    underExposedLikelihood?: string;
+    underExposedLikelihood?: string | null;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -1828,7 +1828,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Face landmark type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The type of Google Cloud Vision API detection to perform, and the maximum number of results to return for that type. Multiple `Feature` objects can be specified in the `features` list.
@@ -1837,15 +1837,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Maximum number of results of this type. Does not apply to `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
      */
-    maxResults?: number;
+    maxResults?: number | null;
     /**
      * Model to use for the feature. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
      */
-    model?: string;
+    model?: string | null;
     /**
      * The feature type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -1854,7 +1854,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * The Google Cloud Storage location where the input will be read from.
@@ -1863,7 +1863,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Client image to perform Google Cloud Vision API tasks over.
@@ -1872,7 +1872,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Image content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
-    content?: string;
+    content?: string | null;
     /**
      * Google Cloud Storage image location, or publicly-accessible image URL. If both `content` and `source` are provided for an image, `content` takes precedence and is used to perform the image annotation request.
      */
@@ -1885,11 +1885,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
      */
-    pageNumber?: number;
+    pageNumber?: number | null;
     /**
      * The URI of the file used to produce the image.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Image context and/or feature-specific parameters.
@@ -1902,7 +1902,7 @@ export namespace vision_v1p2beta1 {
     /**
      * List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](/vision/docs/languages).
      */
-    languageHints?: string[];
+    languageHints?: string[] | null;
     /**
      * Not used.
      */
@@ -1932,11 +1932,11 @@ export namespace vision_v1p2beta1 {
     /**
      * **Use `image_uri` instead.**  The Google Cloud Storage  URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
      */
-    gcsImageUri?: string;
+    gcsImageUri?: string | null;
     /**
      * The URI of the source image. Can be either:  1. A Google Cloud Storage URI of the form    `gs://bucket_name/object_name`. Object versioning is not supported. See    [Google Cloud Storage Request    URIs](https://cloud.google.com/storage/docs/reference-uris) for more    info.  2. A publicly-accessible image HTTP/HTTPS URL. When fetching images from    HTTP/HTTPS URLs, Google cannot guarantee that the request will be    completed. Your request may fail if the specified host denies the    request (e.g. due to request throttling or DOS prevention), or if Google    throttles requests to the site for abuse prevention. You should not    depend on externally-hosted images for production applications.  When both `gcs_image_uri` and `image_uri` are specified, `image_uri` takes precedence.
      */
-    imageUri?: string;
+    imageUri?: string | null;
   }
   /**
    * The desired input location and metadata.
@@ -1945,7 +1945,7 @@ export namespace vision_v1p2beta1 {
     /**
      * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The Google Cloud Storage location to read the input from.
      */
@@ -1953,7 +1953,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * Rectangle determined by min and max `LatLng` pairs.
@@ -1979,19 +1979,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Detected entity location information.
@@ -2009,11 +2009,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -2022,15 +2022,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request was received.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the operation result was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The desired output location and metadata.
@@ -2039,7 +2039,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
      */
-    batchSize?: number;
+    batchSize?: number | null;
     /**
      * The Google Cloud Storage location to write the output(s) to.
      */
@@ -2056,11 +2056,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the page. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * Additional information detected on the page.
      */
@@ -2068,7 +2068,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * Structural unit of text representing a number of words in certain order.
@@ -2081,7 +2081,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the paragraph. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the paragraph.
      */
@@ -2098,15 +2098,15 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
     /**
      * Z coordinate (or depth).
      */
-    z?: number;
+    z?: number | null;
   }
   /**
    * A Product contains ReferenceImages.
@@ -2115,19 +2115,19 @@ export namespace vision_v1p2beta1 {
     /**
      * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
-    productCategory?: string;
+    productCategory?: string | null;
     /**
      * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 500 product_labels.  Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
@@ -2140,11 +2140,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Parameters for a product search request.
@@ -2157,15 +2157,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The filtering expression. This can be used to restrict search results based on Product labels. We currently support an AND of OR of key-value expressions, where each expression within an OR must have the same key. An &#39;=&#39; should be used to connect the key and value.  For example, &quot;(color = red OR color = blue) AND brand = Google&quot; is acceptable, but &quot;(color = red OR brand = Google)&quot; is not acceptable. &quot;color: red&quot; is not acceptable because it uses a &#39;:&#39; instead of an &#39;=&#39;.
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * The list of product categories to search in. Currently, we only consider the first category, and either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; should be specified. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported but will be deprecated. For new products, please use &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; for better product search accuracy. It is recommended to migrate existing products to these categories as well.
      */
-    productCategories?: string[];
+    productCategories?: string[] | null;
     /**
      * The resource name of a ProductSet to be searched for similar images.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      */
-    productSet?: string;
+    productSet?: string | null;
   }
   /**
    * Results for a product search request.
@@ -2174,7 +2174,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
      */
-    indexTime?: string;
+    indexTime?: string | null;
     /**
      * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
      */
@@ -2208,19 +2208,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Information about a product.
@@ -2229,7 +2229,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the image from the product that is the closest match to the query.
      */
-    image?: string;
+    image?: string | null;
     /**
      * The Product.
      */
@@ -2237,7 +2237,7 @@ export namespace vision_v1p2beta1 {
     /**
      * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * A `Property` consists of a user-supplied name/value pair.
@@ -2246,15 +2246,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Name of the property.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Value of numeric properties.
      */
-    uint64Value?: string;
+    uint64Value?: string | null;
     /**
      * Value of the property.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
@@ -2263,23 +2263,23 @@ export namespace vision_v1p2beta1 {
     /**
      * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
      */
-    adult?: string;
+    adult?: string | null;
     /**
      * Likelihood that this is a medical image.
      */
-    medical?: string;
+    medical?: string | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
-    racy?: string;
+    racy?: string | null;
     /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
-    spoof?: string;
+    spoof?: string | null;
     /**
      * Likelihood that this image contains violent content.
      */
-    violence?: string;
+    violence?: string | null;
   }
   /**
    * A single symbol representation.
@@ -2292,7 +2292,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the symbol. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the symbol.
      */
@@ -2300,7 +2300,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The actual UTF-8 representation of the symbol.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this:     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
@@ -2313,7 +2313,7 @@ export namespace vision_v1p2beta1 {
     /**
      * UTF-8 text detected on the pages.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Detected start or end of a structural component.
@@ -2322,11 +2322,11 @@ export namespace vision_v1p2beta1 {
     /**
      * True if break prepends the element.
      */
-    isPrefix?: boolean;
+    isPrefix?: boolean | null;
     /**
      * Detected break type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Detected language for a structural component.
@@ -2335,11 +2335,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of detected language. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Additional information detected on the structural component.
@@ -2361,11 +2361,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Relevant information for the image from the Internet.
@@ -2403,7 +2403,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Whether to include results derived from the geo information in the image.
      */
-    includeGeoResults?: boolean;
+    includeGeoResults?: boolean | null;
   }
   /**
    * Entity deduced from similar images on the Internet.
@@ -2412,15 +2412,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Canonical description of the entity, in English.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Metadata for online images.
@@ -2429,11 +2429,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the image.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result image URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Label to provide extra metadata for the web detection.
@@ -2442,11 +2442,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Label for extra metadata.
      */
-    label?: string;
+    label?: string | null;
     /**
      * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Metadata for web pages.
@@ -2459,7 +2459,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Title for the web page, may contain HTML markups.
      */
-    pageTitle?: string;
+    pageTitle?: string | null;
     /**
      * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
      */
@@ -2467,11 +2467,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result web page URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * A word representation.
@@ -2484,7 +2484,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the word. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the word.
      */
@@ -2513,7 +2513,7 @@ export namespace vision_v1p2beta1 {
     /**
      * This field gives the total number of pages in the file.
      */
-    totalPages?: number;
+    totalPages?: number | null;
   }
   /**
    * Response to an image annotation request.
@@ -2601,15 +2601,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request is finished and google.longrunning.Operation.done is set to true.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the batch request was submitted to the server.
      */
-    submitTime?: string;
+    submitTime?: string | null;
   }
   /**
    * Logical element on the page.
@@ -2618,7 +2618,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected block type (text, image etc) for this block.
      */
-    blockType?: string;
+    blockType?: string | null;
     /**
      * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
      */
@@ -2626,7 +2626,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the block. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * List of paragraphs in this block (if this blocks is of type text).
      */
@@ -2660,11 +2660,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The fraction of pixels the color occupies in the image. Value in range [0, 1].
      */
-    pixelFraction?: number;
+    pixelFraction?: number | null;
     /**
      * Image-specific score for this color. Value in range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Single crop hint that is used to generate a new crop when serving an image.
@@ -2677,11 +2677,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of this being a salient region.  Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Fraction of importance of this salient region with respect to the original image.
      */
-    importanceFraction?: number;
+    importanceFraction?: number | null;
   }
   /**
    * Set of crop hints that are used to generate new crops when serving images.
@@ -2712,15 +2712,15 @@ export namespace vision_v1p2beta1 {
     /**
      * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity textual description, expressed in its `locale` language.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The language code for the locale in which the entity textual `description` is expressed.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
      */
@@ -2728,7 +2728,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
      */
@@ -2736,11 +2736,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Overall score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
     /**
      * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
-    topicality?: number;
+    topicality?: number | null;
   }
   /**
    * A face annotation object contains the results of face detection.
@@ -2749,11 +2749,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Anger likelihood.
      */
-    angerLikelihood?: string;
+    angerLikelihood?: string | null;
     /**
      * Blurred likelihood.
      */
-    blurredLikelihood?: string;
+    blurredLikelihood?: string | null;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
@@ -2761,7 +2761,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detection confidence. Range [0, 1].
      */
-    detectionConfidence?: number;
+    detectionConfidence?: number | null;
     /**
      * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      */
@@ -2769,15 +2769,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Headwear likelihood.
      */
-    headwearLikelihood?: string;
+    headwearLikelihood?: string | null;
     /**
      * Joy likelihood.
      */
-    joyLikelihood?: string;
+    joyLikelihood?: string | null;
     /**
      * Face landmarking confidence. Range [0, 1].
      */
-    landmarkingConfidence?: number;
+    landmarkingConfidence?: number | null;
     /**
      * Detected face landmarks.
      */
@@ -2785,27 +2785,27 @@ export namespace vision_v1p2beta1 {
     /**
      * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
      */
-    panAngle?: number;
+    panAngle?: number | null;
     /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
-    rollAngle?: number;
+    rollAngle?: number | null;
     /**
      * Sorrow likelihood.
      */
-    sorrowLikelihood?: string;
+    sorrowLikelihood?: string | null;
     /**
      * Surprise likelihood.
      */
-    surpriseLikelihood?: string;
+    surpriseLikelihood?: string | null;
     /**
      * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
      */
-    tiltAngle?: number;
+    tiltAngle?: number | null;
     /**
      * Under-exposed likelihood.
      */
-    underExposedLikelihood?: string;
+    underExposedLikelihood?: string | null;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -2818,7 +2818,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Face landmark type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -2827,7 +2827,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * The Google Cloud Storage location where the input will be read from.
@@ -2836,7 +2836,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image.
@@ -2845,11 +2845,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
      */
-    pageNumber?: number;
+    pageNumber?: number | null;
     /**
      * The URI of the file used to produce the image.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Stores image properties, such as dominant colors.
@@ -2880,7 +2880,7 @@ export namespace vision_v1p2beta1 {
     /**
      * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The Google Cloud Storage location to read the input from.
      */
@@ -2888,7 +2888,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * Set of detected objects with bounding boxes.
@@ -2901,19 +2901,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Detected entity location information.
@@ -2931,11 +2931,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -2944,15 +2944,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request was received.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the operation result was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The desired output location and metadata.
@@ -2961,7 +2961,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
      */
-    batchSize?: number;
+    batchSize?: number | null;
     /**
      * The Google Cloud Storage location to write the output(s) to.
      */
@@ -2978,11 +2978,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the page. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * Additional information detected on the page.
      */
@@ -2990,7 +2990,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * Structural unit of text representing a number of words in certain order.
@@ -3003,7 +3003,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the paragraph. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the paragraph.
      */
@@ -3020,15 +3020,15 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
     /**
      * Z coordinate (or depth).
      */
-    z?: number;
+    z?: number | null;
   }
   /**
    * A Product contains ReferenceImages.
@@ -3037,19 +3037,19 @@ export namespace vision_v1p2beta1 {
     /**
      * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
-    productCategory?: string;
+    productCategory?: string | null;
     /**
      * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 500 product_labels.  Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
@@ -3062,11 +3062,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Results for a product search request.
@@ -3075,7 +3075,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
      */
-    indexTime?: string;
+    indexTime?: string | null;
     /**
      * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
      */
@@ -3109,19 +3109,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Information about a product.
@@ -3130,7 +3130,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the image from the product that is the closest match to the query.
      */
-    image?: string;
+    image?: string | null;
     /**
      * The Product.
      */
@@ -3138,7 +3138,7 @@ export namespace vision_v1p2beta1 {
     /**
      * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * A `Property` consists of a user-supplied name/value pair.
@@ -3147,15 +3147,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Name of the property.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Value of numeric properties.
      */
-    uint64Value?: string;
+    uint64Value?: string | null;
     /**
      * Value of the property.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
@@ -3168,11 +3168,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the reference image.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.  This field is ignored when creating a reference image.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
@@ -3181,23 +3181,23 @@ export namespace vision_v1p2beta1 {
     /**
      * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
      */
-    adult?: string;
+    adult?: string | null;
     /**
      * Likelihood that this is a medical image.
      */
-    medical?: string;
+    medical?: string | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
-    racy?: string;
+    racy?: string | null;
     /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
-    spoof?: string;
+    spoof?: string | null;
     /**
      * Likelihood that this image contains violent content.
      */
-    violence?: string;
+    violence?: string | null;
   }
   /**
    * A single symbol representation.
@@ -3210,7 +3210,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the symbol. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the symbol.
      */
@@ -3218,7 +3218,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The actual UTF-8 representation of the symbol.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this:     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
@@ -3231,7 +3231,7 @@ export namespace vision_v1p2beta1 {
     /**
      * UTF-8 text detected on the pages.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Detected start or end of a structural component.
@@ -3240,11 +3240,11 @@ export namespace vision_v1p2beta1 {
     /**
      * True if break prepends the element.
      */
-    isPrefix?: boolean;
+    isPrefix?: boolean | null;
     /**
      * Detected break type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Detected language for a structural component.
@@ -3253,11 +3253,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of detected language. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Additional information detected on the structural component.
@@ -3279,11 +3279,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Relevant information for the image from the Internet.
@@ -3321,15 +3321,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Canonical description of the entity, in English.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Metadata for online images.
@@ -3338,11 +3338,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the image.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result image URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Label to provide extra metadata for the web detection.
@@ -3351,11 +3351,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Label for extra metadata.
      */
-    label?: string;
+    label?: string | null;
     /**
      * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Metadata for web pages.
@@ -3368,7 +3368,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Title for the web page, may contain HTML markups.
      */
-    pageTitle?: string;
+    pageTitle?: string | null;
     /**
      * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
      */
@@ -3376,11 +3376,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result web page URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * A word representation.
@@ -3393,7 +3393,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the word. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the word.
      */
@@ -3422,7 +3422,7 @@ export namespace vision_v1p2beta1 {
     /**
      * This field gives the total number of pages in the file.
      */
-    totalPages?: number;
+    totalPages?: number | null;
   }
   /**
    * Response to an image annotation request.
@@ -3536,15 +3536,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request is finished and google.longrunning.Operation.done is set to true.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the batch request was submitted to the server.
      */
-    submitTime?: string;
+    submitTime?: string | null;
   }
   /**
    * Logical element on the page.
@@ -3553,7 +3553,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected block type (text, image etc) for this block.
      */
-    blockType?: string;
+    blockType?: string | null;
     /**
      * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
      */
@@ -3561,7 +3561,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the block. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * List of paragraphs in this block (if this blocks is of type text).
      */
@@ -3595,11 +3595,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The fraction of pixels the color occupies in the image. Value in range [0, 1].
      */
-    pixelFraction?: number;
+    pixelFraction?: number | null;
     /**
      * Image-specific score for this color. Value in range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Single crop hint that is used to generate a new crop when serving an image.
@@ -3612,11 +3612,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of this being a salient region.  Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Fraction of importance of this salient region with respect to the original image.
      */
-    importanceFraction?: number;
+    importanceFraction?: number | null;
   }
   /**
    * Set of crop hints that are used to generate new crops when serving images.
@@ -3647,15 +3647,15 @@ export namespace vision_v1p2beta1 {
     /**
      * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity textual description, expressed in its `locale` language.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The language code for the locale in which the entity textual `description` is expressed.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
      */
@@ -3663,7 +3663,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
      */
@@ -3671,11 +3671,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Overall score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
     /**
      * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
-    topicality?: number;
+    topicality?: number | null;
   }
   /**
    * A face annotation object contains the results of face detection.
@@ -3684,11 +3684,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Anger likelihood.
      */
-    angerLikelihood?: string;
+    angerLikelihood?: string | null;
     /**
      * Blurred likelihood.
      */
-    blurredLikelihood?: string;
+    blurredLikelihood?: string | null;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
@@ -3696,7 +3696,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detection confidence. Range [0, 1].
      */
-    detectionConfidence?: number;
+    detectionConfidence?: number | null;
     /**
      * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      */
@@ -3704,15 +3704,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Headwear likelihood.
      */
-    headwearLikelihood?: string;
+    headwearLikelihood?: string | null;
     /**
      * Joy likelihood.
      */
-    joyLikelihood?: string;
+    joyLikelihood?: string | null;
     /**
      * Face landmarking confidence. Range [0, 1].
      */
-    landmarkingConfidence?: number;
+    landmarkingConfidence?: number | null;
     /**
      * Detected face landmarks.
      */
@@ -3720,27 +3720,27 @@ export namespace vision_v1p2beta1 {
     /**
      * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
      */
-    panAngle?: number;
+    panAngle?: number | null;
     /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
-    rollAngle?: number;
+    rollAngle?: number | null;
     /**
      * Sorrow likelihood.
      */
-    sorrowLikelihood?: string;
+    sorrowLikelihood?: string | null;
     /**
      * Surprise likelihood.
      */
-    surpriseLikelihood?: string;
+    surpriseLikelihood?: string | null;
     /**
      * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
      */
-    tiltAngle?: number;
+    tiltAngle?: number | null;
     /**
      * Under-exposed likelihood.
      */
-    underExposedLikelihood?: string;
+    underExposedLikelihood?: string | null;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -3753,7 +3753,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Face landmark type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -3762,7 +3762,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * The Google Cloud Storage location where the input will be read from.
@@ -3771,7 +3771,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image.
@@ -3780,11 +3780,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
      */
-    pageNumber?: number;
+    pageNumber?: number | null;
     /**
      * The URI of the file used to produce the image.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Stores image properties, such as dominant colors.
@@ -3802,7 +3802,7 @@ export namespace vision_v1p2beta1 {
     /**
      * A score representing the aesthetic/technical quality of the image. The score is in range [0, 1]. Higher value corresponds to more professional looking photos. 0 means the image looks very bad, 1 means the image with very high quality.
      */
-    qualityScore?: number;
+    qualityScore?: number | null;
   }
   /**
    * Response message for the `ImportProductSets` method.  This message is returned by the google.longrunning.Operations.GetOperation method in the returned google.longrunning.Operation.response field.
@@ -3824,7 +3824,7 @@ export namespace vision_v1p2beta1 {
     /**
      * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The Google Cloud Storage location to read the input from.
      */
@@ -3832,7 +3832,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * Set of detected objects with bounding boxes.
@@ -3845,19 +3845,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Detected entity location information.
@@ -3875,11 +3875,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -3888,15 +3888,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request was received.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the operation result was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The desired output location and metadata.
@@ -3905,7 +3905,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
      */
-    batchSize?: number;
+    batchSize?: number | null;
     /**
      * The Google Cloud Storage location to write the output(s) to.
      */
@@ -3922,11 +3922,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the page. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * Additional information detected on the page.
      */
@@ -3934,7 +3934,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * Structural unit of text representing a number of words in certain order.
@@ -3947,7 +3947,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the paragraph. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the paragraph.
      */
@@ -3964,15 +3964,15 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
     /**
      * Z coordinate (or depth).
      */
-    z?: number;
+    z?: number | null;
   }
   /**
    * A Product contains ReferenceImages.
@@ -3981,19 +3981,19 @@ export namespace vision_v1p2beta1 {
     /**
      * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
-    productCategory?: string;
+    productCategory?: string | null;
     /**
      * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 500 product_labels.  Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
@@ -4006,11 +4006,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Results for a product search request.
@@ -4019,7 +4019,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
      */
-    indexTime?: string;
+    indexTime?: string | null;
     /**
      * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
      */
@@ -4053,19 +4053,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Information about a product.
@@ -4074,7 +4074,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the image from the product that is the closest match to the query.
      */
-    image?: string;
+    image?: string | null;
     /**
      * The Product.
      */
@@ -4082,7 +4082,7 @@ export namespace vision_v1p2beta1 {
     /**
      * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * A `Property` consists of a user-supplied name/value pair.
@@ -4091,15 +4091,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Name of the property.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Value of numeric properties.
      */
-    uint64Value?: string;
+    uint64Value?: string | null;
     /**
      * Value of the property.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Stores enhanced image bytes.
@@ -4108,15 +4108,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Optimized image bytes.
      */
-    image?: string;
+    image?: string | null;
     /**
      * Mime type of the output image.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * Required optimization type.
      */
-    qualityOptimizationType?: string;
+    qualityOptimizationType?: string | null;
   }
   /**
    * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
@@ -4129,11 +4129,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the reference image.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.  This field is ignored when creating a reference image.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
@@ -4142,47 +4142,47 @@ export namespace vision_v1p2beta1 {
     /**
      * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
      */
-    adult?: string;
+    adult?: string | null;
     /**
      * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    adultConfidence?: number;
+    adultConfidence?: number | null;
     /**
      * Likelihood that this is a medical image.
      */
-    medical?: string;
+    medical?: string | null;
     /**
      * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    medicalConfidence?: number;
+    medicalConfidence?: number | null;
     /**
      * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    nsfwConfidence?: number;
+    nsfwConfidence?: number | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
-    racy?: string;
+    racy?: string | null;
     /**
      * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    racyConfidence?: number;
+    racyConfidence?: number | null;
     /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
-    spoof?: string;
+    spoof?: string | null;
     /**
      * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    spoofConfidence?: number;
+    spoofConfidence?: number | null;
     /**
      * Likelihood that this image contains violent content.
      */
-    violence?: string;
+    violence?: string | null;
     /**
      * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    violenceConfidence?: number;
+    violenceConfidence?: number | null;
   }
   /**
    * A single symbol representation.
@@ -4195,7 +4195,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the symbol. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the symbol.
      */
@@ -4203,7 +4203,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The actual UTF-8 representation of the symbol.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this:     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
@@ -4216,7 +4216,7 @@ export namespace vision_v1p2beta1 {
     /**
      * UTF-8 text detected on the pages.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Detected start or end of a structural component.
@@ -4225,11 +4225,11 @@ export namespace vision_v1p2beta1 {
     /**
      * True if break prepends the element.
      */
-    isPrefix?: boolean;
+    isPrefix?: boolean | null;
     /**
      * Detected break type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Detected language for a structural component.
@@ -4238,11 +4238,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of detected language. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Additional information detected on the structural component.
@@ -4264,11 +4264,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Relevant information for the image from the Internet.
@@ -4306,15 +4306,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Canonical description of the entity, in English.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Metadata for online images.
@@ -4323,11 +4323,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the image.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result image URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Label to provide extra metadata for the web detection.
@@ -4336,11 +4336,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Label for extra metadata.
      */
-    label?: string;
+    label?: string | null;
     /**
      * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Metadata for web pages.
@@ -4353,7 +4353,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Title for the web page, may contain HTML markups.
      */
-    pageTitle?: string;
+    pageTitle?: string | null;
     /**
      * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
      */
@@ -4361,11 +4361,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result web page URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * A word representation.
@@ -4378,7 +4378,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the word. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the word.
      */
@@ -4407,7 +4407,7 @@ export namespace vision_v1p2beta1 {
     /**
      * This field gives the total number of pages in the file.
      */
-    totalPages?: number;
+    totalPages?: number | null;
   }
   /**
    * Response to an image annotation request.
@@ -4513,15 +4513,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request is finished and google.longrunning.Operation.done is set to true.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the batch request was submitted to the server.
      */
-    submitTime?: string;
+    submitTime?: string | null;
   }
   /**
    * Logical element on the page.
@@ -4530,7 +4530,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detected block type (text, image etc) for this block.
      */
-    blockType?: string;
+    blockType?: string | null;
     /**
      * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example:  * when the text is horizontal it might look like:          0----1         |    |         3----2  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:          2----3         |    |         1----0    and the vertex order will still be (0, 1, 2, 3).
      */
@@ -4538,7 +4538,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the block. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Detected pair for KEY_VALUE_PAIR block_type. This detection can be turned off by explicitly setting desired fields in DocumentParsingParams.block_filter.
      */
@@ -4546,7 +4546,7 @@ export namespace vision_v1p2beta1 {
     /**
      * All UTF-8 text detected in this block. This field is by default not returned unless specified in TextDetectionParams.block_filter or DocumentParsingParams.block_filter.
      */
-    mergedText?: string;
+    mergedText?: string | null;
     /**
      * List of paragraphs in this block (if this blocks is of type text).
      */
@@ -4584,11 +4584,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The fraction of pixels the color occupies in the image. Value in range [0, 1].
      */
-    pixelFraction?: number;
+    pixelFraction?: number | null;
     /**
      * Image-specific score for this color. Value in range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Single crop hint that is used to generate a new crop when serving an image.
@@ -4601,11 +4601,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of this being a salient region.  Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Fraction of importance of this salient region with respect to the original image.
      */
-    importanceFraction?: number;
+    importanceFraction?: number | null;
   }
   /**
    * Set of crop hints that are used to generate new crops when serving images.
@@ -4636,15 +4636,15 @@ export namespace vision_v1p2beta1 {
     /**
      * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity textual description, expressed in its `locale` language.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The language code for the locale in which the entity textual `description` is expressed.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.
      */
@@ -4652,7 +4652,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.
      */
@@ -4660,11 +4660,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Overall score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
     /**
      * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
-    topicality?: number;
+    topicality?: number | null;
   }
   /**
    * A face annotation object contains the results of face detection.
@@ -4673,11 +4673,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Anger likelihood.
      */
-    angerLikelihood?: string;
+    angerLikelihood?: string | null;
     /**
      * Blurred likelihood.
      */
-    blurredLikelihood?: string;
+    blurredLikelihood?: string | null;
     /**
      * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
@@ -4685,7 +4685,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Detection confidence. Range [0, 1].
      */
-    detectionConfidence?: number;
+    detectionConfidence?: number | null;
     /**
      * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
      */
@@ -4693,15 +4693,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Headwear likelihood.
      */
-    headwearLikelihood?: string;
+    headwearLikelihood?: string | null;
     /**
      * Joy likelihood.
      */
-    joyLikelihood?: string;
+    joyLikelihood?: string | null;
     /**
      * Face landmarking confidence. Range [0, 1].
      */
-    landmarkingConfidence?: number;
+    landmarkingConfidence?: number | null;
     /**
      * Detected face landmarks.
      */
@@ -4709,27 +4709,27 @@ export namespace vision_v1p2beta1 {
     /**
      * Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].
      */
-    panAngle?: number;
+    panAngle?: number | null;
     /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
-    rollAngle?: number;
+    rollAngle?: number | null;
     /**
      * Sorrow likelihood.
      */
-    sorrowLikelihood?: string;
+    sorrowLikelihood?: string | null;
     /**
      * Surprise likelihood.
      */
-    surpriseLikelihood?: string;
+    surpriseLikelihood?: string | null;
     /**
      * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
      */
-    tiltAngle?: number;
+    tiltAngle?: number | null;
     /**
      * Under-exposed likelihood.
      */
-    underExposedLikelihood?: string;
+    underExposedLikelihood?: string | null;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -4742,7 +4742,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Face landmark type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -4751,7 +4751,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide.  Examples:  *    File Prefix: gs://bucket-name/here/filenameprefix   The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;.  *    Directory Prefix: gs://bucket-name/some/location/   The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified.  If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * The Google Cloud Storage location where the input will be read from.
@@ -4760,7 +4760,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image.
@@ -4769,11 +4769,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
      */
-    pageNumber?: number;
+    pageNumber?: number | null;
     /**
      * The URI of the file used to produce the image.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Stores image properties, such as dominant colors.
@@ -4804,7 +4804,7 @@ export namespace vision_v1p2beta1 {
     /**
      * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The Google Cloud Storage location to read the input from.
      */
@@ -4812,7 +4812,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * Proto for a key value pair.
@@ -4821,7 +4821,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The key string value.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Key block of the pair containing the normalized bounding box and key text.
      */
@@ -4829,7 +4829,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Optional. The translation of key text if the text is not in English.
      */
-    normalizedKey?: string;
+    normalizedKey?: string | null;
     /**
      * Value block of the pair containing the normalized bounding box and value text, including potentially deeper structures within the value text.
      */
@@ -4837,7 +4837,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Type of the value. Valid strings are the following:   &quot;generic&quot; - For generic text that is mapped to a value.  &quot;number&quot; - for numeric types  &quot;id&quot; - for generic identifiers.  &quot;currency&quot; - for currency values.  &quot;date&quot; - for dates.  &quot;time&quot; - for time and duration values.  &quot;date_range&quot; - for date ranges.  &quot;address&quot; - for address values (can be long).  &quot;person&quot; - for names of people or other personal identifiers.  &quot;phone&quot; - for phone numbers.
      */
-    valueType?: string;
+    valueType?: string | null;
   }
   /**
    * Set of detected objects with bounding boxes.
@@ -4850,19 +4850,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Detected entity location information.
@@ -4880,11 +4880,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -4893,15 +4893,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request was received.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the operation result was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The desired output location and metadata.
@@ -4910,7 +4910,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
      */
-    batchSize?: number;
+    batchSize?: number | null;
     /**
      * The Google Cloud Storage location to write the output(s) to.
      */
@@ -4927,15 +4927,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the page. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * All UTF-8 text detected in this page. This field is by default not returned unless specified in TextDetectionParams.page_filter.
      */
-    mergedText?: string;
+    mergedText?: string | null;
     /**
      * Additional information detected on the page.
      */
@@ -4943,7 +4943,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * Structural unit of text representing a number of words in certain order.
@@ -4956,11 +4956,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the paragraph. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * All UTF-8 text detected in this paragraph. This field is by default not returned unless specified in TextDetectionParams.paragraph_filter.
      */
-    mergedText?: string;
+    mergedText?: string | null;
     /**
      * Additional information detected for the paragraph.
      */
@@ -4977,15 +4977,15 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
     /**
      * Z coordinate (or depth).
      */
-    z?: number;
+    z?: number | null;
   }
   /**
    * A Product contains ReferenceImages.
@@ -4994,19 +4994,19 @@ export namespace vision_v1p2beta1 {
     /**
      * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
-    productCategory?: string;
+    productCategory?: string | null;
     /**
      * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 500 product_labels.  Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
@@ -5019,11 +5019,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Results for a product search request.
@@ -5032,7 +5032,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
      */
-    indexTime?: string;
+    indexTime?: string | null;
     /**
      * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
      */
@@ -5066,19 +5066,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Information about a product.
@@ -5087,7 +5087,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the image from the product that is the closest match to the query.
      */
-    image?: string;
+    image?: string | null;
     /**
      * The Product.
      */
@@ -5095,7 +5095,7 @@ export namespace vision_v1p2beta1 {
     /**
      * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * A `Property` consists of a user-supplied name/value pair.
@@ -5104,15 +5104,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Name of the property.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Value of numeric properties.
      */
-    uint64Value?: string;
+    uint64Value?: string | null;
     /**
      * Value of the property.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
@@ -5125,11 +5125,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the reference image.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.  This field is ignored when creating a reference image.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
@@ -5138,47 +5138,47 @@ export namespace vision_v1p2beta1 {
     /**
      * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
      */
-    adult?: string;
+    adult?: string | null;
     /**
      * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    adultConfidence?: number;
+    adultConfidence?: number | null;
     /**
      * Likelihood that this is a medical image.
      */
-    medical?: string;
+    medical?: string | null;
     /**
      * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    medicalConfidence?: number;
+    medicalConfidence?: number | null;
     /**
      * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    nsfwConfidence?: number;
+    nsfwConfidence?: number | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
-    racy?: string;
+    racy?: string | null;
     /**
      * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    racyConfidence?: number;
+    racyConfidence?: number | null;
     /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
-    spoof?: string;
+    spoof?: string | null;
     /**
      * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    spoofConfidence?: number;
+    spoofConfidence?: number | null;
     /**
      * Likelihood that this image contains violent content.
      */
-    violence?: string;
+    violence?: string | null;
     /**
      * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    violenceConfidence?: number;
+    violenceConfidence?: number | null;
   }
   /**
    * A single symbol representation.
@@ -5191,7 +5191,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the symbol. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the symbol.
      */
@@ -5199,7 +5199,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The actual UTF-8 representation of the symbol.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * A table representation similar to HTML table structure.
@@ -5221,15 +5221,15 @@ export namespace vision_v1p2beta1 {
     /**
      * How many columns this cell spans.
      */
-    colSpan?: number;
+    colSpan?: number | null;
     /**
      * How many rows this cell spans.
      */
-    rowSpan?: number;
+    rowSpan?: number | null;
     /**
      * The merged text value of this cell, omitting any deeper structural information unlike `text_block`. This is useful for simple cells.
      */
-    text?: string;
+    text?: string | null;
     /**
      * Text block for this cell which also contains the normalized bounding box for the cell and deeper structures within a cell if present.
      */
@@ -5255,7 +5255,7 @@ export namespace vision_v1p2beta1 {
     /**
      * UTF-8 text detected on the pages.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Detected start or end of a structural component.
@@ -5264,11 +5264,11 @@ export namespace vision_v1p2beta1 {
     /**
      * True if break prepends the element.
      */
-    isPrefix?: boolean;
+    isPrefix?: boolean | null;
     /**
      * Detected break type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Detected language for a structural component.
@@ -5277,11 +5277,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of detected language. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Additional information detected on the structural component.
@@ -5303,11 +5303,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Relevant information for the image from the Internet.
@@ -5345,15 +5345,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Canonical description of the entity, in English.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Metadata for online images.
@@ -5362,11 +5362,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the image.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result image URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Label to provide extra metadata for the web detection.
@@ -5375,11 +5375,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Label for extra metadata.
      */
-    label?: string;
+    label?: string | null;
     /**
      * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Metadata for web pages.
@@ -5392,7 +5392,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Title for the web page, may contain HTML markups.
      */
-    pageTitle?: string;
+    pageTitle?: string | null;
     /**
      * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
      */
@@ -5400,11 +5400,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result web page URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * A word representation.
@@ -5417,11 +5417,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the word. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * All UTF-8 text detected in this word. This field is by default not returned unless specified in TextDetectionParams.word_filter.
      */
-    mergedText?: string;
+    mergedText?: string | null;
     /**
      * Additional information detected for the word.
      */
@@ -5455,11 +5455,11 @@ export namespace vision_v1p2beta1 {
     /**
      * If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.
      */
-    pageNumber?: number;
+    pageNumber?: number | null;
     /**
      * The URI of the file used to produce the image.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Stores image properties, such as dominant colors.
@@ -5490,7 +5490,7 @@ export namespace vision_v1p2beta1 {
     /**
      * File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.  Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The Google Cloud Storage location to read the input from.
      */
@@ -5498,7 +5498,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * A product label represented as a key-value pair.
@@ -5507,11 +5507,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A face-specific landmark (for example, a face feature).
@@ -5524,7 +5524,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Face landmark type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
@@ -5533,11 +5533,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      */
-    latitude?: number;
+    latitude?: number | null;
     /**
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
-    longitude?: number;
+    longitude?: number | null;
   }
   /**
    * Set of detected objects with bounding boxes.
@@ -5550,19 +5550,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Detected entity location information.
@@ -5580,11 +5580,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Prediction for what the object in the bounding box is.
@@ -5593,19 +5593,19 @@ export namespace vision_v1p2beta1 {
     /**
      * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Object ID that should align with EntityAnnotation mid.
      */
-    mid?: string;
+    mid?: string | null;
     /**
      * Object name, expressed in its `language_code` language.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Score of the result. Range [0, 1].
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -5614,7 +5614,7 @@ export namespace vision_v1p2beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -5622,15 +5622,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Contains metadata for the BatchAnnotateImages operation.
@@ -5639,15 +5639,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The time when the batch request was received.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Current state of the batch operation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The time when the operation result was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The desired output location and metadata.
@@ -5656,7 +5656,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20.  For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`.  Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.
      */
-    batchSize?: number;
+    batchSize?: number | null;
     /**
      * The Google Cloud Storage location to write the output(s) to.
      */
@@ -5673,11 +5673,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results on the page. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * Additional information detected on the page.
      */
@@ -5685,7 +5685,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * Structural unit of text representing a number of words in certain order.
@@ -5698,7 +5698,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the paragraph. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the paragraph.
      */
@@ -5715,15 +5715,15 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
     /**
      * Z coordinate (or depth).
      */
-    z?: number;
+    z?: number | null;
   }
   /**
    * A Product contains ReferenceImages.
@@ -5732,19 +5732,19 @@ export namespace vision_v1p2beta1 {
     /**
      * User-provided metadata to be stored with this product. Must be at most 4096 characters long.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The category for the product identified by the reference image. This should be either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.  This field is immutable.
      */
-    productCategory?: string;
+    productCategory?: string | null;
     /**
      * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels.  Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon.  Multiple values can be assigned to the same key. One product may have up to 500 product_labels.  Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
@@ -5757,7 +5757,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results.
      */
-    indexTime?: string;
+    indexTime?: string | null;
     /**
      * List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results.
      */
@@ -5774,15 +5774,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Name of the property.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Value of numeric properties.
      */
-    uint64Value?: string;
+    uint64Value?: string | null;
     /**
      * Value of the property.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A `ReferenceImage` represents a product image and its associated metadata, such as bounding boxes.
@@ -5795,11 +5795,11 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the reference image.  Format is:  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.  This field is ignored when creating a reference image.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The Google Cloud Storage URI of the reference image.  The URI must start with `gs://`.  Required.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Information about a product.
@@ -5808,7 +5808,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The resource name of the image from the product that is the closest match to the query.
      */
-    image?: string;
+    image?: string | null;
     /**
      * The Product.
      */
@@ -5816,7 +5816,7 @@ export namespace vision_v1p2beta1 {
     /**
      * A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence).
@@ -5825,47 +5825,47 @@ export namespace vision_v1p2beta1 {
     /**
      * Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities.
      */
-    adult?: string;
+    adult?: string | null;
     /**
      * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    adultConfidence?: number;
+    adultConfidence?: number | null;
     /**
      * Likelihood that this is a medical image.
      */
-    medical?: string;
+    medical?: string | null;
     /**
      * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    medicalConfidence?: number;
+    medicalConfidence?: number | null;
     /**
      * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    nsfwConfidence?: number;
+    nsfwConfidence?: number | null;
     /**
      * Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas.
      */
-    racy?: string;
+    racy?: string | null;
     /**
      * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    racyConfidence?: number;
+    racyConfidence?: number | null;
     /**
      * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
      */
-    spoof?: string;
+    spoof?: string | null;
     /**
      * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    spoofConfidence?: number;
+    spoofConfidence?: number | null;
     /**
      * Likelihood that this image contains violent content.
      */
-    violence?: string;
+    violence?: string | null;
     /**
      * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means very confident.
      */
-    violenceConfidence?: number;
+    violenceConfidence?: number | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -5874,15 +5874,15 @@ export namespace vision_v1p2beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A single symbol representation.
@@ -5895,7 +5895,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the symbol. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the symbol.
      */
@@ -5903,7 +5903,7 @@ export namespace vision_v1p2beta1 {
     /**
      * The actual UTF-8 representation of the symbol.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this:     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
@@ -5916,7 +5916,7 @@ export namespace vision_v1p2beta1 {
     /**
      * UTF-8 text detected on the pages.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Additional information detected on the structural component.
@@ -5938,11 +5938,11 @@ export namespace vision_v1p2beta1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Relevant information for the image from the Internet.
@@ -5980,15 +5980,15 @@ export namespace vision_v1p2beta1 {
     /**
      * Canonical description of the entity, in English.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Overall relevancy score for the entity. Not normalized and not comparable across different image queries.
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * Metadata for online images.
@@ -5997,11 +5997,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the image.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result image URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Label to provide extra metadata for the web detection.
@@ -6010,11 +6010,11 @@ export namespace vision_v1p2beta1 {
     /**
      * Label for extra metadata.
      */
-    label?: string;
+    label?: string | null;
     /**
      * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Metadata for web pages.
@@ -6027,7 +6027,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Title for the web page, may contain HTML markups.
      */
-    pageTitle?: string;
+    pageTitle?: string | null;
     /**
      * Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.
      */
@@ -6035,11 +6035,11 @@ export namespace vision_v1p2beta1 {
     /**
      * (Deprecated) Overall relevancy score for the web page.
      */
-    score?: number;
+    score?: number | null;
     /**
      * The result web page URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * A word representation.
@@ -6052,7 +6052,7 @@ export namespace vision_v1p2beta1 {
     /**
      * Confidence of the OCR results for the word. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Additional information detected for the word.
      */

@@ -126,11 +126,11 @@ export namespace factchecktools_v1alpha1 {
     /**
      * A person or organization stating the claim. For instance, &quot;John Doe&quot;.
      */
-    claimant?: string;
+    claimant?: string | null;
     /**
      * The date that the claim was made.
      */
-    claimDate?: string;
+    claimDate?: string | null;
     /**
      * One or more reviews of this claim (namely, a fact-checking article).
      */
@@ -138,7 +138,7 @@ export namespace factchecktools_v1alpha1 {
     /**
      * The claim text. For instance, &quot;Crime has doubled in the last 2 years.&quot;
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Information about the claim author.
@@ -147,19 +147,19 @@ export namespace factchecktools_v1alpha1 {
     /**
      * Corresponds to `ClaimReview.itemReviewed.author.image`.
      */
-    imageUrl?: string;
+    imageUrl?: string | null;
     /**
      * Corresponds to `ClaimReview.itemReviewed.author.jobTitle`.
      */
-    jobTitle?: string;
+    jobTitle?: string | null;
     /**
      * A person or organization stating the claim. For instance, &quot;John Doe&quot;.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed.author.name`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Corresponds to `ClaimReview.itemReviewed.author.sameAs`.
      */
-    sameAs?: string;
+    sameAs?: string | null;
   }
   /**
    * Information about the claim rating.
@@ -168,27 +168,27 @@ export namespace factchecktools_v1alpha1 {
     /**
      * For numeric ratings, the best value possible in the scale from worst to best.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.bestRating`.
      */
-    bestRating?: number;
+    bestRating?: number | null;
     /**
      * Corresponds to `ClaimReview.reviewRating.image`.
      */
-    imageUrl?: string;
+    imageUrl?: string | null;
     /**
      * Corresponds to `ClaimReview.reviewRating.ratingExplanation`.
      */
-    ratingExplanation?: string;
+    ratingExplanation?: string | null;
     /**
      * A numeric rating of this claim, in the range worstRating — bestRating inclusive.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.ratingValue`.
      */
-    ratingValue?: number;
+    ratingValue?: number | null;
     /**
      * The truthfulness rating as a human-readible short word or phrase.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.alternateName`.
      */
-    textualRating?: string;
+    textualRating?: string | null;
     /**
      * For numeric ratings, the worst value possible in the scale from worst to best.&lt;br&gt; Corresponds to `ClaimReview.reviewRating.worstRating`.
      */
-    worstRating?: number;
+    worstRating?: number | null;
   }
   /**
    * Information about a claim review.
@@ -197,7 +197,7 @@ export namespace factchecktools_v1alpha1 {
     /**
      * The language this review was written in. For instance, &quot;en&quot; or &quot;de&quot;.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * The publisher of this claim review.
      */
@@ -205,19 +205,19 @@ export namespace factchecktools_v1alpha1 {
     /**
      * The date the claim was reviewed.
      */
-    reviewDate?: string;
+    reviewDate?: string | null;
     /**
      * Textual rating. For instance, &quot;Mostly false&quot;.
      */
-    textualRating?: string;
+    textualRating?: string | null;
     /**
      * The title of this claim review, if it can be determined.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The URL of this claim review.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Information about the claim review author.
@@ -226,11 +226,11 @@ export namespace factchecktools_v1alpha1 {
     /**
      * Corresponds to `ClaimReview.author.image`.
      */
-    imageUrl?: string;
+    imageUrl?: string | null;
     /**
      * Name of the organization that is publishing the fact check.&lt;br&gt; Corresponds to `ClaimReview.author.name`.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Fields for an individual `ClaimReview` element. Except for sub-messages that group fields together, each of these fields correspond those in https://schema.org/ClaimReview. We list the precise mapping for each field.
@@ -239,7 +239,7 @@ export namespace factchecktools_v1alpha1 {
     /**
      * A list of links to works in which this claim appears, aside from the one specified in `claim_first_appearance`.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`.
      */
-    claimAppearances?: string[];
+    claimAppearances?: string[] | null;
     /**
      * Info about the author of this claim.
      */
@@ -247,19 +247,19 @@ export namespace factchecktools_v1alpha1 {
     /**
      * The date when the claim was made or entered public discourse.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed.datePublished`.
      */
-    claimDate?: string;
+    claimDate?: string | null;
     /**
      * A link to a work in which this claim first appears.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`.
      */
-    claimFirstAppearance?: string;
+    claimFirstAppearance?: string | null;
     /**
      * The location where this claim was made.&lt;br&gt; Corresponds to `ClaimReview.itemReviewed.name`.
      */
-    claimLocation?: string;
+    claimLocation?: string | null;
     /**
      * A short summary of the claim being evaluated.&lt;br&gt; Corresponds to `ClaimReview.claimReviewed`.
      */
-    claimReviewed?: string;
+    claimReviewed?: string | null;
     /**
      * Info about the rating of this claim review.
      */
@@ -267,7 +267,7 @@ export namespace factchecktools_v1alpha1 {
     /**
      * This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link (&quot;page jump&quot;).&lt;br&gt; Corresponds to `ClaimReview.url`
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Holds one or more instances of `ClaimReview` markup for a webpage.
@@ -284,19 +284,19 @@ export namespace factchecktools_v1alpha1 {
     /**
      * The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The URL of the page associated with this `ClaimReview` markup. While every individual `ClaimReview` has its own URL field, semantically this is a page-level field, and each `ClaimReview` on this page will use this value unless individually overridden.&lt;br&gt; Corresponds to `ClaimReview.url`
      */
-    pageUrl?: string;
+    pageUrl?: string | null;
     /**
      * The date when the fact check was published. Similar to the URL, semantically this is a page-level field, and each `ClaimReview` on this page will contain the same value.&lt;br&gt; Corresponds to `ClaimReview.datePublished`
      */
-    publishDate?: string;
+    publishDate?: string | null;
     /**
      * The version ID for this markup. Except for update requests, this field is output-only and should not be set by the user.
      */
-    versionId?: string;
+    versionId?: string | null;
   }
   /**
    * Response from searching fact-checked claims.
@@ -309,7 +309,7 @@ export namespace factchecktools_v1alpha1 {
     /**
      * The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response from listing `ClaimReview` markup.
@@ -322,7 +322,7 @@ export namespace factchecktools_v1alpha1 {
     /**
      * The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Information about the publisher.
@@ -331,11 +331,11 @@ export namespace factchecktools_v1alpha1 {
     /**
      * The name of this publisher. For instance, &quot;Awesome Fact Checks&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Host-level site name, without the protocol or &quot;www&quot; prefix. For instance, &quot;awesomefactchecks.com&quot;. This value of this field is based purely on the claim review URL.
      */
-    site?: string;
+    site?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.

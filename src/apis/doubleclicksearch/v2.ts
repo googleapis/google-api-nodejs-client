@@ -112,27 +112,27 @@ export namespace doubleclicksearch_v2 {
     /**
      * DS advertiser ID.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * DS agency ID.
      */
-    agencyId?: string;
+    agencyId?: string | null;
     /**
      * The time by which all conversions have been uploaded, in epoch millis UTC.
      */
-    availabilityTimestamp?: string;
+    availabilityTimestamp?: string | null;
     /**
      * The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).
      */
-    segmentationId?: string;
+    segmentationId?: string | null;
     /**
      * The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name).
      */
-    segmentationName?: string;
+    segmentationName?: string | null;
     /**
      * The segmentation type that this availability is for (its default value is FLOODLIGHT).
      */
-    segmentationType?: string;
+    segmentationType?: string | null;
   }
   /**
    * A conversion containing data relevant to DoubleClick Search.
@@ -141,59 +141,59 @@ export namespace doubleclicksearch_v2 {
     /**
      * DS ad group ID.
      */
-    adGroupId?: string;
+    adGroupId?: string | null;
     /**
      * DS ad ID.
      */
-    adId?: string;
+    adId?: string | null;
     /**
      * DS advertiser ID.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * DS agency ID.
      */
-    agencyId?: string;
+    agencyId?: string | null;
     /**
      * Available to advertisers only after contacting DoubleClick Search customer support.
      */
-    attributionModel?: string;
+    attributionModel?: string | null;
     /**
      * DS campaign ID.
      */
-    campaignId?: string;
+    campaignId?: string | null;
     /**
      * Sales channel for the product. Acceptable values are:   - &quot;local&quot;: a physical store  - &quot;online&quot;: an online store
      */
-    channel?: string;
+    channel?: string | null;
     /**
      * DS click ID for the conversion.
      */
-    clickId?: string;
+    clickId?: string | null;
     /**
      * For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser. For online conversions, DS copies the dsConversionId or floodlightOrderId into this property depending on the advertiser&#39;s Floodlight instructions.
      */
-    conversionId?: string;
+    conversionId?: string | null;
     /**
      * The time at which the conversion was last modified, in epoch millis UTC.
      */
-    conversionModifiedTimestamp?: string;
+    conversionModifiedTimestamp?: string | null;
     /**
      * The time at which the conversion took place, in epoch millis UTC.
      */
-    conversionTimestamp?: string;
+    conversionTimestamp?: string | null;
     /**
      * Available to advertisers only after contacting DoubleClick Search customer support.
      */
-    countMillis?: string;
+    countMillis?: string | null;
     /**
      * DS criterion (keyword) ID.
      */
-    criterionId?: string;
+    criterionId?: string | null;
     /**
      * The currency code for the conversion&#39;s revenue. Should be in ISO 4217 alphabetic (3-char) format.
      */
-    currencyCode?: string;
+    currencyCode?: string | null;
     /**
      * Custom dimensions for the conversion, which can be used to filter data in a report.
      */
@@ -205,71 +205,71 @@ export namespace doubleclicksearch_v2 {
     /**
      * The type of device on which the conversion occurred.
      */
-    deviceType?: string;
+    deviceType?: string | null;
     /**
      * ID that DoubleClick Search generates for each conversion.
      */
-    dsConversionId?: string;
+    dsConversionId?: string | null;
     /**
      * DS engine account ID.
      */
-    engineAccountId?: string;
+    engineAccountId?: string | null;
     /**
      * The Floodlight order ID provided by the advertiser for the conversion.
      */
-    floodlightOrderId?: string;
+    floodlightOrderId?: string | null;
     /**
      * ID that DS generates and uses to uniquely identify the inventory account that contains the product.
      */
-    inventoryAccountId?: string;
+    inventoryAccountId?: string | null;
     /**
      * The country registered for the Merchant Center feed that contains the product. Use an ISO 3166 code to specify a country.
      */
-    productCountry?: string;
+    productCountry?: string | null;
     /**
      * DS product group ID.
      */
-    productGroupId?: string;
+    productGroupId?: string | null;
     /**
      * The product ID (SKU).
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The language registered for the Merchant Center feed that contains the product. Use an ISO 639 code to specify a language.
      */
-    productLanguage?: string;
+    productLanguage?: string | null;
     /**
      * The quantity of this conversion, in millis.
      */
-    quantityMillis?: string;
+    quantityMillis?: string | null;
     /**
      * The revenue amount of this TRANSACTION conversion, in micros (value multiplied by 1000000, no decimal). For example, to specify a revenue value of &quot;10&quot; enter &quot;10000000&quot; (10 million) in your request.
      */
-    revenueMicros?: string;
+    revenueMicros?: string | null;
     /**
      * The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).
      */
-    segmentationId?: string;
+    segmentationId?: string | null;
     /**
      * The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name).
      */
-    segmentationName?: string;
+    segmentationName?: string | null;
     /**
      * The segmentation type of this conversion (for example, FLOODLIGHT).
      */
-    segmentationType?: string;
+    segmentationType?: string | null;
     /**
      * The state of the conversion, that is, either ACTIVE or REMOVED. Note: state DELETED is deprecated.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The ID of the local store for which the product was advertised. Applicable only when the channel is &quot;local&quot;.
      */
-    storeId?: string;
+    storeId?: string | null;
     /**
      * The type of the conversion, that is, either ACTION or TRANSACTION. An ACTION conversion is an action by the user that has no monetarily quantifiable value, while a TRANSACTION conversion is an action that does have a monetarily quantifiable value. Examples are email list signups (ACTION) versus ecommerce purchases (TRANSACTION).
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A list of conversions.
@@ -282,7 +282,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Identifies this as a ConversionList resource. Value: the fixed string doubleclicksearch#conversionList.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A message containing the custome dimension.
@@ -291,11 +291,11 @@ export namespace doubleclicksearch_v2 {
     /**
      * Custom dimension name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Custom dimension value.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A message containing the custome metric.
@@ -304,11 +304,11 @@ export namespace doubleclicksearch_v2 {
     /**
      * Custom metric name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Custom metric numeric value.
      */
-    value?: number;
+    value?: number | null;
   }
   /**
    * A DoubleClick Search report. This object contains the report request, some report metadata such as currency code, and the generated report rows or report files.
@@ -317,19 +317,19 @@ export namespace doubleclicksearch_v2 {
     /**
      * Asynchronous report only. Contains a list of generated report files once the report has successfully completed.
      */
-    files?: Array<{byteCount?: string; url?: string}>;
+    files?: Array<{byteCount?: string; url?: string}> | null;
     /**
      * Asynchronous report only. Id of the report.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Asynchronous report only. True if and only if the report has completed successfully and the report files are ready to be downloaded.
      */
-    isReportReady?: boolean;
+    isReportReady?: boolean | null;
     /**
      * Identifies this as a Report resource. Value: the fixed string doubleclicksearch#report.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The request that created the report. Optional fields not specified in the original request are filled with default values.
      */
@@ -337,7 +337,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * The number of report rows generated by the report, not including headers.
      */
-    rowCount?: number;
+    rowCount?: number | null;
     /**
      * Synchronous report only. Generated report rows.
      */
@@ -345,11 +345,11 @@ export namespace doubleclicksearch_v2 {
     /**
      * The currency code of all monetary values produced in the report, including values that are set by users (e.g., keyword bid settings) and metrics (e.g., cost and revenue). The currency code of a report is determined by the statisticsCurrency field of the report request.
      */
-    statisticsCurrencyCode?: string;
+    statisticsCurrencyCode?: string | null;
     /**
      * If all statistics of the report are sourced from the same time zone, this would be it. Otherwise the field is unset.
      */
-    statisticsTimeZone?: string;
+    statisticsTimeZone?: string | null;
   }
   /**
    * A request object used to create a DoubleClick Search report.
@@ -358,43 +358,43 @@ export namespace doubleclicksearch_v2 {
     /**
      * Name of a DoubleClick Search column to include in the report.
      */
-    columnName?: string;
+    columnName?: string | null;
     /**
      * Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive. If used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report.
      */
-    customDimensionName?: string;
+    customDimensionName?: string | null;
     /**
      * Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive.
      */
-    customMetricName?: string;
+    customMetricName?: string | null;
     /**
      * Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * Synchronous report only. Set to true to group by this column. Defaults to false.
      */
-    groupByColumn?: boolean;
+    groupByColumn?: boolean | null;
     /**
      * Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name.
      */
-    headerText?: string;
+    headerText?: string | null;
     /**
      * The platform that is used to provide data for the custom dimension. Acceptable values are &quot;floodlight&quot;.
      */
-    platformSource?: string;
+    platformSource?: string | null;
     /**
      * Returns metrics only for a specific type of product activity. Accepted values are:   - &quot;sold&quot;: returns metrics only for products that were sold  - &quot;advertised&quot;: returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold
      */
-    productReportPerspective?: string;
+    productReportPerspective?: string | null;
     /**
      * Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI.
      */
-    savedColumnName?: string;
+    savedColumnName?: string | null;
     /**
      * Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate.
      */
-    startDate?: string;
+    startDate?: string | null;
   }
   /**
    * A request object used to create a DoubleClick Search report.
@@ -407,7 +407,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Format that the report should be returned in. Currently csv or tsv is supported.
      */
-    downloadFormat?: string;
+    downloadFormat?: string | null;
     /**
      * A list of filters to be applied to the report. The maximum number of filters per request is 300.
      */
@@ -415,23 +415,26 @@ export namespace doubleclicksearch_v2 {
       column?: Schema$ReportApiColumnSpec;
       operator?: string;
       values?: any[];
-    }>;
+    }> | null;
     /**
      * Determines if removed entities should be included in the report. Defaults to false. Deprecated, please use includeRemovedEntities instead.
      */
-    includeDeletedEntities?: boolean;
+    includeDeletedEntities?: boolean | null;
     /**
      * Determines if removed entities should be included in the report. Defaults to false.
      */
-    includeRemovedEntities?: boolean;
+    includeRemovedEntities?: boolean | null;
     /**
      * Asynchronous report only. The maximum number of rows per report file. A large report is split into many files based on this field. Acceptable values are 1000000 to 100000000, inclusive.
      */
-    maxRowsPerFile?: number;
+    maxRowsPerFile?: number | null;
     /**
      * Synchronous report only. A list of columns and directions defining sorting to be performed on the report rows. The maximum number of orderings per request is 300.
      */
-    orderBy?: Array<{column?: Schema$ReportApiColumnSpec; sortOrder?: string}>;
+    orderBy?: Array<{
+      column?: Schema$ReportApiColumnSpec;
+      sortOrder?: string;
+    }> | null;
     /**
      * The reportScope is a set of IDs that are used to determine which subset of entities will be returned in the report. The full lineage of IDs from the lowest scoped level desired up through agency is required.
      */
@@ -443,23 +446,23 @@ export namespace doubleclicksearch_v2 {
       campaignId?: string;
       engineAccountId?: string;
       keywordId?: string;
-    };
+    } | null;
     /**
      * Determines the type of rows that are returned in the report. For example, if you specify reportType: keyword, each row in the report will contain data about a keyword. See the Types of Reports reference for the columns that are available for each type.
      */
-    reportType?: string;
+    reportType?: string | null;
     /**
      * Synchronous report only. The maximum number of rows to return; additional rows are dropped. Acceptable values are 0 to 10000, inclusive. Defaults to 10000.
      */
-    rowCount?: number;
+    rowCount?: number | null;
     /**
      * Synchronous report only. Zero-based index of the first row to return. Acceptable values are 0 to 50000, inclusive. Defaults to 0.
      */
-    startRow?: number;
+    startRow?: number | null;
     /**
      * Specifies the currency in which monetary will be returned. Possible values are: usd, agency (valid if the report is scoped to agency or lower), advertiser (valid if the report is scoped to * advertiser or lower), or account (valid if the report is scoped to engine account or lower).
      */
-    statisticsCurrency?: string;
+    statisticsCurrency?: string | null;
     /**
      * If metrics are requested in a report, this argument will be used to restrict the metrics to a specific time range.
      */
@@ -468,11 +471,11 @@ export namespace doubleclicksearch_v2 {
       changedMetricsSinceTimestamp?: string;
       endDate?: string;
       startDate?: string;
-    };
+    } | null;
     /**
      * If true, the report would only be created if all the requested stat data are sourced from a single timezone. Defaults to false.
      */
-    verifySingleTimeZone?: boolean;
+    verifySingleTimeZone?: boolean | null;
   }
   /**
    * A row in a DoubleClick Search report.
@@ -485,15 +488,15 @@ export namespace doubleclicksearch_v2 {
     /**
      * Identifies this as a SavedColumn resource. Value: the fixed string doubleclicksearch#savedColumn.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the saved column.
      */
-    savedColumnName?: string;
+    savedColumnName?: string | null;
     /**
      * The type of data this saved column will produce.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A list of saved columns. Advertisers create saved columns to report on Floodlight activities, Google Analytics goals, or custom KPIs. To request reports with saved columns, you&#39;ll need the saved column names that are available from this list.
@@ -506,7 +509,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * Identifies this as a SavedColumnList resource. Value: the fixed string doubleclicksearch#savedColumnList.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * The request to update availability.

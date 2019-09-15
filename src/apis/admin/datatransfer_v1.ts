@@ -110,19 +110,19 @@ export namespace admin_datatransfer_v1 {
     /**
      * Etag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The application&#39;s ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies the resource as a DataTransfer Application Resource.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The application&#39;s name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transfered.
      */
@@ -135,7 +135,7 @@ export namespace admin_datatransfer_v1 {
     /**
      * The application&#39;s ID.
      */
-    applicationId?: string;
+    applicationId?: string | null;
     /**
      * The transfer parameters for the application. These parameters are used to select the data which will get transfered in context of this application.
      */
@@ -143,7 +143,7 @@ export namespace admin_datatransfer_v1 {
     /**
      * Current status of transfer for this application. (Read-only)
      */
-    applicationTransferStatus?: string;
+    applicationTransferStatus?: string | null;
   }
   /**
    * Template for a collection of Applications.
@@ -156,15 +156,15 @@ export namespace admin_datatransfer_v1 {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Identifies the resource as a collection of Applications.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token which will be used to specify next page in list API.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Template for application transfer parameters.
@@ -173,11 +173,11 @@ export namespace admin_datatransfer_v1 {
     /**
      * The type of the transfer parameter. eg: &#39;PRIVACY_LEVEL&#39;
      */
-    key?: string;
+    key?: string | null;
     /**
      * The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
      */
-    value?: string[];
+    value?: string[] | null;
   }
   /**
    * The JSON template for a DataTransfer resource.
@@ -190,31 +190,31 @@ export namespace admin_datatransfer_v1 {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The transfer&#39;s ID (Read-only).
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies the resource as a DataTransfer request.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * ID of the user to whom the data is being transfered.
      */
-    newOwnerUserId?: string;
+    newOwnerUserId?: string | null;
     /**
      * ID of the user whose data is being transfered.
      */
-    oldOwnerUserId?: string;
+    oldOwnerUserId?: string | null;
     /**
      * Overall transfer status (Read-only).
      */
-    overallTransferStatusCode?: string;
+    overallTransferStatusCode?: string | null;
     /**
      * The time at which the data transfer was requested (Read-only).
      */
-    requestTime?: string;
+    requestTime?: string | null;
   }
   /**
    * Template for a collection of DataTransfer resources.
@@ -227,15 +227,15 @@ export namespace admin_datatransfer_v1 {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Identifies the resource as a collection of data transfer requests.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token which will be used to specify next page in list API.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
 
   export class Resource$Applications {

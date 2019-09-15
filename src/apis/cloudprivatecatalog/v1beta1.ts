@@ -128,23 +128,23 @@ export namespace cloudprivatecatalog_v1beta1 {
     /**
      * Output only. The time when the catalog was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. The description of the catalog.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Output only. The descriptive name of the catalog as it appears in UIs.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Output only. The resource name of the target catalog, in the format of `catalogs/{catalog_id}&#39;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The time when the catalog was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The readonly representation of a product computed with a given resource context.
@@ -153,27 +153,27 @@ export namespace cloudprivatecatalog_v1beta1 {
     /**
      * Output only. The type of the product asset. It can be one of the following values:  * `google.deploymentmanager.Template` * `google.cloudprivatecatalog.ListingOnly`
      */
-    assetType?: string;
+    assetType?: string | null;
     /**
      * Output only. The time when the product was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. The display metadata to describe the product. The JSON schema of the metadata differs by Product.asset_type. When the type is `google.deploymentmanager.Template`, the schema is as follows:  ``` &quot;$schema&quot;: http://json-schema.org/draft-04/schema# type: object properties:   name:     type: string     minLength: 1     maxLength: 64   description:     type: string     minLength: 1     maxLength: 2048   tagline:     type: string     minLength: 1     maxLength: 100   support_info:     type: string     minLength: 1     maxLength: 2048   creator:     type: string     minLength: 1     maxLength: 100   documentation:     type: array     items:       type: object       properties:         url:           type: string           pattern:           &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot;         title:           type: string           minLength: 1           maxLength: 64         description:           type: string           minLength: 1           maxLength: 2048 required: - name - description additionalProperties: false  ```  When the asset type is `google.cloudprivatecatalog.ListingOnly`, the schema is as follows:  ``` &quot;$schema&quot;: http://json-schema.org/draft-04/schema# type: object properties:   name:     type: string     minLength: 1     maxLength: 64   description:     type: string     minLength: 1     maxLength: 2048   tagline:     type: string     minLength: 1     maxLength: 100   support_info:     type: string     minLength: 1     maxLength: 2048   creator:     type: string     minLength: 1     maxLength: 100   documentation:     type: array     items:       type: object       properties:         url:           type: string           pattern:           &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot;         title:           type: string           minLength: 1           maxLength: 64         description:           type: string           minLength: 1           maxLength: 2048   signup_url:     type: string     pattern:     &quot;^(https?)://[-a-zA-Z0-9+&amp;@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&amp;@#/%=~_|]&quot; required: - name - description - signup_url additionalProperties: false ```
      */
-    displayMetadata?: {[key: string]: any};
+    displayMetadata?: {[key: string]: any} | null;
     /**
      * Output only. The icon URI of the product.
      */
-    iconUri?: string;
+    iconUri?: string | null;
     /**
      * Output only. The resource name of the target product, in the format of `products/a-z*[a-z0-9]&#39;.  A unique identifier for the product under a catalog.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The time when the product was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Response message for PrivateCatalog.SearchCatalogs.
@@ -186,7 +186,7 @@ export namespace cloudprivatecatalog_v1beta1 {
     /**
      * A pagination token returned from a previous call to SearchCatalogs that indicates from where listing should continue. This field is optional.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for PrivateCatalog.SearchProducts.
@@ -195,7 +195,7 @@ export namespace cloudprivatecatalog_v1beta1 {
     /**
      * A pagination token returned from a previous call to SearchProducts that indicates from where listing should continue. This field is optional.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The `Product` resources computed from the resource context.
      */
@@ -208,7 +208,7 @@ export namespace cloudprivatecatalog_v1beta1 {
     /**
      * A pagination token returned from a previous call to SearchVersions that indicates from where the listing should continue. This field is optional.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The `Version` resources computed from the resource context.
      */
@@ -221,23 +221,23 @@ export namespace cloudprivatecatalog_v1beta1 {
     /**
      * Output only. The asset which has been validated and is ready to be provisioned. See google.cloud.privatecatalogproducer.v1beta.Version.asset for details.
      */
-    asset?: {[key: string]: any};
+    asset?: {[key: string]: any} | null;
     /**
      * Output only. The time when the version was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. The user-supplied description of the version. Maximum of 256 characters.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Output only. The resource name of the version, in the format `catalogs/{catalog_id}/products/{product_id}/versions/a-z*[a-z0-9]&#39;.  A unique identifier for the version under a product.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The time when the version was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
 
   export class Resource$Folders {

@@ -119,7 +119,7 @@ export namespace calendar_v3 {
     /**
      * ETag of the collection.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * List of rules on the access control list.
      */
@@ -127,37 +127,37 @@ export namespace calendar_v3 {
     /**
      * Type of the collection (&quot;calendar#acl&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
      */
-    nextSyncToken?: string;
+    nextSyncToken?: string | null;
   }
   export interface Schema$AclRule {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Identifier of the ACL rule.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Type of the resource (&quot;calendar#aclRule&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The role assigned to the scope. Possible values are:   - &quot;none&quot; - Provides no access.  - &quot;freeBusyReader&quot; - Provides read access to free/busy information.  - &quot;reader&quot; - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.  - &quot;writer&quot; - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.  - &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
      */
-    role?: string;
+    role?: string | null;
     /**
      * The scope of the rule.
      */
-    scope?: {type?: string; value?: string};
+    scope?: {type?: string; value?: string} | null;
   }
   export interface Schema$Calendar {
     /**
@@ -167,37 +167,37 @@ export namespace calendar_v3 {
     /**
      * Description of the calendar. Optional.
      */
-    description?: string;
+    description?: string | null;
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Identifier of the calendar. To retrieve IDs call the calendarList.list() method.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Type of the resource (&quot;calendar#calendar&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Geographic location of the calendar as free-form text. Optional.
      */
-    location?: string;
+    location?: string | null;
     /**
      * Title of the calendar.
      */
-    summary?: string;
+    summary?: string | null;
     /**
      * The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. &quot;Europe/Zurich&quot;.) Optional.
      */
-    timeZone?: string;
+    timeZone?: string | null;
   }
   export interface Schema$CalendarList {
     /**
      * ETag of the collection.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Calendars that are present on the user&#39;s calendar list.
      */
@@ -205,29 +205,29 @@ export namespace calendar_v3 {
     /**
      * Type of the collection (&quot;calendar#calendarList&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
      */
-    nextSyncToken?: string;
+    nextSyncToken?: string | null;
   }
   export interface Schema$CalendarListEntry {
     /**
      * The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:   - &quot;freeBusyReader&quot; - Provides read access to free/busy information.  - &quot;reader&quot; - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.  - &quot;writer&quot; - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.  - &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
      */
-    accessRole?: string;
+    accessRole?: string | null;
     /**
      * The main color of the calendar in the hexadecimal format &quot;#0088aa&quot;. This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
      */
-    backgroundColor?: string;
+    backgroundColor?: string | null;
     /**
      * The color of the calendar. This is an ID referring to an entry in the calendar section of the colors definition (see the colors endpoint). This property is superseded by the backgroundColor and foregroundColor properties and can be ignored when using these properties. Optional.
      */
-    colorId?: string;
+    colorId?: string | null;
     /**
      * Conferencing properties for this calendar, for example what types of conferences are allowed.
      */
@@ -239,145 +239,147 @@ export namespace calendar_v3 {
     /**
      * Whether this calendar list entry has been deleted from the calendar list. Read-only. Optional. The default is False.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * Description of the calendar. Optional. Read-only.
      */
-    description?: string;
+    description?: string | null;
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The foreground color of the calendar in the hexadecimal format &quot;#ffffff&quot;. This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
      */
-    foregroundColor?: string;
+    foregroundColor?: string | null;
     /**
      * Whether the calendar has been hidden from the list. Optional. The default is False.
      */
-    hidden?: boolean;
+    hidden?: boolean | null;
     /**
      * Identifier of the calendar.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Type of the resource (&quot;calendar#calendarListEntry&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Geographic location of the calendar as free-form text. Optional. Read-only.
      */
-    location?: string;
+    location?: string | null;
     /**
      * The notifications that the authenticated user is receiving for this calendar.
      */
-    notificationSettings?: {notifications?: Schema$CalendarNotification[]};
+    notificationSettings?: {
+      notifications?: Schema$CalendarNotification[];
+    } | null;
     /**
      * Whether the calendar is the primary calendar of the authenticated user. Read-only. Optional. The default is False.
      */
-    primary?: boolean;
+    primary?: boolean | null;
     /**
      * Whether the calendar content shows up in the calendar UI. Optional. The default is False.
      */
-    selected?: boolean;
+    selected?: boolean | null;
     /**
      * Title of the calendar. Read-only.
      */
-    summary?: string;
+    summary?: string | null;
     /**
      * The summary that the authenticated user has set for this calendar. Optional.
      */
-    summaryOverride?: string;
+    summaryOverride?: string | null;
     /**
      * The time zone of the calendar. Optional. Read-only.
      */
-    timeZone?: string;
+    timeZone?: string | null;
   }
   export interface Schema$CalendarNotification {
     /**
      * The method used to deliver the notification. Possible values are:   - &quot;email&quot; - Notifications are sent via email.  - &quot;sms&quot; - Deprecated. Once this feature is shutdown, the API will no longer return notifications using this method. Any newly added SMS notifications will be ignored. See  Google Calendar SMS notifications to be removed for more information. Notifications are sent via SMS. This value is read-only and is ignored on inserts and updates. SMS notifications are only available for G Suite customers.   Required when adding a notification.
      */
-    method?: string;
+    method?: string | null;
     /**
      * The type of notification. Possible values are:   - &quot;eventCreation&quot; - Notification sent when a new event is put on the calendar.  - &quot;eventChange&quot; - Notification sent when an event is changed.  - &quot;eventCancellation&quot; - Notification sent when an event is cancelled.  - &quot;eventResponse&quot; - Notification sent when an attendee responds to the event invitation.  - &quot;agenda&quot; - An agenda with the events of the day (sent out in the morning).   Required when adding a notification.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$Channel {
     /**
      * The address where notifications are delivered for this channel.
      */
-    address?: string;
+    address?: string | null;
     /**
      * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
-    expiration?: string;
+    expiration?: string | null;
     /**
      * A UUID or similar unique string that identifies this channel.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: {[key: string]: string};
+    params?: {[key: string]: string} | null;
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
-    payload?: boolean;
+    payload?: boolean | null;
     /**
      * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * A version-specific identifier for the watched resource.
      */
-    resourceUri?: string;
+    resourceUri?: string | null;
     /**
      * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
-    token?: string;
+    token?: string | null;
     /**
      * The type of delivery mechanism used for this channel.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$ColorDefinition {
     /**
      * The background color associated with this color definition.
      */
-    background?: string;
+    background?: string | null;
     /**
      * The foreground color that can be used to write on top of a background with &#39;background&#39; color.
      */
-    foreground?: string;
+    foreground?: string | null;
   }
   export interface Schema$Colors {
     /**
      * A global palette of calendar colors, mapping from the color ID to its definition. A calendarListEntry resource refers to one of these color IDs in its color field. Read-only.
      */
-    calendar?: {[key: string]: Schema$ColorDefinition};
+    calendar?: {[key: string]: Schema$ColorDefinition} | null;
     /**
      * A global palette of event colors, mapping from the color ID to its definition. An event resource may refer to one of these color IDs in its color field. Read-only.
      */
-    event?: {[key: string]: Schema$ColorDefinition};
+    event?: {[key: string]: Schema$ColorDefinition} | null;
     /**
      * Type of the resource (&quot;calendar#colors&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Last modification time of the color palette (as a RFC3339 timestamp). Read-only.
      */
-    updated?: string;
+    updated?: string | null;
   }
   export interface Schema$ConferenceData {
     /**
      * The ID of the conference. Can be used by developers to keep track of conferences, should not be displayed to users. Values for solution types:   - &quot;eventHangout&quot;: unset. - &quot;eventNamedHangout&quot;: the name of the Hangout. - &quot;hangoutsMeet&quot;: the 10-letter meeting code, for example &quot;aaa-bbbb-ccc&quot;. - &quot;addOn&quot;: defined by 3P conference provider.  Optional.
      */
-    conferenceId?: string;
+    conferenceId?: string | null;
     /**
      * The conference solution, such as Hangouts or Hangouts Meet. Unset for a conference with a failed create request. Either conferenceSolution and at least one entryPoint, or createRequest is required.
      */
@@ -393,7 +395,7 @@ export namespace calendar_v3 {
     /**
      * Additional notes (such as instructions from the domain administrator, legal notices) to display to the user. Can contain HTML. The maximum length is 2048 characters. Optional.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * Additional properties related to a conference. An example would be a solution-specific setting for enabling video streaming.
      */
@@ -401,7 +403,7 @@ export namespace calendar_v3 {
     /**
      * The signature of the conference data. Generated on server side. Must be preserved while copying the conference data between events, otherwise the conference data will not be copied. Unset for a conference with a failed create request. Optional for a conference with a pending create request.
      */
-    signature?: string;
+    signature?: string | null;
   }
   export interface Schema$ConferenceParameters {
     /**
@@ -410,25 +412,25 @@ export namespace calendar_v3 {
     addOnParameters?: Schema$ConferenceParametersAddOnParameters;
   }
   export interface Schema$ConferenceParametersAddOnParameters {
-    parameters?: {[key: string]: string};
+    parameters?: {[key: string]: string} | null;
   }
   export interface Schema$ConferenceProperties {
     /**
      * The types of conference solutions that are supported for this calendar. The possible values are:   - &quot;eventHangout&quot;  - &quot;eventNamedHangout&quot;  - &quot;hangoutsMeet&quot;  Optional.
      */
-    allowedConferenceSolutionTypes?: string[];
+    allowedConferenceSolutionTypes?: string[] | null;
   }
   export interface Schema$ConferenceRequestStatus {
     /**
      * The current status of the conference create request. Read-only. The possible values are:   - &quot;pending&quot;: the conference create request is still being processed. - &quot;success&quot;: the conference create request succeeded, the entry points are populated. - &quot;failure&quot;: the conference create request failed, there are no entry points.
      */
-    statusCode?: string;
+    statusCode?: string | null;
   }
   export interface Schema$ConferenceSolution {
     /**
      * The user-visible icon for this solution.
      */
-    iconUri?: string;
+    iconUri?: string | null;
     /**
      * The key which can uniquely identify the conference solution for this event.
      */
@@ -436,13 +438,13 @@ export namespace calendar_v3 {
     /**
      * The user-visible name of this solution. Not localized.
      */
-    name?: string;
+    name?: string | null;
   }
   export interface Schema$ConferenceSolutionKey {
     /**
      * The conference solution type. If a client encounters an unfamiliar or empty type, it should still be able to display the entry points. However, it should disallow modifications. The possible values are:   - &quot;eventHangout&quot; for Hangouts for consumers (http://hangouts.google.com) - &quot;eventNamedHangout&quot; for classic Hangouts for G Suite users (http://hangouts.google.com) - &quot;hangoutsMeet&quot; for Hangouts Meet (http://meet.google.com)
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$CreateConferenceRequest {
     /**
@@ -452,7 +454,7 @@ export namespace calendar_v3 {
     /**
      * The client-generated unique ID for this request. Clients should regenerate this ID for every new request. If an ID provided is the same as for the previous request, the request is ignored.
      */
-    requestId?: string;
+    requestId?: string | null;
     /**
      * The status of the conference create request.
      */
@@ -462,59 +464,59 @@ export namespace calendar_v3 {
     /**
      * The access code to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
      */
-    accessCode?: string;
+    accessCode?: string | null;
     /**
      * Features of the entry point, such as being toll or toll-free. One entry point can have multiple features. However, toll and toll-free cannot be both set on the same entry point.
      */
-    entryPointFeatures?: string[];
+    entryPointFeatures?: string[] | null;
     /**
      * The type of the conference entry point. Possible values are:   - &quot;video&quot; - joining a conference over HTTP. A conference can have zero or one video entry point. - &quot;phone&quot; - joining a conference by dialing a phone number. A conference can have zero or more phone entry points. - &quot;sip&quot; - joining a conference over SIP. A conference can have zero or one sip entry point. - &quot;more&quot; - further conference joining instructions, for example additional phone numbers. A conference can have zero or one more entry point. A conference with only a more entry point is not a valid conference.
      */
-    entryPointType?: string;
+    entryPointType?: string | null;
     /**
      * The label for the URI. Visible to end users. Not localized. The maximum length is 512 characters. Examples:   - for video: meet.google.com/aaa-bbbb-ccc - for phone: +1 123 268 2601 - for sip: 12345678@altostrat.com - for more: should not be filled   Optional.
      */
-    label?: string;
+    label?: string | null;
     /**
      * The meeting code to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
      */
-    meetingCode?: string;
+    meetingCode?: string | null;
     /**
      * The passcode to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
      */
-    passcode?: string;
+    passcode?: string | null;
     /**
      * The password to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
      */
-    password?: string;
+    password?: string | null;
     /**
      * The PIN to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
      */
-    pin?: string;
+    pin?: string | null;
     /**
      * The CLDR/ISO 3166 region code for the country associated with this phone access. Example: &quot;SE&quot; for Sweden. Calendar backend will populate this field only for EntryPointType.PHONE.
      */
-    regionCode?: string;
+    regionCode?: string | null;
     /**
      * The URI of the entry point. The maximum length is 1300 characters. Format:   - for video, http: or https: schema is required. - for phone, tel: schema is required. The URI should include the entire dial sequence (e.g., tel:+12345678900,,,123456789;1234). - for sip, sip: schema is required, e.g., sip:12345678@myprovider.com. - for more, http: or https: schema is required.
      */
-    uri?: string;
+    uri?: string | null;
   }
   export interface Schema$Error {
     /**
      * Domain, or broad category, of the error.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * Specific reason for the error. Some of the possible values are:   - &quot;groupTooBig&quot; - The group of users requested is too large for a single query.  - &quot;tooManyCalendarsRequested&quot; - The number of calendars requested is too large for a single query.  - &quot;notFound&quot; - The requested resource was not found.  - &quot;internalError&quot; - The API service has encountered an internal error.  Additional error types may be added in the future, so clients should gracefully handle additional error statuses not included in this list.
      */
-    reason?: string;
+    reason?: string | null;
   }
   export interface Schema$Event {
     /**
      * Whether anyone can invite themselves to the event (currently works for Google+ events only). Optional. The default is False.
      */
-    anyoneCanAddSelf?: boolean;
+    anyoneCanAddSelf?: boolean | null;
     /**
      * File attachments for the event. Currently only Google Drive attachments are supported. In order to modify attachments the supportsAttachments request parameter should be set to true. There can be at most 25 attachments per event,
      */
@@ -526,11 +528,11 @@ export namespace calendar_v3 {
     /**
      * Whether attendees may have been omitted from the event&#39;s representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant&#39;s response. Optional. The default is False.
      */
-    attendeesOmitted?: boolean;
+    attendeesOmitted?: boolean | null;
     /**
      * The color of the event. This is an ID referring to an entry in the event section of the colors definition (see the  colors endpoint). Optional.
      */
-    colorId?: string;
+    colorId?: string | null;
     /**
      * The conference-related information, such as details of a Hangouts Meet conference. To create new conference details use the createRequest field. To persist your changes, remember to set the conferenceDataVersion request parameter to 1 for all event modification requests.
      */
@@ -538,7 +540,7 @@ export namespace calendar_v3 {
     /**
      * Creation time of the event (as a RFC3339 timestamp). Read-only.
      */
-    created?: string;
+    created?: string | null;
     /**
      * The creator of the event. Read-only.
      */
@@ -547,11 +549,11 @@ export namespace calendar_v3 {
       email?: string;
       id?: string;
       self?: boolean;
-    };
+    } | null;
     /**
      * Description of the event. Optional.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The (exclusive) end time of the event. For a recurring event, this is the end time of the first instance.
      */
@@ -559,18 +561,18 @@ export namespace calendar_v3 {
     /**
      * Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.
      */
-    endTimeUnspecified?: boolean;
+    endTimeUnspecified?: boolean | null;
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Extended properties of the event.
      */
     extendedProperties?: {
       private?: {[key: string]: string};
       shared?: {[key: string]: string};
-    };
+    } | null;
     /**
      * A gadget that extends this event.
      */
@@ -583,47 +585,47 @@ export namespace calendar_v3 {
       title?: string;
       type?: string;
       width?: number;
-    };
+    } | null;
     /**
      * Whether attendees other than the organizer can invite others to the event. Optional. The default is True.
      */
-    guestsCanInviteOthers?: boolean;
+    guestsCanInviteOthers?: boolean | null;
     /**
      * Whether attendees other than the organizer can modify the event. Optional. The default is False.
      */
-    guestsCanModify?: boolean;
+    guestsCanModify?: boolean | null;
     /**
      * Whether attendees other than the organizer can see who the event&#39;s attendees are. Optional. The default is True.
      */
-    guestsCanSeeOtherGuests?: boolean;
+    guestsCanSeeOtherGuests?: boolean | null;
     /**
      * An absolute link to the Google+ hangout associated with this event. Read-only.
      */
-    hangoutLink?: string;
+    hangoutLink?: string | null;
     /**
      * An absolute link to this event in the Google Calendar Web UI. Read-only.
      */
-    htmlLink?: string;
+    htmlLink?: string | null;
     /**
      * Event unique identifier as defined in RFC5545. It is used to uniquely identify events accross calendaring systems and must be supplied when importing events via the import method. Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
      */
-    iCalUID?: string;
+    iCalUID?: string | null;
     /**
      * Opaque identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:   - characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938  - the length of the ID must be between 5 and 1024 characters  - the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122. If you do not specify an ID, it will be automatically generated by the server. Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Type of the resource (&quot;calendar#event&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Geographic location of the event as free-form text. Optional.
      */
-    location?: string;
+    location?: string | null;
     /**
      * Whether this is a locked event copy where no changes can be made to the main event fields &quot;summary&quot;, &quot;description&quot;, &quot;location&quot;, &quot;start&quot;, &quot;end&quot; or &quot;recurrence&quot;. The default is False. Read-Only.
      */
-    locked?: boolean;
+    locked?: boolean | null;
     /**
      * The organizer of the event. If the organizer is also an attendee, this is indicated with a separate entry in attendees with the organizer field set to True. To change the organizer, use the move operation. Read-only, except when importing an event.
      */
@@ -632,35 +634,38 @@ export namespace calendar_v3 {
       email?: string;
       id?: string;
       self?: boolean;
-    };
+    } | null;
     /**
      * For an instance of a recurring event, this is the time at which this event would start according to the recurrence data in the recurring event identified by recurringEventId. It uniquely identifies the instance within the recurring event series even if the instance was moved to a different time. Immutable.
      */
     originalStartTime?: Schema$EventDateTime;
     /**
-     * Whether this is a private event copy where changes are not shared with other copies on other calendars. Optional. Immutable. The default is False.
+     * If set to True, Event propagation is disabled. Note that it is not the same thing as Private event properties. Optional. Immutable. The default is False.
      */
-    privateCopy?: boolean;
+    privateCopy?: boolean | null;
     /**
      * List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event, as specified in RFC5545. Note that DTSTART and DTEND lines are not allowed in this field; event start and end times are specified in the start and end fields. This field is omitted for single events or instances of recurring events.
      */
-    recurrence?: string[];
+    recurrence?: string[] | null;
     /**
      * For an instance of a recurring event, this is the id of the recurring event to which this instance belongs. Immutable.
      */
-    recurringEventId?: string;
+    recurringEventId?: string | null;
     /**
      * Information about the event&#39;s reminders for the authenticated user.
      */
-    reminders?: {overrides?: Schema$EventReminder[]; useDefault?: boolean};
+    reminders?: {
+      overrides?: Schema$EventReminder[];
+      useDefault?: boolean;
+    } | null;
     /**
      * Sequence number as per iCalendar.
      */
-    sequence?: number;
+    sequence?: number | null;
     /**
      * Source from which the event was created. For example, a web page, an email message or any document identifiable by an URL with HTTP or HTTPS scheme. Can only be seen or modified by the creator of the event.
      */
-    source?: {title?: string; url?: string};
+    source?: {title?: string; url?: string} | null;
     /**
      * The (inclusive) start time of the event. For a recurring event, this is the start time of the first instance.
      */
@@ -668,117 +673,117 @@ export namespace calendar_v3 {
     /**
      * Status of the event. Optional. Possible values are:   - &quot;confirmed&quot; - The event is confirmed. This is the default status.  - &quot;tentative&quot; - The event is tentatively confirmed.  - &quot;cancelled&quot; - The event is cancelled (deleted). The list method returns cancelled events only on incremental sync (when syncToken or updatedMin are specified) or if the showDeleted flag is set to true. The get method always returns them. A cancelled status represents two different states depending on the event type:   - Cancelled exceptions of an uncancelled recurring event indicate that this instance should no longer be presented to the user. Clients should store these events for the lifetime of the parent recurring event. Cancelled exceptions are only guaranteed to have values for the id, recurringEventId and originalStartTime fields populated. The other fields might be empty.   - All other cancelled events represent deleted events. Clients should remove their locally synced copies. Such cancelled events will eventually disappear, so do not rely on them being available indefinitely. Deleted events are only guaranteed to have the id field populated.   On the organizer&#39;s calendar, cancelled events continue to expose event details (summary, location, etc.) so that they can be restored (undeleted). Similarly, the events to which the user was invited and that they manually removed continue to provide details. However, incremental sync requests with showDeleted set to false will not return these details. If an event changes its organizer (for example via the move operation) and the original organizer is not on the attendee list, it will leave behind a cancelled event where only the id field is guaranteed to be populated.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Title of the event.
      */
-    summary?: string;
+    summary?: string | null;
     /**
      * Whether the event blocks time on the calendar. Optional. Possible values are:   - &quot;opaque&quot; - Default value. The event does block time on the calendar. This is equivalent to setting Show me as to Busy in the Calendar UI.  - &quot;transparent&quot; - The event does not block time on the calendar. This is equivalent to setting Show me as to Available in the Calendar UI.
      */
-    transparency?: string;
+    transparency?: string | null;
     /**
      * Last modification time of the event (as a RFC3339 timestamp). Read-only.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Visibility of the event. Optional. Possible values are:   - &quot;default&quot; - Uses the default visibility for events on the calendar. This is the default value.  - &quot;public&quot; - The event is public and event details are visible to all readers of the calendar.  - &quot;private&quot; - The event is private and only event attendees may view event details.  - &quot;confidential&quot; - The event is private. This value is provided for compatibility reasons.
      */
-    visibility?: string;
+    visibility?: string | null;
   }
   export interface Schema$EventAttachment {
     /**
      * ID of the attached file. Read-only. For Google Drive files, this is the ID of the corresponding Files resource entry in the Drive API.
      */
-    fileId?: string;
+    fileId?: string | null;
     /**
      * URL link to the attachment. For adding Google Drive file attachments use the same format as in alternateLink property of the Files resource in the Drive API. Required when adding an attachment.
      */
-    fileUrl?: string;
+    fileUrl?: string | null;
     /**
      * URL link to the attachment&#39;s icon. Read-only.
      */
-    iconLink?: string;
+    iconLink?: string | null;
     /**
      * Internet media type (MIME type) of the attachment.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * Attachment title.
      */
-    title?: string;
+    title?: string | null;
   }
   export interface Schema$EventAttendee {
     /**
      * Number of additional guests. Optional. The default is 0.
      */
-    additionalGuests?: number;
+    additionalGuests?: number | null;
     /**
      * The attendee&#39;s response comment. Optional.
      */
-    comment?: string;
+    comment?: string | null;
     /**
      * The attendee&#39;s name, if available. Optional.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The attendee&#39;s email address, if available. This field must be present when adding an attendee. It must be a valid email address as per RFC5322. Required when adding an attendee.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The attendee&#39;s Profile ID, if available. It corresponds to the id field in the People collection of the Google+ API
      */
-    id?: string;
+    id?: string | null;
     /**
      * Whether this is an optional attendee. Optional. The default is False.
      */
-    optional?: boolean;
+    optional?: boolean | null;
     /**
      * Whether the attendee is the organizer of the event. Read-only. The default is False.
      */
-    organizer?: boolean;
+    organizer?: boolean | null;
     /**
      * Whether the attendee is a resource. Can only be set when the attendee is added to the event for the first time. Subsequent modifications are ignored. Optional. The default is False.
      */
-    resource?: boolean;
+    resource?: boolean | null;
     /**
      * The attendee&#39;s response status. Possible values are:   - &quot;needsAction&quot; - The attendee has not responded to the invitation.  - &quot;declined&quot; - The attendee has declined the invitation.  - &quot;tentative&quot; - The attendee has tentatively accepted the invitation.  - &quot;accepted&quot; - The attendee has accepted the invitation.
      */
-    responseStatus?: string;
+    responseStatus?: string | null;
     /**
      * Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.
      */
-    self?: boolean;
+    self?: boolean | null;
   }
   export interface Schema$EventDateTime {
     /**
      * The date, in the format &quot;yyyy-mm-dd&quot;, if this is an all-day event.
      */
-    date?: string;
+    date?: string | null;
     /**
      * The time, as a combined date-time value (formatted according to RFC3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.
      */
-    dateTime?: string;
+    dateTime?: string | null;
     /**
      * The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. &quot;Europe/Zurich&quot;.) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end.
      */
-    timeZone?: string;
+    timeZone?: string | null;
   }
   export interface Schema$EventReminder {
     /**
      * The method used by this reminder. Possible values are:   - &quot;email&quot; - Reminders are sent via email.  - &quot;sms&quot; - Deprecated. Once this feature is shutdown, the API will no longer return reminders using this method. Any newly added SMS reminders will be ignored. See  Google Calendar SMS notifications to be removed for more information. Reminders are sent via SMS. These are only available for G Suite customers. Requests to set SMS reminders for other account types are ignored.  - &quot;popup&quot; - Reminders are sent via a UI popup.   Required when adding a reminder.
      */
-    method?: string;
+    method?: string | null;
     /**
      * Number of minutes before the start of the event when the reminder should trigger. Valid values are between 0 and 40320 (4 weeks in minutes). Required when adding a reminder.
      */
-    minutes?: number;
+    minutes?: number | null;
   }
   export interface Schema$Events {
     /**
      * The user&#39;s access role for this calendar. Read-only. Possible values are:   - &quot;none&quot; - The user has no access.  - &quot;freeBusyReader&quot; - The user has read access to free/busy information.  - &quot;reader&quot; - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.  - &quot;writer&quot; - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.  - &quot;owner&quot; - The user has ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
      */
-    accessRole?: string;
+    accessRole?: string | null;
     /**
      * The default reminders on the calendar for the authenticated user. These reminders apply to all events on this calendar that do not explicitly override them (i.e. do not have reminders.useDefault set to True).
      */
@@ -786,11 +791,11 @@ export namespace calendar_v3 {
     /**
      * Description of the calendar. Read-only.
      */
-    description?: string;
+    description?: string | null;
     /**
      * ETag of the collection.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * List of events on the calendar.
      */
@@ -798,27 +803,27 @@ export namespace calendar_v3 {
     /**
      * Type of the collection (&quot;calendar#events&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
      */
-    nextSyncToken?: string;
+    nextSyncToken?: string | null;
     /**
      * Title of the calendar. Read-only.
      */
-    summary?: string;
+    summary?: string | null;
     /**
      * The time zone of the calendar. Read-only.
      */
-    timeZone?: string;
+    timeZone?: string | null;
     /**
      * Last modification time of the calendar (as a RFC3339 timestamp). Read-only.
      */
-    updated?: string;
+    updated?: string | null;
   }
   export interface Schema$FreeBusyCalendar {
     /**
@@ -834,7 +839,7 @@ export namespace calendar_v3 {
     /**
      * List of calendars&#39; identifiers within a group.
      */
-    calendars?: string[];
+    calendars?: string[] | null;
     /**
      * Optional error(s) (if computation for the group failed).
      */
@@ -844,11 +849,11 @@ export namespace calendar_v3 {
     /**
      * Maximal number of calendars for which FreeBusy information is to be provided. Optional. Maximum value is 50.
      */
-    calendarExpansionMax?: number;
+    calendarExpansionMax?: number | null;
     /**
      * Maximal number of calendar identifiers to be provided for a single group. Optional. An error is returned for a group with more members than this value. Maximum value is 100.
      */
-    groupExpansionMax?: number;
+    groupExpansionMax?: number | null;
     /**
      * List of calendars and/or groups to query.
      */
@@ -856,67 +861,67 @@ export namespace calendar_v3 {
     /**
      * The end of the interval for the query formatted as per RFC3339.
      */
-    timeMax?: string;
+    timeMax?: string | null;
     /**
      * The start of the interval for the query formatted as per RFC3339.
      */
-    timeMin?: string;
+    timeMin?: string | null;
     /**
      * Time zone used in the response. Optional. The default is UTC.
      */
-    timeZone?: string;
+    timeZone?: string | null;
   }
   export interface Schema$FreeBusyRequestItem {
     /**
      * The identifier of a calendar or a group.
      */
-    id?: string;
+    id?: string | null;
   }
   export interface Schema$FreeBusyResponse {
     /**
      * List of free/busy information for calendars.
      */
-    calendars?: {[key: string]: Schema$FreeBusyCalendar};
+    calendars?: {[key: string]: Schema$FreeBusyCalendar} | null;
     /**
      * Expansion of groups.
      */
-    groups?: {[key: string]: Schema$FreeBusyGroup};
+    groups?: {[key: string]: Schema$FreeBusyGroup} | null;
     /**
      * Type of the resource (&quot;calendar#freeBusy&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The end of the interval.
      */
-    timeMax?: string;
+    timeMax?: string | null;
     /**
      * The start of the interval.
      */
-    timeMin?: string;
+    timeMin?: string | null;
   }
   export interface Schema$Setting {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The id of the user setting.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Type of the resource (&quot;calendar#setting&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Value of the user setting. The format of the value depends on the ID of the setting. It must always be a UTF-8 string of length up to 1024 characters.
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$Settings {
     /**
      * Etag of the collection.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * List of user settings.
      */
@@ -924,25 +929,25 @@ export namespace calendar_v3 {
     /**
      * Type of the collection (&quot;calendar#settings&quot;).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result. Omitted if no further results are available, in which case nextSyncToken is provided.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Token used at a later point in time to retrieve only the entries that have changed since this result was returned. Omitted if further results are available, in which case nextPageToken is provided.
      */
-    nextSyncToken?: string;
+    nextSyncToken?: string | null;
   }
   export interface Schema$TimePeriod {
     /**
      * The (exclusive) end of the time period.
      */
-    end?: string;
+    end?: string | null;
     /**
      * The (inclusive) start of the time period.
      */
-    start?: string;
+    start?: string | null;
   }
 
   export class Resource$Acl {

@@ -138,7 +138,7 @@ export namespace content_v2 {
     /**
      * Indicates whether the merchant sells adult content.
      */
-    adultContent?: boolean;
+    adultContent?: boolean | null;
     /**
      * List of linked AdWords accounts that are active or pending approval. To create a new link request, add a new link with status active to the list. It will remain in a pending state until approved or rejected either in the AdWords interface or through the  AdWords API. To delete an active link, or to cancel a link request, remove it from the list.
      */
@@ -154,23 +154,23 @@ export namespace content_v2 {
     /**
      * Merchant Center account ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#account&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Display name for the account.
      */
-    name?: string;
+    name?: string | null;
     /**
      * [DEPRECATED] This field is never returned and will be ignored if provided.
      */
-    reviewsUrl?: string;
+    reviewsUrl?: string | null;
     /**
      * Client-specific, locally-unique, internal ID for the child account.
      */
-    sellerId?: string;
+    sellerId?: string | null;
     /**
      * Users with access to the account. Every account (except for subaccounts) must have at least one admin user.
      */
@@ -178,7 +178,7 @@ export namespace content_v2 {
     /**
      * The merchant&#39;s website.
      */
-    websiteUrl?: string;
+    websiteUrl?: string | null;
     /**
      * List of linked YouTube channels that are active or pending approval. To create a new link request, add a new link with status active to the list. It will remain in a pending state until approved or rejected in the YT Creator Studio interface. To delete an active link, or to cancel a link request, remove it from the list.
      */
@@ -188,33 +188,33 @@ export namespace content_v2 {
     /**
      * CLDR country code (e.g. &quot;US&quot;).
      */
-    country?: string;
+    country?: string | null;
     /**
      * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
      */
-    locality?: string;
+    locality?: string | null;
     /**
      * Postal code or ZIP (e.g. &quot;94043&quot;).
      */
-    postalCode?: string;
+    postalCode?: string | null;
     /**
      * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
      */
-    region?: string;
+    region?: string | null;
     /**
      * Street-level part of the address.
      */
-    streetAddress?: string;
+    streetAddress?: string | null;
   }
   export interface Schema$AccountAdwordsLink {
     /**
      * Customer ID of the AdWords account.
      */
-    adwordsId?: string;
+    adwordsId?: string | null;
     /**
      * Status of the link between this Merchant Center account and the AdWords account. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in Google AdWords or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
      */
-    status?: string;
+    status?: string | null;
   }
   export interface Schema$AccountBusinessInformation {
     /**
@@ -228,41 +228,41 @@ export namespace content_v2 {
     /**
      * The phone number of the business.
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
   }
   export interface Schema$AccountCustomerService {
     /**
      * Customer service email.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Customer service phone number.
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * Customer service URL.
      */
-    url?: string;
+    url?: string | null;
   }
   export interface Schema$AccountGoogleMyBusinessLink {
     /**
      * The GMB email address of which a specific account within a GMB account. A sample account within a GMB account could be a business account with set of locations, managed under the GMB account.
      */
-    gmbEmail?: string;
+    gmbEmail?: string | null;
     /**
      * Status of the link between this Merchant Center account and the GMB account.
      */
-    status?: string;
+    status?: string | null;
   }
   export interface Schema$AccountIdentifier {
     /**
      * The aggregator ID, set for aggregators and subaccounts (in that case, it represents the aggregator of the subaccount).
      */
-    aggregatorId?: string;
+    aggregatorId?: string | null;
     /**
      * The merchant account ID, set for individual accounts and subaccounts.
      */
-    merchantId?: string;
+    merchantId?: string | null;
   }
   export interface Schema$AccountsAuthInfoResponse {
     /**
@@ -272,13 +272,13 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsAuthInfoResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$AccountsClaimWebsiteResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsClaimWebsiteResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$AccountsCustomBatchRequest {
     /**
@@ -297,15 +297,15 @@ export namespace content_v2 {
     /**
      * The ID of the targeted account. Only defined if the method is not insert.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * Whether the account should be deleted if the account has offers. Only applicable if the method is delete.
      */
-    force?: boolean;
+    force?: boolean | null;
     /**
      * Details about the link request.
      */
@@ -313,29 +313,29 @@ export namespace content_v2 {
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
+    merchantId?: string | null;
     /**
      * The method of the batch entry.
      */
-    method?: string;
+    method?: string | null;
     /**
      * Only applicable if the method is claimwebsite. Indicates whether or not to take the claim from another account in case there is a conflict.
      */
-    overwrite?: boolean;
+    overwrite?: boolean | null;
   }
   export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
     /**
      * Action to perform for this link. The &quot;request&quot; action is only available to select merchants.
      */
-    action?: string;
+    action?: string | null;
     /**
      * The ID of the linked account.
      */
-    linkedAccountId?: string;
+    linkedAccountId?: string | null;
     /**
      * Type of the link between the two accounts.
      */
-    linkType?: string;
+    linkType?: string | null;
   }
   export interface Schema$AccountsCustomBatchResponse {
     /**
@@ -345,7 +345,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch accounts response.
@@ -358,7 +358,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if and only if the request failed.
      */
@@ -366,41 +366,41 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Deprecated. This field is never set.
      */
-    linkStatus?: string;
+    linkStatus?: string | null;
   }
   export interface Schema$AccountsLinkRequest {
     /**
      * Action to perform for this link. The &quot;request&quot; action is only available to select merchants.
      */
-    action?: string;
+    action?: string | null;
     /**
      * The ID of the linked account.
      */
-    linkedAccountId?: string;
+    linkedAccountId?: string | null;
     /**
      * Type of the link between the two accounts.
      */
-    linkType?: string;
+    linkType?: string | null;
   }
   export interface Schema$AccountsLinkResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsLinkResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$AccountsListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of accounts.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$Account[];
   }
   /**
@@ -410,7 +410,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which the status is reported.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * A list of account level issues.
      */
@@ -422,7 +422,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountStatus&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * List of product-related data by channel, destination, and country. Data in this field may be delayed by up to 30 minutes.
      */
@@ -430,50 +430,50 @@ export namespace content_v2 {
     /**
      * Whether the account&#39;s website is claimed or not.
      */
-    websiteClaimed?: boolean;
+    websiteClaimed?: boolean | null;
   }
   export interface Schema$AccountStatusAccountLevelIssue {
     /**
      * Country for which this issue is reported.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The destination the issue applies to.
      */
-    destination?: string;
+    destination?: string | null;
     /**
      * Additional details about the issue.
      */
-    detail?: string;
+    detail?: string | null;
     /**
      * The URL of a web page to help resolving this issue.
      */
-    documentation?: string;
+    documentation?: string | null;
     /**
      * Issue identifier.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Severity of the issue.
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * Short description of the issue.
      */
-    title?: string;
+    title?: string | null;
   }
   export interface Schema$AccountStatusDataQualityIssue {
-    country?: string;
-    destination?: string;
-    detail?: string;
-    displayedValue?: string;
+    country?: string | null;
+    destination?: string | null;
+    detail?: string | null;
+    displayedValue?: string | null;
     exampleItems?: Schema$AccountStatusExampleItem[];
-    id?: string;
-    lastChecked?: string;
-    location?: string;
-    numItems?: number;
-    severity?: string;
-    submittedValue?: string;
+    id?: string | null;
+    lastChecked?: string | null;
+    location?: string | null;
+    numItems?: number | null;
+    severity?: string | null;
+    submittedValue?: string | null;
   }
   export interface Schema$AccountstatusesCustomBatchRequest {
     /**
@@ -488,23 +488,23 @@ export namespace content_v2 {
     /**
      * The ID of the (sub-)account whose status to get.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
-    destinations?: string[];
+    destinations?: string[] | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
+    merchantId?: string | null;
     /**
      * The method (get).
      */
-    method?: string;
+    method?: string | null;
   }
   export interface Schema$AccountstatusesCustomBatchResponse {
     /**
@@ -514,7 +514,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountstatusesCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch accountstatuses response.
@@ -527,7 +527,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if and only if the request failed.
      */
@@ -537,67 +537,67 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountstatusesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of account statuses.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$AccountStatus[];
   }
   export interface Schema$AccountStatusExampleItem {
-    itemId?: string;
-    link?: string;
-    submittedValue?: string;
-    title?: string;
-    valueOnLandingPage?: string;
+    itemId?: string | null;
+    link?: string | null;
+    submittedValue?: string | null;
+    title?: string | null;
+    valueOnLandingPage?: string | null;
   }
   export interface Schema$AccountStatusItemLevelIssue {
     /**
      * The attribute&#39;s name, if the issue is caused by a single attribute.
      */
-    attributeName?: string;
+    attributeName?: string | null;
     /**
      * The error code of the issue.
      */
-    code?: string;
+    code?: string | null;
     /**
      * A short issue description in English.
      */
-    description?: string;
+    description?: string | null;
     /**
      * A detailed issue description in English.
      */
-    detail?: string;
+    detail?: string | null;
     /**
      * The URL of a web page to help with resolving this issue.
      */
-    documentation?: string;
+    documentation?: string | null;
     /**
      * Number of items with this issue.
      */
-    numItems?: string;
+    numItems?: string | null;
     /**
      * Whether the issue can be resolved by the merchant.
      */
-    resolution?: string;
+    resolution?: string | null;
     /**
      * How this issue affects serving of the offer.
      */
-    servability?: string;
+    servability?: string | null;
   }
   export interface Schema$AccountStatusProducts {
     /**
      * The channel the data applies to.
      */
-    channel?: string;
+    channel?: string | null;
     /**
      * The country the data applies to.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The destination the data applies to.
      */
-    destination?: string;
+    destination?: string | null;
     /**
      * List of item-level issues.
      */
@@ -611,19 +611,19 @@ export namespace content_v2 {
     /**
      * Number of active offers.
      */
-    active?: string;
+    active?: string | null;
     /**
      * Number of disapproved offers.
      */
-    disapproved?: string;
+    disapproved?: string | null;
     /**
      * Number of expiring offers.
      */
-    expiring?: string;
+    expiring?: string | null;
     /**
      * Number of pending offers.
      */
-    pending?: string;
+    pending?: string | null;
   }
   /**
    * The tax settings of a merchant account. All methods require the admin role.
@@ -632,11 +632,11 @@ export namespace content_v2 {
     /**
      * The ID of the account to which these account tax settings belong.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountTax&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Tax rules. Updating the tax rules will enable US taxes (not reversible). Defining no rules is equivalent to not charging tax at all.
      */
@@ -655,7 +655,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update account tax settings.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The account tax settings to update. Only defined if the method is update.
      */
@@ -663,12 +663,12 @@ export namespace content_v2 {
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
-    method?: string;
+    merchantId?: string | null;
+    method?: string | null;
   }
   export interface Schema$AccounttaxCustomBatchResponse {
     /**
@@ -678,7 +678,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch accounttax response.
@@ -691,7 +691,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if and only if the request failed.
      */
@@ -699,17 +699,17 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$AccounttaxListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of account tax settings.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$AccountTax[];
   }
   /**
@@ -719,55 +719,55 @@ export namespace content_v2 {
     /**
      * Country code in which tax is applicable.
      */
-    country?: string;
+    country?: string | null;
     /**
      * State (or province) is which the tax is applicable, described by its location ID (also called criteria ID).
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Explicit tax rate in percent, represented as a floating point number without the percentage character. Must not be negative.
      */
-    ratePercent?: string;
+    ratePercent?: string | null;
     /**
      * If true, shipping charges are also taxed.
      */
-    shippingTaxed?: boolean;
+    shippingTaxed?: boolean | null;
     /**
      * Whether the tax rate is taken from a global tax table or specified explicitly.
      */
-    useGlobalRate?: boolean;
+    useGlobalRate?: boolean | null;
   }
   export interface Schema$AccountUser {
     /**
      * Whether user is an admin.
      */
-    admin?: boolean;
+    admin?: boolean | null;
     /**
      * User&#39;s email address.
      */
-    emailAddress?: string;
+    emailAddress?: string | null;
     /**
      * Whether user is an order manager.
      */
-    orderManager?: boolean;
+    orderManager?: boolean | null;
     /**
      * Whether user can access payment statements.
      */
-    paymentsAnalyst?: boolean;
+    paymentsAnalyst?: boolean | null;
     /**
      * Whether user can manage payment settings.
      */
-    paymentsManager?: boolean;
+    paymentsManager?: boolean | null;
   }
   export interface Schema$AccountYouTubeChannelLink {
     /**
      * Channel ID.
      */
-    channelId?: string;
+    channelId?: string | null;
     /**
      * Status of the link between this Merchant Center account and the YouTube channel. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in YT Creator Studio or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
      */
-    status?: string;
+    status?: string | null;
   }
   export interface Schema$Amount {
     /**
@@ -783,17 +783,17 @@ export namespace content_v2 {
     /**
      * Regular business days. May not be empty.
      */
-    businessDays?: string[];
+    businessDays?: string[] | null;
   }
   export interface Schema$CarrierRate {
     /**
      * Carrier service, such as &quot;UPS&quot; or &quot;Fedex&quot;. The list of supported carriers can be retrieved via the getSupportedCarriers method. Required.
      */
-    carrierName?: string;
+    carrierName?: string | null;
     /**
      * Carrier service, such as &quot;ground&quot; or &quot;2 days&quot;. The list of supported services for a carrier can be retrieved via the getSupportedCarriers method. Required.
      */
-    carrierService?: string;
+    carrierService?: string | null;
     /**
      * Additive shipping rate modifier. Can be negative. For example { &quot;value&quot;: &quot;1&quot;, &quot;currency&quot; : &quot;USD&quot; } adds $1 to the rate, { &quot;value&quot;: &quot;-3&quot;, &quot;currency&quot; : &quot;USD&quot; } removes $3 from the rate. Optional.
      */
@@ -801,51 +801,51 @@ export namespace content_v2 {
     /**
      * Name of the carrier rate. Must be unique per rate group. Required.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Shipping origin for this carrier rate. Required.
      */
-    originPostalCode?: string;
+    originPostalCode?: string | null;
     /**
      * Multiplicative shipping rate modifier as a number in decimal notation. Can be negative. For example &quot;5.4&quot; increases the rate by 5.4%, &quot;-3&quot; decreases the rate by 3%. Optional.
      */
-    percentageAdjustment?: string;
+    percentageAdjustment?: string | null;
   }
   export interface Schema$CarriersCarrier {
     /**
      * The CLDR country code of the carrier (e.g., &quot;US&quot;). Always present.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The name of the carrier (e.g., &quot;UPS&quot;). Always present.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A list of supported services (e.g., &quot;ground&quot;) for that carrier. Contains at least one service.
      */
-    services?: string[];
+    services?: string[] | null;
   }
   export interface Schema$CustomAttribute {
     /**
      * The name of the attribute. Underscores will be replaced by spaces upon insertion.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The type of the attribute.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Free-form unit of the attribute. Unit can only be used for values of type int, float, or price.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * The value of the attribute.
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$CustomerReturnReason {
-    description?: string;
-    reasonCode?: string;
+    description?: string | null;
+    reasonCode?: string | null;
   }
   export interface Schema$CustomGroup {
     /**
@@ -855,21 +855,21 @@ export namespace content_v2 {
     /**
      * The name of the group. Underscores will be replaced by spaces upon insertion.
      */
-    name?: string;
+    name?: string | null;
   }
   export interface Schema$CutoffTime {
     /**
      * Hour of the cutoff time until which an order has to be placed to be processed in the same day. Required.
      */
-    hour?: number;
+    hour?: number | null;
     /**
      * Minute of the cutoff time until which an order has to be placed to be processed in the same day. Required.
      */
-    minute?: number;
+    minute?: number | null;
     /**
      * Timezone identifier for the cutoff time. A list of identifiers can be found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
      */
-    timezone?: string;
+    timezone?: string | null;
   }
   /**
    * Datafeed configuration data.
@@ -878,15 +878,15 @@ export namespace content_v2 {
     /**
      * The two-letter ISO 639-1 language in which the attributes are defined in the data feed.
      */
-    attributeLanguage?: string;
+    attributeLanguage?: string | null;
     /**
      * [DEPRECATED] Please use targets[].language instead. The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountry.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * Fetch schedule for the feed file.
      */
@@ -894,7 +894,7 @@ export namespace content_v2 {
     /**
      * The filename of the feed. All feeds must have a unique file name.
      */
-    fileName?: string;
+    fileName?: string | null;
     /**
      * Format of the feed file.
      */
@@ -902,23 +902,23 @@ export namespace content_v2 {
     /**
      * The ID of the data feed.
      */
-    id?: string;
+    id?: string | null;
     /**
      * [DEPRECATED] Please use targets[].includedDestinations instead. The list of intended destinations (corresponds to checked check boxes in Merchant Center).
      */
-    intendedDestinations?: string[];
+    intendedDestinations?: string[] | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeed&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * A descriptive name of the data feed.
      */
-    name?: string;
+    name?: string | null;
     /**
      * [DEPRECATED] Please use targets[].country instead. The country where the items in the feed will be included in the search index, represented as a CLDR territory code.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The targets this feed should apply to (country, language, destinations).
      */
@@ -931,53 +931,53 @@ export namespace content_v2 {
     /**
      * The day of the month the feed file should be fetched (1-31).
      */
-    dayOfMonth?: number;
+    dayOfMonth?: number | null;
     /**
      * The URL where the feed file can be fetched. Google Merchant Center will support automatic scheduled uploads using the HTTP, HTTPS, FTP, or SFTP protocols, so the value will need to be a valid link using one of those four protocols.
      */
-    fetchUrl?: string;
+    fetchUrl?: string | null;
     /**
      * The hour of the day the feed file should be fetched (0-23).
      */
-    hour?: number;
+    hour?: number | null;
     /**
      * The minute of the hour the feed file should be fetched (0-59). Read-only.
      */
-    minuteOfHour?: number;
+    minuteOfHour?: number | null;
     /**
      * An optional password for fetch_url.
      */
-    password?: string;
+    password?: string | null;
     /**
      * Whether the scheduled fetch is paused or not.
      */
-    paused?: boolean;
+    paused?: boolean | null;
     /**
      * Time zone used for schedule. UTC by default. E.g., &quot;America/Los_Angeles&quot;.
      */
-    timeZone?: string;
+    timeZone?: string | null;
     /**
      * An optional user name for fetch_url.
      */
-    username?: string;
+    username?: string | null;
     /**
      * The day of the week the feed file should be fetched.
      */
-    weekday?: string;
+    weekday?: string | null;
   }
   export interface Schema$DatafeedFormat {
     /**
      * Delimiter for the separation of values in a delimiter-separated values feed. If not specified, the delimiter will be auto-detected. Ignored for non-DSV data feeds.
      */
-    columnDelimiter?: string;
+    columnDelimiter?: string | null;
     /**
      * Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected.
      */
-    fileEncoding?: string;
+    fileEncoding?: string | null;
     /**
      * Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds.
      */
-    quotingMode?: string;
+    quotingMode?: string | null;
   }
   export interface Schema$DatafeedsCustomBatchRequest {
     /**
@@ -992,7 +992,7 @@ export namespace content_v2 {
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * The data feed to insert.
      */
@@ -1000,12 +1000,12 @@ export namespace content_v2 {
     /**
      * The ID of the data feed to get, delete or fetch.
      */
-    datafeedId?: string;
+    datafeedId?: string | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
-    method?: string;
+    merchantId?: string | null;
+    method?: string | null;
   }
   export interface Schema$DatafeedsCustomBatchResponse {
     /**
@@ -1015,7 +1015,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch datafeeds response.
@@ -1024,7 +1024,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * The requested data feed. Defined if and only if the request was successful.
      */
@@ -1038,17 +1038,17 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsFetchNowResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$DatafeedsListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of datafeeds.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$Datafeed[];
   }
   /**
@@ -1058,11 +1058,11 @@ export namespace content_v2 {
     /**
      * The country for which the status is reported, represented as a  CLDR territory code.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The ID of the feed for which the status is reported.
      */
-    datafeedId?: string;
+    datafeedId?: string | null;
     /**
      * The list of errors occurring in the feed.
      */
@@ -1070,27 +1070,27 @@ export namespace content_v2 {
     /**
      * The number of items in the feed that were processed.
      */
-    itemsTotal?: string;
+    itemsTotal?: string | null;
     /**
      * The number of items in the feed that were valid.
      */
-    itemsValid?: string;
+    itemsValid?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedStatus&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The two-letter ISO 639-1 language for which the status is reported.
      */
-    language?: string;
+    language?: string | null;
     /**
      * The last date at which the feed was uploaded.
      */
-    lastUploadDate?: string;
+    lastUploadDate?: string | null;
     /**
      * The processing status of the feed.
      */
-    processingStatus?: string;
+    processingStatus?: string | null;
     /**
      * The list of errors occurring in the feed.
      */
@@ -1103,11 +1103,11 @@ export namespace content_v2 {
     /**
      * The code of the error, e.g., &quot;validation/invalid_value&quot;.
      */
-    code?: string;
+    code?: string | null;
     /**
      * The number of occurrences of the error in the feed.
      */
-    count?: string;
+    count?: string | null;
     /**
      * A list of example occurrences of the error, grouped by product.
      */
@@ -1115,7 +1115,7 @@ export namespace content_v2 {
     /**
      * The error message, e.g., &quot;Invalid price&quot;.
      */
-    message?: string;
+    message?: string | null;
   }
   export interface Schema$DatafeedstatusesCustomBatchRequest {
     /**
@@ -1130,24 +1130,24 @@ export namespace content_v2 {
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that for multi-target datafeeds this parameter is required.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The ID of the data feed to get.
      */
-    datafeedId?: string;
+    datafeedId?: string | null;
     /**
      * The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that for multi-target datafeeds this parameter is required.
      */
-    language?: string;
+    language?: string | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
-    method?: string;
+    merchantId?: string | null;
+    method?: string | null;
   }
   export interface Schema$DatafeedstatusesCustomBatchResponse {
     /**
@@ -1157,7 +1157,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedstatusesCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch datafeedstatuses response.
@@ -1166,7 +1166,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * The requested data feed status. Defined if and only if the request was successful.
      */
@@ -1180,11 +1180,11 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedstatusesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of datafeed statuses.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$DatafeedStatus[];
   }
   /**
@@ -1194,33 +1194,33 @@ export namespace content_v2 {
     /**
      * The ID of the example item.
      */
-    itemId?: string;
+    itemId?: string | null;
     /**
      * Line number in the data feed where the example is found.
      */
-    lineNumber?: string;
+    lineNumber?: string | null;
     /**
      * The problematic value.
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$DatafeedTarget {
     /**
      * The country where the items in the feed will be included in the search index, represented as a  CLDR territory code.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).
      */
-    excludedDestinations?: string[];
+    excludedDestinations?: string[] | null;
     /**
      * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in excludedDestinations.
      */
-    includedDestinations?: string[];
+    includedDestinations?: string[] | null;
     /**
      * The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targets[].country.
      */
-    language?: string;
+    language?: string | null;
   }
   export interface Schema$DeliveryTime {
     /**
@@ -1238,19 +1238,19 @@ export namespace content_v2 {
     /**
      * Maximum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped. Must be greater than or equal to minHandlingTimeInDays.
      */
-    maxHandlingTimeInDays?: number;
+    maxHandlingTimeInDays?: number | null;
     /**
      * Maximum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to minTransitTimeInDays.
      */
-    maxTransitTimeInDays?: number;
+    maxTransitTimeInDays?: number | null;
     /**
      * Minimum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped.
      */
-    minHandlingTimeInDays?: number;
+    minHandlingTimeInDays?: number | null;
     /**
      * Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Either {min,max}TransitTimeInDays or transitTimeTable must be set, but not both.
      */
-    minTransitTimeInDays?: number;
+    minTransitTimeInDays?: number | null;
     /**
      * The business days during which orders can be in-transit. If not provided, Monday to Friday business days will be assumed.
      */
@@ -1267,15 +1267,15 @@ export namespace content_v2 {
     /**
      * The domain of the error.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * A description of the error.
      */
-    message?: string;
+    message?: string | null;
     /**
      * The error code.
      */
-    reason?: string;
+    reason?: string | null;
   }
   /**
    * A list of errors returned by a failed batch entry.
@@ -1284,7 +1284,7 @@ export namespace content_v2 {
     /**
      * The HTTP status of the first error in errors.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of errors.
      */
@@ -1292,13 +1292,13 @@ export namespace content_v2 {
     /**
      * The message of the first error in errors.
      */
-    message?: string;
+    message?: string | null;
   }
   export interface Schema$GmbAccounts {
     /**
      * The ID of the account.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * A list of GMB accounts which are available to the merchant.
      */
@@ -1308,19 +1308,19 @@ export namespace content_v2 {
     /**
      * The email which identifies the GMB account.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Number of listings under this account.
      */
-    listingCount?: string;
+    listingCount?: string | null;
     /**
      * The name of the GMB account.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The type of the GMB account (User or Business).
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A non-empty list of row or column headers for a table. Exactly one of prices, weights, numItems, postalCodeGroupNames, or location must be set.
@@ -1333,11 +1333,11 @@ export namespace content_v2 {
     /**
      * A list of inclusive number of items upper bounds. The last value can be &quot;infinity&quot;. For example [&quot;10&quot;, &quot;50&quot;, &quot;infinity&quot;] represents the headers &quot;&lt;= 10 items&quot;, &quot; 50 items&quot;. Must be non-empty. Can only be set if all other fields are not set.
      */
-    numberOfItems?: string[];
+    numberOfItems?: string[] | null;
     /**
      * A list of postal group names. The last value can be &quot;all other locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]. The referred postal code groups must match the delivery country of the service. Must be non-empty. Can only be set if all other fields are not set.
      */
-    postalCodeGroupNames?: string[];
+    postalCodeGroupNames?: string[] | null;
     /**
      * A list of inclusive order price upper bounds. The last price&#39;s value can be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}] represents the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
      */
@@ -1351,49 +1351,49 @@ export namespace content_v2 {
     /**
      * Date of the order deadline, in ISO 8601 format. E.g. &quot;2016-11-29&quot; for 29th November 2016. Required.
      */
-    deadlineDate?: string;
+    deadlineDate?: string | null;
     /**
      * Hour of the day on the deadline date until which the order has to be placed to qualify for the delivery guarantee. Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Required.
      */
-    deadlineHour?: number;
+    deadlineHour?: number | null;
     /**
      * Timezone identifier for the deadline hour. A list of identifiers can be found in  the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
      */
-    deadlineTimezone?: string;
+    deadlineTimezone?: string | null;
     /**
      * Unique identifier for the holiday. Required.
      */
-    holidayId?: string;
+    holidayId?: string | null;
     /**
      * Date on which the deadline will become visible to consumers in ISO 8601 format. E.g. &quot;2016-10-31&quot; for 31st October 2016. Required.
      */
-    visibleFromDate?: string;
+    visibleFromDate?: string | null;
   }
   export interface Schema$HolidaysHoliday {
     /**
      * The CLDR territory code of the country in which the holiday is available. E.g. &quot;US&quot;, &quot;DE&quot;, &quot;GB&quot;. A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.
      */
-    countryCode?: string;
+    countryCode?: string | null;
     /**
      * Date of the holiday, in ISO 8601 format. E.g. &quot;2016-12-25&quot; for Christmas 2016. Always present.
      */
-    date?: string;
+    date?: string | null;
     /**
      * Date on which the order has to arrive at the customer&#39;s, in ISO 8601 format. E.g. &quot;2016-12-24&quot; for 24th December 2016. Always present.
      */
-    deliveryGuaranteeDate?: string;
+    deliveryGuaranteeDate?: string | null;
     /**
      * Hour of the day in the delivery location&#39;s timezone on the guaranteed delivery date by which the order has to arrive at the customer&#39;s. Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Always present.
      */
-    deliveryGuaranteeHour?: string;
+    deliveryGuaranteeHour?: string | null;
     /**
      * Unique identifier for the holiday to be used when configuring holiday cutoffs. Always present.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The holiday type. Always present.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$Installment {
     /**
@@ -1403,33 +1403,33 @@ export namespace content_v2 {
     /**
      * The number of installments the buyer has to pay.
      */
-    months?: string;
+    months?: string | null;
   }
   export interface Schema$Inventory {
     /**
      * The availability of the product.
      */
-    availability?: string;
+    availability?: string | null;
     /**
      * Custom label 0 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel0?: string;
+    customLabel0?: string | null;
     /**
      * Custom label 1 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel1?: string;
+    customLabel1?: string | null;
     /**
      * Custom label 2 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel2?: string;
+    customLabel2?: string | null;
     /**
      * Custom label 3 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel3?: string;
+    customLabel3?: string | null;
     /**
      * Custom label 3 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel4?: string;
+    customLabel4?: string | null;
     /**
      * Number and amount of installments to pay for an item. Brazil only.
      */
@@ -1437,11 +1437,11 @@ export namespace content_v2 {
     /**
      * The instore product location. Supported only for local products.
      */
-    instoreProductLocation?: string;
+    instoreProductLocation?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#inventory&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Loyalty points that users receive after purchasing the item. Japan only.
      */
@@ -1457,7 +1457,7 @@ export namespace content_v2 {
     /**
      * The quantity of the product. Must be equal to or greater than zero. Supported only for local products.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The sale price of the product. Mandatory if sale_price_effective_date is defined.
      */
@@ -1465,11 +1465,11 @@ export namespace content_v2 {
     /**
      * A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates might be specified as &#39;null&#39; if undecided.
      */
-    salePriceEffectiveDate?: string;
+    salePriceEffectiveDate?: string | null;
     /**
      * The quantity of the product that is available for selling on Google. Supported only for online products.
      */
-    sellOnGoogleQuantity?: number;
+    sellOnGoogleQuantity?: number | null;
   }
   export interface Schema$InventoryCustomBatchRequest {
     /**
@@ -1484,7 +1484,7 @@ export namespace content_v2 {
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * Price and availability of the product.
      */
@@ -1492,15 +1492,15 @@ export namespace content_v2 {
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
+    merchantId?: string | null;
     /**
      * The ID of the product for which to update price and availability.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The code of the store for which to update price and availability. Use online to update price and availability of an online product.
      */
-    storeCode?: string;
+    storeCode?: string | null;
   }
   export interface Schema$InventoryCustomBatchResponse {
     /**
@@ -1510,7 +1510,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#inventoryCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch inventory response.
@@ -1519,7 +1519,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if and only if the request failed.
      */
@@ -1527,43 +1527,43 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#inventoryCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$InventoryPickup {
     /**
      * Whether store pickup is available for this offer and whether the pickup option should be shown as buy, reserve, or not supported. Only supported for local inventory. Unless the value is &quot;not supported&quot;, must be submitted together with pickupSla.
      */
-    pickupMethod?: string;
+    pickupMethod?: string | null;
     /**
      * The expected date that an order will be ready for pickup, relative to when the order is placed. Only supported for local inventory. Must be submitted together with pickupMethod.
      */
-    pickupSla?: string;
+    pickupSla?: string | null;
   }
   export interface Schema$InventorySetRequest {
     /**
      * The availability of the product.
      */
-    availability?: string;
+    availability?: string | null;
     /**
      * Custom label 0 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel0?: string;
+    customLabel0?: string | null;
     /**
      * Custom label 1 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel1?: string;
+    customLabel1?: string | null;
     /**
      * Custom label 2 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel2?: string;
+    customLabel2?: string | null;
     /**
      * Custom label 3 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel3?: string;
+    customLabel3?: string | null;
     /**
      * Custom label 3 for custom grouping of items in a Shopping campaign. Only supported for online products.
      */
-    customLabel4?: string;
+    customLabel4?: string | null;
     /**
      * Number and amount of installments to pay for an item. Brazil only.
      */
@@ -1571,7 +1571,7 @@ export namespace content_v2 {
     /**
      * The instore product location. Supported only for local products.
      */
-    instoreProductLocation?: string;
+    instoreProductLocation?: string | null;
     /**
      * Loyalty points that users receive after purchasing the item. Japan only.
      */
@@ -1587,7 +1587,7 @@ export namespace content_v2 {
     /**
      * The quantity of the product. Must be equal to or greater than zero. Supported only for local products.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The sale price of the product. Mandatory if sale_price_effective_date is defined.
      */
@@ -1595,17 +1595,17 @@ export namespace content_v2 {
     /**
      * A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates might be specified as &#39;null&#39; if undecided.
      */
-    salePriceEffectiveDate?: string;
+    salePriceEffectiveDate?: string | null;
     /**
      * The quantity of the product that is available for selling on Google. Supported only for online products.
      */
-    sellOnGoogleQuantity?: number;
+    sellOnGoogleQuantity?: number | null;
   }
   export interface Schema$InventorySetResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#inventorySetResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$InvoiceSummary {
     /**
@@ -1641,17 +1641,17 @@ export namespace content_v2 {
     /**
      * [required] Type of the additional charge.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$LiaAboutPageSettings {
     /**
      * The status of the verification process for the About page.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The URL for the About page.
      */
-    url?: string;
+    url?: string | null;
   }
   export interface Schema$LiaCountrySettings {
     /**
@@ -1661,11 +1661,11 @@ export namespace content_v2 {
     /**
      * CLDR country code (e.g. &quot;US&quot;).
      */
-    country?: string;
+    country?: string | null;
     /**
      * The status of the &quot;Merchant hosted local storefront&quot; feature.
      */
-    hostedLocalStorefrontActive?: boolean;
+    hostedLocalStorefrontActive?: boolean | null;
     /**
      * LIA inventory verification settings.
      */
@@ -1681,45 +1681,45 @@ export namespace content_v2 {
     /**
      * The status of the &quot;Store pickup&quot; feature.
      */
-    storePickupActive?: boolean;
+    storePickupActive?: boolean | null;
   }
   export interface Schema$LiaInventorySettings {
     /**
      * The email of the contact for the inventory verification process.
      */
-    inventoryVerificationContactEmail?: string;
+    inventoryVerificationContactEmail?: string | null;
     /**
      * The name of the contact for the inventory verification process.
      */
-    inventoryVerificationContactName?: string;
+    inventoryVerificationContactName?: string | null;
     /**
      * The status of the verification contact.
      */
-    inventoryVerificationContactStatus?: string;
+    inventoryVerificationContactStatus?: string | null;
     /**
      * The status of the inventory verification process.
      */
-    status?: string;
+    status?: string | null;
   }
   export interface Schema$LiaOnDisplayToOrderSettings {
     /**
      * Shipping cost and policy URL.
      */
-    shippingCostPolicyUrl?: string;
+    shippingCostPolicyUrl?: string | null;
     /**
      * The status of the ?On display to order? feature.
      */
-    status?: string;
+    status?: string | null;
   }
   export interface Schema$LiaPosDataProvider {
     /**
      * The ID of the POS data provider.
      */
-    posDataProviderId?: string;
+    posDataProviderId?: string | null;
     /**
      * The account ID by which this merchant is known to the POS data provider.
      */
-    posExternalAccountId?: string;
+    posExternalAccountId?: string | null;
   }
   /**
    * Local Inventory ads (LIA) settings. All methods except listposdataproviders require the admin role.
@@ -1728,7 +1728,7 @@ export namespace content_v2 {
     /**
      * The ID of the account to which these LIA settings belong. Ignored upon update, always present in get request responses.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The LIA settings for each country.
      */
@@ -1736,7 +1736,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liaSettings&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$LiasettingsCustomBatchRequest {
     /**
@@ -1748,27 +1748,27 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update account shipping settings.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * Inventory validation contact email. Required only for SetInventoryValidationContact.
      */
-    contactEmail?: string;
+    contactEmail?: string | null;
     /**
      * Inventory validation contact name. Required only for SetInventoryValidationContact.
      */
-    contactName?: string;
+    contactName?: string | null;
     /**
      * The country code. Required only for RequestInventoryVerification.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The GMB account. Required only for RequestGmbAccess.
      */
-    gmbEmail?: string;
+    gmbEmail?: string | null;
     /**
      * The account Lia settings to update. Only defined if the method is update.
      */
@@ -1776,16 +1776,16 @@ export namespace content_v2 {
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
-    method?: string;
+    merchantId?: string | null;
+    method?: string | null;
     /**
      * The ID of POS data provider. Required only for SetPosProvider.
      */
-    posDataProviderId?: string;
+    posDataProviderId?: string | null;
     /**
      * The account ID by which this merchant is known to the POS provider.
      */
-    posExternalAccountId?: string;
+    posExternalAccountId?: string | null;
   }
   export interface Schema$LiasettingsCustomBatchResponse {
     /**
@@ -1795,13 +1795,13 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$LiasettingsCustomBatchResponseEntry {
     /**
      * The ID of the request entry to which this entry responds.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if, and only if, the request failed.
      */
@@ -1813,7 +1813,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The retrieved or updated Lia settings.
      */
@@ -1827,7 +1827,7 @@ export namespace content_v2 {
     /**
      * The ID of the account.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * A list of GMB accounts which are available to the merchant.
      */
@@ -1835,13 +1835,13 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsGetAccessibleGmbAccountsResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$LiasettingsListPosDataProvidersResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsListPosDataProvidersResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The list of POS data providers for each eligible country
      */
@@ -1851,72 +1851,72 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of LIA settings.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$LiaSettings[];
   }
   export interface Schema$LiasettingsRequestGmbAccessResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsRequestGmbAccessResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$LiasettingsRequestInventoryVerificationResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsRequestInventoryVerificationResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$LiasettingsSetInventoryVerificationContactResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsSetInventoryVerificationContactResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$LiasettingsSetPosDataProviderResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsSetPosDataProviderResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$LocationIdSet {
     /**
      * A non-empty list of location IDs. They must all be of the same location type (e.g., state).
      */
-    locationIds?: string[];
+    locationIds?: string[] | null;
   }
   export interface Schema$LoyaltyPoints {
     /**
      * Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The retailer&#39;s loyalty points in absolute value.
      */
-    pointsValue?: string;
+    pointsValue?: string | null;
     /**
      * The ratio of a point when converted to currency. Google assumes currency based on Merchant Center settings. If ratio is left out, it defaults to 1.0.
      */
-    ratio?: number;
+    ratio?: number | null;
   }
   export interface Schema$MerchantOrderReturn {
-    creationDate?: string;
-    merchantOrderId?: string;
-    orderId?: string;
-    orderReturnId?: string;
+    creationDate?: string | null;
+    merchantOrderId?: string | null;
+    orderId?: string | null;
+    orderReturnId?: string | null;
     returnItems?: Schema$MerchantOrderReturnItem[];
     returnShipments?: Schema$ReturnShipment[];
   }
   export interface Schema$MerchantOrderReturnItem {
     customerReturnReason?: Schema$CustomerReturnReason;
-    itemId?: string;
+    itemId?: string | null;
     merchantReturnReason?: Schema$RefundReason;
     product?: Schema$OrderLineItemProduct;
-    returnShipmentIds?: string[];
-    state?: string;
+    returnShipmentIds?: string[] | null;
+    state?: string | null;
   }
   /**
    * Order. All methods require the order manager role.
@@ -1925,11 +1925,11 @@ export namespace content_v2 {
     /**
      * Whether the order was acknowledged.
      */
-    acknowledged?: boolean;
+    acknowledged?: boolean | null;
     /**
      * Deprecated.
      */
-    channelType?: string;
+    channelType?: string | null;
     /**
      * The details of the customer who placed the order.
      */
@@ -1941,20 +1941,20 @@ export namespace content_v2 {
     /**
      * The REST ID of the order. Globally unique.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#order&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Line items that are ordered.
      */
     lineItems?: Schema$OrderLineItem[];
-    merchantId?: string;
+    merchantId?: string | null;
     /**
      * Merchant-provided ID of the order.
      */
-    merchantOrderId?: string;
+    merchantOrderId?: string | null;
     /**
      * The net amount for the order. For example, if an order was originally for a grand total of $100 and a refund was issued for $20, the net amount will be $80.
      */
@@ -1966,11 +1966,15 @@ export namespace content_v2 {
     /**
      * The status of the payment.
      */
-    paymentStatus?: string;
+    paymentStatus?: string | null;
+    /**
+     * Pickup details for shipments of type pickup.
+     */
+    pickupDetails?: Schema$OrderPickupDetails;
     /**
      * The date when the order was placed, in ISO 8601 format.
      */
-    placedDate?: string;
+    placedDate?: string | null;
     /**
      * The details of the merchant provided promotions applied to the order. More details about the program are here.
      */
@@ -1994,89 +1998,89 @@ export namespace content_v2 {
     /**
      * Deprecated. Shipping details are provided with line items instead.
      */
-    shippingOption?: string;
+    shippingOption?: string | null;
     /**
      * The status of the order.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The party responsible for collecting and remitting taxes.
      */
-    taxCollector?: string;
+    taxCollector?: string | null;
   }
   export interface Schema$OrderAddress {
     /**
      * CLDR country code (e.g. &quot;US&quot;).
      */
-    country?: string;
+    country?: string | null;
     /**
      * Strings representing the lines of the printed label for mailing the order, for example: John Smith 1600 Amphitheatre Parkway Mountain View, CA, 94043 United States
      */
-    fullAddress?: string[];
+    fullAddress?: string[] | null;
     /**
      * Whether the address is a post office box.
      */
-    isPostOfficeBox?: boolean;
+    isPostOfficeBox?: boolean | null;
     /**
      * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
      */
-    locality?: string;
+    locality?: string | null;
     /**
      * Postal Code or ZIP (e.g. &quot;94043&quot;).
      */
-    postalCode?: string;
+    postalCode?: string | null;
     /**
      * Name of the recipient.
      */
-    recipientName?: string;
+    recipientName?: string | null;
     /**
      * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
      */
-    region?: string;
+    region?: string | null;
     /**
      * Street-level part of the address.
      */
-    streetAddress?: string[];
+    streetAddress?: string[] | null;
   }
   export interface Schema$OrderCancellation {
     /**
      * The actor that created the cancellation.
      */
-    actor?: string;
+    actor?: string | null;
     /**
      * Date on which the cancellation has been created, in ISO 8601 format.
      */
-    creationDate?: string;
+    creationDate?: string | null;
     /**
      * The quantity that was canceled.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the cancellation. Orders that are cancelled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrderCustomer {
     /**
      * Deprecated.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Deprecated. Please use marketingRightsInfo instead.
      */
-    explicitMarketingPreference?: boolean;
+    explicitMarketingPreference?: boolean | null;
     /**
      * Full name of the customer.
      */
-    fullName?: string;
+    fullName?: string | null;
     /**
      * Email address for receiving merchant issued value-added tax or invoice documentation of this order.
      */
-    invoiceReceivingEmail?: string;
+    invoiceReceivingEmail?: string | null;
     /**
      * Customer&#39;s marketing preferences. Contains the marketing opt-in information that is current at the time that the merchant call. User preference selections can change from one order to the next so preferences must be checked with every order.
      */
@@ -2086,15 +2090,15 @@ export namespace content_v2 {
     /**
      * Last known customer selection regarding marketing preferences. In certain cases this selection might not be known, so this field would be empty. If a customer selected granted in their most recent order, they can be subscribed to marketing emails. Customers who have chosen denied must not be subscribed, or must be unsubscribed if already opted-in.
      */
-    explicitMarketingPreference?: string;
+    explicitMarketingPreference?: string | null;
     /**
      * Timestamp when last time marketing preference was updated. Could be empty, if user wasn&#39;t offered a selection yet.
      */
-    lastUpdatedTimestamp?: string;
+    lastUpdatedTimestamp?: string | null;
     /**
      * Email address that can be used for marketing purposes. The field may be empty even if explicitMarketingPreference is &#39;granted&#39;. This happens when retrieving an old order from the customer who deleted their account.
      */
-    marketingEmailAddress?: string;
+    marketingEmailAddress?: string | null;
   }
   export interface Schema$OrderDeliveryDetails {
     /**
@@ -2104,13 +2108,13 @@ export namespace content_v2 {
     /**
      * The phone number of the person receiving the delivery.
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
   }
   export interface Schema$OrderinvoicesCreateChargeInvoiceRequest {
     /**
      * [required] The ID of the invoice.
      */
-    invoiceId?: string;
+    invoiceId?: string | null;
     /**
      * [required] Invoice summary.
      */
@@ -2122,31 +2126,31 @@ export namespace content_v2 {
     /**
      * [required] The ID of the operation, unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * [required] ID of the shipment group. It is assigned by the merchant in the shipLineItems method and is used to group multiple line items that have the same kind of shipping charges.
      */
-    shipmentGroupId?: string;
+    shipmentGroupId?: string | null;
   }
   export interface Schema$OrderinvoicesCreateChargeInvoiceResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderinvoicesCreateChargeInvoiceResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrderinvoicesCreateRefundInvoiceRequest {
     /**
      * [required] The ID of the invoice.
      */
-    invoiceId?: string;
+    invoiceId?: string | null;
     /**
      * [required] The ID of the operation, unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * Option to create a refund-only invoice. Exactly one of refundOnlyOption or returnOption must be provided.
      */
@@ -2164,58 +2168,58 @@ export namespace content_v2 {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderinvoicesCreateRefundInvoiceResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption {
     /**
      * Optional description of the refund reason.
      */
-    description?: string;
+    description?: string | null;
     /**
      * [required] Reason for the refund.
      */
-    reason?: string;
+    reason?: string | null;
   }
   export interface Schema$OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption {
     /**
      * Optional description of the return reason.
      */
-    description?: string;
+    description?: string | null;
     /**
      * [required] Reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
   }
   export interface Schema$OrderLegacyPromotion {
     benefits?: Schema$OrderLegacyPromotionBenefit[];
     /**
      * The date and time frame when the promotion is active and ready for validation review. Note that the promotion live time may be delayed for a few hours due to the validation review. Start date and end date are separated by a forward slash (/). The start date is specified by the format (YYYY-MM-DD), followed by the letter ?T?, the time of the day when the sale starts (in Greenwich Mean Time, GMT), followed by an expression of the time zone for the sale. The end date is in the same format.
      */
-    effectiveDates?: string;
+    effectiveDates?: string | null;
     /**
      * Optional. The text code that corresponds to the promotion when applied on the retailer?s website.
      */
-    genericRedemptionCode?: string;
+    genericRedemptionCode?: string | null;
     /**
      * The unique ID of the promotion.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The full title of the promotion.
      */
-    longTitle?: string;
+    longTitle?: string | null;
     /**
      * Whether the promotion is applicable to all products or only specific products.
      */
-    productApplicability?: string;
+    productApplicability?: string | null;
     /**
      * Indicates that the promotion is valid online.
      */
-    redemptionChannel?: string;
+    redemptionChannel?: string | null;
   }
   export interface Schema$OrderLegacyPromotionBenefit {
     /**
@@ -2225,11 +2229,11 @@ export namespace content_v2 {
     /**
      * The OfferId(s) that were purchased in this order and map to this specific benefit of the promotion.
      */
-    offerIds?: string[];
+    offerIds?: string[] | null;
     /**
      * Further describes the benefit of the promotion. Note that we will expand on this enumeration as we support new promotion sub-types.
      */
-    subType?: string;
+    subType?: string | null;
     /**
      * The impact on tax when the promotion is applied.
      */
@@ -2237,7 +2241,7 @@ export namespace content_v2 {
     /**
      * Describes whether the promotion applies to products (e.g. 20% off) or to shipping (e.g. Free Shipping).
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$OrderLineItem {
     /**
@@ -2251,7 +2255,7 @@ export namespace content_v2 {
     /**
      * The ID of the line item.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Total price for the line item. For example, if two items for $10 are purchased, the total price will be $20.
      */
@@ -2263,27 +2267,31 @@ export namespace content_v2 {
     /**
      * Number of items canceled.
      */
-    quantityCanceled?: number;
+    quantityCanceled?: number | null;
     /**
      * Number of items delivered.
      */
-    quantityDelivered?: number;
+    quantityDelivered?: number | null;
     /**
      * Number of items ordered.
      */
-    quantityOrdered?: number;
+    quantityOrdered?: number | null;
     /**
      * Number of items pending.
      */
-    quantityPending?: number;
+    quantityPending?: number | null;
+    /**
+     * Number of items ready for pickup.
+     */
+    quantityReadyForPickup?: number | null;
     /**
      * Number of items returned.
      */
-    quantityReturned?: number;
+    quantityReturned?: number | null;
     /**
      * Number of items shipped.
      */
-    quantityShipped?: number;
+    quantityShipped?: number | null;
     /**
      * Details of the return policy for the line item.
      */
@@ -2305,19 +2313,19 @@ export namespace content_v2 {
     /**
      * Brand of the item.
      */
-    brand?: string;
+    brand?: string | null;
     /**
      * The item&#39;s channel (online or local).
      */
-    channel?: string;
+    channel?: string | null;
     /**
      * Condition or state of the item.
      */
-    condition?: string;
+    condition?: string | null;
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Associated fees at order creation time.
      */
@@ -2325,27 +2333,27 @@ export namespace content_v2 {
     /**
      * Global Trade Item Number (GTIN) of the item.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * The REST ID of the product.
      */
-    id?: string;
+    id?: string | null;
     /**
      * URL of an image of the item.
      */
-    imageLink?: string;
+    imageLink?: string | null;
     /**
      * Shared identifier for all variants of the same product.
      */
-    itemGroupId?: string;
+    itemGroupId?: string | null;
     /**
      * Manufacturer Part Number (MPN) of the item.
      */
-    mpn?: string;
+    mpn?: string | null;
     /**
      * An identifier of the item.
      */
-    offerId?: string;
+    offerId?: string | null;
     /**
      * Price of the item.
      */
@@ -2353,15 +2361,15 @@ export namespace content_v2 {
     /**
      * URL to the cached image shown to the user when order was placed.
      */
-    shownImage?: string;
+    shownImage?: string | null;
     /**
      * The CLDR territory code of the target country of the product.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The title of the product.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Variant attributes for the item. These are dimensions of the product, such as color, gender, material, pattern, and size. You can find a comprehensive list of variant attributes here.
      */
@@ -2375,37 +2383,37 @@ export namespace content_v2 {
     /**
      * Name of the fee.
      */
-    name?: string;
+    name?: string | null;
   }
   export interface Schema$OrderLineItemProductVariantAttribute {
     /**
      * The dimension of the variant.
      */
-    dimension?: string;
+    dimension?: string | null;
     /**
      * The value for the dimension.
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$OrderLineItemReturnInfo {
     /**
      * How many days later the item can be returned.
      */
-    daysToReturn?: number;
+    daysToReturn?: number | null;
     /**
      * Whether the item is returnable.
      */
-    isReturnable?: boolean;
+    isReturnable?: boolean | null;
     /**
      * URL of the item return policy.
      */
-    policyUrl?: string;
+    policyUrl?: string | null;
   }
   export interface Schema$OrderLineItemShippingDetails {
     /**
      * The delivery by date, in ISO 8601 format.
      */
-    deliverByDate?: string;
+    deliverByDate?: string | null;
     /**
      * Details of the shipping method.
      */
@@ -2413,35 +2421,39 @@ export namespace content_v2 {
     /**
      * The ship by date, in ISO 8601 format.
      */
-    shipByDate?: string;
+    shipByDate?: string | null;
+    /**
+     * Type of shipment. Indicates whether deliveryDetails or pickupDetails is applicable for this shipment.
+     */
+    type?: string | null;
   }
   export interface Schema$OrderLineItemShippingDetailsMethod {
     /**
      * The carrier for the shipping. Optional. See shipments[].carrier for a list of acceptable values.
      */
-    carrier?: string;
+    carrier?: string | null;
     /**
      * Maximum transit time.
      */
-    maxDaysInTransit?: number;
+    maxDaysInTransit?: number | null;
     /**
      * The name of the shipping method.
      */
-    methodName?: string;
+    methodName?: string | null;
     /**
      * Minimum transit time.
      */
-    minDaysInTransit?: number;
+    minDaysInTransit?: number | null;
   }
   export interface Schema$OrderMerchantProvidedAnnotation {
     /**
      * Key for additional merchant provided (as key-value pairs) annotation about the line item.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Value for additional merchant provided (as key-value pairs) annotation about the line item.
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$OrderPaymentMethod {
     /**
@@ -2451,23 +2463,23 @@ export namespace content_v2 {
     /**
      * The card expiration month (January = 1, February = 2 etc.).
      */
-    expirationMonth?: number;
+    expirationMonth?: number | null;
     /**
      * The card expiration year (4-digit, e.g. 2015).
      */
-    expirationYear?: number;
+    expirationYear?: number | null;
     /**
      * The last four digits of the card number.
      */
-    lastFourDigits?: string;
+    lastFourDigits?: string | null;
     /**
      * The billing phone number.
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * The type of instrument.  Acceptable values are:   - &quot;AMEX&quot;  - &quot;DISCOVER&quot;  - &quot;JCB&quot;  - &quot;MASTERCARD&quot;  - &quot;UNIONPAY&quot;  - &quot;VISA&quot;  - &quot;&quot;
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$OrderpaymentsNotifyAuthApprovedRequest {
     /**
@@ -2483,81 +2495,105 @@ export namespace content_v2 {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderpaymentsNotifyAuthApprovedResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrderpaymentsNotifyAuthDeclinedRequest {
     /**
      * Reason why payment authorization was declined.
      */
-    declineReason?: string;
+    declineReason?: string | null;
   }
   export interface Schema$OrderpaymentsNotifyAuthDeclinedResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderpaymentsNotifyAuthDeclinedResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrderpaymentsNotifyChargeRequest {
     /**
      * Whether charge was successful.
      */
-    chargeState?: string;
+    chargeState?: string | null;
     /**
      * Deprecated. Please use invoiceIds instead.
      */
-    invoiceId?: string;
+    invoiceId?: string | null;
     /**
      * Invoice IDs from the orderinvoices service that correspond to the charge.
      */
-    invoiceIds?: string[];
+    invoiceIds?: string[] | null;
   }
   export interface Schema$OrderpaymentsNotifyChargeResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderpaymentsNotifyChargeResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrderpaymentsNotifyRefundRequest {
     /**
      * Deprecated. Please use invoiceIds instead.
      */
-    invoiceId?: string;
+    invoiceId?: string | null;
     /**
      * Invoice IDs from the orderinvoices service that correspond to the refund.
      */
-    invoiceIds?: string[];
+    invoiceIds?: string[] | null;
     /**
      * Whether refund was successful.
      */
-    refundState?: string;
+    refundState?: string | null;
   }
   export interface Schema$OrderpaymentsNotifyRefundResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderpaymentsNotifyRefundResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
+  }
+  export interface Schema$OrderPickupDetails {
+    /**
+     * Address of the pickup location where the shipment should be sent. Note that recipientName in the address is the name of the business at the pickup location.
+     */
+    address?: Schema$OrderAddress;
+    /**
+     * Collectors authorized to pick up shipment from the pickup location.
+     */
+    collectors?: Schema$OrderPickupDetailsCollector[];
+    /**
+     * ID of the pickup location.
+     */
+    locationId?: string | null;
+  }
+  export interface Schema$OrderPickupDetailsCollector {
+    /**
+     * Name of the person picking up the shipment.
+     */
+    name?: string | null;
+    /**
+     * Phone number of the person picking up the shipment.
+     */
+    phoneNumber?: string | null;
   }
   export interface Schema$OrderRefund {
     /**
      * The actor that created the refund.
      */
-    actor?: string;
+    actor?: string | null;
     /**
      * The amount that is refunded.
      */
@@ -2565,15 +2601,15 @@ export namespace content_v2 {
     /**
      * Date on which the item has been created, in ISO 8601 format.
      */
-    creationDate?: string;
+    creationDate?: string | null;
     /**
      * The reason for the refund.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   /**
    * Order disbursement. All methods require the payment analyst role.
@@ -2586,19 +2622,19 @@ export namespace content_v2 {
     /**
      * The disbursement date, in ISO 8601 format.
      */
-    disbursementCreationDate?: string;
+    disbursementCreationDate?: string | null;
     /**
      * The date the disbursement was initiated, in ISO 8601 format.
      */
-    disbursementDate?: string;
+    disbursementDate?: string | null;
     /**
      * The ID of the disbursement.
      */
-    disbursementId?: string;
+    disbursementId?: string | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
+    merchantId?: string | null;
   }
   export interface Schema$OrderreportsListDisbursementsResponse {
     /**
@@ -2608,21 +2644,21 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreportsListDisbursementsResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of disbursements.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$OrderreportsListTransactionsResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreportsListTransactionsResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of transactions.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of transactions.
      */
@@ -2636,27 +2672,27 @@ export namespace content_v2 {
     /**
      * The date the disbursement was created, in ISO 8601 format.
      */
-    disbursementCreationDate?: string;
+    disbursementCreationDate?: string | null;
     /**
      * The date the disbursement was initiated, in ISO 8601 format.
      */
-    disbursementDate?: string;
+    disbursementDate?: string | null;
     /**
      * The ID of the disbursement.
      */
-    disbursementId?: string;
+    disbursementId?: string | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
+    merchantId?: string | null;
     /**
      * Merchant-provided ID of the order.
      */
-    merchantOrderId?: string;
+    merchantOrderId?: string | null;
     /**
      * The ID of the order.
      */
-    orderId?: string;
+    orderId?: string | null;
     /**
      * Total amount for the items.
      */
@@ -2668,62 +2704,62 @@ export namespace content_v2 {
     /**
      * The date of the transaction, in ISO 8601 format.
      */
-    transactionDate?: string;
+    transactionDate?: string | null;
   }
   export interface Schema$OrderReturn {
     /**
      * The actor that created the refund.
      */
-    actor?: string;
+    actor?: string | null;
     /**
      * Date on which the item has been created, in ISO 8601 format.
      */
-    creationDate?: string;
+    creationDate?: string | null;
     /**
      * Quantity that is returned.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrderreturnsListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreturnsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of returns.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$MerchantOrderReturn[];
   }
   export interface Schema$OrdersAcknowledgeRequest {
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
   }
   export interface Schema$OrdersAcknowledgeResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAcknowledgeResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersAdvanceTestOrderResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAdvanceTestOrderResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersCancelLineItemRequest {
     /**
@@ -2741,83 +2777,83 @@ export namespace content_v2 {
     /**
      * The ID of the line item to cancel. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to cancel.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the cancellation.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCancelLineItemResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelLineItemResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersCancelRequest {
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The reason for the cancellation.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCancelResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersCancelTestOrderByCustomerRequest {
     /**
      * The reason for the cancellation.
      */
-    reason?: string;
+    reason?: string | null;
   }
   export interface Schema$OrdersCancelTestOrderByCustomerResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelTestOrderByCustomerResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersCreateTestOrderRequest {
     /**
      * The  CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created via template_name, or the addresses of orders created via test_order.  Acceptable values are:   - &quot;US&quot;  - &quot;FR&quot;  Defaults to US.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The test order template to use. Specify as an alternative to testOrder as a shortcut for retrieving a template and then creating an order using that template.
      */
-    templateName?: string;
+    templateName?: string | null;
     /**
      * The test order to create.
      */
@@ -2827,11 +2863,11 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCreateTestOrderResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The ID of the newly created test order.
      */
-    orderId?: string;
+    orderId?: string | null;
   }
   export interface Schema$OrdersCreateTestReturnRequest {
     /**
@@ -2843,11 +2879,11 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCreateTestReturnResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The ID of the newly created test order return.
      */
-    returnId?: string;
+    returnId?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequest {
     /**
@@ -2859,7 +2895,7 @@ export namespace content_v2 {
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * Required for cancel method.
      */
@@ -2875,23 +2911,23 @@ export namespace content_v2 {
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
+    merchantId?: string | null;
     /**
      * The merchant order ID. Required for updateMerchantOrderId and getByMerchantOrderId methods.
      */
-    merchantOrderId?: string;
+    merchantOrderId?: string | null;
     /**
      * The method to apply.
      */
-    method?: string;
+    method?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order. Required for all methods beside get and getByMerchantOrderId.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the order. Required for all methods beside getByMerchantOrderId.
      */
-    orderId?: string;
+    orderId?: string | null;
     /**
      * Required for refund method.
      */
@@ -2929,11 +2965,11 @@ export namespace content_v2 {
     /**
      * The reason for the cancellation.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryCancelLineItem {
     /**
@@ -2951,33 +2987,33 @@ export namespace content_v2 {
     /**
      * The ID of the line item to cancel. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to cancel.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the cancellation.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryCreateTestReturnReturnItem {
     /**
      * The ID of the line item to return.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * Quantity that is returned.
      */
-    quantity?: number;
+    quantity?: number | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryInStoreRefundLineItem {
     /**
@@ -2991,23 +3027,23 @@ export namespace content_v2 {
     /**
      * The ID of the line item to return. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to return and refund.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryRefund {
     /**
@@ -3025,55 +3061,55 @@ export namespace content_v2 {
     /**
      * The reason for the refund.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryRejectReturnLineItem {
     /**
      * The ID of the line item to return. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to return and refund.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryReturnLineItem {
     /**
      * The ID of the line item to return. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to return.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryReturnRefundLineItem {
     /**
@@ -3087,40 +3123,40 @@ export namespace content_v2 {
     /**
      * The ID of the line item to return. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to return and refund.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntrySetLineItemMetadata {
     annotations?: Schema$OrderMerchantProvidedAnnotation[];
     /**
      * The ID of the line item to set metadata. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryShipLineItems {
     /**
      * Deprecated. Please use shipmentInfo instead. The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
      */
-    carrier?: string;
+    carrier?: string | null;
     /**
      * Line items to ship.
      */
@@ -3128,11 +3164,11 @@ export namespace content_v2 {
     /**
      * ID of the shipment group. Required for orders that use the orderinvoices service.
      */
-    shipmentGroupId?: string;
+    shipmentGroupId?: string | null;
     /**
      * Deprecated. Please use shipmentInfo instead. The ID of the shipment.
      */
-    shipmentId?: string;
+    shipmentId?: string | null;
     /**
      * Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).
      */
@@ -3140,61 +3176,61 @@ export namespace content_v2 {
     /**
      * Deprecated. Please use shipmentInfo instead. The tracking ID for the shipment.
      */
-    trackingId?: string;
+    trackingId?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo {
     /**
      * The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
      */
-    carrier?: string;
+    carrier?: string | null;
     /**
      * The ID of the shipment. This is assigned by the merchant and is unique to each shipment.
      */
-    shipmentId?: string;
+    shipmentId?: string | null;
     /**
      * The tracking ID for the shipment.
      */
-    trackingId?: string;
+    trackingId?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails {
     /**
      * Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated.  Provided date should be within 1 year timeframe and can not be a date in the past.
      */
-    deliverByDate?: string;
+    deliverByDate?: string | null;
     /**
      * The ID of the line item to set metadata. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated.  Provided date should be within 1 year timeframe and can not be a date in the past.
      */
-    shipByDate?: string;
+    shipByDate?: string | null;
   }
   export interface Schema$OrdersCustomBatchRequestEntryUpdateShipment {
     /**
      * The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
      */
-    carrier?: string;
+    carrier?: string | null;
     /**
      * Date on which the shipment has been delivered, in ISO 8601 format. Optional and can be provided only if status is delivered.
      */
-    deliveryDate?: string;
+    deliveryDate?: string | null;
     /**
      * The ID of the shipment.
      */
-    shipmentId?: string;
+    shipmentId?: string | null;
     /**
      * New status for the shipment. Not updated if missing.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The tracking ID for the shipment. Not updated if missing.
      */
-    trackingId?: string;
+    trackingId?: string | null;
   }
   export interface Schema$OrdersCustomBatchResponse {
     /**
@@ -3204,13 +3240,13 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersCustomBatchResponseEntry {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if and only if the request failed.
      */
@@ -3218,11 +3254,11 @@ export namespace content_v2 {
     /**
      * The status of the execution. Only defined if   - the request was successful; and  - the method is not get, getByMerchantOrderId, or one of the test methods.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The retrieved order. Only defined if the method is get and if the request was successful.
      */
@@ -3232,7 +3268,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetByMerchantOrderIdResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The requested order.
      */
@@ -3242,7 +3278,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetTestOrderTemplateResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The requested test order template.
      */
@@ -3252,19 +3288,19 @@ export namespace content_v2 {
     /**
      * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;  - &quot;colis prive&quot;  - &quot;boxtal&quot;  - &quot;geodis&quot;
      */
-    carrier?: string;
+    carrier?: string | null;
     /**
      * Date on which the shipment has been created, in ISO 8601 format.
      */
-    creationDate?: string;
+    creationDate?: string | null;
     /**
      * Date on which the shipment has been delivered, in ISO 8601 format. Present only if status is delivered
      */
-    deliveryDate?: string;
+    deliveryDate?: string | null;
     /**
      * The ID of the shipment.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The line items that are shipped.
      */
@@ -3272,25 +3308,25 @@ export namespace content_v2 {
     /**
      * The status of the shipment.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The tracking ID for the shipment.
      */
-    trackingId?: string;
+    trackingId?: string | null;
   }
   export interface Schema$OrderShipmentLineItemShipment {
     /**
      * The ID of the line item that is shipped. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the product to ship. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity that is shipped.
      */
-    quantity?: number;
+    quantity?: number | null;
   }
   export interface Schema$OrdersInStoreRefundLineItemRequest {
     /**
@@ -3304,47 +3340,47 @@ export namespace content_v2 {
     /**
      * The ID of the line item to return. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to return and refund.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersInStoreRefundLineItemResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersInStoreRefundLineItemResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of orders.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$Order[];
   }
   export interface Schema$OrdersRefundRequest {
@@ -3363,97 +3399,97 @@ export namespace content_v2 {
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The reason for the refund.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersRefundResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRefundResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersRejectReturnLineItemRequest {
     /**
      * The ID of the line item to return. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to return and refund.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersRejectReturnLineItemResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRejectReturnLineItemResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersReturnLineItemRequest {
     /**
      * The ID of the line item to return. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to return.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersReturnLineItemResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnLineItemResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersReturnRefundLineItemRequest {
     /**
@@ -3467,68 +3503,68 @@ export namespace content_v2 {
     /**
      * The ID of the line item to return. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the product to return. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The quantity to return and refund.
      */
-    quantity?: number;
+    quantity?: number | null;
     /**
      * The reason for the return.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The explanation of the reason.
      */
-    reasonText?: string;
+    reasonText?: string | null;
   }
   export interface Schema$OrdersReturnRefundLineItemResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnRefundLineItemResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersSetLineItemMetadataRequest {
     annotations?: Schema$OrderMerchantProvidedAnnotation[];
     /**
      * The ID of the line item to set metadata. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
   }
   export interface Schema$OrdersSetLineItemMetadataResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersSetLineItemMetadataResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersShipLineItemsRequest {
     /**
      * Deprecated. Please use shipmentInfo instead. The carrier handling the shipment. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
      */
-    carrier?: string;
+    carrier?: string | null;
     /**
      * Line items to ship.
      */
@@ -3536,15 +3572,15 @@ export namespace content_v2 {
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * ID of the shipment group. Required for orders that use the orderinvoices service.
      */
-    shipmentGroupId?: string;
+    shipmentGroupId?: string | null;
     /**
      * Deprecated. Please use shipmentInfo instead. The ID of the shipment.
      */
-    shipmentId?: string;
+    shipmentId?: string | null;
     /**
      * Shipment information. This field is repeated because a single line item can be shipped in several packages (and have several tracking IDs).
      */
@@ -3552,105 +3588,105 @@ export namespace content_v2 {
     /**
      * Deprecated. Please use shipmentInfo instead. The tracking ID for the shipment.
      */
-    trackingId?: string;
+    trackingId?: string | null;
   }
   export interface Schema$OrdersShipLineItemsResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersShipLineItemsResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersUpdateLineItemShippingDetailsRequest {
     /**
      * Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated.  Provided date should be within 1 year timeframe and can not be a date in the past.
      */
-    deliverByDate?: string;
+    deliverByDate?: string | null;
     /**
      * The ID of the line item to set metadata. Either lineItemId or productId is required.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the product to set metadata. This is the REST ID used in the products service. Either lineItemId or productId is required.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated.  Provided date should be within 1 year timeframe and can not be a date in the past.
      */
-    shipByDate?: string;
+    shipByDate?: string | null;
   }
   export interface Schema$OrdersUpdateLineItemShippingDetailsResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateLineItemShippingDetailsResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersUpdateMerchantOrderIdRequest {
     /**
      * The merchant order id to be assigned to the order. Must be unique per merchant.
      */
-    merchantOrderId?: string;
+    merchantOrderId?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
   }
   export interface Schema$OrdersUpdateMerchantOrderIdResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateMerchantOrderIdResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$OrdersUpdateShipmentRequest {
     /**
      * The carrier handling the shipment. Not updated if missing. See shipments[].carrier in the  Orders resource representation for a list of acceptable values.
      */
-    carrier?: string;
+    carrier?: string | null;
     /**
      * Date on which the shipment has been delivered, in ISO 8601 format. Optional and can be provided only if status is delivered.
      */
-    deliveryDate?: string;
+    deliveryDate?: string | null;
     /**
      * The ID of the operation. Unique across all operations for a given order.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * The ID of the shipment.
      */
-    shipmentId?: string;
+    shipmentId?: string | null;
     /**
      * New status for the shipment. Not updated if missing.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The tracking ID for the shipment. Not updated if missing.
      */
-    trackingId?: string;
+    trackingId?: string | null;
   }
   export interface Schema$OrdersUpdateShipmentResponse {
     /**
      * The status of the execution.
      */
-    executionStatus?: string;
+    executionStatus?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateShipmentResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$PosCustomBatchRequest {
     /**
@@ -3662,7 +3698,7 @@ export namespace content_v2 {
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * The inventory to submit. Set this only if the method is inventory.
      */
@@ -3670,8 +3706,8 @@ export namespace content_v2 {
     /**
      * The ID of the POS data provider.
      */
-    merchantId?: string;
-    method?: string;
+    merchantId?: string | null;
+    method?: string | null;
     /**
      * The sale information to submit. Set this only if the method is sale.
      */
@@ -3683,11 +3719,11 @@ export namespace content_v2 {
     /**
      * The store code. Set this only if the method is delete or get.
      */
-    storeCode?: string;
+    storeCode?: string | null;
     /**
      * The ID of the account for which to get/submit data.
      */
-    targetMerchantId?: string;
+    targetMerchantId?: string | null;
   }
   export interface Schema$PosCustomBatchResponse {
     /**
@@ -3697,13 +3733,13 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#posCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$PosCustomBatchResponseEntry {
     /**
      * The ID of the request entry to which this entry responds.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if, and only if, the request failed.
      */
@@ -3715,7 +3751,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#posCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The updated sale information.
      */
@@ -3729,7 +3765,7 @@ export namespace content_v2 {
     /**
      * Country code.
      */
-    country?: string;
+    country?: string | null;
     /**
      * A list of POS data providers.
      */
@@ -3739,15 +3775,15 @@ export namespace content_v2 {
     /**
      * The display name of Pos data Provider.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The full name of this POS data Provider.
      */
-    fullName?: string;
+    fullName?: string | null;
     /**
      * The ID of the account.
      */
-    providerId?: string;
+    providerId?: string | null;
   }
   /**
    * The absolute quantity of an item available at the given store.
@@ -3756,19 +3792,19 @@ export namespace content_v2 {
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Global Trade Item Number.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * A unique identifier for the item.
      */
-    itemId?: string;
+    itemId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventory&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The current price of the item.
      */
@@ -3776,33 +3812,33 @@ export namespace content_v2 {
     /**
      * The available quantity of the item.
      */
-    quantity?: string;
+    quantity?: string | null;
     /**
      * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
-    storeCode?: string;
+    storeCode?: string | null;
     /**
      * The CLDR territory code for the item.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The inventory timestamp, in ISO 8601 format.
      */
-    timestamp?: string;
+    timestamp?: string | null;
   }
   export interface Schema$PosInventoryRequest {
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Global Trade Item Number.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * A unique identifier for the item.
      */
-    itemId?: string;
+    itemId?: string | null;
     /**
      * The current price of the item.
      */
@@ -3810,37 +3846,37 @@ export namespace content_v2 {
     /**
      * The available quantity of the item.
      */
-    quantity?: string;
+    quantity?: string | null;
     /**
      * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
-    storeCode?: string;
+    storeCode?: string | null;
     /**
      * The CLDR territory code for the item.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The inventory timestamp, in ISO 8601 format.
      */
-    timestamp?: string;
+    timestamp?: string | null;
   }
   export interface Schema$PosInventoryResponse {
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Global Trade Item Number.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * A unique identifier for the item.
      */
-    itemId?: string;
+    itemId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventoryResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The current price of the item.
      */
@@ -3848,25 +3884,25 @@ export namespace content_v2 {
     /**
      * The available quantity of the item.
      */
-    quantity?: string;
+    quantity?: string | null;
     /**
      * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
-    storeCode?: string;
+    storeCode?: string | null;
     /**
      * The CLDR territory code for the item.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The inventory timestamp, in ISO 8601 format.
      */
-    timestamp?: string;
+    timestamp?: string | null;
   }
   export interface Schema$PosListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#posListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     resources?: Schema$PosStore[];
   }
   /**
@@ -3876,19 +3912,19 @@ export namespace content_v2 {
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Global Trade Item Number.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * A unique identifier for the item.
      */
-    itemId?: string;
+    itemId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#posSale&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The price of the item.
      */
@@ -3896,37 +3932,37 @@ export namespace content_v2 {
     /**
      * The relative change of the available quantity. Negative for items returned.
      */
-    quantity?: string;
+    quantity?: string | null;
     /**
      * A unique ID to group items from the same sale event.
      */
-    saleId?: string;
+    saleId?: string | null;
     /**
      * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
-    storeCode?: string;
+    storeCode?: string | null;
     /**
      * The CLDR territory code for the item.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The inventory timestamp, in ISO 8601 format.
      */
-    timestamp?: string;
+    timestamp?: string | null;
   }
   export interface Schema$PosSaleRequest {
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Global Trade Item Number.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * A unique identifier for the item.
      */
-    itemId?: string;
+    itemId?: string | null;
     /**
      * The price of the item.
      */
@@ -3934,41 +3970,41 @@ export namespace content_v2 {
     /**
      * The relative change of the available quantity. Negative for items returned.
      */
-    quantity?: string;
+    quantity?: string | null;
     /**
      * A unique ID to group items from the same sale event.
      */
-    saleId?: string;
+    saleId?: string | null;
     /**
      * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
-    storeCode?: string;
+    storeCode?: string | null;
     /**
      * The CLDR territory code for the item.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The inventory timestamp, in ISO 8601 format.
      */
-    timestamp?: string;
+    timestamp?: string | null;
   }
   export interface Schema$PosSaleResponse {
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Global Trade Item Number.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * A unique identifier for the item.
      */
-    itemId?: string;
+    itemId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#posSaleResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The price of the item.
      */
@@ -3976,23 +4012,23 @@ export namespace content_v2 {
     /**
      * The relative change of the available quantity. Negative for items returned.
      */
-    quantity?: string;
+    quantity?: string | null;
     /**
      * A unique ID to group items from the same sale event.
      */
-    saleId?: string;
+    saleId?: string | null;
     /**
      * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
-    storeCode?: string;
+    storeCode?: string | null;
     /**
      * The CLDR territory code for the item.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The inventory timestamp, in ISO 8601 format.
      */
-    timestamp?: string;
+    timestamp?: string | null;
   }
   /**
    * Store resource.
@@ -4001,25 +4037,25 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#posStore&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The street address of the store.
      */
-    storeAddress?: string;
+    storeAddress?: string | null;
     /**
      * A store identifier that is unique for the given merchant.
      */
-    storeCode?: string;
+    storeCode?: string | null;
   }
   export interface Schema$PostalCodeGroup {
     /**
      * The CLDR territory code of the country the postal code group applies to. Required.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The name of the postal code group, referred to in headers. Required.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A range of postal codes. Required.
      */
@@ -4029,21 +4065,21 @@ export namespace content_v2 {
     /**
      * A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: &quot;94108&quot;, &quot;9410*&quot;, &quot;9*&quot;. Required.
      */
-    postalCodeRangeBegin?: string;
+    postalCodeRangeBegin?: string | null;
     /**
      * A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area. It must have the same length as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is a pattern then postalCodeRangeEnd must be a pattern with the same prefix length. Optional: if not set, then the area is defined as being all the postal codes matching postalCodeRangeBegin.
      */
-    postalCodeRangeEnd?: string;
+    postalCodeRangeEnd?: string | null;
   }
   export interface Schema$Price {
     /**
      * The currency of the price.
      */
-    currency?: string;
+    currency?: string | null;
     /**
      * The price represented as a number.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
@@ -4052,31 +4088,31 @@ export namespace content_v2 {
     /**
      * Additional URLs of images of the item.
      */
-    additionalImageLinks?: string[];
+    additionalImageLinks?: string[] | null;
     /**
      * Additional categories of the item (formatted as in products data specification).
      */
-    additionalProductTypes?: string[];
+    additionalProductTypes?: string[] | null;
     /**
      * Set to true if the item is targeted towards adults.
      */
-    adult?: boolean;
+    adult?: boolean | null;
     /**
      * Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.
      */
-    adwordsGrouping?: string;
+    adwordsGrouping?: string | null;
     /**
      * Similar to adwords_grouping, but only works on CPC.
      */
-    adwordsLabels?: string[];
+    adwordsLabels?: string[] | null;
     /**
      * Allows advertisers to override the item URL when the product is shown within the context of Product Ads.
      */
-    adwordsRedirect?: string;
+    adwordsRedirect?: string | null;
     /**
      * Target age group of the item.
      */
-    ageGroup?: string;
+    ageGroup?: string | null;
     /**
      * Deprecated. Do not use.
      */
@@ -4084,31 +4120,31 @@ export namespace content_v2 {
     /**
      * Availability status of the item.
      */
-    availability?: string;
+    availability?: string | null;
     /**
      * The day a pre-ordered product becomes available for delivery, in ISO 8601 format.
      */
-    availabilityDate?: string;
+    availabilityDate?: string | null;
     /**
      * Brand of the item.
      */
-    brand?: string;
+    brand?: string | null;
     /**
      * The item&#39;s channel (online or local).
      */
-    channel?: string;
+    channel?: string | null;
     /**
      * Color of the item.
      */
-    color?: string;
+    color?: string | null;
     /**
      * Condition or state of the item.
      */
-    condition?: string;
+    condition?: string | null;
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Cost of goods sold. Used for gross profit reporting.
      */
@@ -4124,27 +4160,27 @@ export namespace content_v2 {
     /**
      * Custom label 0 for custom grouping of items in a Shopping campaign.
      */
-    customLabel0?: string;
+    customLabel0?: string | null;
     /**
      * Custom label 1 for custom grouping of items in a Shopping campaign.
      */
-    customLabel1?: string;
+    customLabel1?: string | null;
     /**
      * Custom label 2 for custom grouping of items in a Shopping campaign.
      */
-    customLabel2?: string;
+    customLabel2?: string | null;
     /**
      * Custom label 3 for custom grouping of items in a Shopping campaign.
      */
-    customLabel3?: string;
+    customLabel3?: string | null;
     /**
      * Custom label 4 for custom grouping of items in a Shopping campaign.
      */
-    customLabel4?: string;
+    customLabel4?: string | null;
     /**
      * Description of the item.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Specifies the intended destinations for the product.
      */
@@ -4152,55 +4188,55 @@ export namespace content_v2 {
     /**
      * An identifier for an item for dynamic remarketing campaigns.
      */
-    displayAdsId?: string;
+    displayAdsId?: string | null;
     /**
      * URL directly to your item&#39;s landing page for dynamic remarketing campaigns.
      */
-    displayAdsLink?: string;
+    displayAdsLink?: string | null;
     /**
      * Advertiser-specified recommendations.
      */
-    displayAdsSimilarIds?: string[];
+    displayAdsSimilarIds?: string[] | null;
     /**
      * Title of an item for dynamic remarketing campaigns.
      */
-    displayAdsTitle?: string;
+    displayAdsTitle?: string | null;
     /**
      * Offer margin for dynamic remarketing campaigns.
      */
-    displayAdsValue?: number;
+    displayAdsValue?: number | null;
     /**
      * The energy efficiency class as defined in EU directive 2010/30/EU.
      */
-    energyEfficiencyClass?: string;
+    energyEfficiencyClass?: string | null;
     /**
      * Date on which the item should expire, as specified upon insertion, in ISO 8601 format. The actual expiration date in Google Shopping is exposed in productstatuses as googleExpirationDate and might be earlier if expirationDate is too far in the future.
      */
-    expirationDate?: string;
+    expirationDate?: string | null;
     /**
      * Target gender of the item.
      */
-    gender?: string;
+    gender?: string | null;
     /**
      * Google&#39;s category of the item (see Google product taxonomy).
      */
-    googleProductCategory?: string;
+    googleProductCategory?: string | null;
     /**
      * Global Trade Item Number (GTIN) of the item.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * The REST ID of the product. Content API methods that operate on products take this as their productId parameter. The REST ID for a product is of the form channel:contentLanguage:targetCountry:offerId.
      */
-    id?: string;
+    id?: string | null;
     /**
      * False when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Required according to the Unique Product Identifier Rules for all target countries except for Canada.
      */
-    identifierExists?: boolean;
+    identifierExists?: boolean | null;
     /**
      * URL of an image of the item.
      */
-    imageLink?: string;
+    imageLink?: string | null;
     /**
      * Number and amount of installments to pay for an item. Brazil only.
      */
@@ -4208,19 +4244,19 @@ export namespace content_v2 {
     /**
      * Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price.
      */
-    isBundle?: boolean;
+    isBundle?: boolean | null;
     /**
      * Shared identifier for all variants of the same product.
      */
-    itemGroupId?: string;
+    itemGroupId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#product&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * URL directly linking to your item&#39;s page on your website.
      */
-    link?: string;
+    link?: string | null;
     /**
      * Loyalty points that users receive after purchasing the item. Japan only.
      */
@@ -4228,47 +4264,47 @@ export namespace content_v2 {
     /**
      * The material of which the item is made.
      */
-    material?: string;
+    material?: string | null;
     /**
      * The energy efficiency class as defined in EU directive 2010/30/EU.
      */
-    maxEnergyEfficiencyClass?: string;
+    maxEnergyEfficiencyClass?: string | null;
     /**
      * Maximal product handling time (in business days).
      */
-    maxHandlingTime?: string;
+    maxHandlingTime?: string | null;
     /**
      * The energy efficiency class as defined in EU directive 2010/30/EU.
      */
-    minEnergyEfficiencyClass?: string;
+    minEnergyEfficiencyClass?: string | null;
     /**
      * Minimal product handling time (in business days).
      */
-    minHandlingTime?: string;
+    minHandlingTime?: string | null;
     /**
      * Link to a mobile-optimized version of the landing page.
      */
-    mobileLink?: string;
+    mobileLink?: string | null;
     /**
      * Manufacturer Part Number (MPN) of the item.
      */
-    mpn?: string;
+    mpn?: string | null;
     /**
      * The number of identical products in a merchant-defined multipack.
      */
-    multipack?: string;
+    multipack?: string | null;
     /**
      * A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details. Note: Content API methods that operate on products take the REST ID of the product, not this identifier.
      */
-    offerId?: string;
+    offerId?: string | null;
     /**
      * Deprecated. Whether an item is available for purchase only online.
      */
-    onlineOnly?: boolean;
+    onlineOnly?: boolean | null;
     /**
      * The item&#39;s pattern (e.g. polka dots).
      */
-    pattern?: string;
+    pattern?: string | null;
     /**
      * Price of the item.
      */
@@ -4276,11 +4312,11 @@ export namespace content_v2 {
     /**
      * Your category of the item (formatted as in products data specification).
      */
-    productType?: string;
+    productType?: string | null;
     /**
      * The unique ID of a promotion.
      */
-    promotionIds?: string[];
+    promotionIds?: string[] | null;
     /**
      * Advertised sale price of the item.
      */
@@ -4288,11 +4324,11 @@ export namespace content_v2 {
     /**
      * Date range during which the item is on sale (see products data specification).
      */
-    salePriceEffectiveDate?: string;
+    salePriceEffectiveDate?: string | null;
     /**
      * The quantity of the product that is available for selling on Google. Supported only for online products.
      */
-    sellOnGoogleQuantity?: string;
+    sellOnGoogleQuantity?: string | null;
     /**
      * Shipping rules.
      */
@@ -4304,7 +4340,7 @@ export namespace content_v2 {
     /**
      * The shipping label of the product, used to group product in account-level shipping rules.
      */
-    shippingLabel?: string;
+    shippingLabel?: string | null;
     /**
      * Length of the item for shipping.
      */
@@ -4320,23 +4356,23 @@ export namespace content_v2 {
     /**
      * Size of the item.
      */
-    sizes?: string[];
+    sizes?: string[] | null;
     /**
      * System in which the size is specified. Recommended for apparel items.
      */
-    sizeSystem?: string;
+    sizeSystem?: string | null;
     /**
      * The cut of the item. Recommended for apparel items.
      */
-    sizeType?: string;
+    sizeType?: string | null;
     /**
      * The source of the offer, i.e., how the offer was created.
      */
-    source?: string;
+    source?: string | null;
     /**
      * The CLDR territory code for the item.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * Tax information.
      */
@@ -4344,7 +4380,7 @@ export namespace content_v2 {
     /**
      * Title of the item.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The preference of the denominator of the unit price.
      */
@@ -4356,7 +4392,7 @@ export namespace content_v2 {
     /**
      * Deprecated. The read-only list of intended destinations which passed validation.
      */
-    validatedDestinations?: string[];
+    validatedDestinations?: string[] | null;
     /**
      * Read-only warnings.
      */
@@ -4380,25 +4416,25 @@ export namespace content_v2 {
     /**
      * The name of the aspect.
      */
-    aspectName?: string;
+    aspectName?: string | null;
     /**
      * The name of the destination. Leave out to apply to all destinations.
      */
-    destinationName?: string;
+    destinationName?: string | null;
     /**
      * Whether the aspect is required, excluded or should be validated.
      */
-    intention?: string;
+    intention?: string | null;
   }
   export interface Schema$ProductDestination {
     /**
      * The name of the destination.
      */
-    destinationName?: string;
+    destinationName?: string | null;
     /**
      * Whether the destination is required, excluded or should be validated.
      */
-    intention?: string;
+    intention?: string | null;
   }
   export interface Schema$ProductsCustomBatchRequest {
     /**
@@ -4413,12 +4449,12 @@ export namespace content_v2 {
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
-    method?: string;
+    merchantId?: string | null;
+    method?: string | null;
     /**
      * The product to insert. Only required if the method is insert.
      */
@@ -4426,7 +4462,7 @@ export namespace content_v2 {
     /**
      * The ID of the product to get or delete. Only defined if the method is get or delete.
      */
-    productId?: string;
+    productId?: string | null;
   }
   export interface Schema$ProductsCustomBatchResponse {
     /**
@@ -4436,7 +4472,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#productsCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch products response.
@@ -4445,7 +4481,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if and only if the request failed.
      */
@@ -4453,7 +4489,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#productsCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The inserted product. Only defined if the method is insert and if the request was successful.
      */
@@ -4463,19 +4499,19 @@ export namespace content_v2 {
     /**
      * The CLDR territory code of the country to which an item will ship.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The location where the shipping is applicable, represented by a location group name.
      */
-    locationGroupName?: string;
+    locationGroupName?: string | null;
     /**
      * The numeric ID of a location that the shipping rate applies to as defined in the AdWords API.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * The postal code range that the shipping rate applies to, represented by a postal code, a postal code prefix followed by a * wildcard, a range between two postal codes or two postal code prefixes of equal length.
      */
-    postalCode?: string;
+    postalCode?: string | null;
     /**
      * Fixed shipping price, represented as a number.
      */
@@ -4483,41 +4519,41 @@ export namespace content_v2 {
     /**
      * The geographic region to which a shipping rate applies.
      */
-    region?: string;
+    region?: string | null;
     /**
      * A free-form description of the service class or delivery speed.
      */
-    service?: string;
+    service?: string | null;
   }
   export interface Schema$ProductShippingDimension {
     /**
      * The unit of value.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * The dimension of the product used to calculate the shipping cost of the item.
      */
-    value?: number;
+    value?: number | null;
   }
   export interface Schema$ProductShippingWeight {
     /**
      * The unit of value.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * The weight of the product used to calculate the shipping cost of the item.
      */
-    value?: number;
+    value?: number | null;
   }
   export interface Schema$ProductsListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#productsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of products.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$Product[];
   }
   /**
@@ -4527,7 +4563,7 @@ export namespace content_v2 {
     /**
      * Date on which the item has been created, in ISO 8601 format.
      */
-    creationDate?: string;
+    creationDate?: string | null;
     /**
      * DEPRECATED - never populated
      */
@@ -4539,7 +4575,7 @@ export namespace content_v2 {
     /**
      * Date on which the item expires in Google Shopping, in ISO 8601 format.
      */
-    googleExpirationDate?: string;
+    googleExpirationDate?: string | null;
     /**
      * A list of all issues associated with the product.
      */
@@ -4547,15 +4583,15 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#productStatus&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Date on which the item has been last updated, in ISO 8601 format.
      */
-    lastUpdateDate?: string;
+    lastUpdateDate?: string | null;
     /**
      * The link to the product.
      */
-    link?: string;
+    link?: string | null;
     /**
      * Product data after applying all the join inputs.
      */
@@ -4563,40 +4599,40 @@ export namespace content_v2 {
     /**
      * The ID of the product for which status is reported.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The title of the product.
      */
-    title?: string;
+    title?: string | null;
   }
   export interface Schema$ProductStatusDataQualityIssue {
-    destination?: string;
-    detail?: string;
-    fetchStatus?: string;
-    id?: string;
-    location?: string;
-    severity?: string;
-    timestamp?: string;
-    valueOnLandingPage?: string;
-    valueProvided?: string;
+    destination?: string | null;
+    detail?: string | null;
+    fetchStatus?: string | null;
+    id?: string | null;
+    location?: string | null;
+    severity?: string | null;
+    timestamp?: string | null;
+    valueOnLandingPage?: string | null;
+    valueProvided?: string | null;
   }
   export interface Schema$ProductStatusDestinationStatus {
     /**
      * Whether the approval status might change due to further processing.
      */
-    approvalPending?: boolean;
+    approvalPending?: boolean | null;
     /**
      * The destination&#39;s approval status.
      */
-    approvalStatus?: string;
+    approvalStatus?: string | null;
     /**
      * The name of the destination
      */
-    destination?: string;
+    destination?: string | null;
     /**
      * Provided for backward compatibility only. Always set to &quot;required&quot;.
      */
-    intention?: string;
+    intention?: string | null;
   }
   export interface Schema$ProductstatusesCustomBatchRequest {
     /**
@@ -4611,21 +4647,21 @@ export namespace content_v2 {
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
-    destinations?: string[];
-    includeAttributes?: boolean;
+    destinations?: string[] | null;
+    includeAttributes?: boolean | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
-    method?: string;
+    merchantId?: string | null;
+    method?: string | null;
     /**
      * The ID of the product whose status to get.
      */
-    productId?: string;
+    productId?: string | null;
   }
   export interface Schema$ProductstatusesCustomBatchResponse {
     /**
@@ -4635,7 +4671,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch productstatuses response.
@@ -4644,7 +4680,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry this entry responds to.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors, if the request failed.
      */
@@ -4652,7 +4688,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The requested product status. Only defined if the request was successful.
      */
@@ -4662,92 +4698,92 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of products statuses.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$ProductStatus[];
   }
   export interface Schema$ProductStatusItemLevelIssue {
     /**
      * The attribute&#39;s name, if the issue is caused by a single attribute.
      */
-    attributeName?: string;
+    attributeName?: string | null;
     /**
      * The error code of the issue.
      */
-    code?: string;
+    code?: string | null;
     /**
      * A short issue description in English.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The destination the issue applies to.
      */
-    destination?: string;
+    destination?: string | null;
     /**
      * A detailed issue description in English.
      */
-    detail?: string;
+    detail?: string | null;
     /**
      * The URL of a web page to help with resolving this issue.
      */
-    documentation?: string;
+    documentation?: string | null;
     /**
      * Whether the issue can be resolved by the merchant.
      */
-    resolution?: string;
+    resolution?: string | null;
     /**
      * How this issue affects serving of the offer.
      */
-    servability?: string;
+    servability?: string | null;
   }
   export interface Schema$ProductTax {
     /**
      * The country within which the item is taxed, specified as a CLDR territory code.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The numeric ID of a location that the tax rate applies to as defined in the AdWords API.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * The postal code range that the tax rate applies to, represented by a ZIP code, a ZIP code prefix using * wildcard, a range between two ZIP codes or two ZIP code prefixes of equal length. Examples: 94114, 94*, 94002-95460, 94*-95*.
      */
-    postalCode?: string;
+    postalCode?: string | null;
     /**
      * The percentage of tax rate that applies to the item price.
      */
-    rate?: number;
+    rate?: number | null;
     /**
      * The geographic region to which the tax rate applies.
      */
-    region?: string;
+    region?: string | null;
     /**
      * Set to true if tax is charged on shipping.
      */
-    taxShip?: boolean;
+    taxShip?: boolean | null;
   }
   export interface Schema$ProductUnitPricingBaseMeasure {
     /**
      * The unit of the denominator.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * The denominator of the unit price.
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$ProductUnitPricingMeasure {
     /**
      * The unit of the measure.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * The measure of an item.
      */
-    value?: number;
+    value?: number | null;
   }
   export interface Schema$Promotion {
     /**
@@ -4757,13 +4793,13 @@ export namespace content_v2 {
     /**
      * [required] ID of the promotion.
      */
-    promotionId?: string;
+    promotionId?: string | null;
   }
   export interface Schema$RateGroup {
     /**
      * A list of shipping labels defining the products to which this rate group applies to. This is a disjunction: only one of the labels has to match for the rate group to apply. May only be empty for the last rate group of a service. Required.
      */
-    applicableShippingLabels?: string[];
+    applicableShippingLabels?: string[] | null;
     /**
      * A list of carrier rates that can be referred to by mainTable or singleValue.
      */
@@ -4775,7 +4811,7 @@ export namespace content_v2 {
     /**
      * Name of the rate group. Optional. If set has to be unique within shipping service.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The value of the rate group (e.g. flat rate $10). Can only be set if mainTable and subtables are not set.
      */
@@ -4786,17 +4822,17 @@ export namespace content_v2 {
     subtables?: Schema$Table[];
   }
   export interface Schema$RefundReason {
-    description?: string;
-    reasonCode?: string;
+    description?: string | null;
+    reasonCode?: string | null;
   }
   export interface Schema$ReturnShipment {
-    creationDate?: string;
-    deliveryDate?: string;
-    returnMethodType?: string;
-    shipmentId?: string;
+    creationDate?: string | null;
+    deliveryDate?: string | null;
+    returnMethodType?: string | null;
+    shipmentId?: string | null;
     shipmentTrackingInfos?: Schema$ShipmentTrackingInfo[];
-    shippingDate?: string;
-    state?: string;
+    shippingDate?: string | null;
+    state?: string | null;
   }
   export interface Schema$Row {
     /**
@@ -4808,15 +4844,15 @@ export namespace content_v2 {
     /**
      * A boolean exposing the active status of the shipping service. Required.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * The CLDR code of the currency to which this service applies. Must match that of the prices in rate groups.
      */
-    currency?: string;
+    currency?: string | null;
     /**
      * The CLDR territory code of the country to which the service applies. Required.
      */
-    deliveryCountry?: string;
+    deliveryCountry?: string | null;
     /**
      * Time spent in various aspects from order to the delivery of the product. Required.
      */
@@ -4824,7 +4860,7 @@ export namespace content_v2 {
     /**
      * Eligibility for this service.
      */
-    eligibility?: string;
+    eligibility?: string | null;
     /**
      * Minimum order value for this service. If set, indicates that customers will have to spend at least this amount. All prices within a service must have the same currency.
      */
@@ -4832,7 +4868,7 @@ export namespace content_v2 {
     /**
      * Free-form name of the service. Must be unique within target account. Required.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Shipping rate group definitions. Only the last one is allowed to have an empty applicableShippingLabels, which means &quot;everything else&quot;. The other applicableShippingLabels must not overlap.
      */
@@ -4850,29 +4886,29 @@ export namespace content_v2 {
     /**
      * [required] ID of the shipment group. It is assigned by the merchant in the shipLineItems method and is used to group multiple line items that have the same kind of shipping charges.
      */
-    shipmentGroupId?: string;
+    shipmentGroupId?: string | null;
   }
   export interface Schema$ShipmentInvoiceLineItemInvoice {
     /**
      * ID of the line item. Either lineItemId or productId must be set.
      */
-    lineItemId?: string;
+    lineItemId?: string | null;
     /**
      * ID of the product. This is the REST ID used in the products service. Either lineItemId or productId must be set.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * [required] The shipment unit ID is assigned by the merchant and defines individual quantities within a line item. The same ID can be assigned to units that are the same while units that differ must be assigned a different ID (for example: free or promotional units).
      */
-    shipmentUnitIds?: string[];
+    shipmentUnitIds?: string[] | null;
     /**
      * [required] Invoice details for a single unit.
      */
     unitInvoice?: Schema$UnitInvoice;
   }
   export interface Schema$ShipmentTrackingInfo {
-    carrier?: string;
-    trackingNumber?: string;
+    carrier?: string | null;
+    trackingNumber?: string | null;
   }
   /**
    * The merchant account&#39;s shipping settings. All methods except getsupportedcarriers and getsupportedholidays require the admin role.
@@ -4881,7 +4917,7 @@ export namespace content_v2 {
     /**
      * The ID of the account to which these account shipping settings belong. Ignored upon update, always present in get request responses.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * A list of postal code groups that can be referred to in services. Optional.
      */
@@ -4904,16 +4940,16 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update account shipping settings.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * An entry ID, unique within the batch request.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * The ID of the managing account.
      */
-    merchantId?: string;
-    method?: string;
+    merchantId?: string | null;
+    method?: string | null;
     /**
      * The account shipping settings to update. Only defined if the method is update.
      */
@@ -4927,7 +4963,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A batch entry encoding a single non-batch shipping settings response.
@@ -4936,7 +4972,7 @@ export namespace content_v2 {
     /**
      * The ID of the request entry to which this entry responds.
      */
-    batchId?: number;
+    batchId?: number | null;
     /**
      * A list of errors defined if, and only if, the request failed.
      */
@@ -4944,7 +4980,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponseEntry&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The retrieved or updated account shipping settings.
      */
@@ -4958,7 +4994,7 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedCarriersResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$ShippingsettingsGetSupportedHolidaysResponse {
     /**
@@ -4968,17 +5004,17 @@ export namespace content_v2 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedHolidaysResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$ShippingsettingsListResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The token for the retrieval of the next page of shipping settings.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     resources?: Schema$ShippingSettings[];
   }
   export interface Schema$Table {
@@ -4989,7 +5025,7 @@ export namespace content_v2 {
     /**
      * Name of the table. Required for subtables, ignored for the main table.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Headers of the table&#39;s rows. Required.
      */
@@ -5007,11 +5043,11 @@ export namespace content_v2 {
     /**
      * Whether the orderinvoices service should support this order.
      */
-    enableOrderinvoices?: boolean;
+    enableOrderinvoices?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#testOrder&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Line items that are ordered. At least one line item must be provided.
      */
@@ -5019,7 +5055,7 @@ export namespace content_v2 {
     /**
      * Determines if test order must be pulled by merchant or pushed to merchant via push integration.
      */
-    notificationMode?: string;
+    notificationMode?: string | null;
     /**
      * The details of the payment method.
      */
@@ -5027,7 +5063,11 @@ export namespace content_v2 {
     /**
      * Identifier of one of the predefined delivery addresses for the delivery.
      */
-    predefinedDeliveryAddress?: string;
+    predefinedDeliveryAddress?: string | null;
+    /**
+     * Identifier of one of the predefined pickup details. Required for orders containing line items with shipping type pickup.
+     */
+    predefinedPickupDetails?: string | null;
     /**
      * Deprecated. Ignored if provided.
      */
@@ -5043,21 +5083,21 @@ export namespace content_v2 {
     /**
      * The requested shipping option.
      */
-    shippingOption?: string;
+    shippingOption?: string | null;
   }
   export interface Schema$TestOrderCustomer {
     /**
      * Email address of the customer.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Deprecated. Please use marketingRightsInfo instead.
      */
-    explicitMarketingPreference?: boolean;
+    explicitMarketingPreference?: boolean | null;
     /**
      * Full name of the customer.
      */
-    fullName?: string;
+    fullName?: string | null;
     /**
      * Customer&#39;s marketing preferences.
      */
@@ -5067,11 +5107,11 @@ export namespace content_v2 {
     /**
      * Last know user use selection regards marketing preferences. In certain cases selection might not be known, so this field would be empty.
      */
-    explicitMarketingPreference?: string;
+    explicitMarketingPreference?: string | null;
     /**
      * Timestamp when last time marketing preference was updated. Could be empty, if user wasn&#39;t offered a selection yet.
      */
-    lastUpdatedTimestamp?: string;
+    lastUpdatedTimestamp?: string | null;
   }
   export interface Schema$TestOrderLineItem {
     /**
@@ -5081,7 +5121,7 @@ export namespace content_v2 {
     /**
      * Number of items ordered.
      */
-    quantityOrdered?: number;
+    quantityOrdered?: number | null;
     /**
      * Details of the return policy for the line item.
      */
@@ -5099,19 +5139,19 @@ export namespace content_v2 {
     /**
      * Brand of the item.
      */
-    brand?: string;
+    brand?: string | null;
     /**
      * Deprecated.
      */
-    channel?: string;
+    channel?: string | null;
     /**
      * Condition or state of the item.
      */
-    condition?: string;
+    condition?: string | null;
     /**
      * The two-letter ISO 639-1 language code for the item.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Fees for the item. Optional.
      */
@@ -5119,23 +5159,23 @@ export namespace content_v2 {
     /**
      * Global Trade Item Number (GTIN) of the item. Optional.
      */
-    gtin?: string;
+    gtin?: string | null;
     /**
      * URL of an image of the item.
      */
-    imageLink?: string;
+    imageLink?: string | null;
     /**
      * Shared identifier for all variants of the same product. Optional.
      */
-    itemGroupId?: string;
+    itemGroupId?: string | null;
     /**
      * Manufacturer Part Number (MPN) of the item. Optional.
      */
-    mpn?: string;
+    mpn?: string | null;
     /**
      * An identifier of the item.
      */
-    offerId?: string;
+    offerId?: string | null;
     /**
      * The price for the product. Tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied.
      */
@@ -5143,11 +5183,11 @@ export namespace content_v2 {
     /**
      * The CLDR territory code of the target country of the product.
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
     /**
      * The title of the product.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Variant attributes for the item. Optional.
      */
@@ -5157,34 +5197,34 @@ export namespace content_v2 {
     /**
      * The card expiration month (January = 1, February = 2 etc.).
      */
-    expirationMonth?: number;
+    expirationMonth?: number | null;
     /**
      * The card expiration year (4-digit, e.g. 2015).
      */
-    expirationYear?: number;
+    expirationYear?: number | null;
     /**
      * The last four digits of the card number.
      */
-    lastFourDigits?: string;
+    lastFourDigits?: string | null;
     /**
      * The billing address.
      */
-    predefinedBillingAddress?: string;
+    predefinedBillingAddress?: string | null;
     /**
      * The type of instrument. Note that real orders might have different values than the four values accepted by createTestOrder.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$TransitTable {
     /**
      * A list of postal group names. The last value can be &quot;all other locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]. The referred postal code groups must match the delivery country of the service.
      */
-    postalCodeGroupNames?: string[];
+    postalCodeGroupNames?: string[] | null;
     rows?: Schema$TransitTableTransitTimeRow[];
     /**
      * A list of transit time labels. The last value can be &quot;all other labels&quot;. Example: [&quot;food&quot;, &quot;electronics&quot;, &quot;all other labels&quot;].
      */
-    transitTimeLabels?: string[];
+    transitTimeLabels?: string[] | null;
   }
   export interface Schema$TransitTableTransitTimeRow {
     values?: Schema$TransitTableTransitTimeRowTransitTimeValue[];
@@ -5193,11 +5233,11 @@ export namespace content_v2 {
     /**
      * Must be greater than or equal to minTransitTimeInDays.
      */
-    maxTransitTimeInDays?: number;
+    maxTransitTimeInDays?: number | null;
     /**
      * Transit time range (min-max) in business days. 0 means same day delivery, 1 means next day delivery.
      */
-    minTransitTimeInDays?: number;
+    minTransitTimeInDays?: number | null;
   }
   export interface Schema$UnitInvoice {
     /**
@@ -5229,7 +5269,7 @@ export namespace content_v2 {
     /**
      * [required] Type of the additional charge.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$UnitInvoiceTaxLine {
     /**
@@ -5239,11 +5279,11 @@ export namespace content_v2 {
     /**
      * Optional name of the tax type. This should only be provided if taxType is otherFeeTax.
      */
-    taxName?: string;
+    taxName?: string | null;
     /**
      * [required] Type of the tax.
      */
-    taxType?: string;
+    taxType?: string | null;
   }
   /**
    * The single value of a rate group or the value of a rate group table&#39;s cell. Exactly one of noShipping, flatRate, pricePercentage, carrierRateName, subtableName must be set.
@@ -5252,7 +5292,7 @@ export namespace content_v2 {
     /**
      * The name of a carrier rate referring to a carrier rate defined in the same rate group. Can only be set if all other fields are not set.
      */
-    carrierRateName?: string;
+    carrierRateName?: string | null;
     /**
      * A flat rate. Can only be set if all other fields are not set.
      */
@@ -5260,25 +5300,25 @@ export namespace content_v2 {
     /**
      * If true, then the product can&#39;t ship. Must be true when set, can only be set if all other fields are not set.
      */
-    noShipping?: boolean;
+    noShipping?: boolean | null;
     /**
      * A percentage of the price represented as a number in decimal notation (e.g., &quot;5.4&quot;). Can only be set if all other fields are not set.
      */
-    pricePercentage?: string;
+    pricePercentage?: string | null;
     /**
      * The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.
      */
-    subtableName?: string;
+    subtableName?: string | null;
   }
   export interface Schema$Weight {
     /**
      * The weight unit.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * The weight represented as a number.
      */
-    value?: string;
+    value?: string | null;
   }
 
   export class Resource$Accounts {

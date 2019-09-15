@@ -128,7 +128,7 @@ export namespace sourcerepo_v1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
@@ -137,11 +137,11 @@ export namespace sourcerepo_v1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -154,11 +154,11 @@ export namespace sourcerepo_v1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -171,19 +171,19 @@ export namespace sourcerepo_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Response for ListRepos.  The size is not set in the returned repositories.
@@ -192,7 +192,7 @@ export namespace sourcerepo_v1 {
     /**
      * If non-empty, additional repositories exist within the project. These can be retrieved by including this value in the next ListReposRequest&#39;s page_token field.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The listed repos.
      */
@@ -205,15 +205,15 @@ export namespace sourcerepo_v1 {
     /**
      * ID of the SSH deploy key at the other hosting service. Removing this key from the other service would deauthorize Google Cloud Source Repositories from mirroring.
      */
-    deployKeyId?: string;
+    deployKeyId?: string | null;
     /**
      * URL of the main repository at the other hosting service.
      */
-    url?: string;
+    url?: string | null;
     /**
      * ID of the webhook listening to updates to trigger mirroring. Removing this webhook from the other hosting service will stop Google Cloud Source Repositories from receiving notifications, and thereby disabling mirroring.
      */
-    webhookId?: string;
+    webhookId?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -222,7 +222,7 @@ export namespace sourcerepo_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -230,15 +230,15 @@ export namespace sourcerepo_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -255,11 +255,11 @@ export namespace sourcerepo_v1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Deprecated.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Cloud Source Repositories configuration of a project.
@@ -268,15 +268,15 @@ export namespace sourcerepo_v1 {
     /**
      * Reject a Git push that contains a private key.
      */
-    enablePrivateKeyCheck?: boolean;
+    enablePrivateKeyCheck?: boolean | null;
     /**
      * The name of the project. Values are of the form `projects/&lt;project&gt;`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * How this project publishes a change in the repositories through Cloud Pub/Sub. Keyed by the topic names.
      */
-    pubsubConfigs?: {[key: string]: Schema$PubsubConfig};
+    pubsubConfigs?: {[key: string]: Schema$PubsubConfig} | null;
   }
   /**
    * Configuration to publish a Cloud Pub/Sub message.
@@ -285,15 +285,15 @@ export namespace sourcerepo_v1 {
     /**
      * The format of the Cloud Pub/Sub messages.
      */
-    messageFormat?: string;
+    messageFormat?: string | null;
     /**
      * Email address of the service account used for publishing Cloud Pub/Sub messages. This service account needs to be in the same project as the PubsubConfig. When added, the caller needs to have iam.serviceAccounts.actAs permission on this service account. If unspecified, it defaults to the compute engine default service account.
      */
-    serviceAccountEmail?: string;
+    serviceAccountEmail?: string | null;
     /**
      * A topic of Cloud Pub/Sub. Values are of the form `projects/&lt;project&gt;/topics/&lt;topic&gt;`. The project needs to be the same project as this config is in.
      */
-    topic?: string;
+    topic?: string | null;
   }
   /**
    * A repository (or repo) is a Git repository storing versioned source content.
@@ -306,19 +306,19 @@ export namespace sourcerepo_v1 {
     /**
      * Resource name of the repository, of the form `projects/&lt;project&gt;/repos/&lt;repo&gt;`.  The repo name may contain slashes. eg, `projects/myproject/repos/name/with/slash`
      */
-    name?: string;
+    name?: string | null;
     /**
      * How this repository publishes a change in the repository through Cloud Pub/Sub. Keyed by the topic names.
      */
-    pubsubConfigs?: {[key: string]: Schema$PubsubConfig};
+    pubsubConfigs?: {[key: string]: Schema$PubsubConfig} | null;
     /**
      * The disk usage of the repo, in bytes. Read-only field. Size is only returned by GetRepo.
      */
-    size?: string;
+    size?: string | null;
     /**
      * URL to clone the repository from Google Cloud Source Repositories. Read-only field.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -331,7 +331,7 @@ export namespace sourcerepo_v1 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -340,15 +340,15 @@ export namespace sourcerepo_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Metadata of SyncRepo.  This message is in the metadata field of Operation.
@@ -357,19 +357,19 @@ export namespace sourcerepo_v1 {
     /**
      * The name of the repo being synchronized. Values are of the form `projects/&lt;project&gt;/repos/&lt;repo&gt;`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The time this operation is started.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The latest status message on syncing the repository.
      */
-    statusMessage?: string;
+    statusMessage?: string | null;
     /**
      * The time this operation&#39;s status message is updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Request for SyncRepo.
@@ -382,7 +382,7 @@ export namespace sourcerepo_v1 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -391,7 +391,7 @@ export namespace sourcerepo_v1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Request for UpdateProjectConfig.
@@ -404,7 +404,7 @@ export namespace sourcerepo_v1 {
     /**
      * A FieldMask specifying which fields of the project_config to modify. Only the fields in the mask will be modified. If no mask is provided, this request is no-op.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Request for UpdateRepo.
@@ -417,7 +417,7 @@ export namespace sourcerepo_v1 {
     /**
      * A FieldMask specifying which fields of the repo to modify. Only the fields in the mask will be modified. If no mask is provided, this request is no-op.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
 
   export class Resource$Projects {

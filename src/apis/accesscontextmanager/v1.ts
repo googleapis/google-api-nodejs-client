@@ -130,23 +130,23 @@ export namespace accesscontextmanager_v1 {
     /**
      * Output only. Time the `AccessLevel` was created in UTC.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Description of the `AccessLevel` and its use. Does not affect behavior.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
      */
-    name?: string;
+    name?: string | null;
     /**
      * Human readable title. Must be unique within the Policy.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Output only. Time the `AccessLevel` was updated in UTC.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use GCP services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
@@ -155,23 +155,23 @@ export namespace accesscontextmanager_v1 {
     /**
      * Output only. Time the `AccessPolicy` was created in UTC.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      */
-    name?: string;
+    name?: string | null;
     /**
      * Required. The parent of this `AccessPolicy` in the Cloud Resource Hierarchy. Currently immutable once created. Format: `organizations/{organization_id}`
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * Required. Human readable title. Does not affect behavior.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Output only. Time the `AccessPolicy` was updated in UTC.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
@@ -180,7 +180,7 @@ export namespace accesscontextmanager_v1 {
     /**
      * How the `conditions` list should be combined to determine if a request is granted this `AccessLevel`. If AND is used, each `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. If OR is used, at least one `Condition` in `conditions` must be satisfied for the `AccessLevel` to be applied. Default behavior is AND.
      */
-    combiningFunction?: string;
+    combiningFunction?: string | null;
     /**
      * Required. A list of requirements for the `AccessLevel` to be granted.
      */
@@ -201,23 +201,23 @@ export namespace accesscontextmanager_v1 {
     /**
      * CIDR block IP subnetwork specification. May be IPv4 or IPv6. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (i.e. all the host bits must be zero) or the input is considered malformed. For example, &quot;192.0.2.0/24&quot; is accepted but &quot;192.0.2.1/24&quot; is not. Similarly, for IPv6, &quot;2001:db8::/32&quot; is accepted whereas &quot;2001:db8::1/32&quot; is not. The originating IP of a request must be in one of the listed subnets in order for this Condition to be true. If empty, all IP addresses are allowed.
      */
-    ipSubnetworks?: string[];
+    ipSubnetworks?: string[] | null;
     /**
      * The request must be made by one of the provided user or service accounts. Groups are not supported. Syntax: `user:{emailid}` `serviceAccount:{emailid}` If not specified, a request may come from any user.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Whether to negate the Condition. If true, the Condition becomes a NAND over its non-empty fields, each field must be false for the Condition overall to be satisfied. Defaults to false.
      */
-    negate?: boolean;
+    negate?: boolean | null;
     /**
      * The request must originate from one of the provided countries/regions. Must be valid ISO 3166-1 alpha-2 codes.
      */
-    regions?: string[];
+    regions?: string[] | null;
     /**
      * A list of other access levels defined in the same `Policy`, referenced by resource name. Referencing an `AccessLevel` which does not exist is an error. All access levels listed must be granted for the Condition to be true. Example: &quot;`accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME&quot;`
      */
-    requiredAccessLevels?: string[];
+    requiredAccessLevels?: string[] | null;
   }
   /**
    * `DevicePolicy` specifies device specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels, it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is { os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED}, then the DevicePolicy will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
@@ -226,11 +226,11 @@ export namespace accesscontextmanager_v1 {
     /**
      * Allowed device management levels, an empty list allows all management levels.
      */
-    allowedDeviceManagementLevels?: string[];
+    allowedDeviceManagementLevels?: string[] | null;
     /**
      * Allowed encryptions statuses, an empty list allows all statuses.
      */
-    allowedEncryptionStatuses?: string[];
+    allowedEncryptionStatuses?: string[] | null;
     /**
      * Allowed OS versions, an empty list allows all types and all versions.
      */
@@ -238,15 +238,15 @@ export namespace accesscontextmanager_v1 {
     /**
      * Whether the device needs to be approved by the customer admin.
      */
-    requireAdminApproval?: boolean;
+    requireAdminApproval?: boolean | null;
     /**
      * Whether the device needs to be corp owned.
      */
-    requireCorpOwned?: boolean;
+    requireCorpOwned?: boolean | null;
     /**
      * Whether or not screenlock is required for the DevicePolicy to be true. Defaults to `false`.
      */
-    requireScreenlock?: boolean;
+    requireScreenlock?: boolean | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -263,7 +263,7 @@ export namespace accesscontextmanager_v1 {
     /**
      * The pagination token to retrieve the next page of results. If the value is empty, no further results remain.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A response to `ListAccessPoliciesRequest`.
@@ -276,7 +276,7 @@ export namespace accesscontextmanager_v1 {
     /**
      * The pagination token to retrieve the next page of results. If the value is empty, no further results remain.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -285,7 +285,7 @@ export namespace accesscontextmanager_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -298,7 +298,7 @@ export namespace accesscontextmanager_v1 {
     /**
      * The pagination token to retrieve the next page of results. If the value is empty, no further results remain.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of the Service Perimeter instances.
      */
@@ -311,7 +311,7 @@ export namespace accesscontextmanager_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -319,15 +319,15 @@ export namespace accesscontextmanager_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A restriction on the OS type and version of devices making requests.
@@ -336,15 +336,15 @@ export namespace accesscontextmanager_v1 {
     /**
      * The minimum allowed OS version. If not set, any version of this OS satisfies the constraint. Format: `&quot;major.minor.patch&quot;`. Examples: `&quot;10.5.301&quot;`, `&quot;9.2.1&quot;`.
      */
-    minimumVersion?: string;
+    minimumVersion?: string | null;
     /**
      * Required. The allowed OS type.
      */
-    osType?: string;
+    osType?: string | null;
     /**
      * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to Dasher domain policies, and the caller has permission to call the API targeted by the request.
      */
-    requireVerifiedChromeOs?: boolean;
+    requireVerifiedChromeOs?: boolean | null;
   }
   /**
    * `ServicePerimeter` describes a set of GCP resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single GCP project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only GCP projects as members, a single GCP project may belong to multiple Service Perimeter Bridges.
@@ -353,19 +353,19 @@ export namespace accesscontextmanager_v1 {
     /**
      * Output only. Time the `ServicePerimeter` was created in UTC.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Description of the `ServicePerimeter` and its use. Does not affect behavior.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      */
-    name?: string;
+    name?: string | null;
     /**
      * Perimeter type indicator. A single project is allowed to be a member of single regular perimeter, but multiple service perimeter bridges. A project cannot be a included in a perimeter bridge without being included in regular perimeter. For perimeter bridges, the restricted service list as well as access level lists must be empty.
      */
-    perimeterType?: string;
+    perimeterType?: string | null;
     /**
      * Current ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine perimeter content and boundaries.
      */
@@ -373,11 +373,11 @@ export namespace accesscontextmanager_v1 {
     /**
      * Human readable title. Must be unique within the Policy.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Output only. Time the `ServicePerimeter` was updated in UTC.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * `ServicePerimeterConfig` specifies a set of GCP resources that describe specific Service Perimeter configuration.
@@ -386,15 +386,15 @@ export namespace accesscontextmanager_v1 {
     /**
      * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via GCP calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
      */
-    accessLevels?: string[];
+    accessLevels?: string[] | null;
     /**
      * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
      */
-    resources?: string[];
+    resources?: string[] | null;
     /**
      * GCP services that are subject to the Service Perimeter restrictions. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
      */
-    restrictedServices?: string[];
+    restrictedServices?: string[] | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -403,15 +403,15 @@ export namespace accesscontextmanager_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Accesspolicies {

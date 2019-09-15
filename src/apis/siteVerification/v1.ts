@@ -105,21 +105,21 @@ export namespace siteVerification_v1 {
     /**
      * The site for which a verification token will be generated.
      */
-    site?: {identifier?: string; type?: string};
+    site?: {identifier?: string; type?: string} | null;
     /**
      * The verification method that will be used to verify this site. For sites, &#39;FILE&#39; or &#39;META&#39; methods may be used. For domains, only &#39;DNS&#39; may be used.
      */
-    verificationMethod?: string;
+    verificationMethod?: string | null;
   }
   export interface Schema$SiteVerificationWebResourceGettokenResponse {
     /**
      * The verification method to use in conjunction with this token. For FILE, the token should be placed in the top-level directory of the site, stored inside a file of the same name. For META, the token should be placed in the HEAD tag of the default page that is loaded for the site. For DNS, the token should be placed in a TXT record of the domain.
      */
-    method?: string;
+    method?: string | null;
     /**
      * The verification token. The token must be placed appropriately in order for verification to succeed.
      */
-    token?: string;
+    token?: string | null;
   }
   export interface Schema$SiteVerificationWebResourceListResponse {
     /**
@@ -131,15 +131,15 @@ export namespace siteVerification_v1 {
     /**
      * The string used to identify this site. This value should be used in the &quot;id&quot; portion of the REST URL for the Get, Update, and Delete operations.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The email addresses of all verified owners.
      */
-    owners?: string[];
+    owners?: string[] | null;
     /**
      * The address and type of a site that is verified or will be verified.
      */
-    site?: {identifier?: string; type?: string};
+    site?: {identifier?: string; type?: string} | null;
   }
 
   export class Resource$Webresource {

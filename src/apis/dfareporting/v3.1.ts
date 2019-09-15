@@ -250,67 +250,67 @@ export namespace dfareporting_v3_1 {
     /**
      * Account permissions assigned to this account.
      */
-    accountPermissionIds?: string[];
+    accountPermissionIds?: string[] | null;
     /**
      * Profile for this account. This is a read-only field that can be left blank.
      */
-    accountProfile?: string;
+    accountProfile?: string | null;
     /**
      * Whether this account is active.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Maximum number of active ads allowed for this account.
      */
-    activeAdsLimitTier?: string;
+    activeAdsLimitTier?: string | null;
     /**
      * Whether to serve creatives with Active View tags. If disabled, viewability data will not be available for any impressions.
      */
-    activeViewOptOut?: boolean;
+    activeViewOptOut?: boolean | null;
     /**
      * User role permissions available to the user roles of this account.
      */
-    availablePermissionIds?: string[];
+    availablePermissionIds?: string[] | null;
     /**
      * ID of the country associated with this account.
      */
-    countryId?: string;
+    countryId?: string | null;
     /**
      * ID of currency associated with this account. This is a required field. Acceptable values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD  - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD  - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot; for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  - &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot; for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  - &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot; for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  - &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot; for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  - &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot; for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  - &quot;50&quot; for NGN
      */
-    currencyId?: string;
+    currencyId?: string | null;
     /**
      * Default placement dimensions for this account.
      */
-    defaultCreativeSizeId?: string;
+    defaultCreativeSizeId?: string | null;
     /**
      * Description of this account.
      */
-    description?: string;
+    description?: string | null;
     /**
      * ID of this account. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#account&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Locale of this account. Acceptable values are:  - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  - &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil)  - &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * Maximum image size allowed for this account, in kilobytes. Value must be greater than or equal to 1.
      */
-    maximumImageSize?: string;
+    maximumImageSize?: string | null;
     /**
      * Name of this account. This is a required field, and must be less than 128 characters long and be globally unique.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Whether campaigns created in this account will be enabled for Nielsen OCR reach ratings by default.
      */
-    nielsenOcrEnabled?: boolean;
+    nielsenOcrEnabled?: boolean | null;
     /**
      * Reporting configuration of this account.
      */
@@ -318,11 +318,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Share Path to Conversion reports with Twitter.
      */
-    shareReportsWithTwitter?: boolean;
+    shareReportsWithTwitter?: boolean | null;
     /**
      * File size limit in kilobytes of Rich Media teaser creatives. Acceptable values are 1 to 10240, inclusive.
      */
-    teaserSizeLimit?: string;
+    teaserSizeLimit?: string | null;
   }
   /**
    * Gets a summary of active ads in an account.
@@ -331,23 +331,23 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the account.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Ads that have been activated for the account
      */
-    activeAds?: string;
+    activeAds?: string | null;
     /**
      * Maximum number of active ads allowed for the account.
      */
-    activeAdsLimitTier?: string;
+    activeAdsLimitTier?: string | null;
     /**
      * Ads that can be activated for the account.
      */
-    availableAds?: string;
+    availableAds?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountActiveAdSummary&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * AccountPermissions contains information about a particular account permission. Some features of Campaign Manager require an account permission to be present in the account.
@@ -356,27 +356,27 @@ export namespace dfareporting_v3_1 {
     /**
      * Account profiles associated with this account permission.  Possible values are: - &quot;ACCOUNT_PROFILE_BASIC&quot; - &quot;ACCOUNT_PROFILE_STANDARD&quot;
      */
-    accountProfiles?: string[];
+    accountProfiles?: string[] | null;
     /**
      * ID of this account permission.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermission&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Administrative level required to enable this account permission.
      */
-    level?: string;
+    level?: string | null;
     /**
      * Name of this account permission.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Permission group of this account permission.
      */
-    permissionGroupId?: string;
+    permissionGroupId?: string | null;
   }
   /**
    * AccountPermissionGroups contains a mapping of permission group IDs to names. A permission group is a grouping of account permissions.
@@ -385,15 +385,15 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this account permission group.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroup&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this account permission group.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Account Permission Group List Response
@@ -406,7 +406,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroupsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Account Permission List Response
@@ -419,7 +419,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Account List Response
@@ -432,11 +432,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * AccountUserProfiles contains properties of a Campaign Manager user profile. This resource is specifically for managing user profiles, whereas UserProfiles is for accessing the API.
@@ -445,11 +445,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of the user profile. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Whether this user profile is active. This defaults to false, and must be set true on insert for the user profile to be usable.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Filter that describes which advertisers are visible to the user profile.
      */
@@ -461,27 +461,27 @@ export namespace dfareporting_v3_1 {
     /**
      * Comments for this user profile.
      */
-    comments?: string;
+    comments?: string | null;
     /**
      * Email of the user profile. The email addresss must be linked to a Google Account. This field is required on insertion and is read-only after insertion.
      */
-    email?: string;
+    email?: string | null;
     /**
      * ID of the user profile. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfile&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Locale of the user profile. This is a required field. Acceptable values are:   - &quot;cs&quot; (Czech)  - &quot;de&quot; (German)  - &quot;en&quot; (English)  - &quot;en-GB&quot; (English United Kingdom)  - &quot;es&quot; (Spanish)  - &quot;fr&quot; (French)  - &quot;it&quot; (Italian)  - &quot;ja&quot; (Japanese)  - &quot;ko&quot; (Korean)  - &quot;pl&quot; (Polish)  - &quot;pt-BR&quot; (Portuguese Brazil) - &quot;ru&quot; (Russian)  - &quot;sv&quot; (Swedish)  - &quot;tr&quot; (Turkish)  - &quot;zh-CN&quot; (Chinese Simplified)  - &quot;zh-TW&quot; (Chinese Traditional)
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * Name of the user profile. This is a required field. Must be less than 64 characters long, must be globally unique, and cannot contain whitespace or any of the following characters: &quot;&amp;;&quot;#%,&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Filter that describes which sites are visible to the user profile.
      */
@@ -489,15 +489,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Subaccount ID of the user profile. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Trafficker type of this user profile. This is a read-only field.
      */
-    traffickerType?: string;
+    traffickerType?: string | null;
     /**
      * User type of the user profile. This is a read-only field that can be left blank.
      */
-    userAccessType?: string;
+    userAccessType?: string | null;
     /**
      * Filter that describes which user roles are visible to the user profile.
      */
@@ -505,7 +505,7 @@ export namespace dfareporting_v3_1 {
     /**
      * User role ID of the user profile. This is a required field.
      */
-    userRoleId?: string;
+    userRoleId?: string | null;
   }
   /**
    * Account User Profile List Response
@@ -518,11 +518,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfilesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Represents an activity group.
@@ -535,11 +535,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#activities.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * List of names of floodlight activity metrics.
      */
-    metricNames?: string[];
+    metricNames?: string[] | null;
   }
   /**
    * Contains properties of a Campaign Manager ad.
@@ -548,15 +548,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this ad. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Whether this ad is active. When true, archived must be false.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Advertiser ID of this ad. This is a required field on insertion.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -564,15 +564,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this ad is archived. When true, active must be false.
      */
-    archived?: boolean;
+    archived?: boolean | null;
     /**
      * Audience segment ID that is being targeted for this ad. Applicable when type is AD_SERVING_STANDARD_AD.
      */
-    audienceSegmentId?: string;
+    audienceSegmentId?: string | null;
     /**
      * Campaign ID of this ad. This is a required field on insertion.
      */
-    campaignId?: string;
+    campaignId?: string | null;
     /**
      * Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
      */
@@ -588,11 +588,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Comments for this ad.
      */
-    comments?: string;
+    comments?: string | null;
     /**
      * Compatibility of this ad. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to either rendering on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are only used for existing default ads. New mobile placements must be assigned DISPLAY or DISPLAY_INTERSTITIAL and default ads created for those placements will be limited to those compatibility types. IN_STREAM_VIDEO refers to rendering in-stream video ads developed with the VAST standard.
      */
-    compatibility?: string;
+    compatibility?: string | null;
     /**
      * Information about the creation of this ad. This is a read-only field.
      */
@@ -620,11 +620,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this ad is a dynamic click tracker. Applicable when type is AD_SERVING_CLICK_TRACKER. This is a required field on insert, and is read-only after insert.
      */
-    dynamicClickTracker?: boolean;
+    dynamicClickTracker?: boolean | null;
     /**
      * Date and time that this ad should stop serving. Must be later than the start time. This is a required field on insertion.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Event tag overrides for this ad.
      */
@@ -636,7 +636,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this ad. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this ad. This is a read-only, auto-generated field.
      */
@@ -648,7 +648,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#ad&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Language targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
      */
@@ -660,7 +660,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of this ad. This is a required field and must be less than 256 characters long.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Placement assignments for this ad.
      */
@@ -676,23 +676,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this ad is ssl compliant. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
-    sslCompliant?: boolean;
+    sslCompliant?: boolean | null;
     /**
      * Whether this ad requires ssl. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
-    sslRequired?: boolean;
+    sslRequired?: boolean | null;
     /**
      * Date and time that this ad should start serving. If creating an ad, this field must be a time in the future. This is a required field on insertion.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Subaccount ID of this ad. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Targeting template ID, used to apply preconfigured targeting information to this ad. This cannot be set while any of dayPartTargeting, geoTargeting, keyValueTargetingExpression, languageTargeting, remarketingListExpression, or technologyTargeting are set. Applicable when type is AD_SERVING_STANDARD_AD.
      */
-    targetingTemplateId?: string;
+    targetingTemplateId?: string | null;
     /**
      * Technology platform targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
      */
@@ -700,7 +700,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Type of ad. This is a required field on insertion. Note that default ads (AD_SERVING_DEFAULT_AD) cannot be created directly (see Creative resource).
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Campaign ad blocking settings.
@@ -709,19 +709,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Click-through URL used by brand-neutral ads. This is a required field when overrideClickThroughUrl is set to true.
      */
-    clickThroughUrl?: string;
+    clickThroughUrl?: string | null;
     /**
      * ID of a creative bundle to use for this campaign. If set, brand-neutral ads will select creatives from this bundle. Otherwise, a default transparent pixel will be used.
      */
-    creativeBundleId?: string;
+    creativeBundleId?: string | null;
     /**
      * Whether this campaign has enabled ad blocking. When true, ad blocking is enabled for placements in the campaign, but this may be overridden by site and placement settings. When false, ad blocking is disabled for all placements under the campaign, regardless of site and placement settings.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * Whether the brand-neutral ad&#39;s click-through URL comes from the campaign&#39;s creative bundle or the override URL. Must be set to true if ad blocking is enabled and no creative bundle is configured.
      */
-    overrideClickThroughUrl?: boolean;
+    overrideClickThroughUrl?: boolean | null;
   }
   /**
    * Ad List Response
@@ -734,11 +734,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#adsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Ad Slot
@@ -747,35 +747,35 @@ export namespace dfareporting_v3_1 {
     /**
      * Comment for this ad slot.
      */
-    comment?: string;
+    comment?: string | null;
     /**
      * Ad slot compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop, mobile devices or in mobile apps for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
      */
-    compatibility?: string;
+    compatibility?: string | null;
     /**
      * Height of this ad slot.
      */
-    height?: string;
+    height?: string | null;
     /**
      * ID of the placement from an external platform that is linked to this ad slot.
      */
-    linkedPlacementId?: string;
+    linkedPlacementId?: string | null;
     /**
      * Name of this ad slot.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Payment source type of this ad slot.
      */
-    paymentSourceType?: string;
+    paymentSourceType?: string | null;
     /**
      * Primary ad slot of a roadblock inventory item.
      */
-    primary?: boolean;
+    primary?: boolean | null;
     /**
      * Width of this ad slot.
      */
-    width?: string;
+    width?: string | null;
   }
   /**
    * Contains properties of a Campaign Manager advertiser.
@@ -784,27 +784,27 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this advertiser.This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * ID of the advertiser group this advertiser belongs to. You can group advertisers for reporting purposes, allowing you to see aggregated information for all advertisers in each group.
      */
-    advertiserGroupId?: string;
+    advertiserGroupId?: string | null;
     /**
      * Suffix added to click-through URL of ad creative associations under this advertiser. Must be less than 129 characters long.
      */
-    clickThroughUrlSuffix?: string;
+    clickThroughUrlSuffix?: string | null;
     /**
      * ID of the click-through event tag to apply by default to the landing pages of this advertiser&#39;s campaigns.
      */
-    defaultClickThroughEventTagId?: string;
+    defaultClickThroughEventTagId?: string | null;
     /**
      * Default email address used in sender field for tag emails.
      */
-    defaultEmail?: string;
+    defaultEmail?: string | null;
     /**
      * Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser&#39;s floodlight configuration ID in order to share that advertiser&#39;s floodlight configuration with this advertiser, so long as:  - This advertiser&#39;s original floodlight configuration is not already associated with floodlight activities or floodlight activity groups.  - This advertiser&#39;s original floodlight configuration is not already shared with another advertiser.
      */
-    floodlightConfigurationId?: string;
+    floodlightConfigurationId?: string | null;
     /**
      * Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
      */
@@ -812,7 +812,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this advertiser. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this advertiser. This is a read-only, auto-generated field.
      */
@@ -820,27 +820,27 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiser&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this advertiser. This is a required field and must be less than 256 characters long and unique among advertisers of the same account.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Original floodlight configuration before any sharing occurred. Set the floodlightConfigurationId of this advertiser to originalFloodlightConfigurationId to unshare the advertiser&#39;s current floodlight configuration. You cannot unshare an advertiser&#39;s floodlight configuration if the shared configuration has activities associated with any campaign or placement.
      */
-    originalFloodlightConfigurationId?: string;
+    originalFloodlightConfigurationId?: string | null;
     /**
      * Status of this advertiser.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Subaccount ID of this advertiser.This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Suspension status of this advertiser.
      */
-    suspended?: boolean;
+    suspended?: boolean | null;
   }
   /**
    * Groups advertisers together so that reports can be generated for the entire group at once.
@@ -849,19 +849,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this advertiser group. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * ID of this advertiser group. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroup&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this advertiser group. This is a required field and must be less than 256 characters long and unique among advertiser groups of the same account.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Advertiser Group List Response
@@ -874,11 +874,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroupsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Landing Page List Response
@@ -887,7 +887,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserLandingPagesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Landing page collection
      */
@@ -895,7 +895,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Advertiser List Response
@@ -908,11 +908,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertisersListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Audience Segment.
@@ -921,15 +921,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Weight allocated to this segment. The weight assigned will be understood in proportion to the weights assigned to other segments in the same segment group. Acceptable values are 1 to 1000, inclusive.
      */
-    allocation?: number;
+    allocation?: number | null;
     /**
      * ID of this audience segment. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Name of this audience segment. This is a required field and must be less than 65 characters long.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Audience Segment Group.
@@ -942,11 +942,11 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this audience segment group. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Name of this audience segment group. This is a required field and must be less than 65 characters long.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Contains information about a browser that can be targeted by ads.
@@ -955,27 +955,27 @@ export namespace dfareporting_v3_1 {
     /**
      * ID referring to this grouping of browser and version numbers. This is the ID used for targeting.
      */
-    browserVersionId?: string;
+    browserVersionId?: string | null;
     /**
      * DART ID of this browser. This is the ID used when generating reports.
      */
-    dartId?: string;
+    dartId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#browser&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Major version number (leftmost number) of this browser. For example, for Chrome 5.0.376.86 beta, this field should be set to 5. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can&#39;t tell which version it is.
      */
-    majorVersion?: string;
+    majorVersion?: string | null;
     /**
      * Minor version number (number after first dot on left) of this browser. For example, for Chrome 5.0.375.86 beta, this field should be set to 0. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can&#39;t tell which version it is.
      */
-    minorVersion?: string;
+    minorVersion?: string | null;
     /**
      * Name of this browser.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Browser List Response
@@ -988,7 +988,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#browsersListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Contains properties of a Campaign Manager campaign.
@@ -997,7 +997,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this campaign. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Ad blocking settings for this campaign.
      */
@@ -1009,11 +1009,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Advertiser group ID of the associated advertiser.
      */
-    advertiserGroupId?: string;
+    advertiserGroupId?: string | null;
     /**
      * Advertiser ID of this campaign. This is a required field.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the advertiser ID of this campaign. This is a read-only, auto-generated field.
      */
@@ -1021,7 +1021,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this campaign has been archived.
      */
-    archived?: boolean;
+    archived?: boolean | null;
     /**
      * Audience segment groups assigned to this campaign. Cannot have more than 300 segment groups.
      */
@@ -1029,7 +1029,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Billing invoice code included in the Campaign Manager client billing invoices associated with the campaign.
      */
-    billingInvoiceCode?: string;
+    billingInvoiceCode?: string | null;
     /**
      * Click-through URL suffix override properties for this campaign.
      */
@@ -1037,7 +1037,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Arbitrary comments about this campaign. Must be less than 256 characters long.
      */
-    comment?: string;
+    comment?: string | null;
     /**
      * Information about the creation of this campaign. This is a read-only field.
      */
@@ -1045,7 +1045,7 @@ export namespace dfareporting_v3_1 {
     /**
      * List of creative group IDs that are assigned to the campaign.
      */
-    creativeGroupIds?: string[];
+    creativeGroupIds?: string[] | null;
     /**
      * Creative optimization configuration for the campaign.
      */
@@ -1057,11 +1057,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The default landing page ID for this campaign.
      */
-    defaultLandingPageId?: string;
+    defaultLandingPageId?: string | null;
     /**
      * Date on which the campaign will stop running. On insert, the end date must be today or a future date. The end date must be later than or be the same as the start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective campaign run date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This is a required field.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * Overrides that can be used to activate or deactivate advertiser event tags.
      */
@@ -1069,11 +1069,11 @@ export namespace dfareporting_v3_1 {
     /**
      * External ID for this campaign.
      */
-    externalId?: string;
+    externalId?: string | null;
     /**
      * ID of this campaign. This is a read-only auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this campaign. This is a read-only, auto-generated field.
      */
@@ -1081,7 +1081,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaign&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Information about the most recent modification of this campaign. This is a read-only field.
      */
@@ -1089,23 +1089,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of this campaign. This is a required field and must be less than 256 characters long and unique among campaigns of the same advertiser.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Whether Nielsen reports are enabled for this campaign.
      */
-    nielsenOcrEnabled?: boolean;
+    nielsenOcrEnabled?: boolean | null;
     /**
      * Date on which the campaign starts running. The start date can be any date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This is a required field.
      */
-    startDate?: string;
+    startDate?: string | null;
     /**
      * Subaccount ID of this campaign. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Campaign trafficker contact emails.
      */
-    traffickerEmails?: string[];
+    traffickerEmails?: string[] | null;
   }
   /**
    * Identifies a creative which has been associated with a given campaign.
@@ -1114,11 +1114,11 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the creative associated with the campaign. This is a required field.
      */
-    creativeId?: string;
+    creativeId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociation&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Campaign Creative Association List Response
@@ -1131,11 +1131,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociationsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Campaign List Response
@@ -1148,11 +1148,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Describes a change that a user has made to a resource.
@@ -1161,59 +1161,59 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of the modified object.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Action which caused the change.
      */
-    action?: string;
+    action?: string | null;
     /**
      * Time when the object was modified.
      */
-    changeTime?: string;
+    changeTime?: string | null;
     /**
      * Field name of the object which changed.
      */
-    fieldName?: string;
+    fieldName?: string | null;
     /**
      * ID of this change log.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#changeLog&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * New value of the object field.
      */
-    newValue?: string;
+    newValue?: string | null;
     /**
      * ID of the object of this change log. The object could be a campaign, placement, ad, or other type.
      */
-    objectId?: string;
+    objectId?: string | null;
     /**
      * Object type of the change log.
      */
-    objectType?: string;
+    objectType?: string | null;
     /**
      * Old value of the object field.
      */
-    oldValue?: string;
+    oldValue?: string | null;
     /**
      * Subaccount ID of the modified object.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Transaction ID of this change log. When a single API call results in many changes, each change will have a separate ID in the change log but will share the same transactionId.
      */
-    transactionId?: string;
+    transactionId?: string | null;
     /**
      * ID of the user who modified the object.
      */
-    userProfileId?: string;
+    userProfileId?: string | null;
     /**
      * User profile name of the user who modified the object.
      */
-    userProfileName?: string;
+    userProfileName?: string | null;
   }
   /**
    * Change Log List Response
@@ -1226,11 +1226,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#changeLogsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * City List Response
@@ -1243,7 +1243,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#citiesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Contains information about a city that can be targeted by ads.
@@ -1252,39 +1252,39 @@ export namespace dfareporting_v3_1 {
     /**
      * Country code of the country to which this city belongs.
      */
-    countryCode?: string;
+    countryCode?: string | null;
     /**
      * DART ID of the country to which this city belongs.
      */
-    countryDartId?: string;
+    countryDartId?: string | null;
     /**
      * DART ID of this city. This is the ID used for targeting and generating reports.
      */
-    dartId?: string;
+    dartId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#city&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metro region code of the metro region (DMA) to which this city belongs.
      */
-    metroCode?: string;
+    metroCode?: string | null;
     /**
      * ID of the metro region (DMA) to which this city belongs.
      */
-    metroDmaId?: string;
+    metroDmaId?: string | null;
     /**
      * Name of this city.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Region code of the region to which this city belongs.
      */
-    regionCode?: string;
+    regionCode?: string | null;
     /**
      * DART ID of the region to which this city belongs.
      */
-    regionDartId?: string;
+    regionDartId?: string | null;
   }
   /**
    * Creative Click Tag.
@@ -1297,11 +1297,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Advertiser event name associated with the click tag. This field is used by DISPLAY_IMAGE_GALLERY and HTML5_BANNER creatives. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    eventName?: string;
+    eventName?: string | null;
     /**
      * Parameter name for the specified click tag. For DISPLAY_IMAGE_GALLERY creative assets, this field must match the value of the creative asset&#39;s creativeAssetId.name field.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Click-through URL
@@ -1310,19 +1310,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:  - If defaultLandingPage is enabled then the campaign&#39;s default landing page URL is assigned to this field. - If defaultLandingPage is not enabled and a landingPageId is specified then that landing page&#39;s URL is assigned to this field. - If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.
      */
-    computedClickThroughUrl?: string;
+    computedClickThroughUrl?: string | null;
     /**
      * Custom click-through URL. Applicable if the defaultLandingPage field is set to false and the landingPageId field is left unset.
      */
-    customClickThroughUrl?: string;
+    customClickThroughUrl?: string | null;
     /**
      * Whether the campaign default landing page is used.
      */
-    defaultLandingPage?: boolean;
+    defaultLandingPage?: boolean | null;
     /**
      * ID of the landing page for the click-through URL. Applicable if the defaultLandingPage field is set to false.
      */
-    landingPageId?: string;
+    landingPageId?: string | null;
   }
   /**
    * Click Through URL Suffix settings.
@@ -1331,11 +1331,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Click-through URL suffix to apply to all ads in this entity&#39;s scope. Must be less than 128 characters long.
      */
-    clickThroughUrlSuffix?: string;
+    clickThroughUrlSuffix?: string | null;
     /**
      * Whether this entity should override the inherited click-through URL suffix with its own defined value.
      */
-    overrideInheritedSuffix?: boolean;
+    overrideInheritedSuffix?: boolean | null;
   }
   /**
    * Companion Click-through override.
@@ -1348,7 +1348,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the creative for this companion click-through override.
      */
-    creativeId?: string;
+    creativeId?: string | null;
   }
   /**
    * Companion Settings
@@ -1357,7 +1357,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether companions are disabled for this placement.
      */
-    companionsDisabled?: boolean;
+    companionsDisabled?: boolean | null;
     /**
      * Whitelist of companion sizes to be served to this placement. Set this list to null or empty to serve all companion sizes.
      */
@@ -1365,11 +1365,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether to serve only static images as companions.
      */
-    imageOnly?: boolean;
+    imageOnly?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#companionSetting&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Represents a response to the queryCompatibleFields method.
@@ -1386,7 +1386,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#compatibleFields.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Contains items that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
      */
@@ -1407,15 +1407,15 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this connection type.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionType&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this connection type.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Connection Type List Response
@@ -1428,7 +1428,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionTypesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Content Category List Response
@@ -1441,11 +1441,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategoriesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Organizes placements according to the contents of their associated webpages.
@@ -1454,19 +1454,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this content category. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * ID of this content category. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategory&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this content category. This is a required field and must be less than 256 characters long and unique among content categories of the same account.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A Conversion represents when a user successfully performs a desired action after seeing an ad.
@@ -1475,7 +1475,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this particular request may come from a user under the age of 13, under COPPA compliance.
      */
-    childDirectedTreatment?: boolean;
+    childDirectedTreatment?: boolean | null;
     /**
      * Custom floodlight variables.
      */
@@ -1483,59 +1483,59 @@ export namespace dfareporting_v3_1 {
     /**
      * The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[], mobileDeviceId and gclid. This or encryptedUserIdCandidates[] or mobileDeviceId or gclid is a required field.
      */
-    encryptedUserId?: string;
+    encryptedUserId?: string | null;
     /**
      * A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with NO_COOKIE_MATCH_FOUND error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, mobileDeviceId and gclid. This or encryptedUserId or mobileDeviceId or gclid is a required field.
      */
-    encryptedUserIdCandidates?: string[];
+    encryptedUserIdCandidates?: string[] | null;
     /**
      * Floodlight Activity ID of this conversion. This is a required field.
      */
-    floodlightActivityId?: string;
+    floodlightActivityId?: string | null;
     /**
      * Floodlight Configuration ID of this conversion. This is a required field.
      */
-    floodlightConfigurationId?: string;
+    floodlightConfigurationId?: string | null;
     /**
      * The Google click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[] and mobileDeviceId. This or encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId is a required field.
      */
-    gclid?: string;
+    gclid?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversion&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Whether Limit Ad Tracking is enabled. When set to true, the conversion will be used for reporting but not targeting. This will prevent remarketing.
      */
-    limitAdTracking?: boolean;
+    limitAdTracking?: boolean | null;
     /**
      * The mobile device ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[] and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or gclid is a required field.
      */
-    mobileDeviceId?: string;
+    mobileDeviceId?: string | null;
     /**
      * Whether the conversion was for a non personalized ad.
      */
-    nonPersonalizedAd?: boolean;
+    nonPersonalizedAd?: boolean | null;
     /**
      * The ordinal of the conversion. Use this field to control how conversions of the same user and day are de-duplicated. This is a required field.
      */
-    ordinal?: string;
+    ordinal?: string | null;
     /**
      * The quantity of the conversion.
      */
-    quantity?: string;
+    quantity?: string | null;
     /**
      * The timestamp of conversion, in Unix epoch micros. This is a required field.
      */
-    timestampMicros?: string;
+    timestampMicros?: string | null;
     /**
      * Whether this particular request may come from a user under the age of 16 (may differ by country), under compliance with the European Union&#39;s General Data Protection Regulation (GDPR).
      */
-    treatmentForUnderage?: boolean;
+    treatmentForUnderage?: boolean | null;
     /**
      * The value of the conversion.
      */
-    value?: number;
+    value?: number | null;
   }
   /**
    * The error code and description for a conversion that failed to insert or update.
@@ -1544,15 +1544,15 @@ export namespace dfareporting_v3_1 {
     /**
      * The error code.
      */
-    code?: string;
+    code?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionError&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * A description of the error.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Insert Conversions Request.
@@ -1569,7 +1569,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertRequest&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Insert Conversions Response.
@@ -1578,11 +1578,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Indicates that some or all conversions failed to insert.
      */
-    hasFailures?: boolean;
+    hasFailures?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The insert status of each conversion. Statuses are returned in the same order that conversions are inserted.
      */
@@ -1603,7 +1603,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchUpdateRequest&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Update Conversions Response.
@@ -1612,11 +1612,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Indicates that some or all conversions failed to update.
      */
-    hasFailures?: boolean;
+    hasFailures?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchUpdateResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The update status of each conversion. Statuses are returned in the same order that conversions are updated.
      */
@@ -1637,7 +1637,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionStatus&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Country List Response
@@ -1650,7 +1650,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#countriesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Contains information about a country that can be targeted by ads.
@@ -1659,23 +1659,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Country code.
      */
-    countryCode?: string;
+    countryCode?: string | null;
     /**
      * DART ID of this country. This is the ID used for targeting and generating reports.
      */
-    dartId?: string;
+    dartId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#country&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this country.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Whether ad serving supports secure servers in this country.
      */
-    sslEnabled?: boolean;
+    sslEnabled?: boolean | null;
   }
   /**
    * Contains properties of a Creative.
@@ -1684,11 +1684,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this creative. This field, if left unset, will be auto-generated for both insert and update operations. Applicable to all creative types.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Whether the creative is active. Applicable to all creative types.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Additional sizes associated with a responsive creative. When inserting or updating a creative either the size ID field or size width and height fields can be used. Applicable to DISPLAY creatives when the primary asset type is HTML_IMAGE.
      */
@@ -1696,43 +1696,43 @@ export namespace dfareporting_v3_1 {
     /**
      * Ad parameters user for VPAID creative. This is a read-only field. Applicable to the following creative types: all VPAID.
      */
-    adParameters?: string;
+    adParameters?: string | null;
     /**
      * Keywords for a Rich Media creative. Keywords let you customize the creative settings of a Rich Media ad running on your site without having to contact the advertiser. You can use keywords to dynamically change the look or functionality of a creative. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    adTagKeys?: string[];
+    adTagKeys?: string[] | null;
     /**
      * Advertiser ID of this creative. This is a required field. Applicable to all creative types.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Whether script access is allowed for this creative. This is a read-only and deprecated field which will automatically be set to true on update. Applicable to the following creative types: FLASH_INPAGE.
      */
-    allowScriptAccess?: boolean;
+    allowScriptAccess?: boolean | null;
     /**
      * Whether the creative is archived. Applicable to all creative types.
      */
-    archived?: boolean;
+    archived?: boolean | null;
     /**
      * Type of artwork used for the creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    artworkType?: string;
+    artworkType?: string | null;
     /**
      * Source application where creative was authored. Presently, only DBM authored creatives will have this field set. Applicable to all creative types.
      */
-    authoringSource?: string;
+    authoringSource?: string | null;
     /**
      * Authoring tool for HTML5 banner creatives. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
      */
-    authoringTool?: string;
+    authoringTool?: string | null;
     /**
      * Whether images are automatically advanced for image gallery creatives. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY.
      */
-    autoAdvanceImages?: boolean;
+    autoAdvanceImages?: boolean | null;
     /**
      * The 6-character HTML color code, beginning with #, for the background of the window area where the Flash file is displayed. Default is white. Applicable to the following creative types: FLASH_INPAGE.
      */
-    backgroundColor?: string;
+    backgroundColor?: string | null;
     /**
      * Click-through URL for backup image. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
      */
@@ -1740,11 +1740,11 @@ export namespace dfareporting_v3_1 {
     /**
      * List of feature dependencies that will cause a backup image to be served if the browser that serves the ad does not support them. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative asset correctly. This field is initially auto-generated to contain all features detected by Campaign Manager for all the assets of this creative and can then be modified by the client. To reset this field, copy over all the creativeAssets&#39; detected features. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    backupImageFeatures?: string[];
+    backupImageFeatures?: string[] | null;
     /**
      * Reporting label used for HTML5 banner backup image. Applicable to the following creative types: DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    backupImageReportingLabel?: string;
+    backupImageReportingLabel?: string | null;
     /**
      * Target window for backup image. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
@@ -1756,19 +1756,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Industry standard ID assigned to creative for reach and frequency. Applicable to INSTREAM_VIDEO_REDIRECT creatives.
      */
-    commercialId?: string;
+    commercialId?: string | null;
     /**
      * List of companion creatives assigned to an in-Stream video creative. Acceptable values include IDs of existing flash and image creatives. Applicable to the following creative types: all VPAID, all INSTREAM_AUDIO and all INSTREAM_VIDEO with dynamicAssetSelection set to false.
      */
-    companionCreatives?: string[];
+    companionCreatives?: string[] | null;
     /**
      * Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. IN_STREAM_AUDIO refers to rendering in in-stream audio ads developed with the VAST standard. Applicable to all creative types.  Acceptable values are: - &quot;APP&quot; - &quot;APP_INTERSTITIAL&quot; - &quot;IN_STREAM_VIDEO&quot; - &quot;IN_STREAM_AUDIO&quot; - &quot;DISPLAY&quot; - &quot;DISPLAY_INTERSTITIAL&quot;
      */
-    compatibility?: string[];
+    compatibility?: string[] | null;
     /**
      * Whether Flash assets associated with the creative need to be automatically converted to HTML5. This flag is enabled by default and users can choose to disable it if they don&#39;t want the system to generate and use HTML5 asset for this creative. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    convertFlashToHtml5?: boolean;
+    convertFlashToHtml5?: boolean | null;
     /**
      * List of counter events configured for the creative. For DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID.
      */
@@ -1788,11 +1788,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Custom key-values for a Rich Media creative. Key-values let you customize the creative settings of a Rich Media ad running on your site without having to contact the advertiser. You can use key-values to dynamically change the look or functionality of a creative. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    customKeyValues?: string[];
+    customKeyValues?: string[] | null;
     /**
      * Set this to true to enable the use of rules to target individual assets in this creative. When set to true creativeAssetSelection must be set. This also controls asset-level companions. When this is true, companion creatives should be assigned to creative assets. Learn more. Applicable to INSTREAM_VIDEO creatives.
      */
-    dynamicAssetSelection?: boolean;
+    dynamicAssetSelection?: boolean | null;
     /**
      * List of exit events configured for the creative. For DISPLAY and DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags, For DISPLAY, an event is also created from the backupImageReportingLabel. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
@@ -1804,15 +1804,15 @@ export namespace dfareporting_v3_1 {
     /**
      * HTML code for the creative. This is a required field when applicable. This field is ignored if htmlCodeLocked is true. Applicable to the following creative types: all CUSTOM, FLASH_INPAGE, and HTML5_BANNER, and all RICH_MEDIA.
      */
-    htmlCode?: string;
+    htmlCode?: string | null;
     /**
      * Whether HTML code is generated by Campaign Manager or manually entered. Set to true to ignore changes to htmlCode. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER.
      */
-    htmlCodeLocked?: boolean;
+    htmlCodeLocked?: boolean | null;
     /**
      * ID of this creative. This is a read-only, auto-generated field. Applicable to all creative types.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this creative. This is a read-only field. Applicable to all creative types.
      */
@@ -1820,7 +1820,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creative&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Creative last modification information. This is a read-only field. Applicable to all creative types.
      */
@@ -1828,23 +1828,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Latest Studio trafficked creative ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    latestTraffickedCreativeId?: string;
+    latestTraffickedCreativeId?: string | null;
     /**
      * Description of the audio or video ad. Applicable to the following creative types: all INSTREAM_VIDEO, INSTREAM_AUDIO, and all VPAID.
      */
-    mediaDescription?: string;
+    mediaDescription?: string | null;
     /**
      * Creative audio or video duration in seconds. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO, INSTREAM_AUDIO, all RICH_MEDIA, and all VPAID.
      */
-    mediaDuration?: number;
+    mediaDuration?: number | null;
     /**
      * Name of the creative. This is a required field and must be less than 256 characters long. Applicable to all creative types.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Override CSS value for rich media creatives. Applicable to the following creative types: all RICH_MEDIA.
      */
-    overrideCss?: string;
+    overrideCss?: string | null;
     /**
      * Amount of time to play the video before counting a view. Applicable to the following creative types: all INSTREAM_VIDEO.
      */
@@ -1852,11 +1852,11 @@ export namespace dfareporting_v3_1 {
     /**
      * URL of hosted image or hosted video or another ad tag. For INSTREAM_VIDEO_REDIRECT creatives this is the in-stream video redirect URL. The standard for a VAST (Video Ad Serving Template) ad response allows for a redirect link to another VAST 2.0 or 3.0 call. This is a required field when applicable. Applicable to the following creative types: DISPLAY_REDIRECT, INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO_REDIRECT
      */
-    redirectUrl?: string;
+    redirectUrl?: string | null;
     /**
      * ID of current rendering version. This is a read-only field. Applicable to all creative types.
      */
-    renderingId?: string;
+    renderingId?: string | null;
     /**
      * Dimension value for the rendering ID of this creative. This is a read-only field. Applicable to all creative types.
      */
@@ -1864,11 +1864,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The minimum required Flash plugin version for this creative. For example, 11.2.202.235. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    requiredFlashPluginVersion?: string;
+    requiredFlashPluginVersion?: string | null;
     /**
      * The internal Flash version for this creative as calculated by Studio. This is a read-only field. Applicable to the following creative types: FLASH_INPAGE all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    requiredFlashVersion?: number;
+    requiredFlashVersion?: number | null;
     /**
      * Size associated with this creative. When inserting or updating a creative either the size ID field or size width and height fields can be used. This is a required field when applicable; however for IMAGE, FLASH_INPAGE creatives, and for DISPLAY creatives with a primary asset of type HTML_IMAGE, if left blank, this field will be automatically set using the actual size of the associated image assets. Applicable to the following creative types: DISPLAY, DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA.
      */
@@ -1880,39 +1880,39 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether the user can choose to skip the creative. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
      */
-    skippable?: boolean;
+    skippable?: boolean | null;
     /**
      * Whether the creative is SSL-compliant. This is a read-only field. Applicable to all creative types.
      */
-    sslCompliant?: boolean;
+    sslCompliant?: boolean | null;
     /**
      * Whether creative should be treated as SSL compliant even if the system scan shows it&#39;s not. Applicable to all creative types.
      */
-    sslOverride?: boolean;
+    sslOverride?: boolean | null;
     /**
      * Studio advertiser ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    studioAdvertiserId?: string;
+    studioAdvertiserId?: string | null;
     /**
      * Studio creative ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    studioCreativeId?: string;
+    studioCreativeId?: string | null;
     /**
      * Studio trafficked creative ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    studioTraffickedCreativeId?: string;
+    studioTraffickedCreativeId?: string | null;
     /**
      * Subaccount ID of this creative. This field, if left unset, will be auto-generated for both insert and update operations. Applicable to all creative types.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Third-party URL used to record backup image impressions. Applicable to the following creative types: all RICH_MEDIA.
      */
-    thirdPartyBackupImageImpressionsUrl?: string;
+    thirdPartyBackupImageImpressionsUrl?: string | null;
     /**
      * Third-party URL used to record rich media impressions. Applicable to the following creative types: all RICH_MEDIA.
      */
-    thirdPartyRichMediaImpressionsUrl?: string;
+    thirdPartyRichMediaImpressionsUrl?: string | null;
     /**
      * Third-party URLs for tracking in-stream creative events. Applicable to the following creative types: all INSTREAM_VIDEO, all INSTREAM_AUDIO, and all VPAID.
      */
@@ -1924,11 +1924,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Combined size of all creative assets. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
-    totalFileSize?: string;
+    totalFileSize?: string | null;
     /**
      * Type of this creative. This is a required field. Applicable to all creative types.  Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives. New creatives should use DISPLAY as a replacement for these types.
      */
-    type?: string;
+    type?: string | null;
     /**
      * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following creative types: INSTREAM_AUDIO and INSTREAM_VIDEO and VPAID.
      */
@@ -1936,7 +1936,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The version number helps you keep track of multiple versions of your creative in your reports. The version number will always be auto-generated during insert operations to start at 1. For tracking creatives the version cannot be incremented and will always remain at 1. For all other creative types the version can be incremented only by 1 during update operations. In addition, the version will be automatically incremented by 1 when undergoing Rich Media creative merging. Applicable to all creative types.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Creative Asset.
@@ -1945,11 +1945,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether ActionScript3 is enabled for the flash asset. This is a read-only field. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    actionScript3?: boolean;
+    actionScript3?: boolean | null;
     /**
      * Whether the video or audio asset is active. This is a read-only field for VPAID_NON_LINEAR_VIDEO assets. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Additional sizes associated with this creative asset. HTML5 asset generated by compatible software such as GWD will be able to support more sizes this creative asset can render.
      */
@@ -1957,11 +1957,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Possible alignments for an asset. This is a read-only field. Applicable to the following creative types: RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL.
      */
-    alignment?: string;
+    alignment?: string | null;
     /**
      * Artwork type of rich media creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
-    artworkType?: string;
+    artworkType?: string | null;
     /**
      * Identifier of this asset. This is the same identifier returned during creative asset insert operation. This is a required field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
@@ -1973,11 +1973,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Detected bit-rate for audio or video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
-    bitRate?: number;
+    bitRate?: number | null;
     /**
      * Rich media child asset type. This is a read-only field. Applicable to the following creative types: all VPAID.
      */
-    childAssetType?: string;
+    childAssetType?: string | null;
     /**
      * Size of an asset when collapsed. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
      */
@@ -1985,27 +1985,27 @@ export namespace dfareporting_v3_1 {
     /**
      * List of companion creatives assigned to an in-stream video creative asset. Acceptable values include IDs of existing flash and image creatives. Applicable to INSTREAM_VIDEO creative type with dynamicAssetSelection set to true.
      */
-    companionCreativeIds?: string[];
+    companionCreativeIds?: string[] | null;
     /**
      * Custom start time in seconds for making the asset visible. Applicable to the following creative types: all RICH_MEDIA. Value must be greater than or equal to 0.
      */
-    customStartTimeValue?: number;
+    customStartTimeValue?: number | null;
     /**
      * List of feature dependencies for the creative asset that are detected by Campaign Manager. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    detectedFeatures?: string[];
+    detectedFeatures?: string[] | null;
     /**
      * Type of rich media asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
-    displayType?: string;
+    displayType?: string | null;
     /**
      * Duration in seconds for which an asset will be displayed. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and VPAID_LINEAR_VIDEO. Value must be greater than or equal to 1.
      */
-    duration?: number;
+    duration?: number | null;
     /**
      * Duration type for which an asset will be displayed. Applicable to the following creative types: all RICH_MEDIA.
      */
-    durationType?: string;
+    durationType?: string | null;
     /**
      * Detected expanded dimension for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
@@ -2013,27 +2013,27 @@ export namespace dfareporting_v3_1 {
     /**
      * File size associated with this creative asset. This is a read-only field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
-    fileSize?: string;
+    fileSize?: string | null;
     /**
      * Flash version of the asset. This is a read-only field. Applicable to the following creative types: FLASH_INPAGE, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
-    flashVersion?: number;
+    flashVersion?: number | null;
     /**
      * Whether to hide Flash objects flag for an asset. Applicable to the following creative types: all RICH_MEDIA.
      */
-    hideFlashObjects?: boolean;
+    hideFlashObjects?: boolean | null;
     /**
      * Whether to hide selection boxes flag for an asset. Applicable to the following creative types: all RICH_MEDIA.
      */
-    hideSelectionBoxes?: boolean;
+    hideSelectionBoxes?: boolean | null;
     /**
      * Whether the asset is horizontally locked. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
-    horizontallyLocked?: boolean;
+    horizontallyLocked?: boolean | null;
     /**
      * Numeric ID of this creative asset. This is a required field and should not be modified. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of the asset. This is a read-only, auto-generated field.
      */
@@ -2041,11 +2041,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Detected duration for audio or video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
-    mediaDuration?: number;
+    mediaDuration?: number | null;
     /**
      * Detected MIME type for audio or video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and all VPAID.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * Offset position for an asset in collapsed mode. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, only applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
      */
@@ -2053,11 +2053,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Orientation of video asset. This is a read-only, auto-generated field.
      */
-    orientation?: string;
+    orientation?: string | null;
     /**
      * Whether the backup asset is original or changed by the user in Campaign Manager. Applicable to the following creative types: all RICH_MEDIA.
      */
-    originalBackup?: boolean;
+    originalBackup?: boolean | null;
     /**
      * Offset position for an asset. Applicable to the following creative types: all RICH_MEDIA.
      */
@@ -2065,27 +2065,27 @@ export namespace dfareporting_v3_1 {
     /**
      * Offset left unit for an asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
-    positionLeftUnit?: string;
+    positionLeftUnit?: string | null;
     /**
      * Offset top unit for an asset. This is a read-only field if the asset displayType is ASSET_DISPLAY_TYPE_OVERLAY. Applicable to the following creative types: all RICH_MEDIA.
      */
-    positionTopUnit?: string;
+    positionTopUnit?: string | null;
     /**
      * Progressive URL for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
-    progressiveServingUrl?: string;
+    progressiveServingUrl?: string | null;
     /**
      * Whether the asset pushes down other content. Applicable to the following creative types: all RICH_MEDIA. Additionally, only applicable when the asset offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height.
      */
-    pushdown?: boolean;
+    pushdown?: boolean | null;
     /**
      * Pushdown duration in seconds for an asset. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable when the asset pushdown field is true, the offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height. Acceptable values are 0 to 9.99, inclusive.
      */
-    pushdownDuration?: number;
+    pushdownDuration?: number | null;
     /**
      * Role of the asset in relation to creative. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT. This is a required field. PRIMARY applies to DISPLAY, FLASH_INPAGE, HTML5_BANNER, IMAGE, DISPLAY_IMAGE_GALLERY, all RICH_MEDIA (which may contain multiple primary assets), and all VPAID creatives. BACKUP_IMAGE applies to FLASH_INPAGE, HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE. ADDITIONAL_IMAGE and ADDITIONAL_FLASH apply to FLASH_INPAGE creatives. OTHER refers to assets from sources other than Campaign Manager, such as Studio uploaded assets, applicable to all RICH_MEDIA and all VPAID creatives. PARENT_VIDEO refers to videos uploaded by the user in Campaign Manager and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives. TRANSCODED_VIDEO refers to videos transcoded by Campaign Manager from PARENT_VIDEO assets and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives. ALTERNATE_VIDEO refers to the Campaign Manager representation of child asset videos from Studio, and is applicable to VPAID_LINEAR_VIDEO creatives. These cannot be added or removed within Campaign Manager. For VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_VIDEO assets that are marked active serve as backup in case the VPAID creative cannot be served. Only PARENT_VIDEO assets can be added or removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative. PARENT_AUDIO refers to audios uploaded by the user in Campaign Manager and is applicable to INSTREAM_AUDIO creatives. TRANSCODED_AUDIO refers to audios transcoded by Campaign Manager from PARENT_AUDIO assets and is applicable to INSTREAM_AUDIO creatives.
      */
-    role?: string;
+    role?: string | null;
     /**
      * Size associated with this creative asset. This is a required field when applicable; however for IMAGE and FLASH_INPAGE, creatives if left blank, this field will be automatically set using the actual size of the associated image asset. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
@@ -2093,39 +2093,39 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether the asset is SSL-compliant. This is a read-only field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
      */
-    sslCompliant?: boolean;
+    sslCompliant?: boolean | null;
     /**
      * Initial wait time type before making the asset visible. Applicable to the following creative types: all RICH_MEDIA.
      */
-    startTimeType?: string;
+    startTimeType?: string | null;
     /**
      * Streaming URL for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
      */
-    streamingServingUrl?: string;
+    streamingServingUrl?: string | null;
     /**
      * Whether the asset is transparent. Applicable to the following creative types: all RICH_MEDIA. Additionally, only applicable to HTML5 assets.
      */
-    transparency?: boolean;
+    transparency?: boolean | null;
     /**
      * Whether the asset is vertically locked. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
      */
-    verticallyLocked?: boolean;
+    verticallyLocked?: boolean | null;
     /**
      * Window mode options for flash assets. Applicable to the following creative types: FLASH_INPAGE, RICH_MEDIA_DISPLAY_EXPANDING, RICH_MEDIA_IM_EXPAND, RICH_MEDIA_DISPLAY_BANNER, and RICH_MEDIA_INPAGE_FLOATING.
      */
-    windowMode?: string;
+    windowMode?: string | null;
     /**
      * zIndex value of an asset. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable to assets whose displayType is NOT one of the following types: ASSET_DISPLAY_TYPE_INPAGE or ASSET_DISPLAY_TYPE_OVERLAY. Acceptable values are -999999999 to 999999999, inclusive.
      */
-    zIndex?: number;
+    zIndex?: number | null;
     /**
      * File name of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
      */
-    zipFilename?: string;
+    zipFilename?: string | null;
     /**
      * Size of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
      */
-    zipFilesize?: string;
+    zipFilesize?: string | null;
   }
   /**
    * Creative Asset ID.
@@ -2134,11 +2134,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of the creative asset. This is a required field while inserting an asset. After insertion, this assetIdentifier is used to identify the uploaded asset. Characters in the name must be alphanumeric or one of the following: &quot;.-_ &quot;. Spaces are allowed.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Type of asset to upload. This is a required field. FLASH and IMAGE are no longer supported for new uploads. All image assets should use HTML_IMAGE.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * CreativeAssets contains properties of a creative asset file which will be uploaded or has already been uploaded. Refer to the creative sample code for how to upload assets and insert a creative.
@@ -2155,11 +2155,11 @@ export namespace dfareporting_v3_1 {
     /**
      * List of feature dependencies for the creative asset that are detected by Campaign Manager. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field.
      */
-    detectedFeatures?: string[];
+    detectedFeatures?: string[] | null;
     /**
      * Numeric ID of the asset. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the numeric ID of the asset. This is a read-only, auto-generated field.
      */
@@ -2167,11 +2167,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeAssetMetadata&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Rules validated during code generation that generated a warning. This is a read-only, auto-generated field.  Possible values are: - &quot;ADMOB_REFERENCED&quot; - &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot; - &quot;ASSET_INVALID&quot; - &quot;CLICK_TAG_HARD_CODED&quot; - &quot;CLICK_TAG_INVALID&quot; - &quot;CLICK_TAG_IN_GWD&quot; - &quot;CLICK_TAG_MISSING&quot; - &quot;CLICK_TAG_MORE_THAN_ONE&quot; - &quot;CLICK_TAG_NON_TOP_LEVEL&quot; - &quot;COMPONENT_UNSUPPORTED_DCM&quot; - &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot; - &quot;EXTERNAL_FILE_REFERENCED&quot; - &quot;FILE_DETAIL_EMPTY&quot; - &quot;FILE_TYPE_INVALID&quot; - &quot;GWD_PROPERTIES_INVALID&quot; - &quot;HTML5_FEATURE_UNSUPPORTED&quot; - &quot;LINKED_FILE_NOT_FOUND&quot; - &quot;MAX_FLASH_VERSION_11&quot; - &quot;MRAID_REFERENCED&quot; - &quot;NOT_SSL_COMPLIANT&quot; - &quot;ORPHANED_ASSET&quot; - &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; - &quot;ZIP_INVALID&quot;
      */
-    warnedValidationRules?: string[];
+    warnedValidationRules?: string[] | null;
   }
   /**
    * Encapsulates the list of rules for asset selection and a default asset in case none of the rules match. Applicable to INSTREAM_VIDEO creatives.
@@ -2180,7 +2180,7 @@ export namespace dfareporting_v3_1 {
     /**
      * A creativeAssets[].id. This should refer to one of the parent assets in this creative, and will be served if none of the rules match. This is a required field.
      */
-    defaultAssetId?: string;
+    defaultAssetId?: string | null;
     /**
      * Rules determine which asset will be served to a viewer. Rules will be evaluated in the order in which they are stored in this list. This list must contain at least one rule. Applicable to INSTREAM_VIDEO creatives.
      */
@@ -2193,11 +2193,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this creative assignment is active. When true, the creative will be included in the ad&#39;s rotation.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Whether applicable event tags should fire when this creative assignment is rendered. If this value is unset when the ad is inserted or updated, it will default to true for all creative types EXCEPT for INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO.
      */
-    applyEventTags?: boolean;
+    applyEventTags?: boolean | null;
     /**
      * Click-through URL of the creative assignment.
      */
@@ -2213,7 +2213,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the creative to be assigned. This is a required field.
      */
-    creativeId?: string;
+    creativeId?: string | null;
     /**
      * Dimension value for the ID of the creative. This is a read-only, auto-generated field.
      */
@@ -2221,7 +2221,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Date and time that the assigned creative should stop serving. Must be later than the start time.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Rich media exit overrides for this creative assignment. Applicable when the creative type is any of the following:  - DISPLAY - RICH_MEDIA_INPAGE - RICH_MEDIA_INPAGE_FLOATING - RICH_MEDIA_IM_EXPAND - RICH_MEDIA_EXPANDING - RICH_MEDIA_INTERSTITIAL_FLOAT - RICH_MEDIA_MOBILE_IN_APP - RICH_MEDIA_MULTI_FLOATING - RICH_MEDIA_PEEL_DOWN - VPAID_LINEAR - VPAID_NON_LINEAR
      */
@@ -2229,19 +2229,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Sequence number of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_SEQUENTIAL. Acceptable values are 1 to 65535, inclusive.
      */
-    sequence?: number;
+    sequence?: number | null;
     /**
      * Whether the creative to be assigned is SSL-compliant. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
-    sslCompliant?: boolean;
+    sslCompliant?: boolean | null;
     /**
      * Date and time that the assigned creative should start serving.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Weight of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_RANDOM. Value must be greater than or equal to 1.
      */
-    weight?: number;
+    weight?: number | null;
   }
   /**
    * Click-through URL
@@ -2250,15 +2250,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows:  - If landingPageId is specified then that landing page&#39;s URL is assigned to this field. - Otherwise, the customClickThroughUrl is assigned to this field.
      */
-    computedClickThroughUrl?: string;
+    computedClickThroughUrl?: string | null;
     /**
      * Custom click-through URL. Applicable if the landingPageId field is left unset.
      */
-    customClickThroughUrl?: string;
+    customClickThroughUrl?: string | null;
     /**
      * ID of the landing page for the click-through URL.
      */
-    landingPageId?: string;
+    landingPageId?: string | null;
   }
   /**
    * Creative Custom Event.
@@ -2267,23 +2267,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Unique ID of this event used by Reporting and Data Transfer. This is a read-only field.
      */
-    advertiserCustomEventId?: string;
+    advertiserCustomEventId?: string | null;
     /**
      * User-entered name for the event.
      */
-    advertiserCustomEventName?: string;
+    advertiserCustomEventName?: string | null;
     /**
      * Type of the event. This is a read-only field.
      */
-    advertiserCustomEventType?: string;
+    advertiserCustomEventType?: string | null;
     /**
      * Artwork label column, used to link events in Campaign Manager back to events in Studio. This is a required field and should not be modified after insertion.
      */
-    artworkLabel?: string;
+    artworkLabel?: string | null;
     /**
      * Artwork type used by the creative.This is a read-only field.
      */
-    artworkType?: string;
+    artworkType?: string | null;
     /**
      * Exit click-through URL for the event. This field is used only for exit events.
      */
@@ -2291,7 +2291,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this event. This is a required field and should not be modified after insertion.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Properties for rich media popup windows. This field is used only for exit events.
      */
@@ -2299,11 +2299,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Target type used by the event.
      */
-    targetType?: string;
+    targetType?: string | null;
     /**
      * Video reporting ID, used to differentiate multiple videos in a single creative. This is a read-only field.
      */
-    videoReportingId?: string;
+    videoReportingId?: string | null;
   }
   /**
    * Contains properties of a creative field.
@@ -2312,11 +2312,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this creative field. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this creative field. This is a required field on insertion.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -2324,19 +2324,19 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this creative field. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeField&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this creative field. This is a required field and must be less than 256 characters long and unique among creative fields of the same advertiser.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Subaccount ID of this creative field. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
   }
   /**
    * Creative Field Assignment.
@@ -2345,11 +2345,11 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the creative field.
      */
-    creativeFieldId?: string;
+    creativeFieldId?: string | null;
     /**
      * ID of the creative field value.
      */
-    creativeFieldValueId?: string;
+    creativeFieldValueId?: string | null;
   }
   /**
    * Creative Field List Response
@@ -2362,11 +2362,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Contains properties of a creative field value.
@@ -2375,15 +2375,15 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this creative field value. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValue&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Value of this creative field value. It needs to be less than 256 characters in length and unique per creative field.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Creative Field Value List Response
@@ -2396,11 +2396,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValuesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Contains properties of a creative group.
@@ -2409,11 +2409,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this creative group. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this creative group. This is a required field on insertion.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -2421,23 +2421,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Subgroup of the creative group. Assign your creative groups to a subgroup in order to filter or manage them more easily. This field is required on insertion and is read-only after insertion. Acceptable values are 1 to 2, inclusive.
      */
-    groupNumber?: number;
+    groupNumber?: number | null;
     /**
      * ID of this creative group. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroup&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this creative group. This is a required field and must be less than 256 characters long and unique among creative groups of the same advertiser.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Subaccount ID of this creative group. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
   }
   /**
    * Creative Group Assignment.
@@ -2446,11 +2446,11 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the creative group to be assigned.
      */
-    creativeGroupId?: string;
+    creativeGroupId?: string | null;
     /**
      * Creative group number of the creative group assignment.
      */
-    creativeGroupNumber?: string;
+    creativeGroupNumber?: string | null;
   }
   /**
    * Creative Group List Response
@@ -2463,11 +2463,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroupsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Creative optimization settings.
@@ -2476,11 +2476,11 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this creative optimization config. This field is auto-generated when the campaign is inserted or updated. It can be null for existing campaigns.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Name of this creative optimization config. This is a required field and must be less than 129 characters long.
      */
-    name?: string;
+    name?: string | null;
     /**
      * List of optimization activities associated with this configuration.
      */
@@ -2488,7 +2488,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Optimization model for this configuration.
      */
-    optimizationModel?: string;
+    optimizationModel?: string | null;
   }
   /**
    * Creative Rotation.
@@ -2501,15 +2501,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Creative optimization configuration that is used by this ad. It should refer to one of the existing optimization configurations in the ad&#39;s campaign. If it is unset or set to 0, then the campaign&#39;s default optimization configuration will be used for this ad.
      */
-    creativeOptimizationConfigurationId?: string;
+    creativeOptimizationConfigurationId?: string | null;
     /**
      * Type of creative rotation. Can be used to specify whether to use sequential or random rotation.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Strategy for calculating weights. Used with CREATIVE_ROTATION_TYPE_RANDOM.
      */
-    weightCalculationStrategy?: string;
+    weightCalculationStrategy?: string | null;
   }
   /**
    * Creative List Response
@@ -2522,11 +2522,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Represents fields that are compatible to be selected for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
@@ -2543,7 +2543,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#crossDimensionReachReportCompatibleFields.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
@@ -2560,15 +2560,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customFloodlightVariable&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The type of custom floodlight variable to supply a value for. These map to the &quot;u[1-20]=&quot; in the tags.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The value of the custom floodlight variable. The length of string must not exceed 50 characters.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Represents a Custom Rich Media Events group.
@@ -2581,7 +2581,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#customRichMediaEvents.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Represents a date range.
@@ -2590,19 +2590,19 @@ export namespace dfareporting_v3_1 {
     /**
      * The end date of the date range, inclusive. A string of the format: &quot;yyyy-MM-dd&quot;.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * The kind of resource this is, in this case dfareporting#dateRange.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The date range relative to the date of when the report is run.
      */
-    relativeDateRange?: string;
+    relativeDateRange?: string | null;
     /**
      * The start date of the date range, inclusive. A string of the format: &quot;yyyy-MM-dd&quot;.
      */
-    startDate?: string;
+    startDate?: string | null;
   }
   /**
    * Day Part Targeting.
@@ -2611,15 +2611,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Days of the week when the ad will serve.  Acceptable values are: - &quot;SUNDAY&quot; - &quot;MONDAY&quot; - &quot;TUESDAY&quot; - &quot;WEDNESDAY&quot; - &quot;THURSDAY&quot; - &quot;FRIDAY&quot; - &quot;SATURDAY&quot;
      */
-    daysOfWeek?: string[];
+    daysOfWeek?: string[] | null;
     /**
      * Hours of the day when the ad will serve, where 0 is midnight to 1 AM and 23 is 11 PM to midnight. Can be specified with days of week, in which case the ad would serve during these hours on the specified days. For example if Monday, Wednesday, Friday are the days of week specified and 9-10am, 3-5pm (hours 9, 15, and 16) is specified, the ad would serve Monday, Wednesdays, and Fridays at 9-10am and 3-5pm. Acceptable values are 0 to 23, inclusive.
      */
-    hoursOfDay?: number[];
+    hoursOfDay?: number[] | null;
     /**
      * Whether or not to use the user&#39;s local time. If false, the America/New York time zone applies.
      */
-    userLocalTime?: boolean;
+    userLocalTime?: boolean | null;
   }
   /**
    * Contains information about a landing page deep link.
@@ -2628,15 +2628,15 @@ export namespace dfareporting_v3_1 {
     /**
      * The URL of the mobile app being linked to.
      */
-    appUrl?: string;
+    appUrl?: string | null;
     /**
      * The fallback URL. This URL will be served to users who do not have the mobile app installed.
      */
-    fallbackUrl?: string;
+    fallbackUrl?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#deepLink&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The mobile app targeted by this deep link.
      */
@@ -2644,7 +2644,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Ads served to users on these remarketing lists will use this deep link. Applicable when mobileApp.directory is APPLE_APP_STORE.
      */
-    remarketingListIds?: string[];
+    remarketingListIds?: string[] | null;
   }
   /**
    * Properties of inheriting and overriding the default click-through event tag. A campaign may override the event tag defined at the advertiser level, and an ad may also override the campaign&#39;s setting further.
@@ -2653,11 +2653,11 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the click-through event tag to apply to all ads in this entity&#39;s scope.
      */
-    defaultClickThroughEventTagId?: string;
+    defaultClickThroughEventTagId?: string | null;
     /**
      * Whether this entity should override the inherited default click-through event tag with its own defined value.
      */
-    overrideInheritedEventTag?: boolean;
+    overrideInheritedEventTag?: boolean | null;
   }
   /**
    * Delivery Schedule.
@@ -2670,15 +2670,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether or not hard cutoff is enabled. If true, the ad will not serve after the end date and time. Otherwise the ad will continue to be served until it has reached its delivery goals.
      */
-    hardCutoff?: boolean;
+    hardCutoff?: boolean | null;
     /**
      * Impression ratio for this ad. This ratio determines how often each ad is served relative to the others. For example, if ad A has an impression ratio of 1 and ad B has an impression ratio of 3, then Campaign Manager will serve ad B three times as often as ad A. Acceptable values are 1 to 10, inclusive.
      */
-    impressionRatio?: string;
+    impressionRatio?: string | null;
     /**
      * Serving priority of an ad, with respect to other ads. The lower the priority number, the greater the priority with which it is served.
      */
-    priority?: string;
+    priority?: string | null;
   }
   /**
    * Google Ad Manager Settings
@@ -2687,23 +2687,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Ad Manager network code for this directory site.
      */
-    dfpNetworkCode?: string;
+    dfpNetworkCode?: string | null;
     /**
      * Ad Manager network name for this directory site.
      */
-    dfpNetworkName?: string;
+    dfpNetworkName?: string | null;
     /**
      * Whether this directory site accepts programmatic placements.
      */
-    programmaticPlacementAccepted?: boolean;
+    programmaticPlacementAccepted?: boolean | null;
     /**
      * Whether this directory site is available only via Publisher Portal.
      */
-    publisherPortalOnly?: boolean;
+    publisherPortalOnly?: boolean | null;
     /**
      * Whether this directory site accepts publisher-paid tags.
      */
-    pubPaidPlacementAccepted?: boolean;
+    pubPaidPlacementAccepted?: boolean | null;
   }
   /**
    * Represents a dimension.
@@ -2712,11 +2712,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#dimension.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The dimension name, e.g. dfa:advertiser
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Represents a dimension filter.
@@ -2725,15 +2725,15 @@ export namespace dfareporting_v3_1 {
     /**
      * The name of the dimension to filter.
      */
-    dimensionName?: string;
+    dimensionName?: string | null;
     /**
      * The kind of resource this is, in this case dfareporting#dimensionFilter.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The value of the dimension to filter.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Represents a DimensionValue resource.
@@ -2742,27 +2742,27 @@ export namespace dfareporting_v3_1 {
     /**
      * The name of the dimension.
      */
-    dimensionName?: string;
+    dimensionName?: string | null;
     /**
      * The eTag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The ID associated with the value if available.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of resource this is, in this case dfareporting#dimensionValue.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Determines how the &#39;value&#39; field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, &#39;*&#39; is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than EXACT.
      */
-    matchType?: string;
+    matchType?: string | null;
     /**
      * The value of the dimension.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Represents the list of DimensionValue resources.
@@ -2771,7 +2771,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The dimension values returned in this response.
      */
@@ -2779,11 +2779,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of list this is, in this case dfareporting#dimensionValueList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token used to page through dimension values. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Represents a DimensionValuesRequest.
@@ -2792,11 +2792,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The name of the dimension for which values should be requested.
      */
-    dimensionName?: string;
+    dimensionName?: string | null;
     /**
      * The end date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * The list of filters by which to filter values. The filters are ANDed.
      */
@@ -2804,11 +2804,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of request this is, in this case dfareporting#dimensionValueRequest.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The start date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
      */
-    startDate?: string;
+    startDate?: string | null;
   }
   /**
    * DirectorySites contains properties of a website from the Site Directory. Sites need to be added to an account via the Sites resource before they can be assigned to a placement.
@@ -2817,11 +2817,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this directory site is active.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * ID of this directory site. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this directory site. This is a read-only, auto-generated field.
      */
@@ -2829,19 +2829,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Tag types for regular placements.  Acceptable values are: - &quot;STANDARD&quot; - &quot;IFRAME_JAVASCRIPT_INPAGE&quot; - &quot;INTERNAL_REDIRECT_INPAGE&quot; - &quot;JAVASCRIPT_INPAGE&quot;
      */
-    inpageTagFormats?: string[];
+    inpageTagFormats?: string[] | null;
     /**
      * Tag types for interstitial placements.  Acceptable values are: - &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot; - &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot; - &quot;JAVASCRIPT_INTERSTITIAL&quot;
      */
-    interstitialTagFormats?: string[];
+    interstitialTagFormats?: string[] | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySite&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this directory site.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Directory site settings.
      */
@@ -2849,7 +2849,7 @@ export namespace dfareporting_v3_1 {
     /**
      * URL of this directory site.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Directory Site Settings
@@ -2858,7 +2858,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this directory site has disabled active view creatives.
      */
-    activeViewOptOut?: boolean;
+    activeViewOptOut?: boolean | null;
     /**
      * Directory site Ad Manager settings.
      */
@@ -2866,11 +2866,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this site accepts in-stream video ads.
      */
-    instreamVideoPlacementAccepted?: boolean;
+    instreamVideoPlacementAccepted?: boolean | null;
     /**
      * Whether this site accepts interstitial ads.
      */
-    interstitialPlacementAccepted?: boolean;
+    interstitialPlacementAccepted?: boolean | null;
   }
   /**
    * Directory Site List Response
@@ -2883,11 +2883,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySitesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Contains properties of a dynamic targeting key. Dynamic targeting keys are unique, user-friendly labels, created at the advertiser level in DCM, that can be assigned to ads, creatives, and placements and used for targeting with Studio dynamic creatives. Use these labels instead of numeric Campaign Manager IDs (such as placement IDs) to save time and avoid errors in your dynamic feeds.
@@ -2896,19 +2896,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKey&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
      */
-    name?: string;
+    name?: string | null;
     /**
      * ID of the object of this dynamic targeting key. This is a required field.
      */
-    objectId?: string;
+    objectId?: string | null;
     /**
      * Type of the object of this dynamic targeting key. This is a required field.
      */
-    objectType?: string;
+    objectType?: string | null;
   }
   /**
    * Dynamic Targeting Key List Response
@@ -2921,7 +2921,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKeysListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A description of how user IDs are encrypted.
@@ -2930,19 +2930,19 @@ export namespace dfareporting_v3_1 {
     /**
      * The encryption entity ID. This should match the encryption configuration for ad serving or Data Transfer.
      */
-    encryptionEntityId?: string;
+    encryptionEntityId?: string | null;
     /**
      * The encryption entity type. This should match the encryption configuration for ad serving or Data Transfer.
      */
-    encryptionEntityType?: string;
+    encryptionEntityType?: string | null;
     /**
      * Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.
      */
-    encryptionSource?: string;
+    encryptionSource?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#encryptionInfo&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Contains properties of an event tag.
@@ -2951,11 +2951,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this event tag. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this event tag. This field or the campaignId field is required on insertion.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -2963,7 +2963,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Campaign ID of this event tag. This field or the advertiserId field is required on insertion.
      */
-    campaignId?: string;
+    campaignId?: string | null;
     /**
      * Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
      */
@@ -2971,55 +2971,55 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this event tag should be automatically enabled for all of the advertiser&#39;s campaigns and ads.
      */
-    enabledByDefault?: boolean;
+    enabledByDefault?: boolean | null;
     /**
      * Whether to remove this event tag from ads that are trafficked through Display &amp; Video 360 to Ad Exchange. This may be useful if the event tag uses a pixel that is unapproved for Ad Exchange bids on one or more networks, such as the Google Display Network.
      */
-    excludeFromAdxRequests?: boolean;
+    excludeFromAdxRequests?: boolean | null;
     /**
      * ID of this event tag. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#eventTag&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this event tag. This is a required field and must be less than 256 characters long.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Site filter type for this event tag. If no type is specified then the event tag will be applied to all sites.
      */
-    siteFilterType?: string;
+    siteFilterType?: string | null;
     /**
      * Filter list of site IDs associated with this event tag. The siteFilterType determines whether this is a whitelist or blacklist filter.
      */
-    siteIds?: string[];
+    siteIds?: string[] | null;
     /**
      * Whether this tag is SSL-compliant or not. This is a read-only field.
      */
-    sslCompliant?: boolean;
+    sslCompliant?: boolean | null;
     /**
      * Status of this event tag. Must be ENABLED for this event tag to fire. This is a required field.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Subaccount ID of this event tag. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Event tag type. Can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking. This is a required field.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Payload URL for this event tag. The URL on a click-through event tag should have a landing page URL appended to the end of it. This field is required on insertion.
      */
-    url?: string;
+    url?: string | null;
     /**
      * Number of times the landing page URL should be URL-escaped before being appended to the click-through event tag URL. Only applies to click-through event tags as specified by the event tag type.
      */
-    urlEscapeLevels?: number;
+    urlEscapeLevels?: number | null;
   }
   /**
    * Event tag override information.
@@ -3028,11 +3028,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this override is enabled.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * ID of this event tag override. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
   }
   /**
    * Event Tag List Response
@@ -3045,7 +3045,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#eventTagsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Represents a File resource. A file contains the metadata for a report run. It shows the status of the run and holds the URLs to the generated report data if the run is finished and the status is &quot;REPORT_AVAILABLE&quot;.
@@ -3058,39 +3058,39 @@ export namespace dfareporting_v3_1 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The filename of the file.
      */
-    fileName?: string;
+    fileName?: string | null;
     /**
      * The output format of the report. Only available once the file is available.
      */
-    format?: string;
+    format?: string | null;
     /**
      * The unique ID of this report file.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of resource this is, in this case dfareporting#file.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The timestamp in milliseconds since epoch when this file was last modified.
      */
-    lastModifiedTime?: string;
+    lastModifiedTime?: string | null;
     /**
      * The ID of the report this file was generated from.
      */
-    reportId?: string;
+    reportId?: string | null;
     /**
      * The status of the report file.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The URLs where the completed report file can be downloaded.
      */
-    urls?: {apiUrl?: string; browserUrl?: string};
+    urls?: {apiUrl?: string; browserUrl?: string} | null;
   }
   /**
    * Represents the list of File resources.
@@ -3099,7 +3099,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The files returned in this response.
      */
@@ -3107,11 +3107,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of list this is, in this case dfareporting#fileList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token used to page through files. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Flight
@@ -3120,19 +3120,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Inventory item flight end date.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * Rate or cost of this flight.
      */
-    rateOrCost?: string;
+    rateOrCost?: string | null;
     /**
      * Inventory item flight start date.
      */
-    startDate?: string;
+    startDate?: string | null;
     /**
      * Units of this flight.
      */
-    units?: string;
+    units?: string | null;
   }
   /**
    * Floodlight Activity GenerateTag Response
@@ -3141,15 +3141,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Generated tag for this Floodlight activity. For global site tags, this is the event snippet.
      */
-    floodlightActivityTag?: string;
+    floodlightActivityTag?: string | null;
     /**
      * The global snippet section of a global site tag. The global site tag sets new cookies on your domain, which will store a unique identifier for a user or the ad click that brought the user to your site. Learn more.
      */
-    globalSiteTagGlobalSnippet?: string;
+    globalSiteTagGlobalSnippet?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Floodlight Activity List Response
@@ -3162,11 +3162,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Contains properties of a Floodlight activity.
@@ -3175,11 +3175,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this floodlight activity. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s advertiser or the existing activity&#39;s advertiser.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -3187,11 +3187,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Code type used for cache busting in the generated tag. Applicable only when floodlightActivityGroupType is COUNTER and countingMethod is STANDARD_COUNTING or UNIQUE_COUNTING.
      */
-    cacheBustingType?: string;
+    cacheBustingType?: string | null;
     /**
      * Counting method for conversions for this floodlight activity. This is a required field.
      */
-    countingMethod?: string;
+    countingMethod?: string | null;
     /**
      * Dynamic floodlight tags.
      */
@@ -3199,27 +3199,27 @@ export namespace dfareporting_v3_1 {
     /**
      * URL where this tag will be deployed. If specified, must be less than 256 characters long.
      */
-    expectedUrl?: string;
+    expectedUrl?: string | null;
     /**
      * Floodlight activity group ID of this floodlight activity. This is a required field.
      */
-    floodlightActivityGroupId?: string;
+    floodlightActivityGroupId?: string | null;
     /**
      * Name of the associated floodlight activity group. This is a read-only field.
      */
-    floodlightActivityGroupName?: string;
+    floodlightActivityGroupName?: string | null;
     /**
      * Tag string of the associated floodlight activity group. This is a read-only field.
      */
-    floodlightActivityGroupTagString?: string;
+    floodlightActivityGroupTagString?: string | null;
     /**
      * Type of the associated floodlight activity group. This is a read-only field.
      */
-    floodlightActivityGroupType?: string;
+    floodlightActivityGroupType?: string | null;
     /**
      * Floodlight configuration ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s floodlight configuration or from the existing activity&#39;s floodlight configuration.
      */
-    floodlightConfigurationId?: string;
+    floodlightConfigurationId?: string | null;
     /**
      * Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
      */
@@ -3227,11 +3227,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The type of Floodlight tag this activity will generate. This is a required field.
      */
-    floodlightTagType?: string;
+    floodlightTagType?: string | null;
     /**
      * ID of this floodlight activity. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this floodlight activity. This is a read-only, auto-generated field.
      */
@@ -3239,15 +3239,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivity&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this floodlight activity. This is a required field. Must be less than 129 characters long and cannot contain quotes.
      */
-    name?: string;
+    name?: string | null;
     /**
      * General notes or implementation instructions for the tag.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * Publisher dynamic floodlight tags.
      */
@@ -3255,31 +3255,31 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this tag should use SSL.
      */
-    secure?: boolean;
+    secure?: boolean | null;
     /**
      * Whether the floodlight activity is SSL-compliant. This is a read-only field, its value detected by the system from the floodlight tags.
      */
-    sslCompliant?: boolean;
+    sslCompliant?: boolean | null;
     /**
      * Whether this floodlight activity must be SSL-compliant.
      */
-    sslRequired?: boolean;
+    sslRequired?: boolean | null;
     /**
      * Subaccount ID of this floodlight activity. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Tag format type for the floodlight activity. If left blank, the tag format will default to HTML.
      */
-    tagFormat?: string;
+    tagFormat?: string | null;
     /**
      * Value of the cat= parameter in the floodlight tag, which the ad servers use to identify the activity. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activities of the same activity group. This field is read-only after insertion.
      */
-    tagString?: string;
+    tagString?: string | null;
     /**
      * List of the user-defined variables used by this conversion tag. These map to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user defined type. Acceptable values are U1 to U100, inclusive.
      */
-    userDefinedVariableTypes?: string[];
+    userDefinedVariableTypes?: string[] | null;
   }
   /**
    * Dynamic Tag
@@ -3288,15 +3288,15 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this dynamic tag. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Name of this tag.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Tag code.
      */
-    tag?: string;
+    tag?: string | null;
   }
   /**
    * Contains properties of a Floodlight activity group.
@@ -3305,11 +3305,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this floodlight activity group. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this floodlight activity group. If this field is left blank, the value will be copied over either from the floodlight configuration&#39;s advertiser or from the existing activity group&#39;s advertiser.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -3317,7 +3317,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Floodlight configuration ID of this floodlight activity group. This is a required field.
      */
-    floodlightConfigurationId?: string;
+    floodlightConfigurationId?: string | null;
     /**
      * Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
      */
@@ -3325,7 +3325,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this floodlight activity group. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this floodlight activity group. This is a read-only, auto-generated field.
      */
@@ -3333,23 +3333,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroup&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this floodlight activity group. This is a required field. Must be less than 65 characters long and cannot contain quotes.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Subaccount ID of this floodlight activity group. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Value of the type= parameter in the floodlight tag, which the ad servers use to identify the activity group that the activity belongs to. This is optional: if empty, a new tag string will be generated for you. This string must be 1 to 8 characters long, with valid characters being [a-z][A-Z][0-9][-][ _ ]. This tag string must also be unique among activity groups of the same floodlight configuration. This field is read-only after insertion.
      */
-    tagString?: string;
+    tagString?: string | null;
     /**
      * Type of the floodlight activity group. This is a required field that is read-only after insertion.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Floodlight Activity Group List Response
@@ -3362,11 +3362,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroupsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Publisher Dynamic Tag
@@ -3375,11 +3375,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this tag is applicable only for click-throughs.
      */
-    clickThrough?: boolean;
+    clickThrough?: boolean | null;
     /**
      * Directory site ID of this dynamic tag. This is a write-only field that can be used as an alternative to the siteId field. When this resource is retrieved, only the siteId field will be populated.
      */
-    directorySiteId?: string;
+    directorySiteId?: string | null;
     /**
      * Dynamic floodlight tag.
      */
@@ -3387,7 +3387,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Site ID of this dynamic tag.
      */
-    siteId?: string;
+    siteId?: string | null;
     /**
      * Dimension value for the ID of the site. This is a read-only, auto-generated field.
      */
@@ -3395,7 +3395,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this tag is applicable only for view-throughs.
      */
-    viewThrough?: boolean;
+    viewThrough?: boolean | null;
   }
   /**
    * Contains properties of a Floodlight configuration.
@@ -3404,11 +3404,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this floodlight configuration. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of the parent advertiser of this floodlight configuration.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -3416,19 +3416,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether advertiser data is shared with Google Analytics.
      */
-    analyticsDataSharingEnabled?: boolean;
+    analyticsDataSharingEnabled?: boolean | null;
     /**
      * Whether the exposure-to-conversion report is enabled. This report shows detailed pathway information on up to 10 of the most recent ad exposures seen by a user before converting.
      */
-    exposureToConversionEnabled?: boolean;
+    exposureToConversionEnabled?: boolean | null;
     /**
      * Day that will be counted as the first day of the week in reports. This is a required field.
      */
-    firstDayOfWeek?: string;
+    firstDayOfWeek?: string | null;
     /**
      * ID of this floodlight configuration. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this floodlight configuration. This is a read-only, auto-generated field.
      */
@@ -3436,11 +3436,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether in-app attribution tracking is enabled.
      */
-    inAppAttributionTrackingEnabled?: boolean;
+    inAppAttributionTrackingEnabled?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfiguration&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Lookback window settings for this floodlight configuration.
      */
@@ -3448,7 +3448,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Types of attribution options for natural search conversions.
      */
-    naturalSearchConversionAttributionOption?: string;
+    naturalSearchConversionAttributionOption?: string | null;
     /**
      * Settings for Campaign Manager Omniture integration.
      */
@@ -3456,7 +3456,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Subaccount ID of this floodlight configuration. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Configuration settings for dynamic and image floodlight tags.
      */
@@ -3481,7 +3481,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfigurationsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Represents fields that are compatible to be selected for a report of type &quot;FlOODLIGHT&quot;.
@@ -3498,7 +3498,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#floodlightReportCompatibleFields.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
@@ -3511,11 +3511,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Duration of time, in seconds, for this frequency cap. The maximum duration is 90 days. Acceptable values are 1 to 7776000, inclusive.
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * Number of times an individual user can be served the ad within the specified duration. Acceptable values are 1 to 15, inclusive.
      */
-    impressions?: string;
+    impressions?: string | null;
   }
   /**
    * FsCommand.
@@ -3524,23 +3524,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Distance from the left of the browser.Applicable when positionOption is DISTANCE_FROM_TOP_LEFT_CORNER.
      */
-    left?: number;
+    left?: number | null;
     /**
      * Position in the browser where the window will open.
      */
-    positionOption?: string;
+    positionOption?: string | null;
     /**
      * Distance from the top of the browser. Applicable when positionOption is DISTANCE_FROM_TOP_LEFT_CORNER.
      */
-    top?: number;
+    top?: number | null;
     /**
      * Height of the window.
      */
-    windowHeight?: number;
+    windowHeight?: number | null;
     /**
      * Width of the window.
      */
-    windowWidth?: number;
+    windowWidth?: number | null;
   }
   /**
    * Geographical Targeting.
@@ -3557,7 +3557,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether or not to exclude the countries in the countries field from targeting. If false, the countries field refers to countries which will be targeted by the ad.
      */
-    excludeCountries?: boolean;
+    excludeCountries?: boolean | null;
     /**
      * Metros to be targeted. For each metro only dmaId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a metro, do not target or exclude the country of the metro.
      */
@@ -3578,7 +3578,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this inventory item.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Ad slots of this inventory item. If this inventory item represents a standalone placement, there will be exactly one ad slot. If this inventory item represents a placement group, there will be more than one ad slot, each representing one child placement in that placement group.
      */
@@ -3586,31 +3586,31 @@ export namespace dfareporting_v3_1 {
     /**
      * Advertiser ID of this inventory item.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Content category ID of this inventory item.
      */
-    contentCategoryId?: string;
+    contentCategoryId?: string | null;
     /**
      * Estimated click-through rate of this inventory item.
      */
-    estimatedClickThroughRate?: string;
+    estimatedClickThroughRate?: string | null;
     /**
      * Estimated conversion rate of this inventory item.
      */
-    estimatedConversionRate?: string;
+    estimatedConversionRate?: string | null;
     /**
      * ID of this inventory item.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Whether this inventory item is in plan.
      */
-    inPlan?: boolean;
+    inPlan?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItem&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Information about the most recent modification of this inventory item.
      */
@@ -3618,19 +3618,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of this inventory item. For standalone inventory items, this is the same name as that of its only ad slot. For group inventory items, this can differ from the name of any of its ad slots.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Negotiation channel ID of this inventory item.
      */
-    negotiationChannelId?: string;
+    negotiationChannelId?: string | null;
     /**
      * Order ID of this inventory item.
      */
-    orderId?: string;
+    orderId?: string | null;
     /**
      * Placement strategy ID of this inventory item.
      */
-    placementStrategyId?: string;
+    placementStrategyId?: string | null;
     /**
      * Pricing of this inventory item.
      */
@@ -3638,23 +3638,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Project ID of this inventory item.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * RFP ID of this inventory item.
      */
-    rfpId?: string;
+    rfpId?: string | null;
     /**
      * ID of the site this inventory item is associated with.
      */
-    siteId?: string;
+    siteId?: string | null;
     /**
      * Subaccount ID of this inventory item.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Type of inventory item.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Inventory item List Response
@@ -3667,11 +3667,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItemsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Key Value Targeting Expression.
@@ -3680,7 +3680,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Keyword expression being targeted by the ad.
      */
-    expression?: string;
+    expression?: string | null;
   }
   /**
    * Contains information about where a user&#39;s browser is taken after the user clicks an ad.
@@ -3689,11 +3689,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Advertiser ID of this landing page. This is a required field.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Whether this landing page has been archived.
      */
-    archived?: boolean;
+    archived?: boolean | null;
     /**
      * Links that will direct the user to a mobile app, if installed.
      */
@@ -3701,19 +3701,19 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this landing page. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#landingPage&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this landing page. This is a required field. It must be less than 256 characters long.
      */
-    name?: string;
+    name?: string | null;
     /**
      * URL of this landing page. This is a required field.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Contains information about a language that can be targeted by ads.
@@ -3722,19 +3722,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Language ID of this language. This is the ID used for targeting and generating reports.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#language&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Format of language code is an ISO 639 two-letter language code optionally followed by an underscore followed by an ISO 3166 code. Examples are &quot;en&quot; for English or &quot;zh_CN&quot; for Simplified Chinese.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Name of this language.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Language List Response
@@ -3743,7 +3743,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#languagesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Language collection.
      */
@@ -3765,7 +3765,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Timestamp of the last change in milliseconds since epoch.
      */
-    time?: string;
+    time?: string | null;
   }
   /**
    * A group clause made up of list population terms representing constraints joined by ORs.
@@ -3783,11 +3783,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Floodlight activity ID associated with this rule. This field can be left blank.
      */
-    floodlightActivityId?: string;
+    floodlightActivityId?: string | null;
     /**
      * Name of floodlight activity associated with this rule. This is a read-only, auto-generated field.
      */
-    floodlightActivityName?: string;
+    floodlightActivityName?: string | null;
     /**
      * Clauses that make up this list population rule. Clauses are joined by ANDs, and the clauses themselves are made up of list population terms which are joined by ORs.
      */
@@ -3800,35 +3800,35 @@ export namespace dfareporting_v3_1 {
     /**
      * Will be true if the term should check if the user is in the list and false if the term should check if the user is not in the list. This field is only relevant when type is set to LIST_MEMBERSHIP_TERM. False by default.
      */
-    contains?: boolean;
+    contains?: boolean | null;
     /**
      * Whether to negate the comparison result of this term during rule evaluation. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
-    negation?: boolean;
+    negation?: boolean | null;
     /**
      * Comparison operator of this term. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
-    operator?: string;
+    operator?: string | null;
     /**
      * ID of the list in question. This field is only relevant when type is set to LIST_MEMBERSHIP_TERM.
      */
-    remarketingListId?: string;
+    remarketingListId?: string | null;
     /**
      * List population term type determines the applicable fields in this object. If left unset or set to CUSTOM_VARIABLE_TERM, then variableName, variableFriendlyName, operator, value, and negation are applicable. If set to LIST_MEMBERSHIP_TERM then remarketingListId and contains are applicable. If set to REFERRER_TERM then operator, value, and negation are applicable.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Literal to compare the variable to. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
-    value?: string;
+    value?: string | null;
     /**
      * Friendly name of this term&#39;s variable. This is a read-only, auto-generated field. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM.
      */
-    variableFriendlyName?: string;
+    variableFriendlyName?: string | null;
     /**
      * Name of the variable (U1, U2, etc.) being compared in this term. This field is only relevant when type is set to null, CUSTOM_VARIABLE_TERM or REFERRER_TERM.
      */
-    variableName?: string;
+    variableName?: string | null;
   }
   /**
    * Remarketing List Targeting Expression.
@@ -3837,7 +3837,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Expression describing which lists are being targeted by the ad.
      */
-    expression?: string;
+    expression?: string | null;
   }
   /**
    * Lookback configuration settings.
@@ -3846,11 +3846,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Lookback window, in days, from the last time a given user clicked on one of your ads. If you enter 0, clicks will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
      */
-    clickDuration?: number;
+    clickDuration?: number | null;
     /**
      * Lookback window, in days, from the last time a given user viewed one of your ads. If you enter 0, impressions will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
      */
-    postImpressionActivitiesDuration?: number;
+    postImpressionActivitiesDuration?: number | null;
   }
   /**
    * Represents a metric.
@@ -3859,11 +3859,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#metric.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The metric name, e.g. dfa:impressions
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Contains information about a metro region that can be targeted by ads.
@@ -3872,31 +3872,31 @@ export namespace dfareporting_v3_1 {
     /**
      * Country code of the country to which this metro region belongs.
      */
-    countryCode?: string;
+    countryCode?: string | null;
     /**
      * DART ID of the country to which this metro region belongs.
      */
-    countryDartId?: string;
+    countryDartId?: string | null;
     /**
      * DART ID of this metro region.
      */
-    dartId?: string;
+    dartId?: string | null;
     /**
      * DMA ID of this metro region. This is the ID used for targeting and generating reports, and is equivalent to metro_code.
      */
-    dmaId?: string;
+    dmaId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#metro&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metro code of this metro region. This is equivalent to dma_id.
      */
-    metroCode?: string;
+    metroCode?: string | null;
     /**
      * Name of this metro region.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Metro List Response
@@ -3905,7 +3905,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#metrosListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metro collection.
      */
@@ -3918,23 +3918,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Mobile app directory.
      */
-    directory?: string;
+    directory?: string | null;
     /**
      * ID of this mobile app.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileApp&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Publisher name.
      */
-    publisherName?: string;
+    publisherName?: string | null;
     /**
      * Title of this mobile app.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Mobile app List Response
@@ -3943,7 +3943,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileAppsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Mobile apps collection.
      */
@@ -3951,7 +3951,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Contains information about a mobile carrier that can be targeted by ads.
@@ -3960,23 +3960,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Country code of the country to which this mobile carrier belongs.
      */
-    countryCode?: string;
+    countryCode?: string | null;
     /**
      * DART ID of the country to which this mobile carrier belongs.
      */
-    countryDartId?: string;
+    countryDartId?: string | null;
     /**
      * ID of this mobile carrier.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarrier&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this mobile carrier.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Mobile Carrier List Response
@@ -3985,7 +3985,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarriersListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Mobile carrier collection.
      */
@@ -3998,15 +3998,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#objectFilter&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Applicable when status is ASSIGNED. The user has access to objects with these object IDs.
      */
-    objectIds?: string[];
+    objectIds?: string[] | null;
     /**
      * Status of the filter. NONE means the user has access to none of the objects. ALL means the user has access to all objects. ASSIGNED means the user has access to the objects with IDs in the objectIds list.
      */
-    status?: string;
+    status?: string | null;
   }
   /**
    * Offset Position.
@@ -4015,11 +4015,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Offset distance from left side of an asset or a window.
      */
-    left?: number;
+    left?: number | null;
     /**
      * Offset distance from top side of an asset or a window.
      */
-    top?: number;
+    top?: number | null;
   }
   /**
    * Omniture Integration Settings.
@@ -4028,11 +4028,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether placement cost data will be sent to Omniture. This property can be enabled only if omnitureIntegrationEnabled is true.
      */
-    omnitureCostDataEnabled?: boolean;
+    omnitureCostDataEnabled?: boolean | null;
     /**
      * Whether Omniture integration is enabled. This property can be enabled only when the &quot;Advanced Ad Serving&quot; account setting is enabled.
      */
-    omnitureIntegrationEnabled?: boolean;
+    omnitureIntegrationEnabled?: boolean | null;
   }
   /**
    * Contains information about an operating system that can be targeted by ads.
@@ -4041,23 +4041,23 @@ export namespace dfareporting_v3_1 {
     /**
      * DART ID of this operating system. This is the ID used for targeting.
      */
-    dartId?: string;
+    dartId?: string | null;
     /**
      * Whether this operating system is for desktop.
      */
-    desktop?: boolean;
+    desktop?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystem&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Whether this operating system is for mobile.
      */
-    mobile?: boolean;
+    mobile?: boolean | null;
     /**
      * Name of this operating system.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Operating System List Response
@@ -4066,7 +4066,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Operating system collection.
      */
@@ -4079,23 +4079,23 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this operating system version.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersion&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Major version (leftmost number) of this operating system version.
      */
-    majorVersion?: string;
+    majorVersion?: string | null;
     /**
      * Minor version (number after the first dot) of this operating system version.
      */
-    minorVersion?: string;
+    minorVersion?: string | null;
     /**
      * Name of this operating system version.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Operating system of this operating system version.
      */
@@ -4108,7 +4108,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersionsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Operating system version collection.
      */
@@ -4121,7 +4121,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Floodlight activity ID of this optimization activity. This is a required field.
      */
-    floodlightActivityId?: string;
+    floodlightActivityId?: string | null;
     /**
      * Dimension value for the ID of the floodlight activity. This is a read-only, auto-generated field.
      */
@@ -4129,7 +4129,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Weight associated with this optimization. The weight assigned will be understood in proportion to the weights assigned to the other optimization activities. Value must be greater than or equal to 1.
      */
-    weight?: number;
+    weight?: number | null;
   }
   /**
    * Describes properties of a Planning order.
@@ -4138,27 +4138,27 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this order.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this order.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * IDs for users that have to approve documents created for this order.
      */
-    approverUserProfileIds?: string[];
+    approverUserProfileIds?: string[] | null;
     /**
      * Buyer invoice ID associated with this order.
      */
-    buyerInvoiceId?: string;
+    buyerInvoiceId?: string | null;
     /**
      * Name of the buyer organization.
      */
-    buyerOrganizationName?: string;
+    buyerOrganizationName?: string | null;
     /**
      * Comments in this order.
      */
-    comments?: string;
+    comments?: string | null;
     /**
      * Contacts for this order.
      */
@@ -4166,11 +4166,11 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this order. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#order&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Information about the most recent modification of this order.
      */
@@ -4178,43 +4178,43 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of this order.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Notes of this order.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * ID of the terms and conditions template used in this order.
      */
-    planningTermId?: string;
+    planningTermId?: string | null;
     /**
      * Project ID of this order.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Seller order ID associated with this order.
      */
-    sellerOrderId?: string;
+    sellerOrderId?: string | null;
     /**
      * Name of the seller organization.
      */
-    sellerOrganizationName?: string;
+    sellerOrganizationName?: string | null;
     /**
      * Site IDs this order is associated with.
      */
-    siteId?: string[];
+    siteId?: string[] | null;
     /**
      * Free-form site names this order is associated with.
      */
-    siteNames?: string[];
+    siteNames?: string[] | null;
     /**
      * Subaccount ID of this order.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Terms and conditions of this order.
      */
-    termsAndConditions?: string;
+    termsAndConditions?: string | null;
   }
   /**
    * Contact of an order.
@@ -4223,23 +4223,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Free-form information about this contact. It could be any information related to this contact in addition to type, title, name, and signature user profile ID.
      */
-    contactInfo?: string;
+    contactInfo?: string | null;
     /**
      * Name of this contact.
      */
-    contactName?: string;
+    contactName?: string | null;
     /**
      * Title of this contact.
      */
-    contactTitle?: string;
+    contactTitle?: string | null;
     /**
      * Type of this contact.
      */
-    contactType?: string;
+    contactType?: string | null;
     /**
      * ID of the user profile containing the signature that will be embedded into order documents.
      */
-    signatureUserProfileId?: string;
+    signatureUserProfileId?: string | null;
   }
   /**
    * Contains properties of a Planning order document.
@@ -4248,23 +4248,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this order document.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this order document.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * The amended order document ID of this order document. An order document can be created by optionally amending another order document so that the change history can be preserved.
      */
-    amendedOrderDocumentId?: string;
+    amendedOrderDocumentId?: string | null;
     /**
      * IDs of users who have approved this order document.
      */
-    approvedByUserProfileIds?: string[];
+    approvedByUserProfileIds?: string[] | null;
     /**
      * Whether this order document is cancelled.
      */
-    cancelled?: boolean;
+    cancelled?: boolean | null;
     /**
      * Information about the creation of this order document.
      */
@@ -4272,47 +4272,47 @@ export namespace dfareporting_v3_1 {
     /**
      * Effective date of this order document.
      */
-    effectiveDate?: string;
+    effectiveDate?: string | null;
     /**
      * ID of this order document.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#orderDocument&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * List of email addresses that received the last sent document.
      */
-    lastSentRecipients?: string[];
+    lastSentRecipients?: string[] | null;
     /**
      * Timestamp of the last email sent with this order document.
      */
-    lastSentTime?: string;
+    lastSentTime?: string | null;
     /**
      * ID of the order from which this order document is created.
      */
-    orderId?: string;
+    orderId?: string | null;
     /**
      * Project ID of this order document.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Whether this order document has been signed.
      */
-    signed?: boolean;
+    signed?: boolean | null;
     /**
      * Subaccount ID of this order document.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Title of this order document.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Type of this order document
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Order document List Response
@@ -4321,11 +4321,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#orderDocumentsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Order document collection
      */
@@ -4338,11 +4338,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#ordersListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Order collection.
      */
@@ -4363,7 +4363,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#pathToConversionReportCompatibleFields.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
@@ -4380,11 +4380,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this placement. This field can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Whether this placement opts out of ad blocking. When true, ad blocking is disabled for this placement. When false, the campaign and site settings take effect.
      */
-    adBlockingOptOut?: boolean;
+    adBlockingOptOut?: boolean | null;
     /**
      * Additional sizes associated with this placement. When inserting or updating a placement, only the size ID field is used.
      */
@@ -4392,7 +4392,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Advertiser ID of this placement. This field can be left blank.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -4400,11 +4400,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this placement is archived.
      */
-    archived?: boolean;
+    archived?: boolean | null;
     /**
      * Campaign ID of this placement. This field is a required field on insertion.
      */
-    campaignId?: string;
+    campaignId?: string | null;
     /**
      * Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
      */
@@ -4412,15 +4412,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Comments for this placement.
      */
-    comment?: string;
+    comment?: string | null;
     /**
      * Placement compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering on desktop, on mobile devices or in mobile apps for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are no longer allowed for new placement insertions. Instead, use DISPLAY or DISPLAY_INTERSTITIAL. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. This field is required on insertion.
      */
-    compatibility?: string;
+    compatibility?: string | null;
     /**
      * ID of the content category assigned to this placement.
      */
-    contentCategoryId?: string;
+    contentCategoryId?: string | null;
     /**
      * Information about the creation of this placement. This is a read-only field.
      */
@@ -4428,7 +4428,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Directory site ID of this placement. On insert, you must set either this field or the siteId field to specify the site associated with this placement. This is a required field that is read-only after insertion.
      */
-    directorySiteId?: string;
+    directorySiteId?: string | null;
     /**
      * Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
      */
@@ -4436,11 +4436,11 @@ export namespace dfareporting_v3_1 {
     /**
      * External ID for this placement.
      */
-    externalId?: string;
+    externalId?: string | null;
     /**
      * ID of this placement. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this placement. This is a read-only, auto-generated field.
      */
@@ -4448,11 +4448,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Key name of this placement. This is a read-only, auto-generated field.
      */
-    keyName?: string;
+    keyName?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placement&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Information about the most recent modification of this placement. This is a read-only field.
      */
@@ -4464,19 +4464,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of this placement.This is a required field and must be less than 256 characters long.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Whether payment was approved for this placement. This is a read-only field relevant only to publisher-paid placements.
      */
-    paymentApproved?: boolean;
+    paymentApproved?: boolean | null;
     /**
      * Payment source for this placement. This is a required field that is read-only after insertion.
      */
-    paymentSource?: string;
+    paymentSource?: string | null;
     /**
      * ID of this placement&#39;s group, if applicable.
      */
-    placementGroupId?: string;
+    placementGroupId?: string | null;
     /**
      * Dimension value for the ID of the placement group. This is a read-only, auto-generated field.
      */
@@ -4484,7 +4484,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the placement strategy assigned to this placement.
      */
-    placementStrategyId?: string;
+    placementStrategyId?: string | null;
     /**
      * Pricing schedule of this placement. This field is required on insertion, specifically subfields startDate, endDate and pricingType.
      */
@@ -4492,7 +4492,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this placement is the primary placement of a roadblock (placement group). You cannot change this field from true to false. Setting this field to true will automatically set the primary field on the original primary placement of the roadblock to false, and it will automatically set the roadblock&#39;s primaryPlacementId field to the ID of this placement.
      */
-    primary?: boolean;
+    primary?: boolean | null;
     /**
      * Information about the last publisher update. This is a read-only field.
      */
@@ -4500,7 +4500,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Site ID associated with this placement. On insert, you must set either this field or the directorySiteId field to specify the site associated with this placement. This is a required field that is read-only after insertion.
      */
-    siteId?: string;
+    siteId?: string | null;
     /**
      * Dimension value for the ID of the site. This is a read-only, auto-generated field.
      */
@@ -4512,19 +4512,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether creatives assigned to this placement must be SSL-compliant.
      */
-    sslRequired?: boolean;
+    sslRequired?: boolean | null;
     /**
      * Third-party placement status.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Subaccount ID of this placement. This field can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Tag formats to generate for this placement. This field is required on insertion. Acceptable values are: - &quot;PLACEMENT_TAG_STANDARD&quot; - &quot;PLACEMENT_TAG_IFRAME_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_IFRAME_ILAYER&quot; - &quot;PLACEMENT_TAG_INTERNAL_REDIRECT&quot; - &quot;PLACEMENT_TAG_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_CLICK_COMMANDS&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4&quot; - &quot;PLACEMENT_TAG_TRACKING&quot; - &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot; - &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
      */
-    tagFormats?: string[];
+    tagFormats?: string[] | null;
     /**
      * Tag settings for this placement.
      */
@@ -4532,7 +4532,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether Verification and ActiveView are disabled for in-stream video creatives for this placement. The same setting videoActiveViewOptOut exists on the site level -- the opt out occurs if either of these settings are true. These settings are distinct from DirectorySites.settings.activeViewOptOut or Sites.siteSettings.activeViewOptOut which only apply to display ads. However, Accounts.activeViewOptOut opts out both video traffic, as well as display ads, from Verification and ActiveView.
      */
-    videoActiveViewOptOut?: boolean;
+    videoActiveViewOptOut?: boolean | null;
     /**
      * A collection of settings which affect video creatives served through this placement. Applicable to placements with IN_STREAM_VIDEO compatibility.
      */
@@ -4540,7 +4540,7 @@ export namespace dfareporting_v3_1 {
     /**
      * VPAID adapter setting for this placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to this placement.  Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
      */
-    vpaidAdapterChoice?: string;
+    vpaidAdapterChoice?: string | null;
   }
   /**
    * Placement Assignment.
@@ -4549,11 +4549,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this placement assignment is active. When true, the placement will be included in the ad&#39;s rotation.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * ID of the placement to be assigned. This is a required field.
      */
-    placementId?: string;
+    placementId?: string | null;
     /**
      * Dimension value for the ID of the placement. This is a read-only, auto-generated field.
      */
@@ -4561,7 +4561,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether the placement to be assigned requires SSL. This is a read-only field that is auto-generated when the ad is inserted or updated.
      */
-    sslRequired?: boolean;
+    sslRequired?: boolean | null;
   }
   /**
    * Contains properties of a package or roadblock.
@@ -4570,11 +4570,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this placement group. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this placement group. This is a required field on insertion.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -4582,11 +4582,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether this placement group is archived.
      */
-    archived?: boolean;
+    archived?: boolean | null;
     /**
      * Campaign ID of this placement group. This field is required on insertion.
      */
-    campaignId?: string;
+    campaignId?: string | null;
     /**
      * Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
      */
@@ -4594,15 +4594,15 @@ export namespace dfareporting_v3_1 {
     /**
      * IDs of placements which are assigned to this placement group. This is a read-only, auto-generated field.
      */
-    childPlacementIds?: string[];
+    childPlacementIds?: string[] | null;
     /**
      * Comments for this placement group.
      */
-    comment?: string;
+    comment?: string | null;
     /**
      * ID of the content category assigned to this placement group.
      */
-    contentCategoryId?: string;
+    contentCategoryId?: string | null;
     /**
      * Information about the creation of this placement group. This is a read-only field.
      */
@@ -4610,7 +4610,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Directory site ID associated with this placement group. On insert, you must set either this field or the site_id field to specify the site associated with this placement group. This is a required field that is read-only after insertion.
      */
-    directorySiteId?: string;
+    directorySiteId?: string | null;
     /**
      * Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
      */
@@ -4618,11 +4618,11 @@ export namespace dfareporting_v3_1 {
     /**
      * External ID for this placement.
      */
-    externalId?: string;
+    externalId?: string | null;
     /**
      * ID of this placement group. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this placement group. This is a read-only, auto-generated field.
      */
@@ -4630,7 +4630,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementGroup&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Information about the most recent modification of this placement group. This is a read-only field.
      */
@@ -4638,15 +4638,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of this placement group. This is a required field and must be less than 256 characters long.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Type of this placement group. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point, but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting. This field is required on insertion.
      */
-    placementGroupType?: string;
+    placementGroupType?: string | null;
     /**
      * ID of the placement strategy assigned to this placement group.
      */
-    placementStrategyId?: string;
+    placementStrategyId?: string | null;
     /**
      * Pricing schedule of this placement group. This field is required on insertion.
      */
@@ -4654,7 +4654,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the primary placement, used to calculate the media cost of a roadblock (placement group). Modifying this field will automatically modify the primary field on all affected roadblock child placements.
      */
-    primaryPlacementId?: string;
+    primaryPlacementId?: string | null;
     /**
      * Dimension value for the ID of the primary placement. This is a read-only, auto-generated field.
      */
@@ -4662,7 +4662,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Site ID associated with this placement group. On insert, you must set either this field or the directorySiteId field to specify the site associated with this placement group. This is a required field that is read-only after insertion.
      */
-    siteId?: string;
+    siteId?: string | null;
     /**
      * Dimension value for the ID of the site. This is a read-only, auto-generated field.
      */
@@ -4670,7 +4670,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Subaccount ID of this placement group. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
   }
   /**
    * Placement Group List Response
@@ -4679,11 +4679,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementGroupsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Placement group collection.
      */
@@ -4696,7 +4696,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsGenerateTagsResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Set of generated tags for the specified placements.
      */
@@ -4709,11 +4709,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Placement collection.
      */
@@ -4726,11 +4726,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementStrategiesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Placement strategy collection.
      */
@@ -4743,19 +4743,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this placement strategy.This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * ID of this placement strategy. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementStrategy&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this placement strategy. This is a required field. It must be less than 256 characters long and unique among placement strategies of the same account.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Placement Tag
@@ -4764,7 +4764,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Placement ID
      */
-    placementId?: string;
+    placementId?: string | null;
     /**
      * Tags generated for this placement.
      */
@@ -4777,15 +4777,15 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this platform type.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformType&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this platform type.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Platform Type List Response
@@ -4794,7 +4794,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformTypesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Platform type collection.
      */
@@ -4815,31 +4815,31 @@ export namespace dfareporting_v3_1 {
     /**
      * Popup window position either centered or at specific coordinate.
      */
-    positionType?: string;
+    positionType?: string | null;
     /**
      * Whether to display the browser address bar.
      */
-    showAddressBar?: boolean;
+    showAddressBar?: boolean | null;
     /**
      * Whether to display the browser menu bar.
      */
-    showMenuBar?: boolean;
+    showMenuBar?: boolean | null;
     /**
      * Whether to display the browser scroll bar.
      */
-    showScrollBar?: boolean;
+    showScrollBar?: boolean | null;
     /**
      * Whether to display the browser status bar.
      */
-    showStatusBar?: boolean;
+    showStatusBar?: boolean | null;
     /**
      * Whether to display the browser tool bar.
      */
-    showToolBar?: boolean;
+    showToolBar?: boolean | null;
     /**
      * Title of popup window.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Contains information about a postal code that can be targeted by ads.
@@ -4848,23 +4848,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Postal code. This is equivalent to the id field.
      */
-    code?: string;
+    code?: string | null;
     /**
      * Country code of the country to which this postal code belongs.
      */
-    countryCode?: string;
+    countryCode?: string | null;
     /**
      * DART ID of the country to which this postal code belongs.
      */
-    countryDartId?: string;
+    countryDartId?: string | null;
     /**
      * ID of this postal code.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCode&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Postal Code List Response
@@ -4873,7 +4873,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCodesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Postal code collection.
      */
@@ -4886,11 +4886,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Cap cost type of this inventory item.
      */
-    capCostType?: string;
+    capCostType?: string | null;
     /**
      * End date of this inventory item.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * Flights of this inventory item. A flight (a.k.a. pricing period) represents the inventory item pricing information for a specific period of time.
      */
@@ -4898,15 +4898,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Group type of this inventory item if it represents a placement group. Is null otherwise. There are two type of placement groups: PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE is a simple group of inventory items that acts as a single pricing point for a group of tags. PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK is a group of inventory items that not only acts as a single pricing point, but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned inventory items to be marked as primary.
      */
-    groupType?: string;
+    groupType?: string | null;
     /**
      * Pricing type of this inventory item.
      */
-    pricingType?: string;
+    pricingType?: string | null;
     /**
      * Start date of this inventory item.
      */
-    startDate?: string;
+    startDate?: string | null;
   }
   /**
    * Pricing Schedule
@@ -4915,19 +4915,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Placement cap cost option.
      */
-    capCostOption?: string;
+    capCostOption?: string | null;
     /**
      * Placement end date. This date must be later than, or the same day as, the placement start date, but not later than the campaign end date. If, for example, you set 6/25/2015 as both the start and end dates, the effective placement date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This field is required on insertion.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * Whether this placement is flighted. If true, pricing periods will be computed automatically.
      */
-    flighted?: boolean;
+    flighted?: boolean | null;
     /**
      * Floodlight activity ID associated with this placement. This field should be set when placement pricing type is set to PRICING_TYPE_CPA.
      */
-    floodlightActivityId?: string;
+    floodlightActivityId?: string | null;
     /**
      * Pricing periods for this placement.
      */
@@ -4935,15 +4935,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Placement pricing type. This field is required on insertion.
      */
-    pricingType?: string;
+    pricingType?: string | null;
     /**
      * Placement start date. This date must be later than, or the same day as, the campaign start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This field is required on insertion.
      */
-    startDate?: string;
+    startDate?: string | null;
     /**
      * Testing start date of this placement. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
      */
-    testingStartDate?: string;
+    testingStartDate?: string | null;
   }
   /**
    * Pricing Period
@@ -4952,23 +4952,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Pricing period end date. This date must be later than, or the same day as, the pricing period start date, but not later than the placement end date. The period end date can be the same date as the period start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective pricing period date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * Comments for this pricing period.
      */
-    pricingComment?: string;
+    pricingComment?: string | null;
     /**
      * Rate or cost of this pricing period in nanos (i.e., multipled by 1000000000). Acceptable values are 0 to 1000000000000000000, inclusive.
      */
-    rateOrCostNanos?: string;
+    rateOrCostNanos?: string | null;
     /**
      * Pricing period start date. This date must be later than, or the same day as, the placement start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
      */
-    startDate?: string;
+    startDate?: string | null;
     /**
      * Units of this pricing period. Acceptable values are 0 to 10000000000, inclusive.
      */
-    units?: string;
+    units?: string | null;
   }
   /**
    * Contains properties of a Planning project.
@@ -4977,43 +4977,43 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this project.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this project.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Audience age group of this project.
      */
-    audienceAgeGroup?: string;
+    audienceAgeGroup?: string | null;
     /**
      * Audience gender of this project.
      */
-    audienceGender?: string;
+    audienceGender?: string | null;
     /**
      * Budget of this project in the currency specified by the current account. The value stored in this field represents only the non-fractional amount. For example, for USD, the smallest value that can be represented by this field is 1 US dollar.
      */
-    budget?: string;
+    budget?: string | null;
     /**
      * Client billing code of this project.
      */
-    clientBillingCode?: string;
+    clientBillingCode?: string | null;
     /**
      * Name of the project client.
      */
-    clientName?: string;
+    clientName?: string | null;
     /**
      * End date of the project.
      */
-    endDate?: string;
+    endDate?: string | null;
     /**
      * ID of this project. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#project&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Information about the most recent modification of this project.
      */
@@ -5021,47 +5021,47 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of this project.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Overview of this project.
      */
-    overview?: string;
+    overview?: string | null;
     /**
      * Start date of the project.
      */
-    startDate?: string;
+    startDate?: string | null;
     /**
      * Subaccount ID of this project.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Number of clicks that the advertiser is targeting.
      */
-    targetClicks?: string;
+    targetClicks?: string | null;
     /**
      * Number of conversions that the advertiser is targeting.
      */
-    targetConversions?: string;
+    targetConversions?: string | null;
     /**
      * CPA that the advertiser is targeting.
      */
-    targetCpaNanos?: string;
+    targetCpaNanos?: string | null;
     /**
      * CPC that the advertiser is targeting.
      */
-    targetCpcNanos?: string;
+    targetCpcNanos?: string | null;
     /**
      * vCPM from Active View that the advertiser is targeting.
      */
-    targetCpmActiveViewNanos?: string;
+    targetCpmActiveViewNanos?: string | null;
     /**
      * CPM that the advertiser is targeting.
      */
-    targetCpmNanos?: string;
+    targetCpmNanos?: string | null;
     /**
      * Number of impressions that the advertiser is targeting.
      */
-    targetImpressions?: string;
+    targetImpressions?: string | null;
   }
   /**
    * Project List Response
@@ -5070,11 +5070,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#projectsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Project collection.
      */
@@ -5095,7 +5095,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#reachReportCompatibleFields.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
@@ -5116,15 +5116,15 @@ export namespace dfareporting_v3_1 {
     /**
      * The delivery type for the recipient.
      */
-    deliveryType?: string;
+    deliveryType?: string | null;
     /**
      * The email address of the recipient.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The kind of resource this is, in this case dfareporting#recipient.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Contains information about a region that can be targeted by ads.
@@ -5133,27 +5133,27 @@ export namespace dfareporting_v3_1 {
     /**
      * Country code of the country to which this region belongs.
      */
-    countryCode?: string;
+    countryCode?: string | null;
     /**
      * DART ID of the country to which this region belongs.
      */
-    countryDartId?: string;
+    countryDartId?: string | null;
     /**
      * DART ID of this region.
      */
-    dartId?: string;
+    dartId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#region&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this region.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Region code.
      */
-    regionCode?: string;
+    regionCode?: string | null;
   }
   /**
    * Region List Response
@@ -5162,7 +5162,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#regionsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Region collection.
      */
@@ -5175,15 +5175,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Whether this remarketing list is active.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Dimension value for the advertiser ID that owns this remarketing list. This is a required field.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -5191,19 +5191,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Remarketing list description.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Remarketing list ID. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Number of days that a user should remain in the remarketing list without an impression. Acceptable values are 1 to 540, inclusive.
      */
-    lifeSpan?: string;
+    lifeSpan?: string | null;
     /**
      * Rule used to populate the remarketing list with users.
      */
@@ -5211,19 +5211,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Number of users currently in the list. This is a read-only field.
      */
-    listSize?: string;
+    listSize?: string | null;
     /**
      * Product from which this remarketing list was originated.
      */
-    listSource?: string;
+    listSource?: string | null;
     /**
      * Name of the remarketing list. This is a required field. Must be no greater than 128 characters long.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Subaccount ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
   }
   /**
    * Contains properties of a remarketing list&#39;s sharing information. Sharing allows other accounts or advertisers to target to your remarketing lists. This resource can be used to manage remarketing list sharing to other accounts and advertisers.
@@ -5232,19 +5232,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingListShare&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Remarketing list ID. This is a read-only, auto-generated field.
      */
-    remarketingListId?: string;
+    remarketingListId?: string | null;
     /**
      * Accounts that the remarketing list is shared with.
      */
-    sharedAccountIds?: string[];
+    sharedAccountIds?: string[] | null;
     /**
      * Advertisers that the remarketing list is shared with.
      */
-    sharedAdvertiserIds?: string[];
+    sharedAdvertiserIds?: string[] | null;
   }
   /**
    * Remarketing list response
@@ -5253,11 +5253,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingListsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Remarketing list collection.
      */
@@ -5270,7 +5270,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The account ID to which this report belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The report criteria for a report of type &quot;STANDARD&quot;.
      */
@@ -5281,7 +5281,7 @@ export namespace dfareporting_v3_1 {
       dimensionFilters?: Schema$DimensionValue[];
       dimensions?: Schema$SortedDimension[];
       metricNames?: string[];
-    };
+    } | null;
     /**
      * The report criteria for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
      */
@@ -5293,7 +5293,7 @@ export namespace dfareporting_v3_1 {
       metricNames?: string[];
       overlapMetricNames?: string[];
       pivoted?: boolean;
-    };
+    } | null;
     /**
      * The report&#39;s email delivery settings.
      */
@@ -5302,15 +5302,15 @@ export namespace dfareporting_v3_1 {
       emailOwnerDeliveryType?: string;
       message?: string;
       recipients?: Schema$Recipient[];
-    };
+    } | null;
     /**
      * The eTag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The filename used when generating report files for this report.
      */
-    fileName?: string;
+    fileName?: string | null;
     /**
      * The report criteria for a report of type &quot;FLOODLIGHT&quot;.
      */
@@ -5326,31 +5326,31 @@ export namespace dfareporting_v3_1 {
         includeUnattributedCookieConversions?: boolean;
         includeUnattributedIPConversions?: boolean;
       };
-    };
+    } | null;
     /**
      * The output format of the report. If not specified, default format is &quot;CSV&quot;. Note that the actual format in the completed report file might differ if for instance the report&#39;s size exceeds the format&#39;s capabilities. &quot;CSV&quot; will then be the fallback format.
      */
-    format?: string;
+    format?: string | null;
     /**
      * The unique ID identifying this report resource.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of resource this is, in this case dfareporting#report.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The timestamp (in milliseconds since epoch) of when this report was last modified.
      */
-    lastModifiedTime?: string;
+    lastModifiedTime?: string | null;
     /**
      * The name of the report.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The user profile id of the owner of this report.
      */
-    ownerProfileId?: string;
+    ownerProfileId?: string | null;
     /**
      * The report criteria for a report of type &quot;PATH_TO_CONVERSION&quot;.
      */
@@ -5374,7 +5374,7 @@ export namespace dfareporting_v3_1 {
         maximumInteractionGap?: number;
         pivotOnInteractionPath?: boolean;
       };
-    };
+    } | null;
     /**
      * The report criteria for a report of type &quot;REACH&quot;.
      */
@@ -5387,7 +5387,7 @@ export namespace dfareporting_v3_1 {
       enableAllDimensionCombinations?: boolean;
       metricNames?: string[];
       reachByFrequencyMetricNames?: string[];
-    };
+    } | null;
     /**
      * The report&#39;s schedule. Can only be set if the report&#39;s &#39;dateRange&#39; is a relative date range and the relative date range is not &quot;TODAY&quot;.
      */
@@ -5399,15 +5399,15 @@ export namespace dfareporting_v3_1 {
       repeatsOnWeekDays?: string[];
       runsOnDayOfMonth?: string;
       startDate?: string;
-    };
+    } | null;
     /**
      * The subaccount ID to which this report belongs if applicable.
      */
-    subAccountId?: string;
+    subAccountId?: string | null;
     /**
      * The type of the report.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents fields that are compatible to be selected for a report of type &quot;STANDARD&quot;.
@@ -5424,7 +5424,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#reportCompatibleFields.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
      */
@@ -5441,7 +5441,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The reports returned in this response.
      */
@@ -5449,11 +5449,11 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of list this is, in this case dfareporting#reportList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token used to page through reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Reporting Configuration
@@ -5462,7 +5462,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether the exposure to conversion report is enabled. This report shows detailed pathway information on up to 10 of the most recent ad exposures seen by a user before converting.
      */
-    exposureToConversionEnabled?: boolean;
+    exposureToConversionEnabled?: boolean | null;
     /**
      * Default lookback windows for new advertisers in this account.
      */
@@ -5470,7 +5470,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are:  - &quot;1&quot; for &quot;America/New_York&quot;  - &quot;2&quot; for &quot;Europe/London&quot;  - &quot;3&quot; for &quot;Europe/Paris&quot;  - &quot;4&quot; for &quot;Africa/Johannesburg&quot;  - &quot;5&quot; for &quot;Asia/Jerusalem&quot;  - &quot;6&quot; for &quot;Asia/Shanghai&quot;  - &quot;7&quot; for &quot;Asia/Hong_Kong&quot;  - &quot;8&quot; for &quot;Asia/Tokyo&quot;  - &quot;9&quot; for &quot;Australia/Sydney&quot;  - &quot;10&quot; for &quot;Asia/Dubai&quot;  - &quot;11&quot; for &quot;America/Los_Angeles&quot;  - &quot;12&quot; for &quot;Pacific/Auckland&quot;  - &quot;13&quot; for &quot;America/Sao_Paulo&quot;
      */
-    reportGenerationTimeZoneId?: string;
+    reportGenerationTimeZoneId?: string | null;
   }
   /**
    * Rich Media Exit Override.
@@ -5483,11 +5483,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether to use the clickThroughUrl. If false, the creative-level exit will be used.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * ID for the override to refer to a specific exit in the creative.
      */
-    exitId?: string;
+    exitId?: string | null;
   }
   /**
    * A rule associates an asset with a targeting template for asset-level targeting. Applicable to INSTREAM_VIDEO creatives.
@@ -5496,15 +5496,15 @@ export namespace dfareporting_v3_1 {
     /**
      * A creativeAssets[].id. This should refer to one of the parent assets in this creative. This is a required field.
      */
-    assetId?: string;
+    assetId?: string | null;
     /**
      * A user-friendly name for this rule. This is a required field.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A targeting template ID. The targeting from the targeting template will be used to determine whether this asset should be served. This is a required field.
      */
-    targetingTemplateId?: string;
+    targetingTemplateId?: string | null;
   }
   /**
    * Contains properties of a site.
@@ -5513,15 +5513,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this site. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Whether this site is approved.
      */
-    approved?: boolean;
+    approved?: boolean | null;
     /**
      * Directory site associated with this site. This is a required field that is read-only after insertion.
      */
-    directorySiteId?: string;
+    directorySiteId?: string | null;
     /**
      * Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
      */
@@ -5529,7 +5529,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this site. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Dimension value for the ID of this site. This is a read-only, auto-generated field.
      */
@@ -5537,15 +5537,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Key name of this site. This is a read-only, auto-generated field.
      */
-    keyName?: string;
+    keyName?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#site&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this site.This is a required field. Must be less than 128 characters long. If this site is under a subaccount, the name must be unique among sites of the same subaccount. Otherwise, this site is a top-level site, and the name must be unique among top-level sites of the same account.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Site contacts.
      */
@@ -5557,7 +5557,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Subaccount ID of this site. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
   }
   /**
    * Site Contact
@@ -5566,35 +5566,35 @@ export namespace dfareporting_v3_1 {
     /**
      * Address of this site contact.
      */
-    address?: string;
+    address?: string | null;
     /**
      * Site contact type.
      */
-    contactType?: string;
+    contactType?: string | null;
     /**
      * Email address of this site contact. This is a required field.
      */
-    email?: string;
+    email?: string | null;
     /**
      * First name of this site contact.
      */
-    firstName?: string;
+    firstName?: string | null;
     /**
      * ID of this site contact. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Last name of this site contact.
      */
-    lastName?: string;
+    lastName?: string | null;
     /**
      * Primary phone number of this site contact.
      */
-    phone?: string;
+    phone?: string | null;
     /**
      * Title or designation of this site contact.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Site Settings
@@ -5603,15 +5603,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether active view creatives are disabled for this site.
      */
-    activeViewOptOut?: boolean;
+    activeViewOptOut?: boolean | null;
     /**
      * Whether this site opts out of ad blocking. When true, ad blocking is disabled for all placements under the site, regardless of the individual placement settings. When false, the campaign and placement settings take effect.
      */
-    adBlockingOptOut?: boolean;
+    adBlockingOptOut?: boolean | null;
     /**
      * Whether new cookies are disabled for this site.
      */
-    disableNewCookie?: boolean;
+    disableNewCookie?: boolean | null;
     /**
      * Configuration settings for dynamic and image floodlight tags.
      */
@@ -5619,11 +5619,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether Verification and ActiveView for in-stream video creatives are disabled by default for new placements created under this site. This value will be used to populate the placement.videoActiveViewOptOut field, when no value is specified for the new placement.
      */
-    videoActiveViewOptOutTemplate?: boolean;
+    videoActiveViewOptOutTemplate?: boolean | null;
     /**
      * Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter).  Note: Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
      */
-    vpaidAdapterChoiceTemplate?: string;
+    vpaidAdapterChoiceTemplate?: string | null;
   }
   /**
    * Site List Response
@@ -5632,11 +5632,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sitesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Site collection.
      */
@@ -5649,23 +5649,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Height of this size. Acceptable values are 0 to 32767, inclusive.
      */
-    height?: number;
+    height?: number | null;
     /**
      * IAB standard size. This is a read-only, auto-generated field.
      */
-    iab?: boolean;
+    iab?: boolean | null;
     /**
      * ID of this size. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#size&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Width of this size. Acceptable values are 0 to 32767, inclusive.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * Size List Response
@@ -5674,7 +5674,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sizesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Size collection.
      */
@@ -5687,7 +5687,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#skippableSetting&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Amount of time to play videos served to this placement before counting a view. Applicable when skippable is true.
      */
@@ -5699,7 +5699,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether the user can skip creatives served to this placement.
      */
-    skippable?: boolean;
+    skippable?: boolean | null;
   }
   /**
    * Represents a sorted dimension.
@@ -5708,15 +5708,15 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of resource this is, in this case dfareporting#sortedDimension.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the dimension.
      */
-    name?: string;
+    name?: string | null;
     /**
      * An optional sort order for the dimension column.
      */
-    sortOrder?: string;
+    sortOrder?: string | null;
   }
   /**
    * Contains properties of a Campaign Manager subaccount.
@@ -5725,23 +5725,23 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of the account that contains this subaccount. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * IDs of the available user role permissions for this subaccount.
      */
-    availablePermissionIds?: string[];
+    availablePermissionIds?: string[] | null;
     /**
      * ID of this subaccount. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#subaccount&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this subaccount. This is a required field. Must be less than 128 characters long and be unique among subaccounts of the same account.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Subaccount List Response
@@ -5750,11 +5750,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#subaccountsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Subaccount collection.
      */
@@ -5767,23 +5767,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Ad associated with this placement tag. Applicable only when format is PLACEMENT_TAG_TRACKING.
      */
-    adId?: string;
+    adId?: string | null;
     /**
      * Tag string to record a click.
      */
-    clickTag?: string;
+    clickTag?: string | null;
     /**
      * Creative associated with this placement tag. Applicable only when format is PLACEMENT_TAG_TRACKING.
      */
-    creativeId?: string;
+    creativeId?: string | null;
     /**
      * TagData tag format of this tag.
      */
-    format?: string;
+    format?: string | null;
     /**
      * Tag string for serving an ad.
      */
-    impressionTag?: string;
+    impressionTag?: string | null;
   }
   /**
    * Tag Settings
@@ -5792,19 +5792,19 @@ export namespace dfareporting_v3_1 {
     /**
      * Additional key-values to be included in tags. Each key-value pair must be of the form key=value, and pairs must be separated by a semicolon (;). Keys and values must not contain commas. For example, id=2;color=red is a valid value for this field.
      */
-    additionalKeyValues?: string;
+    additionalKeyValues?: string | null;
     /**
      * Whether static landing page URLs should be included in the tags. This setting applies only to placements.
      */
-    includeClickThroughUrls?: boolean;
+    includeClickThroughUrls?: boolean | null;
     /**
      * Whether click-tracking string should be included in the tags.
      */
-    includeClickTracking?: boolean;
+    includeClickTracking?: boolean | null;
     /**
      * Option specifying how keywords are embedded in ad tags. This setting can be used to specify whether keyword placeholders are inserted in placement tags for this site. Publishers can then add keywords to those placeholders.
      */
-    keywordOption?: string;
+    keywordOption?: string | null;
   }
   /**
    * Dynamic and Image Tag Settings.
@@ -5813,11 +5813,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whether dynamic floodlight tags are enabled.
      */
-    dynamicTagEnabled?: boolean;
+    dynamicTagEnabled?: boolean | null;
     /**
      * Whether image tags are enabled.
      */
-    imageTagEnabled?: boolean;
+    imageTagEnabled?: boolean | null;
   }
   /**
    * Contains properties of a targetable remarketing list. Remarketing enables you to create lists of users who have performed specific actions on a site, then target ads to members of those lists. This resource is a read-only view of a remarketing list to be used to faciliate targeting ads to specific lists. Remarketing lists that are owned by your advertisers and those that are shared to your advertisers or account are accessible via this resource. To manage remarketing lists that are owned by your advertisers, use the RemarketingLists resource.
@@ -5826,15 +5826,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Whether this targetable remarketing list is active.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Dimension value for the advertiser ID that owns this targetable remarketing list.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser.
      */
@@ -5842,35 +5842,35 @@ export namespace dfareporting_v3_1 {
     /**
      * Targetable remarketing list description.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Targetable remarketing list ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetableRemarketingList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Number of days that a user should remain in the targetable remarketing list without an impression.
      */
-    lifeSpan?: string;
+    lifeSpan?: string | null;
     /**
      * Number of users currently in the list. This is a read-only field.
      */
-    listSize?: string;
+    listSize?: string | null;
     /**
      * Product from which this targetable remarketing list was originated.
      */
-    listSource?: string;
+    listSource?: string | null;
     /**
      * Name of the targetable remarketing list. Is no greater than 128 characters long.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Subaccount ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
   }
   /**
    * Targetable remarketing list response
@@ -5879,11 +5879,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetableRemarketingListsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Targetable remarketing list collection.
      */
@@ -5896,11 +5896,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this targeting template. This field, if left unset, will be auto-generated on insert and is read-only after insert.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Advertiser ID of this targeting template. This is a required field on insert and is read-only after insert.
      */
-    advertiserId?: string;
+    advertiserId?: string | null;
     /**
      * Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
      */
@@ -5916,7 +5916,7 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this targeting template. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Key-value targeting criteria.
      */
@@ -5924,7 +5924,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetingTemplate&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Language targeting criteria.
      */
@@ -5936,11 +5936,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of this targeting template. This field is required. It must be less than 256 characters long and unique within an advertiser.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Subaccount ID of this targeting template. This field, if left unset, will be auto-generated on insert and is read-only after insert.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
     /**
      * Technology platform targeting criteria.
      */
@@ -5953,11 +5953,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetingTemplatesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Targeting template collection.
      */
@@ -5970,11 +5970,11 @@ export namespace dfareporting_v3_1 {
     /**
      * User-entered value.
      */
-    customHtml?: string;
+    customHtml?: string | null;
     /**
      * Type of browser window for which the backup image of the flash creative can be displayed.
      */
-    targetWindowOption?: string;
+    targetWindowOption?: string | null;
   }
   /**
    * Technology Targeting.
@@ -6012,11 +6012,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Name of the third-party authentication token.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Value of the third-party authentication token. This is a read-only, auto-generated field.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Third-party Tracking URL.
@@ -6025,11 +6025,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Third-party URL type for in-stream video and in-stream audio creatives.
      */
-    thirdPartyUrlType?: string;
+    thirdPartyUrlType?: string | null;
     /**
      * URL for the specified third-party URL type.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Transcode Settings
@@ -6038,11 +6038,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Whitelist of video formats to be served to this placement. Set this list to null or empty to serve all video formats.
      */
-    enabledVideoFormats?: number[];
+    enabledVideoFormats?: number[] | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#transcodeSetting&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and VPAID.
@@ -6051,11 +6051,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Registry used for the Ad ID value.
      */
-    registry?: string;
+    registry?: string | null;
     /**
      * ID value for this creative. Only alphanumeric characters and the following symbols are valid: &quot;_/\-&quot;. Maximum length is 64 characters. Read only when registry is DCM.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * User Defined Variable configuration.
@@ -6064,15 +6064,15 @@ export namespace dfareporting_v3_1 {
     /**
      * Data type for the variable. This is a required field.
      */
-    dataType?: string;
+    dataType?: string | null;
     /**
      * User-friendly name for the variable which will appear in reports. This is a required field, must be less than 64 characters long, and cannot contain the following characters: &quot;&quot;&lt;&gt;&quot;.
      */
-    reportName?: string;
+    reportName?: string | null;
     /**
      * Variable name in the tag. This is a required field.
      */
-    variableType?: string;
+    variableType?: string | null;
   }
   /**
    * Represents a UserProfile resource.
@@ -6081,35 +6081,35 @@ export namespace dfareporting_v3_1 {
     /**
      * The account ID to which this profile belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The account name this profile belongs to.
      */
-    accountName?: string;
+    accountName?: string | null;
     /**
      * The eTag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The kind of resource this is, in this case dfareporting#userProfile.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The unique ID of the user profile.
      */
-    profileId?: string;
+    profileId?: string | null;
     /**
      * The sub account ID this profile belongs to if applicable.
      */
-    subAccountId?: string;
+    subAccountId?: string | null;
     /**
      * The sub account name this profile belongs to if applicable.
      */
-    subAccountName?: string;
+    subAccountName?: string | null;
     /**
      * The user name.
      */
-    userName?: string;
+    userName?: string | null;
   }
   /**
    * Represents the list of user profiles.
@@ -6118,7 +6118,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The eTag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The user profiles returned in this response.
      */
@@ -6126,7 +6126,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The kind of list this is, in this case dfareporting#userProfileList.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Contains properties of auser role, which is used to manage user access.
@@ -6135,27 +6135,27 @@ export namespace dfareporting_v3_1 {
     /**
      * Account ID of this user role. This is a read-only field that can be left blank.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Whether this is a default user role. Default user roles are created by the system for the account/subaccount and cannot be modified or deleted. Each default user role comes with a basic set of preassigned permissions.
      */
-    defaultUserRole?: boolean;
+    defaultUserRole?: boolean | null;
     /**
      * ID of this user role. This is a read-only, auto-generated field.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRole&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this user role. This is a required field. Must be less than 256 characters long. If this user role is under a subaccount, the name must be unique among sites of the same subaccount. Otherwise, this user role is a top-level user role, and the name must be unique among top-level user roles of the same account.
      */
-    name?: string;
+    name?: string | null;
     /**
      * ID of the user role that this user role is based on or copied from. This is a required field.
      */
-    parentUserRoleId?: string;
+    parentUserRoleId?: string | null;
     /**
      * List of permissions associated with this user role.
      */
@@ -6163,7 +6163,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Subaccount ID of this user role. This is a read-only field that can be left blank.
      */
-    subaccountId?: string;
+    subaccountId?: string | null;
   }
   /**
    * Contains properties of a user role permission.
@@ -6172,23 +6172,23 @@ export namespace dfareporting_v3_1 {
     /**
      * Levels of availability for a user role permission.
      */
-    availability?: string;
+    availability?: string | null;
     /**
      * ID of this user role permission.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermission&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this user role permission.
      */
-    name?: string;
+    name?: string | null;
     /**
      * ID of the permission group that this user role permission belongs to.
      */
-    permissionGroupId?: string;
+    permissionGroupId?: string | null;
   }
   /**
    * Represents a grouping of related user role permissions.
@@ -6197,15 +6197,15 @@ export namespace dfareporting_v3_1 {
     /**
      * ID of this user role permission.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroup&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this user role permission group.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * User Role Permission Group List Response
@@ -6214,7 +6214,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroupsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * User role permission group collection.
      */
@@ -6227,7 +6227,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * User role permission collection.
      */
@@ -6240,11 +6240,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolesListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Pagination token to be used for the next list operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * User role collection.
      */
@@ -6257,15 +6257,15 @@ export namespace dfareporting_v3_1 {
     /**
      * File type of the video format.
      */
-    fileType?: string;
+    fileType?: string | null;
     /**
      * ID of the video format.
      */
-    id?: number;
+    id?: number | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormat&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The resolution of this video format.
      */
@@ -6273,7 +6273,7 @@ export namespace dfareporting_v3_1 {
     /**
      * The target bit rate of this video format.
      */
-    targetBitRate?: number;
+    targetBitRate?: number | null;
   }
   /**
    * Video Format List Response
@@ -6282,7 +6282,7 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormatsListResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Video format collection.
      */
@@ -6295,11 +6295,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Duration, as a percentage of video duration. Do not set when offsetSeconds is set. Acceptable values are 0 to 100, inclusive.
      */
-    offsetPercentage?: number;
+    offsetPercentage?: number | null;
     /**
      * Duration, in seconds. Do not set when offsetPercentage is set. Acceptable values are 0 to 86399, inclusive.
      */
-    offsetSeconds?: number;
+    offsetSeconds?: number | null;
   }
   /**
    * Video Settings
@@ -6312,11 +6312,11 @@ export namespace dfareporting_v3_1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoSettings&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Orientation of a video placement. If this value is set, placement will return assets matching the specified orientation.
      */
-    orientation?: string;
+    orientation?: string | null;
     /**
      * Settings for the skippability of video creatives served to this placement. If this object is provided, the creative-level skippable settings will be overridden.
      */

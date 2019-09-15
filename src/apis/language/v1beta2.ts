@@ -128,7 +128,7 @@ export namespace language_v1beta2 {
     /**
      * The encoding type used by the API to calculate offsets.
      */
-    encodingType?: string;
+    encodingType?: string | null;
   }
   /**
    * The entity analysis response message.
@@ -141,7 +141,7 @@ export namespace language_v1beta2 {
     /**
      * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
-    language?: string;
+    language?: string | null;
   }
   /**
    * The entity-level sentiment analysis request message.
@@ -154,7 +154,7 @@ export namespace language_v1beta2 {
     /**
      * The encoding type used by the API to calculate offsets.
      */
-    encodingType?: string;
+    encodingType?: string | null;
   }
   /**
    * The entity-level sentiment analysis response message.
@@ -167,7 +167,7 @@ export namespace language_v1beta2 {
     /**
      * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
-    language?: string;
+    language?: string | null;
   }
   /**
    * The sentiment analysis request message.
@@ -180,7 +180,7 @@ export namespace language_v1beta2 {
     /**
      * The encoding type used by the API to calculate sentence offsets for the sentence sentiment.
      */
-    encodingType?: string;
+    encodingType?: string | null;
   }
   /**
    * The sentiment analysis response message.
@@ -193,7 +193,7 @@ export namespace language_v1beta2 {
     /**
      * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
-    language?: string;
+    language?: string | null;
     /**
      * The sentiment for all the sentences in the document.
      */
@@ -210,7 +210,7 @@ export namespace language_v1beta2 {
     /**
      * The encoding type used by the API to calculate offsets.
      */
-    encodingType?: string;
+    encodingType?: string | null;
   }
   /**
    * The syntax analysis response message.
@@ -219,7 +219,7 @@ export namespace language_v1beta2 {
     /**
      * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
-    language?: string;
+    language?: string | null;
     /**
      * Sentences in the input document.
      */
@@ -240,7 +240,7 @@ export namespace language_v1beta2 {
     /**
      * The encoding type used by the API to calculate offsets.
      */
-    encodingType?: string;
+    encodingType?: string | null;
     /**
      * Required. The enabled features.
      */
@@ -265,7 +265,7 @@ export namespace language_v1beta2 {
     /**
      * The language of the text, which will be the same as the language specified in the request or, if not specified, the automatically-detected language. See Document.language field for more details.
      */
-    language?: string;
+    language?: string | null;
     /**
      * Sentences in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_syntax.
      */
@@ -282,11 +282,11 @@ export namespace language_v1beta2 {
     /**
      * The classifier&#39;s confidence of the category. Number represents how certain the classifier is that this category represents the given text.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The name of the category representing the document, from the [predefined taxonomy](/natural-language/docs/categories).
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * The document classification request message.
@@ -313,11 +313,11 @@ export namespace language_v1beta2 {
     /**
      * Represents the head of this token in the dependency tree. This is the index of the token which has an arc going to this token. The index is the position of the token in the array of tokens returned by the API method. If this token is a root token, then the `head_token_index` is its own index.
      */
-    headTokenIndex?: number;
+    headTokenIndex?: number | null;
     /**
      * The parse label for the token.
      */
-    label?: string;
+    label?: string | null;
   }
   /**
    * ################################################################ #  Represents the input to API methods.
@@ -326,19 +326,19 @@ export namespace language_v1beta2 {
     /**
      * The content of the input in string format. Cloud audit logging exempt since it is based on user data.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The Google Cloud Storage URI where the file content is located. This URI must be of the form: gs://bucket_name/object_name. For more details, see https://cloud.google.com/storage/docs/reference-uris. NOTE: Cloud Storage object versioning is not supported.
      */
-    gcsContentUri?: string;
+    gcsContentUri?: string | null;
     /**
      * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted.&lt;br&gt; [Language Support](/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
      */
-    language?: string;
+    language?: string | null;
     /**
      * Required. If the type is not set or is `TYPE_UNSPECIFIED`, returns an `INVALID_ARGUMENT` error.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a phrase in the text that is a known entity, such as a person, an organization, or location. The API associates information, such as salience and mentions, with entities.
@@ -351,15 +351,15 @@ export namespace language_v1beta2 {
     /**
      * Metadata associated with the entity.  For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`), if they are available. For the metadata associated with other entity types, see the Type table below.
      */
-    metadata?: {[key: string]: string};
+    metadata?: {[key: string]: string} | null;
     /**
      * The representative name for the entity.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The salience score associated with the entity in the [0, 1.0] range.  The salience score for an entity provides information about the importance or centrality of that entity to the entire document text. Scores closer to 0 are less salient, while scores closer to 1.0 are highly salient.
      */
-    salience?: number;
+    salience?: number | null;
     /**
      * For calls to AnalyzeEntitySentiment or if AnnotateTextRequest.Features.extract_entity_sentiment is set to true, this field will contain the aggregate sentiment expressed for this entity in the provided document.
      */
@@ -367,7 +367,7 @@ export namespace language_v1beta2 {
     /**
      * The entity type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a mention for an entity in the text. Currently, proper noun mentions are supported.
@@ -384,7 +384,7 @@ export namespace language_v1beta2 {
     /**
      * The type of the entity mention.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 10
@@ -393,23 +393,23 @@ export namespace language_v1beta2 {
     /**
      * Classify the full document into categories. If this is true, the API will use the default model which classifies into a [predefined taxonomy](/natural-language/docs/categories).
      */
-    classifyText?: boolean;
+    classifyText?: boolean | null;
     /**
      * Extract document-level sentiment.
      */
-    extractDocumentSentiment?: boolean;
+    extractDocumentSentiment?: boolean | null;
     /**
      * Extract entities.
      */
-    extractEntities?: boolean;
+    extractEntities?: boolean | null;
     /**
      * Extract entities and their associated sentiment.
      */
-    extractEntitySentiment?: boolean;
+    extractEntitySentiment?: boolean | null;
     /**
      * Extract syntax information.
      */
-    extractSyntax?: boolean;
+    extractSyntax?: boolean | null;
   }
   /**
    * Represents part of speech information for a token.
@@ -418,51 +418,51 @@ export namespace language_v1beta2 {
     /**
      * The grammatical aspect.
      */
-    aspect?: string;
+    aspect?: string | null;
     /**
      * The grammatical case.
      */
-    case?: string;
+    case?: string | null;
     /**
      * The grammatical form.
      */
-    form?: string;
+    form?: string | null;
     /**
      * The grammatical gender.
      */
-    gender?: string;
+    gender?: string | null;
     /**
      * The grammatical mood.
      */
-    mood?: string;
+    mood?: string | null;
     /**
      * The grammatical number.
      */
-    number?: string;
+    number?: string | null;
     /**
      * The grammatical person.
      */
-    person?: string;
+    person?: string | null;
     /**
      * The grammatical properness.
      */
-    proper?: string;
+    proper?: string | null;
     /**
      * The grammatical reciprocity.
      */
-    reciprocity?: string;
+    reciprocity?: string | null;
     /**
      * The part of speech tag.
      */
-    tag?: string;
+    tag?: string | null;
     /**
      * The grammatical tense.
      */
-    tense?: string;
+    tense?: string | null;
     /**
      * The grammatical voice.
      */
-    voice?: string;
+    voice?: string | null;
   }
   /**
    * Represents a sentence in the input document.
@@ -484,11 +484,11 @@ export namespace language_v1beta2 {
     /**
      * A non-negative number in the [0, +inf) range, which represents the absolute magnitude of sentiment regardless of score (positive or negative).
      */
-    magnitude?: number;
+    magnitude?: number | null;
     /**
      * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive sentiment).
      */
-    score?: number;
+    score?: number | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -497,15 +497,15 @@ export namespace language_v1beta2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Represents an output piece of text.
@@ -514,11 +514,11 @@ export namespace language_v1beta2 {
     /**
      * The API calculates the beginning offset of the content in the original document according to the EncodingType specified in the API request.
      */
-    beginOffset?: number;
+    beginOffset?: number | null;
     /**
      * The content of the output text.
      */
-    content?: string;
+    content?: string | null;
   }
   /**
    * Represents the smallest syntactic building block of the text.
@@ -531,7 +531,7 @@ export namespace language_v1beta2 {
     /**
      * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
      */
-    lemma?: string;
+    lemma?: string | null;
     /**
      * Parts of speech tag for this token.
      */

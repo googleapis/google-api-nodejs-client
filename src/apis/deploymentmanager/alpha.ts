@@ -120,7 +120,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Method regex where this policy will apply.
      */
-    methodMatch?: string;
+    methodMatch?: string | null;
     /**
      * Deployment manager will poll instances for this API resource setting a RUNNING state, and blocking until polling conditions tell whether the resource is completed or failed.
      */
@@ -134,11 +134,11 @@ export namespace deploymentmanager_alpha {
      * The configuration for logging of each type of permission.
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:  { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:foo@gmail.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
@@ -147,11 +147,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Authorization-related information used by Cloud Audit Logging.
@@ -160,14 +160,14 @@ export namespace deploymentmanager_alpha {
     /**
      * The type of the permission that was checked.
      */
-    permissionType?: string;
+    permissionType?: string | null;
   }
   /**
    * Basic Auth used as a credential.
    */
   export interface Schema$BasicAuth {
-    password?: string;
-    user?: string;
+    password?: string | null;
+    user?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -180,11 +180,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * CollectionOverride allows resource handling overrides for specific resources within a BaseType
@@ -193,7 +193,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The collection that identifies this resource within its service.
      */
-    collection?: string;
+    collection?: string | null;
     /**
      * Custom verb method mappings to support unordered list API mappings.
      */
@@ -210,12 +210,12 @@ export namespace deploymentmanager_alpha {
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      */
-    description?: string;
-    id?: string;
+    description?: string | null;
+    id?: string | null;
     /**
      * Output only. Creation timestamp in RFC3339 text format.
      */
-    insertTime?: string;
+    insertTime?: string | null;
     /**
      * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
@@ -223,7 +223,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Name of the composite type, must follow the expression: [a-z]([-a-z0-9_.]{0,61}[a-z0-9])?.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The Operation that most recently ran, or is currently running, on this composite type.
      */
@@ -231,16 +231,16 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Server defined URL for the resource.
      */
-    selfLink?: string;
-    status?: string;
+    selfLink?: string | null;
+    status?: string | null;
     /**
      * Files for the template type.
      */
     templateContents?: Schema$TemplateContents;
   }
   export interface Schema$CompositeTypeLabelEntry {
-    key?: string;
-    value?: string;
+    key?: string | null;
+    value?: string | null;
   }
   /**
    * A response that returns all Composite Types supported by Deployment Manager
@@ -253,7 +253,7 @@ export namespace deploymentmanager_alpha {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A condition to be met.
@@ -262,33 +262,33 @@ export namespace deploymentmanager_alpha {
     /**
      * Trusted attributes supplied by the IAM system.
      */
-    iam?: string;
+    iam?: string | null;
     /**
      * An operator to apply the subject with.
      */
-    op?: string;
+    op?: string | null;
     /**
      * Trusted attributes discharged by the service.
      */
-    svc?: string;
+    svc?: string | null;
     /**
      * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
      */
-    sys?: string;
+    sys?: string | null;
     /**
      * DEPRECATED. Use &#39;values&#39; instead.
      */
-    value?: string;
+    value?: string | null;
     /**
      * The objects of the condition. This is mutually exclusive with &#39;value&#39;.
      */
-    values?: string[];
+    values?: string[] | null;
   }
   export interface Schema$ConfigFile {
     /**
      * The contents of the file.
      */
-    content?: string;
+    content?: string | null;
   }
   /**
    * BaseType that describes a service-backed Type.
@@ -305,7 +305,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Descriptor Url for the this type.
      */
-    descriptorUrl?: string;
+    descriptorUrl?: string | null;
     /**
      * Options to apply when handling any resources in this service.
      */
@@ -326,7 +326,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Specify to use the project default credential, only supported by Deployment.
      */
-    useProjectDefault?: boolean;
+    useProjectDefault?: boolean | null;
   }
   export interface Schema$Deployment {
     /**
@@ -336,16 +336,16 @@ export namespace deploymentmanager_alpha {
     /**
      * An optional user-provided description of the deployment.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Provides a fingerprint to use in requests to modify a deployment, such as update(), stop(), and cancelPreview() requests. A fingerprint is a randomly generated value that must be provided with update(), stop(), and cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.  The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a get() request to a deployment.
      */
-    fingerprint?: string;
-    id?: string;
+    fingerprint?: string | null;
+    id?: string | null;
     /**
      * Output only. Creation timestamp in RFC3339 text format.
      */
-    insertTime?: string;
+    insertTime?: string | null;
     /**
      * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
@@ -353,11 +353,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. URL of the manifest representing the last manifest that was successfully deployed.
      */
-    manifest?: string;
+    manifest?: string | null;
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The Operation that most recently ran, or is currently running, on this deployment.
      */
@@ -369,7 +369,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Server defined URL for the resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * [Input Only] The parameters that define your deployment, including the deployment configuration and relevant templates.
      */
@@ -381,21 +381,21 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Update timestamp in RFC3339 text format.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   export interface Schema$DeploymentLabelEntry {
-    key?: string;
-    value?: string;
+    key?: string | null;
+    value?: string | null;
   }
   export interface Schema$DeploymentOutputsEntry {
-    key?: string;
-    value?: string;
+    key?: string | null;
+    value?: string | null;
   }
   export interface Schema$DeploymentsCancelPreviewRequest {
     /**
      * Specifies a fingerprint for cancelPreview() requests. A fingerprint is a randomly generated value that must be provided in cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
   }
   /**
    * A response containing a partial list of deployments and a page token used to build the next request if the request has been truncated.
@@ -408,13 +408,13 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. A token used to continue a truncated list request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$DeploymentsStopRequest {
     /**
      * Specifies a fingerprint for stop() requests. A fingerprint is a randomly generated value that must be provided in stop() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
   }
   export interface Schema$DeploymentUpdate {
     /**
@@ -424,7 +424,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. An optional user-provided description of the deployment after the current update has been applied.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Output only. Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
@@ -432,21 +432,21 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. URL of the manifest representing the update configuration of this deployment.
      */
-    manifest?: string;
+    manifest?: string | null;
   }
   export interface Schema$DeploymentUpdateLabelEntry {
-    key?: string;
-    value?: string;
+    key?: string | null;
+    value?: string | null;
   }
   export interface Schema$Diagnostic {
     /**
      * JsonPath expression on the resource that if non empty, indicates that this field needs to be extracted as a diagnostic.
      */
-    field?: string;
+    field?: string | null;
     /**
      * Level to record this diagnostic.
      */
-    level?: string;
+    level?: string | null;
   }
   /**
    * Represents an expression text. Example:  title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
@@ -455,19 +455,19 @@ export namespace deploymentmanager_alpha {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   export interface Schema$GlobalSetPolicyRequest {
     /**
@@ -477,7 +477,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Flatten Policy to create a backward compatible wire-format. Deprecated. Use &#39;policy&#39; to specify the etag.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * REQUIRED: The complete policy to be applied to the &#39;resource&#39;. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      */
@@ -487,11 +487,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The contents of the file.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The name of the file.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * InputMapping creates a &#39;virtual&#39; property that will be injected into the properties before sending the request to the underlying API.
@@ -500,19 +500,19 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the field that is going to be injected.
      */
-    fieldName?: string;
+    fieldName?: string | null;
     /**
      * The location where this mapping applies.
      */
-    location?: string;
+    location?: string | null;
     /**
      * Regex to evaluate on method to decide if input applies.
      */
-    methodMatch?: string;
+    methodMatch?: string | null;
     /**
      * A jsonPath expression to select an element.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Specifies what kind of log the caller must write
@@ -542,7 +542,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The log_name to populate in the Cloud Audit Record.
      */
-    logName?: string;
+    logName?: string | null;
   }
   /**
    * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names: - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a token or authority selector is present; or - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples: counter { metric: &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt; increment counter /iam/policy/backend_debug_access_count {iam_principal=[value of IAMContext.principal]}  At this time we do not support multiple field names (though this may be supported in the future).
@@ -551,11 +551,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The field value to attribute.
      */
-    field?: string;
+    field?: string | null;
     /**
      * The metric to update.
      */
-    metric?: string;
+    metric?: string | null;
   }
   /**
    * Write a Data Access (Gin) log
@@ -564,7 +564,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Whether Gin logging should happen in a fail-closed manner at the caller. This is relevant only in the LocalIAM implementation, for now.  NOTE: Logging to Gin in a fail-closed manner is currently unsupported while work is being done to satisfy the requirements of go/345. Currently, setting LOG_FAIL_CLOSED mode will have no effect, but still exists because there is active work being done to support it (b/115874152).
      */
-    logMode?: string;
+    logMode?: string | null;
   }
   export interface Schema$Manifest {
     /**
@@ -574,8 +574,8 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. The fully-expanded configuration file, including any templates and references.
      */
-    expandedConfig?: string;
-    id?: string;
+    expandedConfig?: string | null;
+    id?: string | null;
     /**
      * Output only. The imported files for this manifest.
      */
@@ -583,19 +583,19 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Creation timestamp in RFC3339 text format.
      */
-    insertTime?: string;
+    insertTime?: string | null;
     /**
      * Output only. The YAML layout for this manifest.
      */
-    layout?: string;
+    layout?: string | null;
     /**
      * Output only.  The name of the manifest.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. Self link for the manifest.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * A response containing a partial list of manifests and a page token used to build the next request if the request has been truncated.
@@ -608,7 +608,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. A token used to continue a truncated list request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Deployment Manager will call these methods during the events of creation/deletion/update/get/setIamPolicy
@@ -617,23 +617,23 @@ export namespace deploymentmanager_alpha {
     /**
      * The action identifier for the create method to be used for this collection
      */
-    create?: string;
+    create?: string | null;
     /**
      * The action identifier for the delete method to be used for this collection
      */
-    delete?: string;
+    delete?: string | null;
     /**
      * The action identifier for the get method to be used for this collection
      */
-    get?: string;
+    get?: string | null;
     /**
      * The action identifier for the setIamPolicy method to be used for this collection
      */
-    setIamPolicy?: string;
+    setIamPolicy?: string | null;
     /**
      * The action identifier for the update method to be used for this collection
      */
-    update?: string;
+    update?: string | null;
   }
   /**
    * An Operation resource, used to manage asynchronous API requests. (== resource_for v1.globalOperations ==) (== resource_for beta.globalOperations ==) (== resource_for v1.regionOperations ==) (== resource_for beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (== resource_for beta.zoneOperations ==)
@@ -642,89 +642,89 @@ export namespace deploymentmanager_alpha {
     /**
      * [Output Only] The value of `requestId` if you provided it in the request. Not present otherwise.
      */
-    clientOperationId?: string;
+    clientOperationId?: string | null;
     /**
      * [Deprecated] This field is deprecated.
      */
-    creationTimestamp?: string;
+    creationTimestamp?: string | null;
     /**
      * [Output Only] A textual description of the operation, which is set when the operation is created.
      */
-    description?: string;
+    description?: string | null;
     /**
      * [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * [Output Only] If errors are generated during processing of the operation, this field will be populated.
      */
     error?: {
       errors?: Array<{code?: string; location?: string; message?: string}>;
-    };
+    } | null;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as NOT FOUND.
      */
-    httpErrorMessage?: string;
+    httpErrorMessage?: string | null;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a 404 means the resource was not found.
      */
-    httpErrorStatusCode?: number;
+    httpErrorStatusCode?: number | null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      */
-    id?: string;
+    id?: string | null;
     /**
      * [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
      */
-    insertTime?: string;
+    insertTime?: string | null;
     /**
      * [Output Only] Type of the resource. Always compute#operation for Operation resources.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * [Output Only] Name of the resource.
      */
-    name?: string;
+    name?: string | null;
     /**
      * [Output Only] The type of operation, such as insert, update, or delete, and so on.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
      */
-    progress?: number;
+    progress?: number | null;
     /**
      * [Output Only] The URL of the region where the operation resides. Only available when performing regional operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      */
-    region?: string;
+    region?: string | null;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
      */
-    status?: string;
+    status?: string | null;
     /**
      * [Output Only] An optional textual description of the current status of the operation.
      */
-    statusMessage?: string;
+    statusMessage?: string | null;
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      */
-    targetId?: string;
+    targetId?: string | null;
     /**
      * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      */
-    targetLink?: string;
+    targetLink?: string | null;
     /**
      * [Output Only] User who requested the operation, for example: user@example.com.
      */
-    user?: string;
+    user?: string | null;
     /**
      * [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
      */
@@ -732,11 +732,11 @@ export namespace deploymentmanager_alpha {
       code?: string;
       data?: Array<{key?: string; value?: string}>;
       message?: string;
-    }>;
+    }> | null;
     /**
      * [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * A response containing a partial list of operations and a page token used to build the next request if the request has been truncated.
@@ -745,7 +745,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. A token used to continue a truncated list request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Output only. Operations contained in this list response.
      */
@@ -766,7 +766,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The json path to the field in the resource JSON body into which the resource name should be mapped. Leaving this empty indicates that there should be no mapping performed.
      */
-    nameProperty?: string;
+    nameProperty?: string | null;
     /**
      * Options for how to validate and process properties on a resource.
      */
@@ -787,8 +787,8 @@ export namespace deploymentmanager_alpha {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
-    etag?: string;
-    iamOwned?: boolean;
+    etag?: string | null;
+    iamOwned?: boolean | null;
     /**
      * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
      */
@@ -796,7 +796,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Deprecated.
      */
-    version?: number;
+    version?: number | null;
   }
   export interface Schema$PollingOptions {
     /**
@@ -806,19 +806,19 @@ export namespace deploymentmanager_alpha {
     /**
      * JsonPath expression that determines if the request failed.
      */
-    failCondition?: string;
+    failCondition?: string | null;
     /**
      * JsonPath expression that determines if the request is completed.
      */
-    finishCondition?: string;
+    finishCondition?: string | null;
     /**
      * JsonPath expression that evaluates to string, it indicates where to poll.
      */
-    pollingLink?: string;
+    pollingLink?: string | null;
     /**
      * JsonPath expression, after polling is completed, indicates where to fetch the resource.
      */
-    targetLink?: string;
+    targetLink?: string | null;
   }
   export interface Schema$Resource {
     /**
@@ -828,12 +828,12 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. The evaluated properties of the resource with references expanded. Returned as serialized YAML.
      */
-    finalProperties?: string;
-    id?: string;
+    finalProperties?: string | null;
+    id?: string | null;
     /**
      * Output only. Creation timestamp in RFC3339 text format.
      */
-    insertTime?: string;
+    insertTime?: string | null;
     /**
      * Output only. The last used credential that successfully created/updated the resource.
      */
@@ -841,23 +841,23 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. URL of the manifest representing the current configuration of this resource.
      */
-    manifest?: string;
+    manifest?: string | null;
     /**
      * Output only. The name of the resource as it appears in the YAML config.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The current properties of the resource before any references have been filled in. Returned as serialized YAML.
      */
-    properties?: string;
+    properties?: string | null;
     /**
      * Output only. In case this is an action, it will show the runtimePolicies on which this action will run in the deployment
      */
-    runtimePolicies?: string[];
+    runtimePolicies?: string[] | null;
     /**
      * Output only. The type of the resource, for example compute.v1.instance, or cloudfunctions.v1beta1.function.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Output only. If Deployment Manager is currently updating or previewing an update to this resource, the updated configuration appears here.
      */
@@ -865,11 +865,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Update timestamp in RFC3339 text format.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Output only. The URL of the actual resource.
      */
-    url?: string;
+    url?: string | null;
     /**
      * Output only. If warning messages are generated during processing of this resource, this field will be populated.
      */
@@ -877,7 +877,7 @@ export namespace deploymentmanager_alpha {
       code?: string;
       data?: Array<{key?: string; value?: string}>;
       message?: string;
-    }>;
+    }> | null;
   }
   /**
    * The access controls set on the resource.
@@ -886,7 +886,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The GCP IAM Policy to set on the resource.
      */
-    gcpIamPolicy?: string;
+    gcpIamPolicy?: string | null;
   }
   /**
    * A response containing a partial list of resources and a page token used to build the next request if the request has been truncated.
@@ -895,7 +895,7 @@ export namespace deploymentmanager_alpha {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Resources contained in this list response.
      */
@@ -915,31 +915,31 @@ export namespace deploymentmanager_alpha {
      */
     error?: {
       errors?: Array<{code?: string; location?: string; message?: string}>;
-    };
+    } | null;
     /**
      * Output only. The expanded properties of the resource with reference values expanded. Returned as serialized YAML.
      */
-    finalProperties?: string;
+    finalProperties?: string | null;
     /**
      * Output only. The intent of the resource: PREVIEW, UPDATE, or CANCEL.
      */
-    intent?: string;
+    intent?: string | null;
     /**
      * Output only. URL of the manifest representing the update configuration of this resource.
      */
-    manifest?: string;
+    manifest?: string | null;
     /**
      * Output only. The set of updated properties for this resource, before references are expanded. Returned as serialized YAML.
      */
-    properties?: string;
+    properties?: string | null;
     /**
      * Output only. In case this is an action, it will show the runtimePolicies that this action will have after updating the deployment.
      */
-    runtimePolicies?: string[];
+    runtimePolicies?: string[] | null;
     /**
      * Output only. The state of the resource.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. If warning messages are generated during processing of this resource, this field will be populated.
      */
@@ -947,7 +947,7 @@ export namespace deploymentmanager_alpha {
       code?: string;
       data?: Array<{key?: string; value?: string}>;
       message?: string;
-    }>;
+    }> | null;
   }
   /**
    * A rule to be applied in a Policy.
@@ -956,7 +956,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Required
      */
-    action?: string;
+    action?: string | null;
     /**
      * Additional restrictions that must be met. All conditions must pass for the rule to match.
      */
@@ -964,11 +964,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Human-readable description of the rule.
      */
-    description?: string;
+    description?: string | null;
     /**
      * If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      */
-    ins?: string[];
+    ins?: string[] | null;
     /**
      * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
      */
@@ -976,11 +976,11 @@ export namespace deploymentmanager_alpha {
     /**
      * If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
      */
-    notIns?: string[];
+    notIns?: string[] | null;
     /**
      * A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Service Account used as a credential.
@@ -989,7 +989,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The IAM service account email address like test@myproject.iam.gserviceaccount.com
      */
-    email?: string;
+    email?: string | null;
   }
   export interface Schema$TargetConfiguration {
     /**
@@ -1012,31 +1012,31 @@ export namespace deploymentmanager_alpha {
     /**
      * Which interpreter (python or jinja) should be used during expansion.
      */
-    interpreter?: string;
+    interpreter?: string | null;
     /**
      * The filename of the mainTemplate
      */
-    mainTemplate?: string;
+    mainTemplate?: string | null;
     /**
      * The contents of the template schema.
      */
-    schema?: string;
+    schema?: string | null;
     /**
      * The contents of the main template file.
      */
-    template?: string;
+    template?: string | null;
   }
   export interface Schema$TestPermissionsRequest {
     /**
      * The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   export interface Schema$TestPermissionsResponse {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * A resource type supported by Deployment Manager.
@@ -1049,12 +1049,12 @@ export namespace deploymentmanager_alpha {
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      */
-    description?: string;
-    id?: string;
+    description?: string | null;
+    id?: string | null;
     /**
      * Output only. Creation timestamp in RFC3339 text format.
      */
-    insertTime?: string;
+    insertTime?: string | null;
     /**
      * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
@@ -1062,7 +1062,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Name of the type.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The Operation that most recently ran, or is currently running, on this type.
      */
@@ -1070,7 +1070,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Server defined URL for the resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * Type Information. Contains detailed information about a composite type, base type, or base type with specific collection.
@@ -1079,19 +1079,19 @@ export namespace deploymentmanager_alpha {
     /**
      * The description of the type.
      */
-    description?: string;
+    description?: string | null;
     /**
      * For swagger 2.0 externalDocs field will be used. For swagger 1.2 this field will be empty.
      */
-    documentationLink?: string;
+    documentationLink?: string | null;
     /**
      * Output only. Type of the output. Always deploymentManager#TypeInfo for TypeInfo.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The base type or composite type name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * For base types with a collection, we return a schema and documentation link For template types, we return only a schema
      */
@@ -1099,25 +1099,25 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Self link for the type provider.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The title on the API descriptor URL provided.
      */
-    title?: string;
+    title?: string | null;
   }
   export interface Schema$TypeInfoSchemaInfo {
     /**
      * The properties that this composite type or base type collection accept as input, represented as a json blob, format is: JSON Schema Draft V4
      */
-    input?: string;
+    input?: string | null;
     /**
      * The properties that this composite type or base type collection exposes as output, these properties can be used for references, represented as json blob, format is: JSON Schema Draft V4
      */
-    output?: string;
+    output?: string | null;
   }
   export interface Schema$TypeLabelEntry {
-    key?: string;
-    value?: string;
+    key?: string | null;
+    value?: string | null;
   }
   /**
    * A type provider that describes a service-backed Type.
@@ -1134,19 +1134,19 @@ export namespace deploymentmanager_alpha {
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Descriptor Url for the this type provider.
      */
-    descriptorUrl?: string;
+    descriptorUrl?: string | null;
     /**
      * Output only. Unique identifier for the resource defined by the server.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Output only. Creation timestamp in RFC3339 text format.
      */
-    insertTime?: string;
+    insertTime?: string | null;
     /**
      * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
@@ -1154,7 +1154,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The Operation that most recently ran, or is currently running, on this type provider.
      */
@@ -1166,11 +1166,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Self link for the type provider.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   export interface Schema$TypeProviderLabelEntry {
-    key?: string;
-    value?: string;
+    key?: string | null;
+    value?: string | null;
   }
   /**
    * A response that returns all Type Providers supported by Deployment Manager
@@ -1179,7 +1179,7 @@ export namespace deploymentmanager_alpha {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Output only. A list of resource type providers supported by Deployment Manager.
      */
@@ -1189,7 +1189,7 @@ export namespace deploymentmanager_alpha {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Output only. A list of resource type info.
      */
@@ -1202,7 +1202,7 @@ export namespace deploymentmanager_alpha {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Output only. A list of resource types supported by Deployment Manager.
      */
@@ -1215,11 +1215,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Customize how deployment manager will validate the resource against schema errors.
      */
-    schemaValidation?: string;
+    schemaValidation?: string | null;
     /**
      * Specify what to do with extra properties when executing a request.
      */
-    undeclaredProperties?: string;
+    undeclaredProperties?: string | null;
   }
 
   export class Resource$Compositetypes {

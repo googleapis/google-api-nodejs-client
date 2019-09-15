@@ -108,27 +108,27 @@ export namespace tagmanager_v2 {
     /**
      * The Account ID uniquely identifies the GTM Account.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The fingerprint of the GTM Account as computed at storage time. This value is recomputed whenever the account is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * Account display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * GTM Account&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Whether the account shares data anonymously with Google and others. This flag enables benchmarking by sharing your data in an anonymous form. Google will remove all identifiable information about your website, combine the data with hundreds of other anonymous sites and report aggregate trends in the benchmarking service.
      */
-    shareData?: boolean;
+    shareData?: boolean | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
   }
   /**
    * Defines the Google Tag Manager Account access permissions.
@@ -137,7 +137,7 @@ export namespace tagmanager_v2 {
     /**
      * Whether the user has no access, user access, or admin access to an account.
      */
-    permission?: string;
+    permission?: string | null;
   }
   /**
    * Built-in variables are a special category of variables that are pre-created and non-customizable. They provide common functionality like accessing propeties of the gtm data layer, monitoring clicks, or accessing elements of a page URL.
@@ -146,27 +146,27 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * Name of the built-in variable to be used to refer to the built-in variable.
      */
-    name?: string;
+    name?: string | null;
     /**
      * GTM BuiltInVariable&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Type of built-in variable.
      */
-    type?: string;
+    type?: string | null;
     /**
      * GTM Workspace ID.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
   }
   /**
    * Represents a predicate.
@@ -179,7 +179,7 @@ export namespace tagmanager_v2 {
     /**
      * The type of operator for this condition.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a Google Tag Manager Container, which specifies the platform tags will run on, manages workspaces, and retains container versions.
@@ -188,43 +188,43 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The Container ID uniquely identifies the GTM Container.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * List of domain names associated with the Container.
      */
-    domainName?: string[];
+    domainName?: string[] | null;
     /**
      * The fingerprint of the GTM Container as computed at storage time. This value is recomputed whenever the account is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * Container display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Container Notes.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * GTM Container&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Container Public ID.
      */
-    publicId?: string;
+    publicId?: string | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * List of Usage Contexts for the Container. Valid values include: web, android, or ios.
      */
-    usageContext?: string[];
+    usageContext?: string[] | null;
   }
   /**
    * Defines the Google Tag Manager Container access permissions.
@@ -233,11 +233,11 @@ export namespace tagmanager_v2 {
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * List of Container permissions.
      */
-    permission?: string;
+    permission?: string | null;
   }
   /**
    * Represents a Google Tag Manager Container Version.
@@ -246,7 +246,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The built-in variables in the container that this version was taken from.
      */
@@ -258,11 +258,11 @@ export namespace tagmanager_v2 {
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * The Container Version ID uniquely identifies the GTM Container Version.
      */
-    containerVersionId?: string;
+    containerVersionId?: string | null;
     /**
      * The custom templates in the container that this version was taken from.
      */
@@ -270,15 +270,15 @@ export namespace tagmanager_v2 {
     /**
      * A value of true indicates this container version has been deleted.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * Container version description.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The fingerprint of the GTM Container Version as computed at storage time. This value is recomputed whenever the container version is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * The folders in the container that this version was taken from.
      */
@@ -286,11 +286,11 @@ export namespace tagmanager_v2 {
     /**
      * Container version display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * GTM ContainerVersions&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * The tags in the container that this version was taken from.
      */
@@ -298,7 +298,7 @@ export namespace tagmanager_v2 {
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * The triggers in the container that this version was taken from.
      */
@@ -319,55 +319,55 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * The Container Version ID uniquely identifies the GTM Container Version.
      */
-    containerVersionId?: string;
+    containerVersionId?: string | null;
     /**
      * A value of true indicates this container version has been deleted.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * Container version display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Number of custom templates in the container version.
      */
-    numCustomTemplates?: string;
+    numCustomTemplates?: string | null;
     /**
      * Number of macros in the container version.
      */
-    numMacros?: string;
+    numMacros?: string | null;
     /**
      * Number of rules in the container version.
      */
-    numRules?: string;
+    numRules?: string | null;
     /**
      * Number of tags in the container version.
      */
-    numTags?: string;
+    numTags?: string | null;
     /**
      * Number of triggers in the container version.
      */
-    numTriggers?: string;
+    numTriggers?: string | null;
     /**
      * Number of variables in the container version.
      */
-    numVariables?: string;
+    numVariables?: string | null;
     /**
      * Number of zones in the container version.
      */
-    numZones?: string;
+    numZones?: string | null;
     /**
      * GTM Container Versions&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
   }
   export interface Schema$CreateBuiltInVariableResponse {
     /**
@@ -382,11 +382,11 @@ export namespace tagmanager_v2 {
     /**
      * The name of the container version to be created.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The notes of the container version to be created.
      */
-    notes?: string;
+    notes?: string | null;
   }
   /**
    * Create container versions response.
@@ -395,7 +395,7 @@ export namespace tagmanager_v2 {
     /**
      * Compiler errors or not.
      */
-    compilerError?: boolean;
+    compilerError?: boolean | null;
     /**
      * The container version created.
      */
@@ -403,7 +403,7 @@ export namespace tagmanager_v2 {
     /**
      * Auto generated workspace path created as a result of version creation. This field should only be populated if the created version was not a quick preview.
      */
-    newWorkspacePath?: string;
+    newWorkspacePath?: string | null;
     /**
      * Whether version creation failed when syncing the workspace to the latest container version.
      */
@@ -416,39 +416,39 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * The fingerprint of the GTM Custom Template as computed at storage time. This value is recomputed whenever the template is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * Custom Template display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * GTM Custom Template&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * The custom template in text format.
      */
-    templateData?: string;
+    templateData?: string | null;
     /**
      * The Custom Template ID uniquely identifies the GTM custom template.
      */
-    templateId?: string;
+    templateId?: string | null;
     /**
      * GTM Workspace ID.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
   }
   /**
    * A workspace entity that may represent a tag, trigger, variable, or folder in addition to its status in the workspace.
@@ -457,7 +457,7 @@ export namespace tagmanager_v2 {
     /**
      * Represents how the entity has been changed in the workspace.
      */
-    changeStatus?: string;
+    changeStatus?: string | null;
     /**
      * The Folder being represented by the entity.
      */
@@ -482,11 +482,11 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The environment authorization code.
      */
-    authorizationCode?: string;
+    authorizationCode?: string | null;
     /**
      * The last update time-stamp for the authorization code.
      */
@@ -494,51 +494,51 @@ export namespace tagmanager_v2 {
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * Represents a link to a container version.
      */
-    containerVersionId?: string;
+    containerVersionId?: string | null;
     /**
      * The environment description. Can be set or changed only on USER type environments.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Whether or not to enable debug by default for the environment.
      */
-    enableDebug?: boolean;
+    enableDebug?: boolean | null;
     /**
      * GTM Environment ID uniquely identifies the GTM Environment.
      */
-    environmentId?: string;
+    environmentId?: string | null;
     /**
      * The fingerprint of the GTM environment as computed at storage time. This value is recomputed whenever the environment is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * The environment display name. Can be set or changed only on USER type environments.
      */
-    name?: string;
+    name?: string | null;
     /**
      * GTM Environment&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * The type of this environment.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Default preview page url for the environment.
      */
-    url?: string;
+    url?: string | null;
     /**
      * Represents a link to a quick preview of a workspace.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
   }
   /**
    * Represents a Google Tag Manager Folder.
@@ -547,39 +547,39 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * The fingerprint of the GTM Folder as computed at storage time. This value is recomputed whenever the folder is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * The Folder ID uniquely identifies the GTM Folder.
      */
-    folderId?: string;
+    folderId?: string | null;
     /**
      * Folder display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * User notes on how to apply this folder in the container.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * GTM Folder&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * GTM Workspace ID.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
   }
   /**
    * Represents a Google Tag Manager Folder&#39;s contents.
@@ -588,7 +588,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of tags inside the folder.
      */
@@ -626,7 +626,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * List Containers Response.
@@ -639,7 +639,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * List container versions response.
@@ -652,7 +652,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A list of enabled built-in variables.
@@ -665,7 +665,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * List Environments Response.
@@ -678,7 +678,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * List Folders Response.
@@ -691,7 +691,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * List Tags Response.
@@ -700,7 +700,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * All GTM Tags of a GTM Container.
      */
@@ -710,7 +710,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * All GTM Custom Templates of a GTM Container.
      */
@@ -723,7 +723,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * All GTM Triggers of a GTM Container.
      */
@@ -736,7 +736,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * All GTM UserPermissions of a GTM Account.
      */
@@ -749,7 +749,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * All GTM Variables of a GTM Container.
      */
@@ -762,7 +762,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * All Workspaces of a GTM Container.
      */
@@ -772,7 +772,7 @@ export namespace tagmanager_v2 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * All GTM Zones of a GTM Container.
      */
@@ -798,7 +798,7 @@ export namespace tagmanager_v2 {
     /**
      * The named key that uniquely identifies a parameter. Required for top-level parameters, as well as map values. Ignored for list values.
      */
-    key?: string;
+    key?: string | null;
     /**
      * This list parameter&#39;s parameters (keys will be ignored).
      */
@@ -810,11 +810,11 @@ export namespace tagmanager_v2 {
     /**
      * The parameter type. Valid values are:  - boolean: The value represents a boolean, represented as &#39;true&#39; or &#39;false&#39;  - integer: The value represents a 64-bit signed integer value, in base 10  - list: A list of parameters should be specified  - map: A map of parameters should be specified  - template: The value represents any text; this can include variable references (even variable references that might return non-string types)  - trigger_reference: The value represents a trigger, represented as the trigger id
      */
-    type?: string;
+    type?: string | null;
     /**
      * A parameter&#39;s value (may contain variable references such as &quot;{{myVariable}}&quot;) as appropriate to the specified type.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Publish container version response.
@@ -823,7 +823,7 @@ export namespace tagmanager_v2 {
     /**
      * Compiler errors or not.
      */
-    compilerError?: boolean;
+    compilerError?: boolean | null;
     /**
      * The container version created.
      */
@@ -836,7 +836,7 @@ export namespace tagmanager_v2 {
     /**
      * Were there compiler errors or not.
      */
-    compilerError?: boolean;
+    compilerError?: boolean | null;
     /**
      * The quick previewed container version.
      */
@@ -853,7 +853,7 @@ export namespace tagmanager_v2 {
     /**
      * Whether the built-in variable is enabled after reversion.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
   }
   /**
    * The result of reverting folder changes in a workspace.
@@ -916,11 +916,11 @@ export namespace tagmanager_v2 {
     /**
      * If true, fire the main tag if and only if the setup tag fires successfully. If false, fire the main tag regardless of setup tag firing status.
      */
-    stopOnSetupFailure?: boolean;
+    stopOnSetupFailure?: boolean | null;
     /**
      * The name of the setup tag.
      */
-    tagName?: string;
+    tagName?: string | null;
   }
   /**
    * The status of a workspace after synchronization.
@@ -929,11 +929,11 @@ export namespace tagmanager_v2 {
     /**
      * Synchornization operation detected a merge conflict.
      */
-    mergeConflict?: boolean;
+    mergeConflict?: boolean | null;
     /**
      * An error occurred during the synchronization operation.
      */
-    syncError?: boolean;
+    syncError?: boolean | null;
   }
   /**
    * A response after synchronizing the workspace to the latest container version.
@@ -955,43 +955,43 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Blocking rule IDs. If any of the listed rules evaluate to true, the tag will not fire.
      */
-    blockingRuleId?: string[];
+    blockingRuleId?: string[] | null;
     /**
      * Blocking trigger IDs. If any of the listed triggers evaluate to true, the tag will not fire.
      */
-    blockingTriggerId?: string[];
+    blockingTriggerId?: string[] | null;
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * The fingerprint of the GTM Tag as computed at storage time. This value is recomputed whenever the tag is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * Firing rule IDs. A tag will fire when any of the listed rules are true and all of its blockingRuleIds (if any specified) are false.
      */
-    firingRuleId?: string[];
+    firingRuleId?: string[] | null;
     /**
      * Firing trigger IDs. A tag will fire when any of the listed triggers are true and all of its blockingTriggerIds (if any specified) are false.
      */
-    firingTriggerId?: string[];
+    firingTriggerId?: string[] | null;
     /**
      * If set to true, this tag will only fire in the live environment (e.g. not in preview or debug mode).
      */
-    liveOnly?: boolean;
+    liveOnly?: boolean | null;
     /**
      * Tag display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * User notes on how to apply this tag in the container.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * The tag&#39;s parameters.
      */
@@ -999,15 +999,15 @@ export namespace tagmanager_v2 {
     /**
      * Parent folder id.
      */
-    parentFolderId?: string;
+    parentFolderId?: string | null;
     /**
      * GTM Tag&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Indicates whether the tag is paused, which prevents the tag from firing.
      */
-    paused?: boolean;
+    paused?: boolean | null;
     /**
      * User defined numeric priority of the tag. Tags are fired asynchronously in order of priority. Tags with higher numeric value fire first. A tag&#39;s priority can be a positive or negative value. The default value is 0.
      */
@@ -1015,11 +1015,11 @@ export namespace tagmanager_v2 {
     /**
      * The end timestamp in milliseconds to schedule a tag.
      */
-    scheduleEndMs?: string;
+    scheduleEndMs?: string | null;
     /**
      * The start timestamp in milliseconds to schedule a tag.
      */
-    scheduleStartMs?: string;
+    scheduleStartMs?: string | null;
     /**
      * The list of setup tags. Currently we only allow one.
      */
@@ -1027,15 +1027,15 @@ export namespace tagmanager_v2 {
     /**
      * Option to fire this tag.
      */
-    tagFiringOption?: string;
+    tagFiringOption?: string | null;
     /**
      * The Tag ID uniquely identifies the GTM Tag.
      */
-    tagId?: string;
+    tagId?: string | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * The list of teardown tags. Currently we only allow one.
      */
@@ -1043,11 +1043,11 @@ export namespace tagmanager_v2 {
     /**
      * GTM Tag Type.
      */
-    type?: string;
+    type?: string | null;
     /**
      * GTM Workspace ID.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
   }
   /**
    * Represents a tag that fires after another tag in order to tear down dependencies.
@@ -1056,11 +1056,11 @@ export namespace tagmanager_v2 {
     /**
      * If true, fire the teardown tag if and only if the main tag fires successfully. If false, fire the teardown tag regardless of main tag firing status.
      */
-    stopTeardownOnFailure?: boolean;
+    stopTeardownOnFailure?: boolean | null;
     /**
      * The name of the teardown tag.
      */
-    tagName?: string;
+    tagName?: string | null;
   }
   /**
    * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one.  All minutes are 60 seconds long. Leap seconds are &quot;smeared&quot; so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear).  The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.  # Examples  Example 1: Compute Timestamp from POSIX `time()`.  Timestamp timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);  Example 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv; gettimeofday(&amp;tv, NULL);  Timestamp timestamp; timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);  Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.  FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks = (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;  // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z. Timestamp timestamp; timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL)); timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));  Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.  long millis = System.currentTimeMillis();  Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000) .setNanos((int) ((millis % 1000) * 1000000)).build();    Example 5: Compute Timestamp from current time in Python.  timestamp = Timestamp() timestamp.GetCurrentTime()  # JSON Mapping  In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is &quot;{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z&quot; where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The &quot;Z&quot; suffix indicates the timezone (&quot;UTC&quot;); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by &quot;Z&quot;) when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset).  For example, &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on January 15, 2017.  In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec &#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;. Likewise, in Java, one can use the Joda Time&#39;s [`ISODateTimeFormat.dateTime()`]( http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D ) to obtain a formatter capable of generating timestamps in this format.
@@ -1069,11 +1069,11 @@ export namespace tagmanager_v2 {
     /**
      * Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
      */
-    nanos?: number;
+    nanos?: number | null;
     /**
      * Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
      */
-    seconds?: string;
+    seconds?: string | null;
   }
   /**
    * Represents a Google Tag Manager Trigger
@@ -1082,7 +1082,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Used in the case of auto event tracking.
      */
@@ -1094,7 +1094,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * A visibility trigger minimum continuous visible time (in milliseconds). Only valid for AMP Visibility trigger.
      */
@@ -1114,7 +1114,7 @@ export namespace tagmanager_v2 {
     /**
      * The fingerprint of the GTM Trigger as computed at storage time. This value is recomputed whenever the trigger is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * List of integer percentage values for scroll triggers. The trigger will fire when each percentage is reached when the view is scrolled horizontally. Only valid for AMP scroll triggers.
      */
@@ -1138,11 +1138,11 @@ export namespace tagmanager_v2 {
     /**
      * Trigger display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * User notes on how to apply this trigger in the container.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * Additional parameters.
      */
@@ -1150,11 +1150,11 @@ export namespace tagmanager_v2 {
     /**
      * Parent folder id.
      */
-    parentFolderId?: string;
+    parentFolderId?: string | null;
     /**
      * GTM Trigger&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * A click trigger CSS selector (i.e. &quot;a&quot;, &quot;button&quot; etc.). Only valid for AMP Click trigger.
      */
@@ -1162,7 +1162,7 @@ export namespace tagmanager_v2 {
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * A visibility trigger minimum total visible time (in milliseconds). Only valid for AMP Visibility trigger.
      */
@@ -1170,11 +1170,11 @@ export namespace tagmanager_v2 {
     /**
      * The Trigger ID uniquely identifies the GTM Trigger.
      */
-    triggerId?: string;
+    triggerId?: string | null;
     /**
      * Defines the data layer event that causes this trigger.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Globally unique id of the trigger that auto-generates this (a Form Submit, Link Click or Timer listener) if any. Used to make incompatible auto-events work together with trigger filtering based on trigger ids. This value is populated during output generation since the tags implied by triggers don&#39;t exist until then. Only valid for Form Submit, Link Click and Timer triggers.
      */
@@ -1206,7 +1206,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Workspace ID.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
   }
   /**
    * Represents a user&#39;s permissions to an account and its container.
@@ -1219,7 +1219,7 @@ export namespace tagmanager_v2 {
     /**
      * The Account ID uniquely identifies the GTM Account.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * GTM Container access permissions.
      */
@@ -1227,11 +1227,11 @@ export namespace tagmanager_v2 {
     /**
      * User&#39;s email address.
      */
-    emailAddress?: string;
+    emailAddress?: string | null;
     /**
      * GTM UserPermission&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
   }
   /**
    * Represents a Google Tag Manager Variable.
@@ -1240,23 +1240,23 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * For mobile containers only: A list of trigger IDs for disabling conditional variables; the variable is enabled if one of the enabling trigger is true while all the disabling trigger are false. Treated as an unordered set.
      */
-    disablingTriggerId?: string[];
+    disablingTriggerId?: string[] | null;
     /**
      * For mobile containers only: A list of trigger IDs for enabling conditional variables; the variable is enabled if one of the enabling triggers is true while all the disabling triggers are false. Treated as an unordered set.
      */
-    enablingTriggerId?: string[];
+    enablingTriggerId?: string[] | null;
     /**
      * The fingerprint of the GTM Variable as computed at storage time. This value is recomputed whenever the variable is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * Option to convert a variable value to other value.
      */
@@ -1264,11 +1264,11 @@ export namespace tagmanager_v2 {
     /**
      * Variable display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * User notes on how to apply this variable in the container.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * The variable&#39;s parameters.
      */
@@ -1276,41 +1276,41 @@ export namespace tagmanager_v2 {
     /**
      * Parent folder id.
      */
-    parentFolderId?: string;
+    parentFolderId?: string | null;
     /**
      * GTM Variable&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * The end timestamp in milliseconds to schedule a variable.
      */
-    scheduleEndMs?: string;
+    scheduleEndMs?: string | null;
     /**
      * The start timestamp in milliseconds to schedule a variable.
      */
-    scheduleStartMs?: string;
+    scheduleStartMs?: string | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * GTM Variable Type.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The Variable ID uniquely identifies the GTM Variable.
      */
-    variableId?: string;
+    variableId?: string | null;
     /**
      * GTM Workspace ID.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
   }
   export interface Schema$VariableFormatValue {
     /**
      * The option to convert a string-type variable value to either lowercase or uppercase.
      */
-    caseConversionType?: string;
+    caseConversionType?: string | null;
     /**
      * The value to convert if a variable value is false.
      */
@@ -1335,35 +1335,35 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * Workspace description.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The fingerprint of the GTM Workspace as computed at storage time. This value is recomputed whenever the workspace is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * Workspace display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * GTM Workspace&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * The Workspace ID uniquely identifies the GTM Workspace.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
   }
   /**
    * Represents a Google Tag Manager Zone&#39;s contents.
@@ -1372,7 +1372,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * This Zone&#39;s boundary.
      */
@@ -1384,27 +1384,27 @@ export namespace tagmanager_v2 {
     /**
      * GTM Container ID.
      */
-    containerId?: string;
+    containerId?: string | null;
     /**
      * The fingerprint of the GTM Zone as computed at storage time. This value is recomputed whenever the zone is modified.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * Zone display name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * User notes on how to apply this zone in the container.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * GTM Zone&#39;s API relative path.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Auto generated link to the tag manager UI
      */
-    tagManagerUrl?: string;
+    tagManagerUrl?: string | null;
     /**
      * This Zone&#39;s type restrictions.
      */
@@ -1412,11 +1412,11 @@ export namespace tagmanager_v2 {
     /**
      * GTM Workspace ID.
      */
-    workspaceId?: string;
+    workspaceId?: string | null;
     /**
      * The Zone ID uniquely identifies the GTM Zone.
      */
-    zoneId?: string;
+    zoneId?: string | null;
   }
   /**
    * Represents a Zone&#39;s boundaries.
@@ -1429,7 +1429,7 @@ export namespace tagmanager_v2 {
     /**
      * Custom evaluation trigger IDs. A zone will evaluate its boundary conditions when any of the listed triggers are true.
      */
-    customEvaluationTriggerId?: string[];
+    customEvaluationTriggerId?: string[] | null;
   }
   /**
    * Represents a child container of a Zone.
@@ -1438,11 +1438,11 @@ export namespace tagmanager_v2 {
     /**
      * The zone&#39;s nickname for the child container.
      */
-    nickname?: string;
+    nickname?: string | null;
     /**
      * The child container&#39;s public id.
      */
-    publicId?: string;
+    publicId?: string | null;
   }
   /**
    * Represents a Zone&#39;s type restrictions.
@@ -1451,11 +1451,11 @@ export namespace tagmanager_v2 {
     /**
      * True if type restrictions have been enabled for this Zone.
      */
-    enable?: boolean;
+    enable?: boolean | null;
     /**
      * List of type public ids that have been whitelisted for use in this Zone.
      */
-    whitelistedTypeId?: string[];
+    whitelistedTypeId?: string[] | null;
   }
 
   export class Resource$Accounts {

@@ -208,7 +208,7 @@ export namespace dlp_v2 {
     /**
      * Absolute number of the row from the beginning of the table at the time of scanning.
      */
-    rowNumber?: string;
+    rowNumber?: string | null;
     /**
      * Complete BigQuery table reference.
      */
@@ -229,12 +229,12 @@ export namespace dlp_v2 {
     /**
      * Max number of rows to scan. If the table has more rows than this value, the rest of the rows are omitted. If not set, or if set to 0, all rows will be scanned. Only one of rows_limit and rows_limit_percent can be specified. Cannot be used in conjunction with TimespanConfig.
      */
-    rowsLimit?: string;
+    rowsLimit?: string | null;
     /**
      * Max percentage of rows to scan. The rest are omitted. The number of rows scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of rows_limit and rows_limit_percent can be specified. Cannot be used in conjunction with TimespanConfig.
      */
-    rowsLimitPercent?: number;
-    sampleMethod?: string;
+    rowsLimitPercent?: number | null;
+    sampleMethod?: string | null;
     /**
      * Complete BigQuery table reference.
      */
@@ -247,15 +247,15 @@ export namespace dlp_v2 {
     /**
      * Dataset ID of the table.
      */
-    datasetId?: string;
+    datasetId?: string | null;
     /**
      * The Google Cloud Platform project ID of the project containing the table. If omitted, project ID is inferred from the API call.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Name of the table.
      */
-    tableId?: string;
+    tableId?: string | null;
   }
   /**
    * Bounding box encompassing detected text within an image.
@@ -264,19 +264,19 @@ export namespace dlp_v2 {
     /**
      * Height of the bounding box in pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * Left coordinate of the bounding box. (0,0) is upper left.
      */
-    left?: number;
+    left?: number | null;
     /**
      * Top coordinate of the bounding box. (0,0) is upper left.
      */
-    top?: number;
+    top?: number | null;
     /**
      * Width of the bounding box in pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * Bucket is represented as a range, along with replacement values.
@@ -311,11 +311,11 @@ export namespace dlp_v2 {
     /**
      * Content data to inspect or redact.
      */
-    data?: string;
+    data?: string | null;
     /**
      * The type of data stored in the bytes string. Default will be TEXT_UTF8.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * The request message for canceling a DLP job.
@@ -334,11 +334,11 @@ export namespace dlp_v2 {
     /**
      * Total number of values in this bucket.
      */
-    bucketSize?: string;
+    bucketSize?: string | null;
     /**
      * Total number of distinct values in this bucket.
      */
-    bucketValueCount?: string;
+    bucketValueCount?: string | null;
     /**
      * Sample of value frequencies in this bucket. The total number of values returned per bucket is capped at 20.
      */
@@ -346,11 +346,11 @@ export namespace dlp_v2 {
     /**
      * Lower bound on the value frequency of the values in this bucket.
      */
-    valueFrequencyLowerBound?: string;
+    valueFrequencyLowerBound?: string | null;
     /**
      * Upper bound on the value frequency of the values in this bucket.
      */
-    valueFrequencyUpperBound?: string;
+    valueFrequencyUpperBound?: string | null;
   }
   /**
    * Result of the categorical stats computation.
@@ -372,22 +372,22 @@ export namespace dlp_v2 {
     /**
      * Character to mask the sensitive values&amp;mdash;for example, &quot;*&quot; for an alphabetic string such as name, or &quot;0&quot; for a numeric string such as ZIP code or credit card number. String must have length 1. If not supplied, we will default to &quot;*&quot; for strings, 0 for digits.
      */
-    maskingCharacter?: string;
+    maskingCharacter?: string | null;
     /**
      * Number of characters to mask. If not set, all matching chars will be masked. Skipped characters do not count towards this tally.
      */
-    numberToMask?: number;
+    numberToMask?: number | null;
     /**
      * Mask characters in reverse order. For example, if `masking_character` is &#39;0&#39;, number_to_mask is 14, and `reverse_order` is false, then 1234-5678-9012-3456 -&gt; 00000000000000-3456 If `masking_character` is &#39;*&#39;, `number_to_mask` is 3, and `reverse_order` is true, then 12345 -&gt; 12***
      */
-    reverseOrder?: boolean;
+    reverseOrder?: boolean | null;
   }
   /**
    * Characters to skip when doing deidentification of a value. These will be left alone and skipped.
    */
   export interface Schema$GooglePrivacyDlpV2CharsToIgnore {
-    charactersToSkip?: string;
-    commonCharactersToIgnore?: string;
+    charactersToSkip?: string | null;
+    commonCharactersToIgnore?: string | null;
   }
   /**
    * Message representing a set of files in Cloud Storage.
@@ -396,7 +396,7 @@ export namespace dlp_v2 {
     /**
      * The url, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing wildcard in the path is allowed.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Options defining a file or a set of files within a Google Cloud Storage bucket.
@@ -405,11 +405,11 @@ export namespace dlp_v2 {
     /**
      * Max number of bytes to scan from a file. If a scanned file&#39;s size is bigger than this value then the rest of the bytes are omitted. Only one of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      */
-    bytesLimitPerFile?: string;
+    bytesLimitPerFile?: string | null;
     /**
      * Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      */
-    bytesLimitPerFilePercent?: number;
+    bytesLimitPerFilePercent?: number | null;
     /**
      * The set of one or more files to scan.
      */
@@ -417,12 +417,12 @@ export namespace dlp_v2 {
     /**
      * Limits the number of files to scan to this percentage of the input FileSet. Number of files scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0.
      */
-    filesLimitPercent?: number;
+    filesLimitPercent?: number | null;
     /**
      * List of file type groups to include in the scan. If empty, all files are scanned and available data format processors are applied. In addition, the binary content of the selected files is always scanned as well.
      */
-    fileTypes?: string[];
-    sampleMethod?: string;
+    fileTypes?: string[] | null;
+    sampleMethod?: string | null;
   }
   /**
    * Message representing a single file or path in Cloud Storage.
@@ -431,7 +431,7 @@ export namespace dlp_v2 {
     /**
      * A url representing a file or path (no wildcards) in Cloud Storage. Example: gs://[BUCKET_NAME]/dictionary.txt
      */
-    path?: string;
+    path?: string | null;
   }
   /**
    * Message representing a set of files in a Cloud Storage bucket. Regular expressions are used to allow fine-grained control over which files in the bucket to include.  Included files are those that match at least one item in `include_regex` and do not match any items in `exclude_regex`. Note that a file that matches items from both lists will _not_ be included. For a match to occur, the entire file path (i.e., everything in the url after the bucket name) must match the regular expression.  For example, given the input `{bucket_name: &quot;mybucket&quot;, include_regex: [&quot;directory1/.*&quot;], exclude_regex: [&quot;directory1/excluded.*&quot;]}`:  * `gs://mybucket/directory1/myfile` will be included * `gs://mybucket/directory1/directory2/myfile` will be included (`.*` matches across `/`) * `gs://mybucket/directory0/directory1/myfile` will _not_ be included (the full path doesn&#39;t match any items in `include_regex`) * `gs://mybucket/directory1/excludedfile` will _not_ be included (the path matches an item in `exclude_regex`)  If `include_regex` is left empty, it will match all files by default (this is equivalent to setting `include_regex: [&quot;.*&quot;]`).  Some other common use cases:  * `{bucket_name: &quot;mybucket&quot;, exclude_regex: [&quot;.*\.pdf&quot;]}` will include all files in `mybucket` except for .pdf files * `{bucket_name: &quot;mybucket&quot;, include_regex: [&quot;directory/[^/]+&quot;]}` will include all files directly under `gs://mybucket/directory/`, without matching across `/`
@@ -440,15 +440,15 @@ export namespace dlp_v2 {
     /**
      * The name of a Cloud Storage bucket. Required.
      */
-    bucketName?: string;
+    bucketName?: string | null;
     /**
      * A list of regular expressions matching file paths to exclude. All files in the bucket that match at least one of these regular expressions will be excluded from the scan.  Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
      */
-    excludeRegex?: string[];
+    excludeRegex?: string[] | null;
     /**
      * A list of regular expressions matching file paths to include. All files in the bucket that match at least one of these regular expressions will be included in the set of files, except for those that also match an item in `exclude_regex`. Leaving this field empty will match all files by default (this is equivalent to including `.*` in the list).  Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
      */
-    includeRegex?: string[];
+    includeRegex?: string[] | null;
   }
   /**
    * Represents a color in the RGB color space.
@@ -457,15 +457,15 @@ export namespace dlp_v2 {
     /**
      * The amount of blue in the color as a value in the interval [0, 1].
      */
-    blue?: number;
+    blue?: number | null;
     /**
      * The amount of green in the color as a value in the interval [0, 1].
      */
-    green?: number;
+    green?: number | null;
     /**
      * The amount of red in the color as a value in the interval [0, 1].
      */
-    red?: number;
+    red?: number | null;
   }
   /**
    * The field type of `value` and `field` do not need to match to be considered equal, but not all comparisons are possible. EQUAL_TO and NOT_EQUAL_TO attempt to compare even with incompatible types, but all other comparisons are invalid with incompatible types. A `value` of type:  - `string` can be compared against all other types - `boolean` can only be compared against other booleans - `integer` can be compared against doubles or a string if the string value can be parsed as an integer. - `double` can be compared against integers or a string if the string can be parsed as a double. - `Timestamp` can be compared against strings in RFC 3339 date string format. - `TimeOfDay` can be compared against timestamps and strings in the format of &#39;HH:mm:ss&#39;.  If we fail to compare do to type mismatch, a warning will be given and the condition will evaluate to false.
@@ -478,7 +478,7 @@ export namespace dlp_v2 {
     /**
      * Operator used to compare the field or infoType to the value. [required]
      */
-    operator?: string;
+    operator?: string | null;
     /**
      * Value to compare against. [Required, except for `EXISTS` tests.]
      */
@@ -505,7 +505,7 @@ export namespace dlp_v2 {
     /**
      * String data to inspect or redact.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Findings container location data.
@@ -514,15 +514,15 @@ export namespace dlp_v2 {
     /**
      * Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows:  * BigQuery tables:  `&lt;project_id&gt;:&lt;dataset_id&gt;.&lt;table_id&gt;` * Cloud Storage files: `gs://&lt;bucket&gt;/&lt;path&gt;` * Datastore namespace: &lt;namespace&gt;  Nested names could be absent if the embedded object has no string identifier (for an example an image contained within a document).
      */
-    containerName?: string;
+    containerName?: string | null;
     /**
      * Findings container modification timestamp, if applicable. For Google Cloud Storage contains last file modification timestamp. For BigQuery table contains last_modified_time property. For Datastore - not populated.
      */
-    containerTimestamp?: string;
+    containerTimestamp?: string | null;
     /**
      * Findings container version, if available (&quot;generation&quot; for Google Cloud Storage).
      */
-    containerVersion?: string;
+    containerVersion?: string | null;
     /**
      * Location data for document files.
      */
@@ -547,7 +547,7 @@ export namespace dlp_v2 {
     /**
      * The template id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
      */
-    templateId?: string;
+    templateId?: string | null;
   }
   /**
    * Request message for CreateDlpJobRequest. Used to initiate long running jobs such as calculating risk metrics or inspecting Google Cloud Storage.
@@ -557,7 +557,7 @@ export namespace dlp_v2 {
     /**
      * The job id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
      */
-    jobId?: string;
+    jobId?: string | null;
     riskJob?: Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig;
   }
   /**
@@ -571,7 +571,7 @@ export namespace dlp_v2 {
     /**
      * The template id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
      */
-    templateId?: string;
+    templateId?: string | null;
   }
   /**
    * Request message for CreateJobTrigger.
@@ -584,7 +584,7 @@ export namespace dlp_v2 {
     /**
      * The trigger id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
      */
-    triggerId?: string;
+    triggerId?: string | null;
   }
   /**
    * Request message for CreateStoredInfoType.
@@ -597,7 +597,7 @@ export namespace dlp_v2 {
     /**
      * The storedInfoType ID can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
      */
-    storedInfoTypeId?: string;
+    storedInfoTypeId?: string | null;
   }
   /**
    * Pseudonymization method that generates deterministic encryption for the given input. Outputs a base64 encoded representation of the encrypted output. Uses AES-SIV based on the RFC https://tools.ietf.org/html/rfc5297.
@@ -637,7 +637,7 @@ export namespace dlp_v2 {
    * Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/dlp/docs/pseudonymization to learn more.  Note: We recommend using  CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig {
-    commonAlphabet?: string;
+    commonAlphabet?: string | null;
     /**
      * The &#39;tweak&#39;, a context may be used for higher security since the same identifier in two different contexts won&#39;t be given the same surrogate. If the context is not set, a default tweak will be used.  If the context is set but:  1. there is no record present when transforming a given value or 1. the field is not present when transforming a given value,  a default tweak will be used.  Note that case (1) is expected when an `InfoTypeTransformation` is applied to both structured and non-structured `ContentItem`s. Currently, the referenced field may be of value type integer or string.  The tweak is constructed as a sequence of bytes in big endian byte order such that:  - a 64 bit integer is encoded followed by a single byte of value 1 - a string is encoded in UTF-8 format followed by a single byte of value 2
      */
@@ -649,11 +649,11 @@ export namespace dlp_v2 {
     /**
      * This is supported by mapping these to the alphanumeric characters that the FFX mode natively supports. This happens before/after encryption/decryption. Each character listed must appear only once. Number of characters must be in the range [2, 62]. This must be encoded as ASCII. The order of characters does not matter.
      */
-    customAlphabet?: string;
+    customAlphabet?: string | null;
     /**
      * The native way to select the alphabet. Must be in the range [2, 62].
      */
-    radix?: number;
+    radix?: number | null;
     /**
      * The custom infoType to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom infoType followed by the number of characters comprising the surrogate. The following scheme defines the format: info_type_name(surrogate_character_count):surrogate  For example, if the name of custom infoType is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom infoType [`SurrogateType`](/dlp/docs/reference/rest/v2/InspectConfig#surrogatetype). This facilitates reversal of the surrogate when it occurs in free text.  In order for inspection to work properly, the name of this infoType must not occur naturally anywhere in your data; otherwise, inspection may find a surrogate that does not correspond to an actual identifier. Therefore, choose your custom infoType name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE
      */
@@ -674,7 +674,7 @@ export namespace dlp_v2 {
     /**
      * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching.
      */
-    exclusionType?: string;
+    exclusionType?: string | null;
     /**
      * CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one of existing infoTypes and that infoType is specified in `InspectContent.info_types` field. Specifying the latter adds findings to the one detected by the system. If built-in info type is not specified in `InspectContent.info_types` list then the name is treated as a custom info type.
      */
@@ -682,7 +682,7 @@ export namespace dlp_v2 {
     /**
      * Likelihood to return for this CustomInfoType. This base value can be altered by a detection rule if the finding meets the criteria specified by the rule. Defaults to `VERY_LIKELY` if not specified.
      */
-    likelihood?: string;
+    likelihood?: string | null;
     /**
      * Regular expression based CustomInfoType.
      */
@@ -733,11 +733,11 @@ export namespace dlp_v2 {
     /**
      * For example, -5 means shift date to at most 5 days back in the past. [Required]
      */
-    lowerBoundDays?: number;
+    lowerBoundDays?: number | null;
     /**
      * Range of shift in days. Actual shift will be selected at random within this range (inclusive ends). Negative means shift to earlier in time. Must not be more than 365250 days (1000 years) each direction.  For example, 3 means shift date to at most 3 days into the future. [Required]
      */
-    upperBoundDays?: number;
+    upperBoundDays?: number | null;
   }
   /**
    * Message for a date time object. e.g. 2018-01-01, 5th August.
@@ -747,7 +747,7 @@ export namespace dlp_v2 {
      * One or more of the following must be set. All fields are optional, but when set must be valid date or time values.
      */
     date?: Schema$GoogleTypeDate;
-    dayOfWeek?: string;
+    dayOfWeek?: string | null;
     time?: Schema$GoogleTypeTimeOfDay;
     timeZone?: Schema$GooglePrivacyDlpV2TimeZone;
   }
@@ -775,7 +775,7 @@ export namespace dlp_v2 {
     /**
      * Optional template to use. Any configuration directly specified in deidentify_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
-    deidentifyTemplateName?: string;
+    deidentifyTemplateName?: string | null;
     /**
      * Configuration for the inspector. Items specified here will override the template referenced by the inspect_template_name argument.
      */
@@ -783,7 +783,7 @@ export namespace dlp_v2 {
     /**
      * Optional template to use. Any configuration directly specified in inspect_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
-    inspectTemplateName?: string;
+    inspectTemplateName?: string | null;
     /**
      * The item to de-identify. Will be treated as text.
      */
@@ -791,7 +791,7 @@ export namespace dlp_v2 {
     /**
      * The geographic location to process de-identification. Reserved for future extensions.
      */
-    location?: string;
+    location?: string | null;
   }
   /**
    * Results of de-identifying a ContentItem.
@@ -813,7 +813,7 @@ export namespace dlp_v2 {
     /**
      * The creation timestamp of a inspectTemplate, output only field.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * ///////////// // The core content of the template  // ///////////////
      */
@@ -821,19 +821,19 @@ export namespace dlp_v2 {
     /**
      * Short description (max 256 chars).
      */
-    description?: string;
+    description?: string | null;
     /**
      * Display name (max 256 chars).
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The template name. Output only.  The template will have one of the following formats: `projects/PROJECT_ID/deidentifyTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/deidentifyTemplates/TEMPLATE_ID`
      */
-    name?: string;
+    name?: string | null;
     /**
      * The last update timestamp of a inspectTemplate, output only field.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * δ-presence metric, used to estimate how likely it is for an attacker to figure out that one given individual appears in a de-identified dataset. Similarly to the k-map metric, we cannot compute δ-presence exactly without knowing the attack dataset, so we use a statistical model instead.
@@ -850,7 +850,7 @@ export namespace dlp_v2 {
     /**
      * ISO 3166-1 alpha-2 region code to use in the statistical modeling. Required if no column is tagged with a region-specific InfoType (like US_ZIP_5) or a region code.
      */
-    regionCode?: string;
+    regionCode?: string | null;
   }
   /**
    * A DeltaPresenceEstimationHistogramBucket message with the following values:   min_probability: 0.1   max_probability: 0.2   frequency: 42 means that there are 42 records for which δ is in [0.1, 0.2). An important particular case is when min_probability = max_probability = 1: then, every individual who shares this quasi-identifier combination is in the dataset.
@@ -859,11 +859,11 @@ export namespace dlp_v2 {
     /**
      * Number of records within these probability bounds.
      */
-    bucketSize?: string;
+    bucketSize?: string | null;
     /**
      * Total number of distinct quasi-identifier tuple values in this bucket.
      */
-    bucketValueCount?: string;
+    bucketValueCount?: string | null;
     /**
      * Sample of quasi-identifier tuple values in this bucket. The total number of classes returned per bucket is capped at 20.
      */
@@ -871,11 +871,11 @@ export namespace dlp_v2 {
     /**
      * Always greater than or equal to min_probability.
      */
-    maxProbability?: number;
+    maxProbability?: number | null;
     /**
      * Between 0 and 1.
      */
-    minProbability?: number;
+    minProbability?: number | null;
   }
   /**
    * A tuple of values for the quasi-identifier columns.
@@ -884,7 +884,7 @@ export namespace dlp_v2 {
     /**
      * The estimated probability that a given individual sharing these quasi-identifier values is in the dataset. This value, typically called δ, is the ratio between the number of records in the dataset with these quasi-identifier values, and the total number of individuals (inside *and* outside the dataset) with these quasi-identifier values. For example, if there are 15 individuals in the dataset who share the same quasi-identifier values, and an estimated 100 people in the entire population with these values, then δ is 0.15.
      */
-    estimatedProbability?: number;
+    estimatedProbability?: number | null;
     /**
      * The quasi-identifier values.
      */
@@ -928,11 +928,11 @@ export namespace dlp_v2 {
     /**
      * Time when the job was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Time when the job finished.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * A stream of errors encountered running the job.
      */
@@ -944,11 +944,11 @@ export namespace dlp_v2 {
     /**
      * If created by a job trigger, the resource name of the trigger that instantiated the job.
      */
-    jobTriggerName?: string;
+    jobTriggerName?: string | null;
     /**
      * The server-assigned name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Results from analyzing risk of a data source.
      */
@@ -956,15 +956,15 @@ export namespace dlp_v2 {
     /**
      * Time when the job started.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * State of a job.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The type of job.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Location of a finding within a document.
@@ -973,7 +973,7 @@ export namespace dlp_v2 {
     /**
      * Offset of the line, from the beginning of the file, where the finding is located.
      */
-    fileOffset?: string;
+    fileOffset?: string | null;
   }
   /**
    * An entity in a dataset is a field or set of fields that correspond to a single person. For example, in medical records the `EntityId` might be a patient identifier, or for financial records it might be an account identifier. This message is used when generalizations or analysis must take into account that multiple rows correspond to the same entity.
@@ -992,7 +992,7 @@ export namespace dlp_v2 {
     /**
      * The times the error occurred.
      */
-    timestamps?: string[];
+    timestamps?: string[] | null;
   }
   /**
    * List of exclude infoTypes.
@@ -1018,7 +1018,7 @@ export namespace dlp_v2 {
     /**
      * How the rule is applied, see MatchingType documentation for details.
      */
-    matchingType?: string;
+    matchingType?: string | null;
     /**
      * Regular expression which defines the rule.
      */
@@ -1032,7 +1032,7 @@ export namespace dlp_v2 {
     /**
      * The operator to apply to the result of conditions. Default and currently only supported value is `AND`.
      */
-    logicalOperator?: string;
+    logicalOperator?: string | null;
   }
   /**
    * General identifier of a data field in a storage service.
@@ -1041,7 +1041,7 @@ export namespace dlp_v2 {
     /**
      * Name describing the field.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * The transformation to apply to the field.
@@ -1075,7 +1075,7 @@ export namespace dlp_v2 {
     /**
      * The Cloud Storage url of the file(s) to scan, in the format `gs://&lt;bucket&gt;/&lt;path&gt;`. Trailing wildcard in the path is allowed.  If the url ends in a trailing slash, the bucket or directory represented by the url will be scanned non-recursively (content in sub-directories will not be scanned). This means that `gs://mybucket/` is equivalent to `gs://mybucket/x, and `gs://mybucket/directory/` is equivalent to `gs://mybucket/directory/x.  Exactly one of `url` or `regex_file_set` must be set.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Represents a piece of potentially sensitive content.
@@ -1084,7 +1084,7 @@ export namespace dlp_v2 {
     /**
      * Timestamp when finding was detected.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The type of content that might have been found. Provided if `excluded_types` is false.
      */
@@ -1092,7 +1092,7 @@ export namespace dlp_v2 {
     /**
      * Confidence of how likely it is that the `info_type` is correct.
      */
-    likelihood?: string;
+    likelihood?: string | null;
     /**
      * Where the content was found.
      */
@@ -1100,7 +1100,7 @@ export namespace dlp_v2 {
     /**
      * The content that was found. Even if the content is not textual, it may be converted to a textual representation here. Provided if `include_quote` is true and the finding is less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes in length, the quote may be omitted.
      */
-    quote?: string;
+    quote?: string | null;
     /**
      * Contains data parsed from quotes. Only populated if include_quote was set to true and a supported infoType was requested. Currently supported infoTypes: DATE, DATE_OF_BIRTH and TIME.
      */
@@ -1114,11 +1114,11 @@ export namespace dlp_v2 {
     /**
      * Max number of findings that will be returned for each item scanned. When set within `InspectDataSourceRequest`, the maximum returned is 2000 regardless if this is set higher. When set within `InspectContentRequest`, this field is ignored.
      */
-    maxFindingsPerItem?: number;
+    maxFindingsPerItem?: number | null;
     /**
      * Max number of findings that will be returned per request/job. When set within `InspectContentRequest`, the maximum returned is 2000 regardless if this is set higher.
      */
-    maxFindingsPerRequest?: number;
+    maxFindingsPerRequest?: number | null;
   }
   /**
    * Buckets values based on fixed size ranges. The Bucketing transformation can provide all of this functionality, but requires more configuration. This message is provided as a convenience to the user for simple bucketing strategies.  The transformed value will be a hyphenated string of &lt;lower_bound&gt;-&lt;upper_bound&gt;, i.e if lower_bound = 10 and upper_bound = 20 all values that are within this bucket will be replaced with &quot;10-20&quot;.  This can be used on data of type: double, long.  If the bound Value type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing.  See https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
@@ -1127,7 +1127,7 @@ export namespace dlp_v2 {
     /**
      * Size of each bucket (except for minimum and maximum buckets). So if `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60, 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works. [Required].
      */
-    bucketSize?: number;
+    bucketSize?: number | null;
     /**
      * Lower bound value of buckets. All values less than `lower_bound` are grouped together into a single bucket; for example if `lower_bound` = 10, then all values less than 10 are replaced with the value “-10”. [Required].
      */
@@ -1174,7 +1174,7 @@ export namespace dlp_v2 {
     /**
      * If true, all text found in the image, regardless whether it matches an info_type, is redacted. Only one should be provided.
      */
-    redactAllText?: boolean;
+    redactAllText?: boolean | null;
     /**
      * The color to use when redacting content from an image. If not specified, the default is black.
      */
@@ -1187,7 +1187,7 @@ export namespace dlp_v2 {
     /**
      * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. InfoType names should conform to the pattern [a-zA-Z0-9_]{1,64}.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * InfoType description.
@@ -1196,19 +1196,19 @@ export namespace dlp_v2 {
     /**
      * Description of the infotype. Translated when language is provided in the request.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Human readable form of the infoType name.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Internal name of the infoType.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Which parts of the API supports this InfoType.
      */
-    supportedBy?: string[];
+    supportedBy?: string[] | null;
   }
   /**
    * Max findings configuration per infoType, per content item or long running DlpJob.
@@ -1221,7 +1221,7 @@ export namespace dlp_v2 {
     /**
      * Max findings limit for the given infoType.
      */
-    maxFindings?: number;
+    maxFindings?: number | null;
   }
   /**
    * Statistics regarding a specific InfoType.
@@ -1230,7 +1230,7 @@ export namespace dlp_v2 {
     /**
      * Number of findings for this infoType.
      */
-    count?: string;
+    count?: string | null;
     /**
      * The type of finding this stat is for.
      */
@@ -1265,7 +1265,7 @@ export namespace dlp_v2 {
     /**
      * List of options defining data content to scan. If empty, text, images, and other content will be included.
      */
-    contentOptions?: string[];
+    contentOptions?: string[] | null;
     /**
      * CustomInfoTypes provided by the user. See https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
      */
@@ -1273,11 +1273,11 @@ export namespace dlp_v2 {
     /**
      * When true, excludes type information of the findings.
      */
-    excludeInfoTypes?: boolean;
+    excludeInfoTypes?: boolean | null;
     /**
      * When true, a contextual quote from the data that triggered a finding is included in the response; see Finding.quote.
      */
-    includeQuote?: boolean;
+    includeQuote?: boolean | null;
     /**
      * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/dlp/docs/infotypes-reference.  When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.  The special InfoType name &quot;ALL_BASIC&quot; can be used to trigger all detectors, but may change over time as new InfoTypes are added. If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference.
      */
@@ -1286,7 +1286,7 @@ export namespace dlp_v2 {
     /**
      * Only returns findings equal or above this threshold. The default is POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.
      */
-    minLikelihood?: string;
+    minLikelihood?: string | null;
     /**
      * Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end, other rules are executed in the order they are specified for each info type.
      */
@@ -1303,7 +1303,7 @@ export namespace dlp_v2 {
     /**
      * Optional template to use. Any configuration directly specified in inspect_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
-    inspectTemplateName?: string;
+    inspectTemplateName?: string | null;
     /**
      * The item to inspect.
      */
@@ -1311,7 +1311,7 @@ export namespace dlp_v2 {
     /**
      * The geographic location to process content inspection. Reserved for future extensions.
      */
-    location?: string;
+    location?: string | null;
   }
   /**
    * Results of inspecting an item.
@@ -1373,7 +1373,7 @@ export namespace dlp_v2 {
     /**
      * If provided, will be used as the default for all values in InspectConfig. `inspect_config` will be merged into the values persisted as part of the template.
      */
-    inspectTemplateName?: string;
+    inspectTemplateName?: string | null;
     /**
      * The data to scan.
      */
@@ -1390,7 +1390,7 @@ export namespace dlp_v2 {
     /**
      * If true, then this item might have more findings than were returned, and the findings returned are an arbitrary subset of all findings. The findings list might be truncated because the input items were too large, or because the server reached the maximum amount of resources allowed for a single API call. For best results, divide the input into smaller batches.
      */
-    findingsTruncated?: boolean;
+    findingsTruncated?: boolean | null;
   }
   /**
    * The inspectTemplate contains a configuration (set of types of sensitive data to be detected) to be used anywhere you otherwise would normally specify InspectConfig. See https://cloud.google.com/dlp/docs/concepts-templates to learn more.
@@ -1399,15 +1399,15 @@ export namespace dlp_v2 {
     /**
      * The creation timestamp of a inspectTemplate, output only field.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Short description (max 256 chars).
      */
-    description?: string;
+    description?: string | null;
     /**
      * Display name (max 256 chars).
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The core content of the template. Configuration of the scanning process.
      */
@@ -1415,11 +1415,11 @@ export namespace dlp_v2 {
     /**
      * The template name. Output only.  The template will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
      */
-    name?: string;
+    name?: string | null;
     /**
      * The last update timestamp of a inspectTemplate, output only field.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Enable email notification to project owners and editors on jobs&#39;s completion/failure.
@@ -1432,15 +1432,15 @@ export namespace dlp_v2 {
     /**
      * The creation timestamp of a triggeredJob, output only field.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * User provided description (max 256 chars)
      */
-    description?: string;
+    description?: string | null;
     /**
      * Display name (max 100 chars)
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * A stream of errors encountered when the trigger was activated. Repeated errors may result in the JobTrigger automatically being paused. Will return the last 100 errors. Whenever the JobTrigger is modified this list will be cleared. Output only field.
      */
@@ -1449,15 +1449,15 @@ export namespace dlp_v2 {
     /**
      * The timestamp of the last time this trigger executed, output only field.
      */
-    lastRunTime?: string;
+    lastRunTime?: string | null;
     /**
      * Unique resource name for the triggeredJob, assigned by the service when the triggeredJob is created, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A status for this trigger. [required]
      */
-    status?: string;
+    status?: string | null;
     /**
      * A list of triggers which will be OR&#39;ed together. Only one in the list needs to trigger for a job to be started. The list may contain only a single Schedule trigger and must have at least one object.
      */
@@ -1465,7 +1465,7 @@ export namespace dlp_v2 {
     /**
      * The last update timestamp of a triggeredJob, output only field.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * k-anonymity metric, used for analysis of reidentification risk.
@@ -1487,7 +1487,7 @@ export namespace dlp_v2 {
     /**
      * Size of the equivalence class, for example number of rows with the above set of values.
      */
-    equivalenceClassSize?: string;
+    equivalenceClassSize?: string | null;
     /**
      * Set of values defining the equivalence class. One value per quasi-identifier column in the original KAnonymity metric message. The order is always the same as the original request.
      */
@@ -1497,11 +1497,11 @@ export namespace dlp_v2 {
     /**
      * Total number of equivalence classes in this bucket.
      */
-    bucketSize?: string;
+    bucketSize?: string | null;
     /**
      * Total number of distinct equivalence classes in this bucket.
      */
-    bucketValueCount?: string;
+    bucketValueCount?: string | null;
     /**
      * Sample of equivalence classes in this bucket. The total number of classes returned per bucket is capped at 20.
      */
@@ -1509,11 +1509,11 @@ export namespace dlp_v2 {
     /**
      * Lower bound on the size of the equivalence classes in this bucket.
      */
-    equivalenceClassSizeLowerBound?: string;
+    equivalenceClassSizeLowerBound?: string | null;
     /**
      * Upper bound on the size of the equivalence classes in this bucket.
      */
-    equivalenceClassSizeUpperBound?: string;
+    equivalenceClassSizeUpperBound?: string | null;
   }
   /**
    * Result of the k-anonymity computation.
@@ -1544,7 +1544,7 @@ export namespace dlp_v2 {
     /**
      * The name of the kind.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Reidentifiability metric. This corresponds to a risk model similar to what is called &quot;journalist risk&quot; in the literature, except the attack dataset is statistically modeled instead of being perfectly known. This can be done using publicly available data (like the US Census), or using a custom statistical model (indicated as one or several BigQuery tables), or by extrapolating from the distribution of values in the input dataset. A column with a semantic tag attached.
@@ -1561,7 +1561,7 @@ export namespace dlp_v2 {
     /**
      * ISO 3166-1 alpha-2 region code to use in the statistical modeling. Required if no column is tagged with a region-specific InfoType (like US_ZIP_5) or a region code.
      */
-    regionCode?: string;
+    regionCode?: string | null;
   }
   /**
    * A KMapEstimationHistogramBucket message with the following values:   min_anonymity: 3   max_anonymity: 5   frequency: 42 means that there are 42 records whose quasi-identifier values correspond to 3, 4 or 5 people in the overlying population. An important particular case is when min_anonymity = max_anonymity = 1: the frequency field then corresponds to the number of uniquely identifiable records.
@@ -1570,11 +1570,11 @@ export namespace dlp_v2 {
     /**
      * Number of records within these anonymity bounds.
      */
-    bucketSize?: string;
+    bucketSize?: string | null;
     /**
      * Total number of distinct quasi-identifier tuple values in this bucket.
      */
-    bucketValueCount?: string;
+    bucketValueCount?: string | null;
     /**
      * Sample of quasi-identifier tuple values in this bucket. The total number of classes returned per bucket is capped at 20.
      */
@@ -1582,11 +1582,11 @@ export namespace dlp_v2 {
     /**
      * Always greater than or equal to min_anonymity.
      */
-    maxAnonymity?: string;
+    maxAnonymity?: string | null;
     /**
      * Always positive.
      */
-    minAnonymity?: string;
+    minAnonymity?: string | null;
   }
   /**
    * A tuple of values for the quasi-identifier columns.
@@ -1595,7 +1595,7 @@ export namespace dlp_v2 {
     /**
      * The estimated anonymity for these quasi-identifier values.
      */
-    estimatedAnonymity?: string;
+    estimatedAnonymity?: string | null;
     /**
      * The quasi-identifier values.
      */
@@ -1617,11 +1617,11 @@ export namespace dlp_v2 {
     /**
      * The resource name of the KMS CryptoKey to use for unwrapping. [required]
      */
-    cryptoKeyName?: string;
+    cryptoKeyName?: string | null;
     /**
      * The wrapped data crypto key. [required]
      */
-    wrappedKey?: string;
+    wrappedKey?: string | null;
   }
   /**
    * Configuration for a custom dictionary created from a data source of any size up to the maximum size defined in the [limits](https://cloud.google.com/dlp/limits) page. The artifacts of dictionary creation are stored in the specified Google Cloud Storage location. Consider using `CustomInfoType.Dictionary` for smaller dictionaries that satisfy the size requirements.
@@ -1647,7 +1647,7 @@ export namespace dlp_v2 {
     /**
      * Approximate number of distinct phrases in the dictionary.
      */
-    approxNumPhrases?: string;
+    approxNumPhrases?: string | null;
   }
   /**
    * l-diversity metric, used for analysis of reidentification risk.
@@ -1669,11 +1669,11 @@ export namespace dlp_v2 {
     /**
      * Size of the k-anonymity equivalence class.
      */
-    equivalenceClassSize?: string;
+    equivalenceClassSize?: string | null;
     /**
      * Number of distinct sensitive values in this equivalence class.
      */
-    numDistinctSensitiveValues?: string;
+    numDistinctSensitiveValues?: string | null;
     /**
      * Quasi-identifier values defining the k-anonymity equivalence class. The order is always the same as the original request.
      */
@@ -1687,11 +1687,11 @@ export namespace dlp_v2 {
     /**
      * Total number of equivalence classes in this bucket.
      */
-    bucketSize?: string;
+    bucketSize?: string | null;
     /**
      * Total number of distinct equivalence classes in this bucket.
      */
-    bucketValueCount?: string;
+    bucketValueCount?: string | null;
     /**
      * Sample of equivalence classes in this bucket. The total number of classes returned per bucket is capped at 20.
      */
@@ -1699,11 +1699,11 @@ export namespace dlp_v2 {
     /**
      * Lower bound on the sensitive value frequencies of the equivalence classes in this bucket.
      */
-    sensitiveValueFrequencyLowerBound?: string;
+    sensitiveValueFrequencyLowerBound?: string | null;
     /**
      * Upper bound on the sensitive value frequencies of the equivalence classes in this bucket.
      */
-    sensitiveValueFrequencyUpperBound?: string;
+    sensitiveValueFrequencyUpperBound?: string | null;
   }
   /**
    * Result of the l-diversity computation.
@@ -1721,11 +1721,11 @@ export namespace dlp_v2 {
     /**
      * Set the likelihood of a finding to a fixed value.
      */
-    fixedLikelihood?: string;
+    fixedLikelihood?: string | null;
     /**
      * Increase or decrease the likelihood by the specified number of levels. For example, if a finding would be `POSSIBLE` without the detection rule and `relative_likelihood` is 1, then it is upgraded to `LIKELY`, while a value of -1 would downgrade it to `UNLIKELY`. Likelihood may never drop below `VERY_UNLIKELY` or exceed `VERY_LIKELY`, so applying an adjustment of 1 followed by an adjustment of -1 when base likelihood is `VERY_LIKELY` will result in a final likelihood of `LIKELY`.
      */
-    relativeLikelihood?: number;
+    relativeLikelihood?: number | null;
   }
   /**
    * Response message for ListDeidentifyTemplates.
@@ -1738,7 +1738,7 @@ export namespace dlp_v2 {
     /**
      * If the next page is available then the next page token to be used in following ListDeidentifyTemplates request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for listing DLP jobs.
@@ -1751,7 +1751,7 @@ export namespace dlp_v2 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Request for the list of infoTypes.
@@ -1760,11 +1760,11 @@ export namespace dlp_v2 {
     /**
      * Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Response to the ListInfoTypes request.
@@ -1786,7 +1786,7 @@ export namespace dlp_v2 {
     /**
      * If the next page is available then the next page token to be used in following ListInspectTemplates request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for ListJobTriggers.
@@ -1799,7 +1799,7 @@ export namespace dlp_v2 {
     /**
      * If the next page is available then the next page token to be used in following ListJobTriggers request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for ListStoredInfoTypes.
@@ -1808,7 +1808,7 @@ export namespace dlp_v2 {
     /**
      * If the next page is available then the next page token to be used in following ListStoredInfoTypes request.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of storedInfoTypes, up to page_size in ListStoredInfoTypesRequest.
      */
@@ -1864,7 +1864,7 @@ export namespace dlp_v2 {
     /**
      * Schema used for writing the findings for Inspect jobs. This field is only used for Inspect and must be unspecified for Risk jobs. Columns are derived from the `Finding` object. If appending to an existing table, any columns from the predefined schema that are missing will be added. No columns in the existing table will be deleted.  If unspecified, then all available columns will be used for a new table or an (existing) table with no schema, and no changes will be made to an existing table that has a schema.
      */
-    outputSchema?: string;
+    outputSchema?: string | null;
     /**
      * Store findings in an existing table or a new table in an existing dataset. If table_id is not set a new one will be generated for you with the following format: dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for generating the date details.  For Inspect, each column in an existing output table must have the same name, type, and mode of a field in the `Finding` object.  For Risk, an existing output table should be the output of a previous Risk analysis job run on the same source table, with the same privacy metric and quasi-identifiers. Risk jobs that analyze the same table but compute a different privacy metric, or use different sets of quasi-identifiers, cannot store their results in the same table.
      */
@@ -1877,11 +1877,11 @@ export namespace dlp_v2 {
     /**
      * If not empty, the ID of the namespace to which the entities belong.
      */
-    namespaceId?: string;
+    namespaceId?: string | null;
     /**
      * The ID of the project to which the entities belong.
      */
-    projectId?: string;
+    projectId?: string | null;
   }
   /**
    * A (kind, ID/name) pair used to construct a key path.  If either name or ID is set, the element is complete. If neither is set, the element is incomplete.
@@ -1890,15 +1890,15 @@ export namespace dlp_v2 {
     /**
      * The auto-allocated ID of the entity. Never equal to zero. Values less than zero are discouraged and may not be supported in the future.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of the entity. A kind matching regex `__.*__` is reserved/read-only. A kind must not contain more than 1500 bytes when UTF-8 encoded. Cannot be `&quot;&quot;`.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `&quot;&quot;`.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A rule for transforming a value.
@@ -1934,11 +1934,11 @@ export namespace dlp_v2 {
     /**
      * Number of characters after the finding to consider.
      */
-    windowAfter?: number;
+    windowAfter?: number | null;
     /**
      * Number of characters before the finding to consider.
      */
-    windowBefore?: number;
+    windowBefore?: number | null;
   }
   /**
    * Publish findings of a DlpJob to Cloud Data Catalog. Labels summarizing the results of the DlpJob will be applied to the entry for the resource scanned in Cloud Data Catalog. Any labels previously written by another DlpJob will be deleted. InfoType naming patterns are strictly enforced when using this feature. Note that the findings will be persisted in Cloud Data Catalog storage and are governed by Data Catalog service-specific policy, see https://cloud.google.com/terms/service-terms Only a single instance of this action can be specified and only allowed if all resources being scanned are BigQuery tables. Compatible with: Inspect
@@ -1955,7 +1955,7 @@ export namespace dlp_v2 {
     /**
      * Cloud Pub/Sub topic to send notifications to. The topic must have given publishing access rights to the DLP API service account executing the long running DlpJob sending the notifications. Format is projects/{project}/topics/{topic}.
      */
-    topic?: string;
+    topic?: string | null;
   }
   /**
    * A column with a semantic tag attached.
@@ -1964,7 +1964,7 @@ export namespace dlp_v2 {
     /**
      * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
      */
-    customTag?: string;
+    customTag?: string | null;
     /**
      * Identifies the column. [required]
      */
@@ -1982,14 +1982,14 @@ export namespace dlp_v2 {
    * A quasi-identifier column has a custom_tag, used to know which column in the data corresponds to which column in the statistical model.
    */
   export interface Schema$GooglePrivacyDlpV2QuasiIdentifierField {
-    customTag?: string;
+    customTag?: string | null;
     field?: Schema$GooglePrivacyDlpV2FieldId;
   }
   /**
    * A quasi-identifier column has a custom_tag, used to know which column in the data corresponds to which column in the statistical model.
    */
   export interface Schema$GooglePrivacyDlpV2QuasiIdField {
-    customTag?: string;
+    customTag?: string | null;
     field?: Schema$GooglePrivacyDlpV2FieldId;
   }
   /**
@@ -2008,11 +2008,11 @@ export namespace dlp_v2 {
     /**
      * Index of the last character of the range (exclusive).
      */
-    end?: string;
+    end?: string | null;
     /**
      * Index of the first character of the range (inclusive).
      */
-    start?: string;
+    start?: string | null;
   }
   /**
    * A condition for determining whether a transformation should be applied to a field.
@@ -2032,7 +2032,7 @@ export namespace dlp_v2 {
     /**
      * Values of identifying columns in the given row. Order of values matches the order of field identifiers specified in the scanning request.
      */
-    idValues?: string[];
+    idValues?: string[] | null;
   }
   /**
    * Location of a finding within a row or record.
@@ -2092,7 +2092,7 @@ export namespace dlp_v2 {
     /**
      * Whether the response should include findings along with the redacted image.
      */
-    includeFindings?: boolean;
+    includeFindings?: boolean | null;
     /**
      * Configuration for the inspector.
      */
@@ -2105,7 +2105,7 @@ export namespace dlp_v2 {
     /**
      * If an image was being inspected and the InspectConfig&#39;s include_quote was set to true, then this field will include all text, if any, that was found in the image.
      */
-    extractedText?: string;
+    extractedText?: string | null;
     /**
      * The findings. Populated when include_findings in the request is true.
      */
@@ -2113,7 +2113,7 @@ export namespace dlp_v2 {
     /**
      * The redacted image. The type will be the same as the original image.
      */
-    redactedImage?: string;
+    redactedImage?: string | null;
   }
   /**
    * Message defining a custom regular expression.
@@ -2122,11 +2122,11 @@ export namespace dlp_v2 {
     /**
      * The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
      */
-    groupIndexes?: number[];
+    groupIndexes?: number[] | null;
     /**
      * Pattern defining the regular expression. Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
      */
-    pattern?: string;
+    pattern?: string | null;
   }
   /**
    * Request to re-identify an item.
@@ -2139,7 +2139,7 @@ export namespace dlp_v2 {
     /**
      * Optional template to use. Any configuration directly specified in `inspect_config` will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
-    inspectTemplateName?: string;
+    inspectTemplateName?: string | null;
     /**
      * The item to re-identify. Will be treated as text.
      */
@@ -2147,7 +2147,7 @@ export namespace dlp_v2 {
     /**
      * The geographic location to process content reidentification.  Reserved for future extensions.
      */
-    location?: string;
+    location?: string | null;
     /**
      * Configuration for the re-identification of the content item. This field shares the same proto message type that is used for de-identification, however its usage here is for the reversal of the previous de-identification. Re-identification is performed by examining the transformations used to de-identify the items and executing the reverse. This requires that only reversible transformations be provided here. The reversible transformations are:   - `CryptoReplaceFfxFpeConfig`
      */
@@ -2155,7 +2155,7 @@ export namespace dlp_v2 {
     /**
      * Optional template to use. References an instance of `DeidentifyTemplate`. Any configuration directly specified in `reidentify_config` or `inspect_config` will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
-    reidentifyTemplateName?: string;
+    reidentifyTemplateName?: string | null;
   }
   /**
    * Results of re-identifying a item.
@@ -2201,11 +2201,11 @@ export namespace dlp_v2 {
     /**
      * Total size in bytes that were processed.
      */
-    processedBytes?: string;
+    processedBytes?: string | null;
     /**
      * Estimate of the number of bytes to process.
      */
-    totalEstimatedBytes?: string;
+    totalEstimatedBytes?: string | null;
   }
   /**
    * Configuration for a risk analysis job. See https://cloud.google.com/dlp/docs/concepts-risk-analysis to learn more.
@@ -2240,7 +2240,7 @@ export namespace dlp_v2 {
     /**
      * With this option a job is started a regular periodic basis. For example: every day (86400 seconds).  A scheduled start time will be skipped if the previous execution has not ended when its scheduled time occurs.  This value must be set to a time duration greater than or equal to 1 day and can be no longer than 60 days.
      */
-    recurrencePeriodDuration?: string;
+    recurrencePeriodDuration?: string | null;
   }
   /**
    * An auxiliary table containing statistical information on the relative frequency of different quasi-identifiers values. It has one or several quasi-identifiers columns, and one column that indicates the relative frequency of each quasi-identifier tuple. If a tuple is present in the data but not in the auxiliary table, the corresponding relative frequency is assumed to be zero (and thus, the tuple is highly reidentifiable).
@@ -2288,7 +2288,7 @@ export namespace dlp_v2 {
     /**
      * Resource name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Pending versions of the stored info type. Empty if no versions are pending.
      */
@@ -2301,11 +2301,11 @@ export namespace dlp_v2 {
     /**
      * Description of the StoredInfoType (max 256 characters).
      */
-    description?: string;
+    description?: string | null;
     /**
      * Display name of the StoredInfoType (max 256 characters).
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * StoredInfoType where findings are defined by a dictionary of phrases.
      */
@@ -2331,7 +2331,7 @@ export namespace dlp_v2 {
     /**
      * Create timestamp of the version. Read-only, determined by the system when the version is created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first. &lt;p&gt;For example, some of the data for stored custom dictionaries is put in the user&#39;s Google Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid. &lt;p&gt;If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.
      */
@@ -2339,7 +2339,7 @@ export namespace dlp_v2 {
     /**
      * Stored info type version state. Read-only, updated by the system during dictionary creation.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Statistics about this storedInfoType version.
      */
@@ -2352,22 +2352,22 @@ export namespace dlp_v2 {
     /**
      * Timestamp indicating when the version of the `StoredInfoType` used for inspection was created. Output-only field, populated by the system.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Resource name of the requested `StoredInfoType`, for example `organizations/433245324/storedInfoTypes/432452342` or `projects/project-id/storedInfoTypes/432452342`.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A collection that informs the user the number of times a particular `TransformationResultCode` and error details occurred.
    */
   export interface Schema$GooglePrivacyDlpV2SummaryResult {
-    code?: string;
-    count?: string;
+    code?: string | null;
+    count?: string | null;
     /**
      * A place for warnings or errors to show up if a transformation didn&#39;t work as expected.
      */
-    details?: string;
+    details?: string | null;
   }
   /**
    * Message for detecting output from deidentification transformations such as [`CryptoReplaceFfxFpeConfig`](/dlp/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig). These types of transformations are those that perform pseudonymization, thereby producing a &quot;surrogate&quot; as output. This should be used in conjunction with a field on the transformation such as `surrogate_info_type`. This CustomInfoType does not support the use of `detection_rules`.
@@ -2387,13 +2387,13 @@ export namespace dlp_v2 {
     /**
      * The zero-based index of the row where the finding is located.
      */
-    rowIndex?: string;
+    rowIndex?: string | null;
   }
   export interface Schema$GooglePrivacyDlpV2TaggedField {
     /**
      * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
      */
-    customTag?: string;
+    customTag?: string | null;
     /**
      * Identifies the column. [required]
      */
@@ -2411,7 +2411,7 @@ export namespace dlp_v2 {
    * For use with `Date`, `Timestamp`, and `TimeOfDay`, extract or preserve a portion of the value.
    */
   export interface Schema$GooglePrivacyDlpV2TimePartConfig {
-    partToExtract?: string;
+    partToExtract?: string | null;
   }
   /**
    * Configuration of the timespan of the items to include in scanning. Currently only supported when inspecting Google Cloud Storage and BigQuery.
@@ -2420,15 +2420,15 @@ export namespace dlp_v2 {
     /**
      * When the job is started by a JobTrigger we will automatically figure out a valid start_time to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger.
      */
-    enableAutoPopulationOfTimespanConfig?: boolean;
+    enableAutoPopulationOfTimespanConfig?: boolean | null;
     /**
      * Exclude files or rows newer than this value. If set to zero, no upper time limit is applied.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Exclude files or rows older than this value.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore or BigQuery. If not specified for BigQuery, table last modification timestamp is checked against given time span. The valid data types of the timestamp field are: for BigQuery - timestamp, date, datetime; for Datastore - timestamp. Datastore entity will be scanned if the timestamp property does not exist or its value is empty or invalid.
      */
@@ -2438,7 +2438,7 @@ export namespace dlp_v2 {
     /**
      * Set only if the offset can be determined. Positive for time ahead of UTC. E.g. For &quot;UTC-9&quot;, this value is -540.
      */
-    offsetMinutes?: number;
+    offsetMinutes?: number | null;
   }
   /**
    * Overview of the modifications that occurred.
@@ -2451,7 +2451,7 @@ export namespace dlp_v2 {
     /**
      * Total size in bytes that were transformed in some way.
      */
-    transformedBytes?: string;
+    transformedBytes?: string | null;
   }
   /**
    * Summary of a single transformation. Only one of &#39;transformation&#39;, &#39;field_transformation&#39;, or &#39;record_suppress&#39; will be set.
@@ -2481,7 +2481,7 @@ export namespace dlp_v2 {
     /**
      * Total size in bytes that were transformed in some way.
      */
-    transformedBytes?: string;
+    transformedBytes?: string | null;
   }
   /**
    * Use this to have a random data crypto key generated. It will be discarded after the request finishes.
@@ -2490,7 +2490,7 @@ export namespace dlp_v2 {
     /**
      * Name of the key. [required] This is an arbitrary string used to differentiate different keys. A unique key is generated per name: two separate `TransientCryptoKey` protos share the same generated key if their names are the same. When the data crypto key is generated, this name is not used in any way (repeating the api call will result in a different key being generated).
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * What event needs to occur for a new job to be started.
@@ -2508,7 +2508,7 @@ export namespace dlp_v2 {
     /**
      * A 128/192/256 bit key. [required]
      */
-    key?: string;
+    key?: string | null;
   }
   /**
    * Request message for UpdateDeidentifyTemplate.
@@ -2521,7 +2521,7 @@ export namespace dlp_v2 {
     /**
      * Mask to control which fields get updated.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Request message for UpdateInspectTemplate.
@@ -2534,7 +2534,7 @@ export namespace dlp_v2 {
     /**
      * Mask to control which fields get updated.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Request message for UpdateJobTrigger.
@@ -2547,7 +2547,7 @@ export namespace dlp_v2 {
     /**
      * Mask to control which fields get updated.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Request message for UpdateStoredInfoType.
@@ -2560,19 +2560,19 @@ export namespace dlp_v2 {
     /**
      * Mask to control which fields get updated.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Set of primitive values supported by the system. Note that for the purposes of inspection or transformation, the number of bytes considered to comprise a &#39;Value&#39; is based on its representation as a UTF-8 encoded string. For example, if &#39;integer_value&#39; is set to 123456789, the number of bytes would be counted as 9, even though an int64 only holds up to 8 bytes of data.
    */
   export interface Schema$GooglePrivacyDlpV2Value {
-    booleanValue?: boolean;
+    booleanValue?: boolean | null;
     dateValue?: Schema$GoogleTypeDate;
-    dayOfWeekValue?: string;
-    floatValue?: number;
-    integerValue?: string;
-    stringValue?: string;
-    timestampValue?: string;
+    dayOfWeekValue?: string | null;
+    floatValue?: number | null;
+    integerValue?: string | null;
+    stringValue?: string | null;
+    timestampValue?: string | null;
     timeValue?: Schema$GoogleTypeTimeOfDay;
   }
   /**
@@ -2582,7 +2582,7 @@ export namespace dlp_v2 {
     /**
      * How many times the value is contained in the field.
      */
-    count?: string;
+    count?: string | null;
     /**
      * A value contained in the field in question.
      */
@@ -2595,7 +2595,7 @@ export namespace dlp_v2 {
     /**
      * Words or phrases defining the dictionary. The dictionary must contain at least one phrase and every phrase must contain at least 2 characters that are letters or digits. [required]
      */
-    words?: string[];
+    words?: string[] | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -2608,15 +2608,15 @@ export namespace dlp_v2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
@@ -2625,15 +2625,15 @@ export namespace dlp_v2 {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
      */
-    day?: number;
+    day?: number | null;
     /**
      * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
      */
-    month?: number;
+    month?: number | null;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
      */
-    year?: number;
+    year?: number | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -2642,19 +2642,19 @@ export namespace dlp_v2 {
     /**
      * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
      */
-    hours?: number;
+    hours?: number | null;
     /**
      * Minutes of hour of day. Must be from 0 to 59.
      */
-    minutes?: number;
+    minutes?: number | null;
     /**
      * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
      */
-    nanos?: number;
+    nanos?: number | null;
     /**
      * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
      */
-    seconds?: number;
+    seconds?: number | null;
   }
 
   export class Resource$Infotypes {
