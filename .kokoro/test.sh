@@ -35,12 +35,3 @@ if npx check-node-version@3.3.0 --silent --node $COVERAGE_NODE; then
 else
   echo "coverage is only reported for Node $COVERAGE_NODE"
 fi
-
-# if release-please keys set, we kick off a task to update the release-PR.
-if [ -f ${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-url-release-please ]; then
-  npx release-please release-pr --token=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-token-release-please \
-    --repo-url=googleapis/google-api-nodejs-client \
-    --package-name=googleapis \
-    --api-url=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-url-release-please \
-    --proxy-key=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-key-release-please
-fi
