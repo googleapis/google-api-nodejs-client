@@ -4,6 +4,18 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [44.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v43.0.0...v44.0.0) (2019-09-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* accept null values in request bodies (#1824)
+
+### Bug Fixes
+
+* **example:** sample exited before finishing write to disk ([#1798](https://www.github.com/googleapis/google-api-nodejs-client/issues/1798)) ([26ac7d8](https://www.github.com/googleapis/google-api-nodejs-client/commit/26ac7d8))
+* accept null values in request bodies ([#1824](https://www.github.com/googleapis/google-api-nodejs-client/issues/1824)) ([de127eb](https://www.github.com/googleapis/google-api-nodejs-client/commit/de127eb))
+
 ## [43.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v42.0.0...v43.0.0) (2019-09-06)
 
 
