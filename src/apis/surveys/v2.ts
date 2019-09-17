@@ -105,19 +105,19 @@ export namespace surveys_v2 {
 
   export interface Schema$FieldMask {
     fields?: Schema$FieldMask[];
-    id?: number;
+    id?: number | null;
   }
   export interface Schema$PageInfo {
-    resultPerPage?: number;
-    startIndex?: number;
-    totalResults?: number;
+    resultPerPage?: number | null;
+    startIndex?: number | null;
+    totalResults?: number | null;
   }
   export interface Schema$ResultsGetRequest {
     resultMask?: Schema$ResultsMask;
   }
   export interface Schema$ResultsMask {
     fields?: Schema$FieldMask[];
-    projection?: string;
+    projection?: string | null;
   }
   /**
    * Representation of an individual survey object.
@@ -134,15 +134,15 @@ export namespace surveys_v2 {
     /**
      * Additional information to store on behalf of the API consumer and associate with this question. This binary blob is treated as opaque. This field is limited to 64K bytes.
      */
-    customerData?: string;
+    customerData?: string | null;
     /**
      * Text description of the survey.
      */
-    description?: string;
+    description?: string | null;
     /**
      * List of email addresses for survey owners. Must contain at least the address of the user making the API call.
      */
-    owners?: string[];
+    owners?: string[] | null;
     /**
      * List of questions defining the survey.
      */
@@ -154,19 +154,19 @@ export namespace surveys_v2 {
     /**
      * State that the survey is in.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Unique survey ID, that is viewable in the URL of the Survey Creator UI
      */
-    surveyUrlId?: string;
+    surveyUrlId?: string | null;
     /**
      * Optional name that will be given to the survey.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Number of responses desired for the survey.
      */
-    wantedResponseCount?: number;
+    wantedResponseCount?: number | null;
   }
   /**
    * Specifications for the target audience of a survey run through the API.
@@ -175,27 +175,27 @@ export namespace surveys_v2 {
     /**
      * Optional list of age buckets to target. Supported age buckets are: [&#39;18-24&#39;, &#39;25-34&#39;, &#39;35-44&#39;, &#39;45-54&#39;, &#39;55-64&#39;, &#39;65+&#39;]
      */
-    ages?: string[];
+    ages?: string[] | null;
     /**
      * Required country code that surveys should be targeted to. Accepts standard ISO 3166-1 2 character language codes. For instance, &#39;US&#39; for the United States, and &#39;GB&#39; for the United Kingdom.
      */
-    country?: string;
+    country?: string | null;
     /**
      * Country subdivision (states/provinces/etc) that surveys should be targeted to. For all countries except GB, ISO-3166-2 subdivision code is required (eg. &#39;US-OH&#39; for Ohio, United States). For GB, NUTS 1 statistical region codes for the United Kingdom is required (eg. &#39;UK-UKC&#39; for North East England).
      */
-    countrySubdivision?: string;
+    countrySubdivision?: string | null;
     /**
      * Optional gender to target.
      */
-    gender?: string;
+    gender?: string | null;
     /**
      * Language code that surveys should be targeted to. For instance, &#39;en-US&#39;. Surveys may target bilingual users by specifying a list of language codes (for example, &#39;de&#39; and &#39;en-US&#39;). In that case, all languages will be used for targeting users but the survey content (which is displayed) must match the first language listed. Accepts standard BCP47 language codes. See specification.
      */
-    languages?: string[];
+    languages?: string[] | null;
     /**
      * Online population source where the respondents are sampled from.
      */
-    populationSource?: string;
+    populationSource?: string | null;
   }
   /**
    * Message defining the cost to run a given survey through API.
@@ -204,19 +204,19 @@ export namespace surveys_v2 {
     /**
      * Cost per survey response in nano units of the given currency. To get the total cost for a survey, multiply this value by wanted_response_count.
      */
-    costPerResponseNanos?: string;
+    costPerResponseNanos?: string | null;
     /**
      * Currency code that the cost is given in.
      */
-    currencyCode?: string;
+    currencyCode?: string | null;
     /**
      * *Deprecated* Threshold to start a survey automatically if the quoted price is at most this value. When a survey has a Screener (threshold) question, it must go through an incidence pricing test to determine the final cost per response. Typically you will have to make a followup call to start the survey giving the final computed cost per response. If the survey has no threshold_answers, setting this property will return an error. By specifying this property, you indicate the max price per response you are willing to pay in advance of the incidence test. If the price turns out to be lower than the specified value, the survey will begin immediately and you will be charged at the rate determined by the incidence pricing test. If the price turns out to be greater than the specified value the survey will not be started and you will instead be notified what price was determined by the incidence test. At that point, you must raise the value of this property to be greater than or equal to that cost before attempting to start the survey again. This will immediately start the survey as long the incidence test was run within the last 21 days. This will no longer be available after June 2018.
      */
-    maxCostPerResponseNanos?: string;
+    maxCostPerResponseNanos?: string | null;
     /**
      * Cost of survey in nano units of the given currency. DEPRECATED in favor of cost_per_response_nanos
      */
-    nanos?: string;
+    nanos?: string | null;
   }
   /**
    * Message defining the question specifications.
@@ -225,72 +225,72 @@ export namespace surveys_v2 {
     /**
      * The randomization option for multiple choice and multi-select questions. If not specified, this option defaults to randomize.
      */
-    answerOrder?: string;
+    answerOrder?: string | null;
     /**
      * Required list of answer options for a question.
      */
-    answers?: string[];
+    answers?: string[] | null;
     /**
      * Option to allow open-ended text box for Single Answer and Multiple Answer question types. This can be used with SINGLE_ANSWER, SINGLE_ANSWER_WITH_IMAGE, MULTIPLE_ANSWERS, and MULTIPLE_ANSWERS_WITH_IMAGE question types.
      */
-    hasOther?: boolean;
+    hasOther?: boolean | null;
     /**
      * For rating questions, the text for the higher end of the scale, such as &#39;Best&#39;. For numeric questions, a string representing a floating-point that is the maximum allowed number for a response.
      */
-    highValueLabel?: string;
+    highValueLabel?: string | null;
     images?: Schema$SurveyQuestionImage[];
     /**
      * Currently only support pinning an answer option to the last position.
      */
-    lastAnswerPositionPinned?: boolean;
+    lastAnswerPositionPinned?: boolean | null;
     /**
      * For rating questions, the text for the lower end of the scale, such as &#39;Worst&#39;. For numeric questions, a string representing a floating-point that is the minimum allowed number for a response.
      */
-    lowValueLabel?: string;
+    lowValueLabel?: string | null;
     /**
      * Option to force the user to pick one of the open text suggestions. This requires that suggestions are provided for this question.
      */
-    mustPickSuggestion?: boolean;
+    mustPickSuggestion?: boolean | null;
     /**
      * Number of stars to use for ratings questions.
      */
-    numStars?: string;
+    numStars?: string | null;
     /**
      * Placeholder text for an open text question.
      */
-    openTextPlaceholder?: string;
+    openTextPlaceholder?: string | null;
     /**
      * A list of suggested answers for open text question auto-complete. This is only valid if single_line_response is true.
      */
-    openTextSuggestions?: string[];
+    openTextSuggestions?: string[] | null;
     /**
      * Required question text shown to the respondent.
      */
-    question?: string;
+    question?: string | null;
     /**
      * Used by the Rating Scale with Text question type. This text goes along with the question field that is presented to the respondent, and is the actual text that the respondent is asked to rate.
      */
-    sentimentText?: string;
+    sentimentText?: string | null;
     /**
      * Option to allow multiple line open text responses instead of a single line response. Note that we don&#39;t show auto-complete suggestions with multiple line responses.
      */
-    singleLineResponse?: boolean;
+    singleLineResponse?: boolean | null;
     /**
      * The threshold/screener answer options, which will screen a user into the rest of the survey. These will be a subset of the answer option strings.
      */
-    thresholdAnswers?: string[];
+    thresholdAnswers?: string[] | null;
     /**
      * Required field defining the question type. For details about configuring different type of questions, consult the question configuration guide.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Optional unit of measurement for display (for example: hours, people, miles).
      */
-    unitOfMeasurementLabel?: string;
+    unitOfMeasurementLabel?: string | null;
     /**
      * The YouTube video ID to be show in video questions.
      */
-    videoId?: string;
+    videoId?: string | null;
   }
   /**
    * Container object for image data and alt_text.
@@ -299,15 +299,15 @@ export namespace surveys_v2 {
     /**
      * The alt text property used in image tags is required for all images.
      */
-    altText?: string;
+    altText?: string | null;
     /**
      * Inline jpeg, gif, tiff, bmp, or png image raw bytes for an image question types.
      */
-    data?: string;
+    data?: string | null;
     /**
      * The read-only URL for the hosted images.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Message representing why the survey was rejected from review, if it was.
@@ -316,11 +316,11 @@ export namespace surveys_v2 {
     /**
      * A human-readable explanation of what was wrong with the survey.
      */
-    explanation?: string;
+    explanation?: string | null;
     /**
      * Which category of rejection this was. See the  Google Surveys Help Center for additional details on each category.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Reference to the current results for a given survey.
@@ -329,24 +329,24 @@ export namespace surveys_v2 {
     /**
      * Human readable string describing the status of the request.
      */
-    status?: string;
+    status?: string | null;
     /**
      * External survey ID as viewable by survey owners in the editor view.
      */
-    surveyUrlId?: string;
+    surveyUrlId?: string | null;
   }
   export interface Schema$SurveysDeleteResponse {
     /**
      * Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   export interface Schema$SurveysListResponse {
     pageInfo?: Schema$PageInfo;
     /**
      * Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
      */
-    requestId?: string;
+    requestId?: string | null;
     /**
      * An individual survey resource.
      */
@@ -357,23 +357,23 @@ export namespace surveys_v2 {
     /**
      * *Deprecated* Threshold to start a survey automatically if the quoted prices is less than or equal to this value. See Survey.Cost for more details. This will no longer be available after June 2018.
      */
-    maxCostPerResponseNanos?: string;
+    maxCostPerResponseNanos?: string | null;
   }
   export interface Schema$SurveysStartResponse {
     /**
      * Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   export interface Schema$SurveysStopResponse {
     /**
      * Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   export interface Schema$TokenPagination {
-    nextPageToken?: string;
-    previousPageToken?: string;
+    nextPageToken?: string | null;
+    previousPageToken?: string | null;
   }
 
   export class Resource$Results {

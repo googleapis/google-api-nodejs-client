@@ -146,7 +146,7 @@ export namespace translate_v2 {
     /**
      * The input text upon which to perform language detection. Repeat this parameter to perform language detection on multiple text inputs.
      */
-    q?: string[];
+    q?: string[] | null;
   }
   /**
    * The request message for discovering supported languages.
@@ -155,7 +155,7 @@ export namespace translate_v2 {
     /**
      * The language to use to return localized, human readable names of supported languages.
      */
-    target?: string;
+    target?: string | null;
   }
   export interface Schema$LanguagesListResponse {
     /**
@@ -167,11 +167,11 @@ export namespace translate_v2 {
     /**
      * Supported language code, generally consisting of its ISO 639-1 identifier. (E.g. &#39;en&#39;, &#39;ja&#39;). In certain cases, BCP-47 codes including language + region identifiers are returned (e.g. &#39;zh-TW&#39; and &#39;zh-CH&#39;)
      */
-    language?: string;
+    language?: string | null;
     /**
      * Human readable name of the language localized to the target language.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * The main translation request message for the Cloud Translation API.
@@ -180,23 +180,23 @@ export namespace translate_v2 {
     /**
      * The format of the source text, in either HTML (default) or plain-text. A value of &quot;html&quot; indicates HTML and a value of &quot;text&quot; indicates plain-text.
      */
-    format?: string;
+    format?: string | null;
     /**
      * The `model` type requested for this translation. Valid values are listed in public documentation.
      */
-    model?: string;
+    model?: string | null;
     /**
      * The input text to translate. Repeat this parameter to perform translation operations on multiple text inputs.
      */
-    q?: string[];
+    q?: string[] | null;
     /**
      * The language of the source text, set to one of the language codes listed in Language Support. If the source language is not specified, the API will attempt to identify the source language automatically and return it within the response.
      */
-    source?: string;
+    source?: string | null;
     /**
      * The language to use for translation of the input text, set to one of the language codes listed in Language Support.
      */
-    target?: string;
+    target?: string | null;
   }
   /**
    * The main language translation response message.
@@ -211,15 +211,15 @@ export namespace translate_v2 {
     /**
      * The source language of the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language will not occur and this field will be empty.
      */
-    detectedSourceLanguage?: string;
+    detectedSourceLanguage?: string | null;
     /**
      * The `model` type used for this translation. Valid values are listed in public documentation. Can be different from requested `model`. Present only if specific model type was explicitly requested.
      */
-    model?: string;
+    model?: string | null;
     /**
      * Text translated into the target language.
      */
-    translatedText?: string;
+    translatedText?: string | null;
   }
 
   export class Resource$Detections {

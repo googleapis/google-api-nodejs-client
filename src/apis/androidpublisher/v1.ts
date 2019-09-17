@@ -108,19 +108,19 @@ export namespace androidpublisher_v1 {
     /**
      * Whether the subscription will automatically be renewed when it reaches its current expiry time.
      */
-    autoRenewing?: boolean;
+    autoRenewing?: boolean | null;
     /**
      * Time at which the subscription was granted, in milliseconds since the Epoch.
      */
-    initiationTimestampMsec?: string;
+    initiationTimestampMsec?: string | null;
     /**
      * This kind represents a subscriptionPurchase object in the androidpublisher service.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Time at which the subscription will expire, in milliseconds since the Epoch.
      */
-    validUntilTimestampMsec?: string;
+    validUntilTimestampMsec?: string | null;
   }
 
   export class Resource$Purchases {

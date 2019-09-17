@@ -115,25 +115,25 @@ export namespace adsensehost_v4_1 {
     /**
      * Unique identifier of this account.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Kind of resource this is, in this case adsensehost#account.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this account.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Approval status of this account. One of: PENDING, APPROVED, DISABLED.
      */
-    status?: string;
+    status?: string | null;
   }
   export interface Schema$Accounts {
     /**
      * ETag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The accounts returned in this list response.
      */
@@ -141,35 +141,35 @@ export namespace adsensehost_v4_1 {
     /**
      * Kind of list this is, in this case adsensehost#accounts.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$AdClient {
     /**
      * Whether this ad client is opted in to ARC.
      */
-    arcOptIn?: boolean;
+    arcOptIn?: boolean | null;
     /**
      * Unique identifier of this ad client.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Kind of resource this is, in this case adsensehost#adClient.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
      */
-    productCode?: string;
+    productCode?: string | null;
     /**
      * Whether this ad client supports being reported on.
      */
-    supportsReporting?: boolean;
+    supportsReporting?: boolean | null;
   }
   export interface Schema$AdClients {
     /**
      * ETag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The ad clients returned in this list response.
      */
@@ -177,21 +177,21 @@ export namespace adsensehost_v4_1 {
     /**
      * Kind of list this is, in this case adsensehost#adClients.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$AdCode {
     /**
      * The ad code snippet.
      */
-    adCode?: string;
+    adCode?: string | null;
     /**
      * Kind this is, in this case adsensehost#adCode.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$AdStyle {
     /**
@@ -203,25 +203,25 @@ export namespace adsensehost_v4_1 {
       text?: string;
       title?: string;
       url?: string;
-    };
+    } | null;
     /**
      * The style of the corners in the ad (deprecated: never populated, ignored).
      */
-    corners?: string;
+    corners?: string | null;
     /**
      * The font which is included in the style.
      */
-    font?: {family?: string; size?: string};
+    font?: {family?: string; size?: string} | null;
     /**
      * Kind this is, in this case adsensehost#adStyle.
      */
-    kind?: string;
+    kind?: string | null;
   }
   export interface Schema$AdUnit {
     /**
      * Identity code of this ad unit, not necessarily unique across ad clients.
      */
-    code?: string;
+    code?: string | null;
     /**
      * Settings specific to content ads (AFC) and highend mobile content ads (AFMC - deprecated).
      */
@@ -229,7 +229,7 @@ export namespace adsensehost_v4_1 {
       backupOption?: {color?: string; type?: string; url?: string};
       size?: string;
       type?: string;
-    };
+    } | null;
     /**
      * Custom style information specific to this ad unit.
      */
@@ -237,11 +237,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Kind of resource this is, in this case adsensehost#adUnit.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Settings specific to WAP mobile content ads (AFMC - deprecated).
      */
@@ -250,21 +250,21 @@ export namespace adsensehost_v4_1 {
       scriptingLanguage?: string;
       size?: string;
       type?: string;
-    };
+    } | null;
     /**
      * Name of this ad unit.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Status of this ad unit. Possible values are: NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.  ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.  INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
      */
-    status?: string;
+    status?: string | null;
   }
   export interface Schema$AdUnits {
     /**
      * ETag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The ad units returned in this list response.
      */
@@ -272,73 +272,73 @@ export namespace adsensehost_v4_1 {
     /**
      * Kind of list this is, in this case adsensehost#adUnits.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$AssociationSession {
     /**
      * Hosted account id of the associated publisher after association. Present if status is ACCEPTED.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Unique identifier of this association session.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Kind of resource this is, in this case adsensehost#associationSession.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The products to associate with the user. Options: AFC, AFG, AFV, AFS (deprecated), AFMC (deprecated)
      */
-    productCodes?: string[];
+    productCodes?: string[] | null;
     /**
      * Redirect URL of this association session. Used to redirect users into the AdSense association flow.
      */
-    redirectUrl?: string;
+    redirectUrl?: string | null;
     /**
      * Status of the completed association, available once the association callback token has been verified. One of ACCEPTED, REJECTED, or ERROR.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The preferred locale of the user themselves when going through the AdSense association flow.
      */
-    userLocale?: string;
+    userLocale?: string | null;
     /**
      * The locale of the user&#39;s hosted website.
      */
-    websiteLocale?: string;
+    websiteLocale?: string | null;
     /**
      * The URL of the user&#39;s hosted website.
      */
-    websiteUrl?: string;
+    websiteUrl?: string | null;
   }
   export interface Schema$CustomChannel {
     /**
      * Code of this custom channel, not necessarily unique across ad clients.
      */
-    code?: string;
+    code?: string | null;
     /**
      * Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Kind of resource this is, in this case adsensehost#customChannel.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this custom channel.
      */
-    name?: string;
+    name?: string | null;
   }
   export interface Schema$CustomChannels {
     /**
      * ETag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The custom channels returned in this list response.
      */
@@ -346,61 +346,61 @@ export namespace adsensehost_v4_1 {
     /**
      * Kind of list this is, in this case adsensehost#customChannels.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$Report {
     /**
      * The averages of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
      */
-    averages?: string[];
+    averages?: string[] | null;
     /**
      * The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
      */
-    headers?: Array<{currency?: string; name?: string; type?: string}>;
+    headers?: Array<{currency?: string; name?: string; type?: string}> | null;
     /**
      * Kind this is, in this case adsensehost#report.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The output rows of the report. Each row is a list of cells; one for each dimension in the request, followed by one for each metric in the request. The dimension cells contain strings, and the metric cells contain numbers.
      */
-    rows?: string[][];
+    rows?: string[][] | null;
     /**
      * The total number of rows matched by the report request. Fewer rows may be returned in the response due to being limited by the row count requested or the report row limit.
      */
-    totalMatchedRows?: string;
+    totalMatchedRows?: string | null;
     /**
      * The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
      */
-    totals?: string[];
+    totals?: string[] | null;
     /**
      * Any warnings associated with generation of the report.
      */
-    warnings?: string[];
+    warnings?: string[] | null;
   }
   export interface Schema$UrlChannel {
     /**
      * Unique identifier of this URL channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Kind of resource this is, in this case adsensehost#urlChannel.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
      */
-    urlPattern?: string;
+    urlPattern?: string | null;
   }
   export interface Schema$UrlChannels {
     /**
      * ETag of this response for caching purposes.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The URL channels returned in this list response.
      */
@@ -408,11 +408,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Kind of list this is, in this case adsensehost#urlChannels.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
 
   export class Resource$Accounts {

@@ -124,7 +124,7 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Opaque token that is echoed from the request to the response.
      */
-    clientToken?: string;
+    clientToken?: string | null;
     /**
      * The comment to analyze.
      */
@@ -132,7 +132,7 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Optional identifier associating this AnalyzeCommentRequest with a particular client&#39;s community. Different communities may have different norms and rules. Specifying this value enables us to explore building community-specific models for clients.
      */
-    communityId?: string;
+    communityId?: string | null;
     /**
      * The context of the comment.
      */
@@ -140,23 +140,23 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Do not store the comment or context sent in this request. By default, the service may store comments/context for debugging purposes.
      */
-    doNotStore?: boolean;
+    doNotStore?: boolean | null;
     /**
      * The language(s) of the comment and context (if none are specified, the language is automatically detected). If multiple languages are specified, the text is checked in all of them that are supported. Both ISO and BCP-47 language codes are accepted. Current Language Restrictions:  * Only English text (&quot;en&quot;) is supported. If none of the languages specified by the caller are supported, an `UNIMPLEMENTED` error is returned.
      */
-    languages?: string[];
+    languages?: string[] | null;
     /**
      * Specification of requested attributes. The AttributeParameters serve as configuration for each associated attribute. The map keys are attribute names. The following attributes are available: &quot;ATTACK_ON_AUTHOR&quot; - Attack on author of original article or post. &quot;ATTACK_ON_COMMENTER&quot; - Attack on fellow commenter. &quot;ATTACK_ON_PUBLISHER&quot; - Attack on publisher of article/post. &quot;INCOHERENT&quot; - Difficult to understand, nonsensical. &quot;INFLAMMATORY&quot; - Intending to provoke or inflame. &quot;OBSCENE&quot; - Obscene, such as cursing. &quot;OFF_TOPIC&quot; - Not related to the original topic. &quot;SPAM&quot; - Commercial/advertising spam content. &quot;UNSUBSTANTIAL&quot; - Trivial.
      */
-    requestedAttributes?: {[key: string]: Schema$AttributeParameters};
+    requestedAttributes?: {[key: string]: Schema$AttributeParameters} | null;
     /**
      * Session ID. Used to join related RPCs into a single session. For example, an interactive tool that calls both the AnalyzeComment and SuggestCommentScore RPCs should set all invocations of both RPCs to the same Session ID, typically a random 64-bit integer.
      */
-    sessionId?: string;
+    sessionId?: string | null;
     /**
      * An advisory parameter that will return span annotations if the model is capable of providing scores with sub-comment resolution. This will likely increase the size of the returned message.
      */
-    spanAnnotations?: boolean;
+    spanAnnotations?: boolean | null;
   }
   /**
    * The comment analysis response message.
@@ -165,19 +165,19 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Scores for the requested attributes. The map keys are attribute names (same as the requested_attribute field in AnalyzeCommentRequest, for example &quot;ATTACK_ON_AUTHOR&quot;, &quot;INFLAMMATORY&quot;, etc).
      */
-    attributeScores?: {[key: string]: Schema$AttributeScores};
+    attributeScores?: {[key: string]: Schema$AttributeScores} | null;
     /**
      * Same token from the original AnalyzeCommentRequest.
      */
-    clientToken?: string;
+    clientToken?: string | null;
     /**
      * Contains the languages detected from the text content, sorted in order of likelihood.
      */
-    detectedLanguages?: string[];
+    detectedLanguages?: string[] | null;
     /**
      * The language(s) used by CommentAnalyzer service to choose which Model to use when analyzing the comment. Might better be called &quot;effective_languages&quot;. The logic used to make the choice is as follows:   if Request.languages.empty()     effective_languages = detected_languages   else     effective_languages = Request.languages
      */
-    languages?: string[];
+    languages?: string[] | null;
   }
   /**
    * A type of context specific to a comment left on a single-threaded comment message board, where comments are either a top level comment or the child of a top level comment.
@@ -199,11 +199,11 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Don&#39;t return scores for this attribute that are below this threshold. If unset, a default threshold will be applied. A FloatValue wrapper is used to distinguish between 0 vs. default/unset.
      */
-    scoreThreshold?: number;
+    scoreThreshold?: number | null;
     /**
      * What type of scores to return. If unset, defaults to probability scores.
      */
-    scoreType?: string;
+    scoreType?: string | null;
   }
   /**
    * This holds score values for a single attribute. It contains both per-span scores as well as an overall summary score..
@@ -238,11 +238,11 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * The type of the above value.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Score value. Semantics described by type below.
      */
-    value?: number;
+    value?: number | null;
   }
   /**
    * This is a single score for a given span of text.
@@ -251,8 +251,8 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * &quot;begin&quot; and &quot;end&quot; describe the span of the original text that the attribute score applies to. The values are the UTF-16 codepoint range. &quot;end&quot; is exclusive. For example, with the text &quot;Hi there&quot;, the begin/end pair (0,2) describes the text &quot;Hi&quot;.  If &quot;begin&quot; and &quot;end&quot; are unset, the score applies to the full text.
      */
-    begin?: number;
-    end?: number;
+    begin?: number | null;
+    end?: number | null;
     /**
      * The score value.
      */
@@ -265,11 +265,11 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Attribute scores for the comment. The map keys are attribute names, same as the requested_attribute field in AnalyzeCommentRequest (for example &quot;ATTACK_ON_AUTHOR&quot;, &quot;INFLAMMATORY&quot;, etc.). This field has the same type as the `attribute_scores` field in AnalyzeCommentResponse.  To specify an overall attribute score for the entire comment as a whole, use the `summary_score` field of the mapped AttributeScores object. To specify scores on specific subparts of the comment, use the `span_scores` field. All SpanScore objects must have begin and end fields set.  All Score objects must be explicitly set (for binary classification, use the score values 0 and 1). If Score objects don&#39;t include a ScoreType, `PROBABILITY` is assumed.  `attribute_scores` must not be empty. The mapped AttributeScores objects also must not be empty. An `INVALID_ARGUMENT` error is returned for all malformed requests.
      */
-    attributeScores?: {[key: string]: Schema$AttributeScores};
+    attributeScores?: {[key: string]: Schema$AttributeScores} | null;
     /**
      * Opaque token that is echoed from the request to the response.
      */
-    clientToken?: string;
+    clientToken?: string | null;
     /**
      * The comment being scored.
      */
@@ -277,7 +277,7 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Optional identifier associating this comment score suggestion with a particular sub-community. Different communities may have different norms and rules. Specifying this value enables training community-specific models.
      */
-    communityId?: string;
+    communityId?: string | null;
     /**
      * The context of the comment.
      */
@@ -285,11 +285,11 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * The language(s) of the comment and context (if none are specified, the language is automatically detected). If multiple languages are specified, the text is checked in all of them that are supported. Both ISO and BCP-47 language codes are accepted. Current Language Restrictions:  * Only English text (&quot;en&quot;) is supported. If none of the languages specified by the caller are supported, an `UNIMPLEMENTED` error is returned.
      */
-    languages?: string[];
+    languages?: string[] | null;
     /**
      * Session ID. Used to join related RPCs into a single session. For example, an interactive tool that calls both the AnalyzeComment and SuggestCommentScore RPCs should set all invocations of both RPCs to the same Session ID, typically a random 64-bit integer.
      */
-    sessionId?: string;
+    sessionId?: string | null;
   }
   /**
    * The comment score suggestion response message.
@@ -298,15 +298,15 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * Same token from the original SuggestCommentScoreRequest.
      */
-    clientToken?: string;
+    clientToken?: string | null;
     /**
      * The list of languages detected from the comment text.
      */
-    detectedLanguages?: string[];
+    detectedLanguages?: string[] | null;
     /**
      * The list of languages provided in the request.
      */
-    requestedLanguages?: string[];
+    requestedLanguages?: string[] | null;
   }
   /**
    * Represents a body of text.
@@ -315,11 +315,11 @@ export namespace commentanalyzer_v1alpha1 {
     /**
      * UTF-8 encoded text.
      */
-    text?: string;
+    text?: string | null;
     /**
      * Type of the text field.
      */
-    type?: string;
+    type?: string | null;
   }
 
   export class Resource$Comments {

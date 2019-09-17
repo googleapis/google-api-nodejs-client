@@ -128,43 +128,43 @@ export namespace firebase_v1beta1 {
     /**
      * Deprecated. Instead, to set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase resources to your project. &lt;br&gt; &lt;br&gt;The ID of the project&#39;s default GCP resource location. The location must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations).
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Deprecated. Instead, to link your Project with a Google Analytics account, call [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) after you add Firebase resources to your Project. &lt;br&gt; &lt;br&gt;The region code (CLDR) that the account will use for Firebase Analytics data. &lt;br&gt;For example: US, GB, or DE &lt;br&gt; &lt;br&gt;In Java, use `com.google.i18n.identifiers.RegionCode`.
      */
-    regionCode?: string;
+    regionCode?: string | null;
     /**
      * Deprecated. Instead, to link your Project with a Google Analytics account, call [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) after you add Firebase resources to your Project. &lt;br&gt; &lt;br&gt;The time zone that the account will use for Firebase Analytics data. &lt;br&gt;For example: America/Los_Angeles or Africa/Abidjan
      */
-    timeZone?: string;
+    timeZone?: string | null;
   }
   export interface Schema$AddGoogleAnalyticsRequest {
     /**
      * The ID for the existing [Google Analytics account](http://www.google.com/analytics/) that you want to link with your `FirebaseProject`. &lt;br&gt; &lt;br&gt;Specifying this field will provision a new Google Analytics property in your Google Analytics account and associate the new property with your `FirebaseProject`.
      */
-    analyticsAccountId?: string;
+    analyticsAccountId?: string | null;
     /**
      * The ID for the existing Google Analytics property that you want to associate with your `FirebaseProject`.
      */
-    analyticsPropertyId?: string;
+    analyticsPropertyId?: string | null;
   }
   export interface Schema$AdminSdkConfig {
     /**
      * The default Firebase Realtime Database URL.
      */
-    databaseURL?: string;
+    databaseURL?: string | null;
     /**
      * The ID of the project&#39;s default GCP resource location. The location is one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). &lt;br&gt; &lt;br&gt;This field is omitted if the default GCP resource location has not been finalized yet. To set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase services to your project.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Immutable. The globally unique, user-assigned project ID of the parent Project.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The default Cloud Storage for Firebase storage bucket name.
      */
-    storageBucket?: string;
+    storageBucket?: string | null;
   }
   export interface Schema$AnalyticsDetails {
     /**
@@ -183,11 +183,11 @@ export namespace firebase_v1beta1 {
     /**
      * The display name of the Google Analytics property associated with the specified `FirebaseProject`.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The globally unique, Google-assigned identifier of the Google Analytics property associated with the specified `FirebaseProject`. &lt;br&gt; &lt;br&gt;If you called [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) to link your `FirebaseProject` with a Google Analytics account, the value in this `id` field is the same as the ID of the property either specified or provisioned with that call to `AddGoogleAnalytics`.
      */
-    id?: string;
+    id?: string | null;
   }
   /**
    * Details of a Firebase App for Android.
@@ -196,23 +196,23 @@ export namespace firebase_v1beta1 {
     /**
      * Immutable. The globally unique, Firebase-assigned identifier of the App. &lt;br&gt; &lt;br&gt;This identifier should be treated as an opaque token, as the data format is not specified.
      */
-    appId?: string;
+    appId?: string | null;
     /**
      * The user-assigned display name of the App.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The fully qualified resource name of the App, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
      */
-    name?: string;
+    name?: string | null;
     /**
      * The canonical package name of the Android App as would appear in the Google Play Developer Console.
      */
-    packageName?: string;
+    packageName?: string | null;
     /**
      * The globally unique, user-assigned ID of the parent Project for the App.
      */
-    projectId?: string;
+    projectId?: string | null;
   }
   /**
    * Configuration metadata of a single Firebase App for Android.
@@ -221,11 +221,11 @@ export namespace firebase_v1beta1 {
     /**
      * The contents of the JSON configuration file.
      */
-    configFileContents?: string;
+    configFileContents?: string | null;
     /**
      * The filename that the configuration artifact is typically saved as. &lt;br&gt;For example: `google-services.json`
      */
-    configFilename?: string;
+    configFilename?: string | null;
   }
   /**
    * The default resources associated with a `FirebaseProject`.
@@ -234,19 +234,19 @@ export namespace firebase_v1beta1 {
     /**
      * The default Firebase Hosting site name, in the format: &lt;br&gt;&lt;code&gt;&lt;var&gt;projectId&lt;/var&gt;&lt;/code&gt; &lt;br&gt;Though rare, your `projectId` might already be used as the name for an existing Hosting site in another project (learn more about creating non-default, [additional sites](https://firebase.google.com/docs/hosting/multisites)). In these cases, your `projectId` is appended with a hyphen then five alphanumeric characters to create your default Hosting site name. For example, if your `projectId` is `myproject123`, your default Hosting site name might be: &lt;br&gt;&lt;code&gt;myproject123-a5c16&lt;/code&gt;
      */
-    hostingSite?: string;
+    hostingSite?: string | null;
     /**
      * The ID of the project&#39;s default GCP resource location. The location is one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). &lt;br&gt; &lt;br&gt;This field is omitted if the default GCP resource location has not been finalized yet. To set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase services to your project.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * The default Firebase Realtime Database instance name, in the format: &lt;br&gt;&lt;code&gt;&lt;var&gt;projectId&lt;/var&gt;&lt;/code&gt; &lt;br&gt;Though rare, your `projectId` might already be used as the name for an existing Realtime Database instance in another project (learn more about [database sharding](https://firebase.google.com/docs/database/usage/sharding)). In these cases, your `projectId` is appended with a hyphen then five alphanumeric characters to create your default Realtime Database instance name. For example, if your `projectId` is `myproject123`, your default database instance name might be: &lt;br&gt;&lt;code&gt;myproject123-a5c16&lt;/code&gt;
      */
-    realtimeDatabaseInstance?: string;
+    realtimeDatabaseInstance?: string | null;
     /**
      * The default Cloud Storage for Firebase storage bucket, in the format: &lt;br&gt;&lt;code&gt;&lt;var&gt;projectId&lt;/var&gt;.appspot.com&lt;/code&gt;
      */
-    storageBucket?: string;
+    storageBucket?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -256,7 +256,7 @@ export namespace firebase_v1beta1 {
     /**
      * The ID of the default GCP resource location for the Project. The location must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations).
      */
-    locationId?: string;
+    locationId?: string | null;
   }
   /**
    * A high-level summary of an App.
@@ -265,19 +265,19 @@ export namespace firebase_v1beta1 {
     /**
      * Immutable. The globally unique, Firebase-assigned identifier of the App. &lt;br&gt; &lt;br&gt;This identifier should be treated as an opaque token, as the data format is not specified.
      */
-    appId?: string;
+    appId?: string | null;
     /**
      * The user-assigned display name of the Firebase App.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The fully qualified resource name of the Firebase App, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt; &lt;/code&gt;
      */
-    name?: string;
+    name?: string | null;
     /**
      * The platform of the Firebase App.
      */
-    platform?: string;
+    platform?: string | null;
   }
   /**
    * A `FirebaseProject` is the top-level Firebase entity. It is the container for Firebase Apps, Firebase Hosting sites, storage systems (Firebase Realtime Database, Cloud Firestore, Cloud Storage buckets) and other Firebase and Google Cloud Platform (GCP) resources. &lt;br&gt; &lt;br&gt;You can create a new `FirebaseProject` in the [Firebase console](https://console.firebase.google.com/), or you can add Firebase resources to an existing [GCP `Project`](https://cloud.google.com/resource-manager/reference/rest/v1/projects) by calling AddFirebase. &lt;br&gt; &lt;br&gt;A `FirebaseProject` is actually also a GCP `Project`, so a `FirebaseProject` uses underlying GCP identifiers (most importantly, `projectId`) as its own for easy interop with GCP APIs.
@@ -286,19 +286,19 @@ export namespace firebase_v1beta1 {
     /**
      * The user-assigned display name of the Project.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The fully qualified resource name of the Project, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;&lt;/code&gt;
      */
-    name?: string;
+    name?: string | null;
     /**
      * Immutable. The globally unique, user-assigned ID of the Project.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The globally unique, Google-assigned identifier of the Project.
      */
-    projectNumber?: string;
+    projectNumber?: string | null;
     /**
      * The default Firebase resources associated with the Project.
      */
@@ -311,27 +311,27 @@ export namespace firebase_v1beta1 {
     /**
      * Immutable. The globally unique, Firebase-assigned identifier of the App. &lt;br&gt; &lt;br&gt;This identifier should be treated as an opaque token, as the data format is not specified.
      */
-    appId?: string;
+    appId?: string | null;
     /**
      * The automatically generated Apple ID assigned to the App by Apple in the iOS App Store.
      */
-    appStoreId?: string;
+    appStoreId?: string | null;
     /**
      * The canonical bundle ID of the iOS App as it would appear in the iOS AppStore.
      */
-    bundleId?: string;
+    bundleId?: string | null;
     /**
      * The user-assigned display name of the App.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The fully qualified resource name of the App, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
      */
-    name?: string;
+    name?: string | null;
     /**
      * The globally unique, user-assigned ID of the parent Project for the App.
      */
-    projectId?: string;
+    projectId?: string | null;
   }
   /**
    * Configuration metadata of a single Firebase App for iOS.
@@ -340,11 +340,11 @@ export namespace firebase_v1beta1 {
     /**
      * The content of the XML configuration file.
      */
-    configFileContents?: string;
+    configFileContents?: string | null;
     /**
      * The filename that the configuration artifact is typically saved as. &lt;br&gt;For example: `GoogleService-Info.plist`
      */
-    configFilename?: string;
+    configFilename?: string | null;
   }
   export interface Schema$ListAndroidAppsResponse {
     /**
@@ -354,7 +354,7 @@ export namespace firebase_v1beta1 {
     /**
      * If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. &lt;br&gt; &lt;br&gt;This token can be used in a subsequent call to `ListAndroidApps` to find the next group of Apps. &lt;br&gt; &lt;br&gt;Page tokens are short-lived and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListAvailableLocationsResponse {
     /**
@@ -364,13 +364,13 @@ export namespace firebase_v1beta1 {
     /**
      * If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results and all available locations have been listed. &lt;br&gt; &lt;br&gt;This token can be used in a subsequent call to `ListAvailableLocations` to find more locations. &lt;br&gt; &lt;br&gt;Page tokens are short-lived and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListAvailableProjectsResponse {
     /**
      * If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. &lt;br&gt; &lt;br&gt;This token can be used in a subsequent calls to `ListAvailableProjects` to find the next group of GCP `Projects`. &lt;br&gt; &lt;br&gt;Page tokens are short-lived and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of GCP `Projects` which can have Firebase resources added to them.
      */
@@ -380,7 +380,7 @@ export namespace firebase_v1beta1 {
     /**
      * If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. &lt;br&gt; &lt;br&gt;This token can be used in a subsequent calls to `ListFirebaseProjects` to find the next group of Projects. &lt;br&gt; &lt;br&gt;Page tokens are short-lived and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * One page of the list of Projects that are accessible to the caller.
      */
@@ -394,7 +394,7 @@ export namespace firebase_v1beta1 {
     /**
      * If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. &lt;br&gt; &lt;br&gt;This token can be used in a subsequent call to `ListIosApps` to find the next group of Apps. &lt;br&gt; &lt;br&gt;Page tokens are short-lived and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListShaCertificatesResponse {
     /**
@@ -410,7 +410,7 @@ export namespace firebase_v1beta1 {
     /**
      * If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. &lt;br&gt; &lt;br&gt;This token can be used in a subsequent call to `ListWebApps` to find the next group of Apps. &lt;br&gt; &lt;br&gt;Page tokens are short-lived and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A GCP resource location that can be selected for a Project.
@@ -419,7 +419,7 @@ export namespace firebase_v1beta1 {
     /**
      * The ID of the default GCP resource location. It must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations).
      */
-    locationId?: string;
+    locationId?: string | null;
   }
   /**
    * This is proto2&#39;s version of MessageSet.
@@ -432,7 +432,7 @@ export namespace firebase_v1beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -440,15 +440,15 @@ export namespace firebase_v1beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A reference to a Google Cloud Platform (GCP) `Project`.
@@ -457,21 +457,21 @@ export namespace firebase_v1beta1 {
     /**
      * The user-assigned display name of the GCP `Project`, for example: &lt;code&gt;My App&lt;/code&gt;
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The ID of the project&#39;s default GCP resource location. The location is one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). &lt;br&gt; &lt;br&gt; Not all projects will have this field populated. If it is not populated, it means that the project does not yet have a default GCP resource location. To set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase resources to your project.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * The resource name of the GCP `Project` to which Firebase resources can be added, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;&lt;/code&gt;
      */
-    project?: string;
+    project?: string | null;
   }
   export interface Schema$RemoveAnalyticsRequest {
     /**
      * Optional. The ID of the Google Analytics property associated with the specified `FirebaseProject`. &lt;ul&gt; &lt;li&gt;If not set, then the Google Analytics property that is currently associated with the specified `FirebaseProject` is removed.&lt;/li&gt; &lt;li&gt;If set, and the specified `FirebaseProject` is currently associated with a &lt;em&gt;different&lt;/em&gt; Google Analytics property, then the response is a `412 Precondition Failed` error.&lt;/li&gt; &lt;/ul&gt;
      */
-    analyticsPropertyId?: string;
+    analyticsPropertyId?: string | null;
   }
   export interface Schema$SearchFirebaseAppsResponse {
     /**
@@ -481,7 +481,7 @@ export namespace firebase_v1beta1 {
     /**
      * If the result list is too large to fit in a single response, then a token is returned. &lt;br&gt; &lt;br&gt;This token can be used in a subsequent calls to `SearchFirebaseApps` to find the next group of Apps. &lt;br&gt;If the string is empty, then this response is the last page of results. &lt;br&gt;Page tokens are short-lived and should not be persisted.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A SHA-1 or SHA-256 certificate associated with the AndroidApp.
@@ -490,15 +490,15 @@ export namespace firebase_v1beta1 {
     /**
      * The SHA certificate type.
      */
-    certType?: string;
+    certType?: string | null;
     /**
      * The fully qualified resource name of the `sha-key`, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;/sha/&lt;var&gt;shaId&lt;/var&gt;&lt;/code&gt;
      */
-    name?: string;
+    name?: string | null;
     /**
      * The certificate hash for the App.
      */
-    shaHash?: string;
+    shaHash?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -507,15 +507,15 @@ export namespace firebase_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Wire-format for a Status object
@@ -524,15 +524,15 @@ export namespace firebase_v1beta1 {
     /**
      * The canonical error code (see codes.proto) that most closely corresponds to this status. May be missing.
      */
-    canonicalCode?: number;
+    canonicalCode?: number | null;
     /**
      * Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto
      */
-    code?: number;
+    code?: number | null;
     /**
      * Detail message
      */
-    message?: string;
+    message?: string | null;
     /**
      * message_set associates an arbitrary proto message with the status.
      */
@@ -544,7 +544,7 @@ export namespace firebase_v1beta1 {
     /**
      * The following are usually only present when code != 0 Space to which this status belongs
      */
-    space?: string;
+    space?: string | null;
   }
   /**
    * A mapping of a Firebase App to a Google Analytics data stream
@@ -553,11 +553,11 @@ export namespace firebase_v1beta1 {
     /**
      * The fully qualified resource name of the Firebase App associated with the Google Analytics data stream, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
      */
-    app?: string;
+    app?: string | null;
     /**
      * The unique Google-assigned identifier of the Google Analytics data stream associated with the Firebase App. &lt;br&gt; &lt;br&gt;Learn more about Google Analytics data streams in the [Analytics documentation](https://support.google.com/analytics/answer/9303323).
      */
-    streamId?: string;
+    streamId?: string | null;
   }
   /**
    * Message that groups a protocol type_id (as defined by MessageSet), with an encoded message of that type.  Its use is similar to MessageSet, except it represents a single (type, encoded message) instead of a set.  To fill for known protocol type:   MyProtocolMsg proto;   TypedMessage typed_msg;   typed_msg.set_type_id(MyProtocolMsg::MESSAGE_TYPE_ID);   proto.AppendToCord(typed_msg.mutable_message());  To fill for unknown protocol type:   ProtocolMessage proto;   TypedMessage typed_msg;   typed_msg.set_type_id(proto.GetMapper()-&gt;type_id());   proto.AppendToCord(typed_msg.mutable_message());
@@ -566,11 +566,11 @@ export namespace firebase_v1beta1 {
     /**
      * Message bytes.
      */
-    message?: string;
+    message?: string | null;
     /**
      * Identifier for the type.
      */
-    typeId?: number;
+    typeId?: number | null;
   }
   /**
    * Details of a Firebase App for the web.
@@ -579,23 +579,23 @@ export namespace firebase_v1beta1 {
     /**
      * Immutable. The globally unique, Firebase-assigned identifier of the App. &lt;br&gt; &lt;br&gt;This identifier should be treated as an opaque token, as the data format is not specified.
      */
-    appId?: string;
+    appId?: string | null;
     /**
      * The fully qualified URLs where the App is hosted.
      */
-    appUrls?: string[];
+    appUrls?: string[] | null;
     /**
      * The user-assigned display name of the App.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The fully qualified resource name of the App, for example: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/webApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
      */
-    name?: string;
+    name?: string | null;
     /**
      * The globally unique, user-assigned ID of the parent Project for the App.
      */
-    projectId?: string;
+    projectId?: string | null;
   }
   /**
    * Configuration metadata of a single Firebase App for the web.
@@ -604,35 +604,35 @@ export namespace firebase_v1beta1 {
     /**
      * The API key associated with the web App.
      */
-    apiKey?: string;
+    apiKey?: string | null;
     /**
      * Immutable. The globally unique, Firebase-assigned identifier of the App.
      */
-    appId?: string;
+    appId?: string | null;
     /**
      * The domain Firebase Auth configures for OAuth redirects, in the format: &lt;br&gt;&lt;code&gt;&lt;var&gt;projectId&lt;/var&gt;.firebaseapp.com&lt;/code&gt;
      */
-    authDomain?: string;
+    authDomain?: string | null;
     /**
      * The default Firebase Realtime Database URL.
      */
-    databaseURL?: string;
+    databaseURL?: string | null;
     /**
      * The ID of the project&#39;s default GCP resource location. The location is one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). &lt;br&gt; &lt;br&gt;This field is omitted if the default GCP resource location has not been finalized yet. To set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase services to your project.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * The sender ID for use with Firebase Cloud Messaging.
      */
-    messagingSenderId?: string;
+    messagingSenderId?: string | null;
     /**
      * Immutable. The globally unique, user-assigned project ID of the parent Project for the App.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The default Cloud Storage for Firebase storage bucket name.
      */
-    storageBucket?: string;
+    storageBucket?: string | null;
   }
 
   export class Resource$Availableprojects {

@@ -133,7 +133,7 @@ export namespace firestore_v1beta1 {
     /**
      * The names of the documents to retrieve. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. The request will fail if any of the document is not a child resource of the given `database`. Duplicate names will be elided.
      */
-    documents?: string[];
+    documents?: string[] | null;
     /**
      * The fields to return. If not set, returns all fields.  If a document has a field that is not present in this mask, that field will not be returned in the response.
      */
@@ -145,11 +145,11 @@ export namespace firestore_v1beta1 {
     /**
      * Reads documents as they were at the given time. This may not be older than 60 seconds.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * Reads documents in a transaction.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * The streamed response for Firestore.BatchGetDocuments.
@@ -162,15 +162,15 @@ export namespace firestore_v1beta1 {
     /**
      * A document name that was requested but does not exist. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    missing?: string;
+    missing?: string | null;
     /**
      * The time at which the document was read. This may be monotically increasing, in this case the previous documents in the result stream are guaranteed not to have changed between their read_time and this one.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * The transaction that was started as part of this request. Will only be set in the first response, and only if BatchGetDocumentsRequest.new_transaction was set in the request.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * The request for Firestore.BeginTransaction.
@@ -188,7 +188,7 @@ export namespace firestore_v1beta1 {
     /**
      * The transaction that was started.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * A selection of a collection, such as `messages as m1`.
@@ -197,11 +197,11 @@ export namespace firestore_v1beta1 {
     /**
      * When false, selects only collections that are immediate children of the `parent` specified in the containing `RunQueryRequest`. When true, selects all descendant collections.
      */
-    allDescendants?: boolean;
+    allDescendants?: boolean | null;
     /**
      * The collection ID. When set, selects only collections with this ID.
      */
-    collectionId?: string;
+    collectionId?: string | null;
   }
   /**
    * The request for Firestore.Commit.
@@ -210,7 +210,7 @@ export namespace firestore_v1beta1 {
     /**
      * If set, applies all writes in this transaction, and commits it.
      */
-    transaction?: string;
+    transaction?: string | null;
     /**
      * The writes to apply.  Always executed atomically and in order.
      */
@@ -223,7 +223,7 @@ export namespace firestore_v1beta1 {
     /**
      * The time at which the commit occurred.
      */
-    commitTime?: string;
+    commitTime?: string | null;
     /**
      * The result of applying the writes.  This i-th write result corresponds to the i-th write in the request.
      */
@@ -240,7 +240,7 @@ export namespace firestore_v1beta1 {
     /**
      * The operator for combining multiple filters.
      */
-    op?: string;
+    op?: string | null;
   }
   /**
    * A position in a query result set.
@@ -249,7 +249,7 @@ export namespace firestore_v1beta1 {
     /**
      * If the position is just before or just after the given values, relative to the sort order defined by the query.
      */
-    before?: boolean;
+    before?: boolean | null;
     /**
      * The values that represent a position, in the order they appear in the order by clause of a query.  Can contain fewer values than specified in the order by clause.
      */
@@ -262,19 +262,19 @@ export namespace firestore_v1beta1 {
     /**
      * Output only. The time at which the document was created.  This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The document&#39;s fields.  The map keys represent field names.  A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`.  Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.  Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by the simple or quoted field names of the containing fields, delimited by `.`. For example, the structured field `&quot;foo&quot; : { map_value: { &quot;x&amp;y&quot; : { string_value: &quot;hello&quot; }}}` would be represented by the field path `foo.x&amp;y`.  Within a field path, a quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&amp;y` `` represents `x&amp;y` and `` `bak\`tik` `` represents `` bak`tik ``.
      */
-    fields?: {[key: string]: Schema$Value};
+    fields?: {[key: string]: Schema$Value} | null;
     /**
      * The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The time at which the document was last changed.  This value is initially set to the `create_time` then increases monotonically with each change to the document. It can also be compared to values from other documents and the `read_time` of a query.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * A Document has changed.  May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document.  Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.
@@ -287,11 +287,11 @@ export namespace firestore_v1beta1 {
     /**
      * A set of target IDs for targets that no longer match this document.
      */
-    removedTargetIds?: number[];
+    removedTargetIds?: number[] | null;
     /**
      * A set of target IDs of targets that match this document.
      */
-    targetIds?: number[];
+    targetIds?: number[] | null;
   }
   /**
    * A Document has been deleted.  May be the result of multiple writes, including updates, the last of which deleted the Document.  Multiple DocumentDelete messages may be returned for the same logical delete, if multiple targets are affected.
@@ -300,15 +300,15 @@ export namespace firestore_v1beta1 {
     /**
      * The resource name of the Document that was deleted.
      */
-    document?: string;
+    document?: string | null;
     /**
      * The read timestamp at which the delete was observed.  Greater or equal to the `commit_time` of the delete.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * A set of target IDs for targets that previously matched this entity.
      */
-    removedTargetIds?: number[];
+    removedTargetIds?: number[] | null;
   }
   /**
    * A set of field paths on a document. Used to restrict a get or update operation on a document to a subset of its fields. This is different from standard field masks, as this is always scoped to a Document, and takes in account the dynamic nature of Value.
@@ -317,7 +317,7 @@ export namespace firestore_v1beta1 {
     /**
      * The list of field paths in the mask. See Document.fields for a field path syntax reference.
      */
-    fieldPaths?: string[];
+    fieldPaths?: string[] | null;
   }
   /**
    * A Document has been removed from the view of the targets.  Sent if the document is no longer relevant to a target and is out of view. Can be sent instead of a DocumentDelete or a DocumentChange if the server can not send the new value of the document.  Multiple DocumentRemove messages may be returned for the same logical write or delete, if multiple targets are affected.
@@ -326,15 +326,15 @@ export namespace firestore_v1beta1 {
     /**
      * The resource name of the Document that has gone out of view.
      */
-    document?: string;
+    document?: string | null;
     /**
      * The read timestamp at which the remove was observed.  Greater or equal to the `commit_time` of the change/delete/remove.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * A set of target IDs for targets that previously matched this document.
      */
-    removedTargetIds?: number[];
+    removedTargetIds?: number[] | null;
   }
   /**
    * A target specified by a set of documents names.
@@ -343,7 +343,7 @@ export namespace firestore_v1beta1 {
     /**
      * The names of the documents to retrieve. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. The request will fail if any of the document is not a child resource of the given `database`. Duplicate names will be elided.
      */
-    documents?: string[];
+    documents?: string[] | null;
   }
   /**
    * A transformation of a document.
@@ -352,7 +352,7 @@ export namespace firestore_v1beta1 {
     /**
      * The name of the document to transform.
      */
-    document?: string;
+    document?: string | null;
     /**
      * The list of transformations to apply to the fields of the document, in order. This must not be empty.
      */
@@ -369,11 +369,11 @@ export namespace firestore_v1beta1 {
     /**
      * The total count of documents that match target_id.  If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.
      */
-    count?: number;
+    count?: number | null;
     /**
      * The target ID to which this filter applies.
      */
-    targetId?: number;
+    targetId?: number | null;
   }
   /**
    * A filter on a specific field.
@@ -386,7 +386,7 @@ export namespace firestore_v1beta1 {
     /**
      * The operator to filter by.
      */
-    op?: string;
+    op?: string | null;
     /**
      * The value to compare to.
      */
@@ -396,7 +396,7 @@ export namespace firestore_v1beta1 {
    * A reference to a field, such as `max(messages.time) as max_time`.
    */
   export interface Schema$FieldReference {
-    fieldPath?: string;
+    fieldPath?: string | null;
   }
   /**
    * A transformation of a field of the document.
@@ -409,7 +409,7 @@ export namespace firestore_v1beta1 {
     /**
      * The path of the field. See Document.fields for the field path syntax reference.
      */
-    fieldPath?: string;
+    fieldPath?: string | null;
     /**
      * Adds the given value to the field&#39;s current value.  This must be an integer or a double value. If the field is not an integer or double, or if the field does not yet exist, the transformation will set the field to the given value. If either of the given value or the current field value are doubles, both values will be interpreted as doubles. Double arithmetic and representation of double values follow IEEE 754 semantics. If there is positive/negative integer overflow, the field is resolved to the largest magnitude positive/negative integer.
      */
@@ -429,7 +429,7 @@ export namespace firestore_v1beta1 {
     /**
      * Sets the field to the given server value.
      */
-    setToServerValue?: string;
+    setToServerValue?: string | null;
   }
   /**
    * A filter.
@@ -455,19 +455,19 @@ export namespace firestore_v1beta1 {
     /**
      * Which collection ids are being exported.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * The time the operation ended, either successfully or otherwise. Unset if the operation is still active.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The state of the export operation.
      */
-    operationState?: string;
+    operationState?: string | null;
     /**
      * Where the entities are being exported to.
      */
-    outputUriPrefix?: string;
+    outputUriPrefix?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -479,7 +479,7 @@ export namespace firestore_v1beta1 {
     /**
      * The time that work began on the operation.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * The request for FirestoreAdmin.ExportDocuments.
@@ -488,11 +488,11 @@ export namespace firestore_v1beta1 {
     /**
      * Which collection ids to export. Unspecified means all collections.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time.
      */
-    outputUriPrefix?: string;
+    outputUriPrefix?: string | null;
   }
   /**
    * Returned in the google.longrunning.Operation response field.
@@ -501,7 +501,7 @@ export namespace firestore_v1beta1 {
     /**
      * Location of the output files. This can be used to begin an import into Cloud Firestore (this project or another project) after the operation completes successfully.
      */
-    outputUriPrefix?: string;
+    outputUriPrefix?: string | null;
   }
   /**
    * Metadata for ImportDocuments operations.
@@ -510,19 +510,19 @@ export namespace firestore_v1beta1 {
     /**
      * Which collection ids are being imported.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * The time the operation ended, either successfully or otherwise. Unset if the operation is still active.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The location of the documents being imported.
      */
-    inputUriPrefix?: string;
+    inputUriPrefix?: string | null;
     /**
      * The state of the import operation.
      */
-    operationState?: string;
+    operationState?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -534,7 +534,7 @@ export namespace firestore_v1beta1 {
     /**
      * The time that work began on the operation.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * The request for FirestoreAdmin.ImportDocuments.
@@ -543,11 +543,11 @@ export namespace firestore_v1beta1 {
     /**
      * Which collection ids to import. Unspecified means all collections included in the import.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * Location of the exported files. This must match the output_uri_prefix of an ExportDocumentsResponse from an export that has completed successfully. See: google.firestore.admin.v1beta1.ExportDocumentsResponse.output_uri_prefix.
      */
-    inputUriPrefix?: string;
+    inputUriPrefix?: string | null;
   }
   /**
    * An index definition.
@@ -556,7 +556,7 @@ export namespace firestore_v1beta1 {
     /**
      * The collection ID to which this index applies. Required.
      */
-    collectionId?: string;
+    collectionId?: string | null;
     /**
      * The fields to index.
      */
@@ -564,11 +564,11 @@ export namespace firestore_v1beta1 {
     /**
      * The resource name of the index. Output only.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The state of the index. Output only.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * A field of an index.
@@ -577,11 +577,11 @@ export namespace firestore_v1beta1 {
     /**
      * The path of the field. Must match the field path specification described by google.firestore.v1beta1.Document.fields. Special field path `__name__` may be used by itself or at the end of a path. `__type__` may be used only at the end of path.
      */
-    fieldPath?: string;
+    fieldPath?: string | null;
     /**
      * The field&#39;s mode.
      */
-    mode?: string;
+    mode?: string | null;
   }
   /**
    * Metadata for index operations. This metadata populates the metadata field of google.longrunning.Operation.
@@ -590,7 +590,7 @@ export namespace firestore_v1beta1 {
     /**
      * True if the [google.longrunning.Operation] was cancelled. If the cancellation is in progress, cancelled will be true but google.longrunning.Operation.done will be false.
      */
-    cancelled?: boolean;
+    cancelled?: boolean | null;
     /**
      * Progress of the existing operation, measured in number of documents.
      */
@@ -598,19 +598,19 @@ export namespace firestore_v1beta1 {
     /**
      * The time the operation ended, either successfully or otherwise. Unset if the operation is still active.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The index resource that this operation is acting on. For example: `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      */
-    index?: string;
+    index?: string | null;
     /**
      * The type of index operation.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * The time that work began on the operation.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * The response for FirestoreAdmin.ListIndexes.
@@ -623,7 +623,7 @@ export namespace firestore_v1beta1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The metadata message for google.cloud.location.Location.metadata.
@@ -636,11 +636,11 @@ export namespace firestore_v1beta1 {
     /**
      * An estimate of how much work has been completed. Note that this may be greater than `work_estimated`.
      */
-    workCompleted?: string;
+    workCompleted?: string | null;
     /**
      * An estimate of how much work needs to be performed. Zero if the work estimate is unavailable. May change as work progresses.
      */
-    workEstimated?: string;
+    workEstimated?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -649,7 +649,7 @@ export namespace firestore_v1beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -657,15 +657,15 @@ export namespace firestore_v1beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the &lt;a href=&quot;http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf&quot;&gt;WGS84 standard&lt;/a&gt;. Values must be within normalized ranges.
@@ -674,11 +674,11 @@ export namespace firestore_v1beta1 {
     /**
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      */
-    latitude?: number;
+    latitude?: number | null;
     /**
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
-    longitude?: number;
+    longitude?: number | null;
   }
   /**
    * The request for Firestore.ListCollectionIds.
@@ -687,11 +687,11 @@ export namespace firestore_v1beta1 {
     /**
      * The maximum number of results to return.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * A page token. Must be a value from ListCollectionIdsResponse.
      */
-    pageToken?: string;
+    pageToken?: string | null;
   }
   /**
    * The response from Firestore.ListCollectionIds.
@@ -700,11 +700,11 @@ export namespace firestore_v1beta1 {
     /**
      * The collection ids.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * A page token that may be used to continue the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response for Firestore.ListDocuments.
@@ -717,7 +717,7 @@ export namespace firestore_v1beta1 {
     /**
      * The next page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A request for Firestore.Listen
@@ -730,11 +730,11 @@ export namespace firestore_v1beta1 {
     /**
      * Labels associated with this target change.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The ID of a target to remove from this stream.
      */
-    removeTarget?: number;
+    removeTarget?: number | null;
   }
   /**
    * The response for Firestore.Listen.
@@ -768,7 +768,7 @@ export namespace firestore_v1beta1 {
     /**
      * The map&#39;s fields.  The map keys represent field names. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.
      */
-    fields?: {[key: string]: Schema$Value};
+    fields?: {[key: string]: Schema$Value} | null;
   }
   /**
    * An order on a field.
@@ -777,7 +777,7 @@ export namespace firestore_v1beta1 {
     /**
      * The direction to order by. Defaults to `ASCENDING`.
      */
-    direction?: string;
+    direction?: string | null;
     /**
      * The field to order by.
      */
@@ -790,11 +790,11 @@ export namespace firestore_v1beta1 {
     /**
      * When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      */
-    exists?: boolean;
+    exists?: boolean | null;
     /**
      * When set, the target document must exist and have been last updated at that time.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The projection of document&#39;s fields to return.
@@ -812,7 +812,7 @@ export namespace firestore_v1beta1 {
     /**
      * The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * A structured query.
      */
@@ -825,7 +825,7 @@ export namespace firestore_v1beta1 {
     /**
      * Reads documents at the given time. This may not be older than 60 seconds.
      */
-    readTime?: string;
+    readTime?: string | null;
   }
   /**
    * Options for a transaction that can be used to read and write documents.
@@ -834,7 +834,7 @@ export namespace firestore_v1beta1 {
     /**
      * An optional transaction to retry.
      */
-    retryTransaction?: string;
+    retryTransaction?: string | null;
   }
   /**
    * The request for Firestore.Rollback.
@@ -843,7 +843,7 @@ export namespace firestore_v1beta1 {
     /**
      * The transaction to roll back.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * The request for Firestore.RunQuery.
@@ -856,7 +856,7 @@ export namespace firestore_v1beta1 {
     /**
      * Reads documents as they were at the given time. This may not be older than 60 seconds.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * A structured query.
      */
@@ -864,7 +864,7 @@ export namespace firestore_v1beta1 {
     /**
      * Reads documents in a transaction.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * The response for Firestore.RunQuery.
@@ -877,15 +877,15 @@ export namespace firestore_v1beta1 {
     /**
      * The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one.  If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * The number of results that have been skipped due to an offset between the last response and the current response.
      */
-    skippedResults?: number;
+    skippedResults?: number | null;
     /**
      * The transaction that was started as part of this request. Can only be set in the first response, and only if RunQueryRequest.new_transaction was set in the request. If set, no other fields will be set in this response.
      */
-    transaction?: string;
+    transaction?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -894,15 +894,15 @@ export namespace firestore_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A Firestore query.
@@ -919,11 +919,11 @@ export namespace firestore_v1beta1 {
     /**
      * The maximum number of results to return.  Applies after all other constraints. Must be &gt;= 0 if specified.
      */
-    limit?: number;
+    limit?: number | null;
     /**
      * The number of results to skip.  Applies before limit, but after all other constraints. Must be &gt;= 0 if specified.
      */
-    offset?: number;
+    offset?: number | null;
     /**
      * The order to apply to the query results.  Firestore guarantees a stable ordering through the following rules:   * Any field required to appear in `order_by`, that is not already    specified in `order_by`, is appended to the order in field name order    by default.  * If an order on `__name__` is not specified, it is appended by default.  Fields are appended with the same sort direction as the last order specified, or &#39;ASCENDING&#39; if no order was specified. For example:   * `SELECT * FROM Foo ORDER BY A` becomes    `SELECT * FROM Foo ORDER BY A, __name__`  * `SELECT * FROM Foo ORDER BY A DESC` becomes    `SELECT * FROM Foo ORDER BY A DESC, __name__ DESC`  * `SELECT * FROM Foo WHERE A &gt; 1` becomes    `SELECT * FROM Foo WHERE A &gt; 1 ORDER BY A, __name__`
      */
@@ -952,7 +952,7 @@ export namespace firestore_v1beta1 {
     /**
      * If the target should be removed once it is current and consistent.
      */
-    once?: boolean;
+    once?: boolean | null;
     /**
      * A target specified by a query.
      */
@@ -960,15 +960,15 @@ export namespace firestore_v1beta1 {
     /**
      * Start listening after a specific `read_time`.  The client must know the state of matching documents at this time.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * A resume token from a prior TargetChange for an identical target.  Using a resume token with a different target is unsupported and may fail.
      */
-    resumeToken?: string;
+    resumeToken?: string | null;
     /**
      * The target ID that identifies the target on the stream. Must be a positive number and non-zero.
      */
-    targetId?: number;
+    targetId?: number | null;
   }
   /**
    * Targets being watched have changed.
@@ -981,19 +981,19 @@ export namespace firestore_v1beta1 {
     /**
      * The consistent `read_time` for the given `target_ids` (omitted when the target_ids are not at a consistent snapshot).  The stream is guaranteed to send a `read_time` with `target_ids` empty whenever the entire stream reaches a new consistent snapshot. ADD, CURRENT, and RESET messages are guaranteed to (eventually) result in a new consistent snapshot (while NO_CHANGE and REMOVE messages are not).  For a given stream, `read_time` is guaranteed to be monotonically increasing.
      */
-    readTime?: string;
+    readTime?: string | null;
     /**
      * A token that can be used to resume the stream for the given `target_ids`, or all targets if `target_ids` is empty.  Not set on every target change.
      */
-    resumeToken?: string;
+    resumeToken?: string | null;
     /**
      * The type of change that occurred.
      */
-    targetChangeType?: string;
+    targetChangeType?: string | null;
     /**
      * The target IDs of targets that have changed.  If empty, the change applies to all targets.  The order of the target IDs is not defined.
      */
-    targetIds?: number[];
+    targetIds?: number[] | null;
   }
   /**
    * Options for creating a new transaction.
@@ -1019,7 +1019,7 @@ export namespace firestore_v1beta1 {
     /**
      * The unary operator to apply.
      */
-    op?: string;
+    op?: string | null;
   }
   /**
    * A message that can hold any of the supported value types.
@@ -1032,15 +1032,15 @@ export namespace firestore_v1beta1 {
     /**
      * A boolean value.
      */
-    booleanValue?: boolean;
+    booleanValue?: boolean | null;
     /**
      * A bytes value.  Must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes are considered by queries.
      */
-    bytesValue?: string;
+    bytesValue?: string | null;
     /**
      * A double value.
      */
-    doubleValue?: number;
+    doubleValue?: number | null;
     /**
      * A geo point value representing a point on the surface of Earth.
      */
@@ -1048,7 +1048,7 @@ export namespace firestore_v1beta1 {
     /**
      * An integer value.
      */
-    integerValue?: string;
+    integerValue?: string | null;
     /**
      * A map value.
      */
@@ -1056,19 +1056,19 @@ export namespace firestore_v1beta1 {
     /**
      * A null value.
      */
-    nullValue?: string;
+    nullValue?: string | null;
     /**
      * A reference to a document. For example: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    referenceValue?: string;
+    referenceValue?: string | null;
     /**
      * A string value.  The string, represented as UTF-8, must not exceed 1 MiB - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are considered by queries.
      */
-    stringValue?: string;
+    stringValue?: string | null;
     /**
      * A timestamp value.  Precise only to microseconds. When stored, any additional precision is rounded down.
      */
-    timestampValue?: string;
+    timestampValue?: string | null;
   }
   /**
    * A write on a document.
@@ -1081,7 +1081,7 @@ export namespace firestore_v1beta1 {
     /**
      * A document name to delete. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    delete?: string;
+    delete?: string | null;
     /**
      * Applies a transformation to a document. At most one `transform` per document is allowed in a given request. An `update` cannot follow a `transform` on the same document in a given request.
      */
@@ -1102,15 +1102,15 @@ export namespace firestore_v1beta1 {
     /**
      * Labels associated with this write request.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The ID of the write stream to resume. This may only be set in the first message. When left empty, a new write stream will be created.
      */
-    streamId?: string;
+    streamId?: string | null;
     /**
      * A stream token that was previously sent by the server.  The client should set this field to the token from the most recent WriteResponse it has received. This acknowledges that the client has received responses up to this token. After sending this token, earlier tokens may not be used anymore.  The server may close the stream if there are too many unacknowledged responses.  Leave this field unset when creating a new stream. To resume a stream at a specific point, set this field and the `stream_id` field.  Leave this field unset when creating a new stream.
      */
-    streamToken?: string;
+    streamToken?: string | null;
     /**
      * The writes to apply.  Always executed atomically and in order. This must be empty on the first request. This may be empty on the last request. This must not be empty on all other requests.
      */
@@ -1123,15 +1123,15 @@ export namespace firestore_v1beta1 {
     /**
      * The time at which the commit occurred.
      */
-    commitTime?: string;
+    commitTime?: string | null;
     /**
      * The ID of the stream. Only set on the first message, when a new stream was created.
      */
-    streamId?: string;
+    streamId?: string | null;
     /**
      * A token that represents the position of this response in the stream. This can be used by a client to resume the stream at this point.  This field is always set.
      */
-    streamToken?: string;
+    streamToken?: string | null;
     /**
      * The result of applying the writes.  This i-th write result corresponds to the i-th write in the request.
      */
@@ -1148,7 +1148,7 @@ export namespace firestore_v1beta1 {
     /**
      * The last update time of the document after applying the write. Not set after a `delete`.  If the write did not actually change the document, this will be the previous update_time.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
 
   export class Resource$Projects {

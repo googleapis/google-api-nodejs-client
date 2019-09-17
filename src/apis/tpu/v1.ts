@@ -124,11 +124,11 @@ export namespace tpu_v1 {
     /**
      * The resource name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * the accelerator type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -145,11 +145,11 @@ export namespace tpu_v1 {
     /**
      * The next page token or empty if none.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -162,7 +162,7 @@ export namespace tpu_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response for ListNodes.
@@ -171,7 +171,7 @@ export namespace tpu_v1 {
     /**
      * The next page token or empty if none.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The listed nodes.
      */
@@ -179,7 +179,7 @@ export namespace tpu_v1 {
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -188,7 +188,7 @@ export namespace tpu_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -201,7 +201,7 @@ export namespace tpu_v1 {
     /**
      * The next page token or empty if none.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The listed nodes.
      */
@@ -209,7 +209,7 @@ export namespace tpu_v1 {
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -218,23 +218,23 @@ export namespace tpu_v1 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A network endpoint over which a TPU worker can be reached.
@@ -243,11 +243,11 @@ export namespace tpu_v1 {
     /**
      * The IP address of this network endpoint.
      */
-    ipAddress?: string;
+    ipAddress?: string | null;
     /**
      * The port of this network endpoint.
      */
-    port?: number;
+    port?: number | null;
   }
   /**
    * A TPU instance.
@@ -256,43 +256,43 @@ export namespace tpu_v1 {
     /**
      * The type of hardware accelerators associated with this node. Required.
      */
-    acceleratorType?: string;
+    acceleratorType?: string | null;
     /**
      * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user&#39;s provided network, or the provided network is peered with another network that is using that CIDR block. Required.
      */
-    cidrBlock?: string;
+    cidrBlock?: string | null;
     /**
      * Output only. The time when the node was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The user-supplied description of the TPU. Maximum of 512 characters.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The health status of the TPU node.
      */
-    health?: string;
+    health?: string | null;
     /**
      * Output only. If this field is populated, it contains a description of why the TPU Node is unhealthy.
      */
-    healthDescription?: string;
+    healthDescription?: string | null;
     /**
      * Output only. DEPRECATED! Use network_endpoints instead. The network address for the TPU Node as visible to Compute Engine instances.
      */
-    ipAddress?: string;
+    ipAddress?: string | null;
     /**
      * Resource labels to represent user-provided metadata.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. The immutable name of the TPU
      */
-    name?: string;
+    name?: string | null;
     /**
      * The name of a network they wish to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project on which this API has been activated. If none is provided, &quot;default&quot; will be used.
      */
-    network?: string;
+    network?: string | null;
     /**
      * Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the node reach out to the 0th entry in this map first.
      */
@@ -300,20 +300,20 @@ export namespace tpu_v1 {
     /**
      * Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to Compute Engine instances.
      */
-    port?: string;
+    port?: string | null;
     schedulingConfig?: Schema$SchedulingConfig;
     /**
      * Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.
      */
-    serviceAccount?: string;
+    serviceAccount?: string | null;
     /**
      * Output only. The current state for the TPU Node.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The version of Tensorflow running in the Node. Required.
      */
-    tensorflowVersion?: string;
+    tensorflowVersion?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -322,7 +322,7 @@ export namespace tpu_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -330,15 +330,15 @@ export namespace tpu_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -347,31 +347,31 @@ export namespace tpu_v1 {
     /**
      * [Output only] API version used to start the operation.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * [Output only] Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
-    cancelRequested?: boolean;
+    cancelRequested?: boolean | null;
     /**
      * [Output only] The time the operation was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * [Output only] The time the operation finished running.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * [Output only] Human-readable status of the operation, if any.
      */
-    statusDetail?: string;
+    statusDetail?: string | null;
     /**
      * [Output only] Server-defined resource path for the target of the operation.
      */
-    target?: string;
+    target?: string | null;
     /**
      * [Output only] Name of the verb executed by the operation.
      */
-    verb?: string;
+    verb?: string | null;
   }
   /**
    * Request for ReimageNode.
@@ -380,14 +380,14 @@ export namespace tpu_v1 {
     /**
      * The version for reimage to create.
      */
-    tensorflowVersion?: string;
+    tensorflowVersion?: string | null;
   }
   export interface Schema$SchedulingConfig {
-    preemptible?: boolean;
+    preemptible?: boolean | null;
     /**
      * Whether the node is created under a reservation.
      */
-    reserved?: boolean;
+    reserved?: boolean | null;
   }
   /**
    * Request for StartNode.
@@ -400,15 +400,15 @@ export namespace tpu_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Request for StopNode.
@@ -421,11 +421,11 @@ export namespace tpu_v1 {
     /**
      * The resource name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * the tensorflow version.
      */
-    version?: string;
+    version?: string | null;
   }
 
   export class Resource$Projects {

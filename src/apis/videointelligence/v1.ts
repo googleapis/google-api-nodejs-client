@@ -146,15 +146,15 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Explicit content annotation (based on per-frame visual signals only). If no explicit content has been detected in a frame, no annotations are present for that frame.
@@ -172,11 +172,11 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of the pornography content..
      */
-    pornographyLikelihood?: string;
+    pornographyLikelihood?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Label annotation.
@@ -206,11 +206,11 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for label detection.
@@ -219,7 +219,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Video segment where a label was detected.
      */
@@ -232,19 +232,19 @@ export namespace videointelligence_v1 {
     /**
      * Bottom Y coordinate.
      */
-    bottom?: number;
+    bottom?: number | null;
     /**
      * Left X coordinate.
      */
-    left?: number;
+    left?: number | null;
     /**
      * Right X coordinate.
      */
-    right?: number;
+    right?: number | null;
     /**
      * Top Y coordinate.
      */
-    top?: number;
+    top?: number | null;
   }
   /**
    * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
@@ -262,11 +262,11 @@ export namespace videointelligence_v1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Annotations corresponding to one tracked object.
@@ -275,7 +275,7 @@ export namespace videointelligence_v1 {
     /**
      * Object category&#39;s labeling confidence of this track.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity to specify the object category that this track is labeled as.
      */
@@ -291,7 +291,7 @@ export namespace videointelligence_v1 {
     /**
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
-    trackId?: string;
+    trackId?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -304,7 +304,7 @@ export namespace videointelligence_v1 {
     /**
      * The timestamp of the frame in microseconds.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -313,11 +313,11 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Transcript text representing the words that the user spoke.
      */
-    transcript?: string;
+    transcript?: string | null;
     /**
      * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
@@ -334,7 +334,7 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Annotations related to one detected OCR text snippet. This will contain the corresponding text, confidence value, and frame level information for each detection.
@@ -347,7 +347,7 @@ export namespace videointelligence_v1 {
     /**
      * The detected text.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -360,7 +360,7 @@ export namespace videointelligence_v1 {
     /**
      * Timestamp of this frame.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for text detection.
@@ -369,7 +369,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence for the track of detected text. It is calculated as the highest over all frames where OCR detected text appears.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Information related to the frames where OCR detected text appears.
      */
@@ -386,15 +386,15 @@ export namespace videointelligence_v1 {
     /**
      * Specifies which feature is being tracked if the request contains more than one features.
      */
-    feature?: string;
+    feature?: string | null;
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
-    progressPercent?: number;
+    progressPercent?: number | null;
     /**
      * Specifies which segment is being tracked if the request contains more than one segments.
      */
@@ -402,11 +402,11 @@ export namespace videointelligence_v1 {
     /**
      * Time when the request was received.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Time of the most recent update.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Annotation results for a single video.
@@ -427,7 +427,7 @@ export namespace videointelligence_v1 {
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -441,6 +441,10 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
+     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     */
+    segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
+    /**
      * Shot annotations. Each shot is represented as a video segment.
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
@@ -448,6 +452,10 @@ export namespace videointelligence_v1 {
      * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
+    /**
+     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     */
+    shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
      * Speech transcription.
      */
@@ -464,11 +472,11 @@ export namespace videointelligence_v1 {
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
      */
-    endTimeOffset?: string;
+    endTimeOffset?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
      */
-    startTimeOffset?: string;
+    startTimeOffset?: string | null;
   }
   /**
    * Word-specific information for recognized words. Word information is only included in the response when certain request parameters are set, such as `enable_word_time_offsets`.
@@ -477,23 +485,23 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
-    speakerTag?: number;
+    speakerTag?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The word corresponding to this set of information.
      */
-    word?: string;
+    word?: string | null;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
@@ -520,15 +528,15 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Explicit content annotation (based on per-frame visual signals only). If no explicit content has been detected in a frame, no annotations are present for that frame.
@@ -546,11 +554,11 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of the pornography content..
      */
-    pornographyLikelihood?: string;
+    pornographyLikelihood?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Label annotation.
@@ -580,11 +588,11 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for label detection.
@@ -593,7 +601,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Video segment where a label was detected.
      */
@@ -606,19 +614,19 @@ export namespace videointelligence_v1 {
     /**
      * Bottom Y coordinate.
      */
-    bottom?: number;
+    bottom?: number | null;
     /**
      * Left X coordinate.
      */
-    left?: number;
+    left?: number | null;
     /**
      * Right X coordinate.
      */
-    right?: number;
+    right?: number | null;
     /**
      * Top Y coordinate.
      */
-    top?: number;
+    top?: number | null;
   }
   /**
    * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
@@ -636,11 +644,11 @@ export namespace videointelligence_v1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Annotations corresponding to one tracked object.
@@ -649,7 +657,7 @@ export namespace videointelligence_v1 {
     /**
      * Object category&#39;s labeling confidence of this track.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity to specify the object category that this track is labeled as.
      */
@@ -665,7 +673,7 @@ export namespace videointelligence_v1 {
     /**
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
-    trackId?: string;
+    trackId?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -678,7 +686,7 @@ export namespace videointelligence_v1 {
     /**
      * The timestamp of the frame in microseconds.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -687,11 +695,11 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Transcript text representing the words that the user spoke.
      */
-    transcript?: string;
+    transcript?: string | null;
     /**
      * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
@@ -708,7 +716,7 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Annotations related to one detected OCR text snippet. This will contain the corresponding text, confidence value, and frame level information for each detection.
@@ -721,7 +729,7 @@ export namespace videointelligence_v1 {
     /**
      * The detected text.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -734,7 +742,7 @@ export namespace videointelligence_v1 {
     /**
      * Timestamp of this frame.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for text detection.
@@ -743,7 +751,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence for the track of detected text. It is calculated as the highest over all frames where OCR detected text appears.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Information related to the frames where OCR detected text appears.
      */
@@ -760,15 +768,15 @@ export namespace videointelligence_v1 {
     /**
      * Specifies which feature is being tracked if the request contains more than one features.
      */
-    feature?: string;
+    feature?: string | null;
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
-    progressPercent?: number;
+    progressPercent?: number | null;
     /**
      * Specifies which segment is being tracked if the request contains more than one segments.
      */
@@ -776,11 +784,11 @@ export namespace videointelligence_v1 {
     /**
      * Time when the request was received.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Time of the most recent update.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Annotation results for a single video.
@@ -801,7 +809,7 @@ export namespace videointelligence_v1 {
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -815,6 +823,10 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
+     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     */
+    segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
+    /**
      * Shot annotations. Each shot is represented as a video segment.
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment[];
@@ -822,6 +834,10 @@ export namespace videointelligence_v1 {
      * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
+    /**
+     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     */
+    shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
      * Speech transcription.
      */
@@ -838,11 +854,11 @@ export namespace videointelligence_v1 {
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
      */
-    endTimeOffset?: string;
+    endTimeOffset?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
      */
-    startTimeOffset?: string;
+    startTimeOffset?: string | null;
   }
   /**
    * Word-specific information for recognized words. Word information is only included in the response when certain request parameters are set, such as `enable_word_time_offsets`.
@@ -851,23 +867,23 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
-    speakerTag?: number;
+    speakerTag?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The word corresponding to this set of information.
      */
-    word?: string;
+    word?: string | null;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
@@ -894,15 +910,15 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Explicit content annotation (based on per-frame visual signals only). If no explicit content has been detected in a frame, no annotations are present for that frame.
@@ -920,11 +936,11 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of the pornography content..
      */
-    pornographyLikelihood?: string;
+    pornographyLikelihood?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Label annotation.
@@ -954,11 +970,11 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for label detection.
@@ -967,7 +983,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Video segment where a label was detected.
      */
@@ -980,19 +996,19 @@ export namespace videointelligence_v1 {
     /**
      * Bottom Y coordinate.
      */
-    bottom?: number;
+    bottom?: number | null;
     /**
      * Left X coordinate.
      */
-    left?: number;
+    left?: number | null;
     /**
      * Right X coordinate.
      */
-    right?: number;
+    right?: number | null;
     /**
      * Top Y coordinate.
      */
-    top?: number;
+    top?: number | null;
   }
   /**
    * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
@@ -1010,11 +1026,11 @@ export namespace videointelligence_v1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Annotations corresponding to one tracked object.
@@ -1023,7 +1039,7 @@ export namespace videointelligence_v1 {
     /**
      * Object category&#39;s labeling confidence of this track.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity to specify the object category that this track is labeled as.
      */
@@ -1039,7 +1055,7 @@ export namespace videointelligence_v1 {
     /**
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
-    trackId?: string;
+    trackId?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -1052,7 +1068,7 @@ export namespace videointelligence_v1 {
     /**
      * The timestamp of the frame in microseconds.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -1061,11 +1077,11 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Transcript text representing the words that the user spoke.
      */
-    transcript?: string;
+    transcript?: string | null;
     /**
      * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
@@ -1082,7 +1098,7 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Annotations related to one detected OCR text snippet. This will contain the corresponding text, confidence value, and frame level information for each detection.
@@ -1095,7 +1111,7 @@ export namespace videointelligence_v1 {
     /**
      * The detected text.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -1108,7 +1124,7 @@ export namespace videointelligence_v1 {
     /**
      * Timestamp of this frame.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for text detection.
@@ -1117,7 +1133,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence for the track of detected text. It is calculated as the highest over all frames where OCR detected text appears.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Information related to the frames where OCR detected text appears.
      */
@@ -1134,15 +1150,15 @@ export namespace videointelligence_v1 {
     /**
      * Specifies which feature is being tracked if the request contains more than one features.
      */
-    feature?: string;
+    feature?: string | null;
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
-    progressPercent?: number;
+    progressPercent?: number | null;
     /**
      * Specifies which segment is being tracked if the request contains more than one segments.
      */
@@ -1150,11 +1166,11 @@ export namespace videointelligence_v1 {
     /**
      * Time when the request was received.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Time of the most recent update.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Annotation results for a single video.
@@ -1175,7 +1191,7 @@ export namespace videointelligence_v1 {
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -1189,6 +1205,10 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
+     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     */
+    segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
+    /**
      * Shot annotations. Each shot is represented as a video segment.
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment[];
@@ -1196,6 +1216,10 @@ export namespace videointelligence_v1 {
      * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
+    /**
+     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     */
+    shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
      * Speech transcription.
      */
@@ -1212,11 +1236,11 @@ export namespace videointelligence_v1 {
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
      */
-    endTimeOffset?: string;
+    endTimeOffset?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
      */
-    startTimeOffset?: string;
+    startTimeOffset?: string | null;
   }
   /**
    * Word-specific information for recognized words. Word information is only included in the response when certain request parameters are set, such as `enable_word_time_offsets`.
@@ -1225,23 +1249,23 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
-    speakerTag?: number;
+    speakerTag?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The word corresponding to this set of information.
      */
-    word?: string;
+    word?: string | null;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
@@ -1268,15 +1292,15 @@ export namespace videointelligence_v1 {
     /**
      * Detected attribute confidence. Range [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Detected entity from video analysis.
@@ -1285,15 +1309,15 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Explicit content annotation (based on per-frame visual signals only). If no explicit content has been detected in a frame, no annotations are present for that frame.
@@ -1311,11 +1335,11 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of the pornography content..
      */
-    pornographyLikelihood?: string;
+    pornographyLikelihood?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Label annotation.
@@ -1345,11 +1369,11 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for label detection.
@@ -1358,7 +1382,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Video segment where a label was detected.
      */
@@ -1388,19 +1412,19 @@ export namespace videointelligence_v1 {
     /**
      * Bottom Y coordinate.
      */
-    bottom?: number;
+    bottom?: number | null;
     /**
      * Left X coordinate.
      */
-    left?: number;
+    left?: number | null;
     /**
      * Right X coordinate.
      */
-    right?: number;
+    right?: number | null;
     /**
      * Top Y coordinate.
      */
-    top?: number;
+    top?: number | null;
   }
   /**
    * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
@@ -1418,11 +1442,11 @@ export namespace videointelligence_v1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Annotations corresponding to one tracked object.
@@ -1431,7 +1455,7 @@ export namespace videointelligence_v1 {
     /**
      * Object category&#39;s labeling confidence of this track.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity to specify the object category that this track is labeled as.
      */
@@ -1447,7 +1471,7 @@ export namespace videointelligence_v1 {
     /**
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
-    trackId?: string;
+    trackId?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -1460,7 +1484,7 @@ export namespace videointelligence_v1 {
     /**
      * The timestamp of the frame in microseconds.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -1469,11 +1493,11 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Transcript text representing the words that the user spoke.
      */
-    transcript?: string;
+    transcript?: string | null;
     /**
      * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
@@ -1490,7 +1514,7 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * `StreamingAnnotateVideoResponse` is the only message returned to the client by `StreamingAnnotateVideo`. A series of zero or more `StreamingAnnotateVideoResponse` messages are streamed back to the client.
@@ -1503,7 +1527,7 @@ export namespace videointelligence_v1 {
     /**
      * GCS URI that stores annotation results of one streaming session. It is a directory that can hold multiple files in JSON format. Example uri format: gs://bucket_id/object_id/cloud_project_name-session_id
      */
-    annotationResultsUri?: string;
+    annotationResultsUri?: string | null;
     /**
      * If set, returns a google.rpc.Status message that specifies the error for the operation.
      */
@@ -1541,7 +1565,7 @@ export namespace videointelligence_v1 {
     /**
      * The detected text.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -1554,7 +1578,7 @@ export namespace videointelligence_v1 {
     /**
      * Timestamp of this frame.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for text detection.
@@ -1563,7 +1587,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence for the track of detected text. It is calculated as the highest over all frames where OCR detected text appears.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Information related to the frames where OCR detected text appears.
      */
@@ -1588,7 +1612,7 @@ export namespace videointelligence_v1 {
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * A track of an object instance.
@@ -1601,7 +1625,7 @@ export namespace videointelligence_v1 {
     /**
      * Optional. The confidence score of the tracked object.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Video segment of a track.
      */
@@ -1618,15 +1642,15 @@ export namespace videointelligence_v1 {
     /**
      * Specifies which feature is being tracked if the request contains more than one features.
      */
-    feature?: string;
+    feature?: string | null;
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
-    progressPercent?: number;
+    progressPercent?: number | null;
     /**
      * Specifies which segment is being tracked if the request contains more than one segments.
      */
@@ -1634,11 +1658,11 @@ export namespace videointelligence_v1 {
     /**
      * Time when the request was received.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Time of the most recent update.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Annotation results for a single video.
@@ -1659,7 +1683,7 @@ export namespace videointelligence_v1 {
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Annotations for list of logos detected, tracked and recognized in video.
      */
@@ -1677,6 +1701,10 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
+     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     */
+    segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
+    /**
      * Shot annotations. Each shot is represented as a video segment.
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment[];
@@ -1684,6 +1712,10 @@ export namespace videointelligence_v1 {
      * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
+    /**
+     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     */
+    shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
      * Speech transcription.
      */
@@ -1700,11 +1732,11 @@ export namespace videointelligence_v1 {
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
      */
-    endTimeOffset?: string;
+    endTimeOffset?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
      */
-    startTimeOffset?: string;
+    startTimeOffset?: string | null;
   }
   /**
    * Word-specific information for recognized words. Word information is only included in the response when certain request parameters are set, such as `enable_word_time_offsets`.
@@ -1713,23 +1745,23 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
-    speakerTag?: number;
+    speakerTag?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The word corresponding to this set of information.
      */
-    word?: string;
+    word?: string | null;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
@@ -1747,23 +1779,23 @@ export namespace videointelligence_v1 {
     /**
      * Requested video annotation features.
      */
-    features?: string[];
+    features?: string[] | null;
     /**
      * The video data bytes. If unset, the input video(s) should be specified via `input_uri`. If set, `input_uri` should be unset.
      */
-    inputContent?: string;
+    inputContent?: string | null;
     /**
      * Input video location. Currently, only [Google Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris). A video URI may include wildcards in `object-id`, and thus identify multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` should be unset.
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Optional cloud region where annotation should take place. Supported cloud regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region is specified, a region will be determined based on video file location.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Optional location where the output (in JSON format) should be stored. Currently, only [Google Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris).
      */
-    outputUri?: string;
+    outputUri?: string | null;
     /**
      * Additional video context and/or feature-specific parameters.
      */
@@ -1785,15 +1817,15 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Explicit content annotation (based on per-frame visual signals only). If no explicit content has been detected in a frame, no annotations are present for that frame.
@@ -1811,7 +1843,7 @@ export namespace videointelligence_v1 {
     /**
      * Model to use for explicit content detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
      */
-    model?: string;
+    model?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -1820,11 +1852,11 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of the pornography content..
      */
-    pornographyLikelihood?: string;
+    pornographyLikelihood?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Label annotation.
@@ -1854,23 +1886,23 @@ export namespace videointelligence_v1 {
     /**
      * The confidence threshold we perform filtering on the labels from frame-level detection. If not set, it is set to 0.4 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: for best results please follow the default threshold. We will update the default threshold everytime when we release a new model.
      */
-    frameConfidenceThreshold?: number;
+    frameConfidenceThreshold?: number | null;
     /**
      * What labels should be detected with LABEL_DETECTION, in addition to video-level labels or segment-level labels. If unspecified, defaults to `SHOT_MODE`.
      */
-    labelDetectionMode?: string;
+    labelDetectionMode?: string | null;
     /**
      * Model to use for label detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
      */
-    model?: string;
+    model?: string | null;
     /**
      * Whether the video has been shot from a stationary (i.e. non-moving) camera. When set to true, might improve detection accuracy for moving objects. Should be used with `SHOT_AND_FRAME_MODE` enabled.
      */
-    stationaryCamera?: boolean;
+    stationaryCamera?: boolean | null;
     /**
      * The confidence threshold we perform filtering on the labels from video-level and shot-level detections. If not set, it is set to 0.3 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: for best results please follow the default threshold. We will update the default threshold everytime when we release a new model.
      */
-    videoConfidenceThreshold?: number;
+    videoConfidenceThreshold?: number | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -1879,11 +1911,11 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for label detection.
@@ -1892,7 +1924,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Video segment where a label was detected.
      */
@@ -1905,19 +1937,19 @@ export namespace videointelligence_v1 {
     /**
      * Bottom Y coordinate.
      */
-    bottom?: number;
+    bottom?: number | null;
     /**
      * Left X coordinate.
      */
-    left?: number;
+    left?: number | null;
     /**
      * Right X coordinate.
      */
-    right?: number;
+    right?: number | null;
     /**
      * Top Y coordinate.
      */
-    top?: number;
+    top?: number | null;
   }
   /**
    * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like:         0----1         |    |         3----2  When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes:         2----3         |    |         1----0  and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
@@ -1935,11 +1967,11 @@ export namespace videointelligence_v1 {
     /**
      * X coordinate.
      */
-    x?: number;
+    x?: number | null;
     /**
      * Y coordinate.
      */
-    y?: number;
+    y?: number | null;
   }
   /**
    * Annotations corresponding to one tracked object.
@@ -1948,7 +1980,7 @@ export namespace videointelligence_v1 {
     /**
      * Object category&#39;s labeling confidence of this track.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Entity to specify the object category that this track is labeled as.
      */
@@ -1964,7 +1996,7 @@ export namespace videointelligence_v1 {
     /**
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
-    trackId?: string;
+    trackId?: string | null;
   }
   /**
    * Config for OBJECT_TRACKING.
@@ -1973,7 +2005,7 @@ export namespace videointelligence_v1 {
     /**
      * Model to use for object tracking. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
      */
-    model?: string;
+    model?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -1986,7 +2018,7 @@ export namespace videointelligence_v1 {
     /**
      * The timestamp of the frame in microseconds.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Config for SHOT_CHANGE_DETECTION.
@@ -1995,7 +2027,7 @@ export namespace videointelligence_v1 {
     /**
      * Model to use for shot change detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
      */
-    model?: string;
+    model?: string | null;
   }
   /**
    * Provides &quot;hints&quot; to the speech recognizer to favor specific words and phrases in the results.
@@ -2004,7 +2036,7 @@ export namespace videointelligence_v1 {
     /**
      * *Optional* A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech/limits#content).
      */
-    phrases?: string[];
+    phrases?: string[] | null;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -2013,11 +2045,11 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Transcript text representing the words that the user spoke.
      */
-    transcript?: string;
+    transcript?: string | null;
     /**
      * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
@@ -2034,7 +2066,7 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * Config for SPEECH_TRANSCRIPTION.
@@ -2043,35 +2075,35 @@ export namespace videointelligence_v1 {
     /**
      * *Optional* For file formats, such as MXF or MKV, supporting multiple audio tracks, specify up to two tracks. Default: track 0.
      */
-    audioTracks?: number[];
+    audioTracks?: number[] | null;
     /**
      * *Optional* If set, specifies the estimated number of speakers in the conversation. If not set, defaults to &#39;2&#39;. Ignored unless enable_speaker_diarization is set to true.
      */
-    diarizationSpeakerCount?: number;
+    diarizationSpeakerCount?: number | null;
     /**
      * *Optional* If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. NOTE: &quot;This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.&quot;
      */
-    enableAutomaticPunctuation?: boolean;
+    enableAutomaticPunctuation?: boolean | null;
     /**
      * *Optional* If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: When this is true, we send all the words from the beginning of the audio for the top alternative in every consecutive responses. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time.
      */
-    enableSpeakerDiarization?: boolean;
+    enableSpeakerDiarization?: boolean | null;
     /**
      * *Optional* If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`.
      */
-    enableWordConfidence?: boolean;
+    enableWordConfidence?: boolean | null;
     /**
      * *Optional* If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities won&#39;t be filtered out.
      */
-    filterProfanity?: boolean;
+    filterProfanity?: boolean | null;
     /**
      * *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech/docs/languages) for a list of the currently supported language codes.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * *Optional* Maximum number of recognition hypotheses to be returned. Specifically, the maximum number of `SpeechRecognitionAlternative` messages within each `SpeechTranscription`. The server may return fewer than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of one. If omitted, will return a maximum of one.
      */
-    maxAlternatives?: number;
+    maxAlternatives?: number | null;
     /**
      * *Optional* A means to provide context to assist the speech recognition.
      */
@@ -2088,7 +2120,7 @@ export namespace videointelligence_v1 {
     /**
      * The detected text.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * Config for TEXT_DETECTION.
@@ -2097,11 +2129,11 @@ export namespace videointelligence_v1 {
     /**
      * Language hint can be specified if the language to be detected is known a priori. It can increase the accuracy of the detection. Language hint must be language code in BCP-47 format.  Automatic language detection is performed if no hint is provided.
      */
-    languageHints?: string[];
+    languageHints?: string[] | null;
     /**
      * Model to use for text detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
      */
-    model?: string;
+    model?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -2114,7 +2146,7 @@ export namespace videointelligence_v1 {
     /**
      * Timestamp of this frame.
      */
-    timeOffset?: string;
+    timeOffset?: string | null;
   }
   /**
    * Video segment level annotation results for text detection.
@@ -2123,7 +2155,7 @@ export namespace videointelligence_v1 {
     /**
      * Confidence for the track of detected text. It is calculated as the highest over all frames where OCR detected text appears.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Information related to the frames where OCR detected text appears.
      */
@@ -2140,15 +2172,15 @@ export namespace videointelligence_v1 {
     /**
      * Specifies which feature is being tracked if the request contains more than one features.
      */
-    feature?: string;
+    feature?: string | null;
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when fully processed.
      */
-    progressPercent?: number;
+    progressPercent?: number | null;
     /**
      * Specifies which segment is being tracked if the request contains more than one segments.
      */
@@ -2156,11 +2188,11 @@ export namespace videointelligence_v1 {
     /**
      * Time when the request was received.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Time of the most recent update.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Annotation results for a single video.
@@ -2181,7 +2213,7 @@ export namespace videointelligence_v1 {
     /**
      * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
      */
-    inputUri?: string;
+    inputUri?: string | null;
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -2195,6 +2227,10 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
+     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     */
+    segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
+    /**
      * Shot annotations. Each shot is represented as a video segment.
      */
     shotAnnotations?: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
@@ -2202,6 +2238,10 @@ export namespace videointelligence_v1 {
      * Topical label annotations on shot level. There is exactly one element for each unique label.
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
+    /**
+     * Presence label annotations on shot level. There is exactly one element for each unique label.
+     */
+    shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
      * Speech transcription.
      */
@@ -2251,11 +2291,11 @@ export namespace videointelligence_v1 {
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the end of the segment (inclusive).
      */
-    endTimeOffset?: string;
+    endTimeOffset?: string | null;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the start of the segment (inclusive).
      */
-    startTimeOffset?: string;
+    startTimeOffset?: string | null;
   }
   /**
    * Word-specific information for recognized words. Word information is only included in the response when certain request parameters are set, such as `enable_word_time_offsets`.
@@ -2264,23 +2304,23 @@ export namespace videointelligence_v1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
-    speakerTag?: number;
+    speakerTag?: number | null;
     /**
      * Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The word corresponding to this set of information.
      */
-    word?: string;
+    word?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -2293,7 +2333,7 @@ export namespace videointelligence_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -2306,7 +2346,7 @@ export namespace videointelligence_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -2314,15 +2354,15 @@ export namespace videointelligence_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -2335,15 +2375,15 @@ export namespace videointelligence_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Operations {

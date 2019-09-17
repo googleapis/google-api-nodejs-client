@@ -132,27 +132,27 @@ export namespace composer_v1 {
     /**
      * Output only. The time at which this environment was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Optional. User-defined labels for this environment. The labels map can contain no more than 64 entries. Entries of the labels map are UTF8 strings that comply with the following restrictions:  * Keys must conform to regexp: \p{Ll}\p{Lo}{0,62} * Values must conform to regexp:  [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally constrained to be &lt;= 128 bytes in size.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The resource name of the environment, in the form: &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;
      */
-    name?: string;
+    name?: string | null;
     /**
      * The current state of the environment.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. The time at which this environment was last modified.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Output only. The UUID (Universally Unique IDentifier) associated with this environment. This value is generated when the environment is created.
      */
-    uuid?: string;
+    uuid?: string | null;
   }
   /**
    * Configuration information for an environment.
@@ -161,15 +161,15 @@ export namespace composer_v1 {
     /**
      * Output only. The URI of the Apache Airflow Web UI hosted within this environment (see [Airflow web interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      */
-    airflowUri?: string;
+    airflowUri?: string | null;
     /**
      * Output only. The Cloud Storage prefix of the DAGs for this environment. Although Cloud Storage objects reside in a flat namespace, a hierarchical file tree can be simulated using &quot;/&quot;-delimited object name prefixes. DAG objects for this environment reside in a simulated directory with the given prefix.
      */
-    dagGcsPrefix?: string;
+    dagGcsPrefix?: string | null;
     /**
      * Output only. The Kubernetes Engine cluster used to run this environment.
      */
-    gkeCluster?: string;
+    gkeCluster?: string | null;
     /**
      * The configuration used for the Kubernetes Engine cluster.
      */
@@ -177,7 +177,7 @@ export namespace composer_v1 {
     /**
      * The number of nodes in the Kubernetes Engine cluster that will be used to run this environment.
      */
-    nodeCount?: number;
+    nodeCount?: number | null;
     /**
      * The configuration settings for software inside the environment.
      */
@@ -190,15 +190,15 @@ export namespace composer_v1 {
     /**
      * The string identifier of the ImageVersion, in the form: &quot;composer-x.y.z-airflow-a.b(.c)&quot;
      */
-    imageVersionId?: string;
+    imageVersionId?: string | null;
     /**
      * Whether this is the default ImageVersion used by Composer during environment creation if no input ImageVersion is specified.
      */
-    isDefault?: boolean;
+    isDefault?: boolean | null;
     /**
      * supported python versions
      */
-    supportedPythonVersions?: string[];
+    supportedPythonVersions?: string[] | null;
   }
   /**
    * The environments in a project and location.
@@ -211,7 +211,7 @@ export namespace composer_v1 {
     /**
      * The page token used to query for the next page if one exists.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The ImageVersions in a project and location.
@@ -224,7 +224,7 @@ export namespace composer_v1 {
     /**
      * The page token used to query for the next page if one exists.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -233,7 +233,7 @@ export namespace composer_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -246,35 +246,35 @@ export namespace composer_v1 {
     /**
      * Optional. The disk size in GB used for node VMs. Minimum size is 20GB. If unspecified, defaults to 100GB. Cannot be updated.
      */
-    diskSizeGb?: number;
+    diskSizeGb?: number | null;
     /**
      * Optional. The Compute Engine [zone](/compute/docs/regions-zones) in which to deploy the VMs used to run the Apache Airflow software, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: &quot;projects/{projectId}/zones/{zoneId}&quot;.  This `location` must belong to the enclosing environment&#39;s project and location. If both this field and `nodeConfig.machineType` are specified, `nodeConfig.machineType` must belong to this `location`; if both are unspecified, the service will pick a zone in the Compute Engine region corresponding to the Cloud Composer location, and propagate that choice to both fields. If only one field (`location` or `nodeConfig.machineType`) is specified, the location information from the specified field will be propagated to the unspecified field.
      */
-    location?: string;
+    location?: string | null;
     /**
      * Optional. The Compute Engine [machine type](/compute/docs/machine-types) used for cluster instances, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: &quot;projects/{projectId}/zones/{zoneId}/machineTypes/{machineTypeId}&quot;.  The `machineType` must belong to the enclosing environment&#39;s project and location. If both this field and `nodeConfig.location` are specified, this `machineType` must belong to the `nodeConfig.location`; if both are unspecified, the service will pick a zone in the Compute Engine region corresponding to the Cloud Composer location, and propagate that choice to both fields. If exactly one of this field and `nodeConfig.location` is specified, the location information from the specified field will be propagated to the unspecified field.  The `machineTypeId` must not be a [shared-core machine type](/compute/docs/machine-types#sharedcore).  If this field is unspecified, the `machineTypeId` defaults to &quot;n1-standard-1&quot;.
      */
-    machineType?: string;
+    machineType?: string | null;
     /**
      * Optional. The Compute Engine network to be used for machine communications, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: &quot;projects/{projectId}/global/networks/{networkId}&quot;.  [Shared VPC](/vpc/docs/shared-vpc) is not currently supported. The network must belong to the environment&#39;s project. If unspecified, the &quot;default&quot; network ID in the environment&#39;s project is used.  If a [Custom Subnet Network](/vpc/docs/vpc#vpc_networks_and_subnets) is provided, `nodeConfig.subnetwork` must also be provided.
      */
-    network?: string;
+    network?: string | null;
     /**
      * Optional. The set of Google API scopes to be made available on all node VMs. If `oauth_scopes` is empty, defaults to [&quot;https://www.googleapis.com/auth/cloud-platform&quot;]. Cannot be updated.
      */
-    oauthScopes?: string[];
+    oauthScopes?: string[] | null;
     /**
      * Optional. The Google Cloud Platform Service Account to be used by the node VMs. If a service account is not specified, the &quot;default&quot; Compute Engine service account is used. Cannot be updated.
      */
-    serviceAccount?: string;
+    serviceAccount?: string | null;
     /**
      * Optional. The Compute Engine subnetwork to be used for machine communications, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: &quot;projects/{projectId}/regions/{regionId}/subnetworks/{subnetworkId}&quot;  If a subnetwork is provided, `nodeConfig.network` must also be provided, and the subnetwork must belong to the enclosing environment&#39;s project and location.
      */
-    subnetwork?: string;
+    subnetwork?: string | null;
     /**
      * Optional. The list of instance tags applied to all node VMs. Tags are used to identify valid sources or targets for network firewalls. Each tag within the list must comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Cannot be updated.
      */
-    tags?: string[];
+    tags?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -283,7 +283,7 @@ export namespace composer_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -291,15 +291,15 @@ export namespace composer_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Metadata describing an operation.
@@ -308,27 +308,27 @@ export namespace composer_v1 {
     /**
      * Output only. The time the operation was submitted to the server.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. The time when the operation terminated, regardless of its success. This field is unset if the operation is still ongoing.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. The type of operation being performed.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * Output only. The resource being operated on, as a [relative resource name]( /apis/design/resource_names#relative_resource_name).
      */
-    resource?: string;
+    resource?: string | null;
     /**
      * Output only. The UUID of the resource being operated on.
      */
-    resourceUuid?: string;
+    resourceUuid?: string | null;
     /**
      * Output only. The current operation state.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Specifies the selection and configuration of software inside the environment.
@@ -337,23 +337,23 @@ export namespace composer_v1 {
     /**
      * Optional. Apache Airflow configuration properties to override.  Property keys contain the section and property names, separated by a hyphen, for example &quot;core-dags_are_paused_at_creation&quot;. Section names must not contain hyphens (&quot;-&quot;), opening square brackets (&quot;[&quot;),  or closing square brackets (&quot;]&quot;). The property name must not be empty and must not contain an equals sign (&quot;=&quot;) or semicolon (&quot;;&quot;). Section and property names must not contain a period (&quot;.&quot;). Apache Airflow configuration property names must be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can contain any character, and can be written in any lower/upper case format.  Certain Apache Airflow configuration property values are [blacklisted](/composer/docs/how-to/managing/setting-airflow-configurations#airflow_configuration_blacklists), and cannot be overridden.
      */
-    airflowConfigOverrides?: {[key: string]: string};
+    airflowConfigOverrides?: {[key: string]: string} | null;
     /**
      * Optional. Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.  Environment variable names must match the regular expression `a-zA-Z_*`. They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:  * `AIRFLOW_HOME` * `C_FORCE_ROOT` * `CONTAINER_NAME` * `DAGS_FOLDER` * `GCP_PROJECT` * `GCS_BUCKET` * `GKE_CLUSTER_NAME` * `SQL_DATABASE` * `SQL_INSTANCE` * `SQL_PASSWORD` * `SQL_PROJECT` * `SQL_REGION` * `SQL_USER`
      */
-    envVariables?: {[key: string]: string};
+    envVariables?: {[key: string]: string} | null;
     /**
      * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+\.[0-9]+\.[0-9]+|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version.  The Cloud Composer portion of the version is a [semantic version](https://semver.org) or `latest`. When the patch version is omitted, the current Cloud Composer patch version is selected. When `latest` is provided instead of an explicit version number, the server replaces `latest` with the current Cloud Composer version and stores that version number in the same field.  The portion of the image version that follows &lt;em&gt;airflow-&lt;/em&gt; is an official Apache Airflow repository [release name](https://github.com/apache/incubator-airflow/releases).  See also [Version List](/composer/docs/concepts/versioning/composer-versions).
      */
-    imageVersion?: string;
+    imageVersion?: string | null;
     /**
      * Optional. Custom Python Package Index (PyPI) packages to be installed in the environment.  Keys refer to the lowercase package name such as &quot;numpy&quot; and values are the lowercase extras and version specifier such as &quot;==1.12.0&quot;, &quot;[devel,gcp_api]&quot;, or &quot;[devel]&gt;=1.8.2, &lt;1.9.2&quot;. To specify a package without pinning it to a version specifier, use the empty string as the value.
      */
-    pypiPackages?: {[key: string]: string};
+    pypiPackages?: {[key: string]: string} | null;
     /**
      * Optional. The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes.  Can be set to &#39;2&#39; or &#39;3&#39;. If not specified, the default is &#39;2&#39;. Cannot be updated.
      */
-    pythonVersion?: string;
+    pythonVersion?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -362,15 +362,15 @@ export namespace composer_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Projects {

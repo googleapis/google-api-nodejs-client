@@ -132,11 +132,11 @@ export namespace file_v1beta1 {
     /**
      * File share capacity in gigabytes (GB). Cloud Filestore defines 1 GB as 1024^3 bytes.
      */
-    capacityGb?: string;
+    capacityGb?: string | null;
     /**
      * The name of the file share (must be 16 characters or less).
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Instance represents the interface for SLM services to actuate the state of control plane resources.  Example Instance in JSON, where   consumer-project=snapchat,   producer-project=cloud-sql:  ```json Instance: {   &quot;name&quot;:   &quot;projects/snapchat/locations/us-east1/instances/prod-instance&quot;,   &quot;create_time&quot;: {     &quot;seconds&quot;: 1526406431,   },   &quot;labels&quot;: {     &quot;env&quot;: &quot;prod&quot;,     &quot;foo&quot;: &quot;bar&quot;   },   &quot;state&quot;: READY,   &quot;software_versions&quot;: {     &quot;software_update&quot;: &quot;cloud-sql-09-28-2018&quot;,   },   &quot;maintenance_policy_names&quot;: {     &quot;UpdatePolicy&quot;:     &quot;projects/snapchat/locations/us-east1/maintenancePolicies/prod-update-policy&quot;,   }   &quot;rollout_metadata&quot;: {     &quot;projects/cloud-sql/locations/global/rolloutTypes/software_update&quot;: {       &quot;release&quot;:       &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-28-2018&quot;,       &quot;rollout&quot;:       &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-28-2018-canary&quot;,     },     &quot;projects/cloud-sql/locations/global/rolloutTypes/instance_restart&quot;: {       &quot;release&quot;:       &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-20-repair&quot;,       &quot;rollout&quot;:       &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-20-repair-100-percent&quot;,     }   }   &quot;tenant_project_id&quot;: &quot;cloud-sql-test-tenant&quot;,   &quot;producer_metadata&quot;: {     &quot;cloud-sql-tier&quot;: &quot;basic&quot;,     &quot;cloud-sql-instance-size&quot;: &quot;1G&quot;,   },   &quot;provisioned_resources&quot;: [     {       &quot;resource-type&quot;: &quot;compute-instance&quot;,       &quot;resource-url&quot;:       &quot;https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1&quot;,     }   ],   &quot;maintenance_schedules&quot;: {     &quot;csa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     },     &quot;ncsa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     }   },   &quot;consumer_defined_name&quot;: &quot;my-sql-instance1&quot;, } ```
@@ -145,33 +145,33 @@ export namespace file_v1beta1 {
     /**
      * consumer_defined_name is the name that is set by the consumer. On the other hand Name field represents system-assigned id of an instance so consumers are not necessarily aware of it. consumer_defined_name is used for notification/UI purposes for consumer to recognize their instances.
      */
-    consumerDefinedName?: string;
+    consumerDefinedName?: string | null;
     /**
      * Output only. Timestamp when the resource was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
      */
-    maintenancePolicyNames?: {[key: string]: string};
+    maintenancePolicyNames?: {[key: string]: string} | null;
     /**
      * The MaintenanceSchedule contains the scheduling information of published maintenance schedule.
      */
     maintenanceSchedules?: {
       [key: string]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule;
-    };
+    } | null;
     /**
      * Unique name of the resource. It uses the form:  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. Custom string attributes used primarily to expose producer-specific information in monitoring dashboards. See go/get-instance-metadata.
      */
-    producerMetadata?: {[key: string]: string};
+    producerMetadata?: {[key: string]: string} | null;
     /**
      * Output only. The list of data plane resources provisioned for this instance, e.g. compute VMs. See go/get-instance-metadata.
      */
@@ -181,7 +181,7 @@ export namespace file_v1beta1 {
      */
     rolloutMetadata?: {
       [key: string]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1RolloutMetadata;
-    };
+    } | null;
     /**
      * Output only. SLO metadata for instance classification in the Standardized dataplane SLO platform. See go/cloud-ssa-standard-slo for feature description.
      */
@@ -189,19 +189,19 @@ export namespace file_v1beta1 {
     /**
      * Software versions that are used to deploy this instance. This can be mutated by rollout services.
      */
-    softwareVersions?: {[key: string]: string};
+    softwareVersions?: {[key: string]: string} | null;
     /**
      * Output only. Current lifecycle state of the resource (e.g. if it&#39;s being created or ready to use).
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. ID of the associated GCP tenant project. See go/get-instance-metadata.
      */
-    tenantProjectId?: string;
+    tenantProjectId?: string | null;
     /**
      * Output only. Timestamp when the resource was last modified.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Maintenance schedule which is exposed to customer and potentially end user, indicating published upcoming future maintenance schedule
@@ -210,15 +210,15 @@ export namespace file_v1beta1 {
     /**
      * Can this scheduled update be rescheduled? By default, it&#39;s true and API needs to do explicitly check whether it&#39;s set, if it&#39;s set as false explicitly, it&#39;s false
      */
-    canReschedule?: boolean;
+    canReschedule?: boolean | null;
     /**
      * The scheduled end time for the maintenance.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The scheduled start time for the maintenance.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
@@ -231,11 +231,11 @@ export namespace file_v1beta1 {
     /**
      * The location of the node, if different from instance location.
      */
-    location?: string;
+    location?: string | null;
     /**
      * The id of the node. This should be equal to SaasInstanceNode.node_id.
      */
-    nodeId?: string;
+    nodeId?: string | null;
   }
   /**
    * NotificationMetadata is the notification state for an instance.
@@ -244,19 +244,19 @@ export namespace file_v1beta1 {
     /**
      * Whether the instance update has been rescheduled.
      */
-    rescheduled?: boolean;
+    rescheduled?: boolean | null;
     /**
      * The scheduled end time for the maintenance window during which update can be performed on the instance.
      */
-    scheduledEndTime?: string;
+    scheduledEndTime?: string | null;
     /**
      * The scheduled start time for the maintenance window during which update can be performed on the instance.
      */
-    scheduledStartTime?: string;
+    scheduledStartTime?: string | null;
     /**
      * The target release to be applied to the instance.
      */
-    targetRelease?: string;
+    targetRelease?: string | null;
   }
   /**
    * Describes provisioned dataplane resources.
@@ -265,11 +265,11 @@ export namespace file_v1beta1 {
     /**
      * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider&#39;s VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with &#39;compute-&#39;, for example: &#39;compute-instance&#39;, &#39;compute-disk&#39;, &#39;compute-autoscaler&#39;.
      */
-    resourceType?: string;
+    resourceType?: string | null;
     /**
      * URL identifying the resource, e.g. &quot;https://www.googleapis.com/compute/v1/projects/...)&quot;.
      */
-    resourceUrl?: string;
+    resourceUrl?: string | null;
   }
   /**
    * RolloutMetadata for an actuation instance. It maps to a single RolloutType.
@@ -282,11 +282,11 @@ export namespace file_v1beta1 {
     /**
      * The last Release that has been applied to the instance.
      */
-    releaseName?: string;
+    releaseName?: string | null;
     /**
      * The last rollout that has been applied to the instance.
      */
-    rolloutName?: string;
+    rolloutName?: string | null;
   }
   /**
    * SloExclusion represents an excusion in SLI calculation applies to all SLOs.
@@ -295,19 +295,19 @@ export namespace file_v1beta1 {
     /**
      * Exclusion duration. No restrictions on the possible values.  When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
      */
-    exclusionDuration?: string;
+    exclusionDuration?: string | null;
     /**
      * Start time of the exclusion. No alignment (e.g. to a full minute) needed.
      */
-    exclusionStartTime?: string;
+    exclusionStartTime?: string | null;
     /**
      * Human-readable reason for the exclusion. This should be a static string (e.g. &quot;Disruptive update in progress&quot;) and should not contain dynamically generated data (e.g. instance name). Can be left empty.
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.
      */
-    sliName?: string;
+    sliName?: string | null;
   }
   /**
    * SloMetadata contains resources required for proper SLO classification of the instance.
@@ -324,7 +324,7 @@ export namespace file_v1beta1 {
     /**
      * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration.  Field is mandatory and must not be empty.
      */
-    tier?: string;
+    tier?: string | null;
   }
   /**
    * A Cloud Filestore instance.
@@ -333,15 +333,15 @@ export namespace file_v1beta1 {
     /**
      * Output only. The time when the instance was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Optional. A description of the instance (2048 characters or less).
      */
-    description?: string;
+    description?: string | null;
     /**
      * Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * File system shares on the instance. For this version, only a single file share is supported.
      */
@@ -349,11 +349,11 @@ export namespace file_v1beta1 {
     /**
      * Resource labels to represent user provided metadata.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * VPC networks to which the instance is connected. For this version, only a single network is supported.
      */
@@ -361,15 +361,15 @@ export namespace file_v1beta1 {
     /**
      * Output only. The instance state.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. Additional information about the instance state, if available.
      */
-    statusMessage?: string;
+    statusMessage?: string | null;
     /**
      * The service tier of the instance.
      */
-    tier?: string;
+    tier?: string | null;
   }
   /**
    * ListInstancesResponse is the result of ListInstancesRequest.
@@ -382,11 +382,11 @@ export namespace file_v1beta1 {
     /**
      * The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -399,7 +399,7 @@ export namespace file_v1beta1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -408,7 +408,7 @@ export namespace file_v1beta1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -421,23 +421,23 @@ export namespace file_v1beta1 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Network configuration for the instance.
@@ -446,19 +446,19 @@ export namespace file_v1beta1 {
     /**
      * Output only. IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or IPv6 addresses in the format {block 1}:{block 2}:{block 3}:{block 4}:{block 5}:{block 6}:{block 7}:{block 8}.
      */
-    ipAddresses?: string[];
+    ipAddresses?: string[] | null;
     /**
      * Internet protocol versions for which the instance has IP addresses assigned. For this version, only MODE_IPV4 is supported.
      */
-    modes?: string[];
+    modes?: string[] | null;
     /**
      * The name of the Google Compute Engine [VPC network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected.
      */
-    network?: string;
+    network?: string | null;
     /**
      * A /29 CIDR block in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can&#39;t overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
      */
-    reservedIpRange?: string;
+    reservedIpRange?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -467,7 +467,7 @@ export namespace file_v1beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -475,15 +475,15 @@ export namespace file_v1beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -492,31 +492,31 @@ export namespace file_v1beta1 {
     /**
      * [Output only] API version used to start the operation.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * [Output only] Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
-    cancelRequested?: boolean;
+    cancelRequested?: boolean | null;
     /**
      * [Output only] The time the operation was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * [Output only] The time the operation finished running.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * [Output only] Human-readable status of the operation, if any.
      */
-    statusDetail?: string;
+    statusDetail?: string | null;
     /**
      * [Output only] Server-defined resource path for the target of the operation.
      */
-    target?: string;
+    target?: string | null;
     /**
      * [Output only] Name of the verb executed by the operation.
      */
-    verb?: string;
+    verb?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -525,15 +525,15 @@ export namespace file_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Projects {

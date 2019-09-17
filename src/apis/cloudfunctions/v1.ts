@@ -130,7 +130,7 @@ export namespace cloudfunctions_v1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
@@ -139,11 +139,11 @@ export namespace cloudfunctions_v1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -156,11 +156,11 @@ export namespace cloudfunctions_v1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * Request for the `CallFunction` method.
@@ -169,7 +169,7 @@ export namespace cloudfunctions_v1 {
     /**
      * Input to be passed to the function.
      */
-    data?: string;
+    data?: string | null;
   }
   /**
    * Response of `CallFunction` method.
@@ -178,15 +178,15 @@ export namespace cloudfunctions_v1 {
     /**
      * Either system or user-function generated error. Set if execution was not successful.
      */
-    error?: string;
+    error?: string | null;
     /**
      * Execution id of function invocation.
      */
-    executionId?: string;
+    executionId?: string | null;
     /**
      * Result populated for successful execution of synchronous function. Will not be populated if function does not return a result through context.
      */
-    result?: string;
+    result?: string | null;
   }
   /**
    * Describes a Cloud Function that contains user computation executed in response to an event. It encapsulate function and triggers configurations.
@@ -195,19 +195,19 @@ export namespace cloudfunctions_v1 {
     /**
      * The amount of memory in MB available for a function. Defaults to 256MB.
      */
-    availableMemoryMb?: number;
+    availableMemoryMb?: number | null;
     /**
      * User-provided description of a function.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix, if not specified. For backward compatibility, if function with given name is not found, then the system will try to use function named &quot;function&quot;. For Node.js this is name of a function exported by the module specified in `source_location`.
      */
-    entryPoint?: string;
+    entryPoint?: string | null;
     /**
      * Environment variables that shall be available during function execution.
      */
-    environmentVariables?: {[key: string]: string};
+    environmentVariables?: {[key: string]: string} | null;
     /**
      * A source that fires events in response to a condition in another service.
      */
@@ -219,31 +219,31 @@ export namespace cloudfunctions_v1 {
     /**
      * Labels associated with this Cloud Function.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The limit on the maximum number of function instances that may coexist at a given time.
      */
-    maxInstances?: number;
+    maxInstances?: number | null;
     /**
      * A user-defined name of the function. Function names must be unique globally and match pattern `projects/x/locations/x/functions/x
      */
-    name?: string;
+    name?: string | null;
     /**
      * The VPC Network that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network resource. If the short network name is used, the network must belong to the same project. Otherwise, it must belong to a project within the same organization. The format of this field is either `projects/{project}/global/networks/{network}` or `{network}`, where {project} is a project id where the network is defined, and {network} is the short name of the network.  This field is mutually exclusive with `vpc_connector` and will be replaced by it.  See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for more information on connecting Cloud projects.
      */
-    network?: string;
+    network?: string | null;
     /**
      * The runtime in which to run the function. Required when deploying a new function, optional when updating an existing function. For a complete list of possible choices, see the [`gcloud` command reference](/sdk/gcloud/reference/functions/deploy#--runtime).
      */
-    runtime?: string;
+    runtime?: string | null;
     /**
      * The email of the function&#39;s service account. If empty, defaults to `{project_id}@appspot.gserviceaccount.com`.
      */
-    serviceAccountEmail?: string;
+    serviceAccountEmail?: string | null;
     /**
      * The Google Cloud Storage URL, starting with gs://, pointing to the zip archive which contains the function.
      */
-    sourceArchiveUrl?: string;
+    sourceArchiveUrl?: string | null;
     /**
      * **Beta Feature**  The source repository where a function is hosted.
      */
@@ -251,27 +251,27 @@ export namespace cloudfunctions_v1 {
     /**
      * The Google Cloud Storage signed URL used for source uploading, generated by google.cloud.functions.v1.GenerateUploadUrl
      */
-    sourceUploadUrl?: string;
+    sourceUploadUrl?: string | null;
     /**
      * Output only. Status of the function deployment.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The function execution timeout. Execution is considered failed and can be terminated if the function is not completed at the end of the timeout period. Defaults to 60 seconds.
      */
-    timeout?: string;
+    timeout?: string | null;
     /**
      * Output only. The last update timestamp of a Cloud Function.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Output only. The version identifier of the Cloud Function. Each deployment attempt results in a new version of a function being created.
      */
-    versionId?: string;
+    versionId?: string | null;
     /**
      * The VPC Network Connector that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network connector resource. The format of this field is `projects/x/locations/x/connectors/x  This field is mutually exclusive with `network` field and will eventually replace it.  See [the VPC documentation](https://cloud.google.com/compute/docs/vpc) for more information on connecting Cloud projects.
      */
-    vpcConnector?: string;
+    vpcConnector?: string | null;
   }
   /**
    * Describes EventTrigger, used to request events be sent from another service.
@@ -280,7 +280,7 @@ export namespace cloudfunctions_v1 {
     /**
      * Required. The type of event to observe. For example: `providers/cloud.storage/eventTypes/object.change` and `providers/cloud.pubsub/eventTypes/topic.publish`.  Event types match pattern `providers/x/eventTypes/*.*`. The pattern contains:  1. namespace: For example, `cloud.storage` and    `google.firebase.analytics`. 2. resource type: The type of resource on which event occurs. For    example, the Google Cloud Storage API includes the type `object`. 3. action: The action that generates the event. For example, action for    a Google Cloud Storage Object is &#39;change&#39;. These parts are lower case.
      */
-    eventType?: string;
+    eventType?: string | null;
     /**
      * Specifies policy for failed executions.
      */
@@ -288,11 +288,11 @@ export namespace cloudfunctions_v1 {
     /**
      * Required. The resource(s) from which to observe events, for example, `projects/_/buckets/myBucket`.  Not all syntactically correct values are accepted by all services. For example:  1. The authorization model must support it. Google Cloud Functions    only allows EventTriggers to be deployed that observe resources in the    same project as the `CloudFunction`. 2. The resource type must match the pattern expected for an    `event_type`. For example, an `EventTrigger` that has an    `event_type` of &quot;google.pubsub.topic.publish&quot; should have a resource    that matches Google Cloud Pub/Sub topics.  Additionally, some services may support short names when creating an `EventTrigger`. These will always be returned in the normalized &quot;long&quot; format.  See each *service&#39;s* documentation for supported formats.
      */
-    resource?: string;
+    resource?: string | null;
     /**
      * The hostname of the service that should be observed.  If no string is provided, the default service implementing the API will be used. For example, `storage.googleapis.com` is the default for all event types in the `google.storage` namespace.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
@@ -301,19 +301,19 @@ export namespace cloudfunctions_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Describes the policy in case of function&#39;s execution failure. If empty, then defaults to ignoring failures (i.e. not retrying them).
@@ -331,7 +331,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The optional version of function. If not set, default, current version is used.
      */
-    versionId?: string;
+    versionId?: string | null;
   }
   /**
    * Response of `GenerateDownloadUrl` method.
@@ -340,7 +340,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The generated Google Cloud Storage signed URL that should be used for function source code download.
      */
-    downloadUrl?: string;
+    downloadUrl?: string | null;
   }
   /**
    * Request of `GenerateSourceUploadUrl` method.
@@ -353,7 +353,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The generated Google Cloud Storage signed URL that should be used for a function source code upload. The uploaded file should be a zip archive which contains a function.
      */
-    uploadUrl?: string;
+    uploadUrl?: string | null;
   }
   /**
    * Describes HttpsTrigger, could be used to connect web hooks to function.
@@ -362,7 +362,7 @@ export namespace cloudfunctions_v1 {
     /**
      * Output only. The deployed url for the function.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Response for the `ListFunctions` method.
@@ -375,7 +375,7 @@ export namespace cloudfunctions_v1 {
     /**
      * If not empty, indicates that there may be more functions that match the request; this value should be passed in a new google.cloud.functions.v1.ListFunctionsRequest to get more functions.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -388,7 +388,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -397,7 +397,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -410,23 +410,23 @@ export namespace cloudfunctions_v1 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -435,7 +435,7 @@ export namespace cloudfunctions_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -443,15 +443,15 @@ export namespace cloudfunctions_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Metadata describing an Operation
@@ -460,23 +460,23 @@ export namespace cloudfunctions_v1 {
     /**
      * The original request that started the operation.
      */
-    request?: {[key: string]: any};
+    request?: {[key: string]: any} | null;
     /**
      * Target of the operation - for example projects/project-1/locations/region-1/functions/function-1
      */
-    target?: string;
+    target?: string | null;
     /**
      * Type of operation.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The last update timestamp of the operation.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Version id of the function created or updated by an API call. This field is only populated for Create and Update operations.
      */
-    versionId?: string;
+    versionId?: string | null;
   }
   /**
    * Metadata describing an Operation
@@ -485,23 +485,23 @@ export namespace cloudfunctions_v1 {
     /**
      * The original request that started the operation.
      */
-    request?: {[key: string]: any};
+    request?: {[key: string]: any} | null;
     /**
      * Target of the operation - for example projects/project-1/locations/region-1/functions/function-1
      */
-    target?: string;
+    target?: string | null;
     /**
      * Type of operation.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The last update timestamp of the operation.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Version id of the function created or updated by an API call. This field is only populated for Create and Update operations.
      */
-    versionId?: string;
+    versionId?: string | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -518,11 +518,11 @@ export namespace cloudfunctions_v1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Deprecated.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Describes the retry policy in case of function&#39;s execution failure. A function execution will be retried on any failure. A failed execution will be retried up to 7 days with an exponential backoff (capped at 10 seconds). Retried execution is charged as any other execution.
@@ -539,7 +539,7 @@ export namespace cloudfunctions_v1 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Describes SourceRepository, used to represent parameters related to source repository where a function is hosted.
@@ -548,11 +548,11 @@ export namespace cloudfunctions_v1 {
     /**
      * Output only. The URL pointing to the hosted repository where the function were defined at the time of deployment. It always points to a specific commit in the format described above.
      */
-    deployedUrl?: string;
+    deployedUrl?: string | null;
     /**
      * The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats:  To refer to a specific commit: `https://source.developers.google.com/projects/x/repos/x/revisions/x/paths/x To refer to a moveable alias (branch): `https://source.developers.google.com/projects/x/repos/x/moveable-aliases/x/paths/x In particular, to refer to HEAD use `master` moveable alias. To refer to a specific fixed alias (tag): `https://source.developers.google.com/projects/x/repos/x/fixed-aliases/x/paths/x  You may omit `paths/x if you want to use the main directory.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -561,15 +561,15 @@ export namespace cloudfunctions_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -578,7 +578,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -587,7 +587,7 @@ export namespace cloudfunctions_v1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
 
   export class Resource$Operations {

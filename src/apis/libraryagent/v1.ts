@@ -124,19 +124,19 @@ export namespace libraryagent_v1 {
     /**
      * The name of the book author.
      */
-    author?: string;
+    author?: string | null;
     /**
      * The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Value indicating whether the book has been read.
      */
-    read?: boolean;
+    read?: boolean | null;
     /**
      * The title of the book.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Response message for LibraryAgent.ListBooks.
@@ -149,7 +149,7 @@ export namespace libraryagent_v1 {
     /**
      * A token to retrieve next page of results. Pass this value in the ListBooksRequest.page_token field in the subsequent call to `ListBooks` method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for LibraryAgent.ListShelves.
@@ -158,7 +158,7 @@ export namespace libraryagent_v1 {
     /**
      * A token to retrieve next page of results. Pass this value in the ListShelvesRequest.page_token field in the subsequent call to `ListShelves` method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of shelves.
      */
@@ -171,11 +171,11 @@ export namespace libraryagent_v1 {
     /**
      * Output only. The resource name of the shelf. Shelf names have the form `shelves/{shelf_id}`. The name is ignored when creating a shelf.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The theme of the shelf
      */
-    theme?: string;
+    theme?: string | null;
   }
 
   export class Resource$Shelves {

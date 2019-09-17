@@ -124,7 +124,7 @@ export namespace searchconsole_v1 {
     /**
      * URL of the blocked resource.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Describe image data.
@@ -133,11 +133,11 @@ export namespace searchconsole_v1 {
     /**
      * Image data in format determined by the mime type. Currently, the format will always be &quot;image/png&quot;, but this might change in the future.
      */
-    data?: string;
+    data?: string | null;
     /**
      * The mime-type of the image data.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * Mobile-friendly issue.
@@ -146,7 +146,7 @@ export namespace searchconsole_v1 {
     /**
      * Rule violated.
      */
-    rule?: string;
+    rule?: string | null;
   }
   /**
    * Information about a resource with issue.
@@ -164,11 +164,11 @@ export namespace searchconsole_v1 {
     /**
      * Whether or not screenshot is requested. Default is false.
      */
-    requestScreenshot?: boolean;
+    requestScreenshot?: boolean | null;
     /**
      * URL for inspection.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Mobile-friendly test response, including mobile-friendly issues and resource issues.
@@ -177,7 +177,7 @@ export namespace searchconsole_v1 {
     /**
      * Test verdict, whether the page is mobile friendly or not.
      */
-    mobileFriendliness?: string;
+    mobileFriendliness?: string | null;
     /**
      * List of mobile-usability issues.
      */
@@ -202,11 +202,11 @@ export namespace searchconsole_v1 {
     /**
      * Error details if applicable.
      */
-    details?: string;
+    details?: string | null;
     /**
      * Status of the test.
      */
-    status?: string;
+    status?: string | null;
   }
 
   export class Resource$Urltestingtools {

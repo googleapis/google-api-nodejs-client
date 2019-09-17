@@ -113,7 +113,7 @@ export namespace urlshortener_v1 {
     /**
      * Number of clicks on all goo.gl short URLs pointing to this long URL.
      */
-    longUrlClicks?: string;
+    longUrlClicks?: string | null;
     /**
      * Top platforms or OSes, e.g. &quot;Windows&quot;; sorted by (descending) click counts. Only present if this data is available.
      */
@@ -125,7 +125,7 @@ export namespace urlshortener_v1 {
     /**
      * Number of clicks on this short URL.
      */
-    shortUrlClicks?: string;
+    shortUrlClicks?: string | null;
   }
   export interface Schema$AnalyticsSummary {
     /**
@@ -153,11 +153,11 @@ export namespace urlshortener_v1 {
     /**
      * Number of clicks for this top entry, e.g. for this particular country or browser.
      */
-    count?: string;
+    count?: string | null;
     /**
      * Label assigned to this top entry, e.g. &quot;US&quot; or &quot;Chrome&quot;.
      */
-    id?: string;
+    id?: string | null;
   }
   export interface Schema$Url {
     /**
@@ -167,23 +167,23 @@ export namespace urlshortener_v1 {
     /**
      * Time the short URL was created; ISO 8601 representation using the yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ format, e.g. &quot;2010-10-14T19:01:24.944+00:00&quot;.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Short URL, e.g. &quot;http://goo.gl/l6MS&quot;.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The fixed string &quot;urlshortener#url&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present if the status is &quot;REMOVED&quot;.
      */
-    longUrl?: string;
+    longUrl?: string | null;
     /**
      * Status of the target URL. Possible values: &quot;OK&quot;, &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL might be marked &quot;REMOVED&quot; if it was flagged as spam, for example.
      */
-    status?: string;
+    status?: string | null;
   }
   export interface Schema$UrlHistory {
     /**
@@ -193,19 +193,19 @@ export namespace urlshortener_v1 {
     /**
      * Number of items returned with each full &quot;page&quot; of results. Note that the last page could have fewer items than the &quot;itemsPerPage&quot; value.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * The fixed string &quot;urlshortener#urlHistory&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * A token to provide to get the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Total number of short URLs associated with this user (may be approximate).
      */
-    totalItems?: number;
+    totalItems?: number | null;
   }
 
   export class Resource$Url {

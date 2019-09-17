@@ -125,7 +125,7 @@ export interface Schema${{ schema.id }} {
   {% elif p.items and p.items.$ref %}
     {{ pname|cleanPropertyName|safe }}?: Schema${{ p.items.$ref }}[];
   {% else %}
-    {{ pname|cleanPropertyName|safe }}?: {{ p|getType|safe }};
+    {{ pname|cleanPropertyName|safe }}?: {{ p|getType|safe }}|null;
   {% endif %}
 {% endfor %}
 {% endif %}

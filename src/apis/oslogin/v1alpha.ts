@@ -137,7 +137,7 @@ export namespace oslogin_v1alpha {
     /**
      * A unique user ID.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The list of POSIX accounts associated with the user.
      */
@@ -145,7 +145,7 @@ export namespace oslogin_v1alpha {
     /**
      * A map from SSH public key fingerprint to the associated key object.
      */
-    sshPublicKeys?: {[key: string]: Schema$SshPublicKey};
+    sshPublicKeys?: {[key: string]: Schema$SshPublicKey} | null;
   }
   /**
    * The POSIX account information associated with a Google account.
@@ -154,43 +154,43 @@ export namespace oslogin_v1alpha {
     /**
      * Output only. A POSIX account identifier.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The GECOS (user information) entry for this account.
      */
-    gecos?: string;
+    gecos?: string | null;
     /**
      * The default group ID.
      */
-    gid?: string;
+    gid?: string | null;
     /**
      * The path to the home directory for this account.
      */
-    homeDirectory?: string;
+    homeDirectory?: string | null;
     /**
      * The operating system type where this account applies.
      */
-    operatingSystemType?: string;
+    operatingSystemType?: string | null;
     /**
      * Only one POSIX account can be marked as primary.
      */
-    primary?: boolean;
+    primary?: boolean | null;
     /**
      * The path to the logic shell for this account.
      */
-    shell?: string;
+    shell?: string | null;
     /**
      * System identifier for which account the username or uid applies to. By default, the empty value is used.
      */
-    systemId?: string;
+    systemId?: string | null;
     /**
      * The user ID.
      */
-    uid?: string;
+    uid?: string | null;
     /**
      * The username of the POSIX account.
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * The SSH public key information associated with a Google account.
@@ -199,15 +199,15 @@ export namespace oslogin_v1alpha {
     /**
      * An expiration time in microseconds since epoch.
      */
-    expirationTimeUsec?: string;
+    expirationTimeUsec?: string | null;
     /**
      * Output only. The SHA-256 fingerprint of the SSH public key.
      */
-    fingerprint?: string;
+    fingerprint?: string | null;
     /**
      * Public key text in SSH format, defined by &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
      */
-    key?: string;
+    key?: string | null;
   }
 
   export class Resource$Users {

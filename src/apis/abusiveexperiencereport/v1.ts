@@ -126,31 +126,31 @@ export namespace abusiveexperiencereport_v1 {
     /**
      * The site&#39;s Abusive Experience Report status.
      */
-    abusiveStatus?: string;
+    abusiveStatus?: string | null;
     /**
      * The time at which [enforcement](https://support.google.com/webtools/answer/7538608) against the site began or will begin.  Not set when the filter_status is OFF.
      */
-    enforcementTime?: string;
+    enforcementTime?: string | null;
     /**
      * The site&#39;s [enforcement status](https://support.google.com/webtools/answer/7538608).
      */
-    filterStatus?: string;
+    filterStatus?: string | null;
     /**
      * The time at which the site&#39;s status last changed.
      */
-    lastChangeTime?: string;
+    lastChangeTime?: string | null;
     /**
      * A link to the full Abusive Experience Report for the site.  Not set in ViolatingSitesResponse.  Note that you must complete the [Search Console verification process](https://support.google.com/webmasters/answer/9008080) for the site before you can access the full report.
      */
-    reportUrl?: string;
+    reportUrl?: string | null;
     /**
      * The name of the reviewed site, e.g. `google.com`.
      */
-    reviewedSite?: string;
+    reviewedSite?: string | null;
     /**
      * Whether the site is currently under review.
      */
-    underReview?: boolean;
+    underReview?: boolean | null;
   }
   /**
    * Response message for ListViolatingSites.

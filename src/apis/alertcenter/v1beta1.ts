@@ -126,7 +126,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * Required. The email of the user that this event belongs to.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Optional. Details of the login action associated with the warning event. This is only available for:  * Suspicious login * Suspicious login (less secure app) * Suspicious programmatic login * User suspended (suspicious activity)
      */
@@ -139,51 +139,51 @@ export namespace alertcenter_v1beta1 {
     /**
      * List of action names associated with the rule threshold.
      */
-    actionNames?: string[];
+    actionNames?: string[] | null;
     /**
      * Rule create timestamp.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Description of the rule.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Alert display name.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Rule name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Query that is used to get the data from the associated source.
      */
-    query?: string;
+    query?: string | null;
     /**
      * List of alert ids superseded by this alert. It is used to indicate that this alert is essentially extension of superseded alerts and we found the relationship after creating these alerts.
      */
-    supersededAlerts?: string[];
+    supersededAlerts?: string[] | null;
     /**
      * Alert id superseding this alert. It is used to indicate that superseding alert is essentially extension of this alert and we found the relationship after creating both alerts.
      */
-    supersedingAlert?: string;
+    supersedingAlert?: string | null;
     /**
      * Alert threshold is for example “COUNT &gt; 5”.
      */
-    threshold?: string;
+    threshold?: string | null;
     /**
      * The trigger sources for this rule.  * GMAIL_EVENTS * DEVICE_EVENTS * USER_EVENTS
      */
-    triggerSource?: string;
+    triggerSource?: string | null;
     /**
      * The timestamp of the last update to the rule.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Rule window size. Possible values are 1 hour or 24 hours.
      */
-    windowSize?: string;
+    windowSize?: string | null;
   }
   /**
    * An alert affecting a customer.
@@ -192,31 +192,31 @@ export namespace alertcenter_v1beta1 {
     /**
      * Output only. The unique identifier for the alert.
      */
-    alertId?: string;
+    alertId?: string | null;
     /**
      * Output only. The time this alert was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. The unique identifier of the Google account of the customer.
      */
-    customerId?: string;
+    customerId?: string | null;
     /**
      * Optional. The data associated with this alert, for example google.apps.alertcenter.type.DeviceCompromised.
      */
-    data?: {[key: string]: any};
+    data?: {[key: string]: any} | null;
     /**
      * Output only. `True` if this alert is marked for deletion.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * Optional. The time the event that caused this alert ceased being active. If provided, the end time must not be earlier than the start time. If not provided, it indicates an ongoing alert.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform alert updates in order to avoid race conditions: An `etag` is returned in the response which contains alerts, and systems are expected to put that etag in the request to update alert to ensure that their change will be applied to the same version of the alert.  If no `etag` is provided in the call to update alert, then the existing alert is overwritten blindly.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Output only. The metadata associated with this alert.
      */
@@ -224,23 +224,23 @@ export namespace alertcenter_v1beta1 {
     /**
      * Output only. An optional [Security Investigation Tool](https://support.google.com/a/answer/7575955) query for this alert.
      */
-    securityInvestigationToolLink?: string;
+    securityInvestigationToolLink?: string | null;
     /**
      * Required. A unique identifier for the system that reported the alert. This is output only after alert is created.  Supported sources are any of the following:  * Google Operations * Mobile device management * Gmail phishing * Domain wide takeout * State sponsored attack * Google identity
      */
-    source?: string;
+    source?: string | null;
     /**
      * Required. The time the event that caused this alert was started or detected.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [G Suite Alert types](/admin-sdk/alertcenter/reference/alert-types).
      */
-    type?: string;
+    type?: string | null;
     /**
      * Output only. The time this alert was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * A customer feedback about an alert.
@@ -249,27 +249,27 @@ export namespace alertcenter_v1beta1 {
     /**
      * Output only. The alert identifier.
      */
-    alertId?: string;
+    alertId?: string | null;
     /**
      * Output only. The time this feedback was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. The unique identifier of the Google account of the customer.
      */
-    customerId?: string;
+    customerId?: string | null;
     /**
      * Output only. The email of the user that provided the feedback.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Output only. The unique identifier for the feedback.
      */
-    feedbackId?: string;
+    feedbackId?: string | null;
     /**
      * Required. The type of the feedback.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * An alert metadata.
@@ -278,31 +278,40 @@ export namespace alertcenter_v1beta1 {
     /**
      * Output only. The alert identifier.
      */
-    alertId?: string;
+    alertId?: string | null;
     /**
      * The email address of the user assigned to the alert.
      */
-    assignee?: string;
+    assignee?: string | null;
     /**
      * Output only. The unique identifier of the Google account of the customer.
      */
-    customerId?: string;
+    customerId?: string | null;
     /**
      * Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of an alert metadata from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform metatdata updates in order to avoid race conditions: An `etag` is returned in the response which contains alert metadata, and systems are expected to put that etag in the request to update alert metadata to ensure that their change will be applied to the same version of the alert metadata.  If no `etag` is provided in the call to update alert metadata, then the existing alert metadata is overwritten blindly.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The severity value of the alert. Alert Center will set this field at alert creation time, default&#39;s to an empty string when it could not be determined. The supported values for update actions on this field are the following:  * HIGH * MEDIUM * LOW
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * The current status of the alert. The supported values are the following:  * NOT_STARTED * IN_PROGRESS * CLOSED
      */
-    status?: string;
+    status?: string | null;
     /**
      * Output only. The time this metadata was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
+  }
+  /**
+   * Alerts from App Maker to notify admins to set up default SQL instance.
+   */
+  export interface Schema$AppMakerSqlSetupNotification {
+    /**
+     * List of applications with requests for default SQL set up.
+     */
+    requestInfo?: Schema$RequestInfo[];
   }
   /**
    * Attachment with application-specific information about an alert.
@@ -332,7 +341,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The source IP address of the malicious email, for example, `127.0.0.1`.
      */
-    sourceIp?: string;
+    sourceIp?: string | null;
   }
   /**
    * A request to perform batch delete on alerts.
@@ -341,11 +350,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * Required. list of alert ids.
      */
-    alertId?: string[];
+    alertId?: string[] | null;
     /**
      * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with.
      */
-    customerId?: string;
+    customerId?: string | null;
   }
   /**
    * Response to batch delete operation on alerts.
@@ -354,11 +363,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * The status details for each failed alert_id.
      */
-    failedAlertStatus?: {[key: string]: Schema$Status};
+    failedAlertStatus?: {[key: string]: Schema$Status} | null;
     /**
      * The successful list of alert ids.
      */
-    successAlertIds?: string[];
+    successAlertIds?: string[] | null;
   }
   /**
    * A request to perform batch undelete on alerts.
@@ -367,11 +376,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * Required. list of alert ids.
      */
-    alertId?: string[];
+    alertId?: string[] | null;
     /**
      * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with.
      */
-    customerId?: string;
+    customerId?: string | null;
   }
   /**
    * Response to batch undelete operation on alerts.
@@ -380,11 +389,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * The status details for each failed alert_id.
      */
-    failedAlertStatus?: {[key: string]: Schema$Status};
+    failedAlertStatus?: {[key: string]: Schema$Status} | null;
     /**
      * The successful list of alert ids.
      */
-    successAlertIds?: string[];
+    successAlertIds?: string[] | null;
   }
   /**
    * A reference to a Cloud Pubsub topic.  To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the  `projects.topics.publish` permission.
@@ -393,11 +402,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * Optional. The format of the payload that would be sent. If not specified the format will be JSON.
      */
-    payloadFormat?: string;
+    payloadFormat?: string | null;
     /**
      * The `name` field of a Cloud Pubsub [Topic] (https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      */
-    topicName?: string;
+    topicName?: string | null;
   }
   /**
    * A representation of a CSV file attachment, as a list of column headers and a list of data rows.
@@ -410,7 +419,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The list of headers for data columns in a CSV file.
      */
-    headers?: string[];
+    headers?: string[] | null;
   }
   /**
    * A representation of a single data row in a CSV file.
@@ -419,7 +428,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The data entries in a CSV file row, as a string array rather than a single comma-separated string.
      */
-    entries?: string[];
+    entries?: string[] | null;
   }
   /**
    * A mobile device compromised alert. Derived from audit logs.
@@ -428,7 +437,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The email of the user this alert was created for.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Required. The list of security events.
      */
@@ -441,31 +450,31 @@ export namespace alertcenter_v1beta1 {
     /**
      * The device compromised state. Possible values are &quot;`Compromised`&quot; or &quot;`Not Compromised`&quot;.
      */
-    deviceCompromisedState?: string;
+    deviceCompromisedState?: string | null;
     /**
      * Required. The device ID.
      */
-    deviceId?: string;
+    deviceId?: string | null;
     /**
      * The model of the device.
      */
-    deviceModel?: string;
+    deviceModel?: string | null;
     /**
      * The type of the device.
      */
-    deviceType?: string;
+    deviceType?: string | null;
     /**
      * Required for iOS, empty for others.
      */
-    iosVendorId?: string;
+    iosVendorId?: string | null;
     /**
      * The device resource ID.
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * The serial number of the device.
      */
-    serialNumber?: string;
+    serialNumber?: string | null;
   }
   /**
    * Domain ID of Gmail phishing alerts.
@@ -474,7 +483,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The primary domain for the customer.
      */
-    customerPrimaryDomain?: string;
+    customerPrimaryDomain?: string | null;
   }
   /**
    * A takeout operation for the entire domain was initiated by an admin. Derived from audit logs.
@@ -483,11 +492,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * The email of the admin who initiated the takeout.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The takeout request ID.
      */
-    takeoutRequestId?: string;
+    takeoutRequestId?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -500,35 +509,35 @@ export namespace alertcenter_v1beta1 {
     /**
      * The `SHA256` hash of email&#39;s attachment and all MIME parts.
      */
-    attachmentsSha256Hash?: string[];
+    attachmentsSha256Hash?: string[] | null;
     /**
      * The date the malicious email was sent.
      */
-    date?: string;
+    date?: string | null;
     /**
      * The hash of the message body text.
      */
-    md5HashMessageBody?: string;
+    md5HashMessageBody?: string | null;
     /**
      * The MD5 Hash of email&#39;s subject (only available for reported emails).
      */
-    md5HashSubject?: string;
+    md5HashSubject?: string | null;
     /**
      * The snippet of the message body text (only available for reported emails).
      */
-    messageBodySnippet?: string;
+    messageBodySnippet?: string | null;
     /**
      * The message ID.
      */
-    messageId?: string;
+    messageId?: string | null;
     /**
      * The recipient of this email.
      */
-    recipient?: string;
+    recipient?: string | null;
     /**
      * The email subject text (only available for reported emails).
      */
-    subjectText?: string;
+    subjectText?: string | null;
   }
   /**
    * An incident reported by Google Operations for a G Suite application.
@@ -537,7 +546,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The list of emails which correspond to the users directly affected by the incident.
      */
-    affectedUserEmails?: string[];
+    affectedUserEmails?: string[] | null;
     /**
      * Optional. Application-specific data for an incident, provided when the G Suite application which reported the incident cannot be completely restored to a valid state.
      */
@@ -545,11 +554,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * A detailed, freeform incident description.
      */
-    description?: string;
+    description?: string | null;
     /**
      * A one-line incident description.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Response message for an alert feedback listing request.
@@ -571,7 +580,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The token for the next page. If not empty, indicates that there may be more alerts that match the listing request; this value can be used in a subsequent ListAlertsRequest to get alerts continuing from last result of the current list call.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The details of the login action.
@@ -580,11 +589,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * Optional. The human-readable IP address (for example, `11.22.33.44`) that is associated with the warning event.
      */
-    ipAddress?: string;
+    ipAddress?: string | null;
     /**
      * Optional. The successful login time that is associated with the warning event. This will not be present for blocked login attempts.
      */
-    loginTime?: string;
+    loginTime?: string | null;
   }
   /**
    * Proto for all phishing alerts with common payload. Supported types are any of the following:  * User reported phishing * User reported spam spike * Suspicious message reported * Phishing reclassification * Malware reclassification
@@ -597,7 +606,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * If `true`, the email originated from within the organization.
      */
-    isInternal?: boolean;
+    isInternal?: boolean | null;
     /**
      * The entity whose actions triggered a Gmail phishing alert.
      */
@@ -614,11 +623,11 @@ export namespace alertcenter_v1beta1 {
     /**
      * The header from display name.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The sender email address.
      */
-    fromHeader?: string;
+    fromHeader?: string | null;
   }
   /**
    * Settings for callback notifications. For more details see [G Suite Alert Notification](/admin-sdk/alertcenter/guides/notifications).
@@ -640,7 +649,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * If `true`, the email originated from within the organization.
      */
-    isInternal?: boolean;
+    isInternal?: boolean | null;
     /**
      * The entity whose actions triggered a Gmail phishing alert.
      */
@@ -649,6 +658,23 @@ export namespace alertcenter_v1beta1 {
      * The list of messages contained by this alert.
      */
     messages?: Schema$GmailMessageInfo[];
+  }
+  /**
+   * Requests for one application that needs default SQL setup.
+   */
+  export interface Schema$RequestInfo {
+    /**
+     * List of app developers who triggered notifications for above application.
+     */
+    appDeveloperEmail?: string[] | null;
+    /**
+     * Required. The application that requires the SQL setup.
+     */
+    appKey?: string | null;
+    /**
+     * Required. Number of requests sent for this application to set up default SQL instance.
+     */
+    numberOfRequests?: string | null;
   }
   /**
    * Customer-level settings.
@@ -666,7 +692,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The email of the user this incident was created for.
      */
-    email?: string;
+    email?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -675,15 +701,15 @@ export namespace alertcenter_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A mobile suspicious activity alert. Derived from audit logs.
@@ -692,7 +718,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * The email of the user this alert was created for.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Required. The list of security events.
      */
@@ -705,39 +731,39 @@ export namespace alertcenter_v1beta1 {
     /**
      * Required. The device ID.
      */
-    deviceId?: string;
+    deviceId?: string | null;
     /**
      * The model of the device.
      */
-    deviceModel?: string;
+    deviceModel?: string | null;
     /**
      * The device property which was changed.
      */
-    deviceProperty?: string;
+    deviceProperty?: string | null;
     /**
      * The type of the device.
      */
-    deviceType?: string;
+    deviceType?: string | null;
     /**
      * Required for iOS, empty for others.
      */
-    iosVendorId?: string;
+    iosVendorId?: string | null;
     /**
      * The new value of the device property after the change.
      */
-    newValue?: string;
+    newValue?: string | null;
     /**
      * The old value of the device property before the change.
      */
-    oldValue?: string;
+    oldValue?: string | null;
     /**
      * The device resource ID.
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * The serial number of the device.
      */
-    serialNumber?: string;
+    serialNumber?: string | null;
   }
   /**
    * A request to undelete a specific alert that was marked for deletion.
@@ -746,7 +772,7 @@ export namespace alertcenter_v1beta1 {
     /**
      * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
-    customerId?: string;
+    customerId?: string | null;
   }
 
   export class Resource$Alerts {

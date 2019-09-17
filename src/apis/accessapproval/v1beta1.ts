@@ -132,11 +132,11 @@ export namespace accessapproval_v1beta1 {
     /**
      * The resource name of the settings. Format is one of: &lt;ol&gt;   &lt;li&gt;&quot;projects/{project_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;folders/{folder_id}/accessApprovalSettings&quot;&lt;/li&gt;   &lt;li&gt;&quot;organizations/{organization_id}/accessApprovalSettings&quot;&lt;/li&gt; &lt;ol&gt;
      */
-    name?: string;
+    name?: string | null;
     /**
      * A list of email addresses to which notifications relating to approval requests should be sent. Notifications relating to a resource will be sent to all emails in the settings of ancestor resources of that resource.
      */
-    notificationEmails?: string[];
+    notificationEmails?: string[] | null;
   }
   /**
    * Home office and physical location of the principal.
@@ -145,21 +145,21 @@ export namespace accessapproval_v1beta1 {
     /**
      * The &quot;home office&quot; location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;   &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any location&lt;/li&gt; &lt;/ol&gt;
      */
-    principalOfficeCountry?: string;
+    principalOfficeCountry?: string | null;
     /**
      * Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: &lt;ol&gt;   &lt;li&gt;ASI: Asia&lt;/li&gt;   &lt;li&gt;EUR: Europe&lt;/li&gt;   &lt;li&gt;OCE: Oceania&lt;/li&gt;   &lt;li&gt;AFR: Africa&lt;/li&gt;   &lt;li&gt;NAM: North America&lt;/li&gt;   &lt;li&gt;SAM: South America&lt;/li&gt;   &lt;li&gt;ANT: Antarctica&lt;/li&gt;   &lt;li&gt;ANY: Any location&lt;/li&gt; &lt;/ol&gt;
      */
-    principalPhysicalLocationCountry?: string;
+    principalPhysicalLocationCountry?: string | null;
   }
   export interface Schema$AccessReason {
     /**
      * More detail about certain reason types. See comments for each type above.
      */
-    detail?: string;
+    detail?: string | null;
     /**
      * Type of access justification.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A request for the customer to approve access to a resource.
@@ -176,11 +176,11 @@ export namespace accessapproval_v1beta1 {
     /**
      * The resource name of the request. Format is &quot;{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The requested expiration for the approval. If the request is approved, access will be granted from the time of approval until the expiration time.
      */
-    requestedExpiration?: string;
+    requestedExpiration?: string | null;
     /**
      * The locations for which approval is being requested.
      */
@@ -192,7 +192,7 @@ export namespace accessapproval_v1beta1 {
     /**
      * The resource for which approval is being requested. The format of the resource name is defined at https://cloud.google.com/apis/design/resource_names. The resource name here may either be a &quot;full&quot; resource name (e.g. &quot;//library.googleapis.com/shelves/shelf1/books/book2&quot;) or a &quot;relative&quot; resource name (e.g. &quot;shelves/shelf1/books/book2&quot;) as described in the resource name specification.
      */
-    requestedResourceName?: string;
+    requestedResourceName?: string | null;
     /**
      * Properties related to the resource represented by requested_resource_name.
      */
@@ -200,7 +200,7 @@ export namespace accessapproval_v1beta1 {
     /**
      * The time at which approval was requested.
      */
-    requestTime?: string;
+    requestTime?: string | null;
   }
   /**
    * Request to approve an ApprovalRequest.
@@ -209,7 +209,7 @@ export namespace accessapproval_v1beta1 {
     /**
      * The expiration time of this approval.
      */
-    expireTime?: string;
+    expireTime?: string | null;
   }
   /**
    * A decision that has been made to approve access to a resource.
@@ -218,11 +218,11 @@ export namespace accessapproval_v1beta1 {
     /**
      * The time at which approval was granted.
      */
-    approveTime?: string;
+    approveTime?: string | null;
     /**
      * The time at which the approval expires.
      */
-    expireTime?: string;
+    expireTime?: string | null;
   }
   /**
    * Request to dismiss an approval request.
@@ -235,7 +235,7 @@ export namespace accessapproval_v1beta1 {
     /**
      * The time at which the approval request was dismissed.
      */
-    dismissTime?: string;
+    dismissTime?: string | null;
   }
   /**
    * Represents the enrollment of a cloud resource into a specific service.
@@ -244,11 +244,11 @@ export namespace accessapproval_v1beta1 {
     /**
      * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): &lt;ol&gt;   &lt;li&gt;all&lt;/li&gt;   &lt;li&gt;appengine.googleapis.com&lt;/li&gt;   &lt;li&gt;bigquery.googleapis.com&lt;/li&gt;   &lt;li&gt;bigtable.googleapis.com&lt;/li&gt;   &lt;li&gt;cloudkms.googleapis.com&lt;/li&gt;   &lt;li&gt;compute.googleapis.com&lt;/li&gt;   &lt;li&gt;dataflow.googleapis.com&lt;/li&gt;   &lt;li&gt;iam.googleapis.com&lt;/li&gt;   &lt;li&gt;pubsub.googleapis.com&lt;/li&gt;   &lt;li&gt;storage.googleapis.com&lt;/li&gt; &lt;ol&gt;
      */
-    cloudProduct?: string;
+    cloudProduct?: string | null;
     /**
      * The enrollment level of the service.
      */
-    enrollmentLevel?: string;
+    enrollmentLevel?: string | null;
   }
   /**
    * Response to listing of ApprovalRequest objects.
@@ -261,7 +261,7 @@ export namespace accessapproval_v1beta1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The properties associated with the resource of the request.
@@ -270,7 +270,7 @@ export namespace accessapproval_v1beta1 {
     /**
      * Whether an approval will exclude the descendants of the resource being requested.
      */
-    excludesDescendants?: boolean;
+    excludesDescendants?: boolean | null;
   }
 
   export class Resource$Folders {

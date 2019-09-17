@@ -128,7 +128,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * If set to `true`, the credentials exist and are valid.
      */
-    hasValidCreds?: boolean;
+    hasValidCreds?: boolean | null;
   }
   /**
    * Represents data source metadata. Metadata is sufficient to render UI and request proper OAuth tokens.
@@ -137,51 +137,51 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Indicates the type of authorization.
      */
-    authorizationType?: string;
+    authorizationType?: string | null;
     /**
      * Data source client id which should be used to receive refresh token.
      */
-    clientId?: string;
+    clientId?: string | null;
     /**
      * Specifies whether the data source supports automatic data refresh for the past few days, and how it&#39;s supported. For some data sources, data might not be complete until a few days later, so it&#39;s useful to refresh data automatically.
      */
-    dataRefreshType?: string;
+    dataRefreshType?: string | null;
     /**
      * Data source id.
      */
-    dataSourceId?: string;
+    dataSourceId?: string | null;
     /**
      * Default data refresh window on days. Only meaningful when `data_refresh_type` = `SLIDING_WINDOW`.
      */
-    defaultDataRefreshWindowDays?: number;
+    defaultDataRefreshWindowDays?: number | null;
     /**
      * Default data transfer schedule. Examples of valid schedules include: `1st,3rd monday of month 15:30`, `every wed,fri of jan,jun 13:15`, and `first sunday of quarter 00:00`.
      */
-    defaultSchedule?: string;
+    defaultSchedule?: string | null;
     /**
      * User friendly data source description string.
      */
-    description?: string;
+    description?: string | null;
     /**
      * User friendly data source name.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Url for the help document for this data source.
      */
-    helpUrl?: string;
+    helpUrl?: string | null;
     /**
      * Disables backfilling and manual run scheduling for the data source.
      */
-    manualRunsDisabled?: boolean;
+    manualRunsDisabled?: boolean | null;
     /**
      * The minimum interval for scheduler to schedule runs.
      */
-    minimumScheduleInterval?: string;
+    minimumScheduleInterval?: string | null;
     /**
      * Output only. Data source resource name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Data source parameters.
      */
@@ -189,23 +189,23 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Api auth scopes for which refresh token needs to be obtained. These are scopes needed by a data source to prepare data and ingest them into BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      */
-    scopes?: string[];
+    scopes?: string[] | null;
     /**
      * Specifies whether the data source supports a user defined schedule, or operates on the default schedule. When set to `true`, user can override default schedule.
      */
-    supportsCustomSchedule?: boolean;
+    supportsCustomSchedule?: boolean | null;
     /**
      * Deprecated. This field has no effect.
      */
-    supportsMultipleTransfers?: boolean;
+    supportsMultipleTransfers?: boolean | null;
     /**
      * Deprecated. This field has no effect.
      */
-    transferType?: string;
+    transferType?: string | null;
     /**
      * The number of seconds to wait for an update from the data source before the Data Transfer Service marks the transfer as FAILED.
      */
-    updateDeadlineSeconds?: number;
+    updateDeadlineSeconds?: number | null;
   }
   /**
    * Represents a data source parameter with validation rules, so that parameters can be rendered in the UI. These parameters are given to us by supported data sources, and include all needed information for rendering and validation. Thus, whoever uses this api can decide to generate either generic ui, or custom data source specific forms.
@@ -214,19 +214,19 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * All possible values for the parameter.
      */
-    allowedValues?: string[];
+    allowedValues?: string[] | null;
     /**
      * If true, it should not be used in new transfers, and it should not be visible to users.
      */
-    deprecated?: boolean;
+    deprecated?: boolean | null;
     /**
      * Parameter description.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Parameter display name in the user interface.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Deprecated. This field has no effect.
      */
@@ -234,47 +234,47 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Cannot be changed after initial creation.
      */
-    immutable?: boolean;
+    immutable?: boolean | null;
     /**
      * For integer and double values specifies maxminum allowed value.
      */
-    maxValue?: number;
+    maxValue?: number | null;
     /**
      * For integer and double values specifies minimum allowed value.
      */
-    minValue?: number;
+    minValue?: number | null;
     /**
      * Parameter identifier.
      */
-    paramId?: string;
+    paramId?: string | null;
     /**
      * Deprecated. This field has no effect.
      */
-    recurse?: boolean;
+    recurse?: boolean | null;
     /**
      * Deprecated. This field has no effect.
      */
-    repeated?: boolean;
+    repeated?: boolean | null;
     /**
      * Is parameter required.
      */
-    required?: boolean;
+    required?: boolean | null;
     /**
      * Parameter type.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Description of the requirements for this field, in case the user input does not fulfill the regex pattern or min/max values.
      */
-    validationDescription?: string;
+    validationDescription?: string | null;
     /**
      * URL to a help document to further explain the naming requirements.
      */
-    validationHelpUrl?: string;
+    validationHelpUrl?: string | null;
     /**
      * Regular expression which can be used for parameter validation.
      */
-    validationRegex?: string;
+    validationRegex?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -291,7 +291,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Output only. The next-pagination token. For multiple-page list results, this token can be used as the `ListDataSourcesRequest.page_token` to request the next page of list results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -304,7 +304,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The returned list of pipelines in the project.
@@ -313,7 +313,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Output only. The next-pagination token. For multiple-page list results, this token can be used as the `ListTransferConfigsRequest.page_token` to request the next page of list results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Output only. The stored pipeline transfer configurations.
      */
@@ -326,7 +326,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Output only. The next-pagination token. For multiple-page list results, this token can be used as the `GetTransferRunLogRequest.page_token` to request the next page of list results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Output only. The stored pipeline transfer messages.
      */
@@ -339,7 +339,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Output only. The next-pagination token. For multiple-page list results, this token can be used as the `ListTransferRunsRequest.page_token` to request the next page of list results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Output only. The stored pipeline transfer runs.
      */
@@ -352,23 +352,23 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Options customizing the data transfer schedule.
@@ -377,15 +377,15 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * If true, automatic scheduling of data transfer runs for this configuration will be disabled. The runs can be started on ad-hoc basis using StartManualTransferRuns API. When automatic scheduling is disabled, the TransferConfig.schedule field will be ignored.
      */
-    disableAutoScheduling?: boolean;
+    disableAutoScheduling?: boolean | null;
     /**
      * Defines time to stop scheduling transfer runs. A transfer run cannot be scheduled at or after the end time. The end time can be changed at any moment. The time when a data transfer can be trigerred manually is not limited by this option.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Specifies time to start scheduling transfer runs. The first run will be scheduled at or after the start time according to a recurrence pattern defined in the schedule string. The start time can be changed at any moment. The time when a data transfer can be trigerred manually is not limited by this option.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * A request to schedule transfer runs for a time range.
@@ -394,11 +394,11 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * A response to schedule transfer runs for a time range.
@@ -416,7 +416,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Specific run_time for a transfer run to be started. The requested_run_time must not be in the future.
      */
-    requestedRunTime?: string;
+    requestedRunTime?: string | null;
     /**
      * Time range for the transfer runs that should be started.
      */
@@ -438,15 +438,15 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A specification for a time range, this will request transfer runs with run_time between start_time (inclusive) and end_time (exclusive).
@@ -455,11 +455,11 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`. The end_time must not be in the future. Creates transfer runs where run_time is in the range betwen start_time (inclusive) and end_time (exlusive).
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`. The start_time must be strictly less than the end_time. Creates transfer runs where run_time is in the range betwen start_time (inclusive) and end_time (exlusive).
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * Represents a data transfer configuration. A transfer configuration contains all metadata needed to perform a data transfer. For example, `destination_dataset_id` specifies where data should be stored. When a new transfer configuration is created, the specified `destination_dataset_id` is created when needed and shared with the appropriate data source service account.
@@ -468,43 +468,43 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * The number of days to look back to automatically refresh the data. For example, if `data_refresh_window_days = 10`, then every day BigQuery reingests data for [today-10, today-1], rather than ingesting data for just [today-1]. Only valid if the data source supports the feature. Set the value to  0 to use the default value.
      */
-    dataRefreshWindowDays?: number;
+    dataRefreshWindowDays?: number | null;
     /**
      * Output only. Region in which BigQuery dataset is located.
      */
-    datasetRegion?: string;
+    datasetRegion?: string | null;
     /**
      * Data source id. Cannot be changed once data transfer is created.
      */
-    dataSourceId?: string;
+    dataSourceId?: string | null;
     /**
      * The BigQuery target dataset id.
      */
-    destinationDatasetId?: string;
+    destinationDatasetId?: string | null;
     /**
      * Is this config disabled. When set to true, no runs are scheduled for a given transfer.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
     /**
      * User specified display name for the data transfer.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. Next time when data transfer will run.
      */
-    nextRunTime?: string;
+    nextRunTime?: string | null;
     /**
      * Data transfer specific parameters.
      */
-    params?: {[key: string]: any};
+    params?: {[key: string]: any} | null;
     /**
      * Data transfer schedule. If the data source does not support a custom schedule, this should be empty. If it is empty, the default value for the data source will be used. The specified times are in UTC. Examples of valid format: `1st,3rd monday of month 15:30`, `every wed,fri of jan,jun 13:15`, and `first sunday of quarter 00:00`. See more explanation about the format here: https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format NOTE: the granularity should be at least 8 hours, or less frequent.
      */
-    schedule?: string;
+    schedule?: string | null;
     /**
      * Options customizing the data transfer schedule.
      */
@@ -512,15 +512,15 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Output only. State of the most recently updated transfer run.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. Data transfer modification time. Ignored by server on input.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Deprecated. Unique ID of the user on whose behalf transfer is done.
      */
-    userId?: string;
+    userId?: string | null;
   }
   /**
    * Represents a user facing message for a particular data transfer run.
@@ -529,15 +529,15 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Message text.
      */
-    messageText?: string;
+    messageText?: string | null;
     /**
      * Time when message was logged.
      */
-    messageTime?: string;
+    messageTime?: string | null;
     /**
      * Message severity.
      */
-    severity?: string;
+    severity?: string | null;
   }
   /**
    * Represents a data transfer run.
@@ -546,15 +546,15 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Output only. Data source id.
      */
-    dataSourceId?: string;
+    dataSourceId?: string | null;
     /**
      * Output only. The BigQuery target dataset id.
      */
-    destinationDatasetId?: string;
+    destinationDatasetId?: string | null;
     /**
      * Output only. Time when transfer run ended. Parameter ignored by server for input requests.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Status of the transfer run.
      */
@@ -562,39 +562,39 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`. The name is ignored when creating a transfer run.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. Data transfer specific parameters.
      */
-    params?: {[key: string]: any};
+    params?: {[key: string]: any} | null;
     /**
      * For batch transfer runs, specifies the date and time of the data should be ingested.
      */
-    runTime?: string;
+    runTime?: string | null;
     /**
      * Output only. Describes the schedule of this transfer run if it was created as part of a regular schedule. For batch transfer runs that are scheduled manually, this is empty. NOTE: the system might choose to delay the schedule depending on the current load, so `schedule_time` doesn&#39;t always match this.
      */
-    schedule?: string;
+    schedule?: string | null;
     /**
      * Minimum time after which a transfer run can be started.
      */
-    scheduleTime?: string;
+    scheduleTime?: string | null;
     /**
      * Output only. Time when transfer run was started. Parameter ignored by server for input requests.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Data transfer run state. Ignored for input requests.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. Last time the data transfer run state was updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Deprecated. Unique ID of the user on whose behalf transfer is done.
      */
-    userId?: string;
+    userId?: string | null;
   }
 
   export class Resource$Projects {

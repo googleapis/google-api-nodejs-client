@@ -104,8 +104,8 @@ export namespace customsearch_v1 {
   export interface Schema$Context {
     facets?: Array<
       Array<{anchor?: string; label?: string; label_with_op?: string}>
-    >;
-    title?: string;
+    > | null;
+    title?: string | null;
   }
   export interface Schema$Promotion {
     bodyLines?: Array<{
@@ -113,59 +113,59 @@ export namespace customsearch_v1 {
       link?: string;
       title?: string;
       url?: string;
-    }>;
-    displayLink?: string;
-    htmlTitle?: string;
-    image?: {height?: number; source?: string; width?: number};
-    link?: string;
-    title?: string;
+    }> | null;
+    displayLink?: string | null;
+    htmlTitle?: string | null;
+    image?: {height?: number; source?: string; width?: number} | null;
+    link?: string | null;
+    title?: string | null;
   }
   export interface Schema$Query {
-    count?: number;
-    cr?: string;
-    cx?: string;
-    dateRestrict?: string;
-    disableCnTwTranslation?: string;
-    exactTerms?: string;
-    excludeTerms?: string;
-    fileType?: string;
-    filter?: string;
-    gl?: string;
-    googleHost?: string;
-    highRange?: string;
-    hl?: string;
-    hq?: string;
-    imgColorType?: string;
-    imgDominantColor?: string;
-    imgSize?: string;
-    imgType?: string;
-    inputEncoding?: string;
-    language?: string;
-    linkSite?: string;
-    lowRange?: string;
-    orTerms?: string;
-    outputEncoding?: string;
-    relatedSite?: string;
-    rights?: string;
-    safe?: string;
-    searchTerms?: string;
-    searchType?: string;
-    siteSearch?: string;
-    siteSearchFilter?: string;
-    sort?: string;
-    startIndex?: number;
-    startPage?: number;
-    title?: string;
-    totalResults?: string;
+    count?: number | null;
+    cr?: string | null;
+    cx?: string | null;
+    dateRestrict?: string | null;
+    disableCnTwTranslation?: string | null;
+    exactTerms?: string | null;
+    excludeTerms?: string | null;
+    fileType?: string | null;
+    filter?: string | null;
+    gl?: string | null;
+    googleHost?: string | null;
+    highRange?: string | null;
+    hl?: string | null;
+    hq?: string | null;
+    imgColorType?: string | null;
+    imgDominantColor?: string | null;
+    imgSize?: string | null;
+    imgType?: string | null;
+    inputEncoding?: string | null;
+    language?: string | null;
+    linkSite?: string | null;
+    lowRange?: string | null;
+    orTerms?: string | null;
+    outputEncoding?: string | null;
+    relatedSite?: string | null;
+    rights?: string | null;
+    safe?: string | null;
+    searchTerms?: string | null;
+    searchType?: string | null;
+    siteSearch?: string | null;
+    siteSearchFilter?: string | null;
+    sort?: string | null;
+    startIndex?: number | null;
+    startPage?: number | null;
+    title?: string | null;
+    totalResults?: string | null;
   }
   export interface Schema$Result {
-    cacheId?: string;
-    displayLink?: string;
-    fileFormat?: string;
-    formattedUrl?: string;
-    htmlFormattedUrl?: string;
-    htmlSnippet?: string;
-    htmlTitle?: string;
+    cacheId?: string | null;
+    displayLink?: string | null;
+    fileFormat?: string | null;
+    formattedUrl?: string | null;
+    htmlFormattedUrl?: string | null;
+    htmlSnippet?: string | null;
+    htmlTitle?: string | null;
     image?: {
       byteSize?: number;
       contextLink?: string;
@@ -174,33 +174,33 @@ export namespace customsearch_v1 {
       thumbnailLink?: string;
       thumbnailWidth?: number;
       width?: number;
-    };
-    kind?: string;
+    } | null;
+    kind?: string | null;
     labels?: Array<{
       displayName?: string;
       label_with_op?: string;
       name?: string;
-    }>;
-    link?: string;
-    mime?: string;
-    pagemap?: {[key: string]: Array<{[key: string]: any}>};
-    snippet?: string;
-    title?: string;
+    }> | null;
+    link?: string | null;
+    mime?: string | null;
+    pagemap?: {[key: string]: Array<{[key: string]: any}>} | null;
+    snippet?: string | null;
+    title?: string | null;
   }
   export interface Schema$Search {
     context?: Schema$Context;
     items?: Schema$Result[];
-    kind?: string;
+    kind?: string | null;
     promotions?: Schema$Promotion[];
-    queries?: {[key: string]: Schema$Query[]};
+    queries?: {[key: string]: Schema$Query[]} | null;
     searchInformation?: {
       formattedSearchTime?: string;
       formattedTotalResults?: string;
       searchTime?: number;
       totalResults?: string;
-    };
-    spelling?: {correctedQuery?: string; htmlCorrectedQuery?: string};
-    url?: {template?: string; type?: string};
+    } | null;
+    spelling?: {correctedQuery?: string; htmlCorrectedQuery?: string} | null;
+    url?: {template?: string; type?: string} | null;
   }
 
   export class Resource$Cse {

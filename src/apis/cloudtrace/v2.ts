@@ -137,11 +137,11 @@ export namespace cloudtrace_v2 {
     /**
      * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: &quot;my-instance&quot;     &quot;/http/user_agent&quot;: &quot;&quot;     &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;: true
      */
-    attributeMap?: {[key: string]: Schema$AttributeValue};
+    attributeMap?: {[key: string]: Schema$AttributeValue} | null;
     /**
      * The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid.
      */
-    droppedAttributesCount?: number;
+    droppedAttributesCount?: number | null;
   }
   /**
    * The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute.
@@ -150,11 +150,11 @@ export namespace cloudtrace_v2 {
     /**
      * A Boolean value represented by `true` or `false`.
      */
-    boolValue?: boolean;
+    boolValue?: boolean | null;
     /**
      * A 64-bit signed integer.
      */
-    intValue?: string;
+    intValue?: string | null;
     /**
      * A string up to 256 bytes long.
      */
@@ -184,15 +184,15 @@ export namespace cloudtrace_v2 {
     /**
      * The [SPAN_ID] for a span within a trace.
      */
-    spanId?: string;
+    spanId?: string | null;
     /**
      * The [TRACE_ID] for a trace within a project.
      */
-    traceId?: string;
+    traceId?: string | null;
     /**
      * The relationship of the current span relative to the linked span.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A collection of links, which are references from this span to a span in the same or different trace.
@@ -201,7 +201,7 @@ export namespace cloudtrace_v2 {
     /**
      * The number of dropped links after the maximum size was enforced. If this value is 0, then no links were dropped.
      */
-    droppedLinksCount?: number;
+    droppedLinksCount?: number | null;
     /**
      * A collection of links.
      */
@@ -214,19 +214,19 @@ export namespace cloudtrace_v2 {
     /**
      * The number of compressed bytes sent or received. If missing assumed to be the same size as uncompressed.
      */
-    compressedSizeBytes?: string;
+    compressedSizeBytes?: string | null;
     /**
      * An identifier for the MessageEvent&#39;s message that can be used to match SENT and RECEIVED MessageEvents. It is recommended to be unique within a Span.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Type of MessageEvent. Indicates whether the message was sent or received.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The number of uncompressed bytes sent or received.
      */
-    uncompressedSizeBytes?: string;
+    uncompressedSizeBytes?: string | null;
   }
   /**
    * Binary module.
@@ -252,7 +252,7 @@ export namespace cloudtrace_v2 {
     /**
      * An optional number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.
      */
-    childSpanCount?: number;
+    childSpanCount?: number | null;
     /**
      * A description of the span&#39;s operation (up to 128 bytes). Stackdriver Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
      */
@@ -260,7 +260,7 @@ export namespace cloudtrace_v2 {
     /**
      * The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Links associated with the span. You can have up to 128 links per Span.
      */
@@ -268,23 +268,23 @@ export namespace cloudtrace_v2 {
     /**
      * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The [SPAN_ID] of this span&#39;s parent span. If this is a root span, then this field must be empty.
      */
-    parentSpanId?: string;
+    parentSpanId?: string | null;
     /**
      * (Optional) Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Stackdriver Trace is unable to take advantage of this helpful information.
      */
-    sameProcessAsParentSpan?: boolean;
+    sameProcessAsParentSpan?: boolean | null;
     /**
      * The [SPAN_ID] portion of the span&#39;s resource name.
      */
-    spanId?: string;
+    spanId?: string | null;
     /**
      * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
      */
-    spanKind?: string;
+    spanKind?: string | null;
     /**
      * Stack trace captured at the start of the span.
      */
@@ -292,7 +292,7 @@ export namespace cloudtrace_v2 {
     /**
      * The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server&#39;s application handler starts running.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * An optional final status for this span.
      */
@@ -309,7 +309,7 @@ export namespace cloudtrace_v2 {
     /**
      * The column number where the function call appears, if available. This is important in JavaScript because of its anonymous functions.
      */
-    columnNumber?: string;
+    columnNumber?: string | null;
     /**
      * The name of the source file where the function call appears (up to 256 bytes).
      */
@@ -321,7 +321,7 @@ export namespace cloudtrace_v2 {
     /**
      * The line number in `file_name` where the function call appears.
      */
-    lineNumber?: string;
+    lineNumber?: string | null;
     /**
      * The binary module from where the code was loaded.
      */
@@ -342,7 +342,7 @@ export namespace cloudtrace_v2 {
     /**
      * The number of stack frames that were dropped because there were too many stack frames. If this value is 0, then no stack frames were dropped.
      */
-    droppedFramesCount?: number;
+    droppedFramesCount?: number | null;
     /**
      * Stack frames in this call stack.
      */
@@ -359,7 +359,7 @@ export namespace cloudtrace_v2 {
     /**
      * The hash ID is used to conserve network bandwidth for duplicate stack traces within a single trace.  Often multiple spans will have identical stack traces. The first occurrence of a stack trace should contain both the `stackFrame` content and a value in `stackTraceHashId`.  Subsequent spans within the same request can refer to that stack trace by only setting `stackTraceHashId`.
      */
-    stackTraceHashId?: string;
+    stackTraceHashId?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -368,15 +368,15 @@ export namespace cloudtrace_v2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A time-stamped annotation or message event in the Span.
@@ -393,7 +393,7 @@ export namespace cloudtrace_v2 {
     /**
      * The timestamp indicating the time the event occurred.
      */
-    time?: string;
+    time?: string | null;
   }
   /**
    * A collection of `TimeEvent`s. A `TimeEvent` is a time-stamped annotation on the span, consisting of either user-supplied key:value pairs, or details of a message sent/received between Spans.
@@ -402,11 +402,11 @@ export namespace cloudtrace_v2 {
     /**
      * The number of dropped annotations in all the included time events. If the value is 0, then no annotations were dropped.
      */
-    droppedAnnotationsCount?: number;
+    droppedAnnotationsCount?: number | null;
     /**
      * The number of dropped message events in all the included time events. If the value is 0, then no message events were dropped.
      */
-    droppedMessageEventsCount?: number;
+    droppedMessageEventsCount?: number | null;
     /**
      * A collection of `TimeEvent`s.
      */
@@ -419,11 +419,11 @@ export namespace cloudtrace_v2 {
     /**
      * The number of bytes removed from the original string. If this value is 0, then the string was not shortened.
      */
-    truncatedByteCount?: number;
+    truncatedByteCount?: number | null;
     /**
      * The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string.  Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
      */
-    value?: string;
+    value?: string | null;
   }
 
   export class Resource$Projects {

@@ -139,7 +139,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The last known client revision number of the proposal.
      */
-    proposalRevision?: string;
+    proposalRevision?: string | null;
   }
   /**
    * A request for associating a deal and a creative.
@@ -166,15 +166,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The height of the ad slot in pixels. This field will be present only when size type is `PIXEL`.
      */
-    height?: string;
+    height?: string | null;
     /**
      * The size type of the ad slot.
      */
-    sizeType?: string;
+    sizeType?: string | null;
     /**
      * The width of the ad slot in pixels. This field will be present only when size type is `PIXEL`.
      */
-    width?: string;
+    width?: string | null;
   }
   /**
    * Detected ad technology provider information.
@@ -183,11 +183,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The detected ad technology provider IDs for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider.  If the creative contains provider IDs that are outside of those listed in the `BidRequest.adslot.consented_providers_settings.consented_providers` field on the (Google bid protocol)[https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto] and the `BidRequest.user.ext.consented_providers_settings.consented_providers` field on the (OpenRTB protocol)[https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto], and a bid is submitted with that creative for an impression that will serve to an EEA user, the bid will be filtered before the auction.
      */
-    detectedProviderIds?: string[];
+    detectedProviderIds?: string[] | null;
     /**
      * Whether the creative contains an unidentified ad technology provider.  If true for a given creative, any bid submitted with that creative for an impression that will serve to an EEA user will be filtered before the auction.
      */
-    hasUnidentifiedProvider?: boolean;
+    hasUnidentifiedProvider?: boolean | null;
   }
   /**
    * Output only. The app type the restriction applies to for mobile device.
@@ -196,7 +196,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The app types this restriction applies to.
      */
-    appTypes?: string[];
+    appTypes?: string[] | null;
   }
   /**
    * Output only. The auction type the restriction applies to.
@@ -205,7 +205,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The auction types this restriction applies to.
      */
-    auctionTypes?: string[];
+    auctionTypes?: string[] | null;
   }
   /**
    * The set of metrics that are measured in numbers of bids, representing how many bids with the specified dimension values were considered eligible at each stage of the bidding funnel;
@@ -255,7 +255,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The status specifying why the bid responses were considered to have no applicable bids.
      */
-    status?: string;
+    status?: string | null;
   }
   /**
    * Represents a buyer of inventory. Each buyer is identified by a unique Authorized Buyers account ID.
@@ -264,7 +264,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Authorized Buyers account ID of the buyer.
      */
-    accountId?: string;
+    accountId?: string | null;
   }
   /**
    * The number of impressions with the specified dimension values where the corresponding bid request or bid response was not successful, as described by the specified callout status.
@@ -273,7 +273,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the callout status. See [callout-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/callout-status-codes).
      */
-    calloutStatusId?: number;
+    calloutStatusId?: number | null;
     /**
      * The number of impressions for which there was a bid request or bid response with the specified callout status.
      */
@@ -294,39 +294,39 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The globally-unique numerical ID of the client. The value of this field is ignored in create and update operations.
      */
-    clientAccountId?: string;
+    clientAccountId?: string | null;
     /**
      * Name used to represent this client to publishers. You may have multiple clients that map to the same entity, but for each client the combination of `clientName` and entity must be unique. You can specify this field as empty.
      */
-    clientName?: string;
+    clientName?: string | null;
     /**
      * Numerical identifier of the client entity. The entity can be an advertiser, a brand, or an agency. This identifier is unique among all the entities with the same type.  A list of all known advertisers with their identifiers is available in the [advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt) file.  A list of all known brands with their identifiers is available in the [brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt) file.  A list of all known agencies with their identifiers is available in the [agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt) file.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * The name of the entity. This field is automatically fetched based on the type and ID. The value of this field is ignored in create and update operations.
      */
-    entityName?: string;
+    entityName?: string | null;
     /**
      * The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
      */
-    entityType?: string;
+    entityType?: string | null;
     /**
      * Optional arbitrary unique identifier of this client buyer from the standpoint of its Ad Exchange sponsor buyer.  This field can be used to associate a client buyer with the identifier in the namespace of its sponsor buyer, lookup client buyers by that identifier and verify whether an Ad Exchange counterpart of a given client buyer already exists.  If present, must be unique among all the client buyers for its Ad Exchange sponsor buyer.
      */
-    partnerClientId?: string;
+    partnerClientId?: string | null;
     /**
      * The role which is assigned to the client buyer. Each role implies a set of permissions granted to the client. Must be one of `CLIENT_DEAL_VIEWER`, `CLIENT_DEAL_NEGOTIATOR` or `CLIENT_DEAL_APPROVER`.
      */
-    role?: string;
+    role?: string | null;
     /**
      * The status of the client buyer.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Whether the client buyer will be visible to sellers.
      */
-    visibleToSeller?: boolean;
+    visibleToSeller?: boolean | null;
   }
   /**
    * A client user is created under a client buyer and has restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the associated client buyer.  The only way a new client user can be created is via accepting an email invitation (see the accounts.clients.invitations.create method).  All fields are required unless otherwise specified.
@@ -335,19 +335,19 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Numerical account ID of the client buyer with which the user is associated; the buyer must be a client of the current sponsor buyer. The value of this field is ignored in an update operation.
      */
-    clientAccountId?: string;
+    clientAccountId?: string | null;
     /**
      * User&#39;s email address. The value of this field is ignored in an update operation.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The status of the client user.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The unique numerical ID of the client user that has accepted an invitation. The value of this field is ignored in an update operation.
      */
-    userId?: string;
+    userId?: string | null;
   }
   /**
    * An invitation for a new client user to get access to the Authorized Buyers UI. All fields are required unless otherwise specified.
@@ -356,15 +356,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Numerical account ID of the client buyer that the invited user is associated with. The value of this field is ignored in create operations.
      */
-    clientAccountId?: string;
+    clientAccountId?: string | null;
     /**
      * The email address to which the invitation is sent. Email addresses should be unique among all client users under each sponsor buyer.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The unique numerical ID of the invitation that is sent to the user. The value of this field is ignored in create operations.
      */
-    invitationId?: string;
+    invitationId?: string | null;
   }
   /**
    * Request message for indicating that the proposal&#39;s setup step is complete.
@@ -377,11 +377,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Email address for the contact.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The name of the contact.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Output only. Shows any corrections that were applied to this creative.
@@ -394,11 +394,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Additional details about what was corrected.
      */
-    details?: string[];
+    details?: string[] | null;
     /**
      * The type of correction that was applied to the creative.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A creative and its classification data.
@@ -407,11 +407,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The link to AdChoices destination page.
      */
-    adChoicesDestinationUrl?: string;
+    adChoicesDestinationUrl?: string | null;
     /**
      * Output only. The detected ad technology providers.
      */
@@ -419,23 +419,23 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The name of the company being advertised in the creative.
      */
-    advertiserName?: string;
+    advertiserName?: string | null;
     /**
      * The agency ID for this creative.
      */
-    agencyId?: string;
+    agencyId?: string | null;
     /**
      * Output only. The last update timestamp of the creative via API.
      */
-    apiUpdateTime?: string;
+    apiUpdateTime?: string | null;
     /**
      * All attributes for the ads that may be shown from this creative. Can be used to filter the response of the creatives.list method.
      */
-    attributes?: string[];
+    attributes?: string[] | null;
     /**
      * The set of destination URLs for the creative.
      */
-    clickThroughUrls?: string[];
+    clickThroughUrls?: string[] | null;
     /**
      * Output only. Shows any corrections that were applied to this creative.
      */
@@ -443,35 +443,35 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The buyer-defined creative ID of this creative. Can be used to filter the response of the creatives.list method.
      */
-    creativeId?: string;
+    creativeId?: string | null;
     /**
      * Output only. The top-level deals status of this creative. If disapproved, an entry for &#39;auctionType=DIRECT_DEALS&#39; (or &#39;ALL&#39;) in serving_restrictions will also exist. Note that this may be nuanced with other contextual restrictions, in which case, it may be preferable to read from serving_restrictions directly. Can be used to filter the response of the creatives.list method.
      */
-    dealsStatus?: string;
+    dealsStatus?: string | null;
     /**
      * The set of declared destination URLs for the creative.
      */
-    declaredClickThroughUrls?: string[];
+    declaredClickThroughUrls?: string[] | null;
     /**
      * Output only. Detected advertiser IDs, if any.
      */
-    detectedAdvertiserIds?: string[];
+    detectedAdvertiserIds?: string[] | null;
     /**
      * Output only. The detected domains for this creative.
      */
-    detectedDomains?: string[];
+    detectedDomains?: string[] | null;
     /**
      * Output only. The detected languages for this creative. The order is arbitrary. The codes are 2 or 5 characters and are documented at https://developers.google.com/adwords/api/docs/appendix/languagecodes.
      */
-    detectedLanguages?: string[];
+    detectedLanguages?: string[] | null;
     /**
      * Output only. Detected product categories, if any. See the ad-product-categories.txt file in the technical documentation for a list of IDs.
      */
-    detectedProductCategories?: number[];
+    detectedProductCategories?: number[] | null;
     /**
      * Output only. Detected sensitive categories, if any. See the ad-sensitive-categories.txt file in the technical documentation for a list of IDs. You should use these IDs along with the excluded-sensitive-category field in the bid request to filter your bids.
      */
-    detectedSensitiveCategories?: number[];
+    detectedSensitiveCategories?: number[] | null;
     /**
      * An HTML creative.
      */
@@ -479,7 +479,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The set of URLs to be called to record an impression.
      */
-    impressionTrackingUrls?: string[];
+    impressionTrackingUrls?: string[] | null;
     /**
      * A native creative.
      */
@@ -487,11 +487,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Output only. The top-level open auction status of this creative. If disapproved, an entry for &#39;auctionType = OPEN_AUCTION&#39; (or &#39;ALL&#39;) in serving_restrictions will also exist. Note that this may be nuanced with other contextual restrictions, in which case, it may be preferable to read from serving_restrictions directly. Can be used to filter the response of the creatives.list method.
      */
-    openAuctionStatus?: string;
+    openAuctionStatus?: string | null;
     /**
      * All restricted categories for the ads that may be shown from this creative.
      */
-    restrictedCategories?: string[];
+    restrictedCategories?: string[] | null;
     /**
      * Output only. The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction).
      */
@@ -499,11 +499,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * All vendor IDs for the ads that may be shown from this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/vendors.txt for possible values.
      */
-    vendorIds?: number[];
+    vendorIds?: number[] | null;
     /**
      * Output only. The version of this creative.
      */
-    version?: number;
+    version?: number | null;
     /**
      * A video creative.
      */
@@ -516,15 +516,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The account the creative belongs to.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The ID of the creative associated with the deal.
      */
-    creativeId?: string;
+    creativeId?: string | null;
     /**
      * The externalDealId for the deal associated with the creative.
      */
-    dealsId?: string;
+    dealsId?: string | null;
   }
   /**
    * Represents creative restrictions associated to Programmatic Guaranteed/ Preferred Deal in Ad Manager. This doesn&#39;t apply to Private Auction and AdX Preferred Deals.
@@ -533,12 +533,12 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The format of the environment that the creatives will be displayed in.
      */
-    creativeFormat?: string;
+    creativeFormat?: string | null;
     creativeSpecifications?: Schema$CreativeSpecification[];
     /**
      * Skippable video ads allow viewers to skip ads after 5 seconds.
      */
-    skippableAdType?: string;
+    skippableAdType?: string | null;
   }
   /**
    * Specifies the size of the creative.
@@ -547,7 +547,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * What formats are allowed by the publisher. If this repeated field is empty then all formats are allowed. For example, if this field contains AllowedFormatType.AUDIO then the publisher only allows an audio ad (without any video).
      */
-    allowedFormats?: string[];
+    allowedFormats?: string[] | null;
     /**
      * For video creatives specifies the sizes of companion ads (if present). Companion sizes may be filled in only when creative_size_type = VIDEO
      */
@@ -555,11 +555,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The creative size type.
      */
-    creativeSizeType?: string;
+    creativeSizeType?: string | null;
     /**
      * Output only. The native template for this creative. It will have a value only if creative_size_type = CreativeSizeType.NATIVE.
      */
-    nativeTemplate?: string;
+    nativeTemplate?: string | null;
     /**
      * For regular or video creative size type, specifies the size of the creative
      */
@@ -567,7 +567,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The type of skippable ad for this creative. It will have a value only if creative_size_type = CreativeSizeType.VIDEO.
      */
-    skippableAdType?: string;
+    skippableAdType?: string | null;
   }
   /**
    * Represents information for a creative that is associated with a Programmatic Guaranteed/Preferred Deal in Ad Manager.
@@ -593,7 +593,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the creative status. See [creative-status-codes](https://developers.google.com/authorized-buyers/rtb/downloads/creative-status-codes).
      */
-    creativeStatusId?: number;
+    creativeStatusId?: number | null;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
@@ -606,11 +606,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A list of numeric IDs to be excluded.
      */
-    excludedCriteriaIds?: string[];
+    excludedCriteriaIds?: string[] | null;
     /**
      * A list of numeric IDs to be included.
      */
-    targetedCriteriaIds?: string[];
+    targetedCriteriaIds?: string[] | null;
   }
   /**
    * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
@@ -619,15 +619,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
      */
-    day?: number;
+    day?: number | null;
     /**
      * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
      */
-    month?: number;
+    month?: number | null;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
      */
-    year?: number;
+    year?: number | null;
   }
   /**
    * Daypart targeting message that specifies if the ad can be shown only during certain parts of a day/week.
@@ -636,7 +636,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The day of the week to target. If unspecified, applicable to all days.
      */
-    dayOfWeek?: string;
+    dayOfWeek?: string | null;
     /**
      * The ending time of the day for the ad to show (minute level granularity). The end time is exclusive. This field is not available for filtering in PQL queries.
      */
@@ -657,7 +657,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The timezone to use for interpreting the day part targeting.
      */
-    timeZoneType?: string;
+    timeZoneType?: string | null;
   }
   /**
    * A deal represents a segment of inventory for displaying ads on. A proposal can contain multiple deals. A deal contains the terms and targeting information that is used for serving.
@@ -666,11 +666,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Proposed flight end time of the deal. This will generally be stored in a granularity of a second. A value is not required for Private Auction deals or Preferred Deals.
      */
-    availableEndTime?: string;
+    availableEndTime?: string | null;
     /**
      * Optional proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (e.g., in milliseconds) will be truncated towards the start of time in seconds.
      */
-    availableStartTime?: string;
+    availableStartTime?: string | null;
     /**
      * Buyer private data (hidden from seller).
      */
@@ -678,19 +678,19 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The product ID from which this deal was created.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
-    createProductId?: string;
+    createProductId?: string | null;
     /**
      * Optional revision number of the product that the deal was created from. If present on create, and the server `product_revision` has advanced sinced the passed-in `create_product_revision`, an `ABORTED` error will be returned.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
-    createProductRevision?: string;
+    createProductRevision?: string | null;
     /**
      * Output only. The time of the deal creation.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. Specifies the creative pre-approval policy.
      */
-    creativePreApprovalPolicy?: string;
+    creativePreApprovalPolicy?: string | null;
     /**
      * Output only. Restricitions about the creatives associated with the deal (i.e., size) This is available for Programmatic Guaranteed/Preferred Deals in Ad Manager.
      */
@@ -698,11 +698,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Output only. Specifies whether the creative is safeFrame compatible.
      */
-    creativeSafeFrameCompatibility?: string;
+    creativeSafeFrameCompatibility?: string | null;
     /**
      * Output only. A unique deal ID for the deal (server-assigned).
      */
-    dealId?: string;
+    dealId?: string | null;
     /**
      * Output only. Metadata about the serving status of this deal.
      */
@@ -718,27 +718,27 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Description for the deal terms.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The name of the deal.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Output only. The external deal ID assigned to this deal once the deal is finalized. This is the deal ID that shows up in serving/reporting etc.
      */
-    externalDealId?: string;
+    externalDealId?: string | null;
     /**
      * Output only. True, if the buyside inventory setup is complete for this deal.
      */
-    isSetupComplete?: boolean;
+    isSetupComplete?: boolean | null;
     /**
      * Output only. Specifies the creative source for programmatic deals. PUBLISHER means creative is provided by seller and ADVERTISER means creative is provided by buyer.
      */
-    programmaticCreativeSource?: string;
+    programmaticCreativeSource?: string | null;
     /**
      * Output only. ID of the proposal that this deal is part of.
      */
-    proposalId?: string;
+    proposalId?: string | null;
     /**
      * Output only. Seller contact information for the deal.
      */
@@ -746,7 +746,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The syndication product associated with the deal.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
-    syndicationProduct?: string;
+    syndicationProduct?: string | null;
     /**
      * Output only. Specifies the subset of inventory targeted by the deal.
      */
@@ -758,11 +758,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Output only. The time when the deal was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * The web property code for the seller copied over from the product.
      */
-    webPropertyCode?: string;
+    webPropertyCode?: string | null;
   }
   /**
    * Tracks which parties (if any) have paused a deal. The deal is considered paused if either hasBuyerPaused or hasSellPaused is true.
@@ -771,23 +771,23 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The buyer&#39;s reason for pausing, if the buyer paused the deal.
      */
-    buyerPauseReason?: string;
+    buyerPauseReason?: string | null;
     /**
      * The role of the person who first paused this deal.
      */
-    firstPausedBy?: string;
+    firstPausedBy?: string | null;
     /**
      * True, if the buyer has paused the deal unilaterally.
      */
-    hasBuyerPaused?: boolean;
+    hasBuyerPaused?: boolean | null;
     /**
      * True, if the seller has paused the deal unilaterally.
      */
-    hasSellerPaused?: boolean;
+    hasSellerPaused?: boolean | null;
     /**
      * The seller&#39;s reason for pausing, if the seller paused the deal.
      */
-    sellerPauseReason?: string;
+    sellerPauseReason?: string | null;
   }
   /**
    * Message captures metadata about the serving status of a deal.
@@ -805,11 +805,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Visibility of the URL in bid requests. (default: BRANDED)
      */
-    brandingType?: string;
+    brandingType?: string | null;
     /**
      * Publisher provided description for the terms.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Non-binding estimate of the estimated gross spend for this deal. Can be set by buyer or seller.
      */
@@ -817,7 +817,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Non-binding estimate of the impressions served per day. Can be set by buyer or seller.
      */
-    estimatedImpressionsPerDay?: string;
+    estimatedImpressionsPerDay?: string | null;
     /**
      * The terms for guaranteed fixed price deals.
      */
@@ -833,7 +833,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The time zone name. For deals with Cost Per Day billing, defines the time zone used to mark the boundaries of a day. It should be an IANA TZ name, such as &quot;America/Los_Angeles&quot;. For more information, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
      */
-    sellerTimeZone?: string;
+    sellerTimeZone?: string | null;
   }
   /**
    * Message contains details about how the deals will be paced.
@@ -842,11 +842,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Output only. Specified the creative blocking levels to be applied.
      */
-    creativeBlockingLevel?: string;
+    creativeBlockingLevel?: string | null;
     /**
      * Output only. Specifies how the impression delivery will be paced.
      */
-    deliveryRateType?: string;
+    deliveryRateType?: string | null;
     /**
      * Output only. Specifies any frequency caps.
      */
@@ -859,11 +859,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Additional details about the reason for disapproval.
      */
-    details?: string[];
+    details?: string[] | null;
     /**
      * The categorized reason for disapproval.
      */
-    reason?: string;
+    reason?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -880,7 +880,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the creative.
      */
-    creativeId?: string;
+    creativeId?: string | null;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
@@ -897,7 +897,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The ID of the detail. The associated value can be looked up in the dictionary file corresponding to the DetailType in the response message.
      */
-    detailId?: number;
+    detailId?: number | null;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
@@ -914,35 +914,35 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The set of dimensions along which to break down the response; may be empty. If multiple dimensions are requested, the breakdown is along the Cartesian product of the requested dimensions.
      */
-    breakdownDimensions?: string[];
+    breakdownDimensions?: string[] | null;
     /**
      * The ID of the creative on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, i.e., one whose name matches the `bidders/x/accounts/x/filterSets/x pattern.
      */
-    creativeId?: string;
+    creativeId?: string | null;
     /**
      * The ID of the deal on which to filter; optional. This field may be set only for a filter set that accesses account-level troubleshooting data, i.e., one whose name matches the `bidders/x/accounts/x/filterSets/x pattern.
      */
-    dealId?: string;
+    dealId?: string | null;
     /**
      * The environment on which to filter; optional.
      */
-    environment?: string;
+    environment?: string | null;
     /**
      * The list of formats on which to filter; may be empty. The filters represented by multiple formats are ORed together (i.e., if non-empty, results must match any one of the formats).
      */
-    formats?: string[];
+    formats?: string[] | null;
     /**
      * A user-defined name of the filter set. Filter set names must be unique globally and match one of the patterns:  - `bidders/x/filterSets/x (for accessing bidder-level troubleshooting data) - `bidders/x/accounts/x/filterSets/x (for accessing account-level troubleshooting data)  This field is required in create operations.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The list of platforms on which to filter; may be empty. The filters represented by multiple platforms are ORed together (i.e., if non-empty, results must match any one of the platforms).
      */
-    platforms?: string[];
+    platforms?: string[] | null;
     /**
      * For Open Bidding partners only. The list of publisher identifiers on which to filter; may be empty. The filters represented by multiple publisher identifiers are ORed together.
      */
-    publisherIdentifiers?: string[];
+    publisherIdentifiers?: string[] | null;
     /**
      * An open-ended realtime time range, defined by the aggregation start timestamp.
      */
@@ -954,11 +954,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * For Authorized Buyers only. The list of IDs of the seller (publisher) networks on which to filter; may be empty. The filters represented by multiple seller network IDs are ORed together (i.e., if non-empty, results must match any one of the publisher networks). See [seller-network-ids](https://developers.google.com/authorized-buyers/rtb/downloads/seller-network-ids) file for the set of existing seller network IDs.
      */
-    sellerNetworkIds?: number[];
+    sellerNetworkIds?: number[] | null;
     /**
      * The granularity of time intervals if a time series breakdown is desired; optional.
      */
-    timeSeriesGranularity?: string;
+    timeSeriesGranularity?: string | null;
   }
   /**
    * Represents a list of targeted and excluded mobile application IDs that publishers own. Mobile application IDs are from App Store and Google Play Store. Android App ID, for example, com.google.android.apps.maps, can be found in Google Play Store URL. iOS App ID (which is a number) can be found at the end of iTunes store URL. First party mobile applications is either included or excluded.
@@ -967,11 +967,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A list of application IDs to be excluded.
      */
-    excludedAppIds?: string[];
+    excludedAppIds?: string[] | null;
     /**
      * A list of application IDs to be included.
      */
-    targetedAppIds?: string[];
+    targetedAppIds?: string[] | null;
   }
   /**
    * Frequency cap.
@@ -980,15 +980,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The maximum number of impressions that can be served to a user within the specified time period.
      */
-    maxImpressions?: number;
+    maxImpressions?: number | null;
     /**
      * The amount of time, in the units specified by time_unit_type. Defines the amount of time over which impressions per user are counted and capped.
      */
-    numTimeUnits?: number;
+    numTimeUnits?: number | null;
     /**
      * The time unit. Along with num_time_units defines the amount of time over which impressions per user are counted and capped.
      */
-    timeUnitType?: string;
+    timeUnitType?: string | null;
   }
   /**
    * Terms for Programmatic Guaranteed Deals.
@@ -1001,15 +1001,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Guaranteed impressions as a percentage. This is the percentage of guaranteed looks that the buyer is guaranteeing to buy.
      */
-    guaranteedImpressions?: string;
+    guaranteedImpressions?: string | null;
     /**
      * Count of guaranteed looks. Required for deal, optional for product.
      */
-    guaranteedLooks?: string;
+    guaranteedLooks?: string | null;
     /**
      * Daily minimum looks for CPD deal types.
      */
-    minimumDailyLooks?: string;
+    minimumDailyLooks?: string | null;
   }
   /**
    * HTML content for a creative.
@@ -1018,15 +1018,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The height of the HTML snippet in pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * The HTML snippet that displays the ad when inserted in the web page.
      */
-    snippet?: string;
+    snippet?: string | null;
     /**
      * The width of the HTML snippet in pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * An image resource. You may provide a larger image than was requested, so long as the aspect ratio is preserved.
@@ -1035,15 +1035,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Image height in pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * The URL of the image.
      */
-    url?: string;
+    url?: string | null;
     /**
      * Image width in pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * The set of metrics that are measured in numbers of impressions, representing how many impressions with the specified dimension values were considered eligible at each stage of the bidding funnel.
@@ -1098,7 +1098,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListBidMetricsRequest.pageToken field in the subsequent call to the bidMetrics.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing all reasons that bid responses resulted in an error.
@@ -1111,7 +1111,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListBidResponseErrorsRequest.pageToken field in the subsequent call to the bidResponseErrors.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing all reasons that bid responses were considered to have no applicable bids.
@@ -1124,7 +1124,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListBidResponsesWithoutBidsRequest.pageToken field in the subsequent call to the bidResponsesWithoutBids.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListClientsResponse {
     /**
@@ -1134,7 +1134,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListClientsRequest.pageToken field in the subsequent call to the accounts.clients.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListClientUserInvitationsResponse {
     /**
@@ -1144,13 +1144,13 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListClientUserInvitationsRequest.pageToken field in the subsequent call to the clients.invitations.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListClientUsersResponse {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListClientUsersRequest.pageToken field in the subsequent call to the clients.invitations.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The returned list of client users.
      */
@@ -1167,7 +1167,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListCreativesRequest.page_token field in the subsequent call to `ListCreatives` method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing all creatives associated with a given filtered bid reason.
@@ -1180,7 +1180,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListCreativeStatusBreakdownByCreativeRequest.pageToken field in the subsequent call to the filteredBids.creatives.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing all details associated with a given filtered bid reason.
@@ -1189,7 +1189,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The type of detail that the detail IDs represent.
      */
-    detailType?: string;
+    detailType?: string | null;
     /**
      * List of rows, with counts of bids with a given creative status aggregated by detail.
      */
@@ -1197,7 +1197,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListCreativeStatusBreakdownByDetailRequest.pageToken field in the subsequent call to the filteredBids.details.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A response for listing creative and deal associations
@@ -1210,7 +1210,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListDealAssociationsRequest.page_token field in the subsequent call to &#39;ListDealAssociation&#39; method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing all reasons that bid requests were filtered and not sent to the buyer.
@@ -1223,7 +1223,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListFilteredBidRequestsRequest.pageToken field in the subsequent call to the filteredBidRequests.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing all reasons that bids were filtered from the auction.
@@ -1236,7 +1236,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListFilteredBidsRequest.pageToken field in the subsequent call to the filteredBids.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing filter sets.
@@ -1249,7 +1249,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListFilterSetsRequest.pageToken field in the subsequent call to the accounts.filterSets.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing the metrics that are measured in number of impressions.
@@ -1262,7 +1262,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListImpressionMetricsRequest.pageToken field in the subsequent call to the impressionMetrics.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing all reasons that bids lost in the auction.
@@ -1275,7 +1275,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListLosingBidsRequest.pageToken field in the subsequent call to the losingBids.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for listing all reasons for which a buyer was not billed for a winning bid.
@@ -1284,7 +1284,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A token to retrieve the next page of results. Pass this value in the ListNonBillableWinningBidsRequest.pageToken field in the subsequent call to the nonBillableWinningBids.list method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of rows, with counts of bids not billed aggregated by reason.
      */
@@ -1297,7 +1297,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * List pagination support.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of matching products at their head revision number.
      */
@@ -1310,7 +1310,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of proposals.
      */
@@ -1323,7 +1323,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * List pagination support
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of matching publisher profiles.
      */
@@ -1336,7 +1336,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * IDs representing the geo location for this context. Please refer to the [geo-table.csv](https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv) file for different geo criteria IDs.
      */
-    geoCriteriaIds?: number[];
+    geoCriteriaIds?: number[] | null;
   }
   /**
    * Targeting represents different criteria that can be used by advertisers to target ad inventory. For example, they can choose to target ad requests only if the user is in the US. Multiple types of targeting are always applied as a logical AND, unless noted otherwise.
@@ -1370,11 +1370,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The expected value of the metric.
      */
-    value?: string;
+    value?: string | null;
     /**
      * The variance (i.e. square of the standard deviation) of the metric value. If value is exact, variance is 0. Can be used to calculate margin of error as a percentage of value, using the following formula, where Z is the standard constant that depends on the desired size of the confidence interval (e.g. for 90% confidence interval, use Z = 1.645):    marginOfError = 100 * Z * sqrt(variance) / value
      */
-    variance?: string;
+    variance?: string | null;
   }
   /**
    * Mobile application targeting settings.
@@ -1392,15 +1392,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The 3-letter currency code defined in ISO 4217.
      */
-    currencyCode?: string;
+    currencyCode?: string | null;
     /**
      * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
      */
-    nanos?: number;
+    nanos?: number | null;
     /**
      * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
      */
-    units?: string;
+    units?: string | null;
   }
   /**
    * Native content for a creative.
@@ -1409,7 +1409,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The name of the advertiser or sponsor, to be displayed in the ad creative.
      */
-    advertiserName?: string;
+    advertiserName?: string | null;
     /**
      * The app icon, for app download ads.
      */
@@ -1417,23 +1417,23 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A long description of the ad.
      */
-    body?: string;
+    body?: string | null;
     /**
      * A label for the button that the user is supposed to click.
      */
-    callToAction?: string;
+    callToAction?: string | null;
     /**
      * The URL that the browser/SDK will load when the user clicks the ad.
      */
-    clickLinkUrl?: string;
+    clickLinkUrl?: string | null;
     /**
      * The URL to use for click tracking.
      */
-    clickTrackingUrl?: string;
+    clickTrackingUrl?: string | null;
     /**
      * A short title for the ad.
      */
-    headline?: string;
+    headline?: string | null;
     /**
      * A large image.
      */
@@ -1445,19 +1445,19 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The price of the promoted app including currency info.
      */
-    priceDisplayText?: string;
+    priceDisplayText?: string | null;
     /**
      * The app rating in the app store. Must be in the range [0-5].
      */
-    starRating?: number;
+    starRating?: number | null;
     /**
      * The URL to the app store to purchase/download the promoted app.
      */
-    storeUrl?: string;
+    storeUrl?: string | null;
     /**
      * The URL to fetch a native video ad.
      */
-    videoUrl?: string;
+    videoUrl?: string | null;
   }
   /**
    * The number of winning bids with the specified dimension values for which the buyer was not billed, as described by the specified status.
@@ -1474,7 +1474,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The status specifying why the winning bids were not billed.
      */
-    status?: string;
+    status?: string | null;
   }
   /**
    * Terms for Private Auctions. Note that Private Auctions can be created only by the seller, but they can be returned in a get or list request.
@@ -1483,7 +1483,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * True if open auction buyers are allowed to compete with invited buyers in this private auction.
      */
-    autoOptimizePrivateAuction?: boolean;
+    autoOptimizePrivateAuction?: boolean | null;
     /**
      * Reserve price for the specified buyer.
      */
@@ -1505,23 +1505,23 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Output only. The timestamp for when this note was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. The role of the person (buyer/seller) creating the note.
      */
-    creatorRole?: string;
+    creatorRole?: string | null;
     /**
      * The actual note to attach. (max-length: 1024 unicode code units)  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
-    note?: string;
+    note?: string | null;
     /**
      * Output only. The unique ID for the note.
      */
-    noteId?: string;
+    noteId?: string | null;
     /**
      * Output only. The revision number of the proposal when the note is created.
      */
-    proposalRevision?: string;
+    proposalRevision?: string | null;
   }
   /**
    * Represents targeting information for operating systems.
@@ -1543,7 +1543,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The reason why the proposal is being paused. This human readable message will be displayed in the seller&#39;s UI. (Max length: 1000 unicode code units.)
      */
-    reason?: string;
+    reason?: string | null;
   }
   /**
    * Represents targeting about where the ads can appear, e.g., certain sites or mobile applications. Different placement targeting types will be logically OR&#39;ed.
@@ -1565,7 +1565,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The platforms this restriction applies to.
      */
-    platforms?: string[];
+    platforms?: string[] | null;
   }
   /**
    * Represents a price and a pricing type for a product / deal.
@@ -1578,7 +1578,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The pricing type for the deal/product. (default: CPM)
      */
-    pricingType?: string;
+    pricingType?: string | null;
   }
   /**
    * Used to specify pricing rules for buyers/advertisers. Each PricePerBuyer in a product can become 0 or 1 deals. To check if there is a PricePerBuyer for a particular buyer or buyer/advertiser pair, we look for the most specific matching rule - we first look for a rule matching the buyer and advertiser, next a rule with the buyer but an empty advertiser list, and otherwise look for a matching rule where no buyer is set.
@@ -1587,7 +1587,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The list of advertisers for this price when associated with this buyer. If empty, all advertisers with this buyer pay this price.
      */
-    advertiserIds?: string[];
+    advertiserIds?: string[] | null;
     /**
      * The buyer who will pay this price. If unset, all buyers can pay this price (if the advertisers match, and there&#39;s no more specific rule matching the buyer).
      */
@@ -1604,7 +1604,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A buyer or seller specified reference ID. This can be queried in the list operations (max-length: 1024 unicode code units).
      */
-    referenceId?: string;
+    referenceId?: string | null;
   }
   /**
    * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.
@@ -1613,15 +1613,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The proposed end time for the deal. The field will be truncated to the order of seconds during serving.
      */
-    availableEndTime?: string;
+    availableEndTime?: string | null;
     /**
      * Inventory availability dates. The start time will be truncated to seconds during serving. Thus, a field specified as 3:23:34.456 (HH:mm:ss.SSS) will be truncated to 3:23:34 when serving.
      */
-    availableStartTime?: string;
+    availableStartTime?: string | null;
     /**
      * Creation time.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Optional contact information for the creator of this product.
      */
@@ -1629,23 +1629,23 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The display name for this product as set by the seller.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * If the creator has already signed off on the product, then the buyer can finalize the deal by accepting the product as is. When copying to a proposal, if any of the terms are changed, then auto_finalize is automatically set to false.
      */
-    hasCreatorSignedOff?: boolean;
+    hasCreatorSignedOff?: boolean | null;
     /**
      * The unique ID for the product.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The revision number of the product (auto-assigned by Marketplace).
      */
-    productRevision?: string;
+    productRevision?: string | null;
     /**
      * An ID which can be used by the Publisher Profile API to get more information about the seller that created this product.
      */
-    publisherProfileId?: string;
+    publisherProfileId?: string | null;
     /**
      * Information about the seller that created this product.
      */
@@ -1653,7 +1653,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The syndication product associated with the deal.
      */
-    syndicationProduct?: string;
+    syndicationProduct?: string | null;
     /**
      * Targeting that is shared between the buyer and the seller. Each targeting criterion has a specified key and for each key there is a list of inclusion value or exclusion values.
      */
@@ -1665,11 +1665,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Time of last update.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * The web-property code for the seller. This needs to be copied as is when adding a new deal to a proposal.
      */
-    webPropertyCode?: string;
+    webPropertyCode?: string | null;
   }
   /**
    * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  Represents a proposal in the Marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served.  Note: you can not update, create, or otherwise modify Private Auction or Preferred Deals deals through the API.  Fields are updatable unless noted otherwise.
@@ -1698,19 +1698,19 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The name for the proposal.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Output only. True if the proposal is being renegotiated.
      */
-    isRenegotiating?: boolean;
+    isRenegotiating?: boolean | null;
     /**
      * Output only. True, if the buyside inventory setup is complete for this proposal.
      */
-    isSetupComplete?: boolean;
+    isSetupComplete?: boolean | null;
     /**
      * Output only. The role of the last user that either updated the proposal or left a comment.
      */
-    lastUpdaterOrCommentorRole?: string;
+    lastUpdaterOrCommentorRole?: string | null;
     /**
      * Output only. The notes associated with this proposal.
      */
@@ -1718,23 +1718,23 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Output only. Indicates whether the buyer/seller created the proposal.
      */
-    originatorRole?: string;
+    originatorRole?: string | null;
     /**
      * Output only. Private auction ID if this proposal is a private auction proposal.
      */
-    privateAuctionId?: string;
+    privateAuctionId?: string | null;
     /**
      * Output only. The unique ID of the proposal.
      */
-    proposalId?: string;
+    proposalId?: string | null;
     /**
      * Output only. The revision number for the proposal. Each update to the proposal or the deal causes the proposal revision number to auto-increment. The buyer keeps track of the last revision number they know of and pass it in when making an update. If the head revision number on the server has since incremented, then an ABORTED error is returned during the update operation to let the buyer know that a subsequent update was made.
      */
-    proposalRevision?: string;
+    proposalRevision?: string | null;
     /**
      * Output only. The current state of the proposal.
      */
-    proposalState?: string;
+    proposalState?: string | null;
     /**
      * Reference to the seller on the proposal.  Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
@@ -1746,7 +1746,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Output only. The time when the proposal was last revised.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  Represents a publisher profile in Marketplace.  All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
@@ -1755,55 +1755,55 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Description on the publisher&#39;s audience.
      */
-    audienceDescription?: string;
+    audienceDescription?: string | null;
     /**
      * Statement explaining what&#39;s unique about publisher&#39;s business, and why buyers should partner with the publisher.
      */
-    buyerPitchStatement?: string;
+    buyerPitchStatement?: string | null;
     /**
      * Contact information for direct reservation deals. This is free text entered by the publisher and may include information like names, phone numbers and email addresses.
      */
-    directDealsContact?: string;
+    directDealsContact?: string | null;
     /**
      * Name of the publisher profile.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The list of domains represented in this publisher profile. Empty if this is a parent profile. These are top private domains, meaning that these will not contain a string like &quot;photos.google.co.uk/123&quot;, but will instead contain &quot;google.co.uk&quot;.
      */
-    domains?: string[];
+    domains?: string[] | null;
     /**
      * URL to publisher&#39;s Google+ page.
      */
-    googlePlusUrl?: string;
+    googlePlusUrl?: string | null;
     /**
      * A Google public URL to the logo for this publisher profile. The logo is stored as a PNG, JPG, or GIF image.
      */
-    logoUrl?: string;
+    logoUrl?: string | null;
     /**
      * URL to additional marketing and sales materials.
      */
-    mediaKitUrl?: string;
+    mediaKitUrl?: string | null;
     /**
      * Overview of the publisher.
      */
-    overview?: string;
+    overview?: string | null;
     /**
      * Contact information for programmatic deals. This is free text entered by the publisher and may include information like names, phone numbers and email addresses.
      */
-    programmaticDealsContact?: string;
+    programmaticDealsContact?: string | null;
     /**
      * Unique ID for publisher profile.
      */
-    publisherProfileId?: string;
+    publisherProfileId?: string | null;
     /**
      * URL to a publisher rate card.
      */
-    rateCardInfoUrl?: string;
+    rateCardInfoUrl?: string | null;
     /**
      * URL to a sample content page.
      */
-    samplePageUrl?: string;
+    samplePageUrl?: string | null;
     /**
      * Seller of the publisher profile.
      */
@@ -1811,7 +1811,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Up to three key metrics and rankings. Max 100 characters each. For example &quot;#1 Mobile News Site for 20 Straight Months&quot;.
      */
-    topHeadlines?: string[];
+    topHeadlines?: string[] | null;
   }
   /**
    * An open-ended realtime time range specified by the start timestamp. For filter sets that specify a realtime time range RTB metrics continue to be aggregated throughout the lifetime of the filter set.
@@ -1820,7 +1820,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The start timestamp of the real-time RTB metrics aggregation.
      */
-    startTimestamp?: string;
+    startTimestamp?: string | null;
   }
   /**
    * A relative date range, specified by an offset and a duration. The supported range of dates begins 30 days before today and ends today, i.e., the limits for these values are: offset_days &gt;= 0 duration_days &gt;= 1 offset_days + duration_days &lt;= 30
@@ -1829,11 +1829,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The number of days in the requested date range, e.g., for a range spanning today: 1. For a range spanning the last 7 days: 7.
      */
-    durationDays?: number;
+    durationDays?: number | null;
     /**
      * The end date of the filter set, specified as the number of days before today, e.g., for a range where the last date is today: 0.
      */
-    offsetDays?: number;
+    offsetDays?: number | null;
   }
   /**
    * A request for removing the association between a deal and a creative.
@@ -1855,7 +1855,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The publisher identifier for this row, if a breakdown by [BreakdownDimension.PUBLISHER_IDENTIFIER](https://developers.google.com/authorized-buyers/apis/reference/rest/v2beta1/bidders.accounts.filterSets#FilterSet.BreakdownDimension) was requested.
      */
-    publisherIdentifier?: string;
+    publisherIdentifier?: string | null;
     /**
      * The time interval that this row represents.
      */
@@ -1868,7 +1868,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The security types in this context.
      */
-    securities?: string[];
+    securities?: string[] | null;
   }
   /**
    * Represents a seller of inventory. Each seller is identified by a unique Ad Manager account ID.
@@ -1877,11 +1877,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The unique ID for the seller. The seller fills in this field. The seller account ID is then available to buyer in the product.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Optional sub-account ID for the seller.
      */
-    subAccountId?: string;
+    subAccountId?: string | null;
   }
   /**
    * The serving context for this restriction.
@@ -1890,7 +1890,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Matches all contexts.
      */
-    all?: string;
+    all?: string | null;
     /**
      * Matches impressions for a particular app type.
      */
@@ -1931,7 +1931,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The status of the creative in this context (for example, it has been explicitly disapproved or is pending review).
      */
-    status?: string;
+    status?: string | null;
   }
   /**
    * Message depicting the size of the creative. The units of width and height depend on the type of the targeting.
@@ -1940,11 +1940,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The height of the creative.
      */
-    height?: number;
+    height?: number | null;
     /**
      * The width of the creative
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * A request for stopping notifications for changes to creative Status.
@@ -1965,7 +1965,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The key representing the shared targeting criterion. Targeting criteria defined by Google ad servers will begin with GOOG_. Third parties may define their own keys. A list of permissible keys along with the acceptable values will be provided as part of the external documentation.
      */
-    key?: string;
+    key?: string | null;
   }
   /**
    * A polymorphic targeting value used as part of Shared Targeting.
@@ -1982,11 +1982,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The long value to include/exclude.
      */
-    longValue?: string;
+    longValue?: string | null;
     /**
      * The string value to include/exclude.
      */
-    stringValue?: string;
+    stringValue?: string | null;
   }
   /**
    * Represents targeting about various types of technology.
@@ -2012,11 +2012,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The timestamp marking the end of the range (exclusive) for which data is included.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The timestamp marking the start of the range (inclusive) for which data is included.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -2025,19 +2025,19 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
      */
-    hours?: number;
+    hours?: number | null;
     /**
      * Minutes of hour of day. Must be from 0 to 59.
      */
-    minutes?: number;
+    minutes?: number | null;
     /**
      * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
      */
-    nanos?: number;
+    nanos?: number | null;
     /**
      * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
      */
-    seconds?: number;
+    seconds?: number | null;
   }
   /**
    * Represents a list of targeted and excluded URLs (e.g., google.com). For Private Auction and AdX Preferred Deals, URLs are either included or excluded. For Programmatic Guaranteed and Preferred Deals, this doesn&#39;t apply.
@@ -2046,11 +2046,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A list of URLs to be excluded.
      */
-    excludedUrls?: string[];
+    excludedUrls?: string[] | null;
     /**
      * A list of URLs to be included.
      */
-    targetedUrls?: string[];
+    targetedUrls?: string[] | null;
   }
   /**
    * Video content for a creative.
@@ -2059,11 +2059,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The URL to fetch a video ad.
      */
-    videoUrl?: string;
+    videoUrl?: string | null;
     /**
      * The contents of a VAST document for a video ad. This document should conform to the VAST 2.0 or 3.0 standard.
      */
-    videoVastXml?: string;
+    videoVastXml?: string | null;
   }
   /**
    * Represents targeting information about video.
@@ -2072,11 +2072,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * A list of video positions to be excluded. Position types can either be included or excluded (XOR).
      */
-    excludedPositionTypes?: string[];
+    excludedPositionTypes?: string[] | null;
     /**
      * A list of video positions to be included. When the included list is present, the excluded list must be empty. When the excluded list is present, the included list must be empty.
      */
-    targetedPositionTypes?: string[];
+    targetedPositionTypes?: string[] | null;
   }
   /**
    * A request for watching changes to creative Status.
@@ -2085,7 +2085,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The Pub/Sub topic to publish notifications to. This topic must already exist and must give permission to ad-exchange-buyside-reports@google.com to write to the topic. This should be the full resource name in &quot;projects/{project_id}/topics/{topic_id}&quot; format.
      */
-    topic?: string;
+    topic?: string | null;
   }
 
   export class Resource$Accounts {

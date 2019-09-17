@@ -121,85 +121,85 @@ export namespace iamcredentials_v1 {
     /**
      * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request.  The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
-    delegates?: string[];
+    delegates?: string[] | null;
     /**
      * The desired lifetime duration of the access token in seconds. Must be set to a value less than or equal to 3600 (1 hour). If a value is not specified, the token&#39;s lifetime will be set to a default value of one hour.
      */
-    lifetime?: string;
+    lifetime?: string | null;
     /**
      * Code to identify the scopes to be included in the OAuth 2.0 access token. See https://developers.google.com/identity/protocols/googlescopes for more information. At least one value required.
      */
-    scope?: string[];
+    scope?: string[] | null;
   }
   export interface Schema$GenerateAccessTokenResponse {
     /**
      * The OAuth 2.0 access token.
      */
-    accessToken?: string;
+    accessToken?: string | null;
     /**
      * Token expiration time. The expiration time is always set.
      */
-    expireTime?: string;
+    expireTime?: string | null;
   }
   export interface Schema$GenerateIdTokenRequest {
     /**
      * The audience for the token, such as the API or account that this token grants access to.
      */
-    audience?: string;
+    audience?: string | null;
     /**
      * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request.  The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
-    delegates?: string[];
+    delegates?: string[] | null;
     /**
      * Include the service account email in the token. If set to `true`, the token will contain `email` and `email_verified` claims.
      */
-    includeEmail?: boolean;
+    includeEmail?: boolean | null;
   }
   export interface Schema$GenerateIdTokenResponse {
     /**
      * The OpenId Connect ID token.
      */
-    token?: string;
+    token?: string | null;
   }
   export interface Schema$SignBlobRequest {
     /**
      * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request.  The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
-    delegates?: string[];
+    delegates?: string[] | null;
     /**
      * The bytes to sign.
      */
-    payload?: string;
+    payload?: string | null;
   }
   export interface Schema$SignBlobResponse {
     /**
      * The ID of the key used to sign the blob.
      */
-    keyId?: string;
+    keyId?: string | null;
     /**
      * The signed blob.
      */
-    signedBlob?: string;
+    signedBlob?: string | null;
   }
   export interface Schema$SignJwtRequest {
     /**
      * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request.  The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
-    delegates?: string[];
+    delegates?: string[] | null;
     /**
      * The JWT payload to sign: a JSON object that contains a JWT Claims Set.
      */
-    payload?: string;
+    payload?: string | null;
   }
   export interface Schema$SignJwtResponse {
     /**
      * The ID of the key used to sign the JWT.
      */
-    keyId?: string;
+    keyId?: string | null;
     /**
      * The signed JWT.
      */
-    signedJwt?: string;
+    signedJwt?: string | null;
   }
 
   export class Resource$Projects {

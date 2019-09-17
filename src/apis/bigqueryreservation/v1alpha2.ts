@@ -124,7 +124,7 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * Resource name of the slot pool that is being created. E.g., projects/myproject/locations/us-central1/reservations/foo/slotPools/123
      */
-    slotPool?: string;
+    slotPool?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -141,7 +141,7 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response for ReservationService.ListReservationGrants.
@@ -150,7 +150,7 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of reservation grants visible to the user.
      */
@@ -163,7 +163,7 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of reservations visible to the user.
      */
@@ -176,7 +176,7 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of slot pools visible to the user.
      */
@@ -189,23 +189,23 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.
@@ -214,7 +214,7 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * The legacy BigQuery location ID, e.g. “EU” for the “europe” location. This is for any API consumers that need the legacy “US” and “EU” locations.
      */
-    legacyLocationId?: string;
+    legacyLocationId?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -223,7 +223,7 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -231,15 +231,15 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A reservation is a mechanism used to guarantee slots to users.
@@ -248,15 +248,15 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * The resource name of the reservation, e.g., &quot;projects/x/locations/x/reservations/dev/team/product&quot;. Reservation names (e.g., &quot;dev/team/product&quot;) exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Maximum slots available to this reservation and its children. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. In a scan of a multi-partitioned table, a single slot operates on a single partition of the table.  If the new reservation&#39;s slot capacity exceed the parent&#39;s slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent&#39;s slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
      */
-    slotCapacity?: string;
+    slotCapacity?: string | null;
     /**
      * If true, any query using this reservation will also be submitted to the parent reservation. This allows the query to share the additional slot capacity of the parent with other queries in the parent reservation. If the parent also has this field set to true, then this process will continue until it encounters a reservation for which this is false. If false, a query using this reservation will execute with the maximum slot capacity as specified above. If not specified, default value is true. Ignored for top-level reservation.
      */
-    useParentReservation?: boolean;
+    useParentReservation?: boolean | null;
   }
   /**
    * A ReservationGrant allows a project to submit jobs of a certain type using slots from the specified reservation.
@@ -265,19 +265,19 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * The resource which will use the reservation. E.g. projects/myproject, folders/123, organizations/456.
      */
-    grantee?: string;
+    grantee?: string | null;
     /**
      * Which type of jobs will use the reservation.
      */
-    jobType?: string;
+    jobType?: string | null;
     /**
      * Output only. Name of the resource. E.g.: projects/myproject/locations/eu/reservationGrants/123.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Resource name of the reservation. E.g., projects/myproject/locations/eu/reservations/my_reservation. This reservation must be in the same location as the grant. This reservation should belong to the same parent project.
      */
-    reservation?: string;
+    reservation?: string | null;
   }
   /**
    * The response for ReservationService.SearchReservationGrants.
@@ -286,7 +286,7 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of reservation grants visible to the user.
      */
@@ -299,23 +299,23 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * Output only. The end of the commitment period. Slot pool cannot be removed before commitment_end_time. It is applicable only for ACTIVE slot pools and is computed as a combination of the plan and the time when the slot pool became ACTIVE.
      */
-    commitmentEndTime?: string;
+    commitmentEndTime?: string | null;
     /**
      * Output only. The resource name of the slot pool, e.g.,    projects/myproject/locations/us-central1/reservations/myreservation/slotPools/123
      */
-    name?: string;
+    name?: string | null;
     /**
      * Slot pool commitment plan.
      */
-    plan?: string;
+    plan?: string | null;
     /**
      * Number of slots in this pool.
      */
-    slotCount?: string;
+    slotCount?: string | null;
     /**
      * Output only.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -324,15 +324,15 @@ export namespace bigqueryreservation_v1alpha2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Projects {

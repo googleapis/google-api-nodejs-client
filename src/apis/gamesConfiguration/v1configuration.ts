@@ -116,7 +116,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The type of the achievement. Possible values are:   - &quot;STANDARD&quot; - Achievement is either locked or unlocked.  - &quot;INCREMENTAL&quot; - Achievement is incremental.
      */
-    achievementType?: string;
+    achievementType?: string | null;
     /**
      * The draft data of the achievement.
      */
@@ -124,15 +124,15 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the achievement.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
-    initialState?: string;
+    initialState?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The read-only published data of the achievement.
      */
@@ -140,11 +140,11 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Steps to unlock. Only applicable to incremental achievements.
      */
-    stepsToUnlock?: number;
+    stepsToUnlock?: number | null;
     /**
      * The token for this resource.
      */
-    token?: string;
+    token?: string | null;
   }
   /**
    * This is a JSON template for an achievement configuration detail.
@@ -157,11 +157,11 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The icon url of this achievement. Writes to this field are ignored.
      */
-    iconUrl?: string;
+    iconUrl?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Localized strings for the achievement name.
      */
@@ -169,11 +169,11 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Point value for the achievement.
      */
-    pointValue?: number;
+    pointValue?: number | null;
     /**
      * The sort rank of this achievement. Writes to this field are ignored.
      */
-    sortRank?: number;
+    sortRank?: number | null;
   }
   /**
    * This is a JSON template for a ListConfigurations response.
@@ -186,11 +186,11 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementConfigurationListResponse.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * This is a JSON template for a number affix resource.
@@ -228,15 +228,15 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The curreny code string. Only used for CURRENCY format type.
      */
-    currencyCode?: string;
+    currencyCode?: string | null;
     /**
      * The formatting for the number. Possible values are:   - &quot;NUMERIC&quot; - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added. - &quot;TIME_DURATION&quot; - Numbers are formatted to hours, minutes and seconds. - &quot;CURRENCY&quot; - Numbers are formatted to currency according to locale.
      */
-    numberFormatType?: string;
+    numberFormatType?: string | null;
     /**
      * The number of decimal places for number. Only used for NUMERIC format type.
      */
-    numDecimalPlaces?: number;
+    numDecimalPlaces?: number | null;
     /**
      * An optional suffix for the NUMERIC format type. These strings follow the same  plural rules as all Android string resources.
      */
@@ -249,19 +249,19 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The image type for the image.
      */
-    imageType?: string;
+    imageType?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#imageConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The resource ID of resource which the image belongs to.
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * The url for this image.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * This is a JSON template for an leaderboard configuration resource.
@@ -274,11 +274,11 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the leaderboard.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The read-only published data of the leaderboard.
      */
@@ -286,19 +286,19 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Maximum score that can be posted to this leaderboard.
      */
-    scoreMax?: string;
+    scoreMax?: string | null;
     /**
      * Minimum score that can be posted to this leaderboard.
      */
-    scoreMin?: string;
+    scoreMin?: string | null;
     /**
      * The type of the leaderboard. Possible values are:   - &quot;LARGER_IS_BETTER&quot; - Larger scores posted are ranked higher.  - &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
      */
-    scoreOrder?: string;
+    scoreOrder?: string | null;
     /**
      * The token for this resource.
      */
-    token?: string;
+    token?: string | null;
   }
   /**
    * This is a JSON template for a leaderboard configuration detail.
@@ -307,11 +307,11 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The icon url of this leaderboard. Writes to this field are ignored.
      */
-    iconUrl?: string;
+    iconUrl?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Localized strings for the leaderboard name.
      */
@@ -323,7 +323,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The sort rank of this leaderboard. Writes to this field are ignored.
      */
-    sortRank?: number;
+    sortRank?: number | null;
   }
   /**
    * This is a JSON template for a ListConfigurations response.
@@ -336,11 +336,11 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardConfigurationListResponse.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * This is a JSON template for a localized string resource.
@@ -349,15 +349,15 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The locale string.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * The string value.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * This is a JSON template for a localized string bundle resource.
@@ -366,7 +366,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The locale strings.
      */

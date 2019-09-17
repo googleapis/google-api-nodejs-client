@@ -140,7 +140,7 @@ export namespace driveactivity_v2 {
     /**
      * The action occurred at this specific time.
      */
-    timestamp?: string;
+    timestamp?: string | null;
   }
   /**
    * Data describing the type and additional information of an action.
@@ -235,7 +235,7 @@ export namespace driveactivity_v2 {
     /**
      * The reference type corresponding to this event.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A comment with an assignment.
@@ -244,7 +244,7 @@ export namespace driveactivity_v2 {
     /**
      * The sub-type of this event.
      */
-    subtype?: string;
+    subtype?: string | null;
   }
   /**
    * A change about comments on an object.
@@ -313,7 +313,7 @@ export namespace driveactivity_v2 {
     /**
      * The type of Data Leak Prevention (DLP) change.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * An object was deleted.
@@ -322,7 +322,7 @@ export namespace driveactivity_v2 {
     /**
      * The type of delete action taken.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A user whose account has since been deleted.
@@ -335,11 +335,11 @@ export namespace driveactivity_v2 {
     /**
      * An opaque string used to identify this domain.
      */
-    legacyId?: string;
+    legacyId?: string | null;
     /**
      * The name of the domain, e.g. &quot;google.com&quot;.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Information about a shared drive.
@@ -348,7 +348,7 @@ export namespace driveactivity_v2 {
     /**
      * The resource name of the shared drive. The format is &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific collection ID for this resource name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The root of this shared drive.
      */
@@ -356,7 +356,7 @@ export namespace driveactivity_v2 {
     /**
      * The title of the shared drive.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * A single Drive activity comprising one or more Actions by one or more Actors on one or more Targets. Some Action groupings occur spontaneously, such as moving an item into a shared folder triggering a permission change. Other groupings of related Actions, such as multiple Actors editing one item or moving multiple files into a new folder, are controlled by the selection of a ConsolidationStrategy in the QueryDriveActivityRequest.
@@ -385,7 +385,7 @@ export namespace driveactivity_v2 {
     /**
      * The activity occurred at this specific time.
      */
-    timestamp?: string;
+    timestamp?: string | null;
   }
   /**
    * A Drive item which is a file.
@@ -398,7 +398,7 @@ export namespace driveactivity_v2 {
     /**
      * The type of Drive folder.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A Drive item, such as a file or folder.
@@ -423,11 +423,11 @@ export namespace driveactivity_v2 {
     /**
      * The MIME type of the Drive item.  See https://developers.google.com/drive/v3/web/mime-types.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * The target Drive item. The format is &quot;items/ITEM_ID&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Information about the owner of this Drive item.
      */
@@ -435,7 +435,7 @@ export namespace driveactivity_v2 {
     /**
      * The title of the Drive item.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * A lightweight reference to a Drive item, such as a file or folder.
@@ -446,7 +446,7 @@ export namespace driveactivity_v2 {
      */
     driveFile?: Schema$DriveFile;
     /**
-     * The Drive item is a folder.
+     * The Drive item is a folder. Includes information about the type of folder.
      */
     driveFolder?: Schema$DriveFolder;
     /**
@@ -460,11 +460,11 @@ export namespace driveactivity_v2 {
     /**
      * The target Drive item. The format is &quot;items/ITEM_ID&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The title of the Drive item.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * A lightweight reference to a shared drive.
@@ -473,11 +473,11 @@ export namespace driveactivity_v2 {
     /**
      * The resource name of the shared drive. The format is &quot;COLLECTION_ID/DRIVE_ID&quot;. Clients should not assume a specific collection ID for this resource name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The title of the shared drive.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * An empty message indicating an object was edited.
@@ -494,15 +494,15 @@ export namespace driveactivity_v2 {
     /**
      * The comment in the discussion thread. This identifier is an opaque string compatible with the Drive API; see https://developers.google.com/drive/v3/reference/comments/get
      */
-    legacyCommentId?: string;
+    legacyCommentId?: string | null;
     /**
      * The discussion thread to which the comment was added. This identifier is an opaque string compatible with the Drive API and references the first comment in a discussion; see https://developers.google.com/drive/v3/reference/comments/get
      */
-    legacyDiscussionId?: string;
+    legacyDiscussionId?: string | null;
     /**
      * The link to the discussion thread containing this comment, for example, &quot;https://docs.google.com/DOCUMENT_ID/edit?disco=THREAD_ID&quot;.
      */
-    linkToDiscussion?: string;
+    linkToDiscussion?: string | null;
     /**
      * The Drive item containing this comment.
      */
@@ -515,7 +515,7 @@ export namespace driveactivity_v2 {
     /**
      * This field is deprecated; please see `DriveFolder.type` instead.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Information about a group.
@@ -524,11 +524,11 @@ export namespace driveactivity_v2 {
     /**
      * The email address of the group.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The title of the group.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Information about an impersonation, where an admin acts on behalf of an end user. Information about the acting admin is not currently available.
@@ -546,11 +546,11 @@ export namespace driveactivity_v2 {
     /**
      * True if this is the user making the request.
      */
-    isCurrentUser?: boolean;
+    isCurrentUser?: boolean | null;
     /**
      * The identifier for this user that can be used with the People API to get more information. The format is &quot;people/ACCOUNT_ID&quot;. See https://developers.google.com/people/.
      */
-    personName?: string;
+    personName?: string | null;
   }
   /**
    * A strategy which consolidates activities using the grouping rules from the legacy V1 Activity API. Similar actions occurring within a window of time can be grouped across multiple targets (such as moving a set of files at once) or multiple actors (such as several users editing the same item). Grouping rules for this strategy are specific to each type of action.
@@ -605,7 +605,7 @@ export namespace driveactivity_v2 {
     /**
      * If true, the item can be discovered (e.g. in the user&#39;s &quot;Shared with me&quot; collection) without needing a link to the item.
      */
-    allowDiscovery?: boolean;
+    allowDiscovery?: boolean | null;
     /**
      * If set, this permission applies to anyone, even logged out users.
      */
@@ -621,7 +621,7 @@ export namespace driveactivity_v2 {
     /**
      * Indicates the &lt;a href=&quot;/drive/web/manage-sharing#roles&quot;&gt;Google Drive permissions role&lt;/a&gt;. The role determines a user&#39;s ability to read, write, and comment on items.
      */
-    role?: string;
+    role?: string | null;
     /**
      * The user to whom this permission applies.
      */
@@ -647,7 +647,7 @@ export namespace driveactivity_v2 {
     /**
      * The sub-type of this event.
      */
-    subtype?: string;
+    subtype?: string | null;
   }
   /**
    * The request message for querying Drive activity.
@@ -656,7 +656,7 @@ export namespace driveactivity_v2 {
     /**
      * Return activities for this Drive folder and all children and descendants. The format is &quot;items/ITEM_ID&quot;.
      */
-    ancestorName?: string;
+    ancestorName?: string | null;
     /**
      * Details on how to consolidate related actions that make up the activity. If not set, then related actions will not be consolidated.
      */
@@ -664,19 +664,19 @@ export namespace driveactivity_v2 {
     /**
      * The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional &quot;AND&quot;, where each expression is of the form &quot;field operator value&quot;.  Supported fields:    - &lt;tt&gt;time&lt;/tt&gt;: Uses numerical operators on date values either in     terms of milliseconds since Jan 1, 1970 or in RFC 3339 format.     Examples:       - &lt;tt&gt;time &gt; 1452409200000 AND time &lt;= 1492812924310&lt;/tt&gt;       - &lt;tt&gt;time &gt;= &quot;2016-01-10T01:02:03-05:00&quot;&lt;/tt&gt;    - &lt;tt&gt;detail.action_detail_case&lt;/tt&gt;: Uses the &quot;has&quot; operator (:) and     either a singular value or a list of allowed action types enclosed in     parentheses.     Examples:       - &lt;tt&gt;detail.action_detail_case: RENAME&lt;/tt&gt;       - &lt;tt&gt;detail.action_detail_case:(CREATE UPLOAD)&lt;/tt&gt;       - &lt;tt&gt;-detail.action_detail_case:MOVE&lt;/tt&gt;
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * Return activities for this Drive item. The format is &quot;items/ITEM_ID&quot;.
      */
-    itemName?: string;
+    itemName?: string | null;
     /**
      * The requested number of activity to return. If not set, a default value will be used.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * The next_page_token value returned from a previous QueryDriveActivity request, if any.
      */
-    pageToken?: string;
+    pageToken?: string | null;
   }
   /**
    * Response message for querying Drive activity.
@@ -689,7 +689,7 @@ export namespace driveactivity_v2 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * An object was renamed.
@@ -698,11 +698,11 @@ export namespace driveactivity_v2 {
     /**
      * The new title of the drive object.
      */
-    newTitle?: string;
+    newTitle?: string | null;
     /**
      * The previous title of the drive object.
      */
-    oldTitle?: string;
+    oldTitle?: string | null;
   }
   /**
    * A deleted object was restored.
@@ -711,7 +711,7 @@ export namespace driveactivity_v2 {
     /**
      * The type of restore action taken.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Information about restriction policy changes to a feature.
@@ -720,11 +720,11 @@ export namespace driveactivity_v2 {
     /**
      * The feature which had a change in restriction policy.
      */
-    feature?: string;
+    feature?: string | null;
     /**
      * The restriction in place after the change.
      */
-    newRestriction?: string;
+    newRestriction?: string | null;
   }
   /**
    * Information about settings changes.
@@ -742,7 +742,7 @@ export namespace driveactivity_v2 {
     /**
      * The sub-type of this event.
      */
-    subtype?: string;
+    subtype?: string | null;
   }
   /**
    * Event triggered by system operations instead of end users.
@@ -751,7 +751,7 @@ export namespace driveactivity_v2 {
     /**
      * The type of the system event that may triggered activity.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Information about the target of activity.
@@ -798,7 +798,7 @@ export namespace driveactivity_v2 {
     /**
      * This field is deprecated; please see `Drive.name` instead.
      */
-    name?: string;
+    name?: string | null;
     /**
      * This field is deprecated; please see `Drive.root` instead.
      */
@@ -806,7 +806,7 @@ export namespace driveactivity_v2 {
     /**
      * This field is deprecated; please see `Drive.title` instead.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * This item is deprecated; please see `DriveReference` instead.
@@ -815,11 +815,11 @@ export namespace driveactivity_v2 {
     /**
      * This field is deprecated; please see `DriveReference.name` instead.
      */
-    name?: string;
+    name?: string | null;
     /**
      * This field is deprecated; please see `DriveReference.title` instead.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Information about time ranges.
@@ -828,11 +828,11 @@ export namespace driveactivity_v2 {
     /**
      * The end of the time range.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The start of the time range.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * A user about whom nothing is currently known.

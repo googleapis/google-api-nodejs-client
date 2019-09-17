@@ -107,66 +107,66 @@ export namespace pagespeedonline_v5 {
     /**
      * The description of the audit.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Freeform details section of the audit.
      */
-    details?: {[key: string]: any};
+    details?: {[key: string]: any} | null;
     /**
      * The value that should be displayed on the UI for this audit.
      */
-    displayValue?: string;
+    displayValue?: string | null;
     /**
      * An error message from a thrown error inside the audit.
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * An explanation of the errors in the audit.
      */
-    explanation?: string;
+    explanation?: string | null;
     /**
      * The audit&#39;s id.
      */
-    id?: string;
-    score?: any;
+    id?: string | null;
+    score?: any | null;
     /**
      * The enumerated score display mode.
      */
-    scoreDisplayMode?: string;
+    scoreDisplayMode?: string | null;
     /**
      * The human readable title.
      */
-    title?: string;
-    warnings?: any;
+    title?: string | null;
+    warnings?: any | null;
   }
   export interface Schema$LighthouseCategoryV5 {
     /**
      * An array of references to all the audit members of this category.
      */
-    auditRefs?: Array<{group?: string; id?: string; weight?: number}>;
+    auditRefs?: Array<{group?: string; id?: string; weight?: number}> | null;
     /**
      * A more detailed description of the category and its importance.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The string identifier of the category.
      */
-    id?: string;
+    id?: string | null;
     /**
      * A description for the manual audits in the category.
      */
-    manualDescription?: string;
-    score?: any;
+    manualDescription?: string | null;
+    score?: any | null;
     /**
      * The human-friendly name of the category.
      */
-    title?: string;
+    title?: string | null;
   }
   export interface Schema$LighthouseResultV5 {
     /**
      * Map of audits in the LHR.
      */
-    audits?: {[key: string]: Schema$LighthouseAuditResultV5};
+    audits?: {[key: string]: Schema$LighthouseAuditResultV5} | null;
     /**
      * Map of categories in the LHR.
      */
@@ -176,11 +176,13 @@ export namespace pagespeedonline_v5 {
       performance?: Schema$LighthouseCategoryV5;
       pwa?: Schema$LighthouseCategoryV5;
       seo?: Schema$LighthouseCategoryV5;
-    };
+    } | null;
     /**
      * Map of category groups in the LHR.
      */
-    categoryGroups?: {[key: string]: {description?: string; title?: string}};
+    categoryGroups?: {
+      [key: string]: {description?: string; title?: string};
+    } | null;
     /**
      * The configuration settings for this LHR.
      */
@@ -188,7 +190,7 @@ export namespace pagespeedonline_v5 {
       emulatedFormFactor?: string;
       locale?: string;
       onlyCategories?: any;
-    };
+    } | null;
     /**
      * Environment settings that were used when making this LHR.
      */
@@ -196,15 +198,15 @@ export namespace pagespeedonline_v5 {
       benchmarkIndex?: number;
       hostUserAgent?: string;
       networkUserAgent?: string;
-    };
+    } | null;
     /**
      * The time that this run was fetched.
      */
-    fetchTime?: string;
+    fetchTime?: string | null;
     /**
      * The final resolved url that was audited.
      */
-    finalUrl?: string;
+    finalUrl?: string | null;
     /**
      * The internationalization strings that are required to render the LHR.
      */
@@ -227,19 +229,19 @@ export namespace pagespeedonline_v5 {
         varianceDisclaimer?: string;
         warningHeader?: string;
       };
-    };
+    } | null;
     /**
      * The lighthouse version that was used to generate this LHR.
      */
-    lighthouseVersion?: string;
+    lighthouseVersion?: string | null;
     /**
      * The original requested url.
      */
-    requestedUrl?: string;
+    requestedUrl?: string | null;
     /**
      * A top-level error message that, if present, indicates a serious enough problem that this Lighthouse result may need to be discarded.
      */
-    runtimeError?: {code?: string; message?: string};
+    runtimeError?: {code?: string; message?: string} | null;
     /**
      * List of all run warnings in the LHR. Will always output to at least `[]`.
      */
@@ -252,22 +254,22 @@ export namespace pagespeedonline_v5 {
       iconDataURL?: string;
       id?: string;
       title?: string;
-    }>;
+    }> | null;
     /**
      * Timing information for this LHR.
      */
-    timing?: {total?: number};
+    timing?: {total?: number} | null;
     /**
      * The user agent that was used to run this LHR.
      */
-    userAgent?: string;
+    userAgent?: string | null;
   }
   export interface Schema$PagespeedApiLoadingExperienceV5 {
     /**
      * The url, pattern or origin which the metrics are on.
      */
-    id?: string;
-    initial_url?: string;
+    id?: string | null;
+    initial_url?: string | null;
     metrics?: {
       [key: string]: {
         category?: string;
@@ -278,26 +280,26 @@ export namespace pagespeedonline_v5 {
         }>;
         percentile?: number;
       };
-    };
-    overall_category?: string;
+    } | null;
+    overall_category?: string | null;
   }
   export interface Schema$PagespeedApiPagespeedResponseV5 {
     /**
      * The UTC timestamp of this analysis.
      */
-    analysisUTCTimestamp?: string;
+    analysisUTCTimestamp?: string | null;
     /**
      * The captcha verify result
      */
-    captchaResult?: string;
+    captchaResult?: string | null;
     /**
      * Canonicalized and final URL for the document, after following page redirects (if any).
      */
-    id?: string;
+    id?: string | null;
     /**
      * Kind of result.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Lighthouse response for the audit url as an object.
      */
@@ -313,7 +315,7 @@ export namespace pagespeedonline_v5 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: {major?: number; minor?: number};
+    version?: {major?: number; minor?: number} | null;
   }
 
   export class Resource$Pagespeedapi {

@@ -122,7 +122,7 @@ export namespace gamesManagement_v1management {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetAllResponse.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The achievement reset results.
      */
@@ -135,11 +135,11 @@ export namespace gamesManagement_v1management {
     /**
      * The IDs of achievements to reset.
      */
-    achievement_ids?: string[];
+    achievement_ids?: string[] | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetMultipleForAllRequest.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * This is a JSON template for an achievement reset response.
@@ -148,19 +148,19 @@ export namespace gamesManagement_v1management {
     /**
      * The current state of the achievement. This is the same as the initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot;- Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
      */
-    currentState?: string;
+    currentState?: string | null;
     /**
      * The ID of an achievement for which player state has been updated.
      */
-    definitionId?: string;
+    definitionId?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetResponse.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Flag to indicate if the requested update actually occurred.
      */
-    updateOccurred?: boolean;
+    updateOccurred?: boolean | null;
   }
   /**
    * This is a JSON template for multiple events reset all request.
@@ -169,11 +169,11 @@ export namespace gamesManagement_v1management {
     /**
      * The IDs of events to reset.
      */
-    event_ids?: string[];
+    event_ids?: string[] | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#eventsResetMultipleForAllRequest.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * This is a JSON template for metadata about a player playing a game with the currently authenticated user.
@@ -182,11 +182,11 @@ export namespace gamesManagement_v1management {
     /**
      * True if the player was auto-matched with the currently authenticated user.
      */
-    autoMatched?: boolean;
+    autoMatched?: boolean | null;
     /**
      * The last time the player played the game in milliseconds since the epoch in UTC.
      */
-    timeMillis?: string;
+    timeMillis?: string | null;
   }
   /**
    * This is a JSON template for 1P/3P metadata about the player&#39;s experience.
@@ -195,7 +195,7 @@ export namespace gamesManagement_v1management {
     /**
      * The current number of experience points for the player.
      */
-    currentExperiencePoints?: string;
+    currentExperiencePoints?: string | null;
     /**
      * The current level of the player.
      */
@@ -203,7 +203,7 @@ export namespace gamesManagement_v1management {
     /**
      * The timestamp when the player was leveled up, in millis since Unix epoch UTC.
      */
-    lastLevelUpTimestampMillis?: string;
+    lastLevelUpTimestampMillis?: string | null;
     /**
      * The next level of the player. If the current level is the maximum level, this should be same as the current level.
      */
@@ -216,15 +216,15 @@ export namespace gamesManagement_v1management {
     /**
      * The level for the user.
      */
-    level?: number;
+    level?: number | null;
     /**
      * The maximum experience points for this level.
      */
-    maxExperiencePoints?: string;
+    maxExperiencePoints?: string | null;
     /**
      * The minimum experience points for this level.
      */
-    minExperiencePoints?: string;
+    minExperiencePoints?: string | null;
   }
   /**
    * This is a JSON template for the HiddenPlayer resource.
@@ -233,11 +233,11 @@ export namespace gamesManagement_v1management {
     /**
      * The time this player was hidden.
      */
-    hiddenTimeMillis?: string;
+    hiddenTimeMillis?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayer.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The player information.
      */
@@ -254,11 +254,11 @@ export namespace gamesManagement_v1management {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayerList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The pagination token for the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * This is a JSON template for a Player resource.
@@ -267,19 +267,19 @@ export namespace gamesManagement_v1management {
     /**
      * The base URL for the image that represents the player.
      */
-    avatarImageUrl?: string;
+    avatarImageUrl?: string | null;
     /**
      * The url to the landscape mode player banner image.
      */
-    bannerUrlLandscape?: string;
+    bannerUrlLandscape?: string | null;
     /**
      * The url to the portrait mode player banner image.
      */
-    bannerUrlPortrait?: string;
+    bannerUrlPortrait?: string | null;
     /**
      * The name to display for the player.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * An object to represent Play Game experience information for the player.
      */
@@ -287,7 +287,7 @@ export namespace gamesManagement_v1management {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#player.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Details about the last time this player played a multiplayer game with the currently authenticated player. Populated for PLAYED_WITH player collection members.
      */
@@ -295,15 +295,15 @@ export namespace gamesManagement_v1management {
     /**
      * An object representation of the individual components of the player&#39;s name. For some players, these fields may not be present.
      */
-    name?: {familyName?: string; givenName?: string};
+    name?: {familyName?: string; givenName?: string} | null;
     /**
      * The player ID that was used for this player the first time they signed into the game in question. This is only populated for calls to player.get for the requesting player, only if the player ID has subsequently changed, and only to clients that support remapping player IDs.
      */
-    originalPlayerId?: string;
+    originalPlayerId?: string | null;
     /**
      * The ID of the player.
      */
-    playerId?: string;
+    playerId?: string | null;
     /**
      * The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
      */
@@ -311,7 +311,7 @@ export namespace gamesManagement_v1management {
     /**
      * The player&#39;s title rewarded for their game activities.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * This is a JSON template for a list of leaderboard reset resources.
@@ -320,7 +320,7 @@ export namespace gamesManagement_v1management {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The leaderboard reset results.
      */
@@ -333,15 +333,15 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of an leaderboard for which player state has been updated.
      */
-    definitionId?: string;
+    definitionId?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The time spans of the updated score. Possible values are:   - &quot;ALL_TIME&quot; - The score is an all-time score.  - &quot;WEEKLY&quot; - The score is a weekly score.  - &quot;DAILY&quot; - The score is a daily score.
      */
-    resetScoreTimeSpans?: string[];
+    resetScoreTimeSpans?: string[] | null;
   }
   /**
    * This is a JSON template for profile settings
@@ -350,8 +350,8 @@ export namespace gamesManagement_v1management {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#profileSettings.
      */
-    kind?: string;
-    profileVisible?: boolean;
+    kind?: string | null;
+    profileVisible?: boolean | null;
   }
   /**
    * This is a JSON template for multiple quests reset all request.
@@ -360,11 +360,11 @@ export namespace gamesManagement_v1management {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#questsResetMultipleForAllRequest.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The IDs of quests to reset.
      */
-    quest_ids?: string[];
+    quest_ids?: string[] | null;
   }
   /**
    * This is a JSON template for multiple scores reset all request.
@@ -373,11 +373,11 @@ export namespace gamesManagement_v1management {
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#scoresResetMultipleForAllRequest.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The IDs of leaderboards to reset.
      */
-    leaderboard_ids?: string[];
+    leaderboard_ids?: string[] | null;
   }
 
   export class Resource$Achievements {

@@ -105,7 +105,7 @@ export namespace pagespeedonline_v1 {
     /**
      * The captcha verify result
      */
-    captchaResult?: string;
+    captchaResult?: string | null;
     /**
      * Localized PageSpeed results. Contains a ruleResults entry for each PageSpeed rule instantiated and run by the server.
      */
@@ -133,19 +133,19 @@ export namespace pagespeedonline_v1 {
           }>;
         };
       };
-    };
+    } | null;
     /**
      * Canonicalized and final URL for the document, after following page redirects (if any).
      */
-    id?: string;
+    id?: string | null;
     /**
      * List of rules that were specified in the request, but which the server did not know how to instantiate.
      */
-    invalidRules?: string[];
+    invalidRules?: string[] | null;
     /**
      * Kind of result.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Summary statistics for the page, such as number of JavaScript bytes, number of HTML bytes, etc.
      */
@@ -163,15 +163,15 @@ export namespace pagespeedonline_v1 {
       otherResponseBytes?: string;
       textResponseBytes?: string;
       totalRequestBytes?: string;
-    };
+    } | null;
     /**
      * Response code for the document. 200 indicates a normal page load. 4xx/5xx indicates an error.
      */
-    responseCode?: number;
+    responseCode?: number | null;
     /**
      * The PageSpeed Score (0-100), which indicates how much faster a page could be. A high score indicates little room for improvement, while a lower score indicates more room for improvement.
      */
-    score?: number;
+    score?: number | null;
     /**
      * Base64-encoded screenshot of the page that was analyzed.
      */
@@ -180,15 +180,15 @@ export namespace pagespeedonline_v1 {
       height?: number;
       mime_type?: string;
       width?: number;
-    };
+    } | null;
     /**
      * Title of the page, as displayed in the browser&#39;s title bar.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: {major?: number; minor?: number};
+    version?: {major?: number; minor?: number} | null;
   }
 
   export class Resource$Pagespeedapi {

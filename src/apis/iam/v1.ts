@@ -141,7 +141,7 @@ export namespace iam_v1 {
     /**
      * Public name of the service. For example, the service name for Cloud IAM is &#39;iam.googleapis.com&#39;.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
@@ -154,7 +154,7 @@ export namespace iam_v1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Audit log information specific to Cloud IAM. This message is serialized as an `Any` type in the `ServiceData` message of an `AuditLog` message.
@@ -172,11 +172,11 @@ export namespace iam_v1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -189,11 +189,11 @@ export namespace iam_v1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * One delta entry for Binding. Each individual change (only one member in each entry) to a binding will be a separate entry.
@@ -202,7 +202,7 @@ export namespace iam_v1 {
     /**
      * The action that was performed on a Binding. Required
      */
-    action?: string;
+    action?: string | null;
     /**
      * The condition that is associated with this binding. This field is logged only for Cloud Audit Logging.
      */
@@ -210,11 +210,11 @@ export namespace iam_v1 {
     /**
      * A single identity requesting access for a Cloud Platform resource. Follows the same format of Binding.members. Required
      */
-    member?: string;
+    member?: string | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * The request to create a new role.
@@ -227,7 +227,7 @@ export namespace iam_v1 {
     /**
      * The role ID to use for this role.
      */
-    roleId?: string;
+    roleId?: string | null;
   }
   /**
    * The service account key create request.
@@ -236,11 +236,11 @@ export namespace iam_v1 {
     /**
      * Which type of key and algorithm to use for the key. The default is currently a 2K RSA key.  However this may change in the future.
      */
-    keyAlgorithm?: string;
+    keyAlgorithm?: string | null;
     /**
      * The output format of the private key. The default value is `TYPE_GOOGLE_CREDENTIALS_FILE`, which is the Google Credentials File format.
      */
-    privateKeyType?: string;
+    privateKeyType?: string | null;
   }
   /**
    * The service account create request.
@@ -249,7 +249,7 @@ export namespace iam_v1 {
     /**
      * Required. The account id that is used to generate the service account email address and a stable unique id. It is unique within a project, must be 6-30 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])` to comply with RFC1035.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The ServiceAccount resource to create. Currently, only the following values are user assignable: `display_name` .
      */
@@ -274,19 +274,19 @@ export namespace iam_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * The request to lint a Cloud IAM policy object. LintPolicy is currently functional only for `lint_object` of type `condition`.
@@ -303,11 +303,11 @@ export namespace iam_v1 {
     /**
      * `context` contains additional *permission-controlled* data that any lint unit may depend on, in form of `{key: value}` pairs. Currently, this field is non-operational and it will not be used during the lint operation.
      */
-    context?: {[key: string]: any};
+    context?: {[key: string]: any} | null;
     /**
      * The full resource name of the policy this lint request is about.  The name follows the Google Cloud Platform (GCP) resource format. For example, a GCP project with ID `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.  The resource name is not used to read the policy instance from the Cloud IAM database. The candidate policy for lint has to be provided in the same request object.
      */
-    fullResourceName?: string;
+    fullResourceName?: string | null;
     /**
      * Policy object to be linted. The functionality of linting a policy is not yet implemented and if this field is set, it returns NOT_IMPLEMENTED error.
      */
@@ -329,31 +329,31 @@ export namespace iam_v1 {
     /**
      * 0-based index ordinality of the binding in the input object associated with this result. This field is populated only if the input object to lint is of type google.iam.v1.Policy, which can comprise more than one binding. It is set to -1 if the result is not associated with any particular binding and only targets the policy as a whole, such as results about policy size violations.
      */
-    bindingOrdinal?: number;
+    bindingOrdinal?: number | null;
     /**
      * Human readable debug message associated with the issue.
      */
-    debugMessage?: string;
+    debugMessage?: string | null;
     /**
      * The name of the field for which this lint result is about.  For nested messages, `field_name` consists of names of the embedded fields separated by period character. The top-level qualifier is the input object to lint in the request. For instance, if the lint request is on a google.iam.v1.Policy and this lint result is about a condition expression of one of the input policy bindings, the field would be populated as `policy.bindings.condition.expression`.  This field does not identify the ordinality of the repetitive fields (for instance bindings in a policy).
      */
-    fieldName?: string;
+    fieldName?: string | null;
     /**
      * The validation unit level.
      */
-    level?: string;
+    level?: string | null;
     /**
      * 0-based character position of problematic construct within the object identified by `field_name`. Currently, this is populated only for condition expression.
      */
-    locationOffset?: number;
+    locationOffset?: number | null;
     /**
      * The validation unit severity.
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * The validation unit name, for instance “lintValidationUnits/ConditionComplexityCheck”.
      */
-    validationUnitName?: string;
+    validationUnitName?: string | null;
   }
   /**
    * The response containing the roles defined under a resource.
@@ -362,7 +362,7 @@ export namespace iam_v1 {
     /**
      * To retrieve the next page of results, set `ListRolesRequest.page_token` to this value.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The Roles defined on this resource.
      */
@@ -388,14 +388,14 @@ export namespace iam_v1 {
     /**
      * To retrieve the next page of results, set ListServiceAccountsRequest.page_token to this value.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The patch service account request.
    */
   export interface Schema$PatchServiceAccountRequest {
     serviceAccount?: Schema$ServiceAccount;
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * A permission which can be included by a role.
@@ -404,35 +404,35 @@ export namespace iam_v1 {
     /**
      * The service API associated with the permission is not enabled.
      */
-    apiDisabled?: boolean;
+    apiDisabled?: boolean | null;
     /**
      * The current custom role support level.
      */
-    customRolesSupportLevel?: string;
+    customRolesSupportLevel?: string | null;
     /**
      * A brief description of what this Permission is used for.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The name of this Permission.
      */
-    name?: string;
+    name?: string | null;
     /**
      * This permission can ONLY be used in predefined roles.
      */
-    onlyInPredefinedRoles?: boolean;
+    onlyInPredefinedRoles?: boolean | null;
     /**
      * The preferred name for this permission. If present, then this permission is an alias of, and equivalent to, the listed primary_permission.
      */
-    primaryPermission?: string;
+    primaryPermission?: string | null;
     /**
      * The current launch stage of the permission.
      */
-    stage?: string;
+    stage?: string | null;
     /**
      * The title of this Permission.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * A PermissionDelta message to record the added_permissions and removed_permissions inside a role.
@@ -441,11 +441,11 @@ export namespace iam_v1 {
     /**
      * Added permissions.
      */
-    addedPermissions?: string[];
+    addedPermissions?: string[] | null;
     /**
      * Removed permissions.
      */
-    removedPermissions?: string[];
+    removedPermissions?: string[] | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -462,11 +462,11 @@ export namespace iam_v1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * The difference delta between two policies.
@@ -484,7 +484,7 @@ export namespace iam_v1 {
     /**
      * Required. The full resource name to query from the list of auditable services.  The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
      */
-    fullResourceName?: string;
+    fullResourceName?: string | null;
   }
   /**
    * A response containing a list of auditable services for a resource.
@@ -502,16 +502,16 @@ export namespace iam_v1 {
     /**
      * Required. The full resource name to query from the list of grantable roles.  The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
      */
-    fullResourceName?: string;
+    fullResourceName?: string | null;
     /**
      * Optional limit on the number of roles to include in the response.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * Optional pagination token returned in an earlier QueryGrantableRolesResponse.
      */
-    pageToken?: string;
-    view?: string;
+    pageToken?: string | null;
+    view?: string | null;
   }
   /**
    * The grantable role query response.
@@ -520,7 +520,7 @@ export namespace iam_v1 {
     /**
      * To retrieve the next page of results, set `QueryGrantableRolesRequest.page_token` to this value.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of matching roles.
      */
@@ -533,15 +533,15 @@ export namespace iam_v1 {
     /**
      * Required. The full resource name to query from the list of testable permissions.  The name follows the Google Cloud Platform resource format. For example, a Cloud Platform project with id `my-project` will be named `//cloudresourcemanager.googleapis.com/projects/my-project`.
      */
-    fullResourceName?: string;
+    fullResourceName?: string | null;
     /**
      * Optional limit on the number of permissions to include in the response.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * Optional pagination token returned in an earlier QueryTestablePermissionsRequest.
      */
-    pageToken?: string;
+    pageToken?: string | null;
   }
   /**
    * The response containing permissions which can be tested on a resource.
@@ -550,7 +550,7 @@ export namespace iam_v1 {
     /**
      * To retrieve the next page of results, set `QueryTestableRolesRequest.page_token` to this value.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The Permissions testable on the requested resource.
      */
@@ -563,31 +563,31 @@ export namespace iam_v1 {
     /**
      * The current deleted state of the role. This field is read only. It will be ignored in calls to CreateRole and UpdateRole.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * Optional. A human-readable description for the role.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Used to perform a consistent read-modify-write.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The names of the permissions this role grants when bound in an IAM policy.
      */
-    includedPermissions?: string[];
+    includedPermissions?: string[] | null;
     /**
      * The name of the role.  When Role is used in CreateRole, the role name must not be set.  When Role is used in output and other input such as UpdateRole, the role name is the complete path, e.g., roles/logging.viewer for predefined roles and organizations/{ORGANIZATION_ID}/roles/logging.viewer for custom roles.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The current launch stage of the role. If the `ALPHA` launch stage has been selected for a role, the `stage` field will not be included in the returned definition for the role.
      */
-    stage?: string;
+    stage?: string | null;
     /**
      * Optional. A human-readable title for the role.  Typically this is limited to 100 UTF-8 bytes.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * A service account in the Identity and Access Management API.  To create a service account, specify the `project_id` and the `account_id` for the account.  The `account_id` is unique within the project, and is used to generate the service account email address and a stable `unique_id`.  If the account already exists, the account&#39;s resource name is returned in the format of projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}. The caller can use the name in other methods to access the account.  All other methods can identify the service account using the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
@@ -596,39 +596,39 @@ export namespace iam_v1 {
     /**
      * Optional. A user-specified opaque description of the service account. Must be less than or equal to 256 UTF-8 bytes.
      */
-    description?: string;
+    description?: string | null;
     /**
      * @OutputOnly A bool indicate if the service account is disabled. The field is currently in alpha phase.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
     /**
      * Optional. A user-specified name for the service account. Must be less than or equal to 100 UTF-8 bytes.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * @OutputOnly The email address of the service account.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Optional. Note: `etag` is an inoperable legacy field that is only returned for backwards compatibility.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The resource name of the service account in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.  Requests using `-` as a wildcard for the `PROJECT_ID` will infer the project from the `account` and the `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.  In responses the resource name will always be in the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * @OutputOnly The OAuth2 client id for the service account. This is used in conjunction with the OAuth2 clientconfig API to make three legged OAuth2 (3LO) flows to access the data of Google users.
      */
-    oauth2ClientId?: string;
+    oauth2ClientId?: string | null;
     /**
      * @OutputOnly The id of the project that owns the service account.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * @OutputOnly The unique and stable id of the service account.
      */
-    uniqueId?: string;
+    uniqueId?: string | null;
   }
   /**
    * Represents a service account key.  A service account has two sets of key-pairs: user-managed, and system-managed.  User-managed key-pairs can be created and deleted by users.  Users are responsible for rotating these keys periodically to ensure security of their service accounts.  Users retain the private key of these key-pairs, and Google retains ONLY the public key.  System-managed keys are automatically rotated by Google, and are used for signing for a maximum of two weeks. The rotation process is probabilistic, and usage of the new key will gradually ramp up and down over the key&#39;s lifetime. We recommend caching the public key set for a service account for no more than 24 hours to ensure you have access to the latest keys.  Public keys for all service accounts are also published at the OAuth2 Service Account API.
@@ -637,35 +637,35 @@ export namespace iam_v1 {
     /**
      * Specifies the algorithm (and possibly key size) for the key.
      */
-    keyAlgorithm?: string;
+    keyAlgorithm?: string | null;
     /**
      * The key origin.
      */
-    keyOrigin?: string;
+    keyOrigin?: string | null;
     /**
      * The resource name of the service account key in the following format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The private key data. Only provided in `CreateServiceAccountKey` responses. Make sure to keep the private key data secure because it allows for the assertion of the service account identity. When base64 decoded, the private key data can be used to authenticate with Google API client libraries and with &lt;a href=&quot;/sdk/gcloud/reference/auth/activate-service-account&quot;&gt;gcloud auth activate-service-account&lt;/a&gt;.
      */
-    privateKeyData?: string;
+    privateKeyData?: string | null;
     /**
      * The output format for the private key. Only provided in `CreateServiceAccountKey` responses, not in `GetServiceAccountKey` or `ListServiceAccountKey` responses.  Google never exposes system-managed private keys, and never retains user-managed private keys.
      */
-    privateKeyType?: string;
+    privateKeyType?: string | null;
     /**
      * The public key data. Only provided in `GetServiceAccountKey` responses.
      */
-    publicKeyData?: string;
+    publicKeyData?: string | null;
     /**
      * The key can be used after this timestamp.
      */
-    validAfterTime?: string;
+    validAfterTime?: string | null;
     /**
-     * The key can be used before this timestamp.
+     * The key can be used before this timestamp. For system-managed key pairs, this timestamp is the end time for the private key signing operation. The public key could still be used for verification for a few hours after this time.
      */
-    validBeforeTime?: string;
+    validBeforeTime?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -678,7 +678,7 @@ export namespace iam_v1 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * The service account sign blob request.
@@ -687,7 +687,7 @@ export namespace iam_v1 {
     /**
      * The bytes to sign.
      */
-    bytesToSign?: string;
+    bytesToSign?: string | null;
   }
   /**
    * The service account sign blob response.
@@ -696,11 +696,11 @@ export namespace iam_v1 {
     /**
      * The id of the key used to sign the blob.
      */
-    keyId?: string;
+    keyId?: string | null;
     /**
      * The signed blob.
      */
-    signature?: string;
+    signature?: string | null;
   }
   /**
    * The service account sign JWT request.
@@ -709,7 +709,7 @@ export namespace iam_v1 {
     /**
      * The JWT payload to sign, a JSON JWT Claim set.
      */
-    payload?: string;
+    payload?: string | null;
   }
   /**
    * The service account sign JWT response.
@@ -718,11 +718,11 @@ export namespace iam_v1 {
     /**
      * The id of the key used to sign the JWT.
      */
-    keyId?: string;
+    keyId?: string | null;
     /**
      * The signed JWT.
      */
-    signedJwt?: string;
+    signedJwt?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -731,7 +731,7 @@ export namespace iam_v1 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -740,7 +740,7 @@ export namespace iam_v1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * The request to undelete an existing role.
@@ -749,7 +749,7 @@ export namespace iam_v1 {
     /**
      * Used to perform a consistent read-modify-write.
      */
-    etag?: string;
+    etag?: string | null;
   }
   /**
    * The service account undelete request.
@@ -768,7 +768,7 @@ export namespace iam_v1 {
     /**
      * A field that allows clients to upload their own public key. If set, use this public key data to create a service account key for given service account. Please note, the expected format for this field is X509_PEM.
      */
-    publicKeyData?: string;
+    publicKeyData?: string | null;
   }
 
   export class Resource$Iampolicies {
@@ -3648,7 +3648,7 @@ export namespace iam_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4851,7 +4851,7 @@ export namespace iam_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     'options.requestedPolicyVersion'?: number;
     /**

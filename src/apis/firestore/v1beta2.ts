@@ -128,19 +128,19 @@ export namespace firestore_v1beta2 {
     /**
      * Which collection ids are being exported.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * The time this operation completed. Will be unset if operation still in progress.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The state of the export operation.
      */
-    operationState?: string;
+    operationState?: string | null;
     /**
      * Where the entities are being exported to.
      */
-    outputUriPrefix?: string;
+    outputUriPrefix?: string | null;
     /**
      * The progress, in bytes, of this operation.
      */
@@ -152,7 +152,7 @@ export namespace firestore_v1beta2 {
     /**
      * The time this operation started.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * The request for FirestoreAdmin.ExportDocuments.
@@ -161,11 +161,11 @@ export namespace firestore_v1beta2 {
     /**
      * Which collection ids to export. Unspecified means all collections.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * The output URI. Currently only supports Google Cloud Storage URIs of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional Google Cloud Storage namespace path. When choosing a name, be sure to consider Google Cloud Storage naming guidelines: https://cloud.google.com/storage/docs/naming. If the URI is a bucket (without a namespace path), a prefix will be generated based on the start time.
      */
-    outputUriPrefix?: string;
+    outputUriPrefix?: string | null;
   }
   /**
    * Returned in the google.longrunning.Operation response field.
@@ -174,7 +174,7 @@ export namespace firestore_v1beta2 {
     /**
      * Location of the output files. This can be used to begin an import into Cloud Firestore (this project or another project) after the operation completes successfully.
      */
-    outputUriPrefix?: string;
+    outputUriPrefix?: string | null;
   }
   /**
    * Represents a single field in the database.  Fields are grouped by their &quot;Collection Group&quot;, which represent all collections in the database with the same id.
@@ -187,7 +187,7 @@ export namespace firestore_v1beta2 {
     /**
      * A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`  A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field.  Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters.  Examples: (Note: Comments here are written in markdown syntax, so there is an  additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field.  A special `Field` contains the default indexing settings for all fields. This field&#39;s resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.UpdateField.
@@ -204,11 +204,11 @@ export namespace firestore_v1beta2 {
     /**
      * The time this operation completed. Will be unset if operation still in progress.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The field resource that this operation is acting on. For example: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      */
-    field?: string;
+    field?: string | null;
     /**
      * A list of IndexConfigDelta, which describe the intent of this operation.
      */
@@ -216,11 +216,11 @@ export namespace firestore_v1beta2 {
     /**
      * The time this operation started.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The state of the operation.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.ImportDocuments.
@@ -229,19 +229,19 @@ export namespace firestore_v1beta2 {
     /**
      * Which collection ids are being imported.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * The time this operation completed. Will be unset if operation still in progress.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The location of the documents being imported.
      */
-    inputUriPrefix?: string;
+    inputUriPrefix?: string | null;
     /**
      * The state of the import operation.
      */
-    operationState?: string;
+    operationState?: string | null;
     /**
      * The progress, in bytes, of this operation.
      */
@@ -253,7 +253,7 @@ export namespace firestore_v1beta2 {
     /**
      * The time this operation started.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * The request for FirestoreAdmin.ImportDocuments.
@@ -262,11 +262,11 @@ export namespace firestore_v1beta2 {
     /**
      * Which collection ids to import. Unspecified means all collections included in the import.
      */
-    collectionIds?: string[];
+    collectionIds?: string[] | null;
     /**
      * Location of the exported files. This must match the output_uri_prefix of an ExportDocumentsResponse from an export that has completed successfully. See: google.firestore.admin.v1beta2.ExportDocumentsResponse.output_uri_prefix.
      */
-    inputUriPrefix?: string;
+    inputUriPrefix?: string | null;
   }
   /**
    * Cloud Firestore indexes enable simple and complex queries against documents in a database.
@@ -279,15 +279,15 @@ export namespace firestore_v1beta2 {
     /**
      * Output only. A server defined name for this index. The form of this name for composite indexes will be: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}` For single field indexes, this field will be empty.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection id.  Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection id as this index.
      */
-    queryScope?: string;
+    queryScope?: string | null;
     /**
      * Output only. The serving state of the index.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * The index configuration for this field.
@@ -296,7 +296,7 @@ export namespace firestore_v1beta2 {
     /**
      * Output only. Specifies the resource name of the `Field` from which this field&#39;s index configuration is set (when `uses_ancestor_config` is true), or from which it *would* be set if this field had no index configuration (when `uses_ancestor_config` is false).
      */
-    ancestorField?: string;
+    ancestorField?: string | null;
     /**
      * The indexes supported for this field.
      */
@@ -304,11 +304,11 @@ export namespace firestore_v1beta2 {
     /**
      * Output only When true, the `Field`&#39;s index configuration is in the process of being reverted. Once complete, the index config will transition to the same state as the field specified by `ancestor_field`, at which point `uses_ancestor_config` will be `true` and `reverting` will be `false`.
      */
-    reverting?: boolean;
+    reverting?: boolean | null;
     /**
      * Output only. When true, the `Field`&#39;s index configuration is set from the configuration specified by the `ancestor_field`. When false, the `Field`&#39;s index configuration is defined explicitly.
      */
-    usesAncestorConfig?: boolean;
+    usesAncestorConfig?: boolean | null;
   }
   /**
    * Information about an index configuration change.
@@ -317,7 +317,7 @@ export namespace firestore_v1beta2 {
     /**
      * Specifies how the index is changing.
      */
-    changeType?: string;
+    changeType?: string | null;
     /**
      * The index being changed.
      */
@@ -330,15 +330,15 @@ export namespace firestore_v1beta2 {
     /**
      * Indicates that this field supports operations on `array_value`s.
      */
-    arrayConfig?: string;
+    arrayConfig?: string | null;
     /**
      * Can be __name__. For single field indexes, this must match the name of the field or may be omitted.
      */
-    fieldPath?: string;
+    fieldPath?: string | null;
     /**
      * Indicates that this field supports ordering by the specified order or comparing using =, &lt;, &lt;=, &gt;, &gt;=.
      */
-    order?: string;
+    order?: string | null;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.CreateIndex.
@@ -347,11 +347,11 @@ export namespace firestore_v1beta2 {
     /**
      * The time this operation completed. Will be unset if operation still in progress.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The index resource that this operation is acting on. For example: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      */
-    index?: string;
+    index?: string | null;
     /**
      * The progress, in bytes, of this operation.
      */
@@ -363,11 +363,11 @@ export namespace firestore_v1beta2 {
     /**
      * The time this operation started.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The state of the operation.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * The response for FirestoreAdmin.ListFields.
@@ -380,7 +380,7 @@ export namespace firestore_v1beta2 {
     /**
      * A page token that may be used to request another page of results. If blank, this is the last page.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response for FirestoreAdmin.ListIndexes.
@@ -393,7 +393,7 @@ export namespace firestore_v1beta2 {
     /**
      * A page token that may be used to request another page of results. If blank, this is the last page.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used.
@@ -402,11 +402,11 @@ export namespace firestore_v1beta2 {
     /**
      * The amount of work completed.
      */
-    completedWork?: string;
+    completedWork?: string | null;
     /**
      * The amount of work estimated.
      */
-    estimatedWork?: string;
+    estimatedWork?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -415,7 +415,7 @@ export namespace firestore_v1beta2 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -423,15 +423,15 @@ export namespace firestore_v1beta2 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -440,15 +440,15 @@ export namespace firestore_v1beta2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Projects {

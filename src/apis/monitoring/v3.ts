@@ -126,19 +126,19 @@ export namespace monitoring_v3 {
     /**
      * The alignment period for per-time series alignment. If present, alignmentPeriod must be at least 60 seconds. After per-time series alignment, each time series will contain data points only on the period boundaries. If perSeriesAligner is not specified or equals ALIGN_NONE, then this field is ignored. If perSeriesAligner is specified and does not equal ALIGN_NONE, then this field must be defined; otherwise an error is returned.
      */
-    alignmentPeriod?: string;
+    alignmentPeriod?: string | null;
     /**
      * The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
      */
-    crossSeriesReducer?: string;
+    crossSeriesReducer?: string | null;
     /**
      * The set of fields to preserve when crossSeriesReducer is specified. The groupByFields determine how the time series are partitioned into subsets prior to applying the aggregation function. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The crossSeriesReducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in groupByFields are aggregated away. If groupByFields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If crossSeriesReducer is not defined, this field is ignored.
      */
-    groupByFields?: string[];
+    groupByFields?: string[] | null;
     /**
      * The approach to be used to align individual time series. Not all alignment functions may be applied to all time series, depending on the metric type and value type of the original time series. Alignment may change the metric type or the value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
      */
-    perSeriesAligner?: string;
+    perSeriesAligner?: string | null;
   }
   /**
    * A description of the conditions under which some aspect of your system is considered to be &quot;unhealthy&quot; and the ways to notify people or services about this state. For an overview of alert policies, see Introduction to Alerting.
@@ -147,7 +147,7 @@ export namespace monitoring_v3 {
     /**
      * How to combine the results of multiple conditions to determine if an incident should be opened.
      */
-    combiner?: string;
+    combiner?: string | null;
     /**
      * A list of conditions for the policy. The conditions are combined by AND or OR according to the combiner field. If the combined conditions evaluate to true, then an incident is created. A policy can have from one to six conditions.
      */
@@ -159,7 +159,7 @@ export namespace monitoring_v3 {
     /**
      * A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don&#39;t use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Documentation that is included with notifications and incidents related to this policy. Best practice is for the documentation to include information to help responders understand, mitigate, escalate, and correct the underlying problems detected by the alerting policy. Notification channels that have limited capacity might not show this documentation.
      */
@@ -167,7 +167,7 @@ export namespace monitoring_v3 {
     /**
      * Whether or not the policy is enabled. On write, the default interpretation if unset is that the policy is enabled. On read, clients should not make any assumption about the state if it has not been populated. The field should always be populated on List and Get operations, unless a field projection has been specified that strips it out.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * A read-only record of the most recent change to the alerting policy. If provided in a call to create or update, this field will be ignored.
      */
@@ -175,32 +175,32 @@ export namespace monitoring_v3 {
     /**
      * Required if the policy exists. The resource name for this policy. The syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Identifies the notification channels to which notifications should be sent when incidents are opened or closed or when new violations occur on an already opened incident. Each element of this array corresponds to the name field in each of the NotificationChannel objects that are returned from the ListNotificationChannels method. The syntax of the entries in this field is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
      */
-    notificationChannels?: string[];
+    notificationChannels?: string[] | null;
     /**
      * User-supplied key/value data to be used for organizing and identifying the AlertPolicy objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.
      */
-    userLabels?: {[key: string]: string};
+    userLabels?: {[key: string]: string} | null;
     /**
      * Read-only description of how the alert policy is invalid. OK if the alert policy is valid. If not OK, the alert policy will not generate incidents.
      */
     validity?: Schema$Status;
   }
   /**
-   * A type of authentication to perform against the specified resource or URL that uses username and password. Currently, only Basic authentication is supported in Uptime Monitoring.
+   * The authentication parameters to provide to the specified resource or URL that requires a username and password. Currently, only Basic HTTP authentication (https://tools.ietf.org/html/rfc7617) is supported in Uptime checks.
    */
   export interface Schema$BasicAuthentication {
     /**
-     * The password to authenticate.
+     * The password to use when authenticating with the HTTP server.
      */
-    password?: string;
+    password?: string | null;
     /**
-     * The username to authenticate.
+     * The username to use when authenticating with the HTTP server.
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i &gt; 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
@@ -226,31 +226,31 @@ export namespace monitoring_v3 {
     /**
      * The end time of the interval.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The measurement metadata. Example: &quot;process_id&quot; -&gt; 12345
      */
-    metadata?: {[key: string]: Schema$TypedValue};
+    metadata?: {[key: string]: Schema$TypedValue} | null;
     /**
      * The name of the plugin. Example: &quot;disk&quot;.
      */
-    plugin?: string;
+    plugin?: string | null;
     /**
      * The instance name of the plugin Example: &quot;hdcl&quot;.
      */
-    pluginInstance?: string;
+    pluginInstance?: string | null;
     /**
      * The start time of the interval.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The measurement type. Example: &quot;memory&quot;.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The measurement type instance. Example: &quot;used&quot;.
      */
-    typeInstance?: string;
+    typeInstance?: string | null;
     /**
      * The measured values during this time interval. Each value must have a different dataSourceName.
      */
@@ -267,7 +267,7 @@ export namespace monitoring_v3 {
     /**
      * The zero-based index in CreateCollectdTimeSeriesRequest.collectd_payloads.
      */
-    index?: number;
+    index?: number | null;
     /**
      * Records the error status for values that were not written due to an error.Failed payloads for which nothing is written will not include partial value errors.
      */
@@ -280,11 +280,11 @@ export namespace monitoring_v3 {
     /**
      * The data source for the collectd value. For example there are two data sources for network measurements: &quot;rx&quot; and &quot;tx&quot;.
      */
-    dataSourceName?: string;
+    dataSourceName?: string | null;
     /**
      * The type of measurement.
      */
-    dataSourceType?: string;
+    dataSourceType?: string | null;
     /**
      * The measurement value.
      */
@@ -301,7 +301,7 @@ export namespace monitoring_v3 {
     /**
      * The zero-based index in CollectdPayload.values within the parent CreateCollectdTimeSeriesRequest.collectd_payloads.
      */
-    index?: number;
+    index?: number | null;
   }
   /**
    * A condition is a true/false test that determines when an alerting policy should open an incident. If a condition evaluates to true, it signifies that something is wrong.
@@ -318,11 +318,11 @@ export namespace monitoring_v3 {
     /**
      * A short name or phrase used to identify the condition in dashboards, notifications, and incidents. To avoid confusion, don&#39;t use the same display name for multiple conditions in the same policy.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Required if the condition exists. The unique resource name for this condition. Its syntax is: projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID] [CONDITION_ID] is assigned by Stackdriver Monitoring when the condition is created as part of a new or updated alerting policy.When calling the alertPolicies.create method, do not include the name field in the conditions of the requested alerting policy. Stackdriver Monitoring creates the condition identifiers and includes them in the new policy.When calling the alertPolicies.update method to update a policy, including a condition name causes the existing condition to be updated. Conditions without names are added to the updated policy. Existing conditions are deleted if they are not updated.Best practice is to preserve [CONDITION_ID] if you make only small changes, such as those to condition thresholds, durations, or trigger values. Otherwise, treat the change as a new condition and let the existing condition be deleted.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Used to perform string matching. It allows substring and regular expressions, together with their negations.
@@ -331,11 +331,11 @@ export namespace monitoring_v3 {
     /**
      * String or regex content to match (max 1024 bytes)
      */
-    content?: string;
+    content?: string | null;
     /**
-     * The matcher representing content match options which the check will run with. If the field is not specified (in previous versions), the option is set to be CONTAINS_STRING which performs content substring matching.
+     * The type of content matcher that will be applied to the server output, compared to the content string when the check is run.
      */
-    matcher?: string;
+    matcher?: string | null;
   }
   /**
    * The CreateCollectdTimeSeries request.
@@ -348,7 +348,7 @@ export namespace monitoring_v3 {
     /**
      * The version of collectd that collected the data. Example: &quot;5.3.0-192.el6&quot;.
      */
-    collectdVersion?: string;
+    collectdVersion?: string | null;
     /**
      * The monitored resource associated with the time series.
      */
@@ -379,7 +379,7 @@ export namespace monitoring_v3 {
     /**
      * Required in the Stackdriver Monitoring API v3. The values for each bucket specified in bucket_options. The sum of the values in bucketCounts must equal the value in the count field of the Distribution object. The order of the bucket counts follows the numbering schemes described for the three bucket types. The underflow bucket has number 0; the finite buckets, if any, have numbers 1 through N-2; and the overflow bucket has number N-1. The size of bucket_counts must not be greater than N. If the size is less than N, then the remaining buckets are assigned values of zero.
      */
-    bucketCounts?: string[];
+    bucketCounts?: string[] | null;
     /**
      * Required in the Stackdriver Monitoring API v3. Defines the histogram bucket boundaries.
      */
@@ -387,7 +387,7 @@ export namespace monitoring_v3 {
     /**
      * The number of values in the population. Must be non-negative. This value must equal the sum of the values in bucket_counts if a histogram is provided.
      */
-    count?: string;
+    count?: string | null;
     /**
      * Must be in increasing order of value field.
      */
@@ -395,7 +395,7 @@ export namespace monitoring_v3 {
     /**
      * The arithmetic mean of the values in the population. If count is zero then this field must be zero.
      */
-    mean?: number;
+    mean?: number | null;
     /**
      * If specified, contains the range of the population values. The field must not be present if the count is zero. This field is presently ignored by the Stackdriver Monitoring API v3.
      */
@@ -403,7 +403,7 @@ export namespace monitoring_v3 {
     /**
      * The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 323, 3rd edition describes Welford&#39;s method for accumulating this sum in one pass.If count is zero then this field must be zero.
      */
-    sumOfSquaredDeviation?: number;
+    sumOfSquaredDeviation?: number | null;
   }
   /**
    * A content string and a MIME type that describes the content string&#39;s format.
@@ -412,11 +412,11 @@ export namespace monitoring_v3 {
     /**
      * The text of the documentation, interpreted according to mime_type. The content may not exceed 8,192 Unicode characters and may not exceed more than 10,240 bytes when encoded in UTF-8 format, whichever is smaller.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The format of the content field. Presently, only the value &quot;text/markdown&quot; is supported. See Markdown (https://en.wikipedia.org/wiki/Markdown) for more information.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * A set of (label, value) pairs which were dropped during aggregation, attached to google.api.Distribution.Exemplars in google.api.Distribution values during aggregation.These values are used in combination with the label values that remain on the aggregated Distribution timeseries to construct the full label set for the exemplar values. The resulting full label set may be used to identify the specific task/job/instance (for example) which may be contributing to a long-tail, while allowing the storage savings of only storing aggregated distribution values for a large group.Note that there are no guarantees on ordering of the labels from exemplar-to-exemplar and from distribution-to-distribution in the same stream, and there may be duplicates. It is up to clients to resolve any ambiguities.
@@ -425,7 +425,7 @@ export namespace monitoring_v3 {
     /**
      * Map from label to its value, for all labels dropped in any aggregation.
      */
-    label?: {[key: string]: string};
+    label?: {[key: string]: string} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
@@ -438,15 +438,15 @@ export namespace monitoring_v3 {
     /**
      * Contextual information about the example value. Examples are:Trace: type.googleapis.com/google.monitoring.v3.SpanContextLiteral string: type.googleapis.com/google.protobuf.StringValueLabels dropped during aggregation:  type.googleapis.com/google.monitoring.v3.DroppedLabelsThere may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system.
      */
-    attachments?: Array<{[key: string]: any}>;
+    attachments?: Array<{[key: string]: any}> | null;
     /**
      * The observation (sampling) time of the above value.
      */
-    timestamp?: string;
+    timestamp?: string | null;
     /**
      * Value of the exemplar point. This value determines to which bucket the exemplar belongs.
      */
-    value?: number;
+    value?: number | null;
   }
   /**
    * Specifies a set of buckets with arbitrary widths.There are size(bounds) + 1 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): boundsi  Lower bound (1 &lt;= i &lt; N); boundsi - 1The bounds field must contain at least one element. If bounds has only one element, then there are no finite buckets, and that single element is the common boundary of the overflow and underflow buckets.
@@ -455,7 +455,7 @@ export namespace monitoring_v3 {
     /**
      * The values must be monotonically increasing.
      */
-    bounds?: number[];
+    bounds?: number[] | null;
   }
   /**
    * Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): scale * (growth_factor ^ i).  Lower bound (1 &lt;= i &lt; N): scale * (growth_factor ^ (i - 1)).
@@ -464,15 +464,15 @@ export namespace monitoring_v3 {
     /**
      * Must be greater than 1.
      */
-    growthFactor?: number;
+    growthFactor?: number | null;
     /**
      * Must be greater than 0.
      */
-    numFiniteBuckets?: number;
+    numFiniteBuckets?: number | null;
     /**
      * Must be greater than 0.
      */
-    scale?: number;
+    scale?: number | null;
   }
   /**
    * A single field of a message type.
@@ -481,31 +481,31 @@ export namespace monitoring_v3 {
     /**
      * The field cardinality.
      */
-    cardinality?: string;
+    cardinality?: string | null;
     /**
      * The string value of the default value of this field. Proto2 syntax only.
      */
-    defaultValue?: string;
+    defaultValue?: string | null;
     /**
      * The field JSON name.
      */
-    jsonName?: string;
+    jsonName?: string | null;
     /**
      * The field type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The field name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The field number.
      */
-    number?: number;
+    number?: number | null;
     /**
      * The index of the field type in Type.oneofs, for message or enumeration types. The first type has index 1; zero means the type is not in the list.
      */
-    oneofIndex?: number;
+    oneofIndex?: number | null;
     /**
      * The protocol buffer options.
      */
@@ -513,11 +513,11 @@ export namespace monitoring_v3 {
     /**
      * Whether to use alternative packed wire representation.
      */
-    packed?: boolean;
+    packed?: boolean | null;
     /**
      * The field type URL, without the scheme, for message or enumeration types. Example: &quot;type.googleapis.com/google.protobuf.Timestamp&quot;.
      */
-    typeUrl?: string;
+    typeUrl?: string | null;
   }
   /**
    * The GetNotificationChannelVerificationCode request.
@@ -526,7 +526,7 @@ export namespace monitoring_v3 {
     /**
      * The desired expiration time. If specified, the API will guarantee that the returned code will not be valid after the specified timestamp; however, the API cannot guarantee that the returned code will be valid for at least as long as the requested time (the API puts an upper bound on the amount of time for which a code may be valid). If omitted, a default expiration will be used, which may be less than the max permissible expiration (so specifying an expiration may extend the code&#39;s lifetime over omitting an expiration, even though the API does impose an upper limit on the maximum expiration that is permitted).
      */
-    expireTime?: string;
+    expireTime?: string | null;
   }
   /**
    * The GetNotificationChannelVerificationCode request.
@@ -535,11 +535,11 @@ export namespace monitoring_v3 {
     /**
      * The verification code, which may be used to verify other channels that have an equivalent identity (i.e. other channels of the same type with the same fingerprint such as other email channels with the same email address or other sms channels with the same number).
      */
-    code?: string;
+    code?: string | null;
     /**
      * The expiration time associated with the code that was returned. If an expiration was provided in the request, this is the minimum of the requested expiration in the request and the max permitted expiration.
      */
-    expireTime?: string;
+    expireTime?: string | null;
   }
   /**
    * The description of a dynamic collection of monitored resources. Each group has a filter that is matched against monitored resources and their associated metadata. If a group&#39;s filter matches an available monitored resource, then that resource is a member of that group. Groups can contain any number of monitored resources, and each monitored resource can be a member of any number of groups.Groups can be nested in parent-child hierarchies. The parentName field identifies an optional parent for each group. If a group has a parent, then the only monitored resources available to be matched by the group&#39;s filter are the resources contained in the parent group. In other words, a group contains the monitored resources that match its filter and the filters of all the group&#39;s ancestors. A group without a parent can contain any monitored resource.For example, consider an infrastructure running a set of instances with two user-defined tags: &quot;environment&quot; and &quot;role&quot;. A parent group has a filter, environment=&quot;production&quot;. A child of that parent group has a filter, role=&quot;transcoder&quot;. The parent group contains all instances in the production environment, regardless of their roles. The child group contains instances that have the transcoder role and are in the production environment.The monitored resources contained in a group can change at any moment, depending on what resources exist and what filters are associated with the group and its ancestors.
@@ -548,26 +548,26 @@ export namespace monitoring_v3 {
     /**
      * A user-assigned name for this group, used only for display purposes.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The filter used to determine which monitored resources belong to this group.
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups that are clusters.
      */
-    isCluster?: boolean;
+    isCluster?: boolean | null;
     /**
      * Output only. The name of this group. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique {group_id} that is generated automatically.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The name of the group&#39;s parent, if it has one. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. For groups with no parent, parentName is the empty string, &quot;&quot;.
      */
-    parentName?: string;
+    parentName?: string | null;
   }
   /**
-   * Information involved in an HTTP/HTTPS uptime check request.
+   * Information involved in an HTTP/HTTPS Uptime check request.
    */
   export interface Schema$HttpCheck {
     /**
@@ -575,58 +575,58 @@ export namespace monitoring_v3 {
      */
     authInfo?: Schema$BasicAuthentication;
     /**
-     * The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
+     * The list of headers to send as part of the Uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
      */
-    headers?: {[key: string]: string};
+    headers?: {[key: string]: string} | null;
     /**
-     * Boolean specifiying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to True then the headers will be obscured with ******.
+     * Boolean specifiying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to true then the headers will be obscured with ******.
      */
-    maskHeaders?: boolean;
+    maskHeaders?: boolean | null;
     /**
-     * The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to &quot;/&quot;). If the provided path does not begin with &quot;/&quot;, it will be prepended automatically.
+     * Optional (defaults to &quot;/&quot;). The path to the page against which to run the check. Will be combined with the host (specified within the monitored_resource) and port to construct the full URL. If the provided path does not begin with &quot;/&quot;, a &quot;/&quot; will be prepended automatically.
      */
-    path?: string;
+    path?: string | null;
     /**
-     * The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) and path to construct the full URL. Optional (defaults to 80 without SSL, or 443 with SSL).
+     * Optional (defaults to 80 when use_ssl is false, and 443 when use_ssl is true). The TCP port on the HTTP server against which to run the check. Will be combined with host (specified within the monitored_resource) and path to construct the full URL.
      */
-    port?: number;
+    port?: number | null;
     /**
      * If true, use HTTPS instead of HTTP to run the check.
      */
-    useSsl?: boolean;
+    useSsl?: boolean | null;
     /**
-     * Boolean specifying whether to validate SSL certificates. Only applies to uptime_url checks. If use_ssl is false, setting this to true has no effect.
+     * Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitored_resource is set to uptime_url. If use_ssl is false, setting validate_ssl to true has no effect.
      */
-    validateSsl?: boolean;
+    validateSsl?: boolean | null;
   }
   /**
-   * An internal checker allows uptime checks to run on private/internal GCP resources.
+   * An internal checker allows Uptime checks to run on private/internal GCP resources.
    */
   export interface Schema$InternalChecker {
     /**
      * The checker&#39;s human-readable name. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
-     * The GCP zone the uptime check should egress from. Only respected for internal uptime checks, where internal_network is specified.
+     * The GCP zone the Uptime check should egress from. Only respected for internal Uptime checks, where internal_network is specified.
      */
-    gcpZone?: string;
+    gcpZone?: string | null;
     /**
-     * A unique resource name for this InternalChecker. The format is:projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID].PROJECT_ID is the stackdriver workspace project for the uptime check config associated with the internal checker.
+     * A unique resource name for this InternalChecker. The format is:projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID].[PROJECT_ID] is the Stackdriver Workspace project for the Uptime check config associated with the internal checker.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The GCP VPC network (https://cloud.google.com/vpc/docs/vpc) where the internal resource lives (ex: &quot;default&quot;).
      */
-    network?: string;
+    network?: string | null;
     /**
-     * The GCP project_id where the internal checker lives. Not necessary the same as the workspace project.
+     * The GCP project ID where the internal checker lives. Not necessary the same as the Workspace project.
      */
-    peerProjectId?: string;
+    peerProjectId?: string | null;
     /**
      * The current operational state of the internal checker.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * A description of a label.
@@ -635,15 +635,15 @@ export namespace monitoring_v3 {
     /**
      * A human-readable description for the label.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The label key.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The type of data that can be assigned to the label.
      */
-    valueType?: string;
+    valueType?: string | null;
   }
   /**
    * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): offset + (width * i).  Lower bound (1 &lt;= i &lt; N): offset + (width * (i - 1)).
@@ -652,15 +652,15 @@ export namespace monitoring_v3 {
     /**
      * Must be greater than 0.
      */
-    numFiniteBuckets?: number;
+    numFiniteBuckets?: number | null;
     /**
      * Lower bound of the first bucket.
      */
-    offset?: number;
+    offset?: number | null;
     /**
      * Must be greater than 0.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * The protocol for the ListAlertPolicies response.
@@ -673,7 +673,7 @@ export namespace monitoring_v3 {
     /**
      * If there might be more results than were returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The ListGroupMembers response.
@@ -686,11 +686,11 @@ export namespace monitoring_v3 {
     /**
      * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The total number of elements matching this request.
      */
-    totalSize?: number;
+    totalSize?: number | null;
   }
   /**
    * The ListGroups response.
@@ -703,7 +703,7 @@ export namespace monitoring_v3 {
     /**
      * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The ListMetricDescriptors response.
@@ -716,7 +716,7 @@ export namespace monitoring_v3 {
     /**
      * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The ListMonitoredResourceDescriptors response.
@@ -725,7 +725,7 @@ export namespace monitoring_v3 {
     /**
      * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The monitored resource descriptors that are available to this project and that match filter, if present.
      */
@@ -742,7 +742,7 @@ export namespace monitoring_v3 {
     /**
      * If not empty, indicates that there may be more results that match the request. Use the value in the page_token field in a subsequent request to fetch the next set of results. If empty, all results have been returned.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The ListNotificationChannels response.
@@ -751,7 +751,7 @@ export namespace monitoring_v3 {
     /**
      * If not empty, indicates that there may be more results that match the request. Use the value in the page_token field in a subsequent request to fetch the next set of results. If empty, all results have been returned.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The notification channels defined for the specified project.
      */
@@ -768,7 +768,7 @@ export namespace monitoring_v3 {
     /**
      * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * One or more time series that match the filter included in the request.
      */
@@ -781,13 +781,13 @@ export namespace monitoring_v3 {
     /**
      * This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message&#39;s page_token field).
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
-     * The total number of uptime check configurations for the project, irrespective of any pagination.
+     * The total number of Uptime check configurations for the project, irrespective of any pagination.
      */
-    totalSize?: number;
+    totalSize?: number | null;
     /**
-     * The returned uptime check configurations.
+     * The returned Uptime check configurations.
      */
     uptimeCheckConfigs?: Schema$UptimeCheckConfig[];
   }
@@ -798,7 +798,7 @@ export namespace monitoring_v3 {
     /**
      * This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message&#39;s page_token field). NOTE: this field is not yet implemented
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The returned list of IP addresses (including region and location) that the checkers run from.
      */
@@ -811,11 +811,11 @@ export namespace monitoring_v3 {
     /**
      * The set of label values that uniquely identify this metric. All labels listed in the MetricDescriptor must be assigned values.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * An existing metric type, see google.api.MetricDescriptor. For example, custom.googleapis.com/invoice/paid/amount.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A condition type that checks that monitored resources are reporting data. The configuration defines a metric and a set of monitored resources. The predicate is considered in violation when a time series for the specified metric of a monitored resource does not include any data in the specified duration.
@@ -828,11 +828,11 @@ export namespace monitoring_v3 {
     /**
      * The amount of time that a time series must fail to report new data to be considered failing. Currently, only values that are a multiple of a minute--e.g. 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. The Duration.nanos field is ignored.
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * A filter that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations.
      */
@@ -845,11 +845,11 @@ export namespace monitoring_v3 {
     /**
      * A detailed description of the metric, which can be used in documentation.
      */
-    description?: string;
+    description?: string | null;
     /**
      * A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example &quot;Request count&quot;. This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The set of labels that can be used to describe a specific instance of this metric type. For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.
      */
@@ -857,7 +857,7 @@ export namespace monitoring_v3 {
     /**
      * Optional. The launch stage of the metric definition.
      */
-    launchStage?: string;
+    launchStage?: string | null;
     /**
      * Optional. Metadata which can be used to guide usage of the metric.
      */
@@ -865,23 +865,23 @@ export namespace monitoring_v3 {
     /**
      * Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metric_kind and value_type might not be supported.
      */
-    metricKind?: string;
+    metricKind?: string | null;
     /**
      * The resource name of the metric descriptor.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name custom.googleapis.com or external.googleapis.com. Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;external.googleapis.com/prometheus/up&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
-    type?: string;
+    type?: string | null;
     /**
      * The unit in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d dayPrefixes (PREFIX) k kilo (10**3) M mega (10**6) G giga (10**9) T tera (10**12) P peta (10**15) E exa (10**18) Z zetta (10**21) Y yotta (10**24) m milli (10**-3) u micro (10**-6) n nano (10**-9) p pico (10**-12) f femto (10**-15) a atto (10**-18) z zepto (10**-21) y yocto (10**-24) Ki kibi (2**10) Mi mebi (2**20) Gi gibi (2**30) Ti tebi (2**40)GrammarThe grammar also includes these connectors: / division (as an infix operator, e.g. 1/s). . multiplication (as an infix operator, e.g. GBy.d)The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT and is  equivalent to 1 if it is used alone. For examples,  {requests}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing &#39;{&#39; or &#39;}&#39;. 1 represents dimensionless value 1, such as in 1/s. % represents dimensionless value 1/100, and annotates values giving  a percentage.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * Whether the measurement is an integer, a floating-point number, etc. Some combinations of metric_kind and value_type might not be supported.
      */
-    valueType?: string;
+    valueType?: string | null;
   }
   /**
    * Additional annotations that can be used to guide the usage of a metric.
@@ -890,15 +890,15 @@ export namespace monitoring_v3 {
     /**
      * The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors.
      */
-    ingestDelay?: string;
+    ingestDelay?: string | null;
     /**
      * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
      */
-    launchStage?: string;
+    launchStage?: string | null;
     /**
      * The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period.
      */
-    samplePeriod?: string;
+    samplePeriod?: string | null;
   }
   /**
    * A condition type that compares a collection of time series against a threshold.
@@ -911,7 +911,7 @@ export namespace monitoring_v3 {
     /**
      * The comparison to apply between the time series (indicated by filter and aggregation) and the threshold (indicated by threshold_value). The comparison is applied on each time series, with the time series on the left-hand side and the threshold on the right-hand side.Only COMPARISON_LT and COMPARISON_GT are supported currently.
      */
-    comparison?: string;
+    comparison?: string | null;
     /**
      * Specifies the alignment of data points in individual time series selected by denominatorFilter as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources).When computing ratios, the aggregations and denominator_aggregations fields must use the same alignment period and produce time series that have the same periodicity and labels.This field is similar to the one in the MetricService.ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
      */
@@ -919,19 +919,19 @@ export namespace monitoring_v3 {
     /**
      * A filter that identifies a time series that should be used as the denominator of a ratio that will be compared with the threshold. If a denominator_filter is specified, the time series specified by the filter field will be used as the numerator.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
      */
-    denominatorFilter?: string;
+    denominatorFilter?: string | null;
     /**
      * The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g., 0, 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. When choosing a duration, it is useful to keep in mind the frequency of the underlying time series data (which may also be affected by any alignments specified in the aggregations field); a good duration is long enough so that a single outlier does not generate spurious alerts, but short enough that unhealthy states are detected and alerted on quickly.
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * A filter that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * A value against which to compare the time series.
      */
-    thresholdValue?: number;
+    thresholdValue?: number | null;
     /**
      * The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations, or by the ratio, if denominator_filter and denominator_aggregations are specified.
      */
@@ -944,11 +944,11 @@ export namespace monitoring_v3 {
     /**
      * Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels &quot;project_id&quot;, &quot;instance_id&quot;, and &quot;zone&quot;.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Required. The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types and Logging resource types.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of &quot;gce_instance&quot; and specifies the use of the labels &quot;instance_id&quot; and &quot;zone&quot; to identify particular VM instances.Different APIs can support different monitored resource types. APIs generally provide a list method that returns the monitored resource descriptors used by the API.
@@ -957,11 +957,11 @@ export namespace monitoring_v3 {
     /**
      * Optional. A detailed description of the monitored resource type that might be used in documentation.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, &quot;Google Cloud SQL Database&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels &quot;database_id&quot; and &quot;zone&quot;.
      */
@@ -969,15 +969,15 @@ export namespace monitoring_v3 {
     /**
      * Optional. The launch stage of the monitored resource definition.
      */
-    launchStage?: string;
+    launchStage?: string | null;
     /**
      * Optional. The resource name of the monitored resource descriptor: &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot; where {type} is the value of the type field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Required. The monitored resource type. For example, the type &quot;cloudsql_database&quot; represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Auxiliary metadata for a MonitoredResource object. MonitoredResource objects contain the minimum set of information to uniquely identify a monitored resource instance. There is some other useful auxiliary metadata. Monitoring and Logging use an ingestion pipeline to extract metadata for cloud resources of all types, and store the metadata in this message.
@@ -986,11 +986,11 @@ export namespace monitoring_v3 {
     /**
      * Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc. System label values can be only strings, Boolean values, or a list of strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;,   &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],   &quot;spot_instance&quot;: false }
      */
-    systemLabels?: {[key: string]: any};
+    systemLabels?: {[key: string]: any} | null;
     /**
      * Output only. A map of user-defined metadata labels.
      */
-    userLabels?: {[key: string]: string};
+    userLabels?: {[key: string]: string} | null;
   }
   /**
    * Describes a change made to a configuration.
@@ -999,11 +999,11 @@ export namespace monitoring_v3 {
     /**
      * The email address of the user making the change.
      */
-    mutatedBy?: string;
+    mutatedBy?: string | null;
     /**
      * When the change occurred.
      */
-    mutateTime?: string;
+    mutateTime?: string | null;
   }
   /**
    * A NotificationChannel is a medium through which an alert is delivered when a policy violation is detected. Examples of channels include email, SMS, and third-party messaging applications. Fields containing sensitive information like authentication tokens or contact info are only partially populated on retrieval.
@@ -1012,35 +1012,35 @@ export namespace monitoring_v3 {
     /**
      * An optional human-readable description of this notification channel. This description may provide additional details, beyond the display name, for the channel. This may not exceed 1024 Unicode characters.
      */
-    description?: string;
+    description?: string | null;
     /**
      * An optional human-readable name for this notification channel. It is recommended that you specify a non-empty and unique name in order to make it easier to identify the channels in your project, though this is not enforced. The display name is limited to 512 Unicode characters.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Whether notifications are forwarded to the described channel. This makes it possible to disable delivery of notifications to a particular channel without removing the channel from all alerting policies that reference the channel. This is a more convenient approach when the change is temporary and you want to receive notifications from the same set of alerting policies on the channel at some point in the future.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * Configuration fields that define the channel and its behavior. The permissible and required labels are specified in the NotificationChannelDescriptor.labels of the NotificationChannelDescriptor corresponding to the type field.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The full REST resource name for this channel. The syntax is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The type of the notification channel. This field matches the value of the NotificationChannelDescriptor.type field.
      */
-    type?: string;
+    type?: string | null;
     /**
      * User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor&#39;s schema, unlike the labels field. This field is intended to be used for organizing and identifying the NotificationChannel objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.
      */
-    userLabels?: {[key: string]: string};
+    userLabels?: {[key: string]: string} | null;
     /**
      * Indicates whether this channel has been verified or not. On a ListNotificationChannels or GetNotificationChannel operation, this field is expected to be populated.If the value is UNVERIFIED, then it indicates that the channel is non-functioning (it both requires verification and lacks verification); otherwise, it is assumed that the channel works.If the channel is neither VERIFIED nor UNVERIFIED, it implies that the channel is of a type that does not require verification or that this specific channel has been exempted from verification because it was created prior to verification being required for channels of this type.This field cannot be modified using a standard UpdateNotificationChannel operation. To change the value of this field, you must call VerifyNotificationChannel.
      */
-    verificationStatus?: string;
+    verificationStatus?: string | null;
   }
   /**
    * A description of a notification channel. The descriptor includes the properties of the channel and the set of labels or fields that must be specified to configure channels of a given type.
@@ -1049,11 +1049,11 @@ export namespace monitoring_v3 {
     /**
      * A human-readable description of the notification channel type. The description may include a description of the properties of the channel and pointers to external documentation.
      */
-    description?: string;
+    description?: string | null;
     /**
      * A human-readable name for the notification channel type. This form of the name is suitable for a user interface.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The set of labels that must be defined to identify a particular channel of the corresponding type. Each label includes a description for how that field should be populated.
      */
@@ -1061,15 +1061,15 @@ export namespace monitoring_v3 {
     /**
      * The full REST resource name for this descriptor. The syntax is: projects/[PROJECT_ID]/notificationChannelDescriptors/[TYPE] In the above, [TYPE] is the value of the type field.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The tiers that support this notification channel; the project service tier must be one of the supported_tiers.
      */
-    supportedTiers?: string[];
+    supportedTiers?: string[] | null;
     /**
      * The type of notification channel, such as &quot;email&quot;, &quot;sms&quot;, etc. Notification channel types are globally unique.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
@@ -1078,11 +1078,11 @@ export namespace monitoring_v3 {
     /**
      * The option&#39;s name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, &quot;map_entry&quot;. For custom options, it should be the fully-qualified name. For example, &quot;google.api.http&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The option&#39;s value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
      */
-    value?: {[key: string]: any};
+    value?: {[key: string]: any} | null;
   }
   /**
    * A single data point in a time series.
@@ -1104,24 +1104,24 @@ export namespace monitoring_v3 {
     /**
      * The maximum of the population values.
      */
-    max?: number;
+    max?: number | null;
     /**
      * The minimum of the population values.
      */
-    min?: number;
+    min?: number | null;
   }
   /**
    * The resource submessage for group checks. It can be used instead of a monitored resource, when multiple resources are being monitored.
    */
   export interface Schema$ResourceGroup {
     /**
-     * The group of resources being monitored. Should be only the group_id, not projects/&lt;project_id&gt;/groups/&lt;group_id&gt;.
+     * The group of resources being monitored. Should be only the [GROUP_ID], and not the full-path projects/[PROJECT_ID]/groups/[GROUP_ID].
      */
-    groupId?: string;
+    groupId?: string | null;
     /**
      * The resource type of the group members.
      */
-    resourceType?: string;
+    resourceType?: string | null;
   }
   /**
    * The SendNotificationChannelVerificationCode request.
@@ -1134,7 +1134,7 @@ export namespace monitoring_v3 {
     /**
      * The path-qualified name of the .proto file that contained the associated protobuf element. For example: &quot;google/protobuf/source_context.proto&quot;.
      */
-    fileName?: string;
+    fileName?: string | null;
   }
   /**
    * The context of a span, attached to google.api.Distribution.Exemplars in google.api.Distribution values during aggregation.It contains the name of a span with format:  projects/PROJECT_ID/traces/TRACE_ID/spans/SPAN_ID
@@ -1143,7 +1143,7 @@ export namespace monitoring_v3 {
     /**
      * The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID] TRACE_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.SPAN_ID is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
-    spanName?: string;
+    spanName?: string | null;
   }
   /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
@@ -1152,24 +1152,24 @@ export namespace monitoring_v3 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
-   * Information required for a TCP uptime check request.
+   * Information required for a TCP Uptime check request.
    */
   export interface Schema$TcpCheck {
     /**
-     * The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL. Required.
+     * The TCP port on the server against which to run the check. Will be combined with host (specified within the monitored_resource) to construct the full URL. Required.
      */
-    port?: number;
+    port?: number | null;
   }
   /**
    * A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time. For a GAUGE metric, the startTime value is technically optional; if  no value is specified, the start time defaults to the value of the  end time, and the interval represents a single point in time. Such an  interval is valid only for GAUGE metrics, which are point-in-time  measurements. For DELTA and CUMULATIVE metrics, the start time must be earlier  than the end time. In all cases, the start time of the next interval must be  at least a microsecond after the end time of the previous interval.  Because the interval is closed, if the start time of a new interval  is the same as the end time of the previous interval, data written  at the new start time could overwrite data written at the previous  end time.
@@ -1178,11 +1178,11 @@ export namespace monitoring_v3 {
     /**
      * Required. The end of the time interval.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * A collection of data points that describes the time-varying values of a metric. A time series is identified by a combination of a fully-specified monitored resource and a fully-specified metric. This type is used for both listing and creating time series.
@@ -1199,7 +1199,7 @@ export namespace monitoring_v3 {
     /**
      * The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either GAUGE (the default) or CUMULATIVE.
      */
-    metricKind?: string;
+    metricKind?: string | null;
     /**
      * The data points of this time series. When listing time series, points are returned in reverse time order.When creating a time series, this field must contain exactly one point and the point&#39;s type must be the same as the value type of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then the value type of the descriptor is determined by the point&#39;s type, which must be BOOL, INT64, DOUBLE, or DISTRIBUTION.
      */
@@ -1211,7 +1211,7 @@ export namespace monitoring_v3 {
     /**
      * The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field.
      */
-    valueType?: string;
+    valueType?: string | null;
   }
   /**
    * Specifies how many time series must fail a predicate to trigger a condition. If not specified, then a {count: 1} trigger is used.
@@ -1220,11 +1220,11 @@ export namespace monitoring_v3 {
     /**
      * The absolute number of time series that must fail the predicate for the condition to be triggered.
      */
-    count?: number;
+    count?: number | null;
     /**
      * The percentage of time series that must fail the predicate for the condition to be triggered.
      */
-    percent?: number;
+    percent?: number | null;
   }
   /**
    * A protocol buffer message type.
@@ -1237,11 +1237,11 @@ export namespace monitoring_v3 {
     /**
      * The fully qualified message name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The list of types appearing in oneof definitions in this type.
      */
-    oneofs?: string[];
+    oneofs?: string[] | null;
     /**
      * The protocol buffer options.
      */
@@ -1253,7 +1253,7 @@ export namespace monitoring_v3 {
     /**
      * The source syntax.
      */
-    syntax?: string;
+    syntax?: string | null;
   }
   /**
    * A single strongly-typed value.
@@ -1262,7 +1262,7 @@ export namespace monitoring_v3 {
     /**
      * A Boolean value: true or false.
      */
-    boolValue?: boolean;
+    boolValue?: boolean | null;
     /**
      * A distribution value.
      */
@@ -1270,56 +1270,56 @@ export namespace monitoring_v3 {
     /**
      * A 64-bit double-precision floating-point number. Its magnitude is approximately &amp;plusmn;10&lt;sup&gt;&amp;plusmn;300&lt;/sup&gt; and it has 16 significant digits of precision.
      */
-    doubleValue?: number;
+    doubleValue?: number | null;
     /**
      * A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
      */
-    int64Value?: string;
+    int64Value?: string | null;
     /**
      * A variable-length string value.
      */
-    stringValue?: string;
+    stringValue?: string | null;
   }
   /**
    * This message configures which resources and services to monitor for availability.
    */
   export interface Schema$UptimeCheckConfig {
     /**
-     * The expected content on the page the check is run against. Currently, only the first entry in the list is supported, and other entries will be ignored. The server will look for an exact match of the string in the page response&#39;s content. This field is optional and should only be specified if a content match is required.
+     * The content that is expected to appear in the data returned by the target server against which the check is run. Currently, only the first entry in the content_matchers list is supported, and additional entries will be ignored. This field is optional and should only be specified if a content match is required as part of the/ Uptime check.
      */
     contentMatchers?: Schema$ContentMatcher[];
     /**
-     * A human-friendly name for the uptime check configuration. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required.
+     * A human-friendly name for the Uptime check configuration. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Contains information needed to make an HTTP or HTTPS check.
      */
     httpCheck?: Schema$HttpCheck;
     /**
-     * The internal checkers that this check will egress from. If is_internal is true and this list is empty, the check will egress from all the InternalCheckers configured for the project that owns this CheckConfig.
+     * The internal checkers that this check will egress from. If is_internal is true and this list is empty, the check will egress from all the InternalCheckers configured for the project that owns this UptimeCheckConfig.
      */
     internalCheckers?: Schema$InternalChecker[];
     /**
-     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for uptime checks:  uptime_url  gce_instance  gae_app  aws_ec2_instance  aws_elb_load_balancer
+     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for Uptime checks:  uptime_url,  gce_instance,  gae_app,  aws_ec2_instance,  aws_elb_load_balancer
      */
     monitoredResource?: Schema$MonitoredResource;
     /**
-     * A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
+     * A unique resource name for this Uptime check configuration. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
      */
-    name?: string;
+    name?: string | null;
     /**
-     * How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 60s.
+     * How often, in seconds, the Uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 60s.
      */
-    period?: string;
+    period?: string | null;
     /**
      * The group resource associated with the configuration.
      */
     resourceGroup?: Schema$ResourceGroup;
     /**
-     * The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions to include a minimum of 3 locations must be provided, or an error message is returned. Not specifying this field will result in uptime checks running from all regions.
+     * The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions must be provided to include a minimum of 3 locations. Not specifying this field will result in Uptime checks running from all available regions.
      */
-    selectedRegions?: string[];
+    selectedRegions?: string[] | null;
     /**
      * Contains information needed to make a TCP check.
      */
@@ -1327,24 +1327,24 @@ export namespace monitoring_v3 {
     /**
      * The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Required.
      */
-    timeout?: string;
+    timeout?: string | null;
   }
   /**
    * Contains the region, location, and list of IP addresses where checkers in the location run from.
    */
   export interface Schema$UptimeCheckIp {
     /**
-     * The IP address from which the uptime check originates. This is a full IP address (not an IP address range). Most IP addresses, as of this publication, are in IPv4 format; however, one should not rely on the IP addresses being in IPv4 format indefinitely and should support interpreting this field in either IPv4 or IPv6 format.
+     * The IP address from which the Uptime check originates. This is a fully specified IP address (not an IP address range). Most IP addresses, as of this publication, are in IPv4 format; however, one should not rely on the IP addresses being in IPv4 format indefinitely, and should support interpreting this field in either IPv4 or IPv6 format.
      */
-    ipAddress?: string;
+    ipAddress?: string | null;
     /**
      * A more specific location within the region that typically encodes a particular city/town/metro (and its containing state/province or country) within the broader umbrella region category.
      */
-    location?: string;
+    location?: string | null;
     /**
      * A broad region category in which the IP address is located.
      */
-    region?: string;
+    region?: string | null;
   }
   /**
    * The VerifyNotificationChannel request.
@@ -1353,7 +1353,7 @@ export namespace monitoring_v3 {
     /**
      * The verification code that was delivered to the channel as a result of invoking the SendNotificationChannelVerificationCode API method or that was retrieved from a verified channel via GetNotificationChannelVerificationCode. For example, one might have &quot;G-123456&quot; or &quot;TKNZGhhd2EyN3I1MnRnMjRv&quot; (in general, one is only guaranteed that the code is valid UTF-8; one should not make any assumptions regarding the structure or format of the code).
      */
-    code?: string;
+    code?: string | null;
   }
 
   export class Resource$Projects {
@@ -5029,12 +5029,12 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.uptimeCheckConfigs.create
-     * @desc Creates a new uptime check configuration.
+     * @desc Creates a new Uptime check configuration.
      * @alias monitoring.projects.uptimeCheckConfigs.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The project in which to create the uptime check. The format  is projects/[PROJECT_ID].
+     * @param {string} params.parent The project in which to create the Uptime check. The format  is projects/[PROJECT_ID].
      * @param {().UptimeCheckConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5104,12 +5104,12 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.uptimeCheckConfigs.delete
-     * @desc Deletes an uptime check configuration. Note that this method will fail if the uptime check configuration is referenced by an alert policy or other dependent configs that would be rendered invalid by the deletion.
+     * @desc Deletes an Uptime check configuration. Note that this method will fail if the Uptime check configuration is referenced by an alert policy or other dependent configs that would be rendered invalid by the deletion.
      * @alias monitoring.projects.uptimeCheckConfigs.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The uptime check configuration to delete. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+     * @param {string} params.name The Uptime check configuration to delete. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5173,12 +5173,12 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.uptimeCheckConfigs.get
-     * @desc Gets a single uptime check configuration.
+     * @desc Gets a single Uptime check configuration.
      * @alias monitoring.projects.uptimeCheckConfigs.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The uptime check configuration to retrieve. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+     * @param {string} params.name The Uptime check configuration to retrieve. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5244,14 +5244,14 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.uptimeCheckConfigs.list
-     * @desc Lists the existing valid uptime check configurations for the project, leaving out any invalid configurations.
+     * @desc Lists the existing valid Uptime check configurations for the project (leaving out any invalid configurations).
      * @alias monitoring.projects.uptimeCheckConfigs.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
      * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
-     * @param {string} params.parent The project whose uptime check configurations are listed. The format  is projects/[PROJECT_ID].
+     * @param {string} params.parent The project whose Uptime check configurations are listed. The format  is projects/[PROJECT_ID].
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5329,13 +5329,13 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.uptimeCheckConfigs.patch
-     * @desc Updates an uptime check configuration. You can either replace the entire configuration with a new one or replace only certain fields in the current configuration by specifying the fields to be updated via "updateMask". Returns the updated configuration.
+     * @desc Updates an Uptime check configuration. You can either replace the entire configuration with a new one or replace only certain fields in the current configuration by specifying the fields to be updated via updateMask. Returns the updated configuration.
      * @alias monitoring.projects.uptimeCheckConfigs.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
-     * @param {string=} params.updateMask Optional. If present, only the listed fields in the current uptime check configuration are updated with values from the new configuration. If this field is empty, then the current configuration is completely replaced with the new configuration.
+     * @param {string} params.name A unique resource name for this Uptime check configuration. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
+     * @param {string=} params.updateMask Optional. If present, only the listed fields in the current Uptime check configuration are updated with values from the new configuration. If this field is empty, then the current configuration is completely replaced with the new configuration.
      * @param {().UptimeCheckConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5409,7 +5409,7 @@ export namespace monitoring_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The project in which to create the uptime check. The format  is projects/[PROJECT_ID].
+     * The project in which to create the Uptime check. The format  is projects/[PROJECT_ID].
      */
     parent?: string;
 
@@ -5426,7 +5426,7 @@ export namespace monitoring_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The uptime check configuration to delete. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+     * The Uptime check configuration to delete. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
      */
     name?: string;
   }
@@ -5438,7 +5438,7 @@ export namespace monitoring_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The uptime check configuration to retrieve. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
+     * The Uptime check configuration to retrieve. The format  is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
      */
     name?: string;
   }
@@ -5458,7 +5458,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
     /**
-     * The project whose uptime check configurations are listed. The format  is projects/[PROJECT_ID].
+     * The project whose Uptime check configurations are listed. The format  is projects/[PROJECT_ID].
      */
     parent?: string;
   }
@@ -5470,11 +5470,11 @@ export namespace monitoring_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A unique resource name for this UptimeCheckConfig. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the uptime check configuration; on create, the resource name is assigned by the server and included in the response.
+     * A unique resource name for this Uptime check configuration. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
      */
     name?: string;
     /**
-     * Optional. If present, only the listed fields in the current uptime check configuration are updated with values from the new configuration. If this field is empty, then the current configuration is completely replaced with the new configuration.
+     * Optional. If present, only the listed fields in the current Uptime check configuration are updated with values from the new configuration. If this field is empty, then the current configuration is completely replaced with the new configuration.
      */
     updateMask?: string;
 
@@ -5492,7 +5492,7 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.uptimeCheckIps.list
-     * @desc Returns the list of IPs that checkers run from
+     * @desc Returns the list of IP addresses that checkers run from
      * @alias monitoring.uptimeCheckIps.list
      * @memberOf! ()
      *

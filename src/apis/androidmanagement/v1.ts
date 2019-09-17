@@ -126,11 +126,11 @@ export namespace androidmanagement_v1 {
     /**
      * Disallows networking when the VPN is not connected.
      */
-    lockdownEnabled?: boolean;
+    lockdownEnabled?: boolean | null;
     /**
      * The package name of the VPN app.
      */
-    packageName?: string;
+    packageName?: string | null;
   }
   /**
    * A compliance rule condition which is satisfied if the Android Framework API level on the device doesn&#39;t meet a minimum requirement. There can only be one rule with this type of condition per policy.
@@ -139,12 +139,16 @@ export namespace androidmanagement_v1 {
     /**
      * The minimum desired Android Framework API level. If the device doesn&#39;t meet the minimum requirement, this condition is satisfied. Must be greater than zero.
      */
-    minApiLevel?: number;
+    minApiLevel?: number | null;
   }
   /**
    * Information about an app.
    */
   export interface Schema$Application {
+    /**
+     * Application tracks visible to the enterprise.
+     */
+    appTracks?: Schema$AppTrackInfo[];
     /**
      * The set of managed properties available to be pre-configured for the app.
      */
@@ -152,7 +156,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the app in the form enterprises/{enterpriseId}/applications/{package_name}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The permissions required by the app.
      */
@@ -160,7 +164,7 @@ export namespace androidmanagement_v1 {
     /**
      * The title of the app. Localized.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * An app-related event.
@@ -169,11 +173,11 @@ export namespace androidmanagement_v1 {
     /**
      * The creation time of the event.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * App event type.
      */
-    eventType?: string;
+    eventType?: string | null;
   }
   /**
    * A permission required by the app.
@@ -182,44 +186,48 @@ export namespace androidmanagement_v1 {
     /**
      * A longer description of the permission, providing more detail on what it affects. Localized.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The name of the permission. Localized.
      */
-    name?: string;
+    name?: string | null;
     /**
      * An opaque string uniquely identifying the permission. Not localized.
      */
-    permissionId?: string;
+    permissionId?: string | null;
   }
   /**
    * Policy for an individual app.
    */
   export interface Schema$ApplicationPolicy {
     /**
+     * List of the app’s track IDs that a device belonging to the enterprise can access. If the list contains multiple track IDs, devices receive the latest version among all accessible tracks. If the list contains no track IDs, devices only have access to the app’s production track. More details about each track are available in AppTrackInfo.
+     */
+    accessibleTrackIds?: string[] | null;
+    /**
      * The default policy for all permissions requested by the app. If specified, this overrides the policy-level default_permission_policy which applies to all apps. It does not override the permission_grants which applies to all apps.
      */
-    defaultPermissionPolicy?: string;
+    defaultPermissionPolicy?: string | null;
     /**
      * The scopes delegated to the app from Android Device Policy.
      */
-    delegatedScopes?: string[];
+    delegatedScopes?: string[] | null;
     /**
      * Whether the app is disabled. When disabled, the app data is still preserved.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
     /**
      * The type of installation to perform.
      */
-    installType?: string;
+    installType?: string | null;
     /**
      * Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to to configure a dedicated device.
      */
-    lockTaskAllowed?: boolean;
+    lockTaskAllowed?: boolean | null;
     /**
      * Managed configuration applied to the app. The format for the configuration is dictated by the ManagedProperty values supported by the app. Each field name in the managed configuration must match the key field of the ManagedProperty. The field value must be compatible with the type of the ManagedProperty: &lt;table&gt; &lt;tr&gt;&lt;td&gt;&lt;i&gt;type&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i&gt;JSON value&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;BOOL&lt;/td&gt;&lt;td&gt;true or false&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;INTEGER&lt;/td&gt;&lt;td&gt;number&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;CHOICE&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;MULTISELECT&lt;/td&gt;&lt;td&gt;array of strings&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;HIDDEN&lt;/td&gt;&lt;td&gt;string&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td&gt;BUNDLE_ARRAY&lt;/td&gt;&lt;td&gt;array of objects&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;
      */
-    managedConfiguration?: {[key: string]: any};
+    managedConfiguration?: {[key: string]: any} | null;
     /**
      * The managed configurations template for the app, saved from the managed configurations iframe. This field is ignored if managed_configuration is set.
      */
@@ -227,11 +235,11 @@ export namespace androidmanagement_v1 {
     /**
      * The minimum version of the app that runs on the device. If set, the device attempts to update the app to at least this version code. If the app is not up-to-date, the device will contain a NonComplianceDetail with non_compliance_reason set to APP_NOT_UPDATED. The app must already be published to Google Play with a version code greater than or equal to this value. At most 20 apps may specify a minimum version code per policy.
      */
-    minimumVersionCode?: number;
+    minimumVersionCode?: number | null;
     /**
      * The package name of the app. For example, com.google.android.youtube for the YouTube app.
      */
-    packageName?: string;
+    packageName?: string | null;
     /**
      * Explicit permission grants or denials for the app. These values override the default_permission_policy and permission_grants which apply to all apps.
      */
@@ -244,11 +252,11 @@ export namespace androidmanagement_v1 {
     /**
      * The source of the package.
      */
-    applicationSource?: string;
+    applicationSource?: string | null;
     /**
      * The display name of the app.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * List of app events. The most recent 20 events are stored in the list.
      */
@@ -256,7 +264,7 @@ export namespace androidmanagement_v1 {
     /**
      * The package name of the app that installed this app.
      */
-    installerPackageName?: string;
+    installerPackageName?: string | null;
     /**
      * List of keyed app states reported by the app.
      */
@@ -264,27 +272,27 @@ export namespace androidmanagement_v1 {
     /**
      * Package name of the app.
      */
-    packageName?: string;
+    packageName?: string | null;
     /**
      * The SHA-256 hash of the app&#39;s APK file, which can be used to verify the app hasn&#39;t been modified. Each byte of the hash value is represented as a two-digit hexadecimal number.
      */
-    packageSha256Hash?: string;
+    packageSha256Hash?: string | null;
     /**
      * The SHA-1 hash of each android.content.pm.Signature (https://developer.android.com/reference/android/content/pm/Signature.html) associated with the app package. Each byte of each hash value is represented as a two-digit hexadecimal number.
      */
-    signingKeyCertFingerprints?: string[];
+    signingKeyCertFingerprints?: string[] | null;
     /**
      * Application state.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The app version code, which can be used to determine whether one version is more recent than another.
      */
-    versionCode?: number;
+    versionCode?: number | null;
     /**
      * The app version as displayed to the user.
      */
-    versionName?: string;
+    versionName?: string | null;
   }
   /**
    * Settings controlling the behavior of application reports.
@@ -293,7 +301,20 @@ export namespace androidmanagement_v1 {
     /**
      * Whether removed apps are included in application reports.
      */
-    includeRemovedApps?: boolean;
+    includeRemovedApps?: boolean | null;
+  }
+  /**
+   * Id to name association of a app track.
+   */
+  export interface Schema$AppTrackInfo {
+    /**
+     * The track name associated with the trackId, set in the Play Console. The name is modifiable from Play Console.
+     */
+    trackAlias?: string | null;
+    /**
+     * The unmodifiable unique track identifier, taken from the releaseTrackId in the URL of the Play Console page that displays the app’s track information.
+     */
+    trackId?: string | null;
   }
   /**
    * An action to block access to apps and data on a fully managed device or in a work profile. This action also triggers a device or work profile to displays a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified.
@@ -302,7 +323,7 @@ export namespace androidmanagement_v1 {
     /**
      * Number of days the policy is non-compliant before the device or work profile is blocked. To block access immediately, set to 0. blockAfterDays must be less than wipeAfterDays.
      */
-    blockAfterDays?: number;
+    blockAfterDays?: number | null;
   }
   /**
    * A rule for automatically choosing a private key and certificate to authenticate the device to a server.
@@ -311,15 +332,15 @@ export namespace androidmanagement_v1 {
     /**
      * The package names for which outgoing requests are subject to this rule. If no package names are specified, then the rule applies to all packages. For each package name listed, the rule applies to that package and all other packages that shared the same Android UID. The SHA256 hash of the signing key signatures of each package_name will be verified against those provided by Play
      */
-    packageNames?: string[];
+    packageNames?: string[] | null;
     /**
      * The alias of the private key to be used.
      */
-    privateKeyAlias?: string;
+    privateKeyAlias?: string | null;
     /**
      * The URL pattern to match against the URL of the outgoing request. The pattern may contain asterisk (*) wildcards. Any URL is matched if unspecified.
      */
-    urlPattern?: string;
+    urlPattern?: string | null;
   }
   /**
    * A command.
@@ -328,31 +349,31 @@ export namespace androidmanagement_v1 {
     /**
      * The timestamp at which the command was created. The timestamp is automatically generated by the server.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The duration for which the command is valid. The command will expire if not executed by the device during this time. The default duration if unspecified is ten minutes. There is no maximum duration.
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * If the command failed, an error code explaining the failure. This is not set when the command is cancelled by the caller.
      */
-    errorCode?: string;
+    errorCode?: string | null;
     /**
      * For commands of type RESET_PASSWORD, optionally specifies the new password.
      */
-    newPassword?: string;
+    newPassword?: string | null;
     /**
      * For commands of type RESET_PASSWORD, optionally specifies flags.
      */
-    resetPasswordFlags?: string[];
+    resetPasswordFlags?: string[] | null;
     /**
      * The type of the command.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The resource name of the user that owns the device in the form enterprises/{enterpriseId}/users/{userId}. This is automatically generated by the server based on the device the command is sent to.
      */
-    userName?: string;
+    userName?: string | null;
   }
   /**
    * A rule declaring which mitigating actions to take when a device is not compliant with its policy. For every rule, there is always an implicit mitigating action to set policy_compliant to false for the Device resource, and display a message on the device indicating that the device is not compliant with its policy. Other mitigating actions may optionally be taken as well, depending on the field values in the rule.
@@ -365,7 +386,7 @@ export namespace androidmanagement_v1 {
     /**
      * If set to true, the rule includes a mitigating action to disable apps so that the device is effectively disabled, but app data is preserved. If the device is running an app in locked task mode, the app will be closed and a UI showing the reason for non-compliance will be displayed.
      */
-    disableApps?: boolean;
+    disableApps?: boolean | null;
     /**
      * A condition which is satisfied if there exists any matching NonComplianceDetail for the device.
      */
@@ -373,7 +394,7 @@ export namespace androidmanagement_v1 {
     /**
      * If set, the rule includes a mitigating action to disable apps specified in the list, but app data is preserved.
      */
-    packageNamesToDisable?: string[];
+    packageNamesToDisable?: string[] | null;
   }
   /**
    * A device owned by an enterprise. Unless otherwise noted, all fields are read-only and can&#39;t be modified by enterprises.devices.patch.
@@ -382,7 +403,7 @@ export namespace androidmanagement_v1 {
     /**
      * The API level of the Android platform version running on the device.
      */
-    apiLevel?: number;
+    apiLevel?: number | null;
     /**
      * Reports for apps installed on the device. This information is only available when application_reports_enabled is true in the device&#39;s policy.
      */
@@ -390,15 +411,15 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the policy currently applied to the device.
      */
-    appliedPolicyName?: string;
+    appliedPolicyName?: string | null;
     /**
      * The version of the policy currently applied to the device.
      */
-    appliedPolicyVersion?: string;
+    appliedPolicyVersion?: string | null;
     /**
      * The state currently applied to the device.
      */
-    appliedState?: string;
+    appliedState?: string | null;
     /**
      * Device settings information. This information is only available if deviceSettingsEnabled is true in the device&#39;s policy.
      */
@@ -414,15 +435,15 @@ export namespace androidmanagement_v1 {
     /**
      * The time of device enrollment.
      */
-    enrollmentTime?: string;
+    enrollmentTime?: string | null;
     /**
      * If the device was enrolled with an enrollment token with additional data provided, this field contains that data.
      */
-    enrollmentTokenData?: string;
+    enrollmentTokenData?: string | null;
     /**
      * If the device was enrolled with an enrollment token, this field contains the name of the token.
      */
-    enrollmentTokenName?: string;
+    enrollmentTokenName?: string | null;
     /**
      * Detailed information about the device hardware.
      */
@@ -434,19 +455,19 @@ export namespace androidmanagement_v1 {
     /**
      * Deprecated.
      */
-    lastPolicyComplianceReportTime?: string;
+    lastPolicyComplianceReportTime?: string | null;
     /**
      * The last time the device fetched its policy.
      */
-    lastPolicySyncTime?: string;
+    lastPolicySyncTime?: string | null;
     /**
      * The last time the device sent a status report.
      */
-    lastStatusReportTime?: string;
+    lastStatusReportTime?: string | null;
     /**
      * The type of management mode Android Device Policy takes on the device. This influences which policy settings are supported.
      */
-    managementMode?: string;
+    managementMode?: string | null;
     /**
      * Events related to memory and storage measurements in chronological order. This information is only available if memoryInfoEnabled is true in the device&#39;s policy.
      */
@@ -458,7 +479,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Device network information. This information is only available if networkInfoEnabled is true in the device&#39;s policy.
      */
@@ -470,11 +491,11 @@ export namespace androidmanagement_v1 {
     /**
      * Whether the device is compliant with its policy.
      */
-    policyCompliant?: boolean;
+    policyCompliant?: boolean | null;
     /**
      * The name of the policy applied to the device, in the form enterprises/{enterpriseId}/policies/{policyId}. If not specified, the policy_name for the device&#39;s user is applied. This field can be modified by a patch request. You can specify only the policyId when calling enterprises.devices.patch, as long as the policyId doesn’t contain any slashes. The rest of the policy name is inferred.
      */
-    policyName?: string;
+    policyName?: string | null;
     /**
      * Power management events on the device in chronological order. This information is only available if powerManagementEventsEnabled is true in the device&#39;s policy.
      */
@@ -482,7 +503,7 @@ export namespace androidmanagement_v1 {
     /**
      * If the same physical device has been enrolled multiple times, this field contains its previous device names. The serial number is used as the unique identifier to determine if the same physical device has enrolled previously. The names are in chronological order.
      */
-    previousDeviceNames?: string[];
+    previousDeviceNames?: string[] | null;
     /**
      * Device&#39;s security posture value that reflects how secure the device is.
      */
@@ -494,11 +515,11 @@ export namespace androidmanagement_v1 {
     /**
      * The state to be applied to the device. This field can be modified by a patch request. Note that when calling enterprises.devices.patch, ACTIVE and DISABLED are the only allowable values. To enter the device into a DELETED state, call enterprises.devices.delete.
      */
-    state?: string;
+    state?: string | null;
     /**
-     * Map of selected system properties name and value related to the device.
+     * Map of selected system properties name and value related to the device. This information is only available if systemPropertiesEnabled is true in the device&#39;s policy.
      */
-    systemProperties?: {[key: string]: string};
+    systemProperties?: {[key: string]: string} | null;
     /**
      * The user who owns the device.
      */
@@ -506,7 +527,7 @@ export namespace androidmanagement_v1 {
     /**
      * The resource name of the user that owns this device in the form enterprises/{enterpriseId}/users/{userId}.
      */
-    userName?: string;
+    userName?: string | null;
   }
   /**
    * Information about security related device settings on device.
@@ -515,31 +536,31 @@ export namespace androidmanagement_v1 {
     /**
      * Whether ADB (https://developer.android.com/studio/command-line/adb.html) is enabled on the device.
      */
-    adbEnabled?: boolean;
+    adbEnabled?: boolean | null;
     /**
      * Whether developer mode is enabled on the device.
      */
-    developmentSettingsEnabled?: boolean;
+    developmentSettingsEnabled?: boolean | null;
     /**
      * Encryption status from DevicePolicyManager.
      */
-    encryptionStatus?: string;
+    encryptionStatus?: string | null;
     /**
      * Whether the device is secured with PIN/password.
      */
-    isDeviceSecure?: boolean;
+    isDeviceSecure?: boolean | null;
     /**
      * Whether the storage encryption is enabled.
      */
-    isEncrypted?: boolean;
+    isEncrypted?: boolean | null;
     /**
      * Whether installing apps from unknown sources is enabled.
      */
-    unknownSourcesEnabled?: boolean;
+    unknownSourcesEnabled?: boolean | null;
     /**
      * Whether Verify Apps (Google Play Protect (https://support.google.com/googleplay/answer/2812853)) is enabled on the device.
      */
-    verifyAppsEnabled?: boolean;
+    verifyAppsEnabled?: boolean | null;
   }
   /**
    * Device display information.
@@ -548,31 +569,31 @@ export namespace androidmanagement_v1 {
     /**
      * Display density expressed as dots-per-inch.
      */
-    density?: number;
+    density?: number | null;
     /**
      * Unique display id.
      */
-    displayId?: number;
+    displayId?: number | null;
     /**
      * Display height in pixels.
      */
-    height?: number;
+    height?: number | null;
     /**
      * Name of the display.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Refresh rate of the display in frames per second.
      */
-    refreshRate?: number;
+    refreshRate?: number | null;
     /**
      * State of the display.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Display width in pixels.
      */
-    width?: number;
+    width?: number | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
@@ -585,31 +606,31 @@ export namespace androidmanagement_v1 {
     /**
      * Optional, arbitrary data associated with the enrollment token. This could contain, for example, the ID of an org unit the device is assigned to after enrollment. After a device enrolls with the token, this data will be exposed in the enrollment_token_data field of the Device resource. The data must be 1024 characters or less; otherwise, the creation request will fail.
      */
-    additionalData?: string;
+    additionalData?: string | null;
     /**
      * The length of time the enrollment token is valid, ranging from 1 minute to 30 days. If not specified, the default duration is 1 hour.
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * The expiration time of the token. This is a read-only field generated by the server.
      */
-    expirationTimestamp?: string;
+    expirationTimestamp?: string | null;
     /**
      * The name of the enrollment token, which is generated by the server during creation, in the form enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Whether the enrollment token is for one time use only. If the flag is set to true, only one device can use it for registration.
      */
-    oneTimeOnly?: boolean;
+    oneTimeOnly?: boolean | null;
     /**
      * The name of the policy initially applied to the enrolled device, in the form enterprises/{enterpriseId}/policies/{policyId}. If not specified, the policy_name for the device’s user is applied. If user_name is also not specified, enterprises/{enterpriseId}/policies/default is applied by default. When updating this field, you can specify only the policyId as long as the policyId doesn’t contain any slashes. The rest of the policy name will be inferred.
      */
-    policyName?: string;
+    policyName?: string | null;
     /**
      * A JSON string whose UTF-8 representation can be used to generate a QR code to enroll a device with this enrollment token. To enroll a device using NFC, the NFC record must contain a serialized java.util.Properties representation of the properties in the JSON.
      */
-    qrCode?: string;
+    qrCode?: string | null;
     /**
      * The user associated with this enrollment token. If it&#39;s specified when the enrollment token is created and the user does not exist, the user will be created. This field must not contain personally identifiable information. Only the account_identifier field needs to be set.
      */
@@ -617,7 +638,7 @@ export namespace androidmanagement_v1 {
     /**
      * The token value that&#39;s passed to the device and authorizes the device to enroll. This is a read-only field generated by the server.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * The configuration applied to an enterprise.
@@ -626,15 +647,15 @@ export namespace androidmanagement_v1 {
     /**
      * Deprecated and unused.
      */
-    appAutoApprovalEnabled?: boolean;
+    appAutoApprovalEnabled?: boolean | null;
     /**
      * The types of Google Pub/Sub notifications enabled for the enterprise.
      */
-    enabledNotificationTypes?: string[];
+    enabledNotificationTypes?: string[] | null;
     /**
      * The name of the enterprise displayed to users.
      */
-    enterpriseDisplayName?: string;
+    enterpriseDisplayName?: string | null;
     /**
      * An image displayed as a logo during device provisioning. Supported types are: image/bmp, image/gif, image/x-ico, image/jpeg, image/png, image/webp, image/vnd.wap.wbmp, image/x-adobe-dng.
      */
@@ -642,15 +663,15 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the enterprise which is generated by the server during creation, in the form enterprises/{enterpriseId}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A color in RGB format that indicates the predominant color to display in the device management app UI. The color components are stored as follows: (red &lt;&lt; 16) | (green &lt;&lt; 8) | blue, where the value of each component is between 0 and 255, inclusive.
      */
-    primaryColor?: number;
+    primaryColor?: number | null;
     /**
      * The topic that Cloud Pub/Sub notifications are published to, in the form projects/{project}/topics/{topic}. This field is only required if Pub/Sub notifications are enabled.
      */
-    pubsubTopic?: string;
+    pubsubTopic?: string | null;
     /**
      * Sign-in details of the enterprise. Maximum of 1 SigninDetail is supported.
      */
@@ -667,11 +688,11 @@ export namespace androidmanagement_v1 {
     /**
      * The base-64 encoded SHA-256 hash of the content hosted at url. If the content doesn&#39;t match this hash, Android Device Policy won&#39;t use the data.
      */
-    sha256Hash?: string;
+    sha256Hash?: string | null;
     /**
      * The absolute URL to the data, which must use either the http or https scheme. Android Device Policy doesn&#39;t provide any credentials in the GET request, so the URL must be publicly accessible. Including a long, random component in the URL may be used to prevent attackers from discovering the URL.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Information about device hardware. The fields related to temperature thresholds are only available if hardwareStatusEnabled is true in the device&#39;s policy.
@@ -680,59 +701,59 @@ export namespace androidmanagement_v1 {
     /**
      * Battery shutdown temperature thresholds in Celsius for each battery on the device.
      */
-    batteryShutdownTemperatures?: number[];
+    batteryShutdownTemperatures?: number[] | null;
     /**
      * Battery throttling temperature thresholds in Celsius for each battery on the device.
      */
-    batteryThrottlingTemperatures?: number[];
+    batteryThrottlingTemperatures?: number[] | null;
     /**
      * Brand of the device. For example, Google.
      */
-    brand?: string;
+    brand?: string | null;
     /**
      * CPU shutdown temperature thresholds in Celsius for each CPU on the device.
      */
-    cpuShutdownTemperatures?: number[];
+    cpuShutdownTemperatures?: number[] | null;
     /**
      * CPU throttling temperature thresholds in Celsius for each CPU on the device.
      */
-    cpuThrottlingTemperatures?: number[];
+    cpuThrottlingTemperatures?: number[] | null;
     /**
      * Baseband version. For example, MDM9625_104662.22.05.34p.
      */
-    deviceBasebandVersion?: string;
+    deviceBasebandVersion?: string | null;
     /**
      * GPU shutdown temperature thresholds in Celsius for each GPU on the device.
      */
-    gpuShutdownTemperatures?: number[];
+    gpuShutdownTemperatures?: number[] | null;
     /**
      * GPU throttling temperature thresholds in Celsius for each GPU on the device.
      */
-    gpuThrottlingTemperatures?: number[];
+    gpuThrottlingTemperatures?: number[] | null;
     /**
      * Name of the hardware. For example, Angler.
      */
-    hardware?: string;
+    hardware?: string | null;
     /**
      * Manufacturer. For example, Motorola.
      */
-    manufacturer?: string;
+    manufacturer?: string | null;
     /**
      * The model of the device. For example, Asus Nexus 7.
      */
-    model?: string;
+    model?: string | null;
     /**
      * The device serial number.
      */
-    serialNumber?: string;
+    serialNumber?: string | null;
     /**
      * Device skin shutdown temperature thresholds in Celsius.
      */
-    skinShutdownTemperatures?: number[];
+    skinShutdownTemperatures?: number[] | null;
     /**
      * Device skin throttling temperature thresholds in Celsius.
      */
-    skinThrottlingTemperatures?: number[];
+    skinThrottlingTemperatures?: number[] | null;
   }
   /**
    * Hardware status. Temperatures may be compared to the temperature thresholds available in hardwareInfo to determine hardware health.
@@ -741,31 +762,31 @@ export namespace androidmanagement_v1 {
     /**
      * Current battery temperatures in Celsius for each battery on the device.
      */
-    batteryTemperatures?: number[];
+    batteryTemperatures?: number[] | null;
     /**
      * Current CPU temperatures in Celsius for each CPU on the device.
      */
-    cpuTemperatures?: number[];
+    cpuTemperatures?: number[] | null;
     /**
      * CPU usages in percentage for each core available on the device. Usage is 0 for each unplugged core. Empty array implies that CPU usage is not supported in the system.
      */
-    cpuUsages?: number[];
+    cpuUsages?: number[] | null;
     /**
      * The time the measurements were taken.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Fan speeds in RPM for each fan on the device. Empty array means that there are no fans or fan speed is not supported on the system.
      */
-    fanSpeeds?: number[];
+    fanSpeeds?: number[] | null;
     /**
      * Current GPU temperatures in Celsius for each GPU on the device.
      */
-    gpuTemperatures?: number[];
+    gpuTemperatures?: number[] | null;
     /**
      * Current device skin temperatures in Celsius.
      */
-    skinTemperatures?: number[];
+    skinTemperatures?: number[] | null;
   }
   /**
    * Keyed app state reported by the app.
@@ -774,27 +795,27 @@ export namespace androidmanagement_v1 {
     /**
      * The creation time of the app state on the device.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Optionally, a machine-readable value to be read by the EMM. For example, setting values that the admin can choose to query against in the EMM console (e.g. “notify me if the battery_warning data &lt; 10”).
      */
-    data?: string;
+    data?: string | null;
     /**
      * The key for the app state. Acts as a point of reference for what the app is providing state for. For example, when providing managed configuration feedback, this key could be the managed configuration key.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The time the app state was most recently updated.
      */
-    lastUpdateTime?: string;
+    lastUpdateTime?: string | null;
     /**
      * Optionally, a free-form message string to explain the app state. If the state was triggered by a particular value (e.g. a managed configuration value), it should be included in the message.
      */
-    message?: string;
+    message?: string | null;
     /**
      * The severity of the app state.
      */
-    severity?: string;
+    severity?: string | null;
   }
   /**
    * An action to launch an app.
@@ -803,7 +824,7 @@ export namespace androidmanagement_v1 {
     /**
      * Package name of app to be launched
      */
-    packageName?: string;
+    packageName?: string | null;
   }
   /**
    * Response to a request to list devices for a given enterprise.
@@ -816,7 +837,7 @@ export namespace androidmanagement_v1 {
     /**
      * If there are more results, a token to retrieve next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -825,7 +846,7 @@ export namespace androidmanagement_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -838,7 +859,7 @@ export namespace androidmanagement_v1 {
     /**
      * If there are more results, a token to retrieve next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of policies.
      */
@@ -851,7 +872,7 @@ export namespace androidmanagement_v1 {
     /**
      * If there are more results, a token to retrieve next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of web apps.
      */
@@ -864,11 +885,11 @@ export namespace androidmanagement_v1 {
     /**
      * Optional, a map containing &lt;key, value&gt; configuration variables defined for the configuration.
      */
-    configurationVariables?: {[key: string]: string};
+    configurationVariables?: {[key: string]: string} | null;
     /**
      * The ID of the managed configurations template.
      */
-    templateId?: string;
+    templateId?: string | null;
   }
   /**
    * Managed property.
@@ -877,11 +898,11 @@ export namespace androidmanagement_v1 {
     /**
      * The default value of the property. BUNDLE_ARRAY properties don&#39;t have a default value.
      */
-    defaultValue?: any;
+    defaultValue?: any | null;
     /**
      * A longer description of the property, providing more detail of what it affects. Localized.
      */
-    description?: string;
+    description?: string | null;
     /**
      * For CHOICE or MULTISELECT properties, the list of possible entries.
      */
@@ -889,7 +910,7 @@ export namespace androidmanagement_v1 {
     /**
      * The unique key that the app uses to identify the property, e.g. &quot;com.google.android.gm.fieldname&quot;.
      */
-    key?: string;
+    key?: string | null;
     /**
      * For BUNDLE_ARRAY properties, the list of nested properties. A BUNDLE_ARRAY property is at most two levels deep.
      */
@@ -897,11 +918,11 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the property. Localized.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The type of the property.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * An entry of a managed property.
@@ -910,11 +931,11 @@ export namespace androidmanagement_v1 {
     /**
      * The human-readable name of the value. Localized.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The machine-readable value of the entry, which should be used in the configuration. Not localized.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * An event related to memory and storage measurements.
@@ -923,15 +944,15 @@ export namespace androidmanagement_v1 {
     /**
      * The number of free bytes in the medium, or for EXTERNAL_STORAGE_DETECTED, the total capacity in bytes of the storage medium.
      */
-    byteCount?: string;
+    byteCount?: string | null;
     /**
      * The creation time of the event.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Event type.
      */
-    eventType?: string;
+    eventType?: string | null;
   }
   /**
    * Information about device memory and storage.
@@ -940,11 +961,11 @@ export namespace androidmanagement_v1 {
     /**
      * Total internal storage on device in bytes.
      */
-    totalInternalStorage?: string;
+    totalInternalStorage?: string | null;
     /**
      * Total RAM on device in bytes.
      */
-    totalRam?: string;
+    totalRam?: string | null;
   }
   /**
    * Device network info.
@@ -953,19 +974,19 @@ export namespace androidmanagement_v1 {
     /**
      * IMEI number of the GSM device. For example, A1000031212.
      */
-    imei?: string;
+    imei?: string | null;
     /**
      * MEID number of the CDMA device. For example, A00000292788E1.
      */
-    meid?: string;
+    meid?: string | null;
     /**
      * Alphabetic name of current registered operator. For example, Vodafone.
      */
-    networkOperatorName?: string;
+    networkOperatorName?: string | null;
     /**
      * Wi-Fi MAC address of the device. For example, 7c:11:11:11:11:11.
      */
-    wifiMacAddress?: string;
+    wifiMacAddress?: string | null;
   }
   /**
    * Provides detail about non-compliance with a policy setting.
@@ -974,27 +995,27 @@ export namespace androidmanagement_v1 {
     /**
      * If the policy setting could not be applied, the current value of the setting on the device.
      */
-    currentValue?: any;
+    currentValue?: any | null;
     /**
      * For settings with nested fields, if a particular nested field is out of compliance, this specifies the full path to the offending field. The path is formatted in the same way the policy JSON field would be referenced in JavaScript, that is: 1) For object-typed fields, the field name is followed by a dot then by a  subfield name. 2) For array-typed fields, the field name is followed by the array index  enclosed in brackets. For example, to indicate a problem with the url field in the externalData field in the 3rd application, the path would be applications[2].externalData.url
      */
-    fieldPath?: string;
+    fieldPath?: string | null;
     /**
      * If package_name is set and the non-compliance reason is APP_NOT_INSTALLED or APP_NOT_UPDATED, the detailed reason the app can&#39;t be installed or updated.
      */
-    installationFailureReason?: string;
+    installationFailureReason?: string | null;
     /**
      * The reason the device is not in compliance with the setting.
      */
-    nonComplianceReason?: string;
+    nonComplianceReason?: string | null;
     /**
      * The package name indicating which app is out of compliance, if applicable.
      */
-    packageName?: string;
+    packageName?: string | null;
     /**
      * The name of the policy setting. This is the JSON field name of a top-level Policy  field.
      */
-    settingName?: string;
+    settingName?: string | null;
   }
   /**
    * A compliance rule condition which is satisfied if there exists any matching NonComplianceDetail for the device. A NonComplianceDetail matches a NonComplianceDetailCondition if all the fields which are set within the NonComplianceDetailCondition match the corresponding NonComplianceDetail fields.
@@ -1003,15 +1024,15 @@ export namespace androidmanagement_v1 {
     /**
      * The reason the device is not in compliance with the setting. If not set, then this condition matches any reason.
      */
-    nonComplianceReason?: string;
+    nonComplianceReason?: string | null;
     /**
      * The package name of the app that&#39;s out of compliance. If not set, then this condition matches any package name.
      */
-    packageName?: string;
+    packageName?: string | null;
     /**
      * The name of the policy setting. This is the JSON field name of a top-level Policy field. If not set, then this condition matches any setting name.
      */
-    settingName?: string;
+    settingName?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1020,7 +1041,7 @@ export namespace androidmanagement_v1 {
     /**
      * If the value is false, it means the operation is still in progress. If true, the operation is completed, and either error or response is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -1028,15 +1049,15 @@ export namespace androidmanagement_v1 {
     /**
      * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should be a resource name ending with operations/{unique_id}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A list of package names.
@@ -1045,7 +1066,7 @@ export namespace androidmanagement_v1 {
     /**
      * A list of package names.
      */
-    packageNames?: string[];
+    packageNames?: string[] | null;
   }
   /**
    * Requirements for the password used to unlock a device.
@@ -1054,51 +1075,51 @@ export namespace androidmanagement_v1 {
     /**
      * Number of incorrect device-unlock passwords that can be entered before a device is wiped. A value of 0 means there is no restriction.
      */
-    maximumFailedPasswordsForWipe?: number;
+    maximumFailedPasswordsForWipe?: number | null;
     /**
      * Password expiration timeout.
      */
-    passwordExpirationTimeout?: string;
+    passwordExpirationTimeout?: string | null;
     /**
      * The length of the password history. After setting this field, the user won&#39;t be able to enter a new password that is the same as any password in the history. A value of 0 means there is no restriction.
      */
-    passwordHistoryLength?: number;
+    passwordHistoryLength?: number | null;
     /**
      * The minimum allowed password length. A value of 0 means there is no restriction. Only enforced when password_quality is NUMERIC, NUMERIC_COMPLEX, ALPHABETIC, ALPHANUMERIC, or COMPLEX.
      */
-    passwordMinimumLength?: number;
+    passwordMinimumLength?: number | null;
     /**
      * Minimum number of letters required in the password. Only enforced when password_quality is COMPLEX.
      */
-    passwordMinimumLetters?: number;
+    passwordMinimumLetters?: number | null;
     /**
      * Minimum number of lower case letters required in the password. Only enforced when password_quality is COMPLEX.
      */
-    passwordMinimumLowerCase?: number;
+    passwordMinimumLowerCase?: number | null;
     /**
      * Minimum number of non-letter characters (numerical digits or symbols) required in the password. Only enforced when password_quality is COMPLEX.
      */
-    passwordMinimumNonLetter?: number;
+    passwordMinimumNonLetter?: number | null;
     /**
      * Minimum number of numerical digits required in the password. Only enforced when password_quality is COMPLEX.
      */
-    passwordMinimumNumeric?: number;
+    passwordMinimumNumeric?: number | null;
     /**
      * Minimum number of symbols required in the password. Only enforced when password_quality is COMPLEX.
      */
-    passwordMinimumSymbols?: number;
+    passwordMinimumSymbols?: number | null;
     /**
      * Minimum number of upper case letters required in the password. Only enforced when password_quality is COMPLEX.
      */
-    passwordMinimumUpperCase?: number;
+    passwordMinimumUpperCase?: number | null;
     /**
      * The required password quality.
      */
-    passwordQuality?: string;
+    passwordQuality?: string | null;
     /**
      * The scope that the password requirement applies to.
      */
-    passwordScope?: string;
+    passwordScope?: string | null;
   }
   /**
    * Configuration for an Android permission and its grant state.
@@ -1107,11 +1128,11 @@ export namespace androidmanagement_v1 {
     /**
      * The Android permission or group, e.g. android.permission.READ_CALENDAR or android.permission_group.CALENDAR.
      */
-    permission?: string;
+    permission?: string | null;
     /**
      * The policy for granting the permission.
      */
-    policy?: string;
+    policy?: string | null;
   }
   /**
    * A default activity for handling intents that match a particular intent filter. Note: To set up a kiosk, use InstallType to KIOSK rather than use persistent preferred activities.
@@ -1120,15 +1141,15 @@ export namespace androidmanagement_v1 {
     /**
      * The intent actions to match in the filter. If any actions are included in the filter, then an intent&#39;s action must be one of those values for it to match. If no actions are included, the intent action is ignored.
      */
-    actions?: string[];
+    actions?: string[] | null;
     /**
      * The intent categories to match in the filter. An intent includes the categories that it requires, all of which must be included in the filter in order to match. In other words, adding a category to the filter has no impact on matching unless that category is specified in the intent.
      */
-    categories?: string[];
+    categories?: string[] | null;
     /**
      * The activity that should be the default intent handler. This should be an Android component name, e.g. com.android.enterprise.app/.MainActivity. Alternatively, the value may be the package name of an app, which causes Android Device Policy to choose an appropriate activity from the app to handle the intent.
      */
-    receiverActivity?: string;
+    receiverActivity?: string | null;
   }
   /**
    * A policy resources represents a group settings that govern the behavior of a managed device and the apps installed on it.
@@ -1137,15 +1158,15 @@ export namespace androidmanagement_v1 {
     /**
      * Account types that can&#39;t be managed by the user.
      */
-    accountTypesWithManagementDisabled?: string[];
+    accountTypesWithManagementDisabled?: string[] | null;
     /**
      * Whether adding new users and profiles is disabled.
      */
-    addUserDisabled?: boolean;
+    addUserDisabled?: boolean | null;
     /**
      * Whether adjusting the master volume is disabled.
      */
-    adjustVolumeDisabled?: boolean;
+    adjustVolumeDisabled?: boolean | null;
     /**
      * Configuration for an always-on VPN connection. Use with vpn_config_disabled to prevent modification of this setting.
      */
@@ -1153,11 +1174,11 @@ export namespace androidmanagement_v1 {
     /**
      * The app tracks for Android Device Policy the device can access. The device receives the latest version among all accessible tracks. If no tracks are specified, then the device only uses the production track.
      */
-    androidDevicePolicyTracks?: string[];
+    androidDevicePolicyTracks?: string[] | null;
     /**
      * The app auto update policy, which controls when automatic app updates can be applied.
      */
-    appAutoUpdatePolicy?: string;
+    appAutoUpdatePolicy?: string | null;
     /**
      * Policy applied to apps.
      */
@@ -1165,31 +1186,31 @@ export namespace androidmanagement_v1 {
     /**
      * Whether auto time is required, which prevents the user from manually setting the date and time.
      */
-    autoTimeRequired?: boolean;
+    autoTimeRequired?: boolean | null;
     /**
      * Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.
      */
-    blockApplicationsEnabled?: boolean;
+    blockApplicationsEnabled?: boolean | null;
     /**
      * Whether configuring bluetooth is disabled.
      */
-    bluetoothConfigDisabled?: boolean;
+    bluetoothConfigDisabled?: boolean | null;
     /**
      * Whether bluetooth contact sharing is disabled.
      */
-    bluetoothContactSharingDisabled?: boolean;
+    bluetoothContactSharingDisabled?: boolean | null;
     /**
      * Whether bluetooth is disabled. Prefer this setting over bluetooth_config_disabled because bluetooth_config_disabled can be bypassed by the user.
      */
-    bluetoothDisabled?: boolean;
+    bluetoothDisabled?: boolean | null;
     /**
      * Whether all cameras on the device are disabled.
      */
-    cameraDisabled?: boolean;
+    cameraDisabled?: boolean | null;
     /**
      * Whether configuring cell broadcast is disabled.
      */
-    cellBroadcastsConfigDisabled?: boolean;
+    cellBroadcastsConfigDisabled?: boolean | null;
     /**
      * Rules for automatically choosing a private key and certificate to authenticate the device to a server. The rules are ordered by increasing precedence, so if an outgoing request matches more than one rule, the last rule defines which private key to use.
      */
@@ -1201,23 +1222,23 @@ export namespace androidmanagement_v1 {
     /**
      * Whether creating windows besides app windows is disabled.
      */
-    createWindowsDisabled?: boolean;
+    createWindowsDisabled?: boolean | null;
     /**
      * Whether configuring user credentials is disabled.
      */
-    credentialsConfigDisabled?: boolean;
+    credentialsConfigDisabled?: boolean | null;
     /**
      * Whether roaming data services are disabled.
      */
-    dataRoamingDisabled?: boolean;
+    dataRoamingDisabled?: boolean | null;
     /**
      * Whether the user is allowed to enable debugging features.
      */
-    debuggingFeaturesAllowed?: boolean;
+    debuggingFeaturesAllowed?: boolean | null;
     /**
      * The default permission policy for runtime permission requests.
      */
-    defaultPermissionPolicy?: string;
+    defaultPermissionPolicy?: string | null;
     /**
      * The device owner information to be shown on the lock screen.
      */
@@ -1225,47 +1246,47 @@ export namespace androidmanagement_v1 {
     /**
      * Whether encryption is enabled
      */
-    encryptionPolicy?: string;
+    encryptionPolicy?: string | null;
     /**
      * Whether app verification is force-enabled.
      */
-    ensureVerifyAppsEnabled?: boolean;
+    ensureVerifyAppsEnabled?: boolean | null;
     /**
      * Whether factory resetting from settings is disabled.
      */
-    factoryResetDisabled?: boolean;
+    factoryResetDisabled?: boolean | null;
     /**
      * Email addresses of device administrators for factory reset protection. When the device is factory reset, it will require one of these admins to log in with the Google account email and password to unlock the device. If no admins are specified, the device won&#39;t provide factory reset protection.
      */
-    frpAdminEmails?: string[];
+    frpAdminEmails?: string[] | null;
     /**
      * Whether the user is allowed to have fun. Controls whether the Easter egg game in Settings is disabled.
      */
-    funDisabled?: boolean;
+    funDisabled?: boolean | null;
     /**
      * Whether user installation of apps is disabled.
      */
-    installAppsDisabled?: boolean;
+    installAppsDisabled?: boolean | null;
     /**
      * Whether the user is allowed to enable the &quot;Unknown Sources&quot; setting, which allows installation of apps from unknown sources.
      */
-    installUnknownSourcesAllowed?: boolean;
+    installUnknownSourcesAllowed?: boolean | null;
     /**
      * Whether the keyguard is disabled.
      */
-    keyguardDisabled?: boolean;
+    keyguardDisabled?: boolean | null;
     /**
      * Disabled keyguard customizations, such as widgets.
      */
-    keyguardDisabledFeatures?: string[];
+    keyguardDisabledFeatures?: string[] | null;
     /**
      * Whether the kiosk custom launcher is enabled. This replaces the home screen with a launcher that locks down the device to the apps installed via the applications setting. Apps appear on a single page in alphabetical order. The status bar is disabled when this is set.
      */
-    kioskCustomLauncherEnabled?: boolean;
+    kioskCustomLauncherEnabled?: boolean | null;
     /**
      * The degree of location detection enabled. The user may change the value unless the user is otherwise blocked from accessing device settings.
      */
-    locationMode?: string;
+    locationMode?: string | null;
     /**
      * A message displayed to the user in the device administators settings screen.
      */
@@ -1273,47 +1294,47 @@ export namespace androidmanagement_v1 {
     /**
      * Maximum time in milliseconds for user activity until the device locks. A value of 0 means there is no restriction.
      */
-    maximumTimeToLock?: string;
+    maximumTimeToLock?: string | null;
     /**
      * The minimum allowed Android API level.
      */
-    minimumApiLevel?: number;
+    minimumApiLevel?: number | null;
     /**
      * Whether configuring mobile networks is disabled.
      */
-    mobileNetworksConfigDisabled?: boolean;
+    mobileNetworksConfigDisabled?: boolean | null;
     /**
      * Whether adding or removing accounts is disabled.
      */
-    modifyAccountsDisabled?: boolean;
+    modifyAccountsDisabled?: boolean | null;
     /**
      * Whether the user mounting physical external media is disabled.
      */
-    mountPhysicalMediaDisabled?: boolean;
+    mountPhysicalMediaDisabled?: boolean | null;
     /**
      * The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Whether the network escape hatch is enabled. If a network connection can&#39;t be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.
      */
-    networkEscapeHatchEnabled?: boolean;
+    networkEscapeHatchEnabled?: boolean | null;
     /**
      * Whether resetting network settings is disabled.
      */
-    networkResetDisabled?: boolean;
+    networkResetDisabled?: boolean | null;
     /**
      * Network configuration for the device. See configure networks for more information.
      */
-    openNetworkConfiguration?: {[key: string]: any};
+    openNetworkConfiguration?: {[key: string]: any} | null;
     /**
      * Whether using NFC to beam data from apps is disabled.
      */
-    outgoingBeamDisabled?: boolean;
+    outgoingBeamDisabled?: boolean | null;
     /**
      * Whether outgoing calls are disabled.
      */
-    outgoingCallsDisabled?: boolean;
+    outgoingCallsDisabled?: boolean | null;
     /**
      * Password requirement policies. Different policies can be set for work profile or fully managed devices by setting the password_scope field in the policy.
      */
@@ -1327,6 +1348,10 @@ export namespace androidmanagement_v1 {
      */
     permissionGrants?: Schema$PermissionGrant[];
     /**
+     * Specifies permitted accessibility services. If the field is not set, any accessibility service can be used. If the field is set, only the accessibility services in this list and the system&#39;s built-in accessibility services can be used. In particular, if the field is set to empty, only the system&#39;s built-in accessibility services can be used.
+     */
+    permittedAccessibilityServices?: Schema$PackageNameList;
+    /**
      * If present, only the input methods provided by packages in this list are permitted. If this field is present, but the list is empty, then only system input methods are permitted.
      */
     permittedInputMethods?: Schema$PackageNameList;
@@ -1337,7 +1362,7 @@ export namespace androidmanagement_v1 {
     /**
      * This mode controls which apps are available to the user in the Play Store and the behavior on the device when apps are removed from the policy.
      */
-    playStoreMode?: string;
+    playStoreMode?: string | null;
     /**
      * Rules that define the behavior when a particular policy can not be applied on device
      */
@@ -1345,7 +1370,7 @@ export namespace androidmanagement_v1 {
     /**
      * Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable.
      */
-    privateKeySelectionEnabled?: boolean;
+    privateKeySelectionEnabled?: boolean | null;
     /**
      * The network-independent global HTTP proxy. Typically proxies should be configured per-network in open_network_configuration. However for unusual configurations like general internal filtering a global HTTP proxy may be useful. If the proxy is not accessible, network access may break. The global proxy is only a recommendation and some apps may ignore it.
      */
@@ -1353,15 +1378,15 @@ export namespace androidmanagement_v1 {
     /**
      * Whether removing other users is disabled.
      */
-    removeUserDisabled?: boolean;
+    removeUserDisabled?: boolean | null;
     /**
      * Whether rebooting the device into safe boot is disabled.
      */
-    safeBootDisabled?: boolean;
+    safeBootDisabled?: boolean | null;
     /**
      * Whether screen capture is disabled.
      */
-    screenCaptureDisabled?: boolean;
+    screenCaptureDisabled?: boolean | null;
     /**
      * Actions to take during the setup process.
      */
@@ -1369,15 +1394,15 @@ export namespace androidmanagement_v1 {
     /**
      * Whether changing the user icon is disabled.
      */
-    setUserIconDisabled?: boolean;
+    setUserIconDisabled?: boolean | null;
     /**
      * Whether changing the wallpaper is disabled.
      */
-    setWallpaperDisabled?: boolean;
+    setWallpaperDisabled?: boolean | null;
     /**
      * Whether location sharing is disabled.
      */
-    shareLocationDisabled?: boolean;
+    shareLocationDisabled?: boolean | null;
     /**
      * A message displayed to the user in the settings screen wherever functionality has been disabled by the admin.
      */
@@ -1385,15 +1410,15 @@ export namespace androidmanagement_v1 {
     /**
      * Flag to skip hints on the first use. Enterprise admin can enable the system recommendation for apps to skip their user tutorial and other introductory hints on first start-up.
      */
-    skipFirstUseHintsEnabled?: boolean;
+    skipFirstUseHintsEnabled?: boolean | null;
     /**
      * Whether sending and receiving SMS messages is disabled.
      */
-    smsDisabled?: boolean;
+    smsDisabled?: boolean | null;
     /**
      * Whether the status bar is disabled. This disables notifications, quick settings, and other screen overlays that allow escape from full-screen mode. DEPRECATED. To disable the status bar on a kiosk device, use InstallType KIOSK or kioskCustomLauncherEnabled.
      */
-    statusBarDisabled?: boolean;
+    statusBarDisabled?: boolean | null;
     /**
      * Status reporting settings
      */
@@ -1401,7 +1426,7 @@ export namespace androidmanagement_v1 {
     /**
      * The battery plugged in modes for which the device stays on. When using this setting, it is recommended to clear maximum_time_to_lock so that the device doesn&#39;t lock itself while it stays on.
      */
-    stayOnPluggedModes?: string[];
+    stayOnPluggedModes?: string[] | null;
     /**
      * The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well.
      */
@@ -1409,39 +1434,39 @@ export namespace androidmanagement_v1 {
     /**
      * Whether configuring tethering and portable hotspots is disabled.
      */
-    tetheringConfigDisabled?: boolean;
+    tetheringConfigDisabled?: boolean | null;
     /**
      * Whether user uninstallation of applications is disabled.
      */
-    uninstallAppsDisabled?: boolean;
+    uninstallAppsDisabled?: boolean | null;
     /**
      * Whether the microphone is muted and adjusting microphone volume is disabled.
      */
-    unmuteMicrophoneDisabled?: boolean;
+    unmuteMicrophoneDisabled?: boolean | null;
     /**
      * Whether transferring files over USB is disabled.
      */
-    usbFileTransferDisabled?: boolean;
+    usbFileTransferDisabled?: boolean | null;
     /**
      * Whether USB storage is enabled. Deprecated.
      */
-    usbMassStorageEnabled?: boolean;
+    usbMassStorageEnabled?: boolean | null;
     /**
      * The version of the policy. This is a read-only field. The version is incremented each time the policy is updated.
      */
-    version?: string;
+    version?: string | null;
     /**
      * Whether configuring VPN is disabled.
      */
-    vpnConfigDisabled?: boolean;
+    vpnConfigDisabled?: boolean | null;
     /**
      * Whether configuring Wi-Fi access points is disabled.
      */
-    wifiConfigDisabled?: boolean;
+    wifiConfigDisabled?: boolean | null;
     /**
      * DEPRECATED - Use wifi_config_disabled.
      */
-    wifiConfigsLockdownEnabled?: boolean;
+    wifiConfigsLockdownEnabled?: boolean | null;
   }
   /**
    * A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName.
@@ -1454,24 +1479,24 @@ export namespace androidmanagement_v1 {
     /**
      * The top-level policy to enforce. For example, applications or passwordPolicies.
      */
-    settingName?: string;
+    settingName?: string | null;
     /**
      * An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified.
      */
     wipeAction?: Schema$WipeAction;
   }
   /**
-   * Detail that provides further information if the device is not in the most secure state.
+   * Additional details regarding the security posture of the device.
    */
   export interface Schema$PostureDetail {
     /**
-     * Corresponding pieces of advice to mitigate the security risk.
+     * Corresponding admin-facing advice to mitigate this security risk and improve the security posture of the device.
      */
     advice?: Schema$UserFacingMessage[];
     /**
-     * The risk that makes the device not in the most secure state.
+     * A specific security risk that negatively affects the security posture of the device.
      */
-    securityRisk?: string;
+    securityRisk?: string | null;
   }
   /**
    * A power management event.
@@ -1480,15 +1505,15 @@ export namespace androidmanagement_v1 {
     /**
      * For BATTERY_LEVEL_COLLECTED events, the battery level as a percentage.
      */
-    batteryLevel?: number;
+    batteryLevel?: number | null;
     /**
      * The creation time of the event.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Event type.
      */
-    eventType?: string;
+    eventType?: string | null;
   }
   /**
    * Configuration info for an HTTP proxy. For a direct proxy, set the host, port, and excluded_hosts fields. For a PAC script proxy, set the pac_uri field.
@@ -1497,30 +1522,30 @@ export namespace androidmanagement_v1 {
     /**
      * For a direct proxy, the hosts for which the proxy is bypassed. The host names may contain wildcards such as *.example.com.
      */
-    excludedHosts?: string[];
+    excludedHosts?: string[] | null;
     /**
      * The host of the direct proxy.
      */
-    host?: string;
+    host?: string | null;
     /**
      * The URI of the PAC script used to configure the proxy.
      */
-    pacUri?: string;
+    pacUri?: string | null;
     /**
      * The port of the direct proxy.
      */
-    port?: number;
+    port?: number | null;
   }
   /**
-   * . Device&#39;s security posture value that reflects how secure the device is.
+   * The security posture of the device, as determined by the current device state and the policies applied.
    */
   export interface Schema$SecurityPosture {
     /**
      * Device&#39;s security posture value.
      */
-    devicePosture?: string;
+    devicePosture?: string | null;
     /**
-     * Details that provide further information if the device is not in the most secure state.
+     * Additional details regarding the security posture of the device.
      */
     postureDetails?: Schema$PostureDetail[];
   }
@@ -1548,15 +1573,15 @@ export namespace androidmanagement_v1 {
     /**
      * A JSON string whose UTF-8 representation can be used to generate a QR code to enroll a device with this enrollment token. To enroll a device using NFC, the NFC record must contain a serialized java.util.Properties representation of the properties in the JSON. This is a read-only field generated by the server.
      */
-    qrCode?: string;
+    qrCode?: string | null;
     /**
      * An enterprise wide enrollment token used to trigger custom sign-in flow. This is a read-only field generated by the server.
      */
-    signinEnrollmentToken?: string;
+    signinEnrollmentToken?: string | null;
     /**
      * Sign-in URL for authentication when device is provisioned with a sign-in enrollment token. The sign-in endpoint should finish authentication flow with a URL in the form of https://enterprise.google.com/android/enroll?et=&lt;token&gt; for a successful login, or https://enterprise.google.com/android/enroll/invalid for a failed login.
      */
-    signinUrl?: string;
+    signinUrl?: string | null;
   }
   /**
    * An enterprise signup URL.
@@ -1565,11 +1590,11 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the resource. Use this value in the signupUrl field when calling enterprises.create to complete the enterprise signup flow.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A URL where an enterprise admin can register their enterprise. The page can&#39;t be rendered in an iframe.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * Information about device software.
@@ -1578,43 +1603,43 @@ export namespace androidmanagement_v1 {
     /**
      * Android build ID string meant for displaying to the user. For example, shamu-userdebug 6.0.1 MOB30I 2756745 dev-keys.
      */
-    androidBuildNumber?: string;
+    androidBuildNumber?: string | null;
     /**
      * Build time.
      */
-    androidBuildTime?: string;
+    androidBuildTime?: string | null;
     /**
      * The Android Device Policy app version code.
      */
-    androidDevicePolicyVersionCode?: number;
+    androidDevicePolicyVersionCode?: number | null;
     /**
      * The Android Device Policy app version as displayed to the user.
      */
-    androidDevicePolicyVersionName?: string;
+    androidDevicePolicyVersionName?: string | null;
     /**
      * The user-visible Android version string. For example, 6.0.1.
      */
-    androidVersion?: string;
+    androidVersion?: string | null;
     /**
      * The system bootloader version number, e.g. 0.6.7.
      */
-    bootloaderVersion?: string;
+    bootloaderVersion?: string | null;
     /**
      * SHA-256 hash of android.content.pm.Signature (https://developer.android.com/reference/android/content/pm/Signature.html) associated with the system package, which can be used to verify that the system build hasn&#39;t been modified.
      */
-    deviceBuildSignature?: string;
+    deviceBuildSignature?: string | null;
     /**
      * Kernel version, for example, 2.6.32.9-g103d848.
      */
-    deviceKernelVersion?: string;
+    deviceKernelVersion?: string | null;
     /**
      * An IETF BCP 47 language code for the primary locale on the device.
      */
-    primaryLanguageCode?: string;
+    primaryLanguageCode?: string | null;
     /**
      * Security patch level, e.g. 2016-05-01.
      */
-    securityPatchLevel?: string;
+    securityPatchLevel?: string | null;
   }
   /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
@@ -1623,15 +1648,15 @@ export namespace androidmanagement_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Settings controlling the behavior of status reports.
@@ -1644,39 +1669,39 @@ export namespace androidmanagement_v1 {
     /**
      * Whether app reports are enabled.
      */
-    applicationReportsEnabled?: boolean;
+    applicationReportsEnabled?: boolean | null;
     /**
      * Whether device settings reporting is enabled.
      */
-    deviceSettingsEnabled?: boolean;
+    deviceSettingsEnabled?: boolean | null;
     /**
      * Whether displays reporting is enabled.
      */
-    displayInfoEnabled?: boolean;
+    displayInfoEnabled?: boolean | null;
     /**
      * Whether hardware status reporting is enabled.
      */
-    hardwareStatusEnabled?: boolean;
+    hardwareStatusEnabled?: boolean | null;
     /**
      * Whether memory reporting is enabled.
      */
-    memoryInfoEnabled?: boolean;
+    memoryInfoEnabled?: boolean | null;
     /**
      * Whether network info reporting is enabled.
      */
-    networkInfoEnabled?: boolean;
+    networkInfoEnabled?: boolean | null;
     /**
      * Whether power management event reporting is enabled.
      */
-    powerManagementEventsEnabled?: boolean;
+    powerManagementEventsEnabled?: boolean | null;
     /**
      * Whether software info reporting is enabled.
      */
-    softwareInfoEnabled?: boolean;
+    softwareInfoEnabled?: boolean | null;
     /**
      * Whether system properties reporting is enabled.
      */
-    systemPropertiesEnabled?: boolean;
+    systemPropertiesEnabled?: boolean | null;
   }
   /**
    * Configuration for managing system updates
@@ -1685,15 +1710,15 @@ export namespace androidmanagement_v1 {
     /**
      * If the type is WINDOWED, the end of the maintenance window, measured as the number of minutes after midnight in device&#39;s local time. This value must be between 0 and 1439, inclusive. If this value is less than start_minutes, then the maintenance window spans midnight. If the maintenance window specified is smaller than 30 minutes, the actual window is extended to 30 minutes beyond the start time.
      */
-    endMinutes?: number;
+    endMinutes?: number | null;
     /**
      * If the type is WINDOWED, the start of the maintenance window, measured as the number of minutes after midnight in the device&#39;s local time. This value must be between 0 and 1439, inclusive.
      */
-    startMinutes?: number;
+    startMinutes?: number | null;
     /**
      * The type of system update to configure.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A terms and conditions page to be accepted during provisioning.
@@ -1715,7 +1740,7 @@ export namespace androidmanagement_v1 {
     /**
      * A unique identifier you create for this user, such as user342 or asset#44418. This field must be set when the user is created and can&#39;t be updated. This field must not contain personally identifiable information (PII). This identifier must be 1024 characters or less; otherwise, the update policy request will fail.
      */
-    accountIdentifier?: string;
+    accountIdentifier?: string | null;
   }
   /**
    * Provides a user-facing message with locale info. The maximum message length is 4096 characters.
@@ -1724,11 +1749,11 @@ export namespace androidmanagement_v1 {
     /**
      * The default message displayed if no localized message is specified or the user&#39;s locale doesn&#39;t match with any of the localized messages. A default message must be provided if any localized messages are provided.
      */
-    defaultMessage?: string;
+    defaultMessage?: string | null;
     /**
      * A map containing &lt;locale, message&gt; pairs, where locale is a well-formed BCP 47 language (https://www.w3.org/International/articles/language-tags/) code, such as en-US, es-ES, or fr.
      */
-    localizedMessages?: {[key: string]: string};
+    localizedMessages?: {[key: string]: string} | null;
   }
   /**
    * A web app.
@@ -1737,7 +1762,7 @@ export namespace androidmanagement_v1 {
     /**
      * The display mode of the web app.
      */
-    displayMode?: string;
+    displayMode?: string | null;
     /**
      * A list of icons for the web app. Must have at least one element.
      */
@@ -1745,19 +1770,19 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the web app, which is generated by the server during creation in the form enterprises/{enterpriseId}/webApps/{packageName}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The start URL, i.e. the URL that should load when the user opens the application.
      */
-    startUrl?: string;
+    startUrl?: string | null;
     /**
      * The title of the web app as displayed to the user (e.g., amongst a list of other applications, or as a label for an icon).
      */
-    title?: string;
+    title?: string | null;
     /**
      * The current version of the app.Note that the version can automatically increase during the lifetime of the web app, while Google does internal housekeeping to keep the web app up-to-date.
      */
-    versionCode?: string;
+    versionCode?: string | null;
   }
   /**
    * An icon for a web app. Supported formats are: png, jpg and webp.
@@ -1766,7 +1791,7 @@ export namespace androidmanagement_v1 {
     /**
      * The actual bytes of the image in a base64url encoded string (c.f. RFC4648, section 5 &quot;Base 64 Encoding with URL and Filename Safe Alphabet&quot;). &lt;ul&gt; &lt;li&gt;The image type can be png or jpg. &lt;li&gt;The image should ideally be square. &lt;li&gt;The image should ideally have a size of 512x512. &lt;/ul&gt;
      */
-    imageData?: string;
+    imageData?: string | null;
   }
   /**
    * A web token used to access the managed Google Play iframe.
@@ -1775,19 +1800,19 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the web token, which is generated by the server during creation in the form enterprises/{enterpriseId}/webTokens/{webTokenId}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The URL of the parent frame hosting the iframe with the embedded UI. To prevent XSS, the iframe may not be hosted at other URLs. The URL must use the https scheme.
      */
-    parentFrameUrl?: string;
+    parentFrameUrl?: string | null;
     /**
      * Permissions available to an admin in the embedded UI. An admin must have all of these permissions in order to view the UI. This field is deprecated.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
     /**
      * The token value which is used in the hosting page to generate the iframe with the embedded UI. This is a read-only field generated by the server.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * An action to reset a fully managed device or delete a work profile. Note: blockAction must also be specified.
@@ -1796,11 +1821,11 @@ export namespace androidmanagement_v1 {
     /**
      * Whether the factory-reset protection data is preserved on the device. This setting doesn’t apply to work profiles.
      */
-    preserveFrp?: boolean;
+    preserveFrp?: boolean | null;
     /**
      * Number of days the policy is non-compliant before the device or work profile is wiped. wipeAfterDays must be greater than blockAfterDays.
      */
-    wipeAfterDays?: number;
+    wipeAfterDays?: number | null;
   }
 
   export class Resource$Enterprises {

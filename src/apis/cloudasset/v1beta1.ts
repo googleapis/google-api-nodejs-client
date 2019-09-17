@@ -128,7 +128,7 @@ export namespace cloudasset_v1beta1 {
     /**
      * Type of the asset. Example: &quot;google.compute.Disk&quot;.
      */
-    assetType?: string;
+    assetType?: string | null;
     /**
      * Representation of the actual Cloud IAM policy set on a cloud resource. For each resource, there must be at most one Cloud IAM policy set on it.
      */
@@ -136,7 +136,7 @@ export namespace cloudasset_v1beta1 {
     /**
      * The full name of the asset. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Representation of the resource.
      */
@@ -153,7 +153,7 @@ export namespace cloudasset_v1beta1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
@@ -162,11 +162,11 @@ export namespace cloudasset_v1beta1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Batch get assets history response.
@@ -188,11 +188,11 @@ export namespace cloudasset_v1beta1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * Export asset request.
@@ -201,11 +201,11 @@ export namespace cloudasset_v1beta1 {
     /**
      * A list of asset types of which to take a snapshot for. For example: &quot;google.compute.Disk&quot;. If specified, only matching assets will be returned. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview) for all supported asset types.
      */
-    assetTypes?: string[];
+    assetTypes?: string[] | null;
     /**
      * Asset content type. If not specified, no content but the asset name will be returned.
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * Required. Output configuration indicating where the results will be output to. All results will be in newline delimited JSON format.
      */
@@ -213,7 +213,7 @@ export namespace cloudasset_v1beta1 {
     /**
      * Timestamp to take an asset snapshot. This can only be set to a timestamp between 2018-10-02 UTC (inclusive) and the current time. If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
      */
-    readTime?: string;
+    readTime?: string | null;
   }
   /**
    * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
@@ -222,19 +222,19 @@ export namespace cloudasset_v1beta1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * A Cloud Storage location.
@@ -243,11 +243,11 @@ export namespace cloudasset_v1beta1 {
     /**
      * The uri of the Cloud Storage object. It&#39;s the same uri that is used by gsutil. For example: &quot;gs://bucket_name/object_name&quot;. See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
      */
-    uri?: string;
+    uri?: string | null;
     /**
      * The uri prefix of all generated Cloud Storage objects. For example: &quot;gs://bucket_name/object_name_prefix&quot;. Each object uri is in format: &quot;gs://bucket_name/object_name_prefix/&lt;asset type&gt;/&lt;shard number&gt; and only contains assets for that type. &lt;shard number&gt; starts from 0. For example: &quot;gs://bucket_name/object_name_prefix/google.compute.disk/0&quot; is the first shard of output objects containing all google.compute.disk assets. An INVALID_ARGUMENT error will be returned if file with the same name &quot;gs://bucket_name/object_name_prefix&quot; already exists.
      */
-    uriPrefix?: string;
+    uriPrefix?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -256,7 +256,7 @@ export namespace cloudasset_v1beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -264,15 +264,15 @@ export namespace cloudasset_v1beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Output configuration for export assets destination.
@@ -298,11 +298,11 @@ export namespace cloudasset_v1beta1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Representation of a cloud resource.
@@ -311,27 +311,27 @@ export namespace cloudasset_v1beta1 {
     /**
      * The content of the resource, in which some sensitive fields are scrubbed away and may not be present.
      */
-    data?: {[key: string]: any};
+    data?: {[key: string]: any} | null;
     /**
      * The URL of the discovery document containing the resource&#39;s JSON schema. For example: `&quot;https://www.googleapis.com/discovery/v1/apis/compute/v1/rest&quot;`. It will be left unspecified for resources without a discovery-based API, such as Cloud Bigtable.
      */
-    discoveryDocumentUri?: string;
+    discoveryDocumentUri?: string | null;
     /**
      * The JSON schema name listed in the discovery document. Example: &quot;Project&quot;. It will be left unspecified for resources (such as Cloud Bigtable) without a discovery-based API.
      */
-    discoveryName?: string;
+    discoveryName?: string | null;
     /**
      * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.  For GCP assets, it is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). For example: `&quot;//cloudresourcemanager.googleapis.com/projects/my_project_123&quot;`.  For third-party assets, it is up to the users to define.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * The REST URL for accessing the resource. An HTTP GET operation using this URL returns the resource itself. Example: `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`. It will be left unspecified for resources without a REST API.
      */
-    resourceUrl?: string;
+    resourceUrl?: string | null;
     /**
      * The API version. Example: &quot;v1&quot;.
      */
-    version?: string;
+    version?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -340,15 +340,15 @@ export namespace cloudasset_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Temporal asset. In addition to the asset, the temporal asset includes the status of the asset and valid from and to time of it.
@@ -361,7 +361,7 @@ export namespace cloudasset_v1beta1 {
     /**
      * If the asset is deleted or not.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * The time window when the asset data and state was observed.
      */
@@ -374,11 +374,11 @@ export namespace cloudasset_v1beta1 {
     /**
      * End time of the time window (inclusive). Current timestamp if not specified.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Start time of the time window (exclusive).
      */
-    startTime?: string;
+    startTime?: string | null;
   }
 
   export class Resource$Folders {
