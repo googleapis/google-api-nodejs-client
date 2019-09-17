@@ -108,11 +108,11 @@ export namespace playcustomapp_v1 {
     /**
      * Default listing language in BCP 47 format.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Title for the Android app.
      */
-    title?: string;
+    title?: string | null;
   }
 
   export class Resource$Accounts {

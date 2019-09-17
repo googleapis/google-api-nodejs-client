@@ -126,15 +126,15 @@ export namespace drive_v3 {
     /**
      * Whether the user has installed the requesting app.
      */
-    appInstalled?: boolean;
+    appInstalled?: boolean | null;
     /**
      * Whether the user can create shared drives.
      */
-    canCreateDrives?: boolean;
+    canCreateDrives?: boolean | null;
     /**
      * Deprecated - use canCreateDrives instead.
      */
-    canCreateTeamDrives?: boolean;
+    canCreateTeamDrives?: boolean | null;
     /**
      * A list of themes that are supported for shared drives.
      */
@@ -142,31 +142,31 @@ export namespace drive_v3 {
       backgroundImageLink?: string;
       colorRgb?: string;
       id?: string;
-    }>;
+    }> | null;
     /**
      * A map of source MIME type to possible targets for all supported exports.
      */
-    exportFormats?: {[key: string]: string[]};
+    exportFormats?: {[key: string]: string[]} | null;
     /**
      * The currently supported folder colors as RGB hex strings.
      */
-    folderColorPalette?: string[];
+    folderColorPalette?: string[] | null;
     /**
      * A map of source MIME type to possible targets for all supported imports.
      */
-    importFormats?: {[key: string]: string[]};
+    importFormats?: {[key: string]: string[]} | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#about&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * A map of maximum import sizes by MIME type, in bytes.
      */
-    maxImportSizes?: {[key: string]: string};
+    maxImportSizes?: {[key: string]: string} | null;
     /**
      * The maximum upload size in bytes.
      */
-    maxUploadSize?: string;
+    maxUploadSize?: string | null;
     /**
      * The user&#39;s storage quota limits and usage. All fields are measured in bytes.
      */
@@ -175,7 +175,7 @@ export namespace drive_v3 {
       usage?: string;
       usageInDrive?: string;
       usageInDriveTrash?: string;
-    };
+    } | null;
     /**
      * Deprecated - use driveThemes instead.
      */
@@ -183,7 +183,7 @@ export namespace drive_v3 {
       backgroundImageLink?: string;
       colorRgb?: string;
       id?: string;
-    }>;
+    }> | null;
     /**
      * The authenticated user.
      */
@@ -196,7 +196,7 @@ export namespace drive_v3 {
     /**
      * The type of the change. Possible values are file and drive.
      */
-    changeType?: string;
+    changeType?: string | null;
     /**
      * The updated state of the shared drive. Present if the changeType is drive, the user is still a member of the shared drive, and the shared drive has not been deleted.
      */
@@ -204,7 +204,7 @@ export namespace drive_v3 {
     /**
      * The ID of the shared drive associated with this change.
      */
-    driveId?: string;
+    driveId?: string | null;
     /**
      * The updated state of the file. Present if the type is file and the file has not been removed from this list of changes.
      */
@@ -212,15 +212,15 @@ export namespace drive_v3 {
     /**
      * The ID of the file which has changed.
      */
-    fileId?: string;
+    fileId?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#change&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Whether the file or shared drive has been removed from this list of changes, for example by deletion or loss of access.
      */
-    removed?: boolean;
+    removed?: boolean | null;
     /**
      * Deprecated - use drive instead.
      */
@@ -228,15 +228,15 @@ export namespace drive_v3 {
     /**
      * Deprecated - use driveId instead.
      */
-    teamDriveId?: string;
+    teamDriveId?: string | null;
     /**
      * The time of this change (RFC 3339 date-time).
      */
-    time?: string;
+    time?: string | null;
     /**
      * Deprecated - use changeType instead.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A list of changes for a user.
@@ -249,15 +249,15 @@ export namespace drive_v3 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#changeList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The starting page token for future changes. This will be present only if the end of the current changes list has been reached.
      */
-    newStartPageToken?: string;
+    newStartPageToken?: string | null;
     /**
      * The page token for the next page of changes. This will be absent if the end of the changes list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * An notification channel used to watch for resource changes.
@@ -266,43 +266,43 @@ export namespace drive_v3 {
     /**
      * The address where notifications are delivered for this channel.
      */
-    address?: string;
+    address?: string | null;
     /**
      * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
-    expiration?: string;
+    expiration?: string | null;
     /**
      * A UUID or similar unique string that identifies this channel.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: {[key: string]: string};
+    params?: {[key: string]: string} | null;
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
-    payload?: boolean;
+    payload?: boolean | null;
     /**
      * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * A version-specific identifier for the watched resource.
      */
-    resourceUri?: string;
+    resourceUri?: string | null;
     /**
      * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
-    token?: string;
+    token?: string | null;
     /**
      * The type of delivery mechanism used for this channel.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A comment on a file.
@@ -311,7 +311,7 @@ export namespace drive_v3 {
     /**
      * A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
      */
-    anchor?: string;
+    anchor?: string | null;
     /**
      * The user who created the comment.
      */
@@ -319,35 +319,35 @@ export namespace drive_v3 {
     /**
      * The plain text content of the comment. This field is used for setting the content, while htmlContent should be displayed.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The time at which the comment was created (RFC 3339 date-time).
      */
-    createdTime?: string;
+    createdTime?: string | null;
     /**
      * Whether the comment has been deleted. A deleted comment has no content.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * The content of the comment with HTML formatting.
      */
-    htmlContent?: string;
+    htmlContent?: string | null;
     /**
      * The ID of the comment.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#comment&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The last time the comment or any of its replies was modified (RFC 3339 date-time).
      */
-    modifiedTime?: string;
+    modifiedTime?: string | null;
     /**
      * The file content to which the comment refers, typically within the anchor region. For a text file, for example, this would be the text at the location of the comment.
      */
-    quotedFileContent?: {mimeType?: string; value?: string};
+    quotedFileContent?: {mimeType?: string; value?: string} | null;
     /**
      * The full list of replies to the comment in chronological order.
      */
@@ -355,7 +355,7 @@ export namespace drive_v3 {
     /**
      * Whether the comment has been resolved by one of its replies.
      */
-    resolved?: boolean;
+    resolved?: boolean | null;
   }
   /**
    * A list of comments on a file.
@@ -368,11 +368,11 @@ export namespace drive_v3 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#commentList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The page token for the next page of comments. This will be absent if the end of the comments list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Representation of a shared drive.
@@ -386,11 +386,11 @@ export namespace drive_v3 {
       width?: number;
       xCoordinate?: number;
       yCoordinate?: number;
-    };
+    } | null;
     /**
      * A short-lived link to this shared drive&#39;s background image.
      */
-    backgroundImageLink?: string;
+    backgroundImageLink?: string | null;
     /**
      * Capabilities the current user has on this shared drive.
      */
@@ -413,31 +413,31 @@ export namespace drive_v3 {
       canRenameDrive?: boolean;
       canShare?: boolean;
       canTrashChildren?: boolean;
-    };
+    } | null;
     /**
      * The color of this shared drive as an RGB hex string. It can only be set on a drive.drives.update request that does not set themeId.
      */
-    colorRgb?: string;
+    colorRgb?: string | null;
     /**
      * The time at which the shared drive was created (RFC 3339 date-time).
      */
-    createdTime?: string;
+    createdTime?: string | null;
     /**
      * Whether the shared drive is hidden from default view.
      */
-    hidden?: boolean;
+    hidden?: boolean | null;
     /**
      * The ID of this shared drive which is also the ID of the top level folder of this shared drive.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#drive&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of this shared drive.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A set of restrictions that apply to this shared drive or items inside this shared drive.
      */
@@ -446,11 +446,11 @@ export namespace drive_v3 {
       copyRequiresWriterPermission?: boolean;
       domainUsersOnly?: boolean;
       driveMembersOnly?: boolean;
-    };
+    } | null;
     /**
      * The ID of the theme from which the background image and color will be set. The set of possible driveThemes can be retrieved from a drive.about.get response. When not specified on a drive.drives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
      */
-    themeId?: string;
+    themeId?: string | null;
   }
   /**
    * A list of shared drives.
@@ -463,11 +463,11 @@ export namespace drive_v3 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#driveList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The page token for the next page of shared drives. This will be absent if the end of the list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The metadata for a file.
@@ -476,7 +476,7 @@ export namespace drive_v3 {
     /**
      * A collection of arbitrary key-value pairs which are private to the requesting app. Entries with null values are cleared in update and copy requests.
      */
-    appProperties?: {[key: string]: string};
+    appProperties?: {[key: string]: string} | null;
     /**
      * Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
      */
@@ -511,70 +511,70 @@ export namespace drive_v3 {
       canTrash?: boolean;
       canTrashChildren?: boolean;
       canUntrash?: boolean;
-    };
+    } | null;
     /**
      * Additional information about the content of the file. These fields are never populated in responses.
      */
     contentHints?: {
       indexableText?: string;
       thumbnail?: {image?: string; mimeType?: string};
-    };
+    } | null;
     /**
      * Whether the options to copy, print, or download this file, should be disabled for readers and commenters.
      */
-    copyRequiresWriterPermission?: boolean;
+    copyRequiresWriterPermission?: boolean | null;
     /**
      * The time at which the file was created (RFC 3339 date-time).
      */
-    createdTime?: string;
+    createdTime?: string | null;
     /**
      * A short description of the file.
      */
-    description?: string;
+    description?: string | null;
     /**
      * ID of the shared drive the file resides in. Only populated for items in shared drives.
      */
-    driveId?: string;
+    driveId?: string | null;
     /**
      * Whether the file has been explicitly trashed, as opposed to recursively trashed from a parent folder.
      */
-    explicitlyTrashed?: boolean;
+    explicitlyTrashed?: boolean | null;
     /**
      * Links for exporting Google Docs to specific formats.
      */
-    exportLinks?: {[key: string]: string};
+    exportLinks?: {[key: string]: string} | null;
     /**
      * The final component of fullFileExtension. This is only available for files with binary content in Google Drive.
      */
-    fileExtension?: string;
+    fileExtension?: string | null;
     /**
      * The color for a folder as an RGB hex string. The supported colors are published in the folderColorPalette field of the About resource. If an unsupported color is specified, the closest color in the palette will be used instead.
      */
-    folderColorRgb?: string;
+    folderColorRgb?: string | null;
     /**
      * The full file extension extracted from the name field. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. This is only available for files with binary content in Google Drive. This is automatically updated when the name field changes, however it is not cleared if the new name does not contain a valid extension.
      */
-    fullFileExtension?: string;
+    fullFileExtension?: string | null;
     /**
      * Whether any users are granted file access directly on this file. This field is only populated for shared drive files.
      */
-    hasAugmentedPermissions?: boolean;
+    hasAugmentedPermissions?: boolean | null;
     /**
      * Whether this file has a thumbnail. This does not indicate whether the requesting app has access to the thumbnail. To check access, look for the presence of the thumbnailLink field.
      */
-    hasThumbnail?: boolean;
+    hasThumbnail?: boolean | null;
     /**
      * The ID of the file&#39;s head revision. This is currently only available for files with binary content in Google Drive.
      */
-    headRevisionId?: string;
+    headRevisionId?: string | null;
     /**
      * A static, unauthenticated link to the file&#39;s icon.
      */
-    iconLink?: string;
+    iconLink?: string | null;
     /**
      * The ID of the file.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Additional metadata about image media, if available.
      */
@@ -600,15 +600,15 @@ export namespace drive_v3 {
       time?: string;
       whiteBalance?: string;
       width?: number;
-    };
+    } | null;
     /**
      * Whether the file was created or opened by the requesting app.
      */
-    isAppAuthorized?: boolean;
+    isAppAuthorized?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#file&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The last user to modify the file.
      */
@@ -616,35 +616,35 @@ export namespace drive_v3 {
     /**
      * The MD5 checksum for the content of the file. This is only applicable to files with binary content in Google Drive.
      */
-    md5Checksum?: string;
+    md5Checksum?: string | null;
     /**
      * The MIME type of the file. Google Drive will attempt to automatically detect an appropriate value from uploaded content if no value is provided. The value cannot be changed unless a new revision is uploaded. If a file is created with a Google Doc MIME type, the uploaded content will be imported if possible. The supported import formats are published in the About resource.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * Whether the file has been modified by this user.
      */
-    modifiedByMe?: boolean;
+    modifiedByMe?: boolean | null;
     /**
      * The last time the file was modified by the user (RFC 3339 date-time).
      */
-    modifiedByMeTime?: string;
+    modifiedByMeTime?: string | null;
     /**
      * The last time the file was modified by anyone (RFC 3339 date-time). Note that setting modifiedTime will also update modifiedByMeTime for the user.
      */
-    modifiedTime?: string;
+    modifiedTime?: string | null;
     /**
      * The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of shared drives, My Drive root folder, and Application Data folder the name is constant.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The original filename of the uploaded content if available, or else the original value of the name field. This is only available for files with binary content in Google Drive.
      */
-    originalFilename?: string;
+    originalFilename?: string | null;
     /**
      * Whether the user owns the file. Not populated for items in shared drives.
      */
-    ownedByMe?: boolean;
+    ownedByMe?: boolean | null;
     /**
      * The owners of the file. Currently, only certain legacy files may have more than one owner. Not populated for items in shared drives.
      */
@@ -652,11 +652,11 @@ export namespace drive_v3 {
     /**
      * The IDs of the parent folders which contain the file. If not specified as part of a create request, the file will be placed directly in the user&#39;s My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests must use the addParents and removeParents parameters to modify the parents list.
      */
-    parents?: string[];
+    parents?: string[] | null;
     /**
      * List of permission IDs for users with access to this file.
      */
-    permissionIds?: string[];
+    permissionIds?: string[] | null;
     /**
      * The full list of permissions for the file. This is only available if the requesting user can share the file. Not populated for items in shared drives.
      */
@@ -664,19 +664,19 @@ export namespace drive_v3 {
     /**
      * A collection of arbitrary key-value pairs which are visible to all apps. Entries with null values are cleared in update and copy requests.
      */
-    properties?: {[key: string]: string};
+    properties?: {[key: string]: string} | null;
     /**
      * The number of storage quota bytes used by the file. This includes the head revision as well as previous revisions with keepForever enabled.
      */
-    quotaBytesUsed?: string;
+    quotaBytesUsed?: string | null;
     /**
      * Whether the file has been shared. Not populated for items in shared drives.
      */
-    shared?: boolean;
+    shared?: boolean | null;
     /**
      * The time at which the file was shared with the user, if applicable (RFC 3339 date-time).
      */
-    sharedWithMeTime?: string;
+    sharedWithMeTime?: string | null;
     /**
      * The user who shared the file with the requesting user, if applicable.
      */
@@ -684,35 +684,35 @@ export namespace drive_v3 {
     /**
      * The size of the file&#39;s content in bytes. This is only applicable to files with binary content in Google Drive.
      */
-    size?: string;
+    size?: string | null;
     /**
      * The list of spaces which contain the file. The currently supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
      */
-    spaces?: string[];
+    spaces?: string[] | null;
     /**
      * Whether the user has starred the file.
      */
-    starred?: boolean;
+    starred?: boolean | null;
     /**
      * Deprecated - use driveId instead.
      */
-    teamDriveId?: string;
+    teamDriveId?: string | null;
     /**
      * A short-lived link to the file&#39;s thumbnail, if available. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
      */
-    thumbnailLink?: string;
+    thumbnailLink?: string | null;
     /**
      * The thumbnail version for use in thumbnail cache invalidation.
      */
-    thumbnailVersion?: string;
+    thumbnailVersion?: string | null;
     /**
      * Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file, and other users cannot see files in the owner&#39;s trash.
      */
-    trashed?: boolean;
+    trashed?: boolean | null;
     /**
      * The time that the item was trashed (RFC 3339 date-time). Only populated for items in shared drives.
      */
-    trashedTime?: string;
+    trashedTime?: string | null;
     /**
      * If the file has been explicitly trashed, the user who trashed it. Only populated for items in shared drives.
      */
@@ -720,7 +720,7 @@ export namespace drive_v3 {
     /**
      * A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the user.
      */
-    version?: string;
+    version?: string | null;
     /**
      * Additional metadata about video media. This may not be available immediately upon upload.
      */
@@ -728,31 +728,31 @@ export namespace drive_v3 {
       durationMillis?: string;
       height?: number;
       width?: number;
-    };
+    } | null;
     /**
      * Whether the file has been viewed by this user.
      */
-    viewedByMe?: boolean;
+    viewedByMe?: boolean | null;
     /**
      * The last time the file was viewed by the user (RFC 3339 date-time).
      */
-    viewedByMeTime?: string;
+    viewedByMeTime?: string | null;
     /**
      * Deprecated - use copyRequiresWriterPermission instead.
      */
-    viewersCanCopyContent?: boolean;
+    viewersCanCopyContent?: boolean | null;
     /**
      * A link for downloading the content of the file in a browser. This is only available for files with binary content in Google Drive.
      */
-    webContentLink?: string;
+    webContentLink?: string | null;
     /**
      * A link for opening the file in a relevant Google editor or viewer in a browser.
      */
-    webViewLink?: string;
+    webViewLink?: string | null;
     /**
      * Whether users with only writer permission can modify the file&#39;s permissions. Not populated for items in shared drives.
      */
-    writersCanShare?: boolean;
+    writersCanShare?: boolean | null;
   }
   /**
    * A list of files.
@@ -765,15 +765,15 @@ export namespace drive_v3 {
     /**
      * Whether the search process was incomplete. If true, then some search results may be missing, since all documents were not searched. This may occur when searching multiple drives with the &quot;allDrives&quot; corpora, but all corpora could not be searched. When this happens, it is suggested that clients narrow their query by choosing a different corpus such as &quot;user&quot; or &quot;drive&quot;.
      */
-    incompleteSearch?: boolean;
+    incompleteSearch?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#fileList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The page token for the next page of files. This will be absent if the end of the files list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A list of generated file IDs which can be provided in create requests.
@@ -782,15 +782,15 @@ export namespace drive_v3 {
     /**
      * The IDs generated for the requesting user in the specified space.
      */
-    ids?: string[];
+    ids?: string[] | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#generatedIds&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The type of file that can be created with these IDs.
      */
-    space?: string;
+    space?: string | null;
   }
   /**
    * A permission for a file. A permission grants a user, group, domain or the world access to a file or a folder hierarchy.
@@ -799,35 +799,35 @@ export namespace drive_v3 {
     /**
      * Whether the permission allows the file to be discovered through search. This is only applicable for permissions of type domain or anyone.
      */
-    allowFileDiscovery?: boolean;
+    allowFileDiscovery?: boolean | null;
     /**
      * Whether the account associated with this permission has been deleted. This field only pertains to user and group permissions.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * A displayable name for users, groups or domains.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The domain to which this permission refers.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * The email address of the user or group to which this permission refers.
      */
-    emailAddress?: string;
+    emailAddress?: string | null;
     /**
      * The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions:   - They can only be set on user and group permissions  - The time must be in the future  - The time cannot be more than a year in the future
      */
-    expirationTime?: string;
+    expirationTime?: string | null;
     /**
      * The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as permissionId.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#permission&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.
      */
@@ -836,15 +836,15 @@ export namespace drive_v3 {
       inheritedFrom?: string;
       permissionType?: string;
       role?: string;
-    }>;
+    }> | null;
     /**
      * A link to the user&#39;s profile photo, if available.
      */
-    photoLink?: string;
+    photoLink?: string | null;
     /**
      * The role granted by this permission. While new values may be supported in the future, the following are currently allowed:   - owner  - organizer  - fileOrganizer  - writer  - commenter  - reader
      */
-    role?: string;
+    role?: string | null;
     /**
      * Deprecated - use permissionDetails instead.
      */
@@ -853,11 +853,11 @@ export namespace drive_v3 {
       inheritedFrom?: string;
       role?: string;
       teamDrivePermissionType?: string;
-    }>;
+    }> | null;
     /**
      * The type of the grantee. Valid values are:   - user  - group  - domain  - anyone
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A list of permissions for a file.
@@ -866,11 +866,11 @@ export namespace drive_v3 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#permissionList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The page token for the next page of permissions. This field will be absent if the end of the permissions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of permissions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
@@ -883,7 +883,7 @@ export namespace drive_v3 {
     /**
      * The action the reply performed to the parent comment. Valid values are:   - resolve  - reopen
      */
-    action?: string;
+    action?: string | null;
     /**
      * The user who created the reply.
      */
@@ -891,31 +891,31 @@ export namespace drive_v3 {
     /**
      * The plain text content of the reply. This field is used for setting the content, while htmlContent should be displayed. This is required on creates if no action is specified.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The time at which the reply was created (RFC 3339 date-time).
      */
-    createdTime?: string;
+    createdTime?: string | null;
     /**
      * Whether the reply has been deleted. A deleted reply has no content.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * The content of the reply with HTML formatting.
      */
-    htmlContent?: string;
+    htmlContent?: string | null;
     /**
      * The ID of the reply.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#reply&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The last time the reply was modified (RFC 3339 date-time).
      */
-    modifiedTime?: string;
+    modifiedTime?: string | null;
   }
   /**
    * A list of replies to a comment on a file.
@@ -924,11 +924,11 @@ export namespace drive_v3 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#replyList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The page token for the next page of replies. This will be absent if the end of the replies list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of replies. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
@@ -941,19 +941,19 @@ export namespace drive_v3 {
     /**
      * Links for exporting Google Docs to specific formats.
      */
-    exportLinks?: {[key: string]: string};
+    exportLinks?: {[key: string]: string} | null;
     /**
      * The ID of the revision.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Whether to keep this revision forever, even if it is no longer the head revision. If not set, the revision will be automatically purged 30 days after newer content is uploaded. This can be set on a maximum of 200 revisions for a file. This field is only applicable to files with binary content in Drive.
      */
-    keepForever?: boolean;
+    keepForever?: boolean | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#revision&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The last user to modify this revision.
      */
@@ -961,35 +961,35 @@ export namespace drive_v3 {
     /**
      * The MD5 checksum of the revision&#39;s content. This is only applicable to files with binary content in Drive.
      */
-    md5Checksum?: string;
+    md5Checksum?: string | null;
     /**
      * The MIME type of the revision.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * The last time the revision was modified (RFC 3339 date-time).
      */
-    modifiedTime?: string;
+    modifiedTime?: string | null;
     /**
      * The original filename used to create this revision. This is only applicable to files with binary content in Drive.
      */
-    originalFilename?: string;
+    originalFilename?: string | null;
     /**
      * Whether subsequent revisions will be automatically republished. This is only applicable to Google Docs.
      */
-    publishAuto?: boolean;
+    publishAuto?: boolean | null;
     /**
      * Whether this revision is published. This is only applicable to Google Docs.
      */
-    published?: boolean;
+    published?: boolean | null;
     /**
      * Whether this revision is published outside the domain. This is only applicable to Google Docs.
      */
-    publishedOutsideDomain?: boolean;
+    publishedOutsideDomain?: boolean | null;
     /**
      * The size of the revision&#39;s content in bytes. This is only applicable to files with binary content in Drive.
      */
-    size?: string;
+    size?: string | null;
   }
   /**
    * A list of revisions of a file.
@@ -998,11 +998,11 @@ export namespace drive_v3 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#revisionList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The page token for the next page of revisions. This will be absent if the end of the revisions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of revisions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
@@ -1012,11 +1012,11 @@ export namespace drive_v3 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#startPageToken&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The starting page token for listing changes.
      */
-    startPageToken?: string;
+    startPageToken?: string | null;
   }
   /**
    * Deprecated: use the drive collection instead.
@@ -1030,11 +1030,11 @@ export namespace drive_v3 {
       width?: number;
       xCoordinate?: number;
       yCoordinate?: number;
-    };
+    } | null;
     /**
      * A short-lived link to this Team Drive&#39;s background image.
      */
-    backgroundImageLink?: string;
+    backgroundImageLink?: string | null;
     /**
      * Capabilities the current user has on this Team Drive.
      */
@@ -1058,27 +1058,27 @@ export namespace drive_v3 {
       canRenameTeamDrive?: boolean;
       canShare?: boolean;
       canTrashChildren?: boolean;
-    };
+    } | null;
     /**
      * The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
      */
-    colorRgb?: string;
+    colorRgb?: string | null;
     /**
      * The time at which the Team Drive was created (RFC 3339 date-time).
      */
-    createdTime?: string;
+    createdTime?: string | null;
     /**
      * The ID of this Team Drive which is also the ID of the top level folder of this Team Drive.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#teamDrive&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of this Team Drive.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A set of restrictions that apply to this Team Drive or items inside this Team Drive.
      */
@@ -1087,11 +1087,11 @@ export namespace drive_v3 {
       copyRequiresWriterPermission?: boolean;
       domainUsersOnly?: boolean;
       teamMembersOnly?: boolean;
-    };
+    } | null;
     /**
      * The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don&#39;t set colorRgb or backgroundImageFile.
      */
-    themeId?: string;
+    themeId?: string | null;
   }
   /**
    * A list of Team Drives.
@@ -1100,11 +1100,11 @@ export namespace drive_v3 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#teamDriveList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The page token for the next page of Team Drives. This will be absent if the end of the Team Drives list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of Team Drives. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
@@ -1117,27 +1117,27 @@ export namespace drive_v3 {
     /**
      * A plain text displayable name for this user.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The email address of the user. This may not be present in certain contexts if the user has not made their email address visible to the requester.
      */
-    emailAddress?: string;
+    emailAddress?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;drive#user&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Whether this user is the requesting user.
      */
-    me?: boolean;
+    me?: boolean | null;
     /**
      * The user&#39;s ID as visible in Permission resources.
      */
-    permissionId?: string;
+    permissionId?: string | null;
     /**
      * A link to the user&#39;s profile photo, if available.
      */
-    photoLink?: string;
+    photoLink?: string | null;
   }
 
   export class Resource$About {

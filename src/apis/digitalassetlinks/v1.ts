@@ -130,7 +130,7 @@ export namespace digitalassetlinks_v1 {
     /**
      * Android App assets are naturally identified by their Java package name. For example, the Google Maps app uses the package name `com.google.android.apps.maps`. REQUIRED
      */
-    packageName?: string;
+    packageName?: string | null;
   }
   /**
    * Uniquely identifies an asset.  A digital asset is an identifiable and addressable online entity that typically provides some service or content.  Examples of assets are websites, Android apps, Twitter feeds, and Plus Pages.
@@ -152,7 +152,7 @@ export namespace digitalassetlinks_v1 {
     /**
      * The uppercase SHA-265 fingerprint of the certificate.  From the PEM  certificate, it can be acquired like this:      $ keytool -printcert -file $CERTFILE | grep SHA256:     SHA256: 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \         42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5  or like this:      $ openssl x509 -in $CERTFILE -noout -fingerprint -sha256     SHA256 Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \         16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5  In this example, the contents of this field would be `14:6D:E9:83:C5:73: 06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF: 44:E5`.  If these tools are not available to you, you can convert the PEM certificate into the DER format, compute the SHA-256 hash of that string and represent the result as a hexstring (that is, uppercase hexadecimal representations of each octet, separated by colons).
      */
-    sha256Fingerprint?: string;
+    sha256Fingerprint?: string | null;
   }
   /**
    * Response message for the CheckAssetLinks call.
@@ -161,19 +161,19 @@ export namespace digitalassetlinks_v1 {
     /**
      * Human-readable message containing information intended to help end users understand, reproduce and debug the result.   The message will be in English and we are currently not planning to offer any translations.  Please note that no guarantees are made about the contents or format of this string.  Any aspect of it may be subject to change without notice. You should not attempt to programmatically parse this data.  For programmatic access, use the error_code field below.
      */
-    debugString?: string;
+    debugString?: string | null;
     /**
      * Error codes that describe the result of the Check operation.
      */
-    errorCode?: string[];
+    errorCode?: string[] | null;
     /**
      * Set to true if the assets specified in the request are linked by the relation specified in the request.
      */
-    linked?: boolean;
+    linked?: boolean | null;
     /**
      * From serving time, how much longer the response should be considered valid barring further updates. REQUIRED
      */
-    maxAge?: string;
+    maxAge?: string | null;
   }
   /**
    * Response message for the List call.
@@ -182,15 +182,15 @@ export namespace digitalassetlinks_v1 {
     /**
      * Human-readable message containing information intended to help end users understand, reproduce and debug the result.   The message will be in English and we are currently not planning to offer any translations.  Please note that no guarantees are made about the contents or format of this string.  Any aspect of it may be subject to change without notice. You should not attempt to programmatically parse this data.  For programmatic access, use the error_code field below.
      */
-    debugString?: string;
+    debugString?: string | null;
     /**
      * Error codes that describe the result of the List operation.
      */
-    errorCode?: string[];
+    errorCode?: string[] | null;
     /**
      * From serving time, how much longer the response should be considered valid barring further updates. REQUIRED
      */
-    maxAge?: string;
+    maxAge?: string | null;
     /**
      * A list of all the matching statements that have been found.
      */
@@ -203,7 +203,7 @@ export namespace digitalassetlinks_v1 {
     /**
      * The relation identifies the use of the statement as intended by the source asset&#39;s owner (that is, the person or entity who issued the statement). Every complete statement has a relation.  We identify relations with strings of the format `&lt;kind&gt;/&lt;detail&gt;`, where `&lt;kind&gt;` must be one of a set of pre-defined purpose categories, and `&lt;detail&gt;` is a free-form lowercase alphanumeric string that describes the specific use case of the statement.  Refer to [our API documentation](/digital-asset-links/v1/relation-strings) for the current list of supported relations.  Example: `delegate_permission/common.handle_all_urls` REQUIRED
      */
-    relation?: string;
+    relation?: string | null;
     /**
      * Every statement has a source asset. REQUIRED
      */
@@ -220,7 +220,7 @@ export namespace digitalassetlinks_v1 {
     /**
      * Web assets are identified by a URL that contains only the scheme, hostname and port parts.  The format is      http[s]://&lt;hostname&gt;[:&lt;port&gt;]  Hostnames must be fully qualified: they must end in a single period (&quot;`.`&quot;).  Only the schemes &quot;http&quot; and &quot;https&quot; are currently allowed.  Port numbers are given as a decimal number, and they must be omitted if the standard port numbers are used: 80 for http and 443 for https.  We call this limited URL the &quot;site&quot;.  All URLs that share the same scheme, hostname and port are considered to be a part of the site and thus belong to the web asset.  Example: the asset with the site `https://www.google.com` contains all these URLs:    *   `https://www.google.com/`   *   `https://www.google.com:443/`   *   `https://www.google.com/foo`   *   `https://www.google.com/foo?bar`   *   `https://www.google.com/foo#bar`   *   `https://user@password:www.google.com/`  But it does not contain these URLs:    *   `http://www.google.com/`       (wrong scheme)   *   `https://google.com/`          (hostname does not match)   *   `https://www.google.com:444/`  (port does not match) REQUIRED
      */
-    site?: string;
+    site?: string | null;
   }
 
   export class Resource$Assetlinks {

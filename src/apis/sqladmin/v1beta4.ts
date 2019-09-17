@@ -122,19 +122,19 @@ export namespace sqladmin_v1beta4 {
     /**
      * The time when this access control entry expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    expirationTime?: string;
+    expirationTime?: string | null;
     /**
      * This is always sql#aclEntry.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * An optional label to identify this entry.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The whitelisted value for the access control list.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * An Admin API warning message.
@@ -143,11 +143,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Code to uniquely identify the warning type.
      */
-    code?: string;
+    code?: string | null;
     /**
      * The warning message.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Database instance backup configuration.
@@ -156,27 +156,27 @@ export namespace sqladmin_v1beta4 {
     /**
      * Whether binary log is enabled. If backup configuration is disabled, binary log must be disabled as well.
      */
-    binaryLogEnabled?: boolean;
+    binaryLogEnabled?: boolean | null;
     /**
      * Whether this configuration is enabled.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * This is always sql#backupConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The location of the backup.
      */
-    location?: string;
+    location?: string | null;
     /**
      * Reserved for future use.
      */
-    replicationLogArchivingEnabled?: boolean;
+    replicationLogArchivingEnabled?: boolean | null;
     /**
      * Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * A BackupRun resource.
@@ -185,7 +185,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * The description of this run, only applicable to on-demand backups.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Disk encryption configuration specific to a backup. Applies only to Second Generation instances.
      */
@@ -197,11 +197,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * The time the backup operation completed in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The time the run was enqueued in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    enqueuedTime?: string;
+    enqueuedTime?: string | null;
     /**
      * Information about why the backup operation failed. This is only present if the run has the FAILED status.
      */
@@ -209,39 +209,39 @@ export namespace sqladmin_v1beta4 {
     /**
      * The identifier for this backup run. Unique only for a specific Cloud SQL instance.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Name of the database instance.
      */
-    instance?: string;
+    instance?: string | null;
     /**
      * This is always sql#backupRun.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The location of the backup.
      */
-    location?: string;
+    location?: string | null;
     /**
      * The URI of this resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The time the backup operation actually started in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The status of this run.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The type of this run; can be either &quot;AUTOMATED&quot; or &quot;ON_DEMAND&quot;.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The start time of the backup window during which this the backup was attempted in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    windowStartTime?: string;
+    windowStartTime?: string | null;
   }
   /**
    * Backup run list results.
@@ -254,11 +254,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#backupRunsList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Binary log coordinates.
@@ -267,15 +267,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Name of the binary log file for a Cloud SQL instance.
      */
-    binLogFileName?: string;
+    binLogFileName?: string | null;
     /**
      * Position (offset) within the binary log file.
      */
-    binLogPosition?: string;
+    binLogPosition?: string | null;
     /**
      * This is always sql#binLogCoordinates.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Database instance clone context.
@@ -288,15 +288,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Name of the Cloud SQL instance to be created as a clone.
      */
-    destinationInstanceName?: string;
+    destinationInstanceName?: string | null;
     /**
      * This is always sql#cloneContext.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Reserved for future use.
      */
-    pitrTimestampMs?: string;
+    pitrTimestampMs?: string | null;
   }
   /**
    * Represents a SQL database on the Cloud SQL instance.
@@ -305,35 +305,35 @@ export namespace sqladmin_v1beta4 {
     /**
      * The MySQL charset value.
      */
-    charset?: string;
+    charset?: string | null;
     /**
      * The MySQL collation value.
      */
-    collation?: string;
+    collation?: string | null;
     /**
      * This field is deprecated and will be removed from a future version of the API.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The name of the Cloud SQL instance. This does not include the project ID.
      */
-    instance?: string;
+    instance?: string | null;
     /**
      * This is always sql#database.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the database in the Cloud SQL instance. This does not include the project ID or instance name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable.
      */
-    project?: string;
+    project?: string | null;
     /**
      * The URI of this resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * Database flags for Cloud SQL instances.
@@ -342,11 +342,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * The name of the flag. These flags are passed at instance startup, so include both server options and system variables for MySQL. Flags should be specified with underscores, not hyphens. For more information, see Configuring Database Flags in the Cloud SQL documentation.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The value of the flag. Booleans should be set to on for true and off for false. This field must be omitted if the flag doesn&#39;t take a value.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A Cloud SQL instance resource.
@@ -355,19 +355,19 @@ export namespace sqladmin_v1beta4 {
     /**
      * FIRST_GEN: First Generation instance. MySQL only. SECOND_GEN: Second Generation instance or PostgreSQL instance. EXTERNAL: A database server that is not managed by Google. This property is read-only; use the tier property in the settings object to determine the database type and Second or First Generation.
      */
-    backendType?: string;
+    backendType?: string | null;
     /**
      * Connection name of the Cloud SQL instance used in connection strings.
      */
-    connectionName?: string;
+    connectionName?: string | null;
     /**
      * The current disk usage of the instance in bytes. This property has been deprecated. Users should use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see this announcement for details.
      */
-    currentDiskSize?: string;
+    currentDiskSize?: string | null;
     /**
      * The database engine type and version. The databaseVersion field can not be changed after instance creation. MySQL Second Generation instances: MYSQL_5_7 (default) or MYSQL_5_6. PostgreSQL instances: POSTGRES_9_6 (default) or POSTGRES_11 Beta. MySQL First Generation instances: MYSQL_5_6 (default) or MYSQL_5_5
      */
-    databaseVersion?: string;
+    databaseVersion?: string | null;
     /**
      * Disk encryption configuration specific to an instance. Applies only to Second Generation instances.
      */
@@ -379,19 +379,19 @@ export namespace sqladmin_v1beta4 {
     /**
      * This field is deprecated and will be removed from a future version of the API. Use the settings.settingsVersion field instead.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The name and status of the failover replica. This property is applicable only to Second Generation instances.
      */
-    failoverReplica?: {available?: boolean; name?: string};
+    failoverReplica?: {available?: boolean; name?: string} | null;
     /**
      * The Compute Engine zone that the instance is currently serving from. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary zone.
      */
-    gceZone?: string;
+    gceZone?: string | null;
     /**
      * The instance type. This can be one of the following. CLOUD_SQL_INSTANCE: A Cloud SQL instance that is not replicating from a master. ON_PREMISES_INSTANCE: An instance running on the customer&#39;s premises. READ_REPLICA_INSTANCE: A Cloud SQL instance configured as a read-replica.
      */
-    instanceType?: string;
+    instanceType?: string | null;
     /**
      * The assigned IP addresses for the instance.
      */
@@ -399,23 +399,23 @@ export namespace sqladmin_v1beta4 {
     /**
      * The IPv6 address assigned to the instance. This property is applicable only to First Generation instances.
      */
-    ipv6Address?: string;
+    ipv6Address?: string | null;
     /**
      * This is always sql#instance.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the instance which will act as master in the replication setup.
      */
-    masterInstanceName?: string;
+    masterInstanceName?: string | null;
     /**
      * The maximum disk size of the instance in bytes.
      */
-    maxDiskSize?: string;
+    maxDiskSize?: string | null;
     /**
      * Name of the Cloud SQL instance. This does not include the project ID.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Configuration specific to on-premises instances.
      */
@@ -423,11 +423,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable.
      */
-    project?: string;
+    project?: string | null;
     /**
      * The geographical region. Can be us-central (FIRST_GEN instances only), us-central1 (SECOND_GEN instances only), asia-east1 or europe-west1. Defaults to us-central or us-central1 depending on the instance type (First Generation or Second Generation). The region can not be changed after instance creation.
      */
-    region?: string;
+    region?: string | null;
     /**
      * Configuration specific to failover replicas and read replicas.
      */
@@ -435,15 +435,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * The replicas of the instance.
      */
-    replicaNames?: string[];
+    replicaNames?: string[] | null;
     /**
      * Initial root password. Use only on creation.
      */
-    rootPassword?: string;
+    rootPassword?: string | null;
     /**
      * The URI of this resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * SSL configuration.
      */
@@ -451,7 +451,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * The service account email address assigned to the instance. This property is applicable only to Second Generation instances.
      */
-    serviceAccountEmailAddress?: string;
+    serviceAccountEmailAddress?: string | null;
     /**
      * The user settings.
      */
@@ -459,11 +459,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * The current serving state of the Cloud SQL instance. This can be one of the following. RUNNABLE: The instance is running, or is ready to run when accessed. SUSPENDED: The instance is not available, for example due to problems with billing. PENDING_CREATE: The instance is being created. MAINTENANCE: The instance is down for maintenance. FAILED: The instance creation failed. UNKNOWN_STATE: The state of the instance is unknown.
      */
-    state?: string;
+    state?: string | null;
     /**
      * If the instance state is SUSPENDED, the reason for the suspension.
      */
-    suspensionReason?: string[];
+    suspensionReason?: string[] | null;
   }
   /**
    * Database list response.
@@ -476,7 +476,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#databasesList.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Read-replica configuration for connecting to the on-premises master.
@@ -485,7 +485,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#demoteMasterConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named master.info in the data directory.
      */
@@ -498,11 +498,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#demoteMasterContext.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the instance which will act as on-premises master in the replication setup.
      */
-    masterInstanceName?: string;
+    masterInstanceName?: string | null;
     /**
      * Configuration specific to read-replicas replicating from the on-premises master.
      */
@@ -510,7 +510,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Verify GTID consistency for demote operation. Default value: True. Second Generation instances only. Setting this flag to false enables you to bypass GTID consistency check between on-premises master and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.
      */
-    verifyGtidConsistency?: boolean;
+    verifyGtidConsistency?: boolean | null;
   }
   /**
    * Read-replica configuration specific to MySQL databases.
@@ -519,27 +519,27 @@ export namespace sqladmin_v1beta4 {
     /**
      * PEM representation of the trusted CA&#39;s x509 certificate.
      */
-    caCertificate?: string;
+    caCertificate?: string | null;
     /**
      * PEM representation of the slave&#39;s x509 certificate.
      */
-    clientCertificate?: string;
+    clientCertificate?: string | null;
     /**
      * PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate. The format of the slave&#39;s private key can be either PKCS #1 or PKCS #8.
      */
-    clientKey?: string;
+    clientKey?: string | null;
     /**
      * This is always sql#demoteMasterMysqlReplicaConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The password for the replication connection.
      */
-    password?: string;
+    password?: string | null;
     /**
      * The username for the replication connection.
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * Disk encryption configuration.
@@ -548,11 +548,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#diskEncryptionConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * KMS key resource name
      */
-    kmsKeyName?: string;
+    kmsKeyName?: string | null;
   }
   /**
    * Disk encryption status.
@@ -561,11 +561,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#diskEncryptionStatus.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * KMS key version used to encrypt the Cloud SQL instance disk
      */
-    kmsKeyVersionName?: string;
+    kmsKeyVersionName?: string | null;
   }
   /**
    * Database instance export context.
@@ -574,19 +574,19 @@ export namespace sqladmin_v1beta4 {
     /**
      * Options for exporting data as CSV.
      */
-    csvExportOptions?: {selectQuery?: string};
+    csvExportOptions?: {selectQuery?: string} | null;
     /**
      * Databases to be exported. MySQL instances: If fileType is SQL and no database is specified, all databases are exported, except for the mysql system database. If fileType is CSV, you can specify one database, either by using this property or by using the csvExportOptions.selectQuery property, which takes precedence over this property. PostgreSQL instances: Specify exactly one database to be exported. If fileType is CSV, this database must match the database used in the csvExportOptions.selectQuery property.
      */
-    databases?: string[];
+    databases?: string[] | null;
     /**
      * The file type for the specified uri. SQL: The file contains SQL statements. CSV: The file contains CSV data.
      */
-    fileType?: string;
+    fileType?: string | null;
     /**
      * This is always sql#exportContext.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Options for exporting data as SQL statements.
      */
@@ -594,11 +594,11 @@ export namespace sqladmin_v1beta4 {
       mysqlExportOptions?: {masterData?: number};
       schemaOnly?: boolean;
       tables?: string[];
-    };
+    } | null;
     /**
      * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form gs://bucketName/fileName. If the file already exists, the requests succeeds, but the operation fails. If fileType is SQL and the filename ends with .gz, the contents are compressed.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Database instance failover context.
@@ -607,11 +607,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#failoverContext.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The current settings version of this instance. Request will be rejected if this version doesn&#39;t match the current settings version.
      */
-    settingsVersion?: string;
+    settingsVersion?: string | null;
   }
   /**
    * A flag resource.
@@ -620,39 +620,39 @@ export namespace sqladmin_v1beta4 {
     /**
      * For STRING flags, a list of strings that the value can be set to.
      */
-    allowedStringValues?: string[];
+    allowedStringValues?: string[] | null;
     /**
      * The database version this flag applies to. Can be MYSQL_5_5, MYSQL_5_6, or MYSQL_5_7. MYSQL_5_7 is applicable only to Second Generation instances.
      */
-    appliesTo?: string[];
+    appliesTo?: string[] | null;
     /**
      * True if the flag is only released in Beta.
      */
-    inBeta?: boolean;
+    inBeta?: boolean | null;
     /**
      * This is always sql#flag.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * For INTEGER flags, the maximum allowed value.
      */
-    maxValue?: string;
+    maxValue?: string | null;
     /**
      * For INTEGER flags, the minimum allowed value.
      */
-    minValue?: string;
+    minValue?: string | null;
     /**
      * This is the name of the flag. Flag names always use underscores, not hyphens, e.g. max_allowed_packet
      */
-    name?: string;
+    name?: string | null;
     /**
      * Indicates whether changing this flag will trigger a database restart. Only applicable to Second Generation instances.
      */
-    requiresRestart?: boolean;
+    requiresRestart?: boolean | null;
     /**
      * The type of the flag. Flags are typed to being BOOLEAN, STRING, INTEGER or NONE. NONE is used for flags which do not take a value, such as skip_grant_tables.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Flags list response.
@@ -665,7 +665,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#flagsList.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Database instance import context.
@@ -680,31 +680,31 @@ export namespace sqladmin_v1beta4 {
         pvkPassword?: string;
         pvkPath?: string;
       };
-    };
+    } | null;
     /**
      * Options for importing data as CSV.
      */
-    csvImportOptions?: {columns?: string[]; table?: string};
+    csvImportOptions?: {columns?: string[]; table?: string} | null;
     /**
      * The target database for the import. If fileType is SQL, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If fileType is CSV, one database must be specified.
      */
-    database?: string;
+    database?: string | null;
     /**
      * The file type for the specified uri. SQL: The file contains SQL statements. CSV: The file contains CSV data.
      */
-    fileType?: string;
+    fileType?: string | null;
     /**
      * The PostgreSQL user for this import operation. PostgreSQL instances only.
      */
-    importUser?: string;
+    importUser?: string | null;
     /**
      * This is always sql#importContext.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Path to the import file in Cloud Storage, in the form gs://bucketName/fileName. Compressed gzip files (.gz) are supported when fileType is SQL. The instance must have write permissions to the bucket and read access to the file.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Database instance clone request.
@@ -762,11 +762,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#instancesList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of warnings that ocurred while handling the request.
      */
@@ -776,7 +776,7 @@ export namespace sqladmin_v1beta4 {
    * Instances ListServerCas response.
    */
   export interface Schema$InstancesListServerCasResponse {
-    activeVersion?: string;
+    activeVersion?: string | null;
     /**
      * List of server CA certificates for the instance.
      */
@@ -784,7 +784,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#instancesListServerCas.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Database instance restore backup request.
@@ -824,15 +824,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Whether the instance should be assigned an IP address or not.
      */
-    ipv4Enabled?: boolean;
+    ipv4Enabled?: boolean | null;
     /**
      * The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, /projects/myProject/global/networks/default. This setting can be updated, but it cannot be removed after it is set.
      */
-    privateNetwork?: string;
+    privateNetwork?: string | null;
     /**
      * Whether SSL connections over IP should be enforced or not.
      */
-    requireSsl?: boolean;
+    requireSsl?: boolean | null;
   }
   /**
    * Database instance IP Mapping.
@@ -841,15 +841,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * The IP address assigned.
      */
-    ipAddress?: string;
+    ipAddress?: string | null;
     /**
      * The due time for this IP to be retired in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. This field is only available when the IP is scheduled to be retired.
      */
-    timeToRetire?: string;
+    timeToRetire?: string | null;
     /**
      * The type of this IP address. A PRIMARY address is a public address that can accept incoming connections. A PRIVATE address is a private address that can accept incoming connections. An OUTGOING address is the source address of connections originating from the instance, if supported.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Preferred location. This specifies where a Cloud SQL instance should preferably be located, either in a specific Compute Engine zone, or co-located with an App Engine application. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.
@@ -858,15 +858,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * The AppEngine application to follow, it must be in the same region as the Cloud SQL instance.
      */
-    followGaeApplication?: string;
+    followGaeApplication?: string | null;
     /**
      * This is always sql#locationPreference.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.).
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * Maintenance window. This specifies when a v2 Cloud SQL instance should preferably be restarted for system maintenance purposes.
@@ -875,19 +875,19 @@ export namespace sqladmin_v1beta4 {
     /**
      * day of week (1-7), starting on Monday.
      */
-    day?: number;
+    day?: number | null;
     /**
      * hour of day - 0 to 23.
      */
-    hour?: number;
+    hour?: number | null;
     /**
      * This is always sql#maintenanceWindow.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Maintenance timing setting: canary (Earlier) or stable (Later).  Learn more.
      */
-    updateTrack?: string;
+    updateTrack?: string | null;
   }
   /**
    * Read-replica configuration specific to MySQL databases.
@@ -896,47 +896,47 @@ export namespace sqladmin_v1beta4 {
     /**
      * PEM representation of the trusted CA&#39;s x509 certificate.
      */
-    caCertificate?: string;
+    caCertificate?: string | null;
     /**
      * PEM representation of the slave&#39;s x509 certificate.
      */
-    clientCertificate?: string;
+    clientCertificate?: string | null;
     /**
      * PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
      */
-    clientKey?: string;
+    clientKey?: string | null;
     /**
      * Seconds to wait between connect retries. MySQL&#39;s default is 60 seconds.
      */
-    connectRetryInterval?: number;
+    connectRetryInterval?: number | null;
     /**
      * Path to a SQL dump file in Google Cloud Storage from which the slave instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps should have the binlog co-ordinates from which replication should begin. This can be accomplished by setting --master-data to 1 when using mysqldump.
      */
-    dumpFilePath?: string;
+    dumpFilePath?: string | null;
     /**
      * This is always sql#mysqlReplicaConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Interval in milliseconds between replication heartbeats.
      */
-    masterHeartbeatPeriod?: string;
+    masterHeartbeatPeriod?: string | null;
     /**
      * The password for the replication connection.
      */
-    password?: string;
+    password?: string | null;
     /**
      * A list of permissible ciphers to use for SSL encryption.
      */
-    sslCipher?: string;
+    sslCipher?: string | null;
     /**
      * The username for the replication connection.
      */
-    username?: string;
+    username?: string | null;
     /**
      * Whether or not to check the master&#39;s Common Name value in the certificate that it sends during the SSL handshake.
      */
-    verifyServerCertificate?: boolean;
+    verifyServerCertificate?: boolean | null;
   }
   /**
    * On-premises instance configuration.
@@ -945,11 +945,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * The host and port of the on-premises instance in host:port format
      */
-    hostPort?: string;
+    hostPort?: string | null;
     /**
      * This is always sql#onPremisesConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.
@@ -958,7 +958,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * The time this operation finished in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * If errors occurred during processing of this operation, this field will be populated.
      */
@@ -974,44 +974,44 @@ export namespace sqladmin_v1beta4 {
     /**
      * The time this operation was enqueued in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    insertTime?: string;
+    insertTime?: string | null;
     /**
      * This is always sql#operation.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The type of the operation. Valid values are CREATE, DELETE, UPDATE, RESTART, IMPORT, EXPORT, BACKUP_VOLUME, RESTORE_VOLUME, CREATE_USER, DELETE_USER, CREATE_DATABASE, DELETE_DATABASE .
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * The URI of this resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The time this operation actually started in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The status of an operation. Valid values are PENDING, RUNNING, DONE, UNKNOWN.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Name of the database instance related to this operation.
      */
-    targetId?: string;
-    targetLink?: string;
+    targetId?: string | null;
+    targetLink?: string | null;
     /**
      * The project ID of the target instance related to this operation.
      */
-    targetProject?: string;
+    targetProject?: string | null;
     /**
      * The email address of the user who initiated this operation.
      */
-    user?: string;
+    user?: string | null;
   }
   /**
    * Database instance operation error.
@@ -1020,15 +1020,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Identifies the specific error that occurred.
      */
-    code?: string;
+    code?: string | null;
     /**
      * This is always sql#operationError.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Additional information about the error encountered.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Database instance operation errors list wrapper.
@@ -1041,7 +1041,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#operationErrors.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Database instance list operations response.
@@ -1054,11 +1054,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#operationsList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Read-replica configuration for connecting to the master.
@@ -1067,11 +1067,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Specifies if the replica is the failover target. If the field is set to true the replica will be designated as a failover replica. In case the master instance fails, the replica instance will be promoted as the new master instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the master instance.
      */
-    failoverTarget?: boolean;
+    failoverTarget?: boolean | null;
     /**
      * This is always sql#replicaConfiguration.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named master.info in the data directory.
      */
@@ -1084,19 +1084,19 @@ export namespace sqladmin_v1beta4 {
     /**
      * The ID of the backup run to restore from.
      */
-    backupRunId?: string;
+    backupRunId?: string | null;
     /**
      * The ID of the instance that the backup was taken from.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * This is always sql#restoreBackupContext.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The full project ID of the source instance.
      */
-    project?: string;
+    project?: string | null;
   }
   /**
    * Instance rotate server CA context.
@@ -1105,11 +1105,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#rotateServerCaContext.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server CA version.
      */
-    nextVersion?: string;
+    nextVersion?: string | null;
   }
   /**
    * Database instance settings.
@@ -1118,15 +1118,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: ALWAYS: The instance is on, and remains so even in the absence of connection requests. NEVER: The instance is off; it is not activated, even if a connection request arrives. ON_DEMAND: First Generation instances only. The instance responds to incoming requests, and turns itself off when not in use. Instances with PER_USE pricing turn off after 15 minutes of inactivity. Instances with PER_PACKAGE pricing turn off after 12 hours of inactivity.
      */
-    activationPolicy?: string;
+    activationPolicy?: string | null;
     /**
      * The App Engine app IDs that can access this instance. First Generation instances only.
      */
-    authorizedGaeApplications?: string[];
+    authorizedGaeApplications?: string[] | null;
     /**
      * Availability type (PostgreSQL instances only). Potential values: ZONAL: The instance serves data from only one zone. Outages in that zone affect data accessibility. REGIONAL: The instance can serve data from more than one zone in a region (it is highly available). For more information, see Overview of the High Availability Configuration.
      */
-    availabilityType?: string;
+    availabilityType?: string | null;
     /**
      * The daily backup configuration for the instance.
      */
@@ -1134,7 +1134,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property is only applicable to First Generation instances.
      */
-    crashSafeReplicationEnabled?: boolean;
+    crashSafeReplicationEnabled?: boolean | null;
     /**
      * The database flags passed to the instance at startup.
      */
@@ -1142,15 +1142,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Configuration specific to read replica instances. Indicates whether replication is enabled or not.
      */
-    databaseReplicationEnabled?: boolean;
+    databaseReplicationEnabled?: boolean | null;
     /**
      * The size of data disk, in GB. The data disk size minimum is 10GB. Not used for First Generation instances.
      */
-    dataDiskSizeGb?: string;
+    dataDiskSizeGb?: string | null;
     /**
      * The type of data disk: PD_SSD (default) or PD_HDD. Not used for First Generation instances.
      */
-    dataDiskType?: string;
+    dataDiskType?: string | null;
     /**
      * The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances.
      */
@@ -1158,7 +1158,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#settings.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or Compute Engine zone for better performance. App Engine co-location is only applicable to First Generation instances.
      */
@@ -1170,31 +1170,31 @@ export namespace sqladmin_v1beta4 {
     /**
      * The pricing plan for this instance. This can be either PER_USE or PACKAGE. Only PER_USE is supported for Second Generation instances.
      */
-    pricingPlan?: string;
+    pricingPlan?: string | null;
     /**
      * The type of replication this instance uses. This can be either ASYNCHRONOUS or SYNCHRONOUS. This property is only applicable to First Generation instances.
      */
-    replicationType?: string;
+    replicationType?: string | null;
     /**
      * The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.
      */
-    settingsVersion?: string;
+    settingsVersion?: string | null;
     /**
      * Configuration to increase storage size automatically. The default value is true. Not used for First Generation instances.
      */
-    storageAutoResize?: boolean;
+    storageAutoResize?: boolean | null;
     /**
      * The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit. Not used for First Generation instances.
      */
-    storageAutoResizeLimit?: string;
+    storageAutoResizeLimit?: string | null;
     /**
      * The tier (or machine type) for this instance, for example db-n1-standard-1 (MySQL instances) or db-custom-1-3840 (PostgreSQL instances). For MySQL instances, this property determines whether the instance is First or Second Generation. For more information, see Instance Settings.
      */
-    tier?: string;
+    tier?: string | null;
     /**
      * User-provided labels, represented as a dictionary where each label is a single key value pair.
      */
-    userLabels?: {[key: string]: string};
+    userLabels?: {[key: string]: string} | null;
   }
   /**
    * SslCerts Resource
@@ -1203,39 +1203,39 @@ export namespace sqladmin_v1beta4 {
     /**
      * PEM representation.
      */
-    cert?: string;
+    cert?: string | null;
     /**
      * Serial number, as extracted from the certificate.
      */
-    certSerialNumber?: string;
+    certSerialNumber?: string | null;
     /**
      * User supplied name. Constrained to [a-zA-Z.-_ ]+.
      */
-    commonName?: string;
+    commonName?: string | null;
     /**
      * The time when the certificate was created in RFC 3339 format, for example 2012-11-15T16:19:00.094Z
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The time when the certificate expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.
      */
-    expirationTime?: string;
+    expirationTime?: string | null;
     /**
      * Name of the database instance.
      */
-    instance?: string;
+    instance?: string | null;
     /**
      * This is always sql#sslCert.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The URI of this resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Sha1 Fingerprint.
      */
-    sha1Fingerprint?: string;
+    sha1Fingerprint?: string | null;
   }
   /**
    * SslCertDetail.
@@ -1248,7 +1248,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * The private key for the client cert, in pem format. Keep private in order to protect your security.
      */
-    certPrivateKey?: string;
+    certPrivateKey?: string | null;
   }
   /**
    * SslCerts create ephemeral certificate request.
@@ -1257,7 +1257,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * PEM encoded public key to include in the signed certificate.
      */
-    public_key?: string;
+    public_key?: string | null;
   }
   /**
    * SslCerts insert request.
@@ -1266,7 +1266,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * User supplied name. Must be a distinct name from the other certificates for this instance.
      */
-    commonName?: string;
+    commonName?: string | null;
   }
   /**
    * SslCert insert response.
@@ -1279,7 +1279,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#sslCertsInsert.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The operation to track the ssl certs insert request.
      */
@@ -1300,7 +1300,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#sslCertsList.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A Google Cloud SQL service tier resource.
@@ -1309,23 +1309,23 @@ export namespace sqladmin_v1beta4 {
     /**
      * The maximum disk size of this tier in bytes.
      */
-    DiskQuota?: string;
+    DiskQuota?: string | null;
     /**
      * This is always sql#tier.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The maximum RAM usage of this tier in bytes.
      */
-    RAM?: string;
+    RAM?: string | null;
     /**
      * The applicable regions for this tier.
      */
-    region?: string[];
+    region?: string[] | null;
     /**
      * An identifier for the machine type, for example, db-n1-standard-1. For related information, see Pricing.
      */
-    tier?: string;
+    tier?: string | null;
   }
   /**
    * Tiers list response.
@@ -1338,7 +1338,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#tiersList.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Database Instance truncate log context.
@@ -1347,11 +1347,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#truncateLogContext.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The type of log to truncate. Valid values are MYSQL_GENERAL_TABLE and MYSQL_SLOW_TABLE.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * A Cloud SQL user resource.
@@ -1360,31 +1360,31 @@ export namespace sqladmin_v1beta4 {
     /**
      * This field is deprecated and will be removed from a future version of the API.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The host name from which the user can connect. For insert operations, host defaults to an empty string. For update operations, host is specified as part of the request URL. The host name cannot be updated after insertion.
      */
-    host?: string;
+    host?: string | null;
     /**
      * The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for update since it is already specified on the URL.
      */
-    instance?: string;
+    instance?: string | null;
     /**
      * This is always sql#user.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the user in the Cloud SQL instance. Can be omitted for update since it is already specified in the URL.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The password for the user.
      */
-    password?: string;
+    password?: string | null;
     /**
      * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for update since it is already specified on the URL.
      */
-    project?: string;
+    project?: string | null;
   }
   /**
    * User list response.
@@ -1397,11 +1397,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * This is always sql#usersList.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * An identifier that uniquely identifies the operation. You can use this identifier to retrieve the Operations resource that has information about the operation.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
 
   export class Resource$Backupruns {

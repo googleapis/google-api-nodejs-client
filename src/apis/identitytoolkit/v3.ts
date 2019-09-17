@@ -108,39 +108,39 @@ export namespace identitytoolkit_v3 {
     /**
      * all providers the user has once used to do federated login
      */
-    allProviders?: string[];
+    allProviders?: string[] | null;
     /**
      * The URI used by the IDP to authenticate the user.
      */
-    authUri?: string;
+    authUri?: string | null;
     /**
      * True if captcha is required.
      */
-    captchaRequired?: boolean;
+    captchaRequired?: boolean | null;
     /**
      * True if the authUri is for user&#39;s existing provider.
      */
-    forExistingProvider?: boolean;
+    forExistingProvider?: boolean | null;
     /**
      * The fixed string identitytoolkit#CreateAuthUriResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The provider ID of the auth URI.
      */
-    providerId?: string;
+    providerId?: string | null;
     /**
      * Whether the user is registered if the identifier is an email.
      */
-    registered?: boolean;
+    registered?: boolean | null;
     /**
      * Session ID which should be passed in the following verifyAssertion request.
      */
-    sessionId?: string;
+    sessionId?: string | null;
     /**
      * All sign-in methods this user has used.
      */
-    signinMethods?: string[];
+    signinMethods?: string[] | null;
   }
   /**
    * Respone of deleting account.
@@ -149,7 +149,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The fixed string &quot;identitytoolkit#DeleteAccountResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Response of downloading accounts in batch.
@@ -158,11 +158,11 @@ export namespace identitytoolkit_v3 {
     /**
      * The fixed string &quot;identitytoolkit#DownloadAccountResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The next page token. To be used in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The user accounts data.
      */
@@ -175,31 +175,31 @@ export namespace identitytoolkit_v3 {
     /**
      * The user&#39;s email.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Expiration time of STS id token in seconds.
      */
-    expiresIn?: string;
+    expiresIn?: string | null;
     /**
      * The STS id token to login the newly signed in user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * Whether the user is new.
      */
-    isNewUser?: boolean;
+    isNewUser?: boolean | null;
     /**
      * The fixed string &quot;identitytoolkit#EmailLinkSigninResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The RP local ID of the user.
      */
-    localId?: string;
+    localId?: string | null;
     /**
      * The refresh token for the signed in user.
      */
-    refreshToken?: string;
+    refreshToken?: string | null;
   }
   /**
    * Template for an email template.
@@ -208,27 +208,27 @@ export namespace identitytoolkit_v3 {
     /**
      * Email body.
      */
-    body?: string;
+    body?: string | null;
     /**
      * Email body format.
      */
-    format?: string;
+    format?: string | null;
     /**
      * From address of the email.
      */
-    from?: string;
+    from?: string | null;
     /**
      * From display name.
      */
-    fromDisplayName?: string;
+    fromDisplayName?: string | null;
     /**
      * Reply-to address.
      */
-    replyTo?: string;
+    replyTo?: string | null;
     /**
      * Subject of the email.
      */
-    subject?: string;
+    subject?: string | null;
   }
   /**
    * Response of getting account information.
@@ -237,7 +237,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The fixed string &quot;identitytoolkit#GetAccountInfoResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The info of the users.
      */
@@ -250,15 +250,15 @@ export namespace identitytoolkit_v3 {
     /**
      * The email address that the email is sent to.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The fixed string &quot;identitytoolkit#GetOobConfirmationCodeResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The code to be send to the user.
      */
-    oobCode?: string;
+    oobCode?: string | null;
   }
   /**
    * Response of getting recaptcha param.
@@ -267,15 +267,15 @@ export namespace identitytoolkit_v3 {
     /**
      * The fixed string &quot;identitytoolkit#GetRecaptchaParamResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Site key registered at recaptcha.
      */
-    recaptchaSiteKey?: string;
+    recaptchaSiteKey?: string | null;
     /**
      * The stoken field for the recaptcha widget, used to request captcha challenge.
      */
-    recaptchaStoken?: string;
+    recaptchaStoken?: string | null;
   }
   /**
    * Request to get the IDP authentication URL.
@@ -284,67 +284,67 @@ export namespace identitytoolkit_v3 {
     /**
      * The app ID of the mobile app, base64(CERT_SHA1):PACKAGE_NAME for Android, BUNDLE_ID for iOS.
      */
-    appId?: string;
+    appId?: string | null;
     /**
      * Explicitly specify the auth flow type. Currently only support &quot;CODE_FLOW&quot; type. The field is only used for Google provider.
      */
-    authFlowType?: string;
+    authFlowType?: string | null;
     /**
      * The relying party OAuth client ID.
      */
-    clientId?: string;
+    clientId?: string | null;
     /**
      * The opaque value used by the client to maintain context info between the authentication request and the IDP callback.
      */
-    context?: string;
+    context?: string | null;
     /**
      * The URI to which the IDP redirects the user after the federated login flow.
      */
-    continueUri?: string;
+    continueUri?: string | null;
     /**
      * The query parameter that client can customize by themselves in auth url. The following parameters are reserved for server so that they cannot be customized by clients: client_id, response_type, scope, redirect_uri, state, oauth_token.
      */
-    customParameter?: {[key: string]: string};
+    customParameter?: {[key: string]: string} | null;
     /**
      * The hosted domain to restrict sign-in to accounts at that domain for Google Apps hosted accounts.
      */
-    hostedDomain?: string;
+    hostedDomain?: string | null;
     /**
      * The email or federated ID of the user.
      */
-    identifier?: string;
+    identifier?: string | null;
     /**
      * The developer&#39;s consumer key for OpenId OAuth Extension
      */
-    oauthConsumerKey?: string;
+    oauthConsumerKey?: string | null;
     /**
      * Additional oauth scopes, beyond the basid user profile, that the user would be prompted to grant
      */
-    oauthScope?: string;
+    oauthScope?: string | null;
     /**
      * Optional realm for OpenID protocol. The sub string &quot;scheme://domain:port&quot; of the param &quot;continueUri&quot; is used if this is not set.
      */
-    openidRealm?: string;
+    openidRealm?: string | null;
     /**
      * The native app package for OTA installation.
      */
-    otaApp?: string;
+    otaApp?: string | null;
     /**
      * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it&#39;s the OP identifier.
      */
-    providerId?: string;
+    providerId?: string | null;
     /**
      * The session_id passed by client.
      */
-    sessionId?: string;
+    sessionId?: string | null;
     /**
      * For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from.
      */
-    tenantId?: string;
+    tenantId?: string | null;
     /**
      * Tenant project number to be used for idp discovery.
      */
-    tenantProjectNumber?: string;
+    tenantProjectNumber?: string | null;
   }
   /**
    * Request to delete account.
@@ -353,15 +353,15 @@ export namespace identitytoolkit_v3 {
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
+    delegatedProjectNumber?: string | null;
     /**
      * The GITKit token or STS id token of the authenticated user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * The local ID of the user.
      */
-    localId?: string;
+    localId?: string | null;
   }
   /**
    * Request to download user account in batch.
@@ -370,19 +370,19 @@ export namespace identitytoolkit_v3 {
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
+    delegatedProjectNumber?: string | null;
     /**
      * The max number of results to return in the response.
      */
-    maxResults?: number;
+    maxResults?: number | null;
     /**
      * The token for the next page. This should be taken from the previous response.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Specify which project (field value is actually project id) to operate. Only used when provided credential.
      */
-    targetProjectId?: string;
+    targetProjectId?: string | null;
   }
   /**
    * Request to sign in with email.
@@ -391,15 +391,15 @@ export namespace identitytoolkit_v3 {
     /**
      * The email address of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Token for linking flow.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * The confirmation code.
      */
-    oobCode?: string;
+    oobCode?: string | null;
   }
   /**
    * Request to get the account information.
@@ -408,23 +408,23 @@ export namespace identitytoolkit_v3 {
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
+    delegatedProjectNumber?: string | null;
     /**
      * The list of emails of the users to inquiry.
      */
-    email?: string[];
+    email?: string[] | null;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * The list of local ID&#39;s of the users to inquiry.
      */
-    localId?: string[];
+    localId?: string[] | null;
     /**
      * Privileged caller can query users by specified phone number.
      */
-    phoneNumber?: string[];
+    phoneNumber?: string[] | null;
   }
   /**
    * Response of getting the project configuration.
@@ -433,24 +433,24 @@ export namespace identitytoolkit_v3 {
     /**
      * Whether to allow password user sign in or sign up.
      */
-    allowPasswordUser?: boolean;
+    allowPasswordUser?: boolean | null;
     /**
      * Browser API key, needed when making http request to Apiary.
      */
-    apiKey?: string;
+    apiKey?: string | null;
     /**
      * Authorized domains.
      */
-    authorizedDomains?: string[];
+    authorizedDomains?: string[] | null;
     /**
      * Change email template.
      */
     changeEmailTemplate?: Schema$EmailTemplate;
-    dynamicLinksDomain?: string;
+    dynamicLinksDomain?: string | null;
     /**
      * Whether anonymous user is enabled.
      */
-    enableAnonymousUser?: boolean;
+    enableAnonymousUser?: boolean | null;
     /**
      * OAuth2 provider configuration.
      */
@@ -462,7 +462,7 @@ export namespace identitytoolkit_v3 {
     /**
      * Project ID of the relying party.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * Reset password email template.
      */
@@ -470,7 +470,7 @@ export namespace identitytoolkit_v3 {
     /**
      * Whether to use email sending provided by Firebear.
      */
-    useEmailSending?: boolean;
+    useEmailSending?: boolean | null;
     /**
      * Verify email template.
      */
@@ -487,19 +487,19 @@ export namespace identitytoolkit_v3 {
     /**
      * The email address of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The new password inputted by the user.
      */
-    newPassword?: string;
+    newPassword?: string | null;
     /**
      * The old password inputted by the user.
      */
-    oldPassword?: string;
+    oldPassword?: string | null;
     /**
      * The confirmation code.
      */
-    oobCode?: string;
+    oobCode?: string | null;
   }
   /**
    * Request for Identitytoolkit-SendVerificationCode
@@ -508,19 +508,19 @@ export namespace identitytoolkit_v3 {
     /**
      * Receipt of successful app token validation with APNS.
      */
-    iosReceipt?: string;
+    iosReceipt?: string | null;
     /**
      * Secret delivered to iOS app via APNS.
      */
-    iosSecret?: string;
+    iosSecret?: string | null;
     /**
      * The phone number to send the verification code to in E.164 format.
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * Recaptcha solution.
      */
-    recaptchaToken?: string;
+    recaptchaToken?: string | null;
   }
   /**
    * Response for Identitytoolkit-SendVerificationCode
@@ -529,7 +529,7 @@ export namespace identitytoolkit_v3 {
     /**
      * Encrypted session information
      */
-    sessionInfo?: string;
+    sessionInfo?: string | null;
   }
   /**
    * Request to set the account information.
@@ -538,95 +538,95 @@ export namespace identitytoolkit_v3 {
     /**
      * The captcha challenge.
      */
-    captchaChallenge?: string;
+    captchaChallenge?: string | null;
     /**
      * Response to the captcha.
      */
-    captchaResponse?: string;
+    captchaResponse?: string | null;
     /**
      * The timestamp when the account is created.
      */
-    createdAt?: string;
+    createdAt?: string | null;
     /**
      * The custom attributes to be set in the user&#39;s id token.
      */
-    customAttributes?: string;
+    customAttributes?: string | null;
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
+    delegatedProjectNumber?: string | null;
     /**
      * The attributes users request to delete.
      */
-    deleteAttribute?: string[];
+    deleteAttribute?: string[] | null;
     /**
      * The IDPs the user request to delete.
      */
-    deleteProvider?: string[];
+    deleteProvider?: string[] | null;
     /**
      * Whether to disable the user.
      */
-    disableUser?: boolean;
+    disableUser?: boolean | null;
     /**
      * The name of the user.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The email of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Mark the email as verified or not.
      */
-    emailVerified?: boolean;
+    emailVerified?: boolean | null;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * Instance id token of the app.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * Last login timestamp.
      */
-    lastLoginAt?: string;
+    lastLoginAt?: string | null;
     /**
      * The local ID of the user.
      */
-    localId?: string;
+    localId?: string | null;
     /**
      * The out-of-band code of the change email request.
      */
-    oobCode?: string;
+    oobCode?: string | null;
     /**
      * The new password of the user.
      */
-    password?: string;
+    password?: string | null;
     /**
      * Privileged caller can update user with specified phone number.
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * The photo url of the user.
      */
-    photoUrl?: string;
+    photoUrl?: string | null;
     /**
      * The associated IDPs of the user.
      */
-    provider?: string[];
+    provider?: string[] | null;
     /**
      * Whether return sts id token and refresh token instead of gitkit token.
      */
-    returnSecureToken?: boolean;
+    returnSecureToken?: boolean | null;
     /**
      * Mark the user to upgrade to federated login.
      */
-    upgradeToFederatedLogin?: boolean;
+    upgradeToFederatedLogin?: boolean | null;
     /**
      * Timestamp in seconds for valid login token.
      */
-    validSince?: string;
+    validSince?: string | null;
   }
   /**
    * Request to set the project configuration.
@@ -635,15 +635,15 @@ export namespace identitytoolkit_v3 {
     /**
      * Whether to allow password user sign in or sign up.
      */
-    allowPasswordUser?: boolean;
+    allowPasswordUser?: boolean | null;
     /**
      * Browser API key, needed when making http request to Apiary.
      */
-    apiKey?: string;
+    apiKey?: string | null;
     /**
      * Authorized domains for widget redirect.
      */
-    authorizedDomains?: string[];
+    authorizedDomains?: string[] | null;
     /**
      * Change email template.
      */
@@ -651,11 +651,11 @@ export namespace identitytoolkit_v3 {
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
+    delegatedProjectNumber?: string | null;
     /**
      * Whether to enable anonymous user.
      */
-    enableAnonymousUser?: boolean;
+    enableAnonymousUser?: boolean | null;
     /**
      * Oauth2 provider configuration.
      */
@@ -671,7 +671,7 @@ export namespace identitytoolkit_v3 {
     /**
      * Whether to use email sending provided by Firebear.
      */
-    useEmailSending?: boolean;
+    useEmailSending?: boolean | null;
     /**
      * Verify email template.
      */
@@ -684,7 +684,7 @@ export namespace identitytoolkit_v3 {
     /**
      * Project ID of the relying party.
      */
-    projectId?: string;
+    projectId?: string | null;
   }
   /**
    * Request to sign out user.
@@ -693,11 +693,11 @@ export namespace identitytoolkit_v3 {
     /**
      * Instance id token of the app.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * The local ID of the user.
      */
-    localId?: string;
+    localId?: string | null;
   }
   /**
    * Response of signing out user.
@@ -706,7 +706,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The local ID of the user.
      */
-    localId?: string;
+    localId?: string | null;
   }
   /**
    * Request to signup new user, create anonymous user or anonymous user reauth.
@@ -715,59 +715,59 @@ export namespace identitytoolkit_v3 {
     /**
      * The captcha challenge.
      */
-    captchaChallenge?: string;
+    captchaChallenge?: string | null;
     /**
      * Response to the captcha.
      */
-    captchaResponse?: string;
+    captchaResponse?: string | null;
     /**
      * Whether to disable the user. Only can be used by service account.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
     /**
      * The name of the user.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The email of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Mark the email as verified or not. Only can be used by service account.
      */
-    emailVerified?: boolean;
+    emailVerified?: boolean | null;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * Instance id token of the app.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * Privileged caller can create user with specified user id.
      */
-    localId?: string;
+    localId?: string | null;
     /**
      * The new password of the user.
      */
-    password?: string;
+    password?: string | null;
     /**
      * Privileged caller can create user with specified phone number.
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * The photo url of the user.
      */
-    photoUrl?: string;
+    photoUrl?: string | null;
     /**
      * For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from.
      */
-    tenantId?: string;
+    tenantId?: string | null;
     /**
      * Tenant project number to be used for idp discovery.
      */
-    tenantProjectNumber?: string;
+    tenantProjectNumber?: string | null;
   }
   /**
    * Request to upload user account in batch.
@@ -776,46 +776,46 @@ export namespace identitytoolkit_v3 {
     /**
      * Whether allow overwrite existing account when user local_id exists.
      */
-    allowOverwrite?: boolean;
-    blockSize?: number;
+    allowOverwrite?: boolean | null;
+    blockSize?: number | null;
     /**
      * The following 4 fields are for standard scrypt algorithm.
      */
-    cpuMemCost?: number;
+    cpuMemCost?: number | null;
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
-    dkLen?: number;
+    delegatedProjectNumber?: string | null;
+    dkLen?: number | null;
     /**
      * The password hash algorithm.
      */
-    hashAlgorithm?: string;
+    hashAlgorithm?: string | null;
     /**
      * Memory cost for hash calculation. Used by scrypt similar algorithms.
      */
-    memoryCost?: number;
-    parallelization?: number;
+    memoryCost?: number | null;
+    parallelization?: number | null;
     /**
      * Rounds for hash calculation. Used by scrypt and similar algorithms.
      */
-    rounds?: number;
+    rounds?: number | null;
     /**
      * The salt separator.
      */
-    saltSeparator?: string;
+    saltSeparator?: string | null;
     /**
      * If true, backend will do sanity check(including duplicate email and federated id) when uploading account.
      */
-    sanityCheck?: boolean;
+    sanityCheck?: boolean | null;
     /**
      * The key for to hash the password.
      */
-    signerKey?: string;
+    signerKey?: string | null;
     /**
      * Specify which project (field value is actually project id) to operate. Only used when provided credential.
      */
-    targetProjectId?: string;
+    targetProjectId?: string | null;
     /**
      * The account info to be stored.
      */
@@ -828,55 +828,55 @@ export namespace identitytoolkit_v3 {
     /**
      * When it&#39;s true, automatically creates a new account if the user doesn&#39;t exist. When it&#39;s false, allows existing user to sign in normally and throws exception if the user doesn&#39;t exist.
      */
-    autoCreate?: boolean;
+    autoCreate?: boolean | null;
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
+    delegatedProjectNumber?: string | null;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * Instance id token of the app.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * The GITKit token for the non-trusted IDP pending to be confirmed by the user.
      */
-    pendingIdToken?: string;
+    pendingIdToken?: string | null;
     /**
      * The post body if the request is a HTTP POST.
      */
-    postBody?: string;
+    postBody?: string | null;
     /**
      * The URI to which the IDP redirects the user back. It may contain federated login result params added by the IDP.
      */
-    requestUri?: string;
+    requestUri?: string | null;
     /**
      * Whether return 200 and IDP credential rather than throw exception when federated id is already linked.
      */
-    returnIdpCredential?: boolean;
+    returnIdpCredential?: boolean | null;
     /**
      * Whether to return refresh tokens.
      */
-    returnRefreshToken?: boolean;
+    returnRefreshToken?: boolean | null;
     /**
      * Whether return sts id token and refresh token instead of gitkit token.
      */
-    returnSecureToken?: boolean;
+    returnSecureToken?: boolean | null;
     /**
      * Session ID, which should match the one in previous createAuthUri request.
      */
-    sessionId?: string;
+    sessionId?: string | null;
     /**
      * For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from.
      */
-    tenantId?: string;
+    tenantId?: string | null;
     /**
      * Tenant project number to be used for idp discovery.
      */
-    tenantProjectNumber?: string;
+    tenantProjectNumber?: string | null;
   }
   /**
    * Request to verify a custom token
@@ -885,19 +885,19 @@ export namespace identitytoolkit_v3 {
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
+    delegatedProjectNumber?: string | null;
     /**
      * Instance id token of the app.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * Whether return sts id token and refresh token instead of gitkit token.
      */
-    returnSecureToken?: boolean;
+    returnSecureToken?: boolean | null;
     /**
      * The custom token to verify
      */
-    token?: string;
+    token?: string | null;
   }
   /**
    * Request to verify the password.
@@ -906,77 +906,77 @@ export namespace identitytoolkit_v3 {
     /**
      * The captcha challenge.
      */
-    captchaChallenge?: string;
+    captchaChallenge?: string | null;
     /**
      * Response to the captcha.
      */
-    captchaResponse?: string;
+    captchaResponse?: string | null;
     /**
      * GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
      */
-    delegatedProjectNumber?: string;
+    delegatedProjectNumber?: string | null;
     /**
      * The email of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The GITKit token of the authenticated user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * Instance id token of the app.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * The password inputed by the user.
      */
-    password?: string;
+    password?: string | null;
     /**
      * The GITKit token for the non-trusted IDP, which is to be confirmed by the user.
      */
-    pendingIdToken?: string;
+    pendingIdToken?: string | null;
     /**
      * Whether return sts id token and refresh token instead of gitkit token.
      */
-    returnSecureToken?: boolean;
+    returnSecureToken?: boolean | null;
     /**
      * For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from.
      */
-    tenantId?: string;
+    tenantId?: string | null;
     /**
      * Tenant project number to be used for idp discovery.
      */
-    tenantProjectNumber?: string;
+    tenantProjectNumber?: string | null;
   }
   /**
    * Request for Identitytoolkit-VerifyPhoneNumber
    */
   export interface Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest {
-    code?: string;
-    idToken?: string;
-    operation?: string;
-    phoneNumber?: string;
+    code?: string | null;
+    idToken?: string | null;
+    operation?: string | null;
+    phoneNumber?: string | null;
     /**
      * The session info previously returned by IdentityToolkit-SendVerificationCode.
      */
-    sessionInfo?: string;
-    temporaryProof?: string;
-    verificationProof?: string;
+    sessionInfo?: string | null;
+    temporaryProof?: string | null;
+    verificationProof?: string | null;
   }
   /**
    * Response for Identitytoolkit-VerifyPhoneNumber
    */
   export interface Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse {
-    expiresIn?: string;
-    idToken?: string;
-    isNewUser?: boolean;
-    localId?: string;
-    phoneNumber?: string;
-    refreshToken?: string;
-    temporaryProof?: string;
-    temporaryProofExpiresIn?: string;
-    verificationProof?: string;
-    verificationProofExpiresIn?: string;
+    expiresIn?: string | null;
+    idToken?: string | null;
+    isNewUser?: boolean | null;
+    localId?: string | null;
+    phoneNumber?: string | null;
+    refreshToken?: string | null;
+    temporaryProof?: string | null;
+    temporaryProofExpiresIn?: string | null;
+    verificationProof?: string | null;
+    verificationProofExpiresIn?: string | null;
   }
   /**
    * Template for a single idp configuration.
@@ -985,27 +985,27 @@ export namespace identitytoolkit_v3 {
     /**
      * OAuth2 client ID.
      */
-    clientId?: string;
+    clientId?: string | null;
     /**
      * Whether this IDP is enabled.
      */
-    enabled?: boolean;
+    enabled?: boolean | null;
     /**
      * Percent of users who will be prompted/redirected federated login for this IDP.
      */
-    experimentPercent?: number;
+    experimentPercent?: number | null;
     /**
      * OAuth2 provider.
      */
-    provider?: string;
+    provider?: string | null;
     /**
      * OAuth2 client secret.
      */
-    secret?: string;
+    secret?: string | null;
     /**
      * Whitelisted client IDs for audience check.
      */
-    whitelistedAudiences?: string[];
+    whitelistedAudiences?: string[] | null;
   }
   /**
    * Request of getting a code for user confirmation (reset password, change email etc.)
@@ -1014,63 +1014,63 @@ export namespace identitytoolkit_v3 {
     /**
      * whether or not to install the android app on the device where the link is opened
      */
-    androidInstallApp?: boolean;
+    androidInstallApp?: boolean | null;
     /**
      * minimum version of the app. if the version on the device is lower than this version then the user is taken to the play store to upgrade the app
      */
-    androidMinimumVersion?: string;
+    androidMinimumVersion?: string | null;
     /**
      * android package name of the android app to handle the action code
      */
-    androidPackageName?: string;
+    androidPackageName?: string | null;
     /**
      * whether or not the app can handle the oob code without first going to web
      */
-    canHandleCodeInApp?: boolean;
+    canHandleCodeInApp?: boolean | null;
     /**
      * The recaptcha response from the user.
      */
-    captchaResp?: string;
+    captchaResp?: string | null;
     /**
      * The recaptcha challenge presented to the user.
      */
-    challenge?: string;
+    challenge?: string | null;
     /**
      * The url to continue to the Gitkit app
      */
-    continueUrl?: string;
+    continueUrl?: string | null;
     /**
      * The email of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The user&#39;s Gitkit login token for email change.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * iOS app store id to download the app if it&#39;s not already installed
      */
-    iOSAppStoreId?: string;
+    iOSAppStoreId?: string | null;
     /**
      * the iOS bundle id of iOS app to handle the action code
      */
-    iOSBundleId?: string;
+    iOSBundleId?: string | null;
     /**
      * The fixed string &quot;identitytoolkit#relyingparty&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The new email if the code is for email change.
      */
-    newEmail?: string;
+    newEmail?: string | null;
     /**
      * The request type.
      */
-    requestType?: string;
+    requestType?: string | null;
     /**
      * The IP address of the user.
      */
-    userIp?: string;
+    userIp?: string | null;
   }
   /**
    * Response of resetting the password.
@@ -1079,19 +1079,19 @@ export namespace identitytoolkit_v3 {
     /**
      * The user&#39;s email. If the out-of-band code is for email recovery, the user&#39;s original email.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The fixed string &quot;identitytoolkit#ResetPasswordResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * If the out-of-band code is for email recovery, the user&#39;s new email.
      */
-    newEmail?: string;
+    newEmail?: string | null;
     /**
      * The request type.
      */
-    requestType?: string;
+    requestType?: string | null;
   }
   /**
    * Respone of setting the account information.
@@ -1100,43 +1100,43 @@ export namespace identitytoolkit_v3 {
     /**
      * The name of the user.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The email of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * If email has been verified.
      */
-    emailVerified?: boolean;
+    emailVerified?: boolean | null;
     /**
      * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
-    expiresIn?: string;
+    expiresIn?: string | null;
     /**
      * The Gitkit id token to login the newly sign up user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * The fixed string &quot;identitytoolkit#SetAccountInfoResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The local ID of the user.
      */
-    localId?: string;
+    localId?: string | null;
     /**
      * The new email the user attempts to change to.
      */
-    newEmail?: string;
+    newEmail?: string | null;
     /**
      * The user&#39;s hashed password.
      */
-    passwordHash?: string;
+    passwordHash?: string | null;
     /**
      * The photo url of the user.
      */
-    photoUrl?: string;
+    photoUrl?: string | null;
     /**
      * The user&#39;s profiles at the associated IdPs.
      */
@@ -1145,11 +1145,11 @@ export namespace identitytoolkit_v3 {
       federatedId?: string;
       photoUrl?: string;
       providerId?: string;
-    }>;
+    }> | null;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken?: string;
+    refreshToken?: string | null;
   }
   /**
    * Response of signing up new user, creating anonymous user or anonymous user reauth.
@@ -1158,31 +1158,31 @@ export namespace identitytoolkit_v3 {
     /**
      * The name of the user.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The email of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
-    expiresIn?: string;
+    expiresIn?: string | null;
     /**
      * The Gitkit id token to login the newly sign up user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * The fixed string &quot;identitytoolkit#SignupNewUserResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The RP local ID of the user.
      */
-    localId?: string;
+    localId?: string | null;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken?: string;
+    refreshToken?: string | null;
   }
   /**
    * Respone of uploading accounts in batch.
@@ -1191,11 +1191,11 @@ export namespace identitytoolkit_v3 {
     /**
      * The error encountered while processing the account info.
      */
-    error?: Array<{index?: number; message?: string}>;
+    error?: Array<{index?: number; message?: string}> | null;
     /**
      * The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Template for an individual account info.
@@ -1204,55 +1204,55 @@ export namespace identitytoolkit_v3 {
     /**
      * User creation timestamp.
      */
-    createdAt?: string;
+    createdAt?: string | null;
     /**
      * The custom attributes to be set in the user&#39;s id token.
      */
-    customAttributes?: string;
+    customAttributes?: string | null;
     /**
      * Whether the user is authenticated by the developer.
      */
-    customAuth?: boolean;
+    customAuth?: boolean | null;
     /**
      * Whether the user is disabled.
      */
-    disabled?: boolean;
+    disabled?: boolean | null;
     /**
      * The name of the user.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The email of the user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Whether the email has been verified.
      */
-    emailVerified?: boolean;
+    emailVerified?: boolean | null;
     /**
      * last login timestamp.
      */
-    lastLoginAt?: string;
+    lastLoginAt?: string | null;
     /**
      * The local ID of the user.
      */
-    localId?: string;
+    localId?: string | null;
     /**
      * The user&#39;s hashed password.
      */
-    passwordHash?: string;
+    passwordHash?: string | null;
     /**
      * The timestamp when the password was last updated.
      */
-    passwordUpdatedAt?: number;
+    passwordUpdatedAt?: number | null;
     /**
      * User&#39;s phone number.
      */
-    phoneNumber?: string;
+    phoneNumber?: string | null;
     /**
      * The URL of the user profile photo.
      */
-    photoUrl?: string;
+    photoUrl?: string | null;
     /**
      * The IDP of the user.
      */
@@ -1265,27 +1265,27 @@ export namespace identitytoolkit_v3 {
       providerId?: string;
       rawId?: string;
       screenName?: string;
-    }>;
+    }> | null;
     /**
      * The user&#39;s plain text password.
      */
-    rawPassword?: string;
+    rawPassword?: string | null;
     /**
      * The user&#39;s password salt.
      */
-    salt?: string;
+    salt?: string | null;
     /**
      * User&#39;s screen name at Twitter or login name at Github.
      */
-    screenName?: string;
+    screenName?: string | null;
     /**
      * Timestamp in seconds for valid login token.
      */
-    validSince?: string;
+    validSince?: string | null;
     /**
      * Version of the user&#39;s password.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Response of verifying the IDP assertion.
@@ -1294,159 +1294,159 @@ export namespace identitytoolkit_v3 {
     /**
      * The action code.
      */
-    action?: string;
+    action?: string | null;
     /**
      * URL for OTA app installation.
      */
-    appInstallationUrl?: string;
+    appInstallationUrl?: string | null;
     /**
      * The custom scheme used by mobile app.
      */
-    appScheme?: string;
+    appScheme?: string | null;
     /**
      * The opaque value used by the client to maintain context info between the authentication request and the IDP callback.
      */
-    context?: string;
+    context?: string | null;
     /**
      * The birth date of the IdP account.
      */
-    dateOfBirth?: string;
+    dateOfBirth?: string | null;
     /**
      * The display name of the user.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The email returned by the IdP. NOTE: The federated login user may not own the email.
      */
-    email?: string;
+    email?: string | null;
     /**
      * It&#39;s true if the email is recycled.
      */
-    emailRecycled?: boolean;
+    emailRecycled?: boolean | null;
     /**
      * The value is true if the IDP is also the email provider. It means the user owns the email.
      */
-    emailVerified?: boolean;
+    emailVerified?: boolean | null;
     /**
      * Client error code.
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
-    expiresIn?: string;
+    expiresIn?: string | null;
     /**
      * The unique ID identifies the IdP account.
      */
-    federatedId?: string;
+    federatedId?: string | null;
     /**
      * The first name of the user.
      */
-    firstName?: string;
+    firstName?: string | null;
     /**
      * The full name of the user.
      */
-    fullName?: string;
+    fullName?: string | null;
     /**
      * The ID token.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * It&#39;s the identifier param in the createAuthUri request if the identifier is an email. It can be used to check whether the user input email is different from the asserted email.
      */
-    inputEmail?: string;
+    inputEmail?: string | null;
     /**
      * True if it&#39;s a new user sign-in, false if it&#39;s a returning user.
      */
-    isNewUser?: boolean;
+    isNewUser?: boolean | null;
     /**
      * The fixed string &quot;identitytoolkit#VerifyAssertionResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The language preference of the user.
      */
-    language?: string;
+    language?: string | null;
     /**
      * The last name of the user.
      */
-    lastName?: string;
+    lastName?: string | null;
     /**
      * The RP local ID if it&#39;s already been mapped to the IdP account identified by the federated ID.
      */
-    localId?: string;
+    localId?: string | null;
     /**
      * Whether the assertion is from a non-trusted IDP and need account linking confirmation.
      */
-    needConfirmation?: boolean;
+    needConfirmation?: boolean | null;
     /**
      * Whether need client to supply email to complete the federated login flow.
      */
-    needEmail?: boolean;
+    needEmail?: boolean | null;
     /**
      * The nick name of the user.
      */
-    nickName?: string;
+    nickName?: string | null;
     /**
      * The OAuth2 access token.
      */
-    oauthAccessToken?: string;
+    oauthAccessToken?: string | null;
     /**
      * The OAuth2 authorization code.
      */
-    oauthAuthorizationCode?: string;
+    oauthAuthorizationCode?: string | null;
     /**
      * The lifetime in seconds of the OAuth2 access token.
      */
-    oauthExpireIn?: number;
+    oauthExpireIn?: number | null;
     /**
      * The OIDC id token.
      */
-    oauthIdToken?: string;
+    oauthIdToken?: string | null;
     /**
      * The user approved request token for the OpenID OAuth extension.
      */
-    oauthRequestToken?: string;
+    oauthRequestToken?: string | null;
     /**
      * The scope for the OpenID OAuth extension.
      */
-    oauthScope?: string;
+    oauthScope?: string | null;
     /**
      * The OAuth1 access token secret.
      */
-    oauthTokenSecret?: string;
+    oauthTokenSecret?: string | null;
     /**
      * The original email stored in the mapping storage. It&#39;s returned when the federated ID is associated to a different email.
      */
-    originalEmail?: string;
+    originalEmail?: string | null;
     /**
      * The URI of the public accessible profiel picture.
      */
-    photoUrl?: string;
+    photoUrl?: string | null;
     /**
      * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. If the &quot;providerId&quot; param is set to OpenID OP identifer other than the whilte listed IdPs the OP identifier is returned. If the &quot;identifier&quot; param is federated ID in the createAuthUri request. The domain part of the federated ID is returned.
      */
-    providerId?: string;
+    providerId?: string | null;
     /**
      * Raw IDP-returned user info.
      */
-    rawUserInfo?: string;
+    rawUserInfo?: string | null;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken?: string;
+    refreshToken?: string | null;
     /**
      * The screen_name of a Twitter user or the login name at Github.
      */
-    screenName?: string;
+    screenName?: string | null;
     /**
      * The timezone of the user.
      */
-    timeZone?: string;
+    timeZone?: string | null;
     /**
      * When action is &#39;map&#39;, contains the idps which can be used for confirmation.
      */
-    verifiedProvider?: string[];
+    verifiedProvider?: string[] | null;
   }
   /**
    * Response from verifying a custom token
@@ -1455,23 +1455,23 @@ export namespace identitytoolkit_v3 {
     /**
      * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
-    expiresIn?: string;
+    expiresIn?: string | null;
     /**
      * The GITKit token for authenticated user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * True if it&#39;s a new user sign-in, false if it&#39;s a returning user.
      */
-    isNewUser?: boolean;
+    isNewUser?: boolean | null;
     /**
      * The fixed string &quot;identitytoolkit#VerifyCustomTokenResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken?: string;
+    refreshToken?: string | null;
   }
   /**
    * Request of verifying the password.
@@ -1480,51 +1480,51 @@ export namespace identitytoolkit_v3 {
     /**
      * The name of the user.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The email returned by the IdP. NOTE: The federated login user may not own the email.
      */
-    email?: string;
+    email?: string | null;
     /**
      * If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
      */
-    expiresIn?: string;
+    expiresIn?: string | null;
     /**
      * The GITKit token for authenticated user.
      */
-    idToken?: string;
+    idToken?: string | null;
     /**
      * The fixed string &quot;identitytoolkit#VerifyPasswordResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The RP local ID if it&#39;s already been mapped to the IdP account identified by the federated ID.
      */
-    localId?: string;
+    localId?: string | null;
     /**
      * The OAuth2 access token.
      */
-    oauthAccessToken?: string;
+    oauthAccessToken?: string | null;
     /**
      * The OAuth2 authorization code.
      */
-    oauthAuthorizationCode?: string;
+    oauthAuthorizationCode?: string | null;
     /**
      * The lifetime in seconds of the OAuth2 access token.
      */
-    oauthExpireIn?: number;
+    oauthExpireIn?: number | null;
     /**
      * The URI of the user&#39;s photo at IdP
      */
-    photoUrl?: string;
+    photoUrl?: string | null;
     /**
      * If idToken is STS id token, then this field will be refresh token.
      */
-    refreshToken?: string;
+    refreshToken?: string | null;
     /**
      * Whether the email is registered.
      */
-    registered?: boolean;
+    registered?: boolean | null;
   }
 
   export class Resource$Relyingparty {

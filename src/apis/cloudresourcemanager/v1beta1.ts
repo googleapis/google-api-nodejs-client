@@ -139,7 +139,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
@@ -148,11 +148,11 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -165,11 +165,11 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -182,19 +182,19 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Metadata describing a long running folder operation
@@ -203,19 +203,19 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
      */
-    destinationParent?: string;
+    destinationParent?: string | null;
     /**
      * The display name of the folder.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The type of this operation.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * The resource name of the folder&#39;s parent. Only applicable when the operation_type is MOVE.
      */
-    sourceParent?: string;
+    sourceParent?: string | null;
   }
   /**
    * A classification of the Folder Operation error.
@@ -224,7 +224,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The type of operation error experienced.
      */
-    errorMessageId?: string;
+    errorMessageId?: string | null;
   }
   /**
    * The request sent to the GetAncestry method.
@@ -255,7 +255,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    requestedPolicyVersion?: number;
+    requestedPolicyVersion?: number | null;
   }
   /**
    * The response returned from the `ListOrganizations` method.
@@ -264,7 +264,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * A pagination token to be used to retrieve the next page of results. If the result is too large to fit within the page size specified in the request, this field will be set with a token that can be used to fetch the next page of results. If this field is empty, it indicates that this response contains the last page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of Organizations that matched the list query, possibly paginated.
      */
@@ -277,7 +277,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Pagination token.  If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results.  When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set.  Pagination tokens have a limited lifetime.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of Projects that matched the list filter. This list can be paginated.
      */
@@ -290,23 +290,23 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Timestamp when the Organization was created. Assigned by the server.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, &quot;google.com&quot;) of the G Suite customer that owns the organization.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The organization&#39;s current lifecycle state. Assigned by the server.
      */
-    lifecycleState?: string;
+    lifecycleState?: string | null;
     /**
      * Output only. The resource name of the organization. This is the organization&#39;s relative path in the API. Its format is &quot;organizations/[organization_id]&quot;. For example, &quot;organizations/1234&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * An immutable id for the Organization that is assigned on creation. This should be omitted when creating a new Organization. This field is read-only.
      */
-    organizationId?: string;
+    organizationId?: string | null;
     /**
      * The owner of this Organization. The owner should be specified on creation. Once set, it cannot be changed. This field is required.
      */
@@ -319,7 +319,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The G Suite customer id used in the Directory API.
      */
-    directoryCustomerId?: string;
+    directoryCustomerId?: string | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -336,11 +336,11 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * A Project is a high-level Google Cloud Platform entity.  It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources.
@@ -349,19 +349,19 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Creation time.  Read-only.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. A label value can be empty.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The Project lifecycle state.  Read-only.
      */
-    lifecycleState?: string;
+    lifecycleState?: string | null;
     /**
      * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point.  Example: &lt;code&gt;My Project&lt;/code&gt; Read-write.
      */
-    name?: string;
+    name?: string | null;
     /**
      * An optional reference to a parent Resource.  Supported parent types include &quot;organization&quot; and &quot;folder&quot;. Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent.  Read-write.
      */
@@ -369,11 +369,11 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited.  Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt; Read-only after creation.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The number uniquely identifying the project.  Example: &lt;code&gt;415104041262&lt;/code&gt; Read-only.
      */
-    projectNumber?: string;
+    projectNumber?: string | null;
   }
   /**
    * A status object which is used as the `metadata` field for the Operation returned by CreateProject. It provides insight for when significant phases of Project creation have completed.
@@ -382,15 +382,15 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Creation time of the project creation workflow.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
      */
-    gettable?: boolean;
+    gettable?: boolean | null;
     /**
      * True if the project creation process is complete.
      */
-    ready?: boolean;
+    ready?: boolean | null;
   }
   /**
    * A container to reference an id for any resource type. A `resource` in Google Cloud Platform is a generic term for something you (a developer) may want to interact with through one of our API&#39;s. Some examples are an App Engine app, a Compute Engine instance, a Cloud SQL database, and so on.
@@ -399,11 +399,11 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * Required field for the type-specific id. This should correspond to the id used in the type-specific API&#39;s.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Required field representing the resource type this id is for. At present, the valid types are &quot;project&quot;, &quot;folder&quot;, and &quot;organization&quot;.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -416,7 +416,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -425,7 +425,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -434,7 +434,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * The request sent to the UndeleteProject method.

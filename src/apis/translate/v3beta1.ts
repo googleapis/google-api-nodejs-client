@@ -124,15 +124,19 @@ export namespace translate_v3beta1 {
     /**
      * Optional. Glossaries to be applied for translation. It&#39;s keyed by target language code.
      */
-    glossaries?: {[key: string]: Schema$TranslateTextGlossaryConfig};
+    glossaries?: {[key: string]: Schema$TranslateTextGlossaryConfig} | null;
     /**
      * Required. Input configurations. The total number of files matched should be &lt;= 1000. The total content size should be &lt;= 100M Unicode codepoints. The files must use UTF-8 encoding.
      */
     inputConfigs?: Schema$InputConfig[];
     /**
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Optional. The models to use for translation. Map&#39;s key is target language code. Map&#39;s value is model name. Value can be a built-in general model, or an AutoML Translation model.  The value format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
      */
-    models?: {[key: string]: string};
+    models?: {[key: string]: string} | null;
     /**
      * Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don&#39;t generate output for duplicate inputs.
      */
@@ -140,11 +144,11 @@ export namespace translate_v3beta1 {
     /**
      * Required. Source language code.
      */
-    sourceLanguageCode?: string;
+    sourceLanguageCode?: string | null;
     /**
      * Required. Specify up to 10 language codes here.
      */
-    targetLanguageCodes?: string[];
+    targetLanguageCodes?: string[] | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -157,11 +161,11 @@ export namespace translate_v3beta1 {
     /**
      * The confidence of the detection result for this language.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * The BCP-47 language code of source content in the request, detected automatically.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * The request message for language detection.
@@ -170,15 +174,19 @@ export namespace translate_v3beta1 {
     /**
      * The content of the input stored as a string.
      */
-    content?: string;
+    content?: string | null;
+    /**
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Optional. The format of the source text, for example, &quot;text/html&quot;, &quot;text/plain&quot;. If left blank, the MIME type defaults to &quot;text/html&quot;.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * Optional. The language detection model to be used.  Format: `projects/{project-id}/locations/{location-id}/models/language-detection/{model-id}`  Only one language detection model is currently supported: `projects/{project-id}/locations/{location-id}/models/language-detection/default`.  If not specified, the default model is used.
      */
-    model?: string;
+    model?: string | null;
   }
   /**
    * The response message for language detection.
@@ -200,7 +208,7 @@ export namespace translate_v3beta1 {
     /**
      * Required. There must be no files under &#39;output_uri_prefix&#39;. &#39;output_uri_prefix&#39; must end with &quot;/&quot; and start with &quot;gs://&quot;, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
-    outputUriPrefix?: string;
+    outputUriPrefix?: string | null;
   }
   /**
    * The Google Cloud Storage location for the input content.
@@ -209,7 +217,7 @@ export namespace translate_v3beta1 {
     /**
      * Required. Source data URI. For example, `gs://my_bucket/my_object`.
      */
-    inputUri?: string;
+    inputUri?: string | null;
   }
   /**
    * Represents a glossary built from user provided data.
@@ -218,11 +226,11 @@ export namespace translate_v3beta1 {
     /**
      * Output only. When the glossary creation was finished.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. The number of entries defined in the glossary.
      */
-    entryCount?: number;
+    entryCount?: number | null;
     /**
      * Required. Provides examples to build the glossary from. Total glossary must not exceed 10M Unicode codepoints.
      */
@@ -238,11 +246,11 @@ export namespace translate_v3beta1 {
     /**
      * Required. The resource name of the glossary. Glossary names have the form `projects/{project-id}/locations/{location-id}/glossaries/{glossary-id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. When CreateGlossary was called.
      */
-    submitTime?: string;
+    submitTime?: string | null;
   }
   /**
    * Input configuration for glossaries.
@@ -264,7 +272,7 @@ export namespace translate_v3beta1 {
     /**
      * Optional. Can be &quot;text/plain&quot; or &quot;text/html&quot;. For `.tsv`, &quot;text/html&quot; is used if mime_type is missing. For `.html`, this field must be &quot;text/html&quot; or empty. For `.txt`, this field must be &quot;text/plain&quot; or empty.
      */
-    mimeType?: string;
+    mimeType?: string | null;
   }
   /**
    * Used with unidirectional glossaries.
@@ -273,11 +281,11 @@ export namespace translate_v3beta1 {
     /**
      * Required. The BCP-47 language code of the input text, for example, &quot;en-US&quot;. Expected to be an exact match for GlossaryTerm.language_code.
      */
-    sourceLanguageCode?: string;
+    sourceLanguageCode?: string | null;
     /**
      * Required. The BCP-47 language code for translation output, for example, &quot;zh-CN&quot;. Expected to be an exact match for GlossaryTerm.language_code.
      */
-    targetLanguageCode?: string;
+    targetLanguageCode?: string | null;
   }
   /**
    * Used with equivalent term set glossaries.
@@ -286,7 +294,7 @@ export namespace translate_v3beta1 {
     /**
      * The BCP-47 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.
      */
-    languageCodes?: string[];
+    languageCodes?: string[] | null;
   }
   /**
    * Response message for ListGlossaries.
@@ -299,7 +307,7 @@ export namespace translate_v3beta1 {
     /**
      * A token to retrieve a page of results. Pass this value in the [ListGlossariesRequest.page_token] field in the subsequent call to `ListGlossaries` method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -312,7 +320,7 @@ export namespace translate_v3beta1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -321,7 +329,7 @@ export namespace translate_v3beta1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -334,23 +342,23 @@ export namespace translate_v3beta1 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -359,7 +367,7 @@ export namespace translate_v3beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -367,15 +375,15 @@ export namespace translate_v3beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Output configuration for BatchTranslateText request.
@@ -393,15 +401,15 @@ export namespace translate_v3beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A single supported language response corresponds to information related to one supported language.
@@ -410,19 +418,19 @@ export namespace translate_v3beta1 {
     /**
      * Human readable name of the language localized in the display language specified in the request.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Supported language code, generally consisting of its ISO 639-1 identifier, for example, &#39;en&#39;, &#39;ja&#39;. In certain cases, BCP-47 codes including language and region identifiers are returned (for example, &#39;zh-TW&#39; and &#39;zh-CN&#39;)
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * Can be used as source language.
      */
-    supportSource?: boolean;
+    supportSource?: boolean | null;
     /**
      * Can be used as target language.
      */
-    supportTarget?: boolean;
+    supportTarget?: boolean | null;
   }
   /**
    * The response message for discovering supported languages.
@@ -440,11 +448,11 @@ export namespace translate_v3beta1 {
     /**
      * Required. Specifies the glossary used for this translation. Use this format: projects/x/locations/x/glossaries/*
      */
-    glossary?: string;
+    glossary?: string | null;
     /**
      * Optional. Indicates match is case-insensitive. Default value is false if missing.
      */
-    ignoreCase?: boolean;
+    ignoreCase?: boolean | null;
   }
   /**
    * The request message for synchronous translation.
@@ -453,27 +461,31 @@ export namespace translate_v3beta1 {
     /**
      * Required. The content of the input in string format. We recommend the total content be less than 30k codepoints. Use BatchTranslateText for larger text.
      */
-    contents?: string[];
+    contents?: string[] | null;
     /**
      * Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     glossaryConfig?: Schema$TranslateTextGlossaryConfig;
     /**
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Optional. The format of the source text, for example, &quot;text/html&quot;,  &quot;text/plain&quot;. If left blank, the MIME type defaults to &quot;text/html&quot;.
      */
-    mimeType?: string;
+    mimeType?: string | null;
     /**
      * Optional. The `model` type requested for this translation.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-id}/locations/global/models/general/nmt`.  If missing, the system decides which google base model to use.
      */
-    model?: string;
+    model?: string | null;
     /**
      * Optional. The BCP-47 language code of the input text if known, for example, &quot;en-US&quot; or &quot;sr-Latn&quot;. Supported language codes are listed in Language Support. If the source language isn&#39;t specified, the API attempts to identify the source language automatically and returns the source language within the response.
      */
-    sourceLanguageCode?: string;
+    sourceLanguageCode?: string | null;
     /**
      * Required. The BCP-47 language code to use for translation of the input text, set to one of the language codes listed in Language Support.
      */
-    targetLanguageCode?: string;
+    targetLanguageCode?: string | null;
   }
   export interface Schema$TranslateTextResponse {
     /**
@@ -492,7 +504,7 @@ export namespace translate_v3beta1 {
     /**
      * The BCP-47 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty.
      */
-    detectedLanguageCode?: string;
+    detectedLanguageCode?: string | null;
     /**
      * The `glossary_config` used for this translation.
      */
@@ -500,11 +512,11 @@ export namespace translate_v3beta1 {
     /**
      * Only present when `model` is present in the request. This is same as `model` provided in the request.
      */
-    model?: string;
+    model?: string | null;
     /**
      * Text translated into the target language.
      */
-    translatedText?: string;
+    translatedText?: string | null;
   }
   /**
    * The request message for Operations.WaitOperation.
@@ -513,7 +525,7 @@ export namespace translate_v3beta1 {
     /**
      * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
      */
-    timeout?: string;
+    timeout?: string | null;
   }
 
   export class Resource$Projects {

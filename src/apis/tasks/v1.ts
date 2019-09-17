@@ -107,95 +107,95 @@ export namespace tasks_v1 {
     /**
      * Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
      */
-    completed?: string;
+    completed?: string | null;
     /**
      * Flag indicating whether the task has been deleted. The default if False.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * Due date of the task (as a RFC 3339 timestamp). Optional. The due date only records date information; the time portion of the timestamp is discarded when setting the due date. It isn&#39;t possible to read or write the time that a task is due via the API.
      */
-    due?: string;
+    due?: string | null;
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
      */
-    hidden?: boolean;
+    hidden?: boolean | null;
     /**
      * Task identifier.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Type of the resource. This is always &quot;tasks#task&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Collection of links. This collection is read-only.
      */
-    links?: Array<{description?: string; link?: string; type?: string}>;
+    links?: Array<{description?: string; link?: string; type?: string}> | null;
     /**
      * Notes describing the task. Optional.
      */
-    notes?: string;
+    notes?: string | null;
     /**
      * Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the &quot;move&quot; method to move the task under a different parent or to the top level.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task&#39;s corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the &quot;move&quot; method to move the task to another position.
      */
-    position?: string;
+    position?: string | null;
     /**
      * URL pointing to this task. Used to retrieve, update, or delete this task.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Status of the task. This is either &quot;needsAction&quot; or &quot;completed&quot;.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Title of the task.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Last modification time of the task (as a RFC 3339 timestamp).
      */
-    updated?: string;
+    updated?: string | null;
   }
   export interface Schema$TaskList {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Task list identifier.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Type of the resource. This is always &quot;tasks#taskList&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * URL pointing to this task list. Used to retrieve, update, or delete this task list.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Title of the task list.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Last modification time of the task list (as a RFC 3339 timestamp).
      */
-    updated?: string;
+    updated?: string | null;
   }
   export interface Schema$TaskLists {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Collection of task lists.
      */
@@ -203,17 +203,17 @@ export namespace tasks_v1 {
     /**
      * Type of the resource. This is always &quot;tasks#taskLists&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token that can be used to request the next page of this result.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$Tasks {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Collection of tasks.
      */
@@ -221,11 +221,11 @@ export namespace tasks_v1 {
     /**
      * Type of the resource. This is always &quot;tasks#tasks&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token used to access the next page of this result.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
 
   export class Resource$Tasklists {

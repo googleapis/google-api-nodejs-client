@@ -124,15 +124,15 @@ export namespace cloudshell_v1alpha1 {
     /**
      * The OAuth access token that should be sent to the environment.
      */
-    accessToken?: string;
+    accessToken?: string | null;
     /**
      * The time when the credentials expire. If not set, defaults to one hour from when the server received the request.
      */
-    expireTime?: string;
+    expireTime?: string | null;
     /**
      * The OAuth ID token that should be sent to the environment.
      */
-    idToken?: string;
+    idToken?: string | null;
   }
   /**
    * Request message for CreatePublicKey.
@@ -154,15 +154,15 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Required. Full path to the Docker image used to run this environment, e.g. &quot;gcr.io/dev-con/cloud-devshell:latest&quot;.
      */
-    dockerImage?: string;
+    dockerImage?: string | null;
     /**
      * Output only. The environment&#39;s identifier, which is always &quot;default&quot;.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Output only. Full name of this resource, in the format `users/{owner_email}/environments/{environment_id}`. `{owner_email}` is the email address of the user to whom this environment belongs, and `{environment_id}` is the identifier of this environment. For example, `users/someone@example.com/environments/default`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. Public keys associated with the environment. Clients can connect to this environment via SSH only if they possess a private key corresponding to at least one of these public keys. Keys can be added to or removed from the environment using the CreatePublicKey and DeletePublicKey methods.
      */
@@ -170,23 +170,23 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Output only. Host to which clients can connect to initiate SSH sessions with the environment.
      */
-    sshHost?: string;
+    sshHost?: string | null;
     /**
      * Output only. Port to which clients can connect to initiate SSH sessions with the environment.
      */
-    sshPort?: number;
+    sshPort?: number | null;
     /**
      * Output only. Username that clients should use when initiating SSH sessions with the environment.
      */
-    sshUsername?: string;
+    sshUsername?: string | null;
     /**
      * Output only. Current execution state of this environment.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. Host to which clients can connect to initiate HTTPS or WSS connections with the environment.
      */
-    webHost?: string;
+    webHost?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -195,7 +195,7 @@ export namespace cloudshell_v1alpha1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -203,15 +203,15 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A public SSH key, corresponding to a private SSH key held by the client.
@@ -220,15 +220,15 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Required. Format of this key&#39;s content.
      */
-    format?: string;
+    format?: string | null;
     /**
      * Required. Content of this key.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Output only. Full name of this resource, in the format `users/{owner_email}/environments/{environment_id}/publicKeys/{key_id}`. `{owner_email}` is the email address of the user to whom the key belongs. `{environment_id}` is the identifier of the environment to which the key grants access. `{key_id}` is the unique identifier of the key. For example, `users/someone@example.com/environments/default/publicKeys/myKey`.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Message included in the metadata field of operations returned from StartEnvironment.
@@ -237,7 +237,7 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Current state of the environment being started.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Request message for StartEnvironment.
@@ -246,7 +246,7 @@ export namespace cloudshell_v1alpha1 {
     /**
      * The initial access token passed to the environment. If this is present and valid, the environment will be pre-authenticated with gcloud so that the user can run gcloud commands in Cloud Shell without having to log in. This code can be updated later by calling AuthorizeEnvironment.
      */
-    accessToken?: string;
+    accessToken?: string | null;
   }
   /**
    * Message included in the response field of operations returned from StartEnvironment once the operation is complete.
@@ -264,15 +264,15 @@ export namespace cloudshell_v1alpha1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Users {

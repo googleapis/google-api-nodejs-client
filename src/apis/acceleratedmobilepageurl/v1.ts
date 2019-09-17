@@ -124,15 +124,15 @@ export namespace acceleratedmobilepageurl_v1 {
     /**
      * The AMP URL pointing to the publisher&#39;s web server.
      */
-    ampUrl?: string;
+    ampUrl?: string | null;
     /**
      * The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to the cached document in the Google AMP Cache.
      */
-    cdnAmpUrl?: string;
+    cdnAmpUrl?: string | null;
     /**
      * The original non-AMP URL.
      */
-    originalUrl?: string;
+    originalUrl?: string | null;
   }
   /**
    * AMP URL Error resource for a requested URL that couldn&#39;t be found.
@@ -141,15 +141,15 @@ export namespace acceleratedmobilepageurl_v1 {
     /**
      * The error code of an API call.
      */
-    errorCode?: string;
+    errorCode?: string | null;
     /**
      * An optional descriptive error message.
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * The original non-AMP URL.
      */
-    originalUrl?: string;
+    originalUrl?: string | null;
   }
   /**
    * AMP URL request for a batch of URLs.
@@ -158,11 +158,11 @@ export namespace acceleratedmobilepageurl_v1 {
     /**
      * The lookup_strategy being requested.
      */
-    lookupStrategy?: string;
+    lookupStrategy?: string | null;
     /**
      * List of URLs to look up for the paired AMP URLs. The URLs are case-sensitive. Up to 50 URLs per lookup (see [Usage Limits](/amp/cache/reference/limits)).
      */
-    urls?: string[];
+    urls?: string[] | null;
   }
   /**
    * Batch AMP URL response.

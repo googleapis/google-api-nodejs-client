@@ -132,7 +132,7 @@ export namespace storage_v1 {
     /**
      * The bucket&#39;s billing configuration.
      */
-    billing?: {requesterPays?: boolean};
+    billing?: {requesterPays?: boolean} | null;
     /**
      * The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
      */
@@ -141,11 +141,11 @@ export namespace storage_v1 {
       method?: string[];
       origin?: string[];
       responseHeader?: string[];
-    }>;
+    }> | null;
     /**
      * The default value for event-based hold on newly created objects in this bucket. Event-based hold is a way to retain objects indefinitely until an event occurs, signified by the hold&#39;s release. After being released, such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false. Objects under event-based hold cannot be deleted, overwritten or archived until the hold is removed.
      */
-    defaultEventBasedHold?: boolean;
+    defaultEventBasedHold?: boolean | null;
     /**
      * Default access controls to apply to new objects when no ACL is provided.
      */
@@ -153,30 +153,30 @@ export namespace storage_v1 {
     /**
      * Encryption configuration for a bucket.
      */
-    encryption?: {defaultKmsKeyName?: string};
+    encryption?: {defaultKmsKeyName?: string} | null;
     /**
      * HTTP 1.1 Entity tag for the bucket.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The bucket&#39;s IAM configuration.
      */
     iamConfiguration?: {
       bucketPolicyOnly?: {enabled?: boolean; lockedTime?: string};
       uniformBucketLevelAccess?: {enabled?: boolean; lockedTime?: string};
-    };
+    } | null;
     /**
      * The ID of the bucket. For buckets, the id and name properties are the same.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For buckets, this is always storage#bucket.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * User-provided labels, in key/value pairs.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The bucket&#39;s lifecycle configuration. See lifecycle management for more information.
      */
@@ -192,35 +192,35 @@ export namespace storage_v1 {
           numNewerVersions?: number;
         };
       }>;
-    };
+    } | null;
     /**
      * The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the developer&#39;s guide for the authoritative list.
      */
-    location?: string;
+    location?: string | null;
     /**
      * The type of the bucket location.
      */
-    locationType?: string;
+    locationType?: string | null;
     /**
      * The bucket&#39;s logging configuration, which defines the destination bucket and optional name prefix for the current bucket&#39;s logs.
      */
-    logging?: {logBucket?: string; logObjectPrefix?: string};
+    logging?: {logBucket?: string; logObjectPrefix?: string} | null;
     /**
      * The metadata generation of this bucket.
      */
-    metageneration?: string;
+    metageneration?: string | null;
     /**
      * The name of the bucket.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The owner of the bucket. This is always the project team&#39;s owner group.
      */
-    owner?: {entity?: string; entityId?: string};
+    owner?: {entity?: string; entityId?: string} | null;
     /**
      * The project number of the project the bucket belongs to.
      */
-    projectNumber?: string;
+    projectNumber?: string | null;
     /**
      * The bucket&#39;s retention policy. The retention policy enforces a minimum retention time for all objects contained in the bucket, based on their creation time. Any attempt to overwrite or delete objects younger than the retention period will result in a PERMISSION_DENIED error. An unlocked retention policy can be modified or removed from the bucket via a storage.buckets.update operation. A locked retention policy cannot be removed or shortened in duration for the lifetime of the bucket. Attempting to remove or decrease period of a locked retention policy will result in a PERMISSION_DENIED error.
      */
@@ -228,31 +228,31 @@ export namespace storage_v1 {
       effectiveTime?: string;
       isLocked?: boolean;
       retentionPeriod?: string;
-    };
+    } | null;
     /**
      * The URI of this bucket.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The bucket&#39;s default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes.
      */
-    storageClass?: string;
+    storageClass?: string | null;
     /**
      * The creation time of the bucket in RFC 3339 format.
      */
-    timeCreated?: string;
+    timeCreated?: string | null;
     /**
      * The modification time of the bucket in RFC 3339 format.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * The bucket&#39;s versioning configuration.
      */
-    versioning?: {enabled?: boolean};
+    versioning?: {enabled?: boolean} | null;
     /**
      * The bucket&#39;s website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the Static Website Examples for more information.
      */
-    website?: {mainPageSuffix?: string; notFoundPage?: string};
+    website?: {mainPageSuffix?: string; notFoundPage?: string} | null;
   }
   /**
    * An access-control entry.
@@ -261,47 +261,47 @@ export namespace storage_v1 {
     /**
      * The name of the bucket.
      */
-    bucket?: string;
+    bucket?: string | null;
     /**
      * The domain associated with the entity, if any.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * The email address associated with the entity, if any.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - project-team-projectId  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
-    entity?: string;
+    entity?: string | null;
     /**
      * The ID for the entity, if any.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * HTTP 1.1 Entity tag for the access-control entry.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The ID of the access-control entry.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The project team associated with the entity, if any.
      */
-    projectTeam?: {projectNumber?: string; team?: string};
+    projectTeam?: {projectNumber?: string; team?: string} | null;
     /**
      * The access permission for the entity.
      */
-    role?: string;
+    role?: string | null;
     /**
      * The link to this access-control entry.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * An access-control list.
@@ -314,7 +314,7 @@ export namespace storage_v1 {
     /**
      * The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A list of buckets.
@@ -327,11 +327,11 @@ export namespace storage_v1 {
     /**
      * The kind of item this is. For lists of buckets, this is always storage#buckets.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * An notification channel used to watch for resource changes.
@@ -340,43 +340,43 @@ export namespace storage_v1 {
     /**
      * The address where notifications are delivered for this channel.
      */
-    address?: string;
+    address?: string | null;
     /**
      * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
-    expiration?: string;
+    expiration?: string | null;
     /**
      * A UUID or similar unique string that identifies this channel.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: {[key: string]: string};
+    params?: {[key: string]: string} | null;
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
-    payload?: boolean;
+    payload?: boolean | null;
     /**
      * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * A version-specific identifier for the watched resource.
      */
-    resourceUri?: string;
+    resourceUri?: string | null;
     /**
      * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
-    token?: string;
+    token?: string | null;
     /**
      * The type of delivery mechanism used for this channel.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A Compose request.
@@ -389,7 +389,7 @@ export namespace storage_v1 {
     /**
      * The kind of item this is.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The list of source objects that will be concatenated into a single object.
      */
@@ -397,7 +397,7 @@ export namespace storage_v1 {
       generation?: string;
       name?: string;
       objectPreconditions?: {ifGenerationMatch?: string};
-    }>;
+    }> | null;
   }
   /**
    * Represents an expression text. Example: title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
@@ -406,19 +406,19 @@ export namespace storage_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax. The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * JSON template to produce a JSON-style HMAC Key resource for Create responses.
@@ -427,7 +427,7 @@ export namespace storage_v1 {
     /**
      * The kind of item this is. For HMAC keys, this is always storage#hmacKey.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Key metadata.
      */
@@ -435,7 +435,7 @@ export namespace storage_v1 {
     /**
      * HMAC secret key material.
      */
-    secret?: string;
+    secret?: string | null;
   }
   /**
    * JSON template to produce a JSON-style HMAC Key metadata resource.
@@ -444,43 +444,43 @@ export namespace storage_v1 {
     /**
      * The ID of the HMAC Key.
      */
-    accessId?: string;
+    accessId?: string | null;
     /**
      * HTTP 1.1 Entity tag for the HMAC key.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The ID of the HMAC key, including the Project ID and the Access ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For HMAC Key metadata, this is always storage#hmacKeyMetadata.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Project ID owning the service account to which the key authenticates.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The link to this resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The email address of the key&#39;s associated service account.
      */
-    serviceAccountEmail?: string;
+    serviceAccountEmail?: string | null;
     /**
      * The state of the key. Can be one of ACTIVE, INACTIVE, or DELETED.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The creation time of the HMAC key in RFC 3339 format.
      */
-    timeCreated?: string;
+    timeCreated?: string | null;
     /**
      * The last modification time of the HMAC key metadata in RFC 3339 format.
      */
-    updated?: string;
+    updated?: string | null;
   }
   /**
    * A list of hmacKeys.
@@ -493,11 +493,11 @@ export namespace storage_v1 {
     /**
      * The kind of item this is. For lists of hmacKeys, this is always storage#hmacKeysMetadata.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A subscription to receive Google PubSub notifications.
@@ -506,39 +506,39 @@ export namespace storage_v1 {
     /**
      * An optional list of additional attributes to attach to each Cloud PubSub message published for this notification subscription.
      */
-    custom_attributes?: {[key: string]: string};
+    custom_attributes?: {[key: string]: string} | null;
     /**
      * HTTP 1.1 Entity tag for this subscription notification.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * If present, only send notifications about listed event types. If empty, sent notifications for all event types.
      */
-    event_types?: string[];
+    event_types?: string[] | null;
     /**
      * The ID of the notification.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For notifications, this is always storage#notification.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * If present, only apply this notification configuration to object names that begin with this prefix.
      */
-    object_name_prefix?: string;
+    object_name_prefix?: string | null;
     /**
      * The desired content of the Payload.
      */
-    payload_format?: string;
+    payload_format?: string | null;
     /**
      * The canonical URL of this notification.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The Cloud PubSub topic to which this subscription publishes. Formatted as: &#39;//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}&#39;
      */
-    topic?: string;
+    topic?: string | null;
   }
   /**
    * A list of notification subscriptions.
@@ -551,7 +551,7 @@ export namespace storage_v1 {
     /**
      * The kind of item this is. For lists of notifications, this is always storage#notifications.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * An object.
@@ -564,123 +564,126 @@ export namespace storage_v1 {
     /**
      * The name of the bucket containing this object.
      */
-    bucket?: string;
+    bucket?: string | null;
     /**
      * Cache-Control directive for the object data. If omitted, and the object is accessible to all anonymous users, the default will be public, max-age=3600.
      */
-    cacheControl?: string;
+    cacheControl?: string | null;
     /**
      * Number of underlying components that make up this object. Components are accumulated by compose operations.
      */
-    componentCount?: number;
+    componentCount?: number | null;
     /**
      * Content-Disposition of the object data.
      */
-    contentDisposition?: string;
+    contentDisposition?: string | null;
     /**
      * Content-Encoding of the object data.
      */
-    contentEncoding?: string;
+    contentEncoding?: string | null;
     /**
      * Content-Language of the object data.
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * Content-Type of the object data. If an object is stored without a Content-Type, it is served as application/octet-stream.
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see Hashes and ETags: Best Practices.
      */
-    crc32c?: string;
+    crc32c?: string | null;
     /**
      * Metadata of customer-supplied encryption key, if the object is encrypted by such a key.
      */
-    customerEncryption?: {encryptionAlgorithm?: string; keySha256?: string};
+    customerEncryption?: {
+      encryptionAlgorithm?: string;
+      keySha256?: string;
+    } | null;
     /**
      * HTTP 1.1 Entity tag for the object.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Whether an object is under event-based hold. Event-based hold is a way to retain objects until an event occurs, which is signified by the hold&#39;s release (i.e. this value is set to false). After being released (set to false), such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is the loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false.
      */
-    eventBasedHold?: boolean;
+    eventBasedHold?: boolean | null;
     /**
      * The content generation of this object. Used for object versioning.
      */
-    generation?: string;
+    generation?: string | null;
     /**
      * The ID of the object, including the bucket name, object name, and generation number.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For objects, this is always storage#object.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Cloud KMS Key used to encrypt this object, if the object is encrypted by such a key.
      */
-    kmsKeyName?: string;
+    kmsKeyName?: string | null;
     /**
      * MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see Hashes and ETags: Best Practices.
      */
-    md5Hash?: string;
+    md5Hash?: string | null;
     /**
      * Media download link.
      */
-    mediaLink?: string;
+    mediaLink?: string | null;
     /**
      * User-provided metadata, in key/value pairs.
      */
-    metadata?: {[key: string]: string};
+    metadata?: {[key: string]: string} | null;
     /**
      * The version of the metadata for this object at this generation. Used for preconditions and for detecting changes in metadata. A metageneration number is only meaningful in the context of a particular generation of a particular object.
      */
-    metageneration?: string;
+    metageneration?: string | null;
     /**
      * The name of the object. Required if not specified by URL parameter.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The owner of the object. This will always be the uploader of the object.
      */
-    owner?: {entity?: string; entityId?: string};
+    owner?: {entity?: string; entityId?: string} | null;
     /**
      * A server-determined value that specifies the earliest time that the object&#39;s retention period expires. This value is in RFC 3339 format. Note 1: This field is not provided for objects with an active event-based hold, since retention expiration is unknown until the hold is removed. Note 2: This value can be provided even when temporary hold is set (so that the user can reason about policy without having to first unset the temporary hold).
      */
-    retentionExpirationTime?: string;
+    retentionExpirationTime?: string | null;
     /**
      * The link to this object.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Content-Length of the data in bytes.
      */
-    size?: string;
+    size?: string | null;
     /**
      * Storage class of the object.
      */
-    storageClass?: string;
+    storageClass?: string | null;
     /**
      * Whether an object is under temporary hold. While this flag is set to true, the object is protected against deletion and overwrites. A common use case of this flag is regulatory investigations where objects need to be retained while the investigation is ongoing. Note that unlike event-based hold, temporary hold does not impact retention expiration time of an object.
      */
-    temporaryHold?: boolean;
+    temporaryHold?: boolean | null;
     /**
      * The creation time of the object in RFC 3339 format.
      */
-    timeCreated?: string;
+    timeCreated?: string | null;
     /**
      * The deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
      */
-    timeDeleted?: string;
+    timeDeleted?: string | null;
     /**
      * The time at which the object&#39;s storage class was last changed. When the object is initially created, it will be set to timeCreated.
      */
-    timeStorageClassUpdated?: string;
+    timeStorageClassUpdated?: string | null;
     /**
      * The modification time of the object metadata in RFC 3339 format.
      */
-    updated?: string;
+    updated?: string | null;
   }
   /**
    * An access-control entry.
@@ -689,55 +692,55 @@ export namespace storage_v1 {
     /**
      * The name of the bucket.
      */
-    bucket?: string;
+    bucket?: string | null;
     /**
      * The domain associated with the entity, if any.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * The email address associated with the entity, if any.
      */
-    email?: string;
+    email?: string | null;
     /**
      * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - project-team-projectId  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
-    entity?: string;
+    entity?: string | null;
     /**
      * The ID for the entity, if any.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * HTTP 1.1 Entity tag for the access-control entry.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The content generation of the object, if applied to an object.
      */
-    generation?: string;
+    generation?: string | null;
     /**
      * The ID of the access-control entry.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The name of the object, if applied to an object.
      */
-    object?: string;
+    object?: string | null;
     /**
      * The project team associated with the entity, if any.
      */
-    projectTeam?: {projectNumber?: string; team?: string};
+    projectTeam?: {projectNumber?: string; team?: string} | null;
     /**
      * The access permission for the entity.
      */
-    role?: string;
+    role?: string | null;
     /**
      * The link to this access-control entry.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * An access-control list.
@@ -750,7 +753,7 @@ export namespace storage_v1 {
     /**
      * The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A list of objects.
@@ -763,15 +766,15 @@ export namespace storage_v1 {
     /**
      * The kind of item this is. For lists of objects, this is always storage#objects.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
      */
-    prefixes?: string[];
+    prefixes?: string[] | null;
   }
   /**
    * A bucket/object IAM policy.
@@ -784,23 +787,23 @@ export namespace storage_v1 {
       condition?: Schema$Expr;
       members?: string[];
       role?: string;
-    }>;
+    }> | null;
     /**
      * HTTP 1.1  Entity tag for the policy.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The kind of item this is. For policies, this is always storage#policy. This field is ignored on input.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The ID of the resource to which this policy belongs. Will be of the form projects/_/buckets/bucket for buckets, and projects/_/buckets/bucket/objects/object for objects. A specific generation may be specified by appending #generationNumber to the end of the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17. The current generation can be denoted with #0. This field is ignored on input.
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * The IAM policy format version.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * A rewrite response.
@@ -809,15 +812,15 @@ export namespace storage_v1 {
     /**
      * true if the copy is finished; otherwise, false if the copy is in progress. This property is always present in the response.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The kind of item this is.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The total size of the object being copied in bytes. This property is always present in the response.
      */
-    objectSize?: string;
+    objectSize?: string | null;
     /**
      * A resource containing the metadata for the copied-to object. This property is present in the response only when copying completes.
      */
@@ -825,11 +828,11 @@ export namespace storage_v1 {
     /**
      * A token to use in subsequent requests to continue copying data. This token is present in the response only when there is more data to copy.
      */
-    rewriteToken?: string;
+    rewriteToken?: string | null;
     /**
      * The total bytes written so far, which can be used to provide a waiting user with a progress indicator. This property is always present in the response.
      */
-    totalBytesRewritten?: string;
+    totalBytesRewritten?: string | null;
   }
   /**
    * A subscription to receive Google PubSub notifications.
@@ -838,11 +841,11 @@ export namespace storage_v1 {
     /**
      * The ID of the notification.
      */
-    email_address?: string;
+    email_address?: string | null;
     /**
      * The kind of item this is. For notifications, this is always storage#notification.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * A storage.(buckets|objects).testIamPermissions response.
@@ -851,11 +854,11 @@ export namespace storage_v1 {
     /**
      * The kind of item this is.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets or objects. The supported permissions are as follows:   - storage.buckets.delete — Delete bucket.   - storage.buckets.get — Read bucket metadata.   - storage.buckets.getIamPolicy — Read bucket IAM policy.   - storage.buckets.create — Create bucket.   - storage.buckets.list — List buckets.   - storage.buckets.setIamPolicy — Update bucket IAM policy.   - storage.buckets.update — Update bucket metadata.   - storage.objects.delete — Delete object.   - storage.objects.get — Read object data and metadata.   - storage.objects.getIamPolicy — Read object IAM policy.   - storage.objects.create — Create object.   - storage.objects.list — List objects.   - storage.objects.setIamPolicy — Update object IAM policy.   - storage.objects.update — Update object metadata.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
 
   export class Resource$Bucketaccesscontrols {

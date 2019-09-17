@@ -14,21 +14,33 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {compute_alpha} from './alpha';
 import {compute_beta} from './beta';
 import {compute_v1} from './v1';
 
 export const VERSIONS = {
+  alpha: compute_alpha.Compute,
   beta: compute_beta.Compute,
   v1: compute_v1.Compute,
 };
 
+export function compute(version: 'alpha'): compute_alpha.Compute;
+export function compute(options: compute_alpha.Options): compute_alpha.Compute;
 export function compute(version: 'beta'): compute_beta.Compute;
 export function compute(options: compute_beta.Options): compute_beta.Compute;
 export function compute(version: 'v1'): compute_v1.Compute;
 export function compute(options: compute_v1.Options): compute_v1.Compute;
-export function compute<T = compute_beta.Compute | compute_v1.Compute>(
+export function compute<
+  T = compute_alpha.Compute | compute_beta.Compute | compute_v1.Compute
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'beta' | compute_beta.Options | 'v1' | compute_v1.Options
+  versionOrOptions:
+    | 'alpha'
+    | compute_alpha.Options
+    | 'beta'
+    | compute_beta.Options
+    | 'v1'
+    | compute_v1.Options
 ) {
   return getAPI<T>('compute', versionOrOptions, VERSIONS, this);
 }

@@ -126,7 +126,7 @@ export namespace homegraph_v1 {
     /**
      * Third-party partner&#39;s device ID.
      */
-    id?: string;
+    id?: string | null;
   }
   /**
    * Identifies a device in the third party or first party system.
@@ -135,11 +135,11 @@ export namespace homegraph_v1 {
     /**
      * The agent&#39;s ID. Generally it is the agent&#39;s AoG project id.
      */
-    agentId?: string;
+    agentId?: string | null;
     /**
      * Device ID defined by the agent. The device_id must be unique.
      */
-    deviceId?: string;
+    deviceId?: string | null;
   }
   /**
    * Third-party partner&#39;s device definition.
@@ -148,11 +148,11 @@ export namespace homegraph_v1 {
     /**
      * Attributes for the traits supported by the device.
      */
-    attributes?: {[key: string]: any};
+    attributes?: {[key: string]: any} | null;
     /**
      * Custom JSON data provided by the manufacturer and attached to QUERY and EXECUTE requests in AoG.
      */
-    customData?: string;
+    customData?: string | null;
     /**
      * Device manufacturer, model, hardware version, and software version.
      */
@@ -160,7 +160,7 @@ export namespace homegraph_v1 {
     /**
      * Third-party partner&#39;s device ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Name of the device given by the third party. This includes names given to the device via third party device manufacturer&#39;s app, model names for the device, etc.
      */
@@ -172,23 +172,23 @@ export namespace homegraph_v1 {
     /**
      * If the third-party partner&#39;s cloud configuration includes placing devices in rooms, the name of the room can be provided here.
      */
-    roomHint?: string;
+    roomHint?: string | null;
     /**
      * As in roomHint, for structures that users set up in the partner&#39;s system.
      */
-    structureHint?: string;
+    structureHint?: string | null;
     /**
      * Traits supported by the device.
      */
-    traits?: string[];
+    traits?: string[] | null;
     /**
      * Hardware type of the device (e.g. light, outlet, etc).
      */
-    type?: string;
+    type?: string | null;
     /**
      * Indicates whether the state of this device is being reported to Google through ReportStateAndNotification call.
      */
-    willReportState?: boolean;
+    willReportState?: boolean | null;
   }
   /**
    * Device information.
@@ -197,19 +197,19 @@ export namespace homegraph_v1 {
     /**
      * Device hardware version.
      */
-    hwVersion?: string;
+    hwVersion?: string | null;
     /**
      * Device manufacturer.
      */
-    manufacturer?: string;
+    manufacturer?: string | null;
     /**
      * Device model.
      */
-    model?: string;
+    model?: string | null;
     /**
      * Device software version.
      */
-    swVersion?: string;
+    swVersion?: string | null;
   }
   /**
    * Different names for the device.
@@ -218,15 +218,15 @@ export namespace homegraph_v1 {
     /**
      * List of names provided by the partner rather than the user, often manufacturer names, SKUs, etc.
      */
-    defaultNames?: string[];
+    defaultNames?: string[] | null;
     /**
      * Primary name of the device, generally provided by the user.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Additional names provided by the user for the device.
      */
-    nicknames?: string[];
+    nicknames?: string[] | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -239,7 +239,7 @@ export namespace homegraph_v1 {
     /**
      * Required. Third-party user ID.
      */
-    agentUserId?: string;
+    agentUserId?: string | null;
     /**
      * Required. Inputs containing third-party partner&#39;s device IDs for which to get the device states.
      */
@@ -247,7 +247,7 @@ export namespace homegraph_v1 {
     /**
      * Request ID used for debugging.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   /**
    * Device ID inputs to QueryRequest.
@@ -278,7 +278,7 @@ export namespace homegraph_v1 {
     /**
      * Request ID used for debugging. Copied from the request.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   /**
    * Payload containing device states information.
@@ -287,7 +287,7 @@ export namespace homegraph_v1 {
     /**
      * States of the devices. Map of third-party device ID to struct of device states.
      */
-    devices?: {[key: string]: {[key: string]: any}};
+    devices?: {[key: string]: {[key: string]: any}} | null;
   }
   /**
    * The states and notifications specific to a device.
@@ -296,11 +296,11 @@ export namespace homegraph_v1 {
     /**
      * Notifications metadata for devices.
      */
-    notifications?: {[key: string]: any};
+    notifications?: {[key: string]: any} | null;
     /**
      * States of devices to update.
      */
-    states?: {[key: string]: any};
+    states?: {[key: string]: any} | null;
   }
   /**
    * Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include States, Notifications, or both. This request uses globally unique flattened state names instead of namespaces based on traits to align with the existing QUERY and EXECUTE APIs implemented by 90+ Smart Home partners. States and notifications are defined per `device_id` (for example, &quot;123&quot; and &quot;456&quot; in the following example). # Example ```json {   &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;,   &quot;agentUserId&quot;: &quot;1234&quot;,   &quot;payload&quot;: {     &quot;devices&quot;: {       &quot;states&quot;: {         &quot;123&quot;: {           &quot;on&quot;: true         },         &quot;456&quot;: {           &quot;on&quot;: true,           &quot;brightness&quot;: 10         }       },     }   } } ```
@@ -309,15 +309,15 @@ export namespace homegraph_v1 {
     /**
      * Required. Third-party user ID.
      */
-    agentUserId?: string;
+    agentUserId?: string | null;
     /**
      * Unique identifier per event (for example, a doorbell press).
      */
-    eventId?: string;
+    eventId?: string | null;
     /**
      * Token to maintain state in the follow up notification response.
      */
-    followUpToken?: string;
+    followUpToken?: string | null;
     /**
      * State of devices to update and notification metadata for devices. For example, if a user turns a light on manually, a state update should be sent so that the information is always the current status of the device. Notifications are independent from the state and its piece of the payload should contain everything necessary to notify the user. Although it may be related to a state change, it does not need to be. For example, if a device can turn on/off and change temperature, the states reported would include both &quot;on&quot; and &quot;70 degrees&quot; but the 3p may choose not to send any notification for that, or to only say that the &quot;the room is heating up&quot;, keeping state and notification independent.
      */
@@ -325,7 +325,7 @@ export namespace homegraph_v1 {
     /**
      * Request ID used for debugging.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   /**
    * Response type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call.
@@ -334,7 +334,7 @@ export namespace homegraph_v1 {
     /**
      * Request ID copied from ReportStateAndNotificationRequest.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   /**
    * Request type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call.
@@ -343,11 +343,11 @@ export namespace homegraph_v1 {
     /**
      * Required. Third-party user ID issued by agent&#39;s third-party identity provider.
      */
-    agentUserId?: string;
+    agentUserId?: string | null;
     /**
      * Optional. If set, the request will be added to a queue and a response will be returned immediately. The queue allows for de-duplication of simultaneous requests.
      */
-    async?: boolean;
+    async?: boolean | null;
   }
   /**
    * Response type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call. Intentionally empty upon success. An HTTP response code is returned with more details upon failure.
@@ -369,11 +369,11 @@ export namespace homegraph_v1 {
     /**
      * Required. Third-party user ID.
      */
-    agentUserId?: string;
+    agentUserId?: string | null;
     /**
      * Request ID used for debugging.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   /**
    * Response type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Actions on Google `action.devices.SYNC` [response](/actions/smarthome/create-app#actiondevicessync). # Example  ```json {   &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;,   &quot;payload&quot;: {     &quot;agentUserId&quot;: &quot;1836.15267389&quot;,     &quot;devices&quot;: [{       &quot;id&quot;: &quot;123&quot;,       &quot;type&quot;: &quot;action.devices.types.OUTLET&quot;,       &quot;traits&quot;: [         &quot;action.devices.traits.OnOff&quot;       ],       &quot;name&quot;: {         &quot;defaultNames&quot;: [&quot;My Outlet 1234&quot;],         &quot;name&quot;: &quot;Night light&quot;,         &quot;nicknames&quot;: [&quot;wall plug&quot;]       },       &quot;willReportState&quot;: false,       &quot;deviceInfo&quot;: {         &quot;manufacturer&quot;: &quot;lights-out-inc&quot;,         &quot;model&quot;: &quot;hs1234&quot;,         &quot;hwVersion&quot;: &quot;3.2&quot;,         &quot;swVersion&quot;: &quot;11.4&quot;       },       &quot;customData&quot;: {         &quot;fooValue&quot;: 74,         &quot;barValue&quot;: true,         &quot;bazValue&quot;: &quot;foo&quot;       }     }]   } } ```
@@ -386,7 +386,7 @@ export namespace homegraph_v1 {
     /**
      * Request ID used for debugging. Copied from the request.
      */
-    requestId?: string;
+    requestId?: string | null;
   }
   /**
    * Payload containing device information.
@@ -395,7 +395,7 @@ export namespace homegraph_v1 {
     /**
      * Third-party user ID
      */
-    agentUserId?: string;
+    agentUserId?: string | null;
     /**
      * Devices associated with the third-party user.
      */

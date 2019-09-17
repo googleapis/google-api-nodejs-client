@@ -124,7 +124,7 @@ export namespace spanner_v1 {
     /**
      * Required. The number of sessions to be created in this batch call. The API may return fewer than the requested number of sessions. If a specific number of sessions are desired, the client can make additional calls to BatchCreateSessions (adjusting session_count as necessary). The maximum allowed sessions are documented at https://goo.gl/hBUQED.
      */
-    sessionCount?: number;
+    sessionCount?: number | null;
     /**
      * Parameters to be applied to each created session.
      */
@@ -159,11 +159,11 @@ export namespace spanner_v1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * Metadata associated with a parent-child relationship appearing in a PlanNode.
@@ -172,15 +172,15 @@ export namespace spanner_v1 {
     /**
      * The node to which the link points.
      */
-    childIndex?: number;
+    childIndex?: number | null;
     /**
      * The type of the link. For example, in Hash Joins this could be used to distinguish between the build child and the probe child, or in the case of the child being an output variable, to represent the tag associated with the output variable.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Only present if the child node is SCALAR and corresponds to an output variable of the parent node. The field carries the name of the output variable. For example, a `TableScan` operator that reads rows from a table will have child links to the `SCALAR` nodes representing the output variables created for each column that is read by the operator. The corresponding `variable` fields will be set to the variable names assigned to the columns.
      */
-    variable?: string;
+    variable?: string | null;
   }
   /**
    * The request for Commit.
@@ -197,7 +197,7 @@ export namespace spanner_v1 {
     /**
      * Commit a previously-started transaction.
      */
-    transactionId?: string;
+    transactionId?: string | null;
   }
   /**
    * The response for Commit.
@@ -206,7 +206,7 @@ export namespace spanner_v1 {
     /**
      * The Cloud Spanner timestamp at which the transaction committed.
      */
-    commitTimestamp?: string;
+    commitTimestamp?: string | null;
   }
   /**
    * Metadata type for the operation returned by CreateDatabase.
@@ -215,7 +215,7 @@ export namespace spanner_v1 {
     /**
      * The database being created.
      */
-    database?: string;
+    database?: string | null;
   }
   /**
    * The request for CreateDatabase.
@@ -224,11 +224,11 @@ export namespace spanner_v1 {
     /**
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the new database.  The database ID must conform to the regular expression `a-z*[a-z0-9]` and be between 2 and 30 characters in length. If the database ID is a reserved word or if it contains a hyphen, the database ID must be enclosed in backticks (`` ` ``).
      */
-    createStatement?: string;
+    createStatement?: string | null;
     /**
      * An optional list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc. These statements execute atomically with the creation of the database: if there is an error in any statement, the database is not created.
      */
-    extraStatements?: string[];
+    extraStatements?: string[] | null;
   }
   /**
    * Metadata type for the operation returned by CreateInstance.
@@ -237,11 +237,11 @@ export namespace spanner_v1 {
     /**
      * The time at which this operation was cancelled. If set, this operation is in the process of undoing itself (which is guaranteed to succeed) and cannot be cancelled again.
      */
-    cancelTime?: string;
+    cancelTime?: string | null;
     /**
      * The time at which this operation failed or was completed successfully.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The instance being created.
      */
@@ -249,7 +249,7 @@ export namespace spanner_v1 {
     /**
      * The time at which the CreateInstance request was received.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * The request for CreateInstance.
@@ -262,7 +262,7 @@ export namespace spanner_v1 {
     /**
      * Required. The ID of the instance to create.  Valid identifiers are of the form `a-z*[a-z0-9]` and must be between 2 and 64 characters in length.
      */
-    instanceId?: string;
+    instanceId?: string | null;
   }
   /**
    * The request for CreateSession.
@@ -280,11 +280,11 @@ export namespace spanner_v1 {
     /**
      * Required. The name of the database. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`, where `&lt;database&gt;` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The current database state.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Arguments to delete operations.
@@ -297,7 +297,7 @@ export namespace spanner_v1 {
     /**
      * Required. The table whose rows will be deleted.
      */
-    table?: string;
+    table?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -310,7 +310,7 @@ export namespace spanner_v1 {
     /**
      * A per-transaction sequence number used to identify this request. This field makes each request idempotent such that if the request is received multiple times, at most one will succeed.  The sequence number must be monotonically increasing within the transaction. If a request arrives for the first time with an out-of-order sequence number, the transaction may be aborted. Replays of previously handled requests will yield the same response as the first execution.
      */
-    seqno?: string;
+    seqno?: string | null;
     /**
      * The list of statements to execute in this batch. Statements are executed serially, such that the effects of statement `i` are visible to statement `i+1`. Each statement must be a DML statement. Execution stops at the first failed statement; the remaining statements are not executed.  Callers must provide at least one statement.
      */
@@ -340,31 +340,31 @@ export namespace spanner_v1 {
     /**
      * Parameter names and values that bind to placeholders in the SQL string.  A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores.  Parameters can appear anywhere that a literal value is expected.  The same parameter name can be used more than once, for example:  `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`  It is an error to execute a SQL statement with unbound parameters.
      */
-    params?: {[key: string]: any};
+    params?: {[key: string]: any} | null;
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type from a JSON value.  For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings.  In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL statement parameters. See the definition of Type for more information about SQL types.
      */
-    paramTypes?: {[key: string]: Schema$Type};
+    paramTypes?: {[key: string]: Schema$Type} | null;
     /**
      * If present, results will be restricted to the specified partition previously created using PartitionQuery().  There must be an exact match for the values of fields common to this message and the PartitionQueryRequest message used to create this partition_token.
      */
-    partitionToken?: string;
+    partitionToken?: string | null;
     /**
      * Used to control the amount of debugging information returned in ResultSetStats. If partition_token is set, query_mode can only be set to QueryMode.NORMAL.
      */
-    queryMode?: string;
+    queryMode?: string | null;
     /**
      * If this request is resuming a previously interrupted SQL statement execution, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new SQL statement execution to resume where the last one left off. The rest of the request parameters must exactly match the request that yielded this token.
      */
-    resumeToken?: string;
+    resumeToken?: string | null;
     /**
      * A per-transaction sequence number used to identify this request. This field makes each request idempotent such that if the request is received multiple times, at most one will succeed.  The sequence number must be monotonically increasing within the transaction. If a request arrives for the first time with an out-of-order sequence number, the transaction may be aborted. Replays of previously handled requests will yield the same response as the first execution.  Required for DML statements. Ignored for queries.
      */
-    seqno?: string;
+    seqno?: string | null;
     /**
      * Required. The SQL string.
      */
-    sql?: string;
+    sql?: string | null;
     /**
      * The transaction to use.  For queries, if none is provided, the default is a temporary read-only transaction with strong concurrency.  Standard DML statements require a read-write transaction. To protect against replays, single-use transactions are not supported.  The caller must either supply an existing transaction ID or begin a new transaction.  Partitioned DML requires an existing Partitioned DML transaction ID.
      */
@@ -377,19 +377,19 @@ export namespace spanner_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Message representing a single field of a struct.
@@ -398,7 +398,7 @@ export namespace spanner_v1 {
     /**
      * The name of the field. For reads, this is the column name. For SQL queries, it is the column alias (e.g., `&quot;Word&quot;` in the query `&quot;SELECT &#39;hello&#39; AS Word&quot;`), or the column name (e.g., `&quot;ColName&quot;` in the query `&quot;SELECT ColName FROM Table&quot;`). Some columns might have an empty name (e.g., !&quot;SELECT UPPER(ColName)&quot;`). Note that a query result can contain multiple fields with the same name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The type of the field.
      */
@@ -411,7 +411,7 @@ export namespace spanner_v1 {
     /**
      * A list of formatted DDL statements defining the schema of the database specified in the request.
      */
-    statements?: string[];
+    statements?: string[] | null;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -429,7 +429,7 @@ export namespace spanner_v1 {
     /**
      * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      */
-    requestedPolicyVersion?: number;
+    requestedPolicyVersion?: number | null;
   }
   /**
    * An isolated set of Cloud Spanner resources on which databases can be hosted.
@@ -438,27 +438,27 @@ export namespace spanner_v1 {
     /**
      * Required. The name of the instance&#39;s configuration. Values are of the form `projects/&lt;project&gt;/instanceConfigs/&lt;configuration&gt;`. See also InstanceConfig and ListInstanceConfigs.
      */
-    config?: string;
+    config?: string | null;
     /**
      * Required. The descriptive name for this instance as it appears in UIs. Must be unique per project and between 4 and 30 characters in length.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cloud Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. Cloud Labels can be used to filter collections of resources. They can be used to control how resource metrics are aggregated. And they can be used as arguments to policy management rules (e.g. route, firewall, load balancing, etc.).   * Label keys must be between 1 and 63 characters long and must conform to    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  * Label values must be between 0 and 63 characters long and must conform    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.  * No more than 64 labels can be associated with a given resource.  See https://goo.gl/xmQnxf for more information on and examples of labels.  If you plan to use labels in your own code, please note that additional characters may be allowed in the future. And so you are advised to use an internal label representation, such as JSON, which doesn&#39;t rely upon specific characters being disallowed.  For example, representing labels as the string:  name + &quot;_&quot; + value  would prove problematic if we were to allow &quot;_&quot; in a future release.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects/&lt;project&gt;/instances/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Required. The number of nodes allocated to this instance. This may be zero in API responses for instances that are not yet in state `READY`.  See [the documentation](https://cloud.google.com/spanner/docs/instances#node_count) for more information about nodes.
      */
-    nodeCount?: number;
+    nodeCount?: number | null;
     /**
      * Output only. The current instance state. For CreateInstance, the state must be either omitted or set to `CREATING`. For UpdateInstance, the state must be either omitted or set to `READY`.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * A possible configuration for a Cloud Spanner instance. Configurations define the geographic placement of nodes and their replication.
@@ -467,11 +467,11 @@ export namespace spanner_v1 {
     /**
      * The name of this instance configuration as it appears in UIs.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * A unique identifier for the instance configuration.  Values are of the form `projects/&lt;project&gt;/instanceConfigs/a-z*`
      */
-    name?: string;
+    name?: string | null;
     /**
      * The geographic placement of nodes in this instance configuration and their replication properties.
      */
@@ -484,19 +484,19 @@ export namespace spanner_v1 {
     /**
      * If the end is closed, then the range includes all rows whose first `len(end_closed)` key columns exactly match `end_closed`.
      */
-    endClosed?: any[];
+    endClosed?: any[] | null;
     /**
      * If the end is open, then the range excludes rows whose first `len(end_open)` key columns exactly match `end_open`.
      */
-    endOpen?: any[];
+    endOpen?: any[] | null;
     /**
      * If the start is closed, then the range includes all rows whose first `len(start_closed)` key columns exactly match `start_closed`.
      */
-    startClosed?: any[];
+    startClosed?: any[] | null;
     /**
      * If the start is open, then the range excludes rows whose first `len(start_open)` key columns exactly match `start_open`.
      */
-    startOpen?: any[];
+    startOpen?: any[] | null;
   }
   /**
    * `KeySet` defines a collection of Cloud Spanner keys and/or key ranges. All the keys are expected to be in the same table or index. The keys need not be sorted in any particular way.  If the same key is specified multiple times in the set (for example if two ranges, two keys, or a key and a range overlap), Cloud Spanner behaves as if the key were only specified once.
@@ -505,11 +505,11 @@ export namespace spanner_v1 {
     /**
      * For convenience `all` can be set to `true` to indicate that this `KeySet` matches all keys in the table or index. Note that any keys specified in `keys` or `ranges` are only yielded once.
      */
-    all?: boolean;
+    all?: boolean | null;
     /**
      * A list of specific keys. Entries in `keys` should have exactly as many elements as there are columns in the primary or index key with which this `KeySet` is used.  Individual key values are encoded as described here.
      */
-    keys?: any[][];
+    keys?: any[][] | null;
     /**
      * A list of key ranges. See KeyRange for more information about key range specifications.
      */
@@ -526,7 +526,7 @@ export namespace spanner_v1 {
     /**
      * `next_page_token` can be sent in a subsequent ListDatabases call to fetch more of the matching databases.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response for ListInstanceConfigs.
@@ -539,7 +539,7 @@ export namespace spanner_v1 {
     /**
      * `next_page_token` can be sent in a subsequent ListInstanceConfigs call to fetch more of the matching instance configurations.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response for ListInstances.
@@ -552,7 +552,7 @@ export namespace spanner_v1 {
     /**
      * `next_page_token` can be sent in a subsequent ListInstances call to fetch more of the matching instances.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -561,7 +561,7 @@ export namespace spanner_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -574,7 +574,7 @@ export namespace spanner_v1 {
     /**
      * `next_page_token` can be sent in a subsequent ListSessions call to fetch more of the matching sessions.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of requested sessions.
      */
@@ -612,7 +612,7 @@ export namespace spanner_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -620,15 +620,15 @@ export namespace spanner_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Partial results from a streaming read or SQL query. Streaming reads and SQL queries better tolerate large result sets, large rows, and large values, but are a little trickier to consume.
@@ -637,7 +637,7 @@ export namespace spanner_v1 {
     /**
      * If true, then the final value in values is chunked, and must be combined with more values from subsequent `PartialResultSet`s to obtain a complete field value.
      */
-    chunkedValue?: boolean;
+    chunkedValue?: boolean | null;
     /**
      * Metadata about the result set, such as row type information. Only present in the first response.
      */
@@ -645,7 +645,7 @@ export namespace spanner_v1 {
     /**
      * Streaming calls might be interrupted for a variety of reasons, such as TCP connection loss. If this occurs, the stream of results can be resumed by re-sending the original request and including `resume_token`. Note that executing any other transaction in the same session invalidates the token.
      */
-    resumeToken?: string;
+    resumeToken?: string | null;
     /**
      * Query plan and execution statistics for the statement that produced this streaming result set. These can be requested by setting ExecuteSqlRequest.query_mode and are sent only once with the last response in the stream. This field will also be present in the last response for DML statements.
      */
@@ -653,7 +653,7 @@ export namespace spanner_v1 {
     /**
      * A streamed result set consists of a stream of values, which might be split into many `PartialResultSet` messages to accommodate large rows and/or large values. Every N complete values defines a row, where N is equal to the number of entries in metadata.row_type.fields.  Most values are encoded based on type as described here.  It is possible that the last value in values is &quot;chunked&quot;, meaning that the rest of the value is sent in subsequent `PartialResultSet`(s). This is denoted by the chunked_value field. Two or more chunked values can be merged to form a complete value as follows:    * `bool/number/null`: cannot be chunked   * `string`: concatenate the strings   * `list`: concatenate the lists. If the last element in a list is a     `string`, `list`, or `object`, merge it with the first element in     the next list by applying these rules recursively.   * `object`: concatenate the (field name, field value) pairs. If a     field name is duplicated, then apply these rules recursively     to merge the field values.  Some examples of merging:      # Strings are concatenated.     &quot;foo&quot;, &quot;bar&quot; =&gt; &quot;foobar&quot;      # Lists of non-strings are concatenated.     [2, 3], [4] =&gt; [2, 3, 4]      # Lists are concatenated, but the last and first elements are merged     # because they are strings.     [&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;] =&gt; [&quot;a&quot;, &quot;bc&quot;, &quot;d&quot;]      # Lists are concatenated, but the last and first elements are merged     # because they are lists. Recursively, the last and first elements     # of the inner lists are merged because they are strings.     [&quot;a&quot;, [&quot;b&quot;, &quot;c&quot;]], [[&quot;d&quot;], &quot;e&quot;] =&gt; [&quot;a&quot;, [&quot;b&quot;, &quot;cd&quot;], &quot;e&quot;]      # Non-overlapping object fields are combined.     {&quot;a&quot;: &quot;1&quot;}, {&quot;b&quot;: &quot;2&quot;} =&gt; {&quot;a&quot;: &quot;1&quot;, &quot;b&quot;: 2&quot;}      # Overlapping object fields are merged.     {&quot;a&quot;: &quot;1&quot;}, {&quot;a&quot;: &quot;2&quot;} =&gt; {&quot;a&quot;: &quot;12&quot;}      # Examples of merging objects containing lists of strings.     {&quot;a&quot;: [&quot;1&quot;]}, {&quot;a&quot;: [&quot;2&quot;]} =&gt; {&quot;a&quot;: [&quot;12&quot;]}  For a more complete example, suppose a streaming SQL query is yielding a result set whose rows contain a single string field. The following `PartialResultSet`s might be yielded:      {       &quot;metadata&quot;: { ... }       &quot;values&quot;: [&quot;Hello&quot;, &quot;W&quot;]       &quot;chunked_value&quot;: true       &quot;resume_token&quot;: &quot;Af65...&quot;     }     {       &quot;values&quot;: [&quot;orl&quot;]       &quot;chunked_value&quot;: true       &quot;resume_token&quot;: &quot;Bqp2...&quot;     }     {       &quot;values&quot;: [&quot;d&quot;]       &quot;resume_token&quot;: &quot;Zx1B...&quot;     }  This sequence of `PartialResultSet`s encodes two rows, one containing the field value `&quot;Hello&quot;`, and a second containing the field value `&quot;World&quot; = &quot;W&quot; + &quot;orl&quot; + &quot;d&quot;`.
      */
-    values?: any[];
+    values?: any[] | null;
   }
   /**
    * Information returned for each partition returned in a PartitionResponse.
@@ -662,7 +662,7 @@ export namespace spanner_v1 {
     /**
      * This token can be passed to Read, StreamingRead, ExecuteSql, or ExecuteStreamingSql requests to restrict the results to those identified by this partition token.
      */
-    partitionToken?: string;
+    partitionToken?: string | null;
   }
   /**
    * Message type to initiate a Partitioned DML transaction.
@@ -675,11 +675,11 @@ export namespace spanner_v1 {
     /**
      * **Note:** This hint is currently ignored by PartitionQuery and PartitionRead requests.  The desired maximum number of partitions to return.  For example, this may be set to the number of workers available.  The default for this option is currently 10,000. The maximum value is currently 200,000.  This is only a hint.  The actual number of partitions returned may be smaller or larger than this maximum count request.
      */
-    maxPartitions?: string;
+    maxPartitions?: string | null;
     /**
      * **Note:** This hint is currently ignored by PartitionQuery and PartitionRead requests.  The desired data size for each partition generated.  The default for this option is currently 1 GiB.  This is only a hint. The actual size of each partition may be smaller or larger than this size request.
      */
-    partitionSizeBytes?: string;
+    partitionSizeBytes?: string | null;
   }
   /**
    * The request for PartitionQuery
@@ -688,11 +688,11 @@ export namespace spanner_v1 {
     /**
      * Parameter names and values that bind to placeholders in the SQL string.  A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores.  Parameters can appear anywhere that a literal value is expected.  The same parameter name can be used more than once, for example:  `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`  It is an error to execute a SQL statement with unbound parameters.
      */
-    params?: {[key: string]: any};
+    params?: {[key: string]: any} | null;
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type from a JSON value.  For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings.  In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL query parameters. See the definition of Type for more information about SQL types.
      */
-    paramTypes?: {[key: string]: Schema$Type};
+    paramTypes?: {[key: string]: Schema$Type} | null;
     /**
      * Additional options that affect how many partitions are created.
      */
@@ -700,7 +700,7 @@ export namespace spanner_v1 {
     /**
      * The query request to generate partitions for. The request will fail if the query is not root partitionable. The query plan of a root partitionable query has a single distributed union operator. A distributed union operator conceptually divides one or more tables into multiple splits, remotely evaluates a subquery independently on each split, and then unions all results.  This must not contain DML commands, such as INSERT, UPDATE, or DELETE. Use ExecuteStreamingSql with a PartitionedDml transaction for large, partition-friendly DML operations.
      */
-    sql?: string;
+    sql?: string | null;
     /**
      * Read only snapshot transactions are supported, read/write and single use transactions are not.
      */
@@ -713,11 +713,11 @@ export namespace spanner_v1 {
     /**
      * The columns of table to be returned for each row matching this request.
      */
-    columns?: string[];
+    columns?: string[] | null;
     /**
      * If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information.
      */
-    index?: string;
+    index?: string | null;
     /**
      * Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index.  It is not an error for the `key_set` to name rows that do not exist in the database. Read yields nothing for nonexistent rows.
      */
@@ -729,7 +729,7 @@ export namespace spanner_v1 {
     /**
      * Required. The name of the table in the database to be read.
      */
-    table?: string;
+    table?: string | null;
     /**
      * Read only snapshot transactions are supported, read/write and single use transactions are not.
      */
@@ -759,23 +759,23 @@ export namespace spanner_v1 {
     /**
      * The display name for the node.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The execution statistics associated with the node, contained in a group of key-value pairs. Only present if the plan was returned as a result of a profile query. For example, number of executions, number of rows/time per execution etc.
      */
-    executionStats?: {[key: string]: any};
+    executionStats?: {[key: string]: any} | null;
     /**
      * The `PlanNode`&#39;s index in node list.
      */
-    index?: number;
+    index?: number | null;
     /**
      * Used to determine the type of node. May be needed for visualizing different kinds of nodes differently. For example, If the node is a SCALAR node, it will have a condensed representation which can be used to directly embed a description of the node in its parent.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Attributes relevant to the node contained in a group of key-value pairs. For example, a Parameter Reference node could have the following information in its metadata:      {       &quot;parameter_reference&quot;: &quot;param1&quot;,       &quot;parameter_type&quot;: &quot;array&quot;     }
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Condensed representation for SCALAR nodes.
      */
@@ -792,11 +792,11 @@ export namespace spanner_v1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Deprecated.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Contains an ordered list of nodes appearing in the query plan.
@@ -814,27 +814,27 @@ export namespace spanner_v1 {
     /**
      * Executes all reads at a timestamp that is `exact_staleness` old. The timestamp is chosen soon after the read is started.  Guarantees that all writes that have committed more than the specified number of seconds ago are visible. Because Cloud Spanner chooses the exact timestamp, this mode works even if the client&#39;s local clock is substantially skewed from Cloud Spanner commit timestamps.  Useful for reading at nearby replicas without the distributed timestamp negotiation overhead of `max_staleness`.
      */
-    exactStaleness?: string;
+    exactStaleness?: string | null;
     /**
      * Read data at a timestamp &gt;= `NOW - max_staleness` seconds. Guarantees that all writes that have committed more than the specified number of seconds ago are visible. Because Cloud Spanner chooses the exact timestamp, this mode works even if the client&#39;s local clock is substantially skewed from Cloud Spanner commit timestamps.  Useful for reading the freshest data available at a nearby replica, while bounding the possible staleness if the local replica has fallen behind.  Note that this option can only be used in single-use transactions.
      */
-    maxStaleness?: string;
+    maxStaleness?: string | null;
     /**
      * Executes all reads at a timestamp &gt;= `min_read_timestamp`.  This is useful for requesting fresher data than some previous read, or data that is fresh enough to observe the effects of some previously committed transaction whose timestamp is known.  Note that this option can only be used in single-use transactions.  A timestamp in RFC3339 UTC \&quot;Zulu\&quot; format, accurate to nanoseconds. Example: `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
      */
-    minReadTimestamp?: string;
+    minReadTimestamp?: string | null;
     /**
      * Executes all reads at the given timestamp. Unlike other modes, reads at a specific timestamp are repeatable; the same read at the same timestamp always returns the same data. If the timestamp is in the future, the read will block until the specified timestamp, modulo the read&#39;s deadline.  Useful for large scale consistent reads such as mapreduces, or for coordinating many reads against a consistent snapshot of the data.  A timestamp in RFC3339 UTC \&quot;Zulu\&quot; format, accurate to nanoseconds. Example: `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
      */
-    readTimestamp?: string;
+    readTimestamp?: string | null;
     /**
      * If true, the Cloud Spanner-selected read timestamp is included in the Transaction message that describes the transaction.
      */
-    returnReadTimestamp?: boolean;
+    returnReadTimestamp?: boolean | null;
     /**
      * Read at a timestamp where all previously committed transactions are visible.
      */
-    strong?: boolean;
+    strong?: boolean | null;
   }
   /**
    * The request for Read and StreamingRead.
@@ -843,11 +843,11 @@ export namespace spanner_v1 {
     /**
      * The columns of table to be returned for each row matching this request.
      */
-    columns?: string[];
+    columns?: string[] | null;
     /**
      * If non-empty, the name of an index on table. This index is used instead of the table primary key when interpreting key_set and sorting result rows. See key_set for further information.
      */
-    index?: string;
+    index?: string | null;
     /**
      * Required. `key_set` identifies the rows to be yielded. `key_set` names the primary keys of the rows in table to be yielded, unless index is present. If index is present, then key_set instead names index keys in index.  If the partition_token field is empty, rows are yielded in table primary key order (if index is empty) or index key order (if index is non-empty).  If the partition_token field is not empty, rows will be yielded in an unspecified order.  It is not an error for the `key_set` to name rows that do not exist in the database. Read yields nothing for nonexistent rows.
      */
@@ -855,19 +855,19 @@ export namespace spanner_v1 {
     /**
      * If greater than zero, only the first `limit` rows are yielded. If `limit` is zero, the default is no limit. A limit cannot be specified if `partition_token` is set.
      */
-    limit?: string;
+    limit?: string | null;
     /**
      * If present, results will be restricted to the specified partition previously created using PartitionRead().    There must be an exact match for the values of fields common to this message and the PartitionReadRequest message used to create this partition_token.
      */
-    partitionToken?: string;
+    partitionToken?: string | null;
     /**
      * If this request is resuming a previously interrupted read, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new read to resume where the last read left off. The rest of the request parameters must exactly match the request that yielded this token.
      */
-    resumeToken?: string;
+    resumeToken?: string | null;
     /**
      * Required. The name of the table in the database to be read.
      */
-    table?: string;
+    table?: string | null;
     /**
      * The transaction to use. If none is provided, the default is a temporary read-only transaction with strong concurrency.
      */
@@ -881,15 +881,15 @@ export namespace spanner_v1 {
     /**
      * If true, this location is designated as the default leader location where leader replicas are placed. See the [region types documentation](https://cloud.google.com/spanner/docs/instances#region_types) for more details.
      */
-    defaultLeaderLocation?: boolean;
+    defaultLeaderLocation?: boolean | null;
     /**
      * The location of the serving resources, e.g. &quot;us-central1&quot;.
      */
-    location?: string;
+    location?: string | null;
     /**
      * The type of replica.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Results from Read or ExecuteSql.
@@ -902,7 +902,7 @@ export namespace spanner_v1 {
     /**
      * Each element in `rows` is a row whose format is defined by metadata.row_type. The ith element in each row matches the ith field in metadata.row_type. Elements are encoded based on type as described here.
      */
-    rows?: any[][];
+    rows?: any[][] | null;
     /**
      * Query plan and execution statistics for the SQL statement that produced this result set. These can be requested by setting ExecuteSqlRequest.query_mode. DML statements always produce stats containing the number of rows modified, unless executed using the ExecuteSqlRequest.QueryMode.PLAN ExecuteSqlRequest.query_mode. Other fields may or may not be populated, based on the ExecuteSqlRequest.query_mode.
      */
@@ -932,15 +932,15 @@ export namespace spanner_v1 {
     /**
      * Aggregated statistics from the execution of the query. Only present when the query is profiled. For example, a query could return the statistics as follows:      {       &quot;rows_returned&quot;: &quot;3&quot;,       &quot;elapsed_time&quot;: &quot;1.22 secs&quot;,       &quot;cpu_time&quot;: &quot;1.19 secs&quot;     }
      */
-    queryStats?: {[key: string]: any};
+    queryStats?: {[key: string]: any} | null;
     /**
      * Standard DML returns an exact count of rows that were modified.
      */
-    rowCountExact?: string;
+    rowCountExact?: string | null;
     /**
      * Partitioned DML does not offer exactly-once semantics, so it returns a lower bound of the rows modified.
      */
-    rowCountLowerBound?: string;
+    rowCountLowerBound?: string | null;
   }
   /**
    * The request for Rollback.
@@ -949,7 +949,7 @@ export namespace spanner_v1 {
     /**
      * Required. The transaction to roll back.
      */
-    transactionId?: string;
+    transactionId?: string | null;
   }
   /**
    * A session in the Cloud Spanner API.
@@ -958,19 +958,19 @@ export namespace spanner_v1 {
     /**
      * Output only. The approximate timestamp when the session is last used. It is typically earlier than the actual last use time.
      */
-    approximateLastUseTime?: string;
+    approximateLastUseTime?: string | null;
     /**
      * Output only. The timestamp when the session is created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The labels for the session.   * Label keys must be between 1 and 63 characters long and must conform to    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  * Label values must be between 0 and 63 characters long and must conform    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.  * No more than 64 labels can be associated with a given session.  See https://goo.gl/xmQnxf for more information on and examples of labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The name of the session. This is always system-assigned; values provided when creating a session are ignored.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -988,11 +988,11 @@ export namespace spanner_v1 {
     /**
      * A string representation of the expression subtree rooted at this node.
      */
-    description?: string;
+    description?: string | null;
     /**
      * A mapping of (subquery variable name) -&gt; (subquery node id) for cases where the `description` string of this node references a `SCALAR` subquery contained in the expression subtree rooted at this node. The referenced `SCALAR` subquery may not necessarily be a direct child of this node.
      */
-    subqueries?: {[key: string]: number};
+    subqueries?: {[key: string]: number} | null;
   }
   /**
    * A single DML statement.
@@ -1001,15 +1001,15 @@ export namespace spanner_v1 {
     /**
      * Parameter names and values that bind to placeholders in the DML string.  A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores.  Parameters can appear anywhere that a literal value is expected.  The same parameter name can be used more than once, for example:  `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`  It is an error to execute a SQL statement with unbound parameters.
      */
-    params?: {[key: string]: any};
+    params?: {[key: string]: any} | null;
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type from a JSON value.  For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings.  In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL statement parameters. See the definition of Type for more information about SQL types.
      */
-    paramTypes?: {[key: string]: Schema$Type};
+    paramTypes?: {[key: string]: Schema$Type} | null;
     /**
      * Required. The DML string.
      */
-    sql?: string;
+    sql?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1018,15 +1018,15 @@ export namespace spanner_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * `StructType` defines the fields of a STRUCT type.
@@ -1044,7 +1044,7 @@ export namespace spanner_v1 {
     /**
      * REQUIRED: The set of permissions to check for &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39;, &#39;spanner.*&#39;, &#39;spanner.instances.*&#39;) are not allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -1053,7 +1053,7 @@ export namespace spanner_v1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * A transaction.
@@ -1062,11 +1062,11 @@ export namespace spanner_v1 {
     /**
      * `id` may be used to identify the transaction in subsequent Read, ExecuteSql, Commit, or Rollback calls.  Single-use read-only transactions do not have IDs, because single-use transactions do not support multiple requests.
      */
-    id?: string;
+    id?: string | null;
     /**
      * For snapshot read-only transactions, the read timestamp chosen for the transaction. Not returned by default: see TransactionOptions.ReadOnly.return_read_timestamp.  A timestamp in RFC3339 UTC \&quot;Zulu\&quot; format, accurate to nanoseconds. Example: `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
      */
-    readTimestamp?: string;
+    readTimestamp?: string | null;
   }
   /**
    * # Transactions   Each session can have at most one active transaction at a time. After the active transaction is completed, the session can immediately be re-used for the next transaction. It is not necessary to create a new session for each transaction.  # Transaction Modes  Cloud Spanner supports three transaction modes:    1. Locking read-write. This type of transaction is the only way      to write data into Cloud Spanner. These transactions rely on      pessimistic locking and, if necessary, two-phase commit.      Locking read-write transactions may abort, requiring the      application to retry.    2. Snapshot read-only. This transaction type provides guaranteed      consistency across several reads, but does not allow      writes. Snapshot read-only transactions can be configured to      read at timestamps in the past. Snapshot read-only      transactions do not need to be committed.    3. Partitioned DML. This type of transaction is used to execute      a single Partitioned DML statement. Partitioned DML partitions      the key space and runs the DML statement over each partition      in parallel using separate, internal transactions that commit      independently. Partitioned DML transactions do not need to be      committed.  For transactions that only read, snapshot read-only transactions provide simpler semantics and are almost always faster. In particular, read-only transactions do not take locks, so they do not conflict with read-write transactions. As a consequence of not taking locks, they also do not abort, so retry loops are not needed.  Transactions may only read/write data in a single database. They may, however, read/write data in different tables within that database.  ## Locking Read-Write Transactions  Locking transactions may be used to atomically read-modify-write data anywhere in a database. This type of transaction is externally consistent.  Clients should attempt to minimize the amount of time a transaction is active. Faster transactions commit with higher probability and cause less contention. Cloud Spanner attempts to keep read locks active as long as the transaction continues to do reads, and the transaction has not been terminated by Commit or Rollback.  Long periods of inactivity at the client may cause Cloud Spanner to release a transaction&#39;s locks and abort it.  Conceptually, a read-write transaction consists of zero or more reads or SQL statements followed by Commit. At any time before Commit, the client can send a Rollback request to abort the transaction.  ### Semantics  Cloud Spanner can commit the transaction if all read locks it acquired are still valid at commit time, and it is able to acquire write locks for all writes. Cloud Spanner can abort the transaction for any reason. If a commit attempt returns `ABORTED`, Cloud Spanner guarantees that the transaction has not modified any user data in Cloud Spanner.  Unless the transaction commits, Cloud Spanner makes no guarantees about how long the transaction&#39;s locks were held for. It is an error to use Cloud Spanner locks for any sort of mutual exclusion other than between Cloud Spanner transactions themselves.  ### Retrying Aborted Transactions  When a transaction aborts, the application can choose to retry the whole transaction again. To maximize the chances of successfully committing the retry, the client should execute the retry in the same session as the original attempt. The original session&#39;s lock priority increases with each consecutive abort, meaning that each attempt has a slightly better chance of success than the previous.  Under some circumstances (e.g., many transactions attempting to modify the same row(s)), a transaction can abort many times in a short period before successfully committing. Thus, it is not a good idea to cap the number of retries a transaction can attempt; instead, it is better to limit the total amount of wall time spent retrying.  ### Idle Transactions  A transaction is considered idle if it has no outstanding reads or SQL queries and has not started a read or SQL query within the last 10 seconds. Idle transactions can be aborted by Cloud Spanner so that they don&#39;t hold on to locks indefinitely. In that case, the commit will fail with error `ABORTED`.  If this behavior is undesirable, periodically executing a simple SQL query in the transaction (e.g., `SELECT 1`) prevents the transaction from becoming idle.  ## Snapshot Read-Only Transactions  Snapshot read-only transactions provides a simpler method than locking read-write transactions for doing several consistent reads. However, this type of transaction does not support writes.  Snapshot transactions do not take locks. Instead, they work by choosing a Cloud Spanner timestamp, then executing all reads at that timestamp. Since they do not acquire locks, they do not block concurrent read-write transactions.  Unlike locking read-write transactions, snapshot read-only transactions never abort. They can fail if the chosen read timestamp is garbage collected; however, the default garbage collection policy is generous enough that most applications do not need to worry about this in practice.  Snapshot read-only transactions do not need to call Commit or Rollback (and in fact are not permitted to do so).  To execute a snapshot transaction, the client specifies a timestamp bound, which tells Cloud Spanner how to choose a read timestamp.  The types of timestamp bound are:    - Strong (the default).   - Bounded staleness.   - Exact staleness.  If the Cloud Spanner database to be read is geographically distributed, stale read-only transactions can execute more quickly than strong or read-write transaction, because they are able to execute far from the leader replica.  Each type of timestamp bound is discussed in detail below.  ### Strong  Strong reads are guaranteed to see the effects of all transactions that have committed before the start of the read. Furthermore, all rows yielded by a single read are consistent with each other -- if any part of the read observes a transaction, all parts of the read see the transaction.  Strong reads are not repeatable: two consecutive strong read-only transactions might return inconsistent results if there are concurrent writes. If consistency across reads is required, the reads should be executed within a transaction or at an exact read timestamp.  See TransactionOptions.ReadOnly.strong.  ### Exact Staleness  These timestamp bounds execute reads at a user-specified timestamp. Reads at a timestamp are guaranteed to see a consistent prefix of the global transaction history: they observe modifications done by all transactions with a commit timestamp &lt;= the read timestamp, and observe none of the modifications done by transactions with a larger commit timestamp. They will block until all conflicting transactions that may be assigned commit timestamps &lt;= the read timestamp have finished.  The timestamp can either be expressed as an absolute Cloud Spanner commit timestamp or a staleness relative to the current time.  These modes do not require a &quot;negotiation phase&quot; to pick a timestamp. As a result, they execute slightly faster than the equivalent boundedly stale concurrency modes. On the other hand, boundedly stale reads usually return fresher results.  See TransactionOptions.ReadOnly.read_timestamp and TransactionOptions.ReadOnly.exact_staleness.  ### Bounded Staleness  Bounded staleness modes allow Cloud Spanner to pick the read timestamp, subject to a user-provided staleness bound. Cloud Spanner chooses the newest timestamp within the staleness bound that allows execution of the reads at the closest available replica without blocking.  All rows yielded are consistent with each other -- if any part of the read observes a transaction, all parts of the read see the transaction. Boundedly stale reads are not repeatable: two stale reads, even if they use the same staleness bound, can execute at different timestamps and thus return inconsistent results.  Boundedly stale reads execute in two phases: the first phase negotiates a timestamp among all replicas needed to serve the read. In the second phase, reads are executed at the negotiated timestamp.  As a result of the two phase execution, bounded staleness reads are usually a little slower than comparable exact staleness reads. However, they are typically able to return fresher results, and are more likely to execute at the closest replica.  Because the timestamp negotiation requires up-front knowledge of which rows will be read, it can only be used with single-use read-only transactions.  See TransactionOptions.ReadOnly.max_staleness and TransactionOptions.ReadOnly.min_read_timestamp.  ### Old Read Timestamps and Garbage Collection  Cloud Spanner continuously garbage collects deleted and overwritten data in the background to reclaim storage space. This process is known as &quot;version GC&quot;. By default, version GC reclaims versions after they are one hour old. Because of this, Cloud Spanner cannot perform reads at read timestamps more than one hour in the past. This restriction also applies to in-progress reads and/or SQL queries whose timestamp become too old while executing. Reads and SQL queries with too-old read timestamps fail with the error `FAILED_PRECONDITION`.  ## Partitioned DML Transactions  Partitioned DML transactions are used to execute DML statements with a different execution strategy that provides different, and often better, scalability properties for large, table-wide operations than DML in a ReadWrite transaction. Smaller scoped statements, such as an OLTP workload, should prefer using ReadWrite transactions.  Partitioned DML partitions the keyspace and runs the DML statement on each partition in separate, internal transactions. These transactions commit automatically when complete, and run independently from one another.  To reduce lock contention, this execution strategy only acquires read locks on rows that match the WHERE clause of the statement. Additionally, the smaller per-partition transactions hold locks for less time.  That said, Partitioned DML is not a drop-in replacement for standard DML used in ReadWrite transactions.   - The DML statement must be fully-partitionable. Specifically, the statement    must be expressible as the union of many statements which each access only    a single row of the table.   - The statement is not applied atomically to all rows of the table. Rather,    the statement is applied atomically to partitions of the table, in    independent transactions. Secondary index rows are updated atomically    with the base table rows.   - Partitioned DML does not guarantee exactly-once execution semantics    against a partition. The statement will be applied at least once to each    partition. It is strongly recommended that the DML statement should be    idempotent to avoid unexpected results. For instance, it is potentially    dangerous to run a statement such as    `UPDATE table SET column = column + 1` as it could be run multiple times    against some rows.   - The partitions are committed automatically - there is no support for    Commit or Rollback. If the call returns an error, or if the client issuing    the ExecuteSql call dies, it is possible that some rows had the statement    executed on them successfully. It is also possible that statement was    never executed against other rows.   - Partitioned DML transactions may only contain the execution of a single    DML statement via ExecuteSql or ExecuteStreamingSql.   - If any error is encountered during the execution of the partitioned DML    operation (for instance, a UNIQUE INDEX violation, division by zero, or a    value that cannot be stored due to schema constraints), then the    operation is stopped at that point and an error is returned. It is    possible that at this point, some partitions have been committed (or even    committed multiple times), and other partitions have not been run at all.  Given the above, Partitioned DML is good fit for large, database-wide, operations that are idempotent, such as deleting old rows from a very large table.
@@ -1096,7 +1096,7 @@ export namespace spanner_v1 {
     /**
      * Execute the read or SQL query in a previously-started transaction.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Execute the read or SQL query in a temporary transaction. This is the most efficient way to execute a transaction that consists of a single SQL query.
      */
@@ -1113,7 +1113,7 @@ export namespace spanner_v1 {
     /**
      * Required. The TypeCode for this type.
      */
-    code?: string;
+    code?: string | null;
     /**
      * If code == STRUCT, then `struct_type` provides type information for the struct&#39;s fields.
      */
@@ -1126,15 +1126,15 @@ export namespace spanner_v1 {
     /**
      * Reports the commit timestamps of all statements that have succeeded so far, where `commit_timestamps[i]` is the commit timestamp for the statement `statements[i]`.
      */
-    commitTimestamps?: string[];
+    commitTimestamps?: string[] | null;
     /**
      * The database being modified.
      */
-    database?: string;
+    database?: string | null;
     /**
      * For an update this list contains all the statements. For an individual statement, this list contains only that statement.
      */
-    statements?: string[];
+    statements?: string[] | null;
   }
   /**
    * Enqueues the given DDL statements to be applied, in order but not necessarily all at once, to the database schema at some point (or points) in the future. The server checks that the statements are executable (syntactically valid, name tables that exist, etc.) before enqueueing them, but they may still fail upon later execution (e.g., if a statement from another batch of statements is applied first and it conflicts in some way, or if there is some data-related problem like a `NULL` value in a column to which `NOT NULL` would be added). If a statement fails, all subsequent statements in the batch are automatically cancelled.  Each batch of statements is assigned a name which can be used with the Operations API to monitor progress. See the operation_id field for more details.
@@ -1143,11 +1143,11 @@ export namespace spanner_v1 {
     /**
      * If empty, the new update request is assigned an automatically-generated operation ID. Otherwise, `operation_id` is used to construct the name of the resulting Operation.  Specifying an explicit operation ID simplifies determining whether the statements were executed in the event that the UpdateDatabaseDdl call is replayed, or the return value is otherwise lost: the database and `operation_id` fields can be combined to form the name of the resulting longrunning.Operation: `&lt;database&gt;/operations/&lt;operation_id&gt;`.  `operation_id` should be unique within the database, and must be a valid identifier: `a-z*`. Note that automatically-generated operation IDs always begin with an underscore. If the named operation already exists, UpdateDatabaseDdl returns `ALREADY_EXISTS`.
      */
-    operationId?: string;
+    operationId?: string | null;
     /**
      * DDL statements to be applied to the database.
      */
-    statements?: string[];
+    statements?: string[] | null;
   }
   /**
    * Metadata type for the operation returned by UpdateInstance.
@@ -1156,11 +1156,11 @@ export namespace spanner_v1 {
     /**
      * The time at which this operation was cancelled. If set, this operation is in the process of undoing itself (which is guaranteed to succeed) and cannot be cancelled again.
      */
-    cancelTime?: string;
+    cancelTime?: string | null;
     /**
      * The time at which this operation failed or was completed successfully.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The desired end state of the update.
      */
@@ -1168,7 +1168,7 @@ export namespace spanner_v1 {
     /**
      * The time at which UpdateInstance request was received.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * The request for UpdateInstance.
@@ -1177,7 +1177,7 @@ export namespace spanner_v1 {
     /**
      * Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated. The field mask must always be specified; this prevents any future fields in [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know about them.
      */
-    fieldMask?: string;
+    fieldMask?: string | null;
     /**
      * Required. The instance to update, which must always include the instance name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      */
@@ -1190,15 +1190,15 @@ export namespace spanner_v1 {
     /**
      * The names of the columns in table to be written.  The list of columns must contain enough columns to allow Cloud Spanner to derive values for all primary key columns in the row(s) to be modified.
      */
-    columns?: string[];
+    columns?: string[] | null;
     /**
      * Required. The table whose rows will be written.
      */
-    table?: string;
+    table?: string | null;
     /**
      * The values to be written. `values` can contain more than one list of values. If it does, then multiple rows are written, one for each entry in `values`. Each list in `values` must have exactly as many entries as there are entries in columns above. Sending multiple lists is equivalent to sending multiple `Mutation`s, each containing one `values` entry and repeating table and columns. Individual values in each list are encoded as described here.
      */
-    values?: any[][];
+    values?: any[][] | null;
   }
 
   export class Resource$Projects {

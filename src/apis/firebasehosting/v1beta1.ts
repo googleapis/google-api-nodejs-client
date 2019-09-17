@@ -124,11 +124,11 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The email address of the user when the user performed the action.
      */
-    email?: string;
+    email?: string | null;
     /**
      * A profile image URL for the user. May not be present if the user has changed their email address or deleted their account.
      */
-    imageUrl?: string;
+    imageUrl?: string | null;
   }
   /**
    * Represents a DNS certificate challenge.
@@ -137,11 +137,11 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The domain name upon which the DNS challenge must be satisfied.
      */
-    domainName?: string;
+    domainName?: string | null;
     /**
      * The value that must be present as a TXT record on the domain name to satisfy the challenge.
      */
-    token?: string;
+    token?: string | null;
   }
   /**
    * Represents an HTTP certificate challenge.
@@ -150,11 +150,11 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The URL path on which to serve the specified token to satisfy the certificate challenge.
      */
-    path?: string;
+    path?: string | null;
     /**
      * The token to serve at the specified URL path to satisfy the certificate challenge.
      */
-    token?: string;
+    token?: string | null;
   }
   /**
    * A configured rewrite that directs requests to a Cloud Run service. If the Cloud Run service does not exist when setting or updating your Firebase Hosting configuration, then the request fails. Any errors from the Cloud Run service are passed to the end user (for example, if you delete a service, any requests directed to that service receive a `404` error).
@@ -163,11 +163,11 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Optional. User-provided region where the Cloud Run service is hosted.&lt;br&gt; Defaults to `us-central1` if not supplied.
      */
-    region?: string;
+    region?: string | null;
     /**
      * Required. User-defined ID of the Cloud Run service.
      */
-    serviceId?: string;
+    serviceId?: string | null;
   }
   /**
    * The intended behavior and status information of a domain.
@@ -176,7 +176,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Required. The domain name of the association.
      */
-    domainName?: string;
+    domainName?: string | null;
     /**
      * If set, the domain should redirect with the provided parameters.
      */
@@ -188,15 +188,15 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Required. The site name of the association.
      */
-    site?: string;
+    site?: string | null;
     /**
      * Output only. Additional status of the domain association.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Output only. The time at which the domain was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The current certificate provisioning status information for a domain.
@@ -205,7 +205,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The TXT records (for the certificate challenge) that were found at the last DNS fetch.
      */
-    certChallengeDiscoveredTxt?: string[];
+    certChallengeDiscoveredTxt?: string[] | null;
     /**
      * The DNS challenge for generating a certificate.
      */
@@ -217,23 +217,23 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The certificate provisioning status; updated when Firebase Hosting provisions an SSL certificate for the domain.
      */
-    certStatus?: string;
+    certStatus?: string | null;
     /**
      * The IPs found at the last DNS fetch.
      */
-    discoveredIps?: string[];
+    discoveredIps?: string[] | null;
     /**
      * The time at which the last DNS fetch occurred.
      */
-    dnsFetchTime?: string;
+    dnsFetchTime?: string | null;
     /**
      * The DNS record match status as of the last DNS fetch.
      */
-    dnsStatus?: string;
+    dnsStatus?: string | null;
     /**
      * The list of IPs to which the domain is expected to resolve.
      */
-    expectedIps?: string[];
+    expectedIps?: string[] | null;
   }
   /**
    * Defines the behavior of a domain-level redirect. Domain redirects preserve the path of the redirect but replace the requested domain with the one specified in the redirect configuration.
@@ -242,11 +242,11 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Required. The domain name to redirect to.
      */
-    domainName?: string;
+    domainName?: string | null;
     /**
      * Required. The redirect status code.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -259,15 +259,15 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
-    glob?: string;
+    glob?: string | null;
     /**
      * Required. The additional headers to add to the response.
      */
-    headers?: {[key: string]: string};
+    headers?: {[key: string]: string} | null;
     /**
      * The user-supplied RE2 regular expression to match against the request URL path.
      */
-    regex?: string;
+    regex?: string | null;
   }
   export interface Schema$ListDomainsResponse {
     /**
@@ -277,13 +277,13 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The pagination token, if more results exist.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListReleasesResponse {
     /**
      * If there are additional releases remaining beyond the ones in this response, then supply this token in the next [`list`](../sites.versions.files/list) call to continue with the next set of releases.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of hashes of files that still need to be uploaded, if any exist.
      */
@@ -297,23 +297,23 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The pagination token, if more results exist.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$PopulateVersionFilesRequest {
     /**
      * A set of file paths to the hashes corresponding to assets that should be added to the version. Note that a file path to an empty hash will remove the path from the version. Calculate a hash by Gzipping the file then taking the SHA256 hash of the newly compressed file.
      */
-    files?: {[key: string]: string};
+    files?: {[key: string]: string} | null;
   }
   export interface Schema$PopulateVersionFilesResponse {
     /**
      * The content hashes of the specified files that need to be uploaded to the specified endpoint.
      */
-    uploadRequiredHashes?: string[];
+    uploadRequiredHashes?: string[] | null;
     /**
      * The URL to which the files should be uploaded, in the format: &lt;br&gt;&quot;https://upload-firebasehosting.googleapis.com/upload/sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;/files&quot;. &lt;br&gt;Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.
      */
-    uploadUrl?: string;
+    uploadUrl?: string | null;
   }
   /**
    * A [`redirect`](/docs/hosting/full-config#redirects) represents the configuration for returning an HTTP redirect response given a matching request URL path.
@@ -322,19 +322,19 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
-    glob?: string;
+    glob?: string | null;
     /**
      * Required. The value to put in the HTTP location header of the response. &lt;br&gt;The location can contain capture group values from the pattern using a `:` prefix to identify the segment and an optional `*` to capture the rest of the URL. For example: &lt;code&gt;&quot;glob&quot;: &quot;/:capture*&quot;, &lt;br&gt;&quot;statusCode&quot;: 301, &lt;br&gt;&quot;location&quot;: &quot;https://example.com/foo/:capture&quot;&lt;/code&gt;
      */
-    location?: string;
+    location?: string | null;
     /**
      * The user-supplied RE2 regular expression to match against the request URL path.
      */
-    regex?: string;
+    regex?: string | null;
     /**
      * Required. The status HTTP code to return in the response. It must be a valid 3xx status code.
      */
-    statusCode?: number;
+    statusCode?: number | null;
   }
   /**
    * A `Release` is a particular [collection of configurations and files](sites.versions) that is set to be public at a particular time.
@@ -343,15 +343,15 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The deploy description when the release was created. The value can be up to 512&amp;nbsp;characters.
      */
-    message?: string;
+    message?: string | null;
     /**
      * Output only. The unique identifier for the release, in the format: &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/releases/&lt;var&gt;releaseID&lt;/var&gt;&lt;/code&gt; This name is provided in the response body when you call the [`CreateRelease`](sites.releases/create) endpoint.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. The time at which the version is set to be public.
      */
-    releaseTime?: string;
+    releaseTime?: string | null;
     /**
      * Output only. Identifies the user who created the release.
      */
@@ -359,7 +359,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Explains the reason for the release. &lt;br&gt;Specify a value for this field only when creating a `SITE_DISABLE` type release.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Output only. The configuration and content that was released.
      */
@@ -372,23 +372,23 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The request will be forwarded to Firebase Dynamic Links.
      */
-    dynamicLinks?: boolean;
+    dynamicLinks?: boolean | null;
     /**
      * The function to proxy requests to. Must match the exported function name exactly.
      */
-    function?: string;
+    function?: string | null;
     /**
      * The user-supplied [glob pattern](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
-    glob?: string;
+    glob?: string | null;
     /**
      * The URL path to rewrite the request to.
      */
-    path?: string;
+    path?: string | null;
     /**
      * The user-supplied RE2 regular expression to match against the request URL path.
      */
-    regex?: string;
+    regex?: string | null;
     /**
      * The request will be forwarded to Cloud Run.
      */
@@ -401,11 +401,11 @@ export namespace firebasehosting_v1beta1 {
     /**
      * How to handle well known App Association files.
      */
-    appAssociation?: string;
+    appAssociation?: string | null;
     /**
      * Defines whether to drop the file extension from uploaded files.
      */
-    cleanUrls?: boolean;
+    cleanUrls?: boolean | null;
     /**
      * A list of custom response headers that are added to the content if the request URL path matches the glob.
      */
@@ -421,7 +421,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Defines how to handle a trailing slash in the URL path.
      */
-    trailingSlashBehavior?: string;
+    trailingSlashBehavior?: string | null;
   }
   /**
    * A `SiteConfig` contains metadata associated with a specific site that controls Firebase Hosting serving behavior
@@ -430,7 +430,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The number of FINALIZED versions that will be held for a site before automatic deletion. When a new version is deployed, content for versions in storage in excess of this number will be deleted, and will no longer be billed for storage usage. Oldest versions will be deleted first; sites are created with an unlimited number of max_versions by default.
      */
-    maxVersions?: string;
+    maxVersions?: string | null;
   }
   /**
    * A `Version` is the collection of configuration and [static files](sites.versions.files) that determine how a site is displayed.
@@ -443,7 +443,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Output only. The time at which the version was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. Identifies the user who created the version.
      */
@@ -451,7 +451,7 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Output only. The time at which the version was `DELETED`.
      */
-    deleteTime?: string;
+    deleteTime?: string | null;
     /**
      * Output only. Identifies the user who `DELETED` the version.
      */
@@ -459,11 +459,11 @@ export namespace firebasehosting_v1beta1 {
     /**
      * Output only. The total number of files associated with the version. &lt;br&gt;This value is calculated after a version is `FINALIZED`.
      */
-    fileCount?: string;
+    fileCount?: string | null;
     /**
      * Output only. The time at which the version was `FINALIZED`.
      */
-    finalizeTime?: string;
+    finalizeTime?: string | null;
     /**
      * Output only. Identifies the user who `FINALIZED` the version.
      */
@@ -471,19 +471,19 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The labels used for extra metadata and/or filtering.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The unique identifier for a version, in the format: &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;&lt;/code&gt; This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The deploy status of a version. &lt;br&gt; &lt;br&gt;For a successful deploy, call the [`CreateVersion`](sites.versions/create) endpoint to make a new version (`CREATED` status), [upload all desired files](sites.versions/populateFiles) to the version, then [update](sites.versions/patch) the version to the `FINALIZED` status. &lt;br&gt; &lt;br&gt;Note that if you leave the version in the `CREATED` state for more than 12&amp;nbsp;hours, the system will automatically mark the version as `ABANDONED`. &lt;br&gt; &lt;br&gt;You can also change the status of a version to `DELETED` by calling the [`DeleteVersion`](sites.versions/delete) endpoint.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Output only. The total stored bytesize of the version. &lt;br&gt;This value is calculated after a version is `FINALIZED`.
      */
-    versionBytes?: string;
+    versionBytes?: string | null;
   }
   /**
    * A static content file that is part of a version.
@@ -492,15 +492,15 @@ export namespace firebasehosting_v1beta1 {
     /**
      * The SHA256 content hash of the file.
      */
-    hash?: string;
+    hash?: string | null;
     /**
      * The URI at which the file&#39;s content should display.
      */
-    path?: string;
+    path?: string | null;
     /**
      * Output only. The current status of a particular file in the specified version. &lt;br&gt;The value will be either `pending upload` or `uploaded`.
      */
-    status?: string;
+    status?: string | null;
   }
 
   export class Resource$Sites {

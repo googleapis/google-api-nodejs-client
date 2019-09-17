@@ -108,11 +108,11 @@ export namespace groupsmigration_v1 {
     /**
      * The kind of insert resource this is.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The status of the insert request.
      */
-    responseCode?: string;
+    responseCode?: string | null;
   }
 
   export class Resource$Archive {

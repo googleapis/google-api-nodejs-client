@@ -118,7 +118,7 @@ export namespace admin_reports_v1 {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Each record in read response.
      */
@@ -126,11 +126,11 @@ export namespace admin_reports_v1 {
     /**
      * Kind of list response this is.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token for retrieving the next page
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * JSON template for the activity resource.
@@ -144,11 +144,11 @@ export namespace admin_reports_v1 {
       email?: string;
       key?: string;
       profileId?: string;
-    };
+    } | null;
     /**
      * ETag of the entry.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Activity events.
      */
@@ -165,7 +165,7 @@ export namespace admin_reports_v1 {
         value?: string;
       }>;
       type?: string;
-    }>;
+    }> | null;
     /**
      * Unique identifier for each activity record.
      */
@@ -174,19 +174,19 @@ export namespace admin_reports_v1 {
       customerId?: string;
       time?: string;
       uniqueQualifier?: string;
-    };
+    } | null;
     /**
      * IP Address of the user doing the action.
      */
-    ipAddress?: string;
+    ipAddress?: string | null;
     /**
      * Kind of resource this is.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Domain of source customer.
      */
-    ownerDomain?: string;
+    ownerDomain?: string | null;
   }
   /**
    * An notification channel used to watch for resource changes.
@@ -195,43 +195,43 @@ export namespace admin_reports_v1 {
     /**
      * The address where notifications are delivered for this channel.
      */
-    address?: string;
+    address?: string | null;
     /**
      * Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
      */
-    expiration?: string;
+    expiration?: string | null;
     /**
      * A UUID or similar unique string that identifies this channel.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params?: {[key: string]: string};
+    params?: {[key: string]: string} | null;
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
-    payload?: boolean;
+    payload?: boolean | null;
     /**
      * An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
      */
-    resourceId?: string;
+    resourceId?: string | null;
     /**
      * A version-specific identifier for the watched resource.
      */
-    resourceUri?: string;
+    resourceUri?: string | null;
     /**
      * An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
      */
-    token?: string;
+    token?: string | null;
     /**
      * The type of delivery mechanism used for this channel.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * JSON template for a parameter used in various reports.
@@ -240,31 +240,31 @@ export namespace admin_reports_v1 {
     /**
      * Boolean value of the parameter.
      */
-    boolValue?: boolean;
+    boolValue?: boolean | null;
     /**
      * Integral value of the parameter.
      */
-    intValue?: string;
+    intValue?: string | null;
     /**
      * Multiple boolean values of the parameter.
      */
-    multiBoolValue?: boolean[];
+    multiBoolValue?: boolean[] | null;
     /**
      * Multiple integral values of the parameter.
      */
-    multiIntValue?: string[];
+    multiIntValue?: string[] | null;
     /**
      * Multiple string values of the parameter.
      */
-    multiValue?: string[];
+    multiValue?: string[] | null;
     /**
      * The name of the parameter.
      */
-    name?: string;
+    name?: string | null;
     /**
      * String value of the parameter.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * JSON template for a usage report.
@@ -273,7 +273,7 @@ export namespace admin_reports_v1 {
     /**
      * The date to which the record belongs.
      */
-    date?: string;
+    date?: string | null;
     /**
      * Information about the type of the item.
      */
@@ -283,15 +283,15 @@ export namespace admin_reports_v1 {
       profileId?: string;
       type?: string;
       userEmail?: string;
-    };
+    } | null;
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The kind of object.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Parameter value pairs for various applications.
      */
@@ -302,7 +302,7 @@ export namespace admin_reports_v1 {
       msgValue?: Array<{[key: string]: any}>;
       name?: string;
       stringValue?: string;
-    }>;
+    }> | null;
   }
   /**
    * JSON template for a collection of usage reports.
@@ -311,15 +311,15 @@ export namespace admin_reports_v1 {
     /**
      * ETag of the resource.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The kind of object.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Token for retrieving the next page
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Various application parameter records.
      */
@@ -331,7 +331,7 @@ export namespace admin_reports_v1 {
       code?: string;
       data?: Array<{key?: string; value?: string}>;
       message?: string;
-    }>;
+    }> | null;
   }
 
   export class Resource$Activities {

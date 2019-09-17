@@ -145,7 +145,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
@@ -154,11 +154,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -171,11 +171,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * A `Constraint` that is either enforced or not.  For example a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
@@ -188,7 +188,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * If `true`, then the `Policy` is enforced. If `false`, then any configuration is acceptable.  Suppose you have a `Constraint` `constraints/compute.disableSerialPortAccess` with `constraint_default` set to `ALLOW`. A `Policy` for that `Constraint` exhibits the following behavior:   - If the `Policy` at this resource has enforced set to `false`, serial     port connection attempts will be allowed.   - If the `Policy` at this resource has enforced set to `true`, serial     port connection attempts will be refused.   - If the `Policy` at this resource is `RestoreDefault`, serial port     connection attempts will be allowed.   - If no `Policy` is set at this resource or anywhere higher in the     resource hierarchy, serial port connection attempts will be allowed.   - If no `Policy` is set at this resource, but one exists higher in the     resource hierarchy, the behavior is as if the`Policy` were set at     this resource.  The following examples demonstrate the different possible layerings:  Example 1 (nearest `Constraint` wins):   `organizations/foo` has a `Policy` with:     {enforced: false}   `projects/bar` has no `Policy` set. The constraint at `projects/bar` and `organizations/foo` will not be enforced.  Example 2 (enforcement gets replaced):   `organizations/foo` has a `Policy` with:     {enforced: false}   `projects/bar` has a `Policy` with:     {enforced: true} The constraint at `organizations/foo` is not enforced. The constraint at `projects/bar` is enforced.  Example 3 (RestoreDefault):   `organizations/foo` has a `Policy` with:     {enforced: true}   `projects/bar` has a `Policy` with:     {RestoreDefault: {}} The constraint at `organizations/foo` is enforced. The constraint at `projects/bar` is not enforced, because `constraint_default` for the `Constraint` is `ALLOW`.
      */
-    enforced?: boolean;
+    enforced?: boolean | null;
   }
   /**
    * The request sent to the ClearOrgPolicy method.
@@ -197,11 +197,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the `Constraint` of the `Policy` to clear.
      */
-    constraint?: string;
+    constraint?: string | null;
     /**
      * The current version, for concurrency control. Not sending an `etag` will cause the `Policy` to be cleared blindly.
      */
-    etag?: string;
+    etag?: string | null;
   }
   /**
    * A `Constraint` describes a way in which a resource&#39;s configuration can be restricted. For example, it controls which cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. `Constraints` can be configured by the organization&#39;s policy adminstrator to fit the needs of the organzation by setting Policies for `Constraints` at different locations in the organization&#39;s resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about Policies.  `Constraints` have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a `Policy` being defined or inherited for the resource in question.
@@ -214,15 +214,15 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The evaluation behavior of this constraint in the absense of &#39;Policy&#39;.
      */
-    constraintDefault?: string;
+    constraintDefault?: string | null;
     /**
      * Detailed description of what this `Constraint` controls as well as how and where it is enforced.  Mutable.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The human readable name.  Mutable.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Defines this constraint as being a ListConstraint.
      */
@@ -230,11 +230,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Immutable value, required to globally be unique. For example, `constraints/serviceuser.services`
      */
-    name?: string;
+    name?: string | null;
     /**
      * Version of the `Constraint`. Default version is 0;
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -247,19 +247,19 @@ export namespace cloudresourcemanager_v1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Metadata describing a long running folder operation
@@ -268,19 +268,19 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
      */
-    destinationParent?: string;
+    destinationParent?: string | null;
     /**
      * The display name of the folder.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The type of this operation.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * The resource name of the folder&#39;s parent. Only applicable when the operation_type is MOVE.
      */
-    sourceParent?: string;
+    sourceParent?: string | null;
   }
   /**
    * A classification of the Folder Operation error.
@@ -289,7 +289,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The type of operation error experienced.
      */
-    errorMessageId?: string;
+    errorMessageId?: string | null;
   }
   /**
    * The request sent to the GetAncestry method.
@@ -311,7 +311,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The name of the `Constraint` to compute the effective `Policy`.
      */
-    constraint?: string;
+    constraint?: string | null;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -329,7 +329,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the `Constraint` to get the `Policy`.
      */
-    constraint?: string;
+    constraint?: string | null;
   }
   /**
    * Encapsulates settings provided to GetIamPolicy.
@@ -338,7 +338,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    requestedPolicyVersion?: number;
+    requestedPolicyVersion?: number | null;
   }
   /**
    * A Lien represents an encumbrance on the actions that can be performed on a resource.
@@ -347,27 +347,27 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The creation time of this Lien.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * A system-generated unique identifier for this Lien.  Example: `liens/1234abcd`
      */
-    name?: string;
+    name?: string | null;
     /**
      * A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically. Maximum length of 200 characters.  Example: &#39;compute.googleapis.com&#39;
      */
-    origin?: string;
+    origin?: string | null;
     /**
      * A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens are supported.  Example: `projects/1234`
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200 characters.  Example: &#39;Holds production API key&#39;
      */
-    reason?: string;
+    reason?: string | null;
     /**
      * The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM permission. The server will validate the permissions against those for which Liens are supported.  An empty list is meaningless and will be rejected.  Example: [&#39;resourcemanager.projects.delete&#39;]
      */
-    restrictions?: string[];
+    restrictions?: string[] | null;
   }
   /**
    * The request sent to the [ListAvailableOrgPolicyConstraints] google.cloud.OrgPolicy.v1.ListAvailableOrgPolicyConstraints] method.
@@ -376,11 +376,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
      */
-    pageToken?: string;
+    pageToken?: string | null;
   }
   /**
    * The response returned from the ListAvailableOrgPolicyConstraints method. Returns all `Constraints` that could be set at this level of the hierarchy (contrast with the response from `ListPolicies`, which returns all policies which are set).
@@ -393,7 +393,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Page token used to retrieve the next page. This is currently not used.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * A `Constraint` that allows or disallows a list of string values, which are configured by an Organization&#39;s policy administrator with a `Policy`.
@@ -402,11 +402,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Optional. The Google Cloud Console will try to default to a configuration that matches the value specified in this `Constraint`.
      */
-    suggestedValue?: string;
+    suggestedValue?: string | null;
     /**
      * Indicates whether subtrees of Cloud Resource Manager resource hierarchy can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `&quot;under:folders/123&quot;` would match any resource under the &#39;folders/123&#39; folder.
      */
-    supportsUnder?: boolean;
+    supportsUnder?: boolean | null;
   }
   /**
    * The response message for Liens.ListLiens.
@@ -419,7 +419,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The request sent to the ListOrgPolicies method.
@@ -428,11 +428,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
      */
-    pageToken?: string;
+    pageToken?: string | null;
   }
   /**
    * The response returned from the ListOrgPolicies method. It will be empty if no `Policies` are set on the resource.
@@ -441,7 +441,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Page token used to retrieve the next page. This is currently not used, but the server may at any point start supplying a valid token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The `Policies` that are set on the resource. It will be empty if no `Policies` are set.
      */
@@ -454,23 +454,23 @@ export namespace cloudresourcemanager_v1 {
     /**
      * List of values allowed  at this resource. Can only be set if `all_values` is set to `ALL_VALUES_UNSPECIFIED`.
      */
-    allowedValues?: string[];
+    allowedValues?: string[] | null;
     /**
      * The policy all_values state.
      */
-    allValues?: string;
+    allValues?: string | null;
     /**
      * List of values denied at this resource. Can only be set if `all_values` is set to `ALL_VALUES_UNSPECIFIED`.
      */
-    deniedValues?: string[];
+    deniedValues?: string[] | null;
     /**
      * Determines the inheritance behavior for this `Policy`.  By default, a `ListPolicy` set at a resource supercedes any `Policy` set anywhere up the resource hierarchy. However, if `inherit_from_parent` is set to `true`, then the values from the effective `Policy` of the parent resource are inherited, meaning the values set in this `Policy` are added to the values inherited up the hierarchy.  Setting `Policy` hierarchies that inherit both allowed values and denied values isn&#39;t recommended in most circumstances to keep the configuration simple and understandable. However, it is possible to set a `Policy` with `allowed_values` set that inherits a `Policy` with `denied_values` set. In this case, the values that are allowed must be in `allowed_values` and not present in `denied_values`.  For example, suppose you have a `Constraint` `constraints/serviceuser.services`, which has a `constraint_type` of `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose that at the Organization level, a `Policy` is applied that restricts the allowed API activations to {`E1`, `E2`}. Then, if a `Policy` is applied to a project below the Organization that has `inherit_from_parent` set to `false` and field all_values set to DENY, then an attempt to activate any API will be denied.  The following examples demonstrate different possible layerings for `projects/bar` parented by `organizations/foo`:  Example 1 (no inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has `inherit_from_parent` `false` and values:     {allowed_values: &quot;E3&quot; allowed_values: &quot;E4&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a `Policy` with values:     {value: “E3” value: ”E4” inherit_from_parent: true} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and denied values):   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}   `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The accepted values at `organizations/foo` are `E1`, `E2`. The value accepted at `projects/bar` is `E2`.  Example 4 (RestoreDefault):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}   `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar` are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no policy inherits parent policy):   `organizations/foo` has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted values at both levels are either all or none depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):   `organizations/foo` has a `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.  Example 10 (allowed and denied subtrees of Resource Manager hierarchy): Given the following resource hierarchy   O1-&gt;{F1, F2}; F1-&gt;{P1}; F2-&gt;{P2, P3},   `organizations/foo` has a `Policy` with values:     {allowed_values: &quot;under:organizations/O1&quot;}   `projects/bar` has a `Policy` with:     {allowed_values: &quot;under:projects/P3&quot;}     {denied_values: &quot;under:folders/F2&quot;} The accepted values at `organizations/foo` are `organizations/O1`,   `folders/F1`, `folders/F2`, `projects/P1`, `projects/P2`,   `projects/P3`. The accepted values at `projects/bar` are `organizations/O1`,   `folders/F1`, `projects/P1`.
      */
-    inheritFromParent?: boolean;
+    inheritFromParent?: boolean | null;
     /**
      * Optional. The Google Cloud Console will try to default to a configuration that matches the value specified in this `Policy`. If `suggested_value` is not set, it will inherit the value specified higher in the hierarchy, unless `inherit_from_parent` is `false`.
      */
-    suggestedValue?: string;
+    suggestedValue?: string | null;
   }
   /**
    * A page of the response received from the ListProjects method.  A paginated response where more pages are available has `next_page_token` set. This token can be used in a subsequent request to retrieve the next request page.
@@ -479,7 +479,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Pagination token.  If the result set is too large to fit in a single response, this token is returned. It encodes the position of the current result cursor. Feeding this value into a new list request with the `page_token` parameter gives the next page of the results.  When `next_page_token` is not filled in, there is no next page and the list returned is the last page in the result set.  Pagination tokens have a limited lifetime.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of Projects that matched the list filter. This list can be paginated.
      */
@@ -492,7 +492,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -500,15 +500,15 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * The root node in the resource hierarchy to which a particular entity&#39;s (e.g., company) resources belong.
@@ -517,19 +517,19 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Timestamp when the Organization was created. Assigned by the server.
      */
-    creationTime?: string;
+    creationTime?: string | null;
     /**
      * A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, &quot;google.com&quot;) of the G Suite customer that owns the organization.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The organization&#39;s current lifecycle state. Assigned by the server.
      */
-    lifecycleState?: string;
+    lifecycleState?: string | null;
     /**
      * Output only. The resource name of the organization. This is the organization&#39;s relative path in the API. Its format is &quot;organizations/[organization_id]&quot;. For example, &quot;organizations/1234&quot;.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The owner of this Organization. The owner should be specified on creation. Once set, it cannot be changed. This field is required.
      */
@@ -542,7 +542,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The G Suite customer id used in the Directory API.
      */
-    directoryCustomerId?: string;
+    directoryCustomerId?: string | null;
   }
   /**
    * Defines a Cloud Organization `Policy` which is used to specify `Constraints` for configurations of Cloud Platform resources.
@@ -555,11 +555,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The name of the `Constraint` the `Policy` is configuring, for example, `constraints/serviceuser.services`.  Immutable after creation.
      */
-    constraint?: string;
+    constraint?: string | null;
     /**
      * An opaque tag indicating the current version of the `Policy`, used for concurrency control.  When the `Policy` is returned from either a `GetPolicy` or a `ListOrgPolicy` request, this `etag` indicates the version of the current `Policy` to use when executing a read-modify-write loop.  When the `Policy` is returned from a `GetEffectivePolicy` request, the `etag` will be unset.  When the `Policy` is used in a `SetOrgPolicy` method, use the `etag` value that was returned from a `GetOrgPolicy` request as part of a read-modify-write loop for concurrency control. Not setting the `etag`in a `SetOrgPolicy` request will result in an unconditional write of the `Policy`.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * List of values either allowed or disallowed.
      */
@@ -571,11 +571,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The time stamp the `Policy` was previously updated. This is set by the server, not specified by the caller, and represents the last time a call to `SetOrgPolicy` was made for that `Policy`. Any value set by the client will be ignored.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Version of the `Policy`. Default version is 0;
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -592,11 +592,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * A Project is a high-level Google Cloud Platform entity.  It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources.
@@ -605,19 +605,19 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Creation time.  Read-only.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The labels associated with this Project.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. A label value can be empty.  No more than 256 labels can be associated with a given resource.  Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed.  Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt; Read-write.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The Project lifecycle state.  Read-only.
      */
-    lifecycleState?: string;
+    lifecycleState?: string | null;
     /**
      * The optional user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point.  Example: &lt;code&gt;My Project&lt;/code&gt; Read-write.
      */
-    name?: string;
+    name?: string | null;
     /**
      * An optional reference to a parent Resource.  Supported parent types include &quot;organization&quot; and &quot;folder&quot;. Once set, the parent cannot be cleared. The `parent` can be set on creation or using the `UpdateProject` method; the end user must have the `resourcemanager.projects.create` permission on the parent.  Read-write.
      */
@@ -625,11 +625,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The unique, user-assigned ID of the Project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited.  Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt; Read-only after creation.
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * The number uniquely identifying the project.  Example: &lt;code&gt;415104041262&lt;/code&gt; Read-only.
      */
-    projectNumber?: string;
+    projectNumber?: string | null;
   }
   /**
    * A status object which is used as the `metadata` field for the Operation returned by CreateProject. It provides insight for when significant phases of Project creation have completed.
@@ -638,15 +638,15 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Creation time of the project creation workflow.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
      */
-    gettable?: boolean;
+    gettable?: boolean | null;
     /**
      * True if the project creation process is complete.
      */
-    ready?: boolean;
+    ready?: boolean | null;
   }
   /**
    * A container to reference an id for any resource type. A `resource` in Google Cloud Platform is a generic term for something you (a developer) may want to interact with through one of our API&#39;s. Some examples are an App Engine app, a Compute Engine instance, a Cloud SQL database, and so on.
@@ -655,11 +655,11 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Required field for the type-specific id. This should correspond to the id used in the type-specific API&#39;s.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Required field representing the resource type this id is for. At present, the valid types are: &quot;organization&quot; and &quot;folder&quot;.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Ignores policies set above this resource and restores the `constraint_default` enforcement behavior of the specific `Constraint` at this resource.  Suppose that `constraint_default` is set to `ALLOW` for the `Constraint` `constraints/serviceuser.services`. Suppose that organization foo.com sets a `Policy` at their Organization resource node that restricts the allowed service activations to deny all service activations. They could then set a `Policy` with the `policy_type` `restore_default` on several experimental projects, restoring the `constraint_default` enforcement of the `Constraint` for only those projects, allowing those projects to have all services activated.
@@ -672,15 +672,15 @@ export namespace cloudresourcemanager_v1 {
     /**
      * An optional query string used to filter the Organizations to return in the response. Filter rules are case-insensitive.   Organizations may be filtered by `owner.directoryCustomerId` or by `domain`, where the domain is a G Suite domain, for example:  * Filter `owner.directorycustomerid:123456789` returns Organization resources with `owner.directory_customer_id` equal to `123456789`. * Filter `domain:google.com` returns Organization resources corresponding to the domain `google.com`.  This field is optional.
      */
-    filter?: string;
+    filter?: string | null;
     /**
      * The maximum number of Organizations to return in the response. This field is optional.
      */
-    pageSize?: number;
+    pageSize?: number | null;
     /**
      * A pagination token returned from a previous call to `SearchOrganizations` that indicates from where listing should continue. This field is optional.
      */
-    pageToken?: string;
+    pageToken?: string | null;
   }
   /**
    * The response returned from the `SearchOrganizations` method.
@@ -689,7 +689,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * A pagination token to be used to retrieve the next page of results. If the result is too large to fit within the page size specified in the request, this field will be set with a token that can be used to fetch the next page of results. If this field is empty, it indicates that this response contains the last page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of Organizations that matched the search query, possibly paginated.
      */
@@ -706,7 +706,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * The request sent to the SetOrgPolicyRequest method.
@@ -724,15 +724,15 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -741,7 +741,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -750,7 +750,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * The request sent to the UndeleteProject method.

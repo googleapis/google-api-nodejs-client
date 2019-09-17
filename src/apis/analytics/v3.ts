@@ -116,39 +116,39 @@ export namespace analytics_v3 {
     /**
      * Child link for an account entry. Points to the list of web properties for this account.
      */
-    childLink?: {href?: string; type?: string};
+    childLink?: {href?: string; type?: string} | null;
     /**
      * Time the account was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Account ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for Analytics account.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Account name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Permissions the user has for this account.
      */
-    permissions?: {effective?: string[]};
+    permissions?: {effective?: string[]} | null;
     /**
      * Link for this account.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Indicates whether this account is starred or not.
      */
-    starred?: boolean;
+    starred?: boolean | null;
     /**
      * Time the account was last modified.
      */
-    updated?: string;
+    updated?: string | null;
   }
   /**
    * JSON template for a linked account.
@@ -157,19 +157,19 @@ export namespace analytics_v3 {
     /**
      * Link for this account.
      */
-    href?: string;
+    href?: string | null;
     /**
      * Account ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Analytics account reference.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Account name.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * An account collection provides a list of Analytics accounts to which a user has access. The account collection is the entry point to all management information. Each resource in the collection corresponds to a single Analytics account.
@@ -182,31 +182,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Next link for this account collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Previous link for this account collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * An AccountSummary collection lists a summary of accounts, properties and views (profiles) to which the user has access. Each resource in the collection corresponds to a single AccountSummary.
@@ -219,31 +219,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this AccountSummary collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this AccountSummary collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for an Analytics AccountSummary. An AccountSummary is a lightweight tree comprised of properties/profiles.
@@ -252,19 +252,19 @@ export namespace analytics_v3 {
     /**
      * Account ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for Analytics AccountSummary.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Account name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Indicates whether this account is starred or not.
      */
-    starred?: boolean;
+    starred?: boolean | null;
     /**
      * List of web properties under this account.
      */
@@ -281,11 +281,11 @@ export namespace analytics_v3 {
     /**
      * Account ticket ID used to access the account ticket.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for account ticket.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * View (Profile) for the account.
      */
@@ -293,7 +293,7 @@ export namespace analytics_v3 {
     /**
      * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in APIs console as a callback URL.
      */
-    redirectUri?: string;
+    redirectUri?: string | null;
     /**
      * Web property for the account.
      */
@@ -303,15 +303,15 @@ export namespace analytics_v3 {
    * JSON template for an Analytics account tree requests. The account tree request is used in the provisioning api to create an account, property, and view (profile). It contains the basic information required to make these fields.
    */
   export interface Schema$AccountTreeRequest {
-    accountName?: string;
+    accountName?: string | null;
     /**
      * Resource type for account ticket.
      */
-    kind?: string;
-    profileName?: string;
-    timezone?: string;
-    webpropertyName?: string;
-    websiteUrl?: string;
+    kind?: string | null;
+    profileName?: string | null;
+    timezone?: string | null;
+    webpropertyName?: string | null;
+    websiteUrl?: string | null;
   }
   /**
    * JSON template for an Analytics account tree response. The account tree response is used in the provisioning api to return the result of creating an account, property, and view (profile).
@@ -324,7 +324,7 @@ export namespace analytics_v3 {
     /**
      * Resource type for account ticket.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * View (Profile) for the account.
      */
@@ -341,15 +341,15 @@ export namespace analytics_v3 {
     /**
      * True if auto-tagging is enabled on the Google Ads account. Read-only after the insert operation.
      */
-    autoTaggingEnabled?: boolean;
+    autoTaggingEnabled?: boolean | null;
     /**
      * Customer ID. This field is required when creating a Google Ads link.
      */
-    customerId?: string;
+    customerId?: string | null;
     /**
      * Resource type for Google Ads account.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Request template for the delete upload data request.
@@ -358,7 +358,7 @@ export namespace analytics_v3 {
     /**
      * A list of upload UIDs.
      */
-    customDataImportUids?: string[];
+    customDataImportUids?: string[] | null;
   }
   /**
    * JSON template for a metadata column.
@@ -367,15 +367,15 @@ export namespace analytics_v3 {
     /**
      * Map of attribute name and value for this column.
      */
-    attributes?: {[key: string]: string};
+    attributes?: {[key: string]: string} | null;
     /**
      * Column id.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for Analytics column.
      */
-    kind?: string;
+    kind?: string | null;
   }
   /**
    * Lists columns (dimensions and metrics) for a particular report type.
@@ -384,11 +384,11 @@ export namespace analytics_v3 {
     /**
      * List of attributes names returned by columns.
      */
-    attributeNames?: string[];
+    attributeNames?: string[] | null;
     /**
      * Etag of collection. This etag can be compared with the last response etag to check if response has changed.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * List of columns for a report type.
      */
@@ -396,11 +396,11 @@ export namespace analytics_v3 {
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Total number of columns returned in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
   }
   /**
    * JSON template for an Analytics custom data source.
@@ -409,61 +409,61 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this custom data source belongs.
      */
-    accountId?: string;
-    childLink?: {href?: string; type?: string};
+    accountId?: string | null;
+    childLink?: {href?: string; type?: string} | null;
     /**
      * Time this custom data source was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Description of custom data source.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Custom data source ID.
      */
-    id?: string;
-    importBehavior?: string;
+    id?: string | null;
+    importBehavior?: string | null;
     /**
      * Resource type for Analytics custom data source.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this custom data source.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Parent link for this custom data source. Points to the web property to which this custom data source belongs.
      */
-    parentLink?: {href?: string; type?: string};
+    parentLink?: {href?: string; type?: string} | null;
     /**
      * IDs of views (profiles) linked to the custom data source.
      */
-    profilesLinked?: string[];
+    profilesLinked?: string[] | null;
     /**
      * Collection of schema headers of the custom data source.
      */
-    schema?: string[];
+    schema?: string[] | null;
     /**
      * Link for this Analytics custom data source.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Type of the custom data source.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Time this custom data source was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Upload type of the custom data source.
      */
-    uploadType?: string;
+    uploadType?: string | null;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this custom data source belongs.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * Lists Analytics custom data sources to which the user has access. Each resource in the collection corresponds to a single Analytics custom data source.
@@ -476,31 +476,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this custom data source collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this custom data source collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for Analytics Custom Dimension.
@@ -509,51 +509,51 @@ export namespace analytics_v3 {
     /**
      * Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Boolean indicating whether the custom dimension is active.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Time the custom dimension was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Custom dimension ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Index of the custom dimension.
      */
-    index?: number;
+    index?: number | null;
     /**
      * Kind value for a custom dimension. Set to &quot;analytics#customDimension&quot;. It is a read-only field.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of the custom dimension.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Parent link for the custom dimension. Points to the property to which the custom dimension belongs.
      */
-    parentLink?: {href?: string; type?: string};
+    parentLink?: {href?: string; type?: string} | null;
     /**
      * Scope of the custom dimension: HIT, SESSION, USER or PRODUCT.
      */
-    scope?: string;
+    scope?: string | null;
     /**
      * Link for the custom dimension
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Time the custom dimension was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Property ID.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * A custom dimension collection lists Analytics custom dimensions to which the user has access. Each resource in the collection corresponds to a single Analytics custom dimension.
@@ -566,31 +566,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this custom dimension collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this custom dimension collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for Analytics Custom Metric.
@@ -599,63 +599,63 @@ export namespace analytics_v3 {
     /**
      * Account ID.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Boolean indicating whether the custom metric is active.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Time the custom metric was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Custom metric ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Index of the custom metric.
      */
-    index?: number;
+    index?: number | null;
     /**
      * Kind value for a custom metric. Set to &quot;analytics#customMetric&quot;. It is a read-only field.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Max value of custom metric.
      */
-    max_value?: string;
+    max_value?: string | null;
     /**
      * Min value of custom metric.
      */
-    min_value?: string;
+    min_value?: string | null;
     /**
      * Name of the custom metric.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Parent link for the custom metric. Points to the property to which the custom metric belongs.
      */
-    parentLink?: {href?: string; type?: string};
+    parentLink?: {href?: string; type?: string} | null;
     /**
      * Scope of the custom metric: HIT or PRODUCT.
      */
-    scope?: string;
+    scope?: string | null;
     /**
      * Link for the custom metric
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Data type of custom metric.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Time the custom metric was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Property ID.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * A custom metric collection lists Analytics custom metrics to which the user has access. Each resource in the collection corresponds to a single Analytics custom metric.
@@ -668,31 +668,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this custom metric collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this custom metric collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for Analytics Entity Google Ads Link.
@@ -705,27 +705,27 @@ export namespace analytics_v3 {
     /**
      * Web property being linked.
      */
-    entity?: {webPropertyRef?: Schema$WebPropertyRef};
+    entity?: {webPropertyRef?: Schema$WebPropertyRef} | null;
     /**
      * Entity Google Ads link ID
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for entity Google Ads link.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of the link. This field is required when creating a Google Ads link.
      */
-    name?: string;
+    name?: string | null;
     /**
      * IDs of linked Views (Profiles) represented as strings.
      */
-    profileIds?: string[];
+    profileIds?: string[] | null;
     /**
      * URL link for this Google Analytics - Google Ads link.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * An entity Google Ads link collection provides a list of GA-Google Ads links Each resource in this collection corresponds to a single link.
@@ -738,27 +738,27 @@ export namespace analytics_v3 {
     /**
      * The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Next link for this Google Ads link collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Previous link for this Google Ads link collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
   }
   /**
    * JSON template for an Analytics Entity-User Link. Returns permissions that a user has for an entity.
@@ -771,23 +771,23 @@ export namespace analytics_v3 {
       accountRef?: Schema$AccountRef;
       profileRef?: Schema$ProfileRef;
       webPropertyRef?: Schema$WebPropertyRef;
-    };
+    } | null;
     /**
      * Entity user link ID
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for entity user link.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Permissions the user has for this entity.
      */
-    permissions?: {effective?: string[]; local?: string[]};
+    permissions?: {effective?: string[]; local?: string[]} | null;
     /**
      * Self link for this resource.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * User reference.
      */
@@ -804,27 +804,27 @@ export namespace analytics_v3 {
     /**
      * The maximum number of entries the response can contain, regardless of the actual number of entries returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Next link for this account collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Previous link for this account collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the entries, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
   }
   /**
    * JSON template for Analytics experiment resource.
@@ -833,99 +833,99 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this experiment belongs. This field is read-only.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Time the experiment was created. This field is read-only.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Notes about this experiment.
      */
-    description?: string;
+    description?: string | null;
     /**
      * If true, the end user will be able to edit the experiment via the Google Analytics user interface.
      */
-    editableInGaUi?: boolean;
+    editableInGaUi?: boolean | null;
     /**
      * The ending time of the experiment (the time the status changed from RUNNING to ENDED). This field is present only if the experiment has ended. This field is read-only.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Boolean specifying whether to distribute traffic evenly across all variations. If the value is False, content experiments follows the default behavior of adjusting traffic dynamically based on variation performance. Optional -- defaults to False. This field may not be changed for an experiment whose status is ENDED.
      */
-    equalWeighting?: boolean;
+    equalWeighting?: boolean | null;
     /**
      * Experiment ID. Required for patch and update. Disallowed for create.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Internal ID for the web property to which this experiment belongs. This field is read-only.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Resource type for an Analytics experiment. This field is read-only.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * An integer number in [3, 90]. Specifies the minimum length of the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
      */
-    minimumExperimentLengthInDays?: number;
+    minimumExperimentLengthInDays?: number | null;
     /**
      * Experiment name. This field may not be changed for an experiment whose status is ENDED. This field is required when creating an experiment.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The metric that the experiment is optimizing. Valid values: &quot;ga:goal(n)Completions&quot;, &quot;ga:adsenseAdsClicks&quot;, &quot;ga:adsenseAdsViewed&quot;, &quot;ga:adsenseRevenue&quot;, &quot;ga:bounces&quot;, &quot;ga:pageviews&quot;, &quot;ga:sessionDuration&quot;, &quot;ga:transactions&quot;, &quot;ga:transactionRevenue&quot;. This field is required if status is &quot;RUNNING&quot; and servingFramework is one of &quot;REDIRECT&quot; or &quot;API&quot;.
      */
-    objectiveMetric?: string;
+    objectiveMetric?: string | null;
     /**
      * Whether the objectiveMetric should be minimized or maximized. Possible values: &quot;MAXIMUM&quot;, &quot;MINIMUM&quot;. Optional--defaults to &quot;MAXIMUM&quot;. Cannot be specified without objectiveMetric. Cannot be modified when status is &quot;RUNNING&quot; or &quot;ENDED&quot;.
      */
-    optimizationType?: string;
+    optimizationType?: string | null;
     /**
      * Parent link for an experiment. Points to the view (profile) to which this experiment belongs.
      */
-    parentLink?: {href?: string; type?: string};
+    parentLink?: {href?: string; type?: string} | null;
     /**
      * View (Profile) ID to which this experiment belongs. This field is read-only.
      */
-    profileId?: string;
+    profileId?: string | null;
     /**
      * Why the experiment ended. Possible values: &quot;STOPPED_BY_USER&quot;, &quot;WINNER_FOUND&quot;, &quot;EXPERIMENT_EXPIRED&quot;, &quot;ENDED_WITH_NO_WINNER&quot;, &quot;GOAL_OBJECTIVE_CHANGED&quot;. &quot;ENDED_WITH_NO_WINNER&quot; means that the experiment didn&#39;t expire but no winner was projected to be found. If the experiment status is changed via the API to ENDED this field is set to STOPPED_BY_USER. This field is read-only.
      */
-    reasonExperimentEnded?: string;
+    reasonExperimentEnded?: string | null;
     /**
      * Boolean specifying whether variations URLS are rewritten to match those of the original. This field may not be changed for an experiments whose status is ENDED.
      */
-    rewriteVariationUrlsAsOriginal?: boolean;
+    rewriteVariationUrlsAsOriginal?: boolean | null;
     /**
      * Link for this experiment. This field is read-only.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The framework used to serve the experiment variations and evaluate the results. One of:   - REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results. - API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation. - EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
      */
-    servingFramework?: string;
+    servingFramework?: string | null;
     /**
      * The snippet of code to include on the control page(s). This field is read-only.
      */
-    snippet?: string;
+    snippet?: string | null;
     /**
      * The starting time of the experiment (the time the status changed from READY_TO_RUN to RUNNING). This field is present only if the experiment has started. This field is read-only.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Experiment status. Possible values: &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot;, &quot;RUNNING&quot;, &quot;ENDED&quot;. Experiments can be created in the &quot;DRAFT&quot;, &quot;READY_TO_RUN&quot; or &quot;RUNNING&quot; state. This field is required when creating an experiment.
      */
-    status?: string;
+    status?: string | null;
     /**
      * A floating-point number in (0, 1]. Specifies the fraction of the traffic that participates in the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
      */
-    trafficCoverage?: number;
+    trafficCoverage?: number | null;
     /**
      * Time the experiment was last modified. This field is read-only.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Array of variations. The first variation in the array is the original. The number of variations may not change once an experiment is in the RUNNING state. At least two variations are required before status can be set to RUNNING.
      */
@@ -935,19 +935,19 @@ export namespace analytics_v3 {
       url?: string;
       weight?: number;
       won?: boolean;
-    }>;
+    }> | null;
     /**
      * Web property ID to which this experiment belongs. The web property ID is of the form UA-XXXXX-YY. This field is read-only.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
     /**
      * A floating-point number in (0, 1). Specifies the necessary confidence level to choose a winner. This field may not be changed for an experiments whose status is ENDED.
      */
-    winnerConfidenceLevel?: number;
+    winnerConfidenceLevel?: number | null;
     /**
      * Boolean specifying whether a winner has been found for this experiment. This field is read-only.
      */
-    winnerFound?: boolean;
+    winnerFound?: boolean | null;
   }
   /**
    * An experiment collection lists Analytics experiments to which the user has access. Each view (profile) can have a set of experiments. Each resource in the Experiment collection corresponds to a single Analytics experiment.
@@ -960,31 +960,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this experiment collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this experiment collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of resources in the result.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for an Analytics account filter.
@@ -993,7 +993,7 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this filter belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Details for the filter of the type ADVANCED.
      */
@@ -1011,11 +1011,11 @@ export namespace analytics_v3 {
       outputToField?: string;
       outputToFieldIndex?: number;
       overrideOutputField?: boolean;
-    };
+    } | null;
     /**
      * Time this filter was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Details for the filter of the type EXCLUDE.
      */
@@ -1023,7 +1023,7 @@ export namespace analytics_v3 {
     /**
      * Filter ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Details for the filter of the type INCLUDE.
      */
@@ -1031,19 +1031,19 @@ export namespace analytics_v3 {
     /**
      * Resource type for Analytics filter.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Details for the filter of the type LOWER.
      */
-    lowercaseDetails?: {field?: string; fieldIndex?: number};
+    lowercaseDetails?: {field?: string; fieldIndex?: number} | null;
     /**
      * Name of this filter.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Parent link for this filter. Points to the account to which this filter belongs.
      */
-    parentLink?: {href?: string; type?: string};
+    parentLink?: {href?: string; type?: string} | null;
     /**
      * Details for the filter of the type SEARCH_AND_REPLACE.
      */
@@ -1053,23 +1053,23 @@ export namespace analytics_v3 {
       fieldIndex?: number;
       replaceString?: string;
       searchString?: string;
-    };
+    } | null;
     /**
      * Link for this filter.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Type of this filter. Possible values are INCLUDE, EXCLUDE, LOWERCASE, UPPERCASE, SEARCH_AND_REPLACE and ADVANCED.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Time this filter was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Details for the filter of the type UPPER.
      */
-    uppercaseDetails?: {field?: string; fieldIndex?: number};
+    uppercaseDetails?: {field?: string; fieldIndex?: number} | null;
   }
   /**
    * JSON template for an Analytics filter expression.
@@ -1078,27 +1078,27 @@ export namespace analytics_v3 {
     /**
      * Determines if the filter is case sensitive.
      */
-    caseSensitive?: boolean;
+    caseSensitive?: boolean | null;
     /**
      * Filter expression value
      */
-    expressionValue?: string;
+    expressionValue?: string | null;
     /**
      * Field to filter. Possible values:   - Content and Traffic   - PAGE_REQUEST_URI,  - PAGE_HOSTNAME,  - PAGE_TITLE,  - REFERRAL,  - COST_DATA_URI (Campaign target URL),  - HIT_TYPE,  - INTERNAL_SEARCH_TERM,  - INTERNAL_SEARCH_TYPE,  - SOURCE_PROPERTY_TRACKING_ID,    - Campaign or AdGroup   - CAMPAIGN_SOURCE,  - CAMPAIGN_MEDIUM,  - CAMPAIGN_NAME,  - CAMPAIGN_AD_GROUP,  - CAMPAIGN_TERM,  - CAMPAIGN_CONTENT,  - CAMPAIGN_CODE,  - CAMPAIGN_REFERRAL_PATH,    - E-Commerce   - TRANSACTION_COUNTRY,  - TRANSACTION_REGION,  - TRANSACTION_CITY,  - TRANSACTION_AFFILIATION (Store or order location),  - ITEM_NAME,  - ITEM_CODE,  - ITEM_VARIATION,  - TRANSACTION_ID,  - TRANSACTION_CURRENCY_CODE,  - PRODUCT_ACTION_TYPE,    - Audience/Users   - BROWSER,  - BROWSER_VERSION,  - BROWSER_SIZE,  - PLATFORM,  - PLATFORM_VERSION,  - LANGUAGE,  - SCREEN_RESOLUTION,  - SCREEN_COLORS,  - JAVA_ENABLED (Boolean Field),  - FLASH_VERSION,  - GEO_SPEED (Connection speed),  - VISITOR_TYPE,  - GEO_ORGANIZATION (ISP organization),  - GEO_DOMAIN,  - GEO_IP_ADDRESS,  - GEO_IP_VERSION,    - Location   - GEO_COUNTRY,  - GEO_REGION,  - GEO_CITY,    - Event   - EVENT_CATEGORY,  - EVENT_ACTION,  - EVENT_LABEL,    - Other   - CUSTOM_FIELD_1,  - CUSTOM_FIELD_2,  - USER_DEFINED_VALUE,    - Application   - APP_ID,  - APP_INSTALLER_ID,  - APP_NAME,  - APP_VERSION,  - SCREEN,  - IS_APP (Boolean Field),  - IS_FATAL_EXCEPTION (Boolean Field),  - EXCEPTION_DESCRIPTION,    - Mobile device   - IS_MOBILE (Boolean Field, Deprecated. Use DEVICE_CATEGORY=mobile),  - IS_TABLET (Boolean Field, Deprecated. Use DEVICE_CATEGORY=tablet),  - DEVICE_CATEGORY,  - MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field),  - MOBILE_HAS_NFC_SUPPORT (Boolean Field),  - MOBILE_HAS_CELLULAR_RADIO (Boolean Field),  - MOBILE_HAS_WIFI_SUPPORT (Boolean Field),  - MOBILE_BRAND_NAME,  - MOBILE_MODEL_NAME,  - MOBILE_MARKETING_NAME,  - MOBILE_POINTING_METHOD,    - Social   - SOCIAL_NETWORK,  - SOCIAL_ACTION,  - SOCIAL_ACTION_TARGET,    - Custom dimension   - CUSTOM_DIMENSION (See accompanying field index),
      */
-    field?: string;
+    field?: string | null;
     /**
      * The Index of the custom dimension. Set only if the field is a is CUSTOM_DIMENSION.
      */
-    fieldIndex?: number;
+    fieldIndex?: number | null;
     /**
      * Kind value for filter expression
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Match type for this filter. Possible values are BEGINS_WITH, EQUAL, ENDS_WITH, CONTAINS, or MATCHES. GEO_DOMAIN, GEO_IP_ADDRESS, PAGE_REQUEST_URI, or PAGE_HOSTNAME filters can use any match type; all other filters must use MATCHES.
      */
-    matchType?: string;
+    matchType?: string | null;
   }
   /**
    * JSON template for a profile filter link.
@@ -1107,23 +1107,23 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this filter belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Link for this filter.
      */
-    href?: string;
+    href?: string | null;
     /**
      * Filter ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Kind value for filter reference.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this filter.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A filter collection lists filters created by users in an Analytics account. Each resource in the collection corresponds to a filter.
@@ -1136,31 +1136,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this filter collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this filter collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * Analytics data for a given view (profile).
@@ -1173,39 +1173,39 @@ export namespace analytics_v3 {
       columnType?: string;
       dataType?: string;
       name?: string;
-    }>;
+    }> | null;
     /**
      * Determines if Analytics data contains samples.
      */
-    containsSampledData?: boolean;
+    containsSampledData?: boolean | null;
     /**
      * The last refreshed time in seconds for Analytics data.
      */
-    dataLastRefreshed?: string;
+    dataLastRefreshed?: string | null;
     dataTable?: {
       cols?: Array<{id?: string; label?: string; type?: string}>;
       rows?: Array<{c?: Array<{v?: string}>}>;
-    };
+    } | null;
     /**
      * Unique ID for this data response.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The maximum number of rows the response can contain, regardless of the actual number of rows returned. Its value ranges from 1 to 10,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Resource type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this Analytics data query.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this Analytics data query.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * Information for the view (profile), for which the Analytics data was requested.
      */
@@ -1216,7 +1216,7 @@ export namespace analytics_v3 {
       profileName?: string;
       tableId?: string;
       webPropertyId?: string;
-    };
+    } | null;
     /**
      * Analytics data request query parameters.
      */
@@ -1232,31 +1232,31 @@ export namespace analytics_v3 {
       sort?: string[];
       'start-date'?: string;
       'start-index'?: number;
-    };
+    } | null;
     /**
      * Analytics data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
      */
-    rows?: string[][];
+    rows?: string[][] | null;
     /**
      * The number of samples used to calculate the result.
      */
-    sampleSize?: string;
+    sampleSize?: string | null;
     /**
      * Total size of the sample space from which the samples were selected.
      */
-    sampleSpace?: string;
+    sampleSpace?: string | null;
     /**
      * Link to this page.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The total number of rows for the query, regardless of the number of rows in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
      */
-    totalsForAllResults?: {[key: string]: string};
+    totalsForAllResults?: {[key: string]: string} | null;
   }
   /**
    * JSON template for Analytics goal resource.
@@ -1265,15 +1265,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this goal belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Determines whether this goal is active.
      */
-    active?: boolean;
+    active?: boolean | null;
     /**
      * Time this goal was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Details for the goal of the type EVENT.
      */
@@ -1286,43 +1286,43 @@ export namespace analytics_v3 {
         type?: string;
       }>;
       useEventValue?: boolean;
-    };
+    } | null;
     /**
      * Goal ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Internal ID for the web property to which this goal belongs.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Resource type for an Analytics goal.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Goal name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Parent link for a goal. Points to the view (profile) to which this goal belongs.
      */
-    parentLink?: {href?: string; type?: string};
+    parentLink?: {href?: string; type?: string} | null;
     /**
      * View (Profile) ID to which this goal belongs.
      */
-    profileId?: string;
+    profileId?: string | null;
     /**
      * Link for this goal.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Goal type. Possible values are URL_DESTINATION, VISIT_TIME_ON_SITE, VISIT_NUM_PAGES, AND EVENT.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Time this goal was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Details for the goal of the type URL_DESTINATION.
      */
@@ -1332,26 +1332,29 @@ export namespace analytics_v3 {
       matchType?: string;
       steps?: Array<{name?: string; number?: number; url?: string}>;
       url?: string;
-    };
+    } | null;
     /**
      * Goal value.
      */
-    value?: number;
+    value?: number | null;
     /**
      * Details for the goal of the type VISIT_NUM_PAGES.
      */
-    visitNumPagesDetails?: {comparisonType?: string; comparisonValue?: string};
+    visitNumPagesDetails?: {
+      comparisonType?: string;
+      comparisonValue?: string;
+    } | null;
     /**
      * Details for the goal of the type VISIT_TIME_ON_SITE.
      */
     visitTimeOnSiteDetails?: {
       comparisonType?: string;
       comparisonValue?: string;
-    };
+    } | null;
     /**
      * Web property ID to which this goal belongs. The web property ID is of the form UA-XXXXX-YY.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * A goal collection lists Analytics goals to which the user has access. Each view (profile) can have a set of goals. Each resource in the Goal collection corresponds to a single Analytics goal.
@@ -1364,48 +1367,48 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this goal collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this goal collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of resources in the result.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for a hash Client Id request resource.
    */
   export interface Schema$HashClientIdRequest {
-    clientId?: string;
-    kind?: string;
-    webPropertyId?: string;
+    clientId?: string | null;
+    kind?: string | null;
+    webPropertyId?: string | null;
   }
   /**
    * JSON template for a hash Client Id response resource.
    */
   export interface Schema$HashClientIdResponse {
-    clientId?: string;
-    hashedClientId?: string;
-    kind?: string;
-    webPropertyId?: string;
+    clientId?: string | null;
+    hashedClientId?: string | null;
+    kind?: string | null;
+    webPropertyId?: string | null;
   }
   /**
    * JSON template for an Analytics Remarketing Include Conditions.
@@ -1414,23 +1417,23 @@ export namespace analytics_v3 {
     /**
      * The look-back window lets you specify a time frame for evaluating the behavior that qualifies users for your audience. For example, if your filters include users from Central Asia, and Transactions Greater than 2, and you set the look-back window to 14 days, then any user from Central Asia whose cumulative transactions exceed 2 during the last 14 days is added to the audience.
      */
-    daysToLookBack?: number;
+    daysToLookBack?: number | null;
     /**
      * Boolean indicating whether this segment is a smart list. https://support.google.com/analytics/answer/4628577
      */
-    isSmartList?: boolean;
+    isSmartList?: boolean | null;
     /**
      * Resource type for include conditions.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Number of days (in the range 1 to 540) a user remains in the audience.
      */
-    membershipDurationDays?: number;
+    membershipDurationDays?: number | null;
     /**
      * The segment condition that will cause a user to be added to an audience.
      */
-    segment?: string;
+    segment?: string | null;
   }
   /**
    * JSON template for an Analytics Remarketing Audience Foreign Link.
@@ -1439,43 +1442,43 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this linked foreign account belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Boolean indicating whether this is eligible for search.
      */
-    eligibleForSearch?: boolean;
+    eligibleForSearch?: boolean | null;
     /**
      * Entity ad account link ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Internal ID for the web property to which this linked foreign account belongs.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Resource type for linked foreign account.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The foreign account ID. For example the an Google Ads `linkedAccountId` has the following format XXX-XXX-XXXX.
      */
-    linkedAccountId?: string;
+    linkedAccountId?: string | null;
     /**
      * Remarketing audience ID to which this linked foreign account belongs.
      */
-    remarketingAudienceId?: string;
+    remarketingAudienceId?: string | null;
     /**
      * The status of this foreign account link.
      */
-    status?: string;
+    status?: string | null;
     /**
      * The type of the foreign account. For example, `ADWORDS_LINKS`, `DBM_LINKS`, `MCC_LINKS` or `OPTIMIZE`.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this linked foreign account belongs.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * Multi-Channel Funnels data for a given view (profile).
@@ -1488,31 +1491,31 @@ export namespace analytics_v3 {
       columnType?: string;
       dataType?: string;
       name?: string;
-    }>;
+    }> | null;
     /**
      * Determines if the Analytics data contains sampled data.
      */
-    containsSampledData?: boolean;
+    containsSampledData?: boolean | null;
     /**
      * Unique ID for this data response.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The maximum number of rows the response can contain, regardless of the actual number of rows returned. Its value ranges from 1 to 10,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Resource type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this Analytics data query.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this Analytics data query.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * Information for the view (profile), for which the Analytics data was requested.
      */
@@ -1523,7 +1526,7 @@ export namespace analytics_v3 {
       profileName?: string;
       tableId?: string;
       webPropertyId?: string;
-    };
+    } | null;
     /**
      * Analytics data request query parameters.
      */
@@ -1539,7 +1542,7 @@ export namespace analytics_v3 {
       sort?: string[];
       'start-date'?: string;
       'start-index'?: number;
-    };
+    } | null;
     /**
      * Analytics data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
      */
@@ -1551,27 +1554,27 @@ export namespace analytics_v3 {
         }>;
         primitiveValue?: string;
       }>
-    >;
+    > | null;
     /**
      * The number of samples used to calculate the result.
      */
-    sampleSize?: string;
+    sampleSize?: string | null;
     /**
      * Total size of the sample space from which the samples were selected.
      */
-    sampleSpace?: string;
+    sampleSpace?: string | null;
     /**
      * Link to this page.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The total number of rows for the query, regardless of the number of rows in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
      */
-    totalsForAllResults?: {[key: string]: string};
+    totalsForAllResults?: {[key: string]: string} | null;
   }
   /**
    * JSON template for an Analytics view (profile).
@@ -1580,107 +1583,107 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this view (profile) belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Indicates whether bot filtering is enabled for this view (profile).
      */
-    botFilteringEnabled?: boolean;
+    botFilteringEnabled?: boolean | null;
     /**
      * Child link for this view (profile). Points to the list of goals for this view (profile).
      */
-    childLink?: {href?: string; type?: string};
+    childLink?: {href?: string; type?: string} | null;
     /**
      * Time this view (profile) was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * The currency type associated with this view (profile), defaults to USD. The supported values are: USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL
      */
-    currency?: string;
+    currency?: string | null;
     /**
      * Default page for this view (profile).
      */
-    defaultPage?: string;
+    defaultPage?: string | null;
     /**
      * Indicates whether ecommerce tracking is enabled for this view (profile).
      */
-    eCommerceTracking?: boolean;
+    eCommerceTracking?: boolean | null;
     /**
      * Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.
      */
-    enhancedECommerceTracking?: boolean;
+    enhancedECommerceTracking?: boolean | null;
     /**
      * The query parameters that are excluded from this view (profile).
      */
-    excludeQueryParameters?: string;
+    excludeQueryParameters?: string | null;
     /**
      * View (Profile) ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Internal ID for the web property to which this view (profile) belongs.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Resource type for Analytics view (profile).
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this view (profile).
      */
-    name?: string;
+    name?: string | null;
     /**
      * Parent link for this view (profile). Points to the web property to which this view (profile) belongs.
      */
-    parentLink?: {href?: string; type?: string};
+    parentLink?: {href?: string; type?: string} | null;
     /**
      * Permissions the user has for this view (profile).
      */
-    permissions?: {effective?: string[]};
+    permissions?: {effective?: string[]} | null;
     /**
      * Link for this view (profile).
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Site search category parameters for this view (profile).
      */
-    siteSearchCategoryParameters?: string;
+    siteSearchCategoryParameters?: string | null;
     /**
      * The site search query parameters for this view (profile).
      */
-    siteSearchQueryParameters?: string;
+    siteSearchQueryParameters?: string | null;
     /**
      * Indicates whether this view (profile) is starred or not.
      */
-    starred?: boolean;
+    starred?: boolean | null;
     /**
      * Whether or not Analytics will strip search category parameters from the URLs in your reports.
      */
-    stripSiteSearchCategoryParameters?: boolean;
+    stripSiteSearchCategoryParameters?: boolean | null;
     /**
      * Whether or not Analytics will strip search query parameters from the URLs in your reports.
      */
-    stripSiteSearchQueryParameters?: boolean;
+    stripSiteSearchQueryParameters?: boolean | null;
     /**
      * Time zone for which this view (profile) has been configured. Time zones are identified by strings from the TZ database.
      */
-    timezone?: string;
+    timezone?: string | null;
     /**
      * View (Profile) type. Supported types: WEB or APP.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Time this view (profile) was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
     /**
      * Website URL for this view (profile).
      */
-    websiteUrl?: string;
+    websiteUrl?: string | null;
   }
   /**
    * JSON template for an Analytics profile filter link.
@@ -1693,11 +1696,11 @@ export namespace analytics_v3 {
     /**
      * Profile filter link ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for Analytics filter.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * View (Profile) for this link.
      */
@@ -1705,11 +1708,11 @@ export namespace analytics_v3 {
     /**
      * The rank of this profile filter link relative to the other filters linked to the same profile. For readonly (i.e., list and get) operations, the rank always starts at 1. For write (i.e., create, update, or delete) operations, you may specify a value between 0 and 255 inclusively, [0, 255]. In order to insert a link at the end of the list, either don&#39;t specify a rank or set a rank to a number greater than the largest rank in the list. In order to insert a link to the beginning of the list specify a rank that is less than or equal to 1. The new link will move all existing filters with the same or lower rank down the list. After the link is inserted/updated/deleted all profile filter links will be renumbered starting at 1.
      */
-    rank?: number;
+    rank?: number | null;
     /**
      * Link for this profile filter link.
      */
-    selfLink?: string;
+    selfLink?: string | null;
   }
   /**
    * A profile filter link collection lists profile filter links between profiles and filters. Each resource in the collection corresponds to a profile filter link.
@@ -1722,31 +1725,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this profile filter link collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this profile filter link collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for a linked view (profile).
@@ -1755,31 +1758,31 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this view (profile) belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Link for this view (profile).
      */
-    href?: string;
+    href?: string | null;
     /**
      * View (Profile) ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Internal ID for the web property to which this view (profile) belongs.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Analytics view (profile) reference.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this view (profile).
      */
-    name?: string;
+    name?: string | null;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this view (profile) belongs.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * A view (profile) collection lists Analytics views (profiles) to which the user has access. Each resource in the collection corresponds to a single Analytics view (profile).
@@ -1792,31 +1795,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this view (profile) collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this view (profile) collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for an Analytics ProfileSummary. ProfileSummary returns basic information (i.e., summary) for a profile.
@@ -1825,23 +1828,23 @@ export namespace analytics_v3 {
     /**
      * View (profile) ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for Analytics ProfileSummary.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * View (profile) name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Indicates whether this view (profile) is starred or not.
      */
-    starred?: boolean;
+    starred?: boolean | null;
     /**
      * View (Profile) type. Supported types: WEB or APP.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Real time data for a given view (profile).
@@ -1854,15 +1857,15 @@ export namespace analytics_v3 {
       columnType?: string;
       dataType?: string;
       name?: string;
-    }>;
+    }> | null;
     /**
      * Unique ID for this data response.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Information for the view (profile), for which the real time data was requested.
      */
@@ -1873,7 +1876,7 @@ export namespace analytics_v3 {
       profileName?: string;
       tableId?: string;
       webPropertyId?: string;
-    };
+    } | null;
     /**
      * Real time data request query parameters.
      */
@@ -1884,23 +1887,23 @@ export namespace analytics_v3 {
       'max-results'?: number;
       metrics?: string[];
       sort?: string[];
-    };
+    } | null;
     /**
      * Real time data rows, where each row contains a list of dimension values followed by the metric values. The order of dimensions and metrics is same as specified in the request.
      */
-    rows?: string[][];
+    rows?: string[][] | null;
     /**
      * Link to this page.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The total number of rows for the query, regardless of the number of rows in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
      */
-    totalsForAllResults?: {[key: string]: string};
+    totalsForAllResults?: {[key: string]: string} | null;
   }
   /**
    * JSON template for an Analytics remarketing audience.
@@ -1909,35 +1912,35 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this remarketing audience belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * The simple audience definition that will cause a user to be added to an audience.
      */
-    audienceDefinition?: {includeConditions?: Schema$IncludeConditions};
+    audienceDefinition?: {includeConditions?: Schema$IncludeConditions} | null;
     /**
      * The type of audience, either SIMPLE or STATE_BASED.
      */
-    audienceType?: string;
+    audienceType?: string | null;
     /**
      * Time this remarketing audience was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * The description of this remarketing audience.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Remarketing Audience ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Internal ID for the web property to which this remarketing audience belongs.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The linked ad accounts associated with this remarketing audience. A remarketing audience can have only one linkedAdAccount currently.
      */
@@ -1945,26 +1948,26 @@ export namespace analytics_v3 {
     /**
      * The views (profiles) that this remarketing audience is linked to.
      */
-    linkedViews?: string[];
+    linkedViews?: string[] | null;
     /**
      * The name of this remarketing audience.
      */
-    name?: string;
+    name?: string | null;
     /**
      * A state based audience definition that will cause a user to be added or removed from an audience.
      */
     stateBasedAudienceDefinition?: {
       excludeConditions?: {exclusionDuration?: string; segment?: string};
       includeConditions?: Schema$IncludeConditions;
-    };
+    } | null;
     /**
      * Time this remarketing audience was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Web property ID of the form UA-XXXXX-YY to which this remarketing audience belongs.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * A remarketing audience collection lists Analytics remarketing audiences to which the user has access. Each resource in the collection corresponds to a single Analytics remarketing audience.
@@ -1977,31 +1980,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this remarketing audience collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this view (profile) collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for an Analytics segment.
@@ -2010,39 +2013,39 @@ export namespace analytics_v3 {
     /**
      * Time the segment was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Segment definition.
      */
-    definition?: string;
+    definition?: string | null;
     /**
      * Segment ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for Analytics segment.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Segment name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Segment ID. Can be used with the &#39;segment&#39; parameter in Core Reporting API.
      */
-    segmentId?: string;
+    segmentId?: string | null;
     /**
      * Link for this segment.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Type for a segment. Possible values are &quot;BUILT_IN&quot; or &quot;CUSTOM&quot;.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Time the segment was last modified.
      */
-    updated?: string;
+    updated?: string | null;
   }
   /**
    * An segment collection lists Analytics segments that the user has access to. Each resource in the collection corresponds to a single Analytics segment.
@@ -2055,31 +2058,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type for segments.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this segment collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this segment collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for Analytics unsampled report resource.
@@ -2088,79 +2091,79 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this unsampled report belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Download details for a file stored in Google Cloud Storage.
      */
-    cloudStorageDownloadDetails?: {bucketId?: string; objectId?: string};
+    cloudStorageDownloadDetails?: {bucketId?: string; objectId?: string} | null;
     /**
      * Time this unsampled report was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * The dimensions for the unsampled report.
      */
-    dimensions?: string;
+    dimensions?: string | null;
     /**
      * The type of download you need to use for the report data file. Possible values include `GOOGLE_DRIVE` and `GOOGLE_CLOUD_STORAGE`. If the value is `GOOGLE_DRIVE`, see the `driveDownloadDetails` field. If the value is `GOOGLE_CLOUD_STORAGE`, see the `cloudStorageDownloadDetails` field.
      */
-    downloadType?: string;
+    downloadType?: string | null;
     /**
      * Download details for a file stored in Google Drive.
      */
-    driveDownloadDetails?: {documentId?: string};
+    driveDownloadDetails?: {documentId?: string} | null;
     /**
      * The end date for the unsampled report.
      */
-    'end-date'?: string;
+    'end-date'?: string | null;
     /**
      * The filters for the unsampled report.
      */
-    filters?: string;
+    filters?: string | null;
     /**
      * Unsampled report ID.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for an Analytics unsampled report.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The metrics for the unsampled report.
      */
-    metrics?: string;
+    metrics?: string | null;
     /**
      * View (Profile) ID to which this unsampled report belongs.
      */
-    profileId?: string;
+    profileId?: string | null;
     /**
      * The segment for the unsampled report.
      */
-    segment?: string;
+    segment?: string | null;
     /**
      * Link for this unsampled report.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * The start date for the unsampled report.
      */
-    'start-date'?: string;
+    'start-date'?: string | null;
     /**
      * Status of this unsampled report. Possible values are PENDING, COMPLETED, or FAILED.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Title of the unsampled report.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Time this unsampled report was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Web property ID to which this unsampled report belongs. The web property ID is of the form UA-XXXXX-YY.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * An unsampled report collection lists Analytics unsampled reports to which the user has access. Each view (profile) can have a set of unsampled reports. Each resource in the unsampled report collection corresponds to a single Analytics unsampled report.
@@ -2173,31 +2176,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this unsampled report collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this unsampled report collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of resources in the result.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * Metadata returned for an upload operation.
@@ -2206,31 +2209,31 @@ export namespace analytics_v3 {
     /**
      * Account Id to which this upload belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Custom data source Id to which this data import belongs.
      */
-    customDataSourceId?: string;
+    customDataSourceId?: string | null;
     /**
      * Data import errors collection.
      */
-    errors?: string[];
+    errors?: string[] | null;
     /**
      * A unique ID for this upload.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Resource type for Analytics upload.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Upload status. Possible values: PENDING, COMPLETED, FAILED, DELETING, DELETED.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Time this file is uploaded.
      */
-    uploadTime?: string;
+    uploadTime?: string | null;
   }
   /**
    * Upload collection lists Analytics uploads to which the user has access. Each custom data source can have a set of uploads. Each resource in the upload collection corresponds to a single Analytics data upload.
@@ -2243,27 +2246,27 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this upload collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this upload collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of resources in the result.
      */
-    totalResults?: number;
+    totalResults?: number | null;
   }
   /**
    * JSON template for a user deletion request resource.
@@ -2272,27 +2275,27 @@ export namespace analytics_v3 {
     /**
      * This marks the point in time for which all user data before should be deleted
      */
-    deletionRequestTime?: string;
+    deletionRequestTime?: string | null;
     /**
      * Firebase Project Id
      */
-    firebaseProjectId?: string;
+    firebaseProjectId?: string | null;
     /**
      * User ID.
      */
-    id?: {type?: string; userId?: string};
+    id?: {type?: string; userId?: string} | null;
     /**
      * Value is &quot;analytics#userDeletionRequest&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Property ID
      */
-    propertyId?: string;
+    propertyId?: string | null;
     /**
      * Web property ID of the form UA-XXXXX-YY.
      */
-    webPropertyId?: string;
+    webPropertyId?: string | null;
   }
   /**
    * JSON template for a user reference.
@@ -2301,12 +2304,12 @@ export namespace analytics_v3 {
     /**
      * Email ID of this user.
      */
-    email?: string;
+    email?: string | null;
     /**
      * User ID.
      */
-    id?: string;
-    kind?: string;
+    id?: string | null;
+    kind?: string | null;
   }
   /**
    * A web property collection lists Analytics web properties to which the user has access. Each resource in the collection corresponds to a single Analytics web property.
@@ -2319,31 +2322,31 @@ export namespace analytics_v3 {
     /**
      * The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
      */
-    itemsPerPage?: number;
+    itemsPerPage?: number | null;
     /**
      * Collection type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Link to next page for this web property collection.
      */
-    nextLink?: string;
+    nextLink?: string | null;
     /**
      * Link to previous page for this web property collection.
      */
-    previousLink?: string;
+    previousLink?: string | null;
     /**
      * The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
      */
-    startIndex?: number;
+    startIndex?: number | null;
     /**
      * The total number of results for the query, regardless of the number of results in the response.
      */
-    totalResults?: number;
+    totalResults?: number | null;
     /**
      * Email ID of the authenticated user
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * JSON template for an Analytics web property.
@@ -2352,79 +2355,79 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this web property belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Child link for this web property. Points to the list of views (profiles) for this web property.
      */
-    childLink?: {href?: string; type?: string};
+    childLink?: {href?: string; type?: string} | null;
     /**
      * Time this web property was created.
      */
-    created?: string;
+    created?: string | null;
     /**
      * Set to true to reset the retention period of the user identifier with each new event from that user (thus setting the expiration date to current time plus retention period). Set to false to delete data associated with the user identifier automatically after the rentention period. This property cannot be set on insert.
      */
-    dataRetentionResetOnNewActivity?: boolean;
+    dataRetentionResetOnNewActivity?: boolean | null;
     /**
      * The length of time for which user and event data is retained. This property cannot be set on insert.
      */
-    dataRetentionTtl?: string;
+    dataRetentionTtl?: string | null;
     /**
      * Default view (profile) ID.
      */
-    defaultProfileId?: string;
+    defaultProfileId?: string | null;
     /**
      * Web property ID of the form UA-XXXXX-YY.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The industry vertical/category selected for this web property.
      */
-    industryVertical?: string;
+    industryVertical?: string | null;
     /**
      * Internal ID for this web property.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Resource type for Analytics WebProperty.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Level for this web property. Possible values are STANDARD or PREMIUM.
      */
-    level?: string;
+    level?: string | null;
     /**
      * Name of this web property.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Parent link for this web property. Points to the account to which this web property belongs.
      */
-    parentLink?: {href?: string; type?: string};
+    parentLink?: {href?: string; type?: string} | null;
     /**
      * Permissions the user has for this web property.
      */
-    permissions?: {effective?: string[]};
+    permissions?: {effective?: string[]} | null;
     /**
      * View (Profile) count for this web property.
      */
-    profileCount?: number;
+    profileCount?: number | null;
     /**
      * Link for this web property.
      */
-    selfLink?: string;
+    selfLink?: string | null;
     /**
      * Indicates whether this web property is starred or not.
      */
-    starred?: boolean;
+    starred?: boolean | null;
     /**
      * Time this web property was last modified.
      */
-    updated?: string;
+    updated?: string | null;
     /**
      * Website url for this web property.
      */
-    websiteUrl?: string;
+    websiteUrl?: string | null;
   }
   /**
    * JSON template for a web property reference.
@@ -2433,27 +2436,27 @@ export namespace analytics_v3 {
     /**
      * Account ID to which this web property belongs.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Link for this web property.
      */
-    href?: string;
+    href?: string | null;
     /**
      * Web property ID of the form UA-XXXXX-YY.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Internal ID for this web property.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Analytics web property reference.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Name of this web property.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * JSON template for an Analytics WebPropertySummary. WebPropertySummary returns basic information (i.e., summary) for a web property.
@@ -2462,23 +2465,23 @@ export namespace analytics_v3 {
     /**
      * Web property ID of the form UA-XXXXX-YY.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Internal ID for this web property.
      */
-    internalWebPropertyId?: string;
+    internalWebPropertyId?: string | null;
     /**
      * Resource type for Analytics WebPropertySummary.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Level for this web property. Possible values are STANDARD or PREMIUM.
      */
-    level?: string;
+    level?: string | null;
     /**
      * Web property name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * List of profiles under this web property.
      */
@@ -2486,11 +2489,11 @@ export namespace analytics_v3 {
     /**
      * Indicates whether this web property is starred or not.
      */
-    starred?: boolean;
+    starred?: boolean | null;
     /**
      * Website url for this web property.
      */
-    websiteUrl?: string;
+    websiteUrl?: string | null;
   }
 
   export class Resource$Data {

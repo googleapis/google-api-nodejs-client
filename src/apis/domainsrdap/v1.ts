@@ -134,15 +134,15 @@ export namespace domainsrdap_v1 {
     /**
      * The HTTP Content-Type header value specifying the content type of the body.
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * The HTTP request/response body as raw binary.
      */
-    data?: string;
+    data?: string | null;
     /**
      * Application specific response metadata. Must be set in the first response for streaming APIs.
      */
-    extensions?: Array<{[key: string]: any}>;
+    extensions?: Array<{[key: string]: any}> | null;
   }
   /**
    * Links object defined in [section 4.2 of RFC 7483](https://tools.ietf.org/html/rfc7483#section-4.2).
@@ -151,31 +151,31 @@ export namespace domainsrdap_v1 {
     /**
      * Target URL of a link. Example: &quot;http://example.com/previous&quot;.
      */
-    href?: string;
+    href?: string | null;
     /**
      * Language code of a link. Example: &quot;en&quot;.
      */
-    hreflang?: string;
+    hreflang?: string | null;
     /**
      * Media type of the link destination. Example: &quot;screen&quot;.
      */
-    media?: string;
+    media?: string | null;
     /**
      * Relation type of a link. Example: &quot;previous&quot;.
      */
-    rel?: string;
+    rel?: string | null;
     /**
      * Title of this link. Example: &quot;title&quot;.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Content type of the link. Example: &quot;application/json&quot;.
      */
-    type?: string;
+    type?: string | null;
     /**
      * URL giving context for the link. Example: &quot;http://example.com/current&quot;.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Notices object defined in [section 4.3 of RFC 7483](https://tools.ietf.org/html/rfc7483#section-4.3).
@@ -184,7 +184,7 @@ export namespace domainsrdap_v1 {
     /**
      * Description of the notice.
      */
-    description?: string[];
+    description?: string[] | null;
     /**
      * Link to a document containing more information.
      */
@@ -192,11 +192,11 @@ export namespace domainsrdap_v1 {
     /**
      * Title of a notice. Example: &quot;Terms of Service&quot;.
      */
-    title?: string;
+    title?: string | null;
     /**
      * Type values defined in [section 10.2.1 of RFC 7483](https://tools.ietf.org/html/rfc7483#section-10.2.1) specific to a whole response: &quot;result set truncated due to authorization&quot;, &quot;result set truncated due to excessive load&quot;, &quot;result set truncated due to unexplainable reasons&quot;.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Response to a general RDAP query.
@@ -205,11 +205,11 @@ export namespace domainsrdap_v1 {
     /**
      * Error description.
      */
-    description?: string[];
+    description?: string[] | null;
     /**
      * Error HTTP code. Example: &quot;501&quot;.
      */
-    errorCode?: number;
+    errorCode?: number | null;
     /**
      * HTTP response with content type set to &quot;application/json+rdap&quot;.
      */
@@ -217,7 +217,7 @@ export namespace domainsrdap_v1 {
     /**
      * Error language code. Error response info fields are defined in [section 6 of RFC 7483](https://tools.ietf.org/html/rfc7483#section-6).
      */
-    lang?: string;
+    lang?: string | null;
     /**
      * Notices applying to this response.
      */
@@ -225,11 +225,11 @@ export namespace domainsrdap_v1 {
     /**
      * RDAP conformance level.
      */
-    rdapConformance?: string[];
+    rdapConformance?: string[] | null;
     /**
      * Error title.
      */
-    title?: string;
+    title?: string | null;
   }
 
   export class Resource$Autnum {

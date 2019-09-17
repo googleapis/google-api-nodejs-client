@@ -126,11 +126,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Optional long form description of the use case for this AppProfile.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Strongly validated etag for optimistic concurrency control. Preserve the value returned from `GetAppProfile` when calling `UpdateAppProfile` to fail the request if there has been a modification in the mean time. The `update_mask` of the request need not include `etag` for this protection to apply. See [Wikipedia](https://en.wikipedia.org/wiki/HTTP_ETag) and [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3) for more details.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * Use a multi-cluster routing policy.
      */
@@ -138,7 +138,7 @@ export namespace bigtableadmin_v2 {
     /**
      * (`OutputOnly`) The unique name of the app profile. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/appProfiles/_a-zA-Z0-9*`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Use a single-cluster routing policy.
      */
@@ -155,7 +155,7 @@ export namespace bigtableadmin_v2 {
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:jose@example.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
@@ -164,11 +164,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -181,11 +181,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * Request message for google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency
@@ -194,7 +194,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The token created using GenerateConsistencyToken for the Table.
      */
-    consistencyToken?: string;
+    consistencyToken?: string | null;
   }
   /**
    * Response message for google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency
@@ -203,7 +203,7 @@ export namespace bigtableadmin_v2 {
     /**
      * True only if the token is consistent. A token is consistent if replication has caught up with the restrictions specified in the request.
      */
-    consistent?: boolean;
+    consistent?: boolean | null;
   }
   /**
    * A resizable group of nodes in a particular cloud location, capable of serving all Tables in the parent Instance.
@@ -212,23 +212,23 @@ export namespace bigtableadmin_v2 {
     /**
      * (`CreationOnly`) The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
      */
-    defaultStorageType?: string;
+    defaultStorageType?: string | null;
     /**
      * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
      */
-    location?: string;
+    location?: string | null;
     /**
      * (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/a-z*`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
      */
-    serveNodes?: number;
+    serveNodes?: number | null;
     /**
      * (`OutputOnly`) The current state of the cluster.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * The state of a table&#39;s data in a particular cluster.
@@ -237,7 +237,7 @@ export namespace bigtableadmin_v2 {
     /**
      * Output only. The state of replication for the table in this cluster.
      */
-    replicationState?: string;
+    replicationState?: string | null;
   }
   /**
    * A set of columns within a table which share a common configuration.
@@ -255,7 +255,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The time at which the operation failed or was completed successfully.
      */
-    finishTime?: string;
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this CreateCluster operation.
      */
@@ -263,11 +263,11 @@ export namespace bigtableadmin_v2 {
     /**
      * The time at which the original request was received.
      */
-    requestTime?: string;
+    requestTime?: string | null;
     /**
      * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/&lt;table&gt;`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one.  Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
      */
-    tables?: {[key: string]: Schema$TableProgress};
+    tables?: {[key: string]: Schema$TableProgress} | null;
   }
   /**
    * Request message for BigtableInstanceAdmin.CreateCluster.
@@ -280,11 +280,11 @@ export namespace bigtableadmin_v2 {
     /**
      * The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * The unique name of the instance in which to create the new cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
      */
-    parent?: string;
+    parent?: string | null;
   }
   /**
    * The metadata for the Operation returned by CreateInstance.
@@ -293,7 +293,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The time at which the operation failed or was completed successfully.
      */
-    finishTime?: string;
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this CreateInstance operation.
      */
@@ -301,7 +301,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The time at which the original request was received.
      */
-    requestTime?: string;
+    requestTime?: string | null;
   }
   /**
    * Request message for BigtableInstanceAdmin.CreateInstance.
@@ -310,7 +310,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most two clusters can be specified.
      */
-    clusters?: {[key: string]: Schema$Cluster};
+    clusters?: {[key: string]: Schema$Cluster} | null;
     /**
      * The instance to create. Fields marked `OutputOnly` must be left blank.
      */
@@ -318,11 +318,11 @@ export namespace bigtableadmin_v2 {
     /**
      * The ID to be used when referring to the new instance within its project, e.g., just `myinstance` rather than `projects/myproject/instances/myinstance`.
      */
-    instanceId?: string;
+    instanceId?: string | null;
     /**
      * The unique name of the project in which to create the new instance. Values are of the form `projects/&lt;project&gt;`.
      */
-    parent?: string;
+    parent?: string | null;
   }
   /**
    * Request message for google.bigtable.admin.v2.BigtableTableAdmin.CreateTable
@@ -339,7 +339,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The name by which the new table should be referred to within the parent instance, e.g., `foobar` rather than `&lt;parent&gt;/tables/foobar`. Maximum 50 characters.
      */
-    tableId?: string;
+    tableId?: string | null;
   }
   /**
    * Request message for google.bigtable.admin.v2.BigtableTableAdmin.DropRowRange
@@ -348,11 +348,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Delete all rows in the table. Setting this to false is a no-op.
      */
-    deleteAllDataFromTable?: boolean;
+    deleteAllDataFromTable?: boolean | null;
     /**
      * Delete all rows that start with this row key prefix. Prefix cannot be zero length.
      */
-    rowKeyPrefix?: string;
+    rowKeyPrefix?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -365,19 +365,19 @@ export namespace bigtableadmin_v2 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Rule for determining which cells to delete during garbage collection.
@@ -390,11 +390,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Delete cells in a column older than the given age. Values must be at least one millisecond, and will be truncated to microsecond granularity.
      */
-    maxAge?: string;
+    maxAge?: string | null;
     /**
      * Delete all cells in a column except the most recent N.
      */
-    maxNumVersions?: number;
+    maxNumVersions?: number | null;
     /**
      * Delete cells that would be deleted by any nested rule.
      */
@@ -411,7 +411,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The generated consistency token.
      */
-    consistencyToken?: string;
+    consistencyToken?: string | null;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -427,9 +427,9 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    requestedPolicyVersion?: number;
+    requestedPolicyVersion?: number | null;
   }
   /**
    * A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance.
@@ -438,23 +438,23 @@ export namespace bigtableadmin_v2 {
     /**
      * The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * (`OutputOnly`) The unique name of the instance. Values are of the form `projects/&lt;project&gt;/instances/a-z+[a-z0-9]`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * (`OutputOnly`) The current state of the instance.
      */
-    state?: string;
+    state?: string | null;
     /**
      * The type of the instance. Defaults to `PRODUCTION`.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A GcRule which deletes cells matching all of the given rules.
@@ -476,11 +476,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Locations from which AppProfile information could not be retrieved, due to an outage or some other transient condition. AppProfiles from these locations may be missing from `app_profiles`. Values are of the form `projects/&lt;project&gt;/locations/&lt;zone_id&gt;`
      */
-    failedLocations?: string[];
+    failedLocations?: string[] | null;
     /**
      * Set if not all app profiles could be returned in a single response. Pass this value to `page_token` in another request to get the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for BigtableInstanceAdmin.ListClusters.
@@ -493,11 +493,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Locations from which Cluster information could not be retrieved, due to an outage or some other transient condition. Clusters from these locations may be missing from `clusters`, or may only have partial information returned. Values are of the form `projects/&lt;project&gt;/locations/&lt;zone_id&gt;`
      */
-    failedLocations?: string[];
+    failedLocations?: string[] | null;
     /**
      * DEPRECATED: This field is unused and ignored.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for BigtableInstanceAdmin.ListInstances.
@@ -506,7 +506,7 @@ export namespace bigtableadmin_v2 {
     /**
      * Locations from which Instance information could not be retrieved, due to an outage or some other transient condition. Instances whose Clusters are all in one of the failed locations may be missing from `instances`, and Instances with at least one Cluster in a failed location may only have partial information returned. Values are of the form `projects/&lt;project&gt;/locations/&lt;zone_id&gt;`
      */
-    failedLocations?: string[];
+    failedLocations?: string[] | null;
     /**
      * The list of requested instances.
      */
@@ -514,7 +514,7 @@ export namespace bigtableadmin_v2 {
     /**
      * DEPRECATED: This field is unused and ignored.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -527,7 +527,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -536,7 +536,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -549,7 +549,7 @@ export namespace bigtableadmin_v2 {
     /**
      * Set if not all tables could be returned in a single response. Pass this value to `page_token` in another request to get the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The tables present in the requested instance.
      */
@@ -562,23 +562,23 @@ export namespace bigtableadmin_v2 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * A create, update, or delete of a particular column family.
@@ -591,11 +591,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Drop (delete) the column family with the given ID, or fail if no such family exists.
      */
-    drop?: boolean;
+    drop?: boolean | null;
     /**
      * The ID of the column family to be modified.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Update an existing column family to the specified schema, or fail if no column family exists with the given ID.
      */
@@ -621,7 +621,7 @@ export namespace bigtableadmin_v2 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -629,15 +629,15 @@ export namespace bigtableadmin_v2 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Request message for BigtableInstanceAdmin.PartialUpdateInstance.
@@ -650,7 +650,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The subset of Instance fields which should be replaced. Must be explicitly set.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -667,11 +667,11 @@ export namespace bigtableadmin_v2 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
      */
-    etag?: string;
+    etag?: string | null;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -684,7 +684,7 @@ export namespace bigtableadmin_v2 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * Unconditionally routes all read/write requests to a specific cluster. This option preserves read-your-writes consistency but does not improve availability.
@@ -693,11 +693,11 @@ export namespace bigtableadmin_v2 {
     /**
      * Whether or not `CheckAndMutateRow` and `ReadModifyWriteRow` requests are allowed by this app profile. It is unsafe to send these requests to the same table/row/column in multiple clusters.
      */
-    allowTransactionalWrites?: boolean;
+    allowTransactionalWrites?: boolean | null;
     /**
      * The cluster to which read/write requests should be routed.
      */
-    clusterId?: string;
+    clusterId?: string | null;
   }
   /**
    * An initial split point for a newly created table.
@@ -706,7 +706,7 @@ export namespace bigtableadmin_v2 {
     /**
      * Row key to use as an initial tablet boundary.
      */
-    key?: string;
+    key?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -715,15 +715,15 @@ export namespace bigtableadmin_v2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A collection of user data indexed by row, column, and timestamp. Each table is served using the resources of its parent cluster.
@@ -732,19 +732,19 @@ export namespace bigtableadmin_v2 {
     /**
      * Output only. Map from cluster ID to per-cluster table state. If it could not be determined whether or not the table has data in a particular cluster (for example, if its zone is unavailable), then there will be an entry for the cluster with UNKNOWN `replication_status`. Views: `REPLICATION_VIEW`, `FULL`
      */
-    clusterStates?: {[key: string]: Schema$ClusterState};
+    clusterStates?: {[key: string]: Schema$ClusterState} | null;
     /**
      * (`CreationOnly`) The column families configured for this table, mapped by column family ID. Views: `SCHEMA_VIEW`, `FULL`
      */
-    columnFamilies?: {[key: string]: Schema$ColumnFamily};
+    columnFamilies?: {[key: string]: Schema$ColumnFamily} | null;
     /**
      * (`CreationOnly`) The granularity (i.e. `MILLIS`) at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.
      */
-    granularity?: string;
+    granularity?: string | null;
     /**
      * Output only. The unique name of the table. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/tables/_a-zA-Z0-9*`. Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Progress info for copying a table&#39;s data to the new cluster.
@@ -753,12 +753,12 @@ export namespace bigtableadmin_v2 {
     /**
      * Estimate of the number of bytes copied so far for this table. This will eventually reach &#39;estimated_size_bytes&#39; unless the table copy is CANCELLED.
      */
-    estimatedCopiedBytes?: string;
+    estimatedCopiedBytes?: string | null;
     /**
      * Estimate of the size of the table to be copied.
      */
-    estimatedSizeBytes?: string;
-    state?: string;
+    estimatedSizeBytes?: string | null;
+    state?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -767,7 +767,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -776,7 +776,7 @@ export namespace bigtableadmin_v2 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * A GcRule which deletes cells matching any of the given rules.
@@ -798,7 +798,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The time at which the operation failed or was completed successfully.
      */
-    finishTime?: string;
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this UpdateCluster operation.
      */
@@ -806,7 +806,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The time at which the original request was received.
      */
-    requestTime?: string;
+    requestTime?: string | null;
   }
   /**
    * The metadata for the Operation returned by UpdateInstance.
@@ -815,7 +815,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The time at which the operation failed or was completed successfully.
      */
-    finishTime?: string;
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this UpdateInstance operation.
      */
@@ -823,7 +823,7 @@ export namespace bigtableadmin_v2 {
     /**
      * The time at which the original request was received.
      */
-    requestTime?: string;
+    requestTime?: string | null;
   }
 
   export class Resource$Operations {
@@ -3446,6 +3446,80 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
+     * bigtableadmin.projects.instances.tables.getIamPolicy
+     * @desc Gets the access control policy for an instance resource. Returns an empty policy if an table exists but does not have a policy set.
+     * @alias bigtableadmin.projects.instances.tables.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+      params?: Params$Resource$Projects$Instances$Tables$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Tables$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
      * bigtableadmin.projects.instances.tables.list
      * @desc Lists all tables served from a specified instance.
      * @alias bigtableadmin.projects.instances.tables.list
@@ -3596,6 +3670,163 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Table>(parameters);
       }
     }
+
+    /**
+     * bigtableadmin.projects.instances.tables.setIamPolicy
+     * @desc Sets the access control policy on a table resource. Replaces any existing policy.
+     * @alias bigtableadmin.projects.instances.tables.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+      params?: Params$Resource$Projects$Instances$Tables$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Instances$Tables$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>
+    ): void | GaxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Tables$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * bigtableadmin.projects.instances.tables.testIamPermissions
+     * @desc Returns permissions that the caller has on the specified table resource.
+     * @alias bigtableadmin.projects.instances.tables.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+      params?: Params$Resource$Projects$Instances$Tables$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Tables$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Tables$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Tables$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Tables$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Instances$Tables$Checkconsistency
@@ -3694,6 +3925,23 @@ export namespace bigtableadmin_v2 {
      */
     view?: string;
   }
+  export interface Params$Resource$Projects$Instances$Tables$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetIamPolicyRequest;
+  }
   export interface Params$Resource$Projects$Instances$Tables$List
     extends StandardParameters {
     /**
@@ -3734,6 +3982,40 @@ export namespace bigtableadmin_v2 {
      * Request body metadata
      */
     requestBody?: Schema$ModifyColumnFamiliesRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Setiampolicy
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Tables$Testiampermissions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
 
   export class Resource$Projects$Locations {

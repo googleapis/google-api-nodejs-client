@@ -105,35 +105,35 @@ export namespace webfonts_v1 {
     /**
      * The category of the font.
      */
-    category?: string;
+    category?: string | null;
     /**
      * The name of the font.
      */
-    family?: string;
+    family?: string | null;
     /**
      * The font files (with all supported scripts) for each one of the available variants, as a key : value map.
      */
-    files?: {[key: string]: string};
+    files?: {[key: string]: string} | null;
     /**
      * This kind represents a webfont object in the webfonts service.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The date (format &quot;yyyy-MM-dd&quot;) the font was modified for the last time.
      */
-    lastModified?: string;
+    lastModified?: string | null;
     /**
      * The scripts supported by the font.
      */
-    subsets?: string[];
+    subsets?: string[] | null;
     /**
      * The available variants for the font.
      */
-    variants?: string[];
+    variants?: string[] | null;
     /**
      * The font version.
      */
-    version?: string;
+    version?: string | null;
   }
   export interface Schema$WebfontList {
     /**
@@ -143,7 +143,7 @@ export namespace webfonts_v1 {
     /**
      * This kind represents a list of webfont objects in the webfonts service.
      */
-    kind?: string;
+    kind?: string | null;
   }
 
   export class Resource$Webfonts {

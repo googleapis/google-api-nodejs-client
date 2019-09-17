@@ -110,31 +110,31 @@ export namespace androidpublisher_v1_1 {
     /**
      * The consumption state of the inapp product. Possible values are:   - Yet to be consumed  - Consumed
      */
-    consumptionState?: number;
+    consumptionState?: number | null;
     /**
      * A developer-specified string that contains supplemental information about an order.
      */
-    developerPayload?: string;
+    developerPayload?: string | null;
     /**
      * This kind represents an inappPurchase object in the androidpublisher service.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The order id associated with the purchase of the inapp product.
      */
-    orderId?: string;
+    orderId?: string | null;
     /**
      * The purchase state of the order. Possible values are:   - Purchased  - Canceled  - Pending
      */
-    purchaseState?: number;
+    purchaseState?: number | null;
     /**
      * The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
      */
-    purchaseTime?: string;
+    purchaseTime?: string | null;
     /**
      * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)  - Rewarded (i.e. from watching a video ad instead of paying)
      */
-    purchaseType?: number;
+    purchaseType?: number | null;
   }
   /**
    * A SubscriptionPurchase resource indicates the status of a user&#39;s subscription purchase.
@@ -143,19 +143,19 @@ export namespace androidpublisher_v1_1 {
     /**
      * Whether the subscription will automatically be renewed when it reaches its current expiry time.
      */
-    autoRenewing?: boolean;
+    autoRenewing?: boolean | null;
     /**
      * Time at which the subscription was granted, in milliseconds since the Epoch.
      */
-    initiationTimestampMsec?: string;
+    initiationTimestampMsec?: string | null;
     /**
      * This kind represents a subscriptionPurchase object in the androidpublisher service.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Time at which the subscription will expire, in milliseconds since the Epoch.
      */
-    validUntilTimestampMsec?: string;
+    validUntilTimestampMsec?: string | null;
   }
 
   export class Resource$Inapppurchases {

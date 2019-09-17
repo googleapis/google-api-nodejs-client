@@ -108,19 +108,19 @@ export namespace toolresults_v1beta3 {
     /**
      * The name of the app. Optional
      */
-    name?: string;
+    name?: string | null;
     /**
      * The package name of the app. Required.
      */
-    packageName?: string;
+    packageName?: string | null;
     /**
      * The internal version code of the app. Optional.
      */
-    versionCode?: string;
+    versionCode?: string | null;
     /**
      * The version name of the app. Optional.
      */
-    versionName?: string;
+    versionName?: string | null;
   }
   /**
    * A test of an Android application that can control an Android component independently of its normal lifecycle.  See  for more information on types of Android tests.
@@ -129,19 +129,19 @@ export namespace toolresults_v1beta3 {
     /**
      * The java package for the test to be executed. Required
      */
-    testPackageId?: string;
+    testPackageId?: string | null;
     /**
      * The InstrumentationTestRunner class. Required
      */
-    testRunnerClass?: string;
+    testRunnerClass?: string | null;
     /**
      * Each target must be fully qualified with the package name or class name, in one of these formats: - &quot;package package_name&quot; - &quot;class package_name.class_name&quot; - &quot;class package_name.class_name#method_name&quot;  If empty, all targets in the module will be run.
      */
-    testTargets?: string[];
+    testTargets?: string[] | null;
     /**
      * The flag indicates whether Android Test Orchestrator will be used to run test or not.
      */
-    useOrchestrator?: boolean;
+    useOrchestrator?: boolean | null;
   }
   /**
    * A test of an android application that explores the application on a virtual or physical Android device, finding culprits and crashes as it goes.
@@ -150,23 +150,23 @@ export namespace toolresults_v1beta3 {
     /**
      * The initial activity that should be used to start the app. Optional
      */
-    appInitialActivity?: string;
+    appInitialActivity?: string | null;
     /**
      * The java package for the bootstrap. Optional
      */
-    bootstrapPackageId?: string;
+    bootstrapPackageId?: string | null;
     /**
      * The runner class for the bootstrap. Optional
      */
-    bootstrapRunnerClass?: string;
+    bootstrapRunnerClass?: string | null;
     /**
      * The max depth of the traversal stack Robo can explore. Optional
      */
-    maxDepth?: number;
+    maxDepth?: number | null;
     /**
      * The max number of steps/actions Robo can execute. Default is no limit (0). Optional
      */
-    maxSteps?: number;
+    maxSteps?: number | null;
   }
   /**
    * An Android mobile test specification.
@@ -196,11 +196,11 @@ export namespace toolresults_v1beta3 {
     /**
      * A URL/resource name that uniquely identifies the type of the serialized protocol buffer message. This string must contain at least one &quot;/&quot; character. The last segment of the URL&#39;s path must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in a canonical form (e.g., leading &quot;.&quot; is not accepted).  In practice, teams usually precompile into the binary all types that they expect it to use in the context of Any. However, for URLs which use the scheme `http`, `https`, or no scheme, one can optionally set up a type server that maps type URLs to message definitions as follows:  * If no scheme is provided, `https` is assumed. * An HTTP GET on the URL must yield a [google.protobuf.Type][] value in binary format, or produce an error. * Applications are allowed to cache lookup results based on the URL, or have them precompiled into a binary to avoid any lookup. Therefore, binary compatibility needs to be preserved on changes to types. (Use versioned type names to manage breaking changes.)  Note: this functionality is not currently available in the official protobuf release, and it is not used for type URLs beginning with type.googleapis.com.  Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.
      */
-    typeUrl?: string;
+    typeUrl?: string | null;
     /**
      * Must be a valid serialized protocol buffer of the above specified type.
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$AppStartTime {
     /**
@@ -216,9 +216,9 @@ export namespace toolresults_v1beta3 {
    * Encapsulates the metadata for basic sample series represented by a line chart
    */
   export interface Schema$BasicPerfSampleSeries {
-    perfMetricType?: string;
-    perfUnit?: string;
-    sampleSeriesLabel?: string;
+    perfMetricType?: string | null;
+    perfUnit?: string | null;
+    sampleSeriesLabel?: string | null;
   }
   /**
    * The request must provide up to a maximum of 5000 samples to be created; a larger sample size will cause an INVALID_ARGUMENT error
@@ -236,15 +236,15 @@ export namespace toolresults_v1beta3 {
     /**
      * description of the device processor ie &#39;1.8 GHz hexa core 64-bit ARMv8-A&#39;
      */
-    cpuProcessor?: string;
+    cpuProcessor?: string | null;
     /**
      * the CPU clock speed in GHz
      */
-    cpuSpeedInGhz?: number;
+    cpuSpeedInGhz?: number | null;
     /**
      * the number of CPU cores
      */
-    numberOfCores?: number;
+    numberOfCores?: number | null;
   }
   /**
    * A Duration represents a signed, fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like &quot;day&quot; or &quot;month&quot;. It is related to Timestamp in that the difference between two Timestamp values is a Duration and it can be added or subtracted from a Timestamp. Range is approximately +-10,000 years.  # Examples  Example 1: Compute Duration from two Timestamps in pseudo code.  Timestamp start = ...; Timestamp end = ...; Duration duration = ...;  duration.seconds = end.seconds - start.seconds; duration.nanos = end.nanos - start.nanos;  if (duration.seconds  0) { duration.seconds += 1; duration.nanos -= 1000000000; } else if (duration.seconds &gt; 0 &amp;&amp; duration.nanos &lt; 0) { duration.seconds -= 1; duration.nanos += 1000000000; }  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.  Timestamp start = ...; Duration duration = ...; Timestamp end = ...;  end.seconds = start.seconds + duration.seconds; end.nanos = start.nanos + duration.nanos;  if (end.nanos = 1000000000) { end.seconds += 1; end.nanos -= 1000000000; }  Example 3: Compute Duration from datetime.timedelta in Python.  td = datetime.timedelta(days=3, minutes=10) duration = Duration() duration.FromTimedelta(td)  # JSON Mapping  In JSON format, the Duration type is encoded as a string rather than an object, where the string ends in the suffix &quot;s&quot; (indicating seconds) and is preceded by the number of seconds, with nanoseconds expressed as fractional seconds. For example, 3 seconds with 0 nanoseconds should be encoded in JSON format as &quot;3s&quot;, while 3 seconds and 1 nanosecond should be expressed in JSON format as &quot;3.000000001s&quot;, and 3 seconds and 1 microsecond should be expressed in JSON format as &quot;3.000001s&quot;.
@@ -253,11 +253,11 @@ export namespace toolresults_v1beta3 {
     /**
      * Signed fractions of a second at nanosecond resolution of the span of time. Durations less than one second are represented with a 0 `seconds` field and a positive or negative `nanos` field. For durations of one second or more, a non-zero value for the `nanos` field must be of the same sign as the `seconds` field. Must be from -999,999,999 to +999,999,999 inclusive.
      */
-    nanos?: number;
+    nanos?: number | null;
     /**
      * Signed seconds of the span of time. Must be from -315,576,000,000 to +315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      */
-    seconds?: string;
+    seconds?: string | null;
   }
   /**
    * An Execution represents a collection of Steps. For instance, it could represent: - a mobile test executed across a range of device configurations - a jenkins job with a build step followed by a test step  The maximum size of an execution message is 1 MiB.  An Execution can be updated until its state is set to COMPLETE at which point it becomes immutable.
@@ -274,7 +274,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A unique identifier within a History for this Execution.  Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In response always set - In create/update request: never set
      */
-    executionId?: string;
+    executionId?: string | null;
     /**
      * Classify the result, for example into SUCCESS or FAILURE  - In response: present if set by create/update request - In create/update request: optional
      */
@@ -286,11 +286,11 @@ export namespace toolresults_v1beta3 {
     /**
      * The initial state is IN_PROGRESS.  The only legal state transitions is from IN_PROGRESS to COMPLETE.  A PRECONDITION_FAILED will be returned if an invalid transition is requested.  The state can only be set to COMPLETE once. A FAILED_PRECONDITION will be returned if the state is set to COMPLETE multiple times.  If the state is set to COMPLETE, all the in-progress steps within the execution will be set as COMPLETE. If the outcome of the step is not set, the outcome will be set to INCONCLUSIVE.  - In response always set - In create/update request: optional
      */
-    state?: string;
+    state?: string | null;
     /**
      * TestExecution Matrix ID that the TestExecutionService uses.  - In response: present if set by create - In create: optional - In update: never set
      */
-    testExecutionMatrixId?: string;
+    testExecutionMatrixId?: string | null;
   }
   /**
    * Details for an outcome with a FAILURE outcome summary.
@@ -299,23 +299,23 @@ export namespace toolresults_v1beta3 {
     /**
      * If the failure was severe because the system (app) under test crashed.
      */
-    crashed?: boolean;
+    crashed?: boolean | null;
     /**
      * If an app is not installed and thus no test can be run with the app. This might be caused by trying to run a test on an unsupported platform.
      */
-    notInstalled?: boolean;
+    notInstalled?: boolean | null;
     /**
      * If a native process (including any other than the app) crashed.
      */
-    otherNativeCrash?: boolean;
+    otherNativeCrash?: boolean | null;
     /**
      * If the test overran some time limit, and that is why it failed.
      */
-    timedOut?: boolean;
+    timedOut?: boolean | null;
     /**
      * If the robo was unable to crawl the app; perhaps because the app did not start.
      */
-    unableToCrawl?: boolean;
+    unableToCrawl?: boolean | null;
   }
   /**
    * A reference to a file.
@@ -324,7 +324,7 @@ export namespace toolresults_v1beta3 {
     /**
      * The URI of a file stored in Google Cloud Storage.  For example: http://storage.googleapis.com/mybucket/path/to/test.xml or in gsutil format: gs://mybucket/path/to/test.xml with version-specific info, gs://mybucket/path/to/test.xml#1360383693690000  An INVALID_ARGUMENT error will be returned if the URI format is not supported.  - In response: always set - In create/update request: always set
      */
-    fileUri?: string;
+    fileUri?: string | null;
   }
   /**
    * Graphics statistics for the App. The information is collected from &#39;adb shell dumpsys graphicsstats&#39;. For more info see: https://developer.android.com/training/testing/performance.html Statistics will only be present for API 23+.
@@ -337,57 +337,57 @@ export namespace toolresults_v1beta3 {
     /**
      * Total &quot;high input latency&quot; events.
      */
-    highInputLatencyCount?: string;
+    highInputLatencyCount?: string | null;
     /**
      * Total frames with slow render time. Should be &lt;= total_frames.
      */
-    jankyFrames?: string;
+    jankyFrames?: string | null;
     /**
      * Total &quot;missed vsync&quot; events.
      */
-    missedVsyncCount?: string;
+    missedVsyncCount?: string | null;
     /**
      * 50th percentile frame render time in milliseconds.
      */
-    p50Millis?: string;
+    p50Millis?: string | null;
     /**
      * 90th percentile frame render time in milliseconds.
      */
-    p90Millis?: string;
+    p90Millis?: string | null;
     /**
      * 95th percentile frame render time in milliseconds.
      */
-    p95Millis?: string;
+    p95Millis?: string | null;
     /**
      * 99th percentile frame render time in milliseconds.
      */
-    p99Millis?: string;
+    p99Millis?: string | null;
     /**
      * Total &quot;slow bitmap upload&quot; events.
      */
-    slowBitmapUploadCount?: string;
+    slowBitmapUploadCount?: string | null;
     /**
      * Total &quot;slow draw&quot; events.
      */
-    slowDrawCount?: string;
+    slowDrawCount?: string | null;
     /**
      * Total &quot;slow UI thread&quot; events.
      */
-    slowUiThreadCount?: string;
+    slowUiThreadCount?: string | null;
     /**
      * Total frames rendered by package.
      */
-    totalFrames?: string;
+    totalFrames?: string | null;
   }
   export interface Schema$GraphicsStatsBucket {
     /**
      * Number of frames in the bucket.
      */
-    frameCount?: string;
+    frameCount?: string | null;
     /**
      * Lower bound of render time in milliseconds.
      */
-    renderMillis?: string;
+    renderMillis?: string | null;
   }
   /**
    * A History represents a sorted list of Executions ordered by the start_timestamp_millis field (descending). It can be used to group all the Executions of a continuous build.  Note that the ordering only operates on one-dimension. If a repository has multiple branches, it means that multiple histories will need to be used in order to order Executions per branch.
@@ -396,15 +396,15 @@ export namespace toolresults_v1beta3 {
     /**
      * A short human-readable (plain text) name to display in the UI. Maximum of 100 characters.  - In response: present if set during create. - In create request: optional
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * A unique identifier within a project for this History.  Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In response always set - In create request: never set
      */
-    historyId?: string;
+    historyId?: string | null;
     /**
      * A name to uniquely identify a history within a project. Maximum of 200 characters.  - In response always set - In create request: always set
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * An image, with a link to the main image and a thumbnail.
@@ -421,7 +421,7 @@ export namespace toolresults_v1beta3 {
     /**
      * The step to which the image is attached.  Always set.
      */
-    stepId?: string;
+    stepId?: string | null;
     /**
      * The thumbnail.
      */
@@ -434,15 +434,15 @@ export namespace toolresults_v1beta3 {
     /**
      * If the end user aborted the test execution before a pass or fail could be determined. For example, the user pressed ctrl-c which sent a kill signal to the test runner while the test was running.
      */
-    abortedByUser?: boolean;
+    abortedByUser?: boolean | null;
     /**
      * If results are being provided to the user in certain cases of infrastructure failures
      */
-    hasErrorLogs?: boolean;
+    hasErrorLogs?: boolean | null;
     /**
      * If the test runner could not determine success or failure because the test depends on a component other than the system under test which failed.  For example, a mobile test requires provisioning a device where the test executes, and that provisioning can fail.
      */
-    infrastructureFailure?: boolean;
+    infrastructureFailure?: boolean | null;
   }
   /**
    * Step Id and outcome of each individual step that was run as a group with other steps with the same configuration.
@@ -451,13 +451,13 @@ export namespace toolresults_v1beta3 {
     /**
      * Unique int given to each step. Ranges from 0(inclusive) to total number of steps(exclusive). The primary step is 0.
      */
-    multistepNumber?: number;
-    outcomeSummary?: string;
+    multistepNumber?: number | null;
+    outcomeSummary?: string | null;
     /**
      * How long it took for this step to run.
      */
     runDuration?: Schema$Duration;
-    stepId?: string;
+    stepId?: string | null;
   }
   export interface Schema$ListExecutionsResponse {
     /**
@@ -467,7 +467,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A continuation token to resume the query at the next item.  Will only be set if there are more Executions to fetch.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for HistoryService.List
@@ -480,7 +480,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A continuation token to resume the query at the next item.  Will only be set if there are more histories to fetch.  Tokens are valid for up to one hour from the time of the first list request. For instance, if you make a list request at 1PM and use the token from this first request 10 minutes later, the token from this second response will only be valid for 50 minutes.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   export interface Schema$ListPerfSampleSeriesResponse {
     /**
@@ -492,7 +492,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Optional, returned if result size exceeds the page size specified in the request (or the default page size, 500, if unspecified). It indicates the last sample timestamp to be used as page_token in subsequent request
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     perfSamples?: Schema$PerfSample[];
   }
   export interface Schema$ListScreenshotClustersResponse {
@@ -508,7 +508,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A continuation token to resume the query at the next item.  If set, indicates that there are more steps to read, by calling list again with this value in the page_token field.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Steps.
      */
@@ -521,7 +521,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A continuation token to resume the query at the next item.  If set, indicates that there are more thumbnails to read, by calling list again with this value in the page_token field.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of image data.  Images are returned in a deterministic order; they are ordered by these factors, in order of importance: * First, by their associated test case. Images without a test case are considered greater than images with one. * Second, by their creation time. Images without a creation time are greater than images with one. * Third, by the order in which they were added to the step (by calls to CreateStep or UpdateStep).
      */
@@ -531,7 +531,7 @@ export namespace toolresults_v1beta3 {
    * Response message for StepService.ListTestCases.
    */
   export interface Schema$ListTestCasesResponse {
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of test cases.
      */
@@ -541,11 +541,11 @@ export namespace toolresults_v1beta3 {
     /**
      * Maximum memory that can be allocated to the process in KiB
      */
-    memoryCapInKibibyte?: string;
+    memoryCapInKibibyte?: string | null;
     /**
      * Total memory available on the device in KiB
      */
-    memoryTotalInKibibyte?: string;
+    memoryTotalInKibibyte?: string | null;
   }
   /**
    * Details when multiple steps are run with the same configuration as a group.
@@ -554,7 +554,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Unique int given to each step. Ranges from 0(inclusive) to total number of steps(exclusive). The primary step is 0.
      */
-    multistepNumber?: number;
+    multistepNumber?: number | null;
     /**
      * Present if it is a primary (original) step.
      */
@@ -562,7 +562,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Step Id of the primary (original) step, which might be this step.
      */
-    primaryStepId?: string;
+    primaryStepId?: string | null;
   }
   /**
    * Interprets a result so that humans and machines can act on it.
@@ -587,7 +587,7 @@ export namespace toolresults_v1beta3 {
     /**
      * The simplest way to interpret a result.  Required
      */
-    summary?: string;
+    summary?: string | null;
   }
   /**
    * Encapsulates performance environment info
@@ -610,7 +610,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId?: string;
+    executionId?: string | null;
     /**
      * Graphics statistics for the entire run. Statistics are reset at the beginning of the run and collected at the end of the run.
      */
@@ -618,7 +618,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results history ID.
      */
-    historyId?: string;
+    historyId?: string | null;
     /**
      * Describes the environment in which the performance metrics were collected
      */
@@ -626,15 +626,15 @@ export namespace toolresults_v1beta3 {
     /**
      * Set of resource collected
      */
-    perfMetrics?: string[];
+    perfMetrics?: string[] | null;
     /**
      * The cloud project
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * A tool results step ID.
      */
-    stepId?: string;
+    stepId?: string | null;
   }
   /**
    * Resource representing a single performance measure or data point
@@ -647,7 +647,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Value observed
      */
-    value?: number;
+    value?: number | null;
   }
   /**
    * Resource representing a collection of performance samples (or data points)
@@ -660,23 +660,23 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId?: string;
+    executionId?: string | null;
     /**
      * A tool results history ID.
      */
-    historyId?: string;
+    historyId?: string | null;
     /**
      * The cloud project
      */
-    projectId?: string;
+    projectId?: string | null;
     /**
      * A sample series id
      */
-    sampleSeriesId?: string;
+    sampleSeriesId?: string | null;
     /**
      * A tool results step ID.
      */
-    stepId?: string;
+    stepId?: string | null;
   }
   /**
    * Stores rollup test status of multiple steps that were run as a group and outcome of each individual step.
@@ -689,7 +689,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Rollup test status of multiple steps that were run with the same configuration as a group.
      */
-    rollUp?: string;
+    rollUp?: string | null;
   }
   /**
    * Per-project settings for the Tool Results service.
@@ -698,11 +698,11 @@ export namespace toolresults_v1beta3 {
     /**
      * The name of the Google Cloud Storage bucket to which results are written.  By default, this is unset.  In update request: optional In response: optional
      */
-    defaultBucket?: string;
+    defaultBucket?: string | null;
     /**
      * The name of the project&#39;s settings.  Always of the form: projects/{project-id}/settings  In update request: never set In response: always set
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Request message for StepService.PublishXunitXmlFiles.
@@ -717,29 +717,29 @@ export namespace toolresults_v1beta3 {
     /**
      * File reference of the png file. Required.
      */
-    fileReference?: string;
+    fileReference?: string | null;
     /**
      * Locale of the device that the screenshot was taken on. Required.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * Model of the device that the screenshot was taken on. Required.
      */
-    model?: string;
+    model?: string | null;
     /**
      * OS version of the device that the screenshot was taken on. Required.
      */
-    version?: string;
+    version?: string | null;
   }
   export interface Schema$ScreenshotCluster {
     /**
      * A string that describes the activity of every screen in the cluster.
      */
-    activity?: string;
+    activity?: string | null;
     /**
      * A unique identifier for the cluster.
      */
-    clusterId?: string;
+    clusterId?: string | null;
     /**
      * A singular screen that represents the cluster as a whole. This screen will act as the &quot;cover&quot; of the entire cluster. When users look at the clusters, only the key screen from each cluster will be shown. Which screen is the key screen is determined by the ClusteringAlgorithm
      */
@@ -756,15 +756,15 @@ export namespace toolresults_v1beta3 {
     /**
      * If the App doesn&#39;t support the specific API level.
      */
-    incompatibleAppVersion?: boolean;
+    incompatibleAppVersion?: boolean | null;
     /**
      * If the App doesn&#39;t run on the specific architecture, for example, x86.
      */
-    incompatibleArchitecture?: boolean;
+    incompatibleArchitecture?: boolean | null;
     /**
      * If the requested OS version doesn&#39;t run on the specific device model.
      */
-    incompatibleDevice?: boolean;
+    incompatibleDevice?: boolean | null;
   }
   /**
    * The details about how to run the execution.
@@ -782,7 +782,7 @@ export namespace toolresults_v1beta3 {
     /**
      * The stack trace message.  Required
      */
-    exception?: string;
+    exception?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -791,7 +791,7 @@ export namespace toolresults_v1beta3 {
     /**
      * The status code, which should be an enum value of [google.rpc.Code][].
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
@@ -799,7 +799,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][] field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler).  Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel).  Here is an example, let&#39;s consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates an TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log + the service parses the xml logs and returns a TestExecutionStep with updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE  A Step can be updated until its state is set to COMPLETE at which points it becomes immutable.  Next tag: 23
@@ -816,7 +816,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A description of this tool For example: mvn clean package -D skipTests=true  - In response: present if set by create/update request - In create/update request: optional
      */
-    description?: string;
+    description?: string | null;
     /**
      * How much the device resource is used to perform the test.  This is the device usage used for billing purpose, which is different from the run_duration, for example, infrastructure failure won&#39;t be charged for device usage.  PRECONDITION_FAILED will be returned if one attempts to set a device_usage on a step which already has this field set.  - In response: present if previously set. - In create request: optional - In update request: optional
      */
@@ -828,7 +828,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Whether any of the outputs of this step are images whose thumbnails can be fetched with ListThumbnails.  - In response: always set - In create/update request: never set
      */
-    hasImages?: boolean;
+    hasImages?: boolean | null;
     /**
      * Arbitrary user-supplied key/value pairs that are associated with the step.  Users are responsible for managing the key namespace such that keys don&#39;t accidentally collide.  An INVALID_ARGUMENT will be returned if the number of labels exceeds 100 or if the length of any of the keys or values exceeds 100 characters.  - In response: always set - In create request: optional - In update request: optional; any new key/value pair will be added to the map, and any new value for an existing key will update that key&#39;s value
      */
@@ -840,7 +840,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A short human-readable name to display in the UI. Maximum of 100 characters. For example: Clean build  A PRECONDITION_FAILED will be returned upon creating a new step if it shares its name and dimension_value with an existing step. If two steps represent a similar action, but have different dimension values, they should share the same name. For instance, if the same set of tests is run on two different platforms, the two steps should have the same name.  - In response: always set - In create request: always set - In update request: never set
      */
-    name?: string;
+    name?: string | null;
     /**
      * Classification of the result, for example into SUCCESS or FAILURE  - In response: present if set by create/update request - In create/update request: optional
      */
@@ -852,11 +852,11 @@ export namespace toolresults_v1beta3 {
     /**
      * The initial state is IN_PROGRESS. The only legal state transitions are * IN_PROGRESS -&gt; COMPLETE  A PRECONDITION_FAILED will be returned if an invalid transition is requested.  It is valid to create Step with a state set to COMPLETE. The state can only be set to COMPLETE once. A PRECONDITION_FAILED will be returned if the state is set to COMPLETE multiple times.  - In response: always set - In create/update request: optional
      */
-    state?: string;
+    state?: string | null;
     /**
      * A unique identifier within a Execution for this Step.  Returns INVALID_ARGUMENT if this field is set or overwritten by the caller.  - In response: always set - In create/update request: never set
      */
-    stepId?: string;
+    stepId?: string | null;
     /**
      * An execution of a test runner.
      */
@@ -867,12 +867,12 @@ export namespace toolresults_v1beta3 {
     toolExecutionStep?: Schema$ToolExecutionStep;
   }
   export interface Schema$StepDimensionValueEntry {
-    key?: string;
-    value?: string;
+    key?: string | null;
+    value?: string | null;
   }
   export interface Schema$StepLabelsEntry {
-    key?: string;
-    value?: string;
+    key?: string | null;
+    value?: string | null;
   }
   /**
    * Details for an outcome with a SUCCESS outcome summary.
@@ -881,7 +881,7 @@ export namespace toolresults_v1beta3 {
     /**
      * If a native process other than the app crashed.
      */
-    otherNativeCrash?: boolean;
+    otherNativeCrash?: boolean | null;
   }
   export interface Schema$TestCase {
     /**
@@ -895,7 +895,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Why the test case was skipped.  Present only for skipped test case
      */
-    skippedMessage?: string;
+    skippedMessage?: string | null;
     /**
      * The stack trace details if the test case failed or encountered an error.  The maximum size of the stack traces is 100KiB, beyond which the stack track will be truncated.  Zero if the test case passed.
      */
@@ -907,11 +907,11 @@ export namespace toolresults_v1beta3 {
     /**
      * The status of the test case.  Required.
      */
-    status?: string;
+    status?: string | null;
     /**
      * A unique identifier within a Step for this Test Case.
      */
-    testCaseId?: string;
+    testCaseId?: string | null;
     /**
      * Test case reference, e.g. name, class name and test suite name.  Required.
      */
@@ -928,15 +928,15 @@ export namespace toolresults_v1beta3 {
     /**
      * The name of the class.
      */
-    className?: string;
+    className?: string | null;
     /**
      * The name of the test case.  Required.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The name of the test suite to which this test case belongs.
      */
-    testSuiteName?: string;
+    testSuiteName?: string | null;
   }
   /**
    * A step that represents running tests.  It accepts ant-junit xml files which will be parsed into structured test results by the service. Xml file paths are updated in order to append more files, however they can&#39;t be deleted.  Users can also add test results manually by using the test_result field.
@@ -966,15 +966,15 @@ export namespace toolresults_v1beta3 {
     /**
      * Category of issue. Required.
      */
-    category?: string;
+    category?: string | null;
     /**
      * A brief human-readable message describing the issue. Required.
      */
-    errorMessage?: string;
+    errorMessage?: string | null;
     /**
      * Severity of issue. Required.
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * Deprecated in favor of stack trace fields inside specific warnings.
      */
@@ -982,7 +982,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Type of issue. Required.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Warning message with additional details of the issue. Should always be a message from com.google.devtools.toolresults.v1.warnings
      */
@@ -999,23 +999,23 @@ export namespace toolresults_v1beta3 {
     /**
      * Number of test cases in error, typically set by the service by parsing the xml_source.  - In create/response: always set - In update request: never
      */
-    errorCount?: number;
+    errorCount?: number | null;
     /**
      * Number of failed test cases, typically set by the service by parsing the xml_source. May also be set by the user.  - In create/response: always set - In update request: never
      */
-    failureCount?: number;
+    failureCount?: number | null;
     /**
      * The name of the test suite.  - In create/response: always set - In update request: never
      */
-    name?: string;
+    name?: string | null;
     /**
      * Number of test cases not run, typically set by the service by parsing the xml_source.  - In create/response: always set - In update request: never
      */
-    skippedCount?: number;
+    skippedCount?: number | null;
     /**
      * Number of test cases, typically set by the service by parsing the xml_source.  - In create/response: always set - In update request: never
      */
-    totalCount?: number;
+    totalCount?: number | null;
     /**
      * If this test suite was parsed from XML, this is the URI where the original XML file is stored.  Note: Multiple test suites can share the same xml_source  Returns INVALID_ARGUMENT if the uri format is not supported.  - In create/response: optional - In update request: never
      */
@@ -1037,19 +1037,19 @@ export namespace toolresults_v1beta3 {
     /**
      * The thumbnail&#39;s content type, i.e. &quot;image/png&quot;.  Always set.
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * The thumbnail file itself.  That is, the bytes here are precisely the bytes that make up the thumbnail file; they can be served as an image as-is (with the appropriate content type.)  Always set.
      */
-    data?: string;
+    data?: string | null;
     /**
      * The height of the thumbnail, in pixels.  Always set.
      */
-    heightPx?: number;
+    heightPx?: number | null;
     /**
      * The width of the thumbnail, in pixels.  Always set.
      */
-    widthPx?: number;
+    widthPx?: number | null;
   }
   /**
    * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one.  All minutes are 60 seconds long. Leap seconds are &quot;smeared&quot; so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear).  The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.  # Examples  Example 1: Compute Timestamp from POSIX `time()`.  Timestamp timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);  Example 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv; gettimeofday(&amp;tv, NULL);  Timestamp timestamp; timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);  Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.  FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks = (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;  // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z. Timestamp timestamp; timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL)); timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));  Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.  long millis = System.currentTimeMillis();  Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000) .setNanos((int) ((millis % 1000) * 1000000)).build();    Example 5: Compute Timestamp from current time in Python.  timestamp = Timestamp() timestamp.GetCurrentTime()  # JSON Mapping  In JSON format, the Timestamp type is encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the format is &quot;{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z&quot; where {year} is always expressed using four digits while {month}, {day}, {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution), are optional. The &quot;Z&quot; suffix indicates the timezone (&quot;UTC&quot;); the timezone is required. A proto3 JSON serializer should always use UTC (as indicated by &quot;Z&quot;) when printing the Timestamp type and a proto3 JSON parser should be able to accept both UTC and other timezones (as indicated by an offset).  For example, &quot;2017-01-15T01:30:15.01Z&quot; encodes 15.01 seconds past 01:30 UTC on January 15, 2017.  In JavaScript, one can convert a Date object to this format using the standard [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString) method. In Python, a standard `datetime.datetime` object can be converted to this format using [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with the time format spec &#39;%Y-%m-%dT%H:%M:%S.%fZ&#39;. Likewise, in Java, one can use the Joda Time&#39;s [`ISODateTimeFormat.dateTime()`]( http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D ) to obtain a formatter capable of generating timestamps in this format.
@@ -1058,11 +1058,11 @@ export namespace toolresults_v1beta3 {
     /**
      * Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive.
      */
-    nanos?: number;
+    nanos?: number | null;
     /**
      * Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive.
      */
-    seconds?: string;
+    seconds?: string | null;
   }
   /**
    * An execution of an arbitrary tool. It could be a test runner or a tool copying artifacts or deploying code.
@@ -1071,7 +1071,7 @@ export namespace toolresults_v1beta3 {
     /**
      * The full tokenized command line including the program name (equivalent to argv in a C program).  - In response: present if set by create request - In create request: optional - In update request: never set
      */
-    commandLineArguments?: string[];
+    commandLineArguments?: string[] | null;
     /**
      * Tool execution exit code. This field will be set once the tool has exited.  - In response: present if set by create/update request - In create request: optional - In update request: optional, a FAILED_PRECONDITION error will be returned if an exit_code is already set.
      */
@@ -1101,7 +1101,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Tool execution exit code. A value of 0 means that the execution was successful.  - In response: always set - In create/update request: always set
      */
-    number?: number;
+    number?: number | null;
   }
   /**
    * A reference to a ToolExecution output file.

@@ -128,7 +128,7 @@ export namespace speech_v1p1beta1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -141,15 +141,15 @@ export namespace speech_v1p1beta1 {
     /**
      * Time of the most recent processing update.
      */
-    lastUpdateTime?: string;
+    lastUpdateTime?: string | null;
     /**
      * Approximate percentage of audio processed thus far. Guaranteed to be 100 when the audio is fully processed and the results are available.
      */
-    progressPercent?: number;
+    progressPercent?: number | null;
     /**
      * Time when the request was received.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * The top-level message sent by the client for the `LongRunningRecognize` method.
@@ -180,7 +180,7 @@ export namespace speech_v1p1beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -188,15 +188,15 @@ export namespace speech_v1p1beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Contains audio data in the encoding specified in the `RecognitionConfig`. Either `content` or `uri` must be supplied. Supplying both or neither returns google.rpc.Code.INVALID_ARGUMENT. See [content limits](https://cloud.google.com/speech-to-text/quotas#content).
@@ -205,11 +205,11 @@ export namespace speech_v1p1beta1 {
     /**
      * The audio data bytes encoded as specified in `RecognitionConfig`. Note: as with all bytes fields, proto buffers use a pure binary representation, whereas JSON representations use base64.
      */
-    content?: string;
+    content?: string | null;
     /**
      * URI that points to a file that contains audio data bytes as specified in `RecognitionConfig`. The file must not be compressed (for example, gzip). Currently, only Google Cloud Storage URIs are supported, which must be specified in the following format: `gs://bucket_name/object_name` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * Provides information to the recognizer that specifies how to process the request.
@@ -218,11 +218,11 @@ export namespace speech_v1p1beta1 {
     /**
      * *Optional* A list of up to 3 additional [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags, listing possible alternative languages of the supplied audio. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes. If alternative languages are listed, recognition result will contain recognition in the most likely language detected including the main language_code. The recognition result will include the language tag of the language detected in the audio. Note: This feature is only supported for Voice Command and Voice Search use cases and performance may vary for other use cases (e.g., phone call transcription).
      */
-    alternativeLanguageCodes?: string[];
+    alternativeLanguageCodes?: string[] | null;
     /**
      * *Optional* The number of channels in the input audio data. ONLY set this for MULTI-CHANNEL recognition. Valid values for LINEAR16 and FLAC are `1`-`8`. Valid values for OGG_OPUS are &#39;1&#39;-&#39;254&#39;. Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`. If `0` or omitted, defaults to one channel (mono). Note: We only recognize the first channel by default. To perform independent recognition on each channel set `enable_separate_recognition_per_channel` to &#39;true&#39;.
      */
-    audioChannelCount?: number;
+    audioChannelCount?: number | null;
     /**
      * *Optional* Config to enable speaker diarization and set additional parameters to make diarization better suited for your application. Note: When this is enabled, we send all the words from the beginning of the audio for the top alternative in every consecutive STREAMING responses. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time. For non-streaming requests, the diarization results will be provided only in the top alternative of the FINAL SpeechRecognitionResult.
      */
@@ -230,39 +230,39 @@ export namespace speech_v1p1beta1 {
     /**
      * *Optional* If set, specifies the estimated number of speakers in the conversation. Defaults to &#39;2&#39;. Ignored unless enable_speaker_diarization is set to true. Note: Use diarization_config instead.
      */
-    diarizationSpeakerCount?: number;
+    diarizationSpeakerCount?: number | null;
     /**
      * *Optional* If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. Note: This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.
      */
-    enableAutomaticPunctuation?: boolean;
+    enableAutomaticPunctuation?: boolean | null;
     /**
      * This needs to be set to `true` explicitly and `audio_channel_count` &gt; 1 to get each channel recognized separately. The recognition result will contain a `channel_tag` field to state which channel that result belongs to. If this is not true, we will only recognize the first channel. The request is billed cumulatively for all channels recognized: `audio_channel_count` multiplied by the length of the audio.
      */
-    enableSeparateRecognitionPerChannel?: boolean;
+    enableSeparateRecognitionPerChannel?: boolean | null;
     /**
      * *Optional* If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: Use diarization_config instead.
      */
-    enableSpeakerDiarization?: boolean;
+    enableSpeakerDiarization?: boolean | null;
     /**
      * *Optional* If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`.
      */
-    enableWordConfidence?: boolean;
+    enableWordConfidence?: boolean | null;
     /**
      * *Optional* If `true`, the top result includes a list of words and the start and end time offsets (timestamps) for those words. If `false`, no word-level time offset information is returned. The default is `false`.
      */
-    enableWordTimeOffsets?: boolean;
+    enableWordTimeOffsets?: boolean | null;
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages. This field is optional for `FLAC` and `WAV` audio files and required for all other audio formats. For details, see AudioEncoding.
      */
-    encoding?: string;
+    encoding?: string | null;
     /**
      * *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes.
      */
-    languageCode?: string;
+    languageCode?: string | null;
     /**
      * *Optional* Maximum number of recognition hypotheses to be returned. Specifically, the maximum number of `SpeechRecognitionAlternative` messages within each `SpeechRecognitionResult`. The server may return fewer than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of one. If omitted, will return a maximum of one.
      */
-    maxAlternatives?: number;
+    maxAlternatives?: number | null;
     /**
      * *Optional* Metadata regarding this request.
      */
@@ -270,15 +270,15 @@ export namespace speech_v1p1beta1 {
     /**
      * *Optional* Which model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the RecognitionConfig. &lt;table&gt;   &lt;tr&gt;     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that originated from a phone call (typically     recorded at an 8khz sampling rate).&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that originated from from video or includes multiple         speakers. Ideally the audio is recorded at a 16khz or greater         sampling rate. This is a premium model that costs more than the         standard rate.&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that is not one of the specific audio models.         For example, long-form audio. Ideally the audio is high-fidelity,         recorded at a 16khz or greater sampling rate.&lt;/td&gt;   &lt;/tr&gt; &lt;/table&gt;
      */
-    model?: string;
+    model?: string | null;
     /**
      * *Optional* If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities won&#39;t be filtered out.
      */
-    profanityFilter?: boolean;
+    profanityFilter?: boolean | null;
     /**
      * Sample rate in Hertz of the audio data sent in all `RecognitionAudio` messages. Valid values are: 8000-48000. 16000 is optimal. For best results, set the sampling rate of the audio source to 16000 Hz. If that&#39;s not possible, use the native sample rate of the audio source (instead of re-sampling). This field is optional for FLAC and WAV audio files, but is required for all other audio formats. For details, see AudioEncoding.
      */
-    sampleRateHertz?: number;
+    sampleRateHertz?: number | null;
     /**
      * *Optional* array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
      */
@@ -286,7 +286,7 @@ export namespace speech_v1p1beta1 {
     /**
      * *Optional* Set to true to use an enhanced model for speech recognition. If `use_enhanced` is set to true and the `model` field is not set, then an appropriate enhanced model is chosen if an enhanced model exists for the audio.  If `use_enhanced` is true and an enhanced version of the specified model does not exist, then the speech is recognized using the standard version of the specified model.
      */
-    useEnhanced?: boolean;
+    useEnhanced?: boolean | null;
   }
   /**
    * Description of audio data to be recognized.
@@ -295,39 +295,39 @@ export namespace speech_v1p1beta1 {
     /**
      * Description of the content. Eg. &quot;Recordings of federal supreme court hearings from 2012&quot;.
      */
-    audioTopic?: string;
+    audioTopic?: string | null;
     /**
      * The industry vertical to which this speech recognition request most closely applies. This is most indicative of the topics contained in the audio.  Use the 6-digit NAICS code to identify the industry vertical - see https://www.naics.com/search/.
      */
-    industryNaicsCodeOfAudio?: number;
+    industryNaicsCodeOfAudio?: number | null;
     /**
      * The use case most closely describing the audio content to be recognized.
      */
-    interactionType?: string;
+    interactionType?: string | null;
     /**
      * The audio type that most closely describes the audio being recognized.
      */
-    microphoneDistance?: string;
+    microphoneDistance?: string | null;
     /**
      * Obfuscated (privacy-protected) ID of the user, to identify number of unique users using the service.
      */
-    obfuscatedId?: string;
+    obfuscatedId?: string | null;
     /**
      * The original media the speech was recorded on.
      */
-    originalMediaType?: string;
+    originalMediaType?: string | null;
     /**
      * Mime type of the original audio file.  For example `audio/m4a`, `audio/x-alaw-basic`, `audio/mp3`, `audio/3gpp`. A list of possible audio mime types is maintained at http://www.iana.org/assignments/media-types/media-types.xhtml#audio
      */
-    originalMimeType?: string;
+    originalMimeType?: string | null;
     /**
      * The device used to make the recording.  Examples &#39;Nexus 5X&#39; or &#39;Polycom SoundStation IP 6000&#39; or &#39;POTS&#39; or &#39;VoIP&#39; or &#39;Cardioid Microphone&#39;.
      */
-    recordingDeviceName?: string;
+    recordingDeviceName?: string | null;
     /**
      * The type of device the speech was recorded with.
      */
-    recordingDeviceType?: string;
+    recordingDeviceType?: string | null;
   }
   /**
    * The top-level message sent by the client for the `Recognize` method.
@@ -344,7 +344,7 @@ export namespace speech_v1p1beta1 {
     /**
      * *Optional* The name of the model to use for recognition.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * The only message returned to the client by the `Recognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages.
@@ -362,15 +362,15 @@ export namespace speech_v1p1beta1 {
     /**
      * *Optional* If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo.
      */
-    enableSpeakerDiarization?: boolean;
+    enableSpeakerDiarization?: boolean | null;
     /**
      * *Optional* Maximum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 6.
      */
-    maxSpeakerCount?: number;
+    maxSpeakerCount?: number | null;
     /**
      * *Optional* Minimum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 2.
      */
-    minSpeakerCount?: number;
+    minSpeakerCount?: number | null;
   }
   /**
    * Provides &quot;hints&quot; to the speech recognizer to favor specific words and phrases in the results.
@@ -379,11 +379,11 @@ export namespace speech_v1p1beta1 {
     /**
      * Hint Boost. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 and 20. We recommend using a binary search approach to finding the optimal value for your use case.
      */
-    boost?: number;
+    boost?: number | null;
     /**
      * *Optional* A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content).  List items can also be set to classes for groups of words that represent common concepts that occur in natural language. For example, rather than providing phrase hints for every month of the year, using the $MONTH class improves the likelihood of correctly transcribing audio that includes months.
      */
-    phrases?: string[];
+    phrases?: string[] | null;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -392,11 +392,11 @@ export namespace speech_v1p1beta1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Output only. Transcript text representing the words that the user spoke.
      */
-    transcript?: string;
+    transcript?: string | null;
     /**
      * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
@@ -413,11 +413,11 @@ export namespace speech_v1p1beta1 {
     /**
      * For multi-channel audio, this is the channel number corresponding to the recognized result for the audio from that channel. For audio_channel_count = N, its output values can range from &#39;1&#39; to &#39;N&#39;.
      */
-    channelTag?: number;
+    channelTag?: number | null;
     /**
      * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio.
      */
-    languageCode?: string;
+    languageCode?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -426,15 +426,15 @@ export namespace speech_v1p1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Word-specific information for recognized words.
@@ -443,23 +443,23 @@ export namespace speech_v1p1beta1 {
     /**
      * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
-    confidence?: number;
+    confidence?: number | null;
     /**
      * Output only. Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from &#39;1&#39; to diarization_speaker_count. speaker_tag is set if enable_speaker_diarization = &#39;true&#39; and only in the top alternative.
      */
-    speakerTag?: number;
+    speakerTag?: number | null;
     /**
      * Output only. Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * Output only. The word corresponding to this set of information.
      */
-    word?: string;
+    word?: string | null;
   }
 
   export class Resource$Operations {

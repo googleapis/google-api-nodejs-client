@@ -132,23 +132,23 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    blobGeneration?: string;
+    blobGeneration?: string | null;
     /**
      * gdata
      */
-    blobId?: string;
+    blobId?: string | null;
     /**
      * gdata
      */
-    downloadReadHandle?: string;
+    downloadReadHandle?: string | null;
     /**
      * gdata
      */
-    readToken?: string;
+    readToken?: string | null;
     /**
      * gdata
      */
-    uploadMetadataContainer?: string;
+    uploadMetadataContainer?: string | null;
   }
   /**
    * gdata
@@ -157,7 +157,7 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    blobRef?: string;
+    blobRef?: string | null;
     /**
      * gdata
      */
@@ -165,23 +165,23 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    cosmoBinaryReference?: string;
+    cosmoBinaryReference?: string | null;
     /**
      * gdata
      */
-    crc32cHash?: number;
+    crc32cHash?: number | null;
     /**
      * gdata
      */
-    inline?: string;
+    inline?: string | null;
     /**
      * gdata
      */
-    length?: string;
+    length?: string | null;
     /**
      * gdata
      */
-    md5Hash?: string;
+    md5Hash?: string | null;
     /**
      * gdata
      */
@@ -189,15 +189,15 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    path?: string;
+    path?: string | null;
     /**
      * gdata
      */
-    referenceType?: string;
+    referenceType?: string | null;
     /**
      * gdata
      */
-    sha1Hash?: string;
+    sha1Hash?: string | null;
   }
   /**
    * gdata
@@ -206,23 +206,23 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    bestGuess?: string;
+    bestGuess?: string | null;
     /**
      * gdata
      */
-    fromBytes?: string;
+    fromBytes?: string | null;
     /**
      * gdata
      */
-    fromFileName?: string;
+    fromFileName?: string | null;
     /**
      * gdata
      */
-    fromHeader?: string;
+    fromHeader?: string | null;
     /**
      * gdata
      */
-    fromUrlPath?: string;
+    fromUrlPath?: string | null;
   }
   /**
    * gdata
@@ -235,7 +235,7 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    chunkSizeBytes?: string;
+    chunkSizeBytes?: string | null;
     /**
      * gdata
      */
@@ -243,11 +243,11 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    objectSizeBytes?: string;
+    objectSizeBytes?: string | null;
     /**
      * gdata
      */
-    objectVersion?: string;
+    objectVersion?: string | null;
   }
   /**
    * gdata
@@ -273,7 +273,7 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    objectVersion?: string;
+    objectVersion?: string | null;
   }
   /**
    * gdata
@@ -282,7 +282,7 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    objectVersion?: string;
+    objectVersion?: string | null;
     /**
      * gdata
      */
@@ -295,11 +295,11 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    objectSizeBytes?: string;
+    objectSizeBytes?: string | null;
     /**
      * gdata
      */
-    objectVersion?: string;
+    objectVersion?: string | null;
   }
   /**
    * gdata
@@ -308,11 +308,11 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    allowGzipCompression?: boolean;
+    allowGzipCompression?: boolean | null;
     /**
      * gdata
      */
-    ignoreRange?: boolean;
+    ignoreRange?: boolean | null;
   }
   /**
    * gdata
@@ -321,15 +321,15 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    algorithm?: string;
+    algorithm?: string | null;
     /**
      * gdata
      */
-    bigstoreObjectRef?: string;
+    bigstoreObjectRef?: string | null;
     /**
      * gdata
      */
-    blobRef?: string;
+    blobRef?: string | null;
     /**
      * gdata
      */
@@ -341,7 +341,7 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * gdata
      */
@@ -349,11 +349,11 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    cosmoBinaryReference?: string;
+    cosmoBinaryReference?: string | null;
     /**
      * gdata
      */
-    crc32cHash?: number;
+    crc32cHash?: number | null;
     /**
      * gdata
      */
@@ -381,35 +381,35 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    filename?: string;
+    filename?: string | null;
     /**
      * gdata
      */
-    hash?: string;
+    hash?: string | null;
     /**
      * gdata
      */
-    hashVerified?: boolean;
+    hashVerified?: boolean | null;
     /**
      * gdata
      */
-    inline?: string;
+    inline?: string | null;
     /**
      * gdata
      */
-    isPotentialRetry?: boolean;
+    isPotentialRetry?: boolean | null;
     /**
      * gdata
      */
-    length?: string;
+    length?: string | null;
     /**
      * gdata
      */
-    md5Hash?: string;
+    md5Hash?: string | null;
     /**
      * gdata
      */
-    mediaId?: string;
+    mediaId?: string | null;
     /**
      * gdata
      */
@@ -417,27 +417,27 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    path?: string;
+    path?: string | null;
     /**
      * gdata
      */
-    referenceType?: string;
+    referenceType?: string | null;
     /**
      * gdata
      */
-    sha1Hash?: string;
+    sha1Hash?: string | null;
     /**
      * gdata
      */
-    sha256Hash?: string;
+    sha256Hash?: string | null;
     /**
      * gdata
      */
-    timestamp?: string;
+    timestamp?: string | null;
     /**
      * gdata
      */
-    token?: string;
+    token?: string | null;
   }
   /**
    * gdata
@@ -446,15 +446,15 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    bucketName?: string;
+    bucketName?: string | null;
     /**
      * gdata
      */
-    generation?: string;
+    generation?: string | null;
     /**
      * gdata
      */
-    objectName?: string;
+    objectName?: string | null;
   }
   /**
    * A job creating reports of a specific type.
@@ -463,27 +463,27 @@ export namespace youtubereporting_v1 {
     /**
      * The creation date/time of the job.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The date/time when this job will expire/expired. After a job expired, no new reports are generated.
      */
-    expireTime?: string;
+    expireTime?: string | null;
     /**
      * The server-generated ID of the job (max. 40 characters).
      */
-    id?: string;
+    id?: string | null;
     /**
      * The name of the job (max. 100 characters).
      */
-    name?: string;
+    name?: string | null;
     /**
      * The type of reports this job creates. Corresponds to the ID of a ReportType.
      */
-    reportTypeId?: string;
+    reportTypeId?: string | null;
     /**
      * True if this a system-managed job that cannot be modified by the user; otherwise false.
      */
-    systemManaged?: boolean;
+    systemManaged?: boolean | null;
   }
   /**
    * Response message for ReportingService.ListJobs.
@@ -496,7 +496,7 @@ export namespace youtubereporting_v1 {
     /**
      * A token to retrieve next page of results. Pass this value in the ListJobsRequest.page_token field in the subsequent call to `ListJobs` method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * Response message for ReportingService.ListReports.
@@ -505,7 +505,7 @@ export namespace youtubereporting_v1 {
     /**
      * A token to retrieve next page of results. Pass this value in the ListReportsRequest.page_token field in the subsequent call to `ListReports` method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of report types.
      */
@@ -518,7 +518,7 @@ export namespace youtubereporting_v1 {
     /**
      * A token to retrieve next page of results. Pass this value in the ListReportTypesRequest.page_token field in the subsequent call to `ListReportTypes` method to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The list of report types.
      */
@@ -531,31 +531,31 @@ export namespace youtubereporting_v1 {
     /**
      * The date/time when this report was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The URL from which the report can be downloaded (max. 1000 characters).
      */
-    downloadUrl?: string;
+    downloadUrl?: string | null;
     /**
      * The end of the time period that the report instance covers. The value is exclusive.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The server-generated ID of the report.
      */
-    id?: string;
+    id?: string | null;
     /**
      * The date/time when the job this report belongs to will expire/expired.
      */
-    jobExpireTime?: string;
+    jobExpireTime?: string | null;
     /**
      * The ID of the job that created this report.
      */
-    jobId?: string;
+    jobId?: string | null;
     /**
      * The start of the time period that the report instance covers. The value is inclusive.
      */
-    startTime?: string;
+    startTime?: string | null;
   }
   /**
    * A report type.
@@ -564,19 +564,19 @@ export namespace youtubereporting_v1 {
     /**
      * The date/time when this report type was/will be deprecated.
      */
-    deprecateTime?: string;
+    deprecateTime?: string | null;
     /**
      * The ID of the report type (max. 100 characters).
      */
-    id?: string;
+    id?: string | null;
     /**
      * The name of the report type (max. 100 characters).
      */
-    name?: string;
+    name?: string | null;
     /**
      * True if this a system-managed report type; otherwise false. Reporting jobs for system-managed report types are created automatically and can thus not be used in the `CreateJob` method.
      */
-    systemManaged?: boolean;
+    systemManaged?: boolean | null;
   }
 
   export class Resource$Jobs {

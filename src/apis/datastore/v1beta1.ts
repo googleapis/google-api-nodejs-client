@@ -124,23 +124,23 @@ export namespace datastore_v1beta1 {
     /**
      * The time the operation ended, either successfully or otherwise.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The client-assigned labels which were provided when the operation was created. May also include additional labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The type of the operation. Can be used as a filter in ListOperationsRequest.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * The time that work began on the operation.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The current state of the Operation.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage:  Entire project:   kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:   kinds=[], namespace_ids=[&#39;Baz&#39;]
@@ -149,11 +149,11 @@ export namespace datastore_v1beta1 {
     /**
      * If empty, then this represents all kinds.
      */
-    kinds?: string[];
+    kinds?: string[] | null;
     /**
      * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
      */
-    namespaceIds?: string[];
+    namespaceIds?: string[] | null;
   }
   /**
    * Metadata for ExportEntities operations.
@@ -170,7 +170,7 @@ export namespace datastore_v1beta1 {
     /**
      * Location for the export metadata and data files. This will be the same value as the google.datastore.admin.v1beta1.ExportEntitiesRequest.output_url_prefix field. The final output location is provided in google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
      */
-    outputUrlPrefix?: string;
+    outputUrlPrefix?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -191,11 +191,11 @@ export namespace datastore_v1beta1 {
     /**
      * Client-assigned labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Location for the export metadata and data files.  The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So output_url_prefix should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name of the Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace). For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  The resulting files will be nested deeper than the specified URL prefix. The final output URL will be provided in the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url field. That value should be used for subsequent ImportEntities operations.  By nesting the data files deeper, the same Cloud Storage bucket can be used in multiple ExportEntities operations without conflict.
      */
-    outputUrlPrefix?: string;
+    outputUrlPrefix?: string | null;
   }
   /**
    * The response for google.datastore.admin.v1beta1.DatastoreAdmin.ExportEntities.
@@ -204,7 +204,7 @@ export namespace datastore_v1beta1 {
     /**
      * Location of the output metadata file. This can be used to begin an import into Cloud Datastore (this project or another project). See google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url. Only present if the operation completed successfully.
      */
-    outputUrl?: string;
+    outputUrl?: string | null;
   }
   /**
    * Metadata for ImportEntities operations.
@@ -221,7 +221,7 @@ export namespace datastore_v1beta1 {
     /**
      * The location of the import metadata file. This will be the same value as the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url field.
      */
-    inputUrl?: string;
+    inputUrl?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -242,11 +242,11 @@ export namespace datastore_v1beta1 {
     /**
      * The full resource URL of the external storage location. Currently, only Google Cloud Storage is supported. So input_url should be of the form: `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is an optional Cloud Storage namespace path (this is not a Cloud Datastore namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written by the ExportEntities operation. For more information about Cloud Storage namespace paths, see [Object name considerations](https://cloud.google.com/storage/docs/naming#object-considerations).  For more information, see google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
      */
-    inputUrl?: string;
+    inputUrl?: string | null;
     /**
      * Client-assigned labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
   }
   /**
    * Measures the progress of a particular metric.
@@ -255,11 +255,11 @@ export namespace datastore_v1beta1 {
     /**
      * The amount of work that has been completed. Note that this may be greater than work_estimated.
      */
-    workCompleted?: string;
+    workCompleted?: string | null;
     /**
      * An estimate of how much work needs to be performed. May be zero if the work estimate is unavailable.
      */
-    workEstimated?: string;
+    workEstimated?: string | null;
   }
   /**
    * Metadata common to all Datastore Admin operations.
@@ -268,23 +268,23 @@ export namespace datastore_v1beta1 {
     /**
      * The time the operation ended, either successfully or otherwise.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * The client-assigned labels which were provided when the operation was created. May also include additional labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The type of the operation. Can be used as a filter in ListOperationsRequest.
      */
-    operationType?: string;
+    operationType?: string | null;
     /**
      * The time that work began on the operation.
      */
-    startTime?: string;
+    startTime?: string | null;
     /**
      * The current state of the Operation.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage:  Entire project:   kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:   kinds=[], namespace_ids=[&#39;Baz&#39;]
@@ -293,11 +293,11 @@ export namespace datastore_v1beta1 {
     /**
      * If empty, then this represents all kinds.
      */
-    kinds?: string[];
+    kinds?: string[] | null;
     /**
      * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces.  An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
      */
-    namespaceIds?: string[];
+    namespaceIds?: string[] | null;
   }
   /**
    * Metadata for ExportEntities operations.
@@ -314,7 +314,7 @@ export namespace datastore_v1beta1 {
     /**
      * Location for the export metadata and data files. This will be the same value as the google.datastore.admin.v1.ExportEntitiesRequest.output_url_prefix field. The final output location is provided in google.datastore.admin.v1.ExportEntitiesResponse.output_url.
      */
-    outputUrlPrefix?: string;
+    outputUrlPrefix?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -331,7 +331,7 @@ export namespace datastore_v1beta1 {
     /**
      * Location of the output metadata file. This can be used to begin an import into Cloud Datastore (this project or another project). See google.datastore.admin.v1.ImportEntitiesRequest.input_url. Only present if the operation completed successfully.
      */
-    outputUrl?: string;
+    outputUrl?: string | null;
   }
   /**
    * Metadata for ImportEntities operations.
@@ -348,7 +348,7 @@ export namespace datastore_v1beta1 {
     /**
      * The location of the import metadata file. This will be the same value as the google.datastore.admin.v1.ExportEntitiesResponse.output_url field.
      */
-    inputUrl?: string;
+    inputUrl?: string | null;
     /**
      * An estimate of the number of bytes processed.
      */
@@ -369,7 +369,7 @@ export namespace datastore_v1beta1 {
     /**
      * The index resource ID that this operation is acting on.
      */
-    indexId?: string;
+    indexId?: string | null;
     /**
      * An estimate of the number of entities processed.
      */
@@ -382,11 +382,11 @@ export namespace datastore_v1beta1 {
     /**
      * The amount of work that has been completed. Note that this may be greater than work_estimated.
      */
-    workCompleted?: string;
+    workCompleted?: string | null;
     /**
      * An estimate of how much work needs to be performed. May be zero if the work estimate is unavailable.
      */
-    workEstimated?: string;
+    workEstimated?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -395,7 +395,7 @@ export namespace datastore_v1beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -403,15 +403,15 @@ export namespace datastore_v1beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -420,15 +420,15 @@ export namespace datastore_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Projects {

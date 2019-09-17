@@ -126,11 +126,11 @@ export namespace pubsub_v1beta1a {
     /**
      * The acknowledgment ID for the message being acknowledged. This was returned by the Pub/Sub system in the Pull response.
      */
-    ackId?: string[];
+    ackId?: string[] | null;
     /**
      * The subscription whose message is being acknowledged.
      */
-    subscription?: string;
+    subscription?: string | null;
   }
   /**
    * An empty message that you can re-use to avoid defining duplicated empty messages in your project. A typical example is to use it as argument or the return value of a service API. For instance:    service Foo {     rpc Bar (proto2.Empty) returns (proto2.Empty) { };   };  BEGIN GOOGLE-INTERNAL The difference between this one and net/rpc/empty-message.proto is that 1) The generated message here is in proto2 C++ API. 2) The proto2.Empty has minimum dependencies    (no message_set or net/rpc dependencies) END GOOGLE-INTERNAL
@@ -143,15 +143,15 @@ export namespace pubsub_v1beta1a {
     /**
      * The key of a label is a syntactically valid URL (as per RFC 1738) with the &quot;scheme&quot; and initial slashes omitted and with the additional restrictions noted below.  Each key should be globally unique.  The &quot;host&quot; portion is called the &quot;namespace&quot; and is not necessarily resolvable to a network endpoint.  Instead, the namespace indicates what system or entity defines the semantics of the label.  Namespaces do not restrict the set of objects to which a label may be associated.  Keys are defined by the following grammar:    key          = hostname &quot;/&quot; kpath   kpath        = ksegment *[ &quot;/&quot; ksegment ]   ksegment     = alphadigit | *[ alphadigit | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; ]  where &quot;hostname&quot; and &quot;alphadigit&quot; are defined as in RFC 1738.  Example key:   spanner.google.com/universe
      */
-    key?: string;
+    key?: string | null;
     /**
      * An integer value.
      */
-    numValue?: string;
+    numValue?: string | null;
     /**
      * A string value.
      */
-    strValue?: string;
+    strValue?: string | null;
   }
   /**
    * Response for the ListSubscriptions method.
@@ -160,7 +160,7 @@ export namespace pubsub_v1beta1a {
     /**
      * If not empty, indicates that there are more subscriptions that match the request and this value should be passed to the next &lt;code&gt;ListSubscriptionsRequest&lt;/code&gt; to continue.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The subscriptions that match the request.
      */
@@ -173,7 +173,7 @@ export namespace pubsub_v1beta1a {
     /**
      * If not empty, indicates that there are more topics that match the request, and this value should be passed to the next &lt;code&gt;ListTopicsRequest&lt;/code&gt; to continue.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The resulting topics.
      */
@@ -186,19 +186,19 @@ export namespace pubsub_v1beta1a {
     /**
      * The new ack deadline with respect to the time this request was sent to the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new ack deadline will expire 10 seconds after the ModifyAckDeadline call was made. Specifying zero may immediately make the message available for another pull request.
      */
-    ackDeadlineSeconds?: number;
+    ackDeadlineSeconds?: number | null;
     /**
      * The acknowledgment ID. Either this or ack_ids must be populated, not both.
      */
-    ackId?: string;
+    ackId?: string | null;
     /**
      * List of acknowledgment IDs. Either this field or ack_id should be populated, not both.
      */
-    ackIds?: string[];
+    ackIds?: string[] | null;
     /**
      * Next Index: 5 The name of the subscription from which messages are being pulled.
      */
-    subscription?: string;
+    subscription?: string | null;
   }
   /**
    * Request for the ModifyPushConfig method.
@@ -211,7 +211,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The name of the subscription.
      */
-    subscription?: string;
+    subscription?: string | null;
   }
   /**
    * Request for the PublishBatch method.
@@ -224,7 +224,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The messages in the request will be published on this topic.
      */
-    topic?: string;
+    topic?: string | null;
   }
   /**
    * Response for the PublishBatch method.
@@ -233,7 +233,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.
      */
-    messageIds?: string[];
+    messageIds?: string[] | null;
   }
   /**
    * Request for the Publish method.
@@ -246,7 +246,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The message in the request will be published on this topic.
      */
-    topic?: string;
+    topic?: string | null;
   }
   /**
    * An event indicating a received message or truncation event.
@@ -255,7 +255,7 @@ export namespace pubsub_v1beta1a {
     /**
      * Indicates that this subscription has been deleted. (Note that pull subscribers will always receive NOT_FOUND in response in their pull request on the subscription, rather than seeing this boolean.)
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * A received message.
      */
@@ -263,11 +263,11 @@ export namespace pubsub_v1beta1a {
     /**
      * The subscription that received the event.
      */
-    subscription?: string;
+    subscription?: string | null;
     /**
      * Indicates that this subscription has been truncated.
      */
-    truncated?: boolean;
+    truncated?: boolean | null;
   }
   /**
    * A message data and its labels.
@@ -276,7 +276,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The message payload.
      */
-    data?: string;
+    data?: string | null;
     /**
      * Optional list of labels for this message. Keys in this collection must be unique.
      */
@@ -284,11 +284,11 @@ export namespace pubsub_v1beta1a {
     /**
      * ID of this message assigned by the server at publication time. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a PubsubMessage via a Pull call or a push delivery. It must not be populated by a publisher in a Publish call.
      */
-    messageId?: string;
+    messageId?: string | null;
     /**
      * The time at which the message was published. The time is milliseconds since the UNIX epoch.
      */
-    publishTime?: string;
+    publishTime?: string | null;
   }
   /**
    * Request for the PullBatch method.
@@ -297,15 +297,15 @@ export namespace pubsub_v1beta1a {
     /**
      * The maximum number of PubsubEvents returned for this request. The Pub/Sub system may return fewer than the number of events specified.
      */
-    maxEvents?: number;
+    maxEvents?: number | null;
     /**
      * If this is specified as true the system will respond immediately even if it is not able to return a message in the Pull response. Otherwise the system is allowed to wait until at least one message is available rather than returning no messages. The client may cancel the request if it does not wish to wait any longer for the response.
      */
-    returnImmediately?: boolean;
+    returnImmediately?: boolean | null;
     /**
      * The subscription from which messages should be pulled.
      */
-    subscription?: string;
+    subscription?: string | null;
   }
   /**
    * Response for the PullBatch method.
@@ -323,11 +323,11 @@ export namespace pubsub_v1beta1a {
     /**
      * If this is specified as true the system will respond immediately even if it is not able to return a message in the Pull response. Otherwise the system is allowed to wait until at least one message is available rather than returning FAILED_PRECONDITION. The client may cancel the request if it does not wish to wait any longer for the response.
      */
-    returnImmediately?: boolean;
+    returnImmediately?: boolean | null;
     /**
      * The subscription from which a message should be pulled.
      */
-    subscription?: string;
+    subscription?: string | null;
   }
   /**
    * Either a &lt;code&gt;PubsubMessage&lt;/code&gt; or a truncation event. One of these two must be populated.
@@ -336,7 +336,7 @@ export namespace pubsub_v1beta1a {
     /**
      * This ID must be used to acknowledge the received event or message.
      */
-    ackId?: string;
+    ackId?: string | null;
     /**
      * A pubsub message or truncation event.
      */
@@ -349,7 +349,7 @@ export namespace pubsub_v1beta1a {
     /**
      * A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
      */
-    pushEndpoint?: string;
+    pushEndpoint?: string | null;
   }
   /**
    * A subscription resource.
@@ -358,11 +358,11 @@ export namespace pubsub_v1beta1a {
     /**
      * For either push or pull delivery, the value is the maximum time after a subscriber receives a message before the subscriber should acknowledge or Nack the message. If the Ack deadline for a message passes without an Ack or a Nack, the Pub/Sub system will eventually redeliver the message. If a subscriber acknowledges after the deadline, the Pub/Sub system may accept the Ack, but it is possible that the message has been already delivered again. Multiple Acks to the message are allowed and will succeed.  For push delivery, this value is used to set the request timeout for the call to the push endpoint.  For pull delivery, this value is used as the initial value for the Ack deadline. It may be overridden for each message using its corresponding ack_id with &lt;code&gt;ModifyAckDeadline&lt;/code&gt;. While a message is outstanding (i.e. it has been delivered to a pull subscriber and the subscriber has not yet Acked or Nacked), the Pub/Sub system will not deliver that message to another pull subscriber (on a best-effort basis).
      */
-    ackDeadlineSeconds?: number;
+    ackDeadlineSeconds?: number | null;
     /**
      * Name of the subscription.
      */
-    name?: string;
+    name?: string | null;
     /**
      * If push delivery is used with this subscription, this field is used to configure it.
      */
@@ -370,7 +370,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The name of the topic from which this subscription is receiving messages.
      */
-    topic?: string;
+    topic?: string | null;
   }
   /**
    * A topic resource.
@@ -379,7 +379,7 @@ export namespace pubsub_v1beta1a {
     /**
      * Name of the topic.
      */
-    name?: string;
+    name?: string | null;
   }
 
   export class Resource$Subscriptions {

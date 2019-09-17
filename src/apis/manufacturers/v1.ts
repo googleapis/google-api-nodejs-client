@@ -128,11 +128,11 @@ export namespace manufacturers_v1 {
     /**
      * The target age group of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#agegroup.
      */
-    ageGroup?: string;
+    ageGroup?: string | null;
     /**
      * The brand name of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#brand.
      */
-    brand?: string;
+    brand?: string | null;
     /**
      * The capacity of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#capacity.
      */
@@ -140,7 +140,7 @@ export namespace manufacturers_v1 {
     /**
      * The color of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#color.
      */
-    color?: string;
+    color?: string | null;
     /**
      * The count of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#count.
      */
@@ -148,15 +148,15 @@ export namespace manufacturers_v1 {
     /**
      * The description of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#description.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The disclosure date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#disclosure.
      */
-    disclosureDate?: string;
+    disclosureDate?: string | null;
     /**
      * A list of excluded destinations.
      */
-    excludedDestination?: string[];
+    excludedDestination?: string[] | null;
     /**
      * The rich format description of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#featuredesc.
      */
@@ -164,19 +164,19 @@ export namespace manufacturers_v1 {
     /**
      * The flavor of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#flavor.
      */
-    flavor?: string;
+    flavor?: string | null;
     /**
      * The format of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#format.
      */
-    format?: string;
+    format?: string | null;
     /**
      * The target gender of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#gender.
      */
-    gender?: string;
+    gender?: string | null;
     /**
      * The Global Trade Item Number (GTIN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#gtin.
      */
-    gtin?: string[];
+    gtin?: string[] | null;
     /**
      * The image of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#image.
      */
@@ -184,23 +184,23 @@ export namespace manufacturers_v1 {
     /**
      * A list of included destinations.
      */
-    includedDestination?: string[];
+    includedDestination?: string[] | null;
     /**
      * The item group id of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#itemgroupid.
      */
-    itemGroupId?: string;
+    itemGroupId?: string | null;
     /**
      * The material of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#material.
      */
-    material?: string;
+    material?: string | null;
     /**
      * The Manufacturer Part Number (MPN) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#mpn.
      */
-    mpn?: string;
+    mpn?: string | null;
     /**
      * The pattern of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#pattern.
      */
-    pattern?: string;
+    pattern?: string | null;
     /**
      * The details of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.
      */
@@ -208,39 +208,39 @@ export namespace manufacturers_v1 {
     /**
      * The name of the group of products related to the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productline.
      */
-    productLine?: string;
+    productLine?: string | null;
     /**
      * The canonical name of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productname.
      */
-    productName?: string;
+    productName?: string | null;
     /**
      * The URL of the detail page of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productpage.
      */
-    productPageUrl?: string;
+    productPageUrl?: string | null;
     /**
      * The type or category of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#producttype.
      */
-    productType?: string[];
+    productType?: string[] | null;
     /**
      * The release date of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#release.
      */
-    releaseDate?: string;
+    releaseDate?: string | null;
     /**
      * The scent of the product. For more information, see  https://support.google.com/manufacturers/answer/6124116#scent.
      */
-    scent?: string;
+    scent?: string | null;
     /**
      * The size of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#size.
      */
-    size?: string;
+    size?: string | null;
     /**
      * The size system of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#sizesystem.
      */
-    sizeSystem?: string;
+    sizeSystem?: string | null;
     /**
      * The size type of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#sizetype.
      */
-    sizeType?: string;
+    sizeType?: string | null;
     /**
      * The suggested retail price (MSRP) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#price.
      */
@@ -248,19 +248,19 @@ export namespace manufacturers_v1 {
     /**
      * The target client id. Should only be used in the accounts of the data partners.
      */
-    targetClientId?: string;
+    targetClientId?: string | null;
     /**
      * The theme of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#theme.
      */
-    theme?: string;
+    theme?: string | null;
     /**
      * The title of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#title.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The videos of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#video.
      */
-    videoLink?: string[];
+    videoLink?: string[] | null;
   }
   /**
    * The capacity of a product. For more information, see https://support.google.com/manufacturers/answer/6124116#capacity.
@@ -269,11 +269,11 @@ export namespace manufacturers_v1 {
     /**
      * The unit of the capacity, i.e., MB, GB, or TB.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * The numeric value of the capacity.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * The number of products in a single package. For more information, see https://support.google.com/manufacturers/answer/6124116#count.
@@ -282,11 +282,11 @@ export namespace manufacturers_v1 {
     /**
      * The unit in which these products are counted.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * The numeric value of the number of products in a package.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * The destination status.
@@ -295,11 +295,11 @@ export namespace manufacturers_v1 {
     /**
      * The name of the destination.
      */
-    destination?: string;
+    destination?: string | null;
     /**
      * The status of the destination.
      */
-    status?: string;
+    status?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -312,7 +312,7 @@ export namespace manufacturers_v1 {
     /**
      * A short description of the feature.
      */
-    headline?: string;
+    headline?: string | null;
     /**
      * An optional image describing the feature.
      */
@@ -320,7 +320,7 @@ export namespace manufacturers_v1 {
     /**
      * A detailed description of the feature.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * An image.
@@ -329,15 +329,15 @@ export namespace manufacturers_v1 {
     /**
      * The URL of the image. For crawled images, this is the provided URL. For uploaded images, this is a serving URL from Google if the image has been processed successfully.
      */
-    imageUrl?: string;
+    imageUrl?: string | null;
     /**
      * The status of the image. @OutputOnly
      */
-    status?: string;
+    status?: string | null;
     /**
      * The type of the image, i.e., crawled or uploaded. @OutputOnly
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Product issue.
@@ -346,41 +346,41 @@ export namespace manufacturers_v1 {
     /**
      * If present, the attribute that triggered the issue. For more information about attributes, see https://support.google.com/manufacturers/answer/6124116.
      */
-    attribute?: string;
+    attribute?: string | null;
     /**
      * Longer description of the issue focused on how to resolve it.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The destination this issue applies to.
      */
-    destination?: string;
+    destination?: string | null;
     /**
      * What needs to happen to resolve the issue.
      */
-    resolution?: string;
+    resolution?: string | null;
     /**
      * The severity of the issue.
      */
-    severity?: string;
+    severity?: string | null;
     /**
      * The timestamp when this issue appeared.
      */
-    timestamp?: string;
+    timestamp?: string | null;
     /**
      * Short title describing the nature of the issue.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The server-generated type of the issue, for example, “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
      */
-    type?: string;
+    type?: string | null;
   }
   export interface Schema$ListProductsResponse {
     /**
      * The token for the retrieval of the next page of product statuses.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * List of the products.
      */
@@ -393,11 +393,11 @@ export namespace manufacturers_v1 {
     /**
      * The numeric value of the price.
      */
-    amount?: string;
+    amount?: string | null;
     /**
      * The currency in which the price is denoted.
      */
-    currency?: string;
+    currency?: string | null;
   }
   /**
    * Product data.
@@ -410,7 +410,7 @@ export namespace manufacturers_v1 {
     /**
      * The content language of the product as a two-letter ISO 639-1 language code (for example, en).
      */
-    contentLanguage?: string;
+    contentLanguage?: string | null;
     /**
      * The status of the destinations.
      */
@@ -422,19 +422,19 @@ export namespace manufacturers_v1 {
     /**
      * Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
      */
-    parent?: string;
+    parent?: string | null;
     /**
      * The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      */
-    productId?: string;
+    productId?: string | null;
     /**
      * The target country of the product as a CLDR territory code (for example, US).
      */
-    targetCountry?: string;
+    targetCountry?: string | null;
   }
   /**
    * A product detail of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.
@@ -443,15 +443,15 @@ export namespace manufacturers_v1 {
     /**
      * The name of the attribute.
      */
-    attributeName?: string;
+    attributeName?: string | null;
     /**
      * The value of the attribute.
      */
-    attributeValue?: string;
+    attributeValue?: string | null;
     /**
      * A short section name that can be reused between multiple product details.
      */
-    sectionName?: string;
+    sectionName?: string | null;
   }
 
   export class Resource$Accounts {

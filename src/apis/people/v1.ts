@@ -126,27 +126,27 @@ export namespace people_v1 {
     /**
      * The city of the address.
      */
-    city?: string;
+    city?: string | null;
     /**
      * The country of the address.
      */
-    country?: string;
+    country?: string | null;
     /**
      * The [ISO 3166-1 alpha-2](http://www.iso.org/iso/country_codes.htm) country code of the address.
      */
-    countryCode?: string;
+    countryCode?: string | null;
     /**
      * The extended address of the address; for example, the apartment number.
      */
-    extendedAddress?: string;
+    extendedAddress?: string | null;
     /**
      * The read-only type of the address translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * The unstructured value of the address. If this is not set by the user it will be automatically constructed from structured values.
      */
-    formattedValue?: string;
+    formattedValue?: string | null;
     /**
      * Metadata about the address.
      */
@@ -154,23 +154,23 @@ export namespace people_v1 {
     /**
      * The P.O. box of the address.
      */
-    poBox?: string;
+    poBox?: string | null;
     /**
      * The postal code of the address.
      */
-    postalCode?: string;
+    postalCode?: string | null;
     /**
      * The region of the address; for example, the state or province.
      */
-    region?: string;
+    region?: string | null;
     /**
      * The street address.
      */
-    streetAddress?: string;
+    streetAddress?: string | null;
     /**
      * The type of the address. The type can be custom or one of these predefined values:  * `home` * `work` * `other`
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A person&#39;s age range.
@@ -179,7 +179,7 @@ export namespace people_v1 {
     /**
      * The age range.
      */
-    ageRange?: string;
+    ageRange?: string | null;
     /**
      * Metadata about the age range.
      */
@@ -201,7 +201,7 @@ export namespace people_v1 {
     /**
      * The content type of the biography.
      */
-    contentType?: string;
+    contentType?: string | null;
     /**
      * Metadata about the biography.
      */
@@ -209,7 +209,7 @@ export namespace people_v1 {
     /**
      * The short biography.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A person&#39;s birthday. At least one of the `date` and `text` fields are specified. The `date` and `text` fields typically represent the same date, but are not guaranteed to.
@@ -226,7 +226,7 @@ export namespace people_v1 {
     /**
      * A free-form string representing the user&#39;s birthday.
      */
-    text?: string;
+    text?: string | null;
   }
   /**
    * A person&#39;s bragging rights.
@@ -239,7 +239,7 @@ export namespace people_v1 {
     /**
      * The bragging rights; for example, `climbed mount everest`.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A contact group.
@@ -248,23 +248,23 @@ export namespace people_v1 {
     /**
      * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The read-only name translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale for system groups names. Group names set by the owner are the same as name.
      */
-    formattedName?: string;
+    formattedName?: string | null;
     /**
      * The read-only contact group type.
      */
-    groupType?: string;
+    groupType?: string | null;
     /**
      * The total number of contacts in the group irrespective of max members in specified in the request.
      */
-    memberCount?: number;
+    memberCount?: number | null;
     /**
      * The list of contact person resource names that are members of the contact group. The field is not populated for LIST requests and can only be updated through the [ModifyContactGroupMembers](/people/api/rest/v1/contactgroups/members/modify).
      */
-    memberResourceNames?: string[];
+    memberResourceNames?: string[] | null;
     /**
      * Metadata about the contact group.
      */
@@ -272,11 +272,11 @@ export namespace people_v1 {
     /**
      * The contact group name set by the group owner or a system provided name for system groups.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;.
      */
-    resourceName?: string;
+    resourceName?: string | null;
   }
   /**
    * A Google contact group membership.
@@ -285,11 +285,11 @@ export namespace people_v1 {
     /**
      * The read-only contact group ID for the contact group membership.
      */
-    contactGroupId?: string;
+    contactGroupId?: string | null;
     /**
      * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;. Only contact_group_resource_name can be used for modifying memberships. Any contact group membership can be removed, but only user group or &quot;myContacts&quot; or &quot;starred&quot; system groups memberships can be added. A contact must always have at least one contact group membership.
      */
-    contactGroupResourceName?: string;
+    contactGroupResourceName?: string | null;
   }
   /**
    * The read-only metadata about a contact group.
@@ -298,11 +298,11 @@ export namespace people_v1 {
     /**
      * True if the contact group resource has been deleted. Populated only for [`ListContactGroups`](/people/api/rest/v1/contactgroups/list) requests that include a sync token.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * The time the group was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The response for a specific contact group.
@@ -315,7 +315,7 @@ export namespace people_v1 {
     /**
      * The original requested resource name.
      */
-    requestedResourceName?: string;
+    requestedResourceName?: string | null;
     /**
      * The status of the response.
      */
@@ -328,7 +328,7 @@ export namespace people_v1 {
     /**
      * True if the cover photo is the default cover photo; false if the cover photo is a user-provided cover photo.
      */
-    default?: boolean;
+    default?: boolean | null;
     /**
      * Metadata about the cover photo.
      */
@@ -336,7 +336,7 @@ export namespace people_v1 {
     /**
      * The URL of the cover photo.
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * A request to create a new contact group.
@@ -348,21 +348,21 @@ export namespace people_v1 {
     contactGroup?: Schema$ContactGroup;
   }
   /**
-   * Represents a whole calendar date, for example a date of birth. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the [Proleptic Gregorian Calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar). The day may be 0 to represent a year and month where the day is not significant. The year may be 0 to represent a month and day independent of year; for example, anniversary date.
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
      */
-    day?: number;
+    day?: number | null;
     /**
      * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
      */
-    month?: number;
+    month?: number | null;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
      */
-    year?: number;
+    year?: number | null;
   }
   /**
    * The response for deleteing a contact&#39;s photo.
@@ -380,7 +380,7 @@ export namespace people_v1 {
     /**
      * True if the person is in the viewer&#39;s G Suite domain.
      */
-    inViewerDomain?: boolean;
+    inViewerDomain?: boolean | null;
   }
   /**
    * A person&#39;s email address.
@@ -389,11 +389,11 @@ export namespace people_v1 {
     /**
      * The display name of the email.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The read-only type of the email address translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * Metadata about the email address.
      */
@@ -401,11 +401,11 @@ export namespace people_v1 {
     /**
      * The type of the email address. The type can be custom or one of these predefined values:  * `home` * `work` * `other`
      */
-    type?: string;
+    type?: string | null;
     /**
      * The email address.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -422,7 +422,7 @@ export namespace people_v1 {
     /**
      * The read-only type of the event translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * Metadata about the event.
      */
@@ -430,7 +430,7 @@ export namespace people_v1 {
     /**
      * The type of the event. The type can be custom or one of these predefined values:  * `anniversary` * `other`
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Metadata about a field.
@@ -439,7 +439,7 @@ export namespace people_v1 {
     /**
      * True if the field is the primary field; false if the field is a secondary field.
      */
-    primary?: boolean;
+    primary?: boolean | null;
     /**
      * The source of the field.
      */
@@ -447,7 +447,7 @@ export namespace people_v1 {
     /**
      * True if the field is verified; false if the field is unverified. A verified field is typically a name, email address, phone number, or website that has been confirmed to be owned by the person.
      */
-    verified?: boolean;
+    verified?: boolean | null;
   }
   /**
    * A person&#39;s gender.
@@ -456,7 +456,7 @@ export namespace people_v1 {
     /**
      * The read-only value of the gender translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedValue?: string;
+    formattedValue?: string | null;
     /**
      * Metadata about the gender.
      */
@@ -464,7 +464,7 @@ export namespace people_v1 {
     /**
      * The gender for the person. The gender can be custom or one of these predefined values:  * `male` * `female` * `other` * `unknown`
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$GetPeopleResponse {
     /**
@@ -479,11 +479,11 @@ export namespace people_v1 {
     /**
      * The read-only protocol of the IM client formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedProtocol?: string;
+    formattedProtocol?: string | null;
     /**
      * The read-only type of the IM client translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * Metadata about the IM client.
      */
@@ -491,15 +491,15 @@ export namespace people_v1 {
     /**
      * The protocol of the IM client. The protocol can be custom or one of these predefined values:  * `aim` * `msn` * `yahoo` * `skype` * `qq` * `googleTalk` * `icq` * `jabber` * `netMeeting`
      */
-    protocol?: string;
+    protocol?: string | null;
     /**
      * The type of the IM client. The type can be custom or one of these predefined values:  * `home` * `work` * `other`
      */
-    type?: string;
+    type?: string | null;
     /**
      * The user name used in the IM client.
      */
-    username?: string;
+    username?: string | null;
   }
   /**
    * One of the person&#39;s interests.
@@ -512,7 +512,7 @@ export namespace people_v1 {
     /**
      * The interest; for example, `stargazing`.
      */
-    value?: string;
+    value?: string | null;
   }
   export interface Schema$ListConnectionsResponse {
     /**
@@ -522,19 +522,19 @@ export namespace people_v1 {
     /**
      * The token that can be used to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The token that can be used to retrieve changes since the last request.
      */
-    nextSyncToken?: string;
+    nextSyncToken?: string | null;
     /**
      * The total number of items in the list without pagination.
      */
-    totalItems?: number;
+    totalItems?: number | null;
     /**
      * **DEPRECATED** (Please use totalItems) The total number of people in the list without pagination.
      */
-    totalPeople?: number;
+    totalPeople?: number | null;
   }
   /**
    * The response to a list contact groups request.
@@ -547,15 +547,15 @@ export namespace people_v1 {
     /**
      * The token that can be used to retrieve the next page of results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * The token that can be used to retrieve changes since the last request.
      */
-    nextSyncToken?: string;
+    nextSyncToken?: string | null;
     /**
      * The total number of items in the list without pagination.
      */
-    totalItems?: number;
+    totalItems?: number | null;
   }
   /**
    * A person&#39;s locale preference.
@@ -568,7 +568,7 @@ export namespace people_v1 {
     /**
      * The well-formed [IETF BCP 47](https://tools.ietf.org/html/bcp47) language tag representing the locale.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A person&#39;s membership in a group. Only contact group memberships can be modified.
@@ -594,11 +594,11 @@ export namespace people_v1 {
     /**
      * The resource names of the contact people to add in the form of in the form `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
-    resourceNamesToAdd?: string[];
+    resourceNamesToAdd?: string[] | null;
     /**
      * The resource names of the contact people to remove in the form of in the form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
-    resourceNamesToRemove?: string[];
+    resourceNamesToRemove?: string[] | null;
   }
   /**
    * The response to a modify contact group members request.
@@ -607,11 +607,11 @@ export namespace people_v1 {
     /**
      * The contact people resource names that cannot be removed from their last contact group.
      */
-    canNotRemoveLastContactGroupResourceNames?: string[];
+    canNotRemoveLastContactGroupResourceNames?: string[] | null;
     /**
      * The contact people resource names that were not found.
      */
-    notFoundResourceNames?: string[];
+    notFoundResourceNames?: string[] | null;
   }
   /**
    * A person&#39;s name. If the name is a mononym, the family name is empty.
@@ -620,27 +620,27 @@ export namespace people_v1 {
     /**
      * The read-only display name formatted according to the locale specified by the viewer&#39;s account or the `Accept-Language` HTTP header.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The read-only display name with the last name first formatted according to the locale specified by the viewer&#39;s account or the `Accept-Language` HTTP header.
      */
-    displayNameLastFirst?: string;
+    displayNameLastFirst?: string | null;
     /**
      * The family name.
      */
-    familyName?: string;
+    familyName?: string | null;
     /**
      * The given name.
      */
-    givenName?: string;
+    givenName?: string | null;
     /**
      * The honorific prefixes, such as `Mrs.` or `Dr.`
      */
-    honorificPrefix?: string;
+    honorificPrefix?: string | null;
     /**
      * The honorific suffixes, such as `Jr.`
      */
-    honorificSuffix?: string;
+    honorificSuffix?: string | null;
     /**
      * Metadata about the name.
      */
@@ -648,31 +648,31 @@ export namespace people_v1 {
     /**
      * The middle name(s).
      */
-    middleName?: string;
+    middleName?: string | null;
     /**
      * The family name spelled as it sounds.
      */
-    phoneticFamilyName?: string;
+    phoneticFamilyName?: string | null;
     /**
      * The full name spelled as it sounds.
      */
-    phoneticFullName?: string;
+    phoneticFullName?: string | null;
     /**
      * The given name spelled as it sounds.
      */
-    phoneticGivenName?: string;
+    phoneticGivenName?: string | null;
     /**
      * The honorific prefixes spelled as they sound.
      */
-    phoneticHonorificPrefix?: string;
+    phoneticHonorificPrefix?: string | null;
     /**
      * The honorific suffixes spelled as they sound.
      */
-    phoneticHonorificSuffix?: string;
+    phoneticHonorificSuffix?: string | null;
     /**
      * The middle name(s) spelled as they sound.
      */
-    phoneticMiddleName?: string;
+    phoneticMiddleName?: string | null;
   }
   /**
    * A person&#39;s nickname.
@@ -685,11 +685,11 @@ export namespace people_v1 {
     /**
      * The type of the nickname.
      */
-    type?: string;
+    type?: string | null;
     /**
      * The nickname.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A person&#39;s occupation.
@@ -702,7 +702,7 @@ export namespace people_v1 {
     /**
      * The occupation; for example, `carpenter`.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A person&#39;s past or current organization. Overlapping date ranges are permitted.
@@ -711,15 +711,15 @@ export namespace people_v1 {
     /**
      * True if the organization is the person&#39;s current organization; false if the organization is a past organization.
      */
-    current?: boolean;
+    current?: boolean | null;
     /**
      * The person&#39;s department at the organization.
      */
-    department?: string;
+    department?: string | null;
     /**
      * The domain name associated with the organization; for example, `google.com`.
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * The end date when the person left the organization.
      */
@@ -727,15 +727,15 @@ export namespace people_v1 {
     /**
      * The read-only type of the organization translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * The person&#39;s job description at the organization.
      */
-    jobDescription?: string;
+    jobDescription?: string | null;
     /**
      * The location of the organization office the person works at.
      */
-    location?: string;
+    location?: string | null;
     /**
      * Metadata about the organization.
      */
@@ -743,11 +743,11 @@ export namespace people_v1 {
     /**
      * The name of the organization.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The phonetic name of the organization.
      */
-    phoneticName?: string;
+    phoneticName?: string | null;
     /**
      * The start date when the person joined the organization.
      */
@@ -755,15 +755,15 @@ export namespace people_v1 {
     /**
      * The symbol associated with the organization; for example, a stock ticker symbol, abbreviation, or acronym.
      */
-    symbol?: string;
+    symbol?: string | null;
     /**
      * The person&#39;s job title at the organization.
      */
-    title?: string;
+    title?: string | null;
     /**
      * The type of the organization. The type can be custom or  one of these predefined values:  * `work` * `school`
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Information about a person merged from various data sources such as the authenticated user&#39;s contacts and profile data.  Most fields can have multiple items. The items in a field have no guaranteed order, but each non-empty field is guaranteed to have exactly one field with `metadata.primary` set to true.
@@ -776,7 +776,7 @@ export namespace people_v1 {
     /**
      * **DEPRECATED** (Please use `person.ageRanges` instead)**  The person&#39;s read-only age range.
      */
-    ageRange?: string;
+    ageRange?: string | null;
     /**
      * The person&#39;s read-only age ranges.
      */
@@ -804,7 +804,7 @@ export namespace people_v1 {
     /**
      * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The person&#39;s events.
      */
@@ -876,7 +876,7 @@ export namespace people_v1 {
     /**
      * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
      */
-    resourceName?: string;
+    resourceName?: string | null;
     /**
      * The person&#39;s SIP addresses.
      */
@@ -905,19 +905,19 @@ export namespace people_v1 {
     /**
      * True if the person resource has been deleted. Populated only for [`connections.list`](/people/api/rest/v1/people.connections/list) requests that include a sync token.
      */
-    deleted?: boolean;
+    deleted?: boolean | null;
     /**
      * Resource names of people linked to this resource.
      */
-    linkedPeopleResourceNames?: string[];
+    linkedPeopleResourceNames?: string[] | null;
     /**
      * **DEPRECATED** (Please use `person.metadata.sources.profileMetadata.objectType` instead)  The type of the person object.
      */
-    objectType?: string;
+    objectType?: string | null;
     /**
      * Any former resource names this person has had. Populated only for [`connections.list`](/people/api/rest/v1/people.connections/list) requests that include a sync token.  The resource name may change when adding or removing fields that link a contact and profile such as a verified email, verified phone number, or profile URL.
      */
-    previousResourceNames?: string[];
+    previousResourceNames?: string[] | null;
     /**
      * The sources of data for the person.
      */
@@ -930,7 +930,7 @@ export namespace people_v1 {
     /**
      * **DEPRECATED** (Please use status instead)  [HTTP 1.1 status code] (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
      */
-    httpStatusCode?: number;
+    httpStatusCode?: number | null;
     /**
      * The person.
      */
@@ -938,7 +938,7 @@ export namespace people_v1 {
     /**
      * The original requested resource name. May be different than the resource name on the returned person.  The resource name can change when adding or removing fields that link a contact and profile such as a verified email, verified phone number, or a profile URL.
      */
-    requestedResourceName?: string;
+    requestedResourceName?: string | null;
     /**
      * The status of the response.
      */
@@ -951,11 +951,11 @@ export namespace people_v1 {
     /**
      * The read-only canonicalized [ITU-T E.164](https://law.resource.org/pub/us/cfr/ibr/004/itu-t.E.164.1.2008.pdf) form of the phone number.
      */
-    canonicalForm?: string;
+    canonicalForm?: string | null;
     /**
      * The read-only type of the phone number translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * Metadata about the phone number.
      */
@@ -963,11 +963,11 @@ export namespace people_v1 {
     /**
      * The type of the phone number. The type can be custom or one of these predefined values:  * `home` * `work` * `mobile` * `homeFax` * `workFax` * `otherFax` * `pager` * `workMobile` * `workPager` * `main` * `googleVoice` * `other`
      */
-    type?: string;
+    type?: string | null;
     /**
      * The phone number.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A person&#39;s read-only photo. A picture shown next to the person&#39;s name to help others recognize the person.
@@ -976,7 +976,7 @@ export namespace people_v1 {
     /**
      * True if the photo is a default photo; false if the photo is a user-provided photo.
      */
-    default?: boolean;
+    default?: boolean | null;
     /**
      * Metadata about the photo.
      */
@@ -984,7 +984,7 @@ export namespace people_v1 {
     /**
      * The URL of the photo. You can change the desired size by appending a query parameter `sz=`&lt;var&gt;size&lt;/var&gt; at the end of the url. Example: `https://lh3.googleusercontent.com/-T_wVWLlmg7w/AAAAAAAAAAI/AAAAAAAABa8/00gzXvDBYqw/s100/photo.jpg?sz=50`
      */
-    url?: string;
+    url?: string | null;
   }
   /**
    * The read-only metadata about a profile.
@@ -993,11 +993,11 @@ export namespace people_v1 {
     /**
      * The profile object type.
      */
-    objectType?: string;
+    objectType?: string | null;
     /**
      * The user types.
      */
-    userTypes?: string[];
+    userTypes?: string[] | null;
   }
   /**
    * A person&#39;s relation to another person.
@@ -1006,7 +1006,7 @@ export namespace people_v1 {
     /**
      * The type of the relation translated and formatted in the viewer&#39;s account locale or the locale specified in the Accept-Language HTTP header.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * Metadata about the relation.
      */
@@ -1014,11 +1014,11 @@ export namespace people_v1 {
     /**
      * The name of the other person this relation refers to.
      */
-    person?: string;
+    person?: string | null;
     /**
      * The person&#39;s relation to the other person. The type can be custom or one of these predefined values:  * `spouse` * `child` * `mother` * `father` * `parent` * `brother` * `sister` * `friend` * `relative` * `domesticPartner` * `manager` * `assistant` * `referredBy` * `partner`
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * A person&#39;s read-only relationship interest .
@@ -1027,7 +1027,7 @@ export namespace people_v1 {
     /**
      * The value of the relationship interest translated and formatted in the viewer&#39;s account locale or the locale specified in the Accept-Language HTTP header.
      */
-    formattedValue?: string;
+    formattedValue?: string | null;
     /**
      * Metadata about the relationship interest.
      */
@@ -1035,7 +1035,7 @@ export namespace people_v1 {
     /**
      * The kind of relationship the person is looking for. The value can be custom or one of these predefined values:  * `friend` * `date` * `relationship` * `networking`
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A person&#39;s read-only relationship status.
@@ -1044,7 +1044,7 @@ export namespace people_v1 {
     /**
      * The read-only value of the relationship status translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedValue?: string;
+    formattedValue?: string | null;
     /**
      * Metadata about the relationship status.
      */
@@ -1052,7 +1052,7 @@ export namespace people_v1 {
     /**
      * The relationship status. The value can be custom or one of these predefined values:  * `single` * `inARelationship` * `engaged` * `married` * `itsComplicated` * `openRelationship` * `widowed` * `inDomesticPartnership` * `inCivilUnion`
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A person&#39;s past or current residence.
@@ -1061,7 +1061,7 @@ export namespace people_v1 {
     /**
      * True if the residence is the person&#39;s current residence; false if the residence is a past residence.
      */
-    current?: boolean;
+    current?: boolean | null;
     /**
      * Metadata about the residence.
      */
@@ -1069,7 +1069,7 @@ export namespace people_v1 {
     /**
      * The address of the residence.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A person&#39;s SIP address. Session Initial Protocol addresses are used for VoIP communications to make voice or video calls over the internet.
@@ -1078,7 +1078,7 @@ export namespace people_v1 {
     /**
      * The read-only type of the SIP address translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * Metadata about the SIP address.
      */
@@ -1086,11 +1086,11 @@ export namespace people_v1 {
     /**
      * The type of the SIP address. The type can be custom or or one of these predefined values:  * `home` * `work` * `mobile` * `other`
      */
-    type?: string;
+    type?: string | null;
     /**
      * The SIP address in the [RFC 3261 19.1](https://tools.ietf.org/html/rfc3261#section-19.1) SIP URI format.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A skill that the person has.
@@ -1103,7 +1103,7 @@ export namespace people_v1 {
     /**
      * The skill; for example, `underwater basket weaving`.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * The source of a field.
@@ -1112,11 +1112,11 @@ export namespace people_v1 {
     /**
      * **Only populated in `person.metadata.sources`.**  The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the source. Used for web cache validation.
      */
-    etag?: string;
+    etag?: string | null;
     /**
      * The unique identifier within the source type generated by the server.
      */
-    id?: string;
+    id?: string | null;
     /**
      * **Only populated in `person.metadata.sources`.**  Metadata about a source of type PROFILE.
      */
@@ -1124,11 +1124,11 @@ export namespace people_v1 {
     /**
      * The source type.
      */
-    type?: string;
+    type?: string | null;
     /**
      * **Only populated in `person.metadata.sources`.**  Last update timestamp of this source.
      */
-    updateTime?: string;
+    updateTime?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1137,15 +1137,15 @@ export namespace people_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * A read-only brief one-line description of the person.
@@ -1158,7 +1158,7 @@ export namespace people_v1 {
     /**
      * The tagline.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * A request to update an existing user contact group. All updated fields will be replaced.
@@ -1176,11 +1176,11 @@ export namespace people_v1 {
     /**
      * **Optional.** Not specifying any fields will skip the post mutate read. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      */
-    personFields?: string;
+    personFields?: string | null;
     /**
      * Raw photo bytes
      */
-    photoBytes?: string;
+    photoBytes?: string | null;
   }
   /**
    * The response for updating a contact&#39;s photo.
@@ -1198,7 +1198,7 @@ export namespace people_v1 {
     /**
      * The read-only type of the URL translated and formatted in the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
      */
-    formattedType?: string;
+    formattedType?: string | null;
     /**
      * Metadata about the URL.
      */
@@ -1206,11 +1206,11 @@ export namespace people_v1 {
     /**
      * The type of the URL. The type can be custom or one of these predefined values:  * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Google+ application. * `other`
      */
-    type?: string;
+    type?: string | null;
     /**
      * The URL.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * Arbitrary user data that is populated by the end users.
@@ -1219,7 +1219,7 @@ export namespace people_v1 {
     /**
      * The end user specified key of the user defined data.
      */
-    key?: string;
+    key?: string | null;
     /**
      * Metadata about the user defined data.
      */
@@ -1227,7 +1227,7 @@ export namespace people_v1 {
     /**
      * The end user specified value of the user defined data.
      */
-    value?: string;
+    value?: string | null;
   }
 
   export class Resource$Contactgroups {

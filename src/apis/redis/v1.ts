@@ -137,7 +137,7 @@ export namespace redis_v1 {
     /**
      * Optional. Available data protection modes that the user can choose. If it&#39;s unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      */
-    dataProtectionMode?: string;
+    dataProtectionMode?: string | null;
   }
   /**
    * The Cloud Storage location for the output content
@@ -146,7 +146,7 @@ export namespace redis_v1 {
     /**
      * Required. Data destination URI (e.g. &#39;gs://my_bucket/my_object&#39;). Existing files will be overwritten.
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * The Cloud Storage location for the input content
@@ -155,7 +155,7 @@ export namespace redis_v1 {
     /**
      * Required. Source data URI. (e.g. &#39;gs://my_bucket/my_object&#39;).
      */
-    uri?: string;
+    uri?: string | null;
   }
   /**
    * This location metadata represents additional configuration options for a given location where a Redis instance may be created. All fields are output only. It is returned as content of the `google.cloud.location.Location.metadata` field.
@@ -164,7 +164,9 @@ export namespace redis_v1 {
     /**
      * Output only. The set of available zones in the location. The map is keyed by the lowercase ID of each zone, as defined by GCE. These keys can be specified in `location_id` or `alternative_location_id` fields when creating a Redis instance.
      */
-    availableZones?: {[key: string]: Schema$GoogleCloudRedisV1ZoneMetadata};
+    availableZones?: {
+      [key: string]: Schema$GoogleCloudRedisV1ZoneMetadata;
+    } | null;
   }
   /**
    * Represents the v1 metadata of the long-running operation.
@@ -173,31 +175,31 @@ export namespace redis_v1 {
     /**
      * API version.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * Specifies if cancellation was requested for the operation.
      */
-    cancelRequested?: boolean;
+    cancelRequested?: boolean | null;
     /**
      * Creation timestamp.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * End timestamp.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Operation status details.
      */
-    statusDetail?: string;
+    statusDetail?: string | null;
     /**
      * Operation target.
      */
-    target?: string;
+    target?: string | null;
     /**
      * Operation verb.
      */
-    verb?: string;
+    verb?: string | null;
   }
   /**
    * Defines specific information for a particular zone. Currently empty and reserved for future use only.
@@ -228,75 +230,75 @@ export namespace redis_v1 {
     /**
      * Optional. Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it across two zones. If provided, it must be a different zone from the one provided in [location_id].
      */
-    alternativeLocationId?: string;
+    alternativeLocationId?: string | null;
     /**
      * Optional. The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
      */
-    authorizedNetwork?: string;
+    authorizedNetwork?: string | null;
     /**
      * Output only. The time the instance was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Output only. The current zone where the Redis endpoint is placed. For Basic Tier instances, this will always be the same as the [location_id] provided by the user at creation time. For Standard Tier instances, this can be either [location_id] or [alternative_location_id] and can change after a failover event.
      */
-    currentLocationId?: string;
+    currentLocationId?: string | null;
     /**
      * An arbitrary and optional user-provided name for the instance.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Output only. Hostname or IP address of the exposed Redis endpoint used by clients to connect to the service.
      */
-    host?: string;
+    host?: string | null;
     /**
      * Resource labels to represent user provided metadata
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Optional. The zone where the instance will be provisioned. If not provided, the service will choose a zone for the instance. For STANDARD_HA tier, instances will be created across two zones for protection against zonal failures. If [alternative_location_id] is also provided, it must be different from [location_id].
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Required. Redis memory size in GiB.
      */
-    memorySizeGb?: number;
+    memorySizeGb?: number | null;
     /**
      * Required. Unique name of the resource in this scope including project and location using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`  Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to [location_id] and [alternative_location_id] fields for more details.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. Cloud IAM identity used by import / export operations to transfer data to/from Cloud Storage. Format is &quot;serviceAccount:&lt;service_account_email&gt;&quot;. The value may change over time for a given instance so should be checked before each import/export operation.
      */
-    persistenceIamIdentity?: string;
+    persistenceIamIdentity?: string | null;
     /**
      * Output only. The port number of the exposed Redis endpoint.
      */
-    port?: number;
+    port?: number | null;
     /**
      * Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are:   Redis 3.2 and above:   *   maxmemory-policy  *   notify-keyspace-events   Redis 4.0 and above:   *   activedefrag  *   lfu-log-factor  *   lfu-decay-time
      */
-    redisConfigs?: {[key: string]: string};
+    redisConfigs?: {[key: string]: string} | null;
     /**
      * Optional. The version of Redis software. If not provided, latest supported version will be used. Updating the version will perform an upgrade/downgrade to the new version. Currently, the supported values are:   *   `REDIS_4_0` for Redis 4.0 compatibility (default)  *   `REDIS_3_2` for Redis 3.2 compatibility
      */
-    redisVersion?: string;
+    redisVersion?: string | null;
     /**
      * Optional. The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and non-overlapping with existing subnets in an authorized network.
      */
-    reservedIpRange?: string;
+    reservedIpRange?: string | null;
     /**
      * Output only. The current state of this instance.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. Additional information about the current status of this instance, if available.
      */
-    statusMessage?: string;
+    statusMessage?: string | null;
     /**
      * Required. The service tier of the instance.
      */
-    tier?: string;
+    tier?: string | null;
   }
   /**
    * Response for ListInstances.
@@ -309,11 +311,11 @@ export namespace redis_v1 {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -326,7 +328,7 @@ export namespace redis_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -335,7 +337,7 @@ export namespace redis_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -348,23 +350,23 @@ export namespace redis_v1 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Resource ID for the region. For example: &quot;us-east1&quot;.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Output only. The set of available zones in the location. The map is keyed by the lowercase ID of each zone, as defined by Compute Engine. These keys can be specified in `location_id` or `alternative_location_id` fields when creating a Redis instance.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Full resource name for the region. For example: &quot;projects/example-project/locations/us-east1&quot;.
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -373,7 +375,7 @@ export namespace redis_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -381,15 +383,15 @@ export namespace redis_v1 {
     /**
      * {  `createTime`: The time the operation was created.  `endTime`: The time the operation finished running.  `target`: Server-defined resource path for the target of the operation.  `verb`: Name of the verb executed by the operation.  `statusDetail`: Human-readable status of the operation, if any.  `cancelRequested`: Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.  `apiVersion`: API version used to start the operation.  }
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * The output content
@@ -407,15 +409,15 @@ export namespace redis_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
 
   export class Resource$Projects {

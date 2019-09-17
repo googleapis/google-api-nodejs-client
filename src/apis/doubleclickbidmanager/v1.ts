@@ -114,19 +114,19 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * File specification (column names, types, order) in which the line items will be returned. Default to EWF.
      */
-    fileSpec?: string;
+    fileSpec?: string | null;
     /**
      * Ids of the specified filter type used to filter line items to fetch. If omitted, all the line items will be returned.
      */
-    filterIds?: string[];
+    filterIds?: string[] | null;
     /**
      * Filter type used to filter line items to fetch.
      */
-    filterType?: string;
+    filterType?: string | null;
     /**
      * Format in which the line items will be returned. Default to CSV.
      */
-    format?: string;
+    format?: string | null;
   }
   /**
    * Download line items response.
@@ -135,7 +135,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Retrieved line items in CSV format. For more information about file formats, see  Entity Write File Format.
      */
-    lineItems?: string;
+    lineItems?: string | null;
   }
   /**
    * Request to fetch stored inventory sources, campaigns, insertion orders, line items, TrueView ad groups and ads.
@@ -144,19 +144,19 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested.  Acceptable values are:   - &quot;AD&quot;  - &quot;AD_GROUP&quot;  - &quot;CAMPAIGN&quot;  - &quot;INSERTION_ORDER&quot;  - &quot;INVENTORY_SOURCE&quot;  - &quot;LINE_ITEM&quot;
      */
-    fileTypes?: string[];
+    fileTypes?: string[] | null;
     /**
      * The IDs of the specified filter type. This is used to filter entities to fetch. At least one ID must be specified.
      */
-    filterIds?: string[];
+    filterIds?: string[] | null;
     /**
      * Filter type used to filter entities to fetch. PARTNER_ID and INVENTORY_SOURCE_ID may only be used when downloading inventory sources.
      */
-    filterType?: string;
+    filterType?: string | null;
     /**
      * SDF Version (column names, types, order) in which the entities will be returned. Default to 3.1.
      */
-    version?: string;
+    version?: string | null;
   }
   /**
    * Download response.
@@ -165,24 +165,24 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Retrieved ad groups in SDF format.
      */
-    adGroups?: string;
+    adGroups?: string | null;
     /**
      * Retrieved ads in SDF format.
      */
-    ads?: string;
+    ads?: string | null;
     /**
      * Retrieved campaigns in SDF format.
      */
-    campaigns?: string;
+    campaigns?: string | null;
     /**
      * Retrieved insertion orders in SDF format.
      */
-    insertionOrders?: string;
-    inventorySources?: string;
+    insertionOrders?: string | null;
+    inventorySources?: string | null;
     /**
      * Retrieved line items in SDF format.
      */
-    lineItems?: string;
+    lineItems?: string | null;
   }
   /**
    * Filter used to match traffic data in your report.
@@ -191,11 +191,11 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Filter type.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Filter value.
      */
-    value?: string;
+    value?: string | null;
   }
   /**
    * List queries response.
@@ -204,7 +204,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listQueriesResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Retrieved queries.
      */
@@ -217,7 +217,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listReportsResponse&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Retrieved reports.
      */
@@ -234,19 +234,19 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Data is grouped by the filters listed in this field.
      */
-    groupBys?: string[];
+    groupBys?: string[] | null;
     /**
      * Deprecated. This field is no longer in use.
      */
-    includeInviteData?: boolean;
+    includeInviteData?: boolean | null;
     /**
      * Metrics to include as columns in your report.
      */
-    metrics?: string[];
+    metrics?: string[] | null;
     /**
      * Report type.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Represents a query.
@@ -255,7 +255,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#query&quot;.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * Query metadata.
      */
@@ -267,15 +267,15 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Query ID.
      */
-    queryId?: string;
+    queryId?: string | null;
     /**
      * The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.
      */
-    reportDataEndTimeMs?: string;
+    reportDataEndTimeMs?: string | null;
     /**
      * The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if metadata.dataRange is CUSTOM_DATES and ignored otherwise.
      */
-    reportDataStartTimeMs?: string;
+    reportDataStartTimeMs?: string | null;
     /**
      * Information on how often and when to run a query.
      */
@@ -283,7 +283,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Canonical timezone code for report data time. Defaults to America/New_York.
      */
-    timezoneCode?: string;
+    timezoneCode?: string | null;
   }
   /**
    * Query metadata.
@@ -292,47 +292,47 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Range of report data.
      */
-    dataRange?: string;
+    dataRange?: string | null;
     /**
      * Format of the generated report.
      */
-    format?: string;
+    format?: string | null;
     /**
      * The path to the location in Google Cloud Storage where the latest report is stored.
      */
-    googleCloudStoragePathForLatestReport?: string;
+    googleCloudStoragePathForLatestReport?: string | null;
     /**
      * The path in Google Drive for the latest report.
      */
-    googleDrivePathForLatestReport?: string;
+    googleDrivePathForLatestReport?: string | null;
     /**
      * The time when the latest report started to run.
      */
-    latestReportRunTimeMs?: string;
+    latestReportRunTimeMs?: string | null;
     /**
      * Locale of the generated reports. Valid values are cs CZECH de GERMAN en ENGLISH es SPANISH fr FRENCH it ITALIAN ja JAPANESE ko KOREAN pl POLISH pt-BR BRAZILIAN_PORTUGUESE ru RUSSIAN tr TURKISH uk UKRAINIAN zh-CN CHINA_CHINESE zh-TW TAIWAN_CHINESE  An locale string not in the list above will generate reports in English.
      */
-    locale?: string;
+    locale?: string | null;
     /**
      * Number of reports that have been generated for the query.
      */
-    reportCount?: number;
+    reportCount?: number | null;
     /**
      * Whether the latest report is currently running.
      */
-    running?: boolean;
+    running?: boolean | null;
     /**
      * Whether to send an email notification when a report is ready. Default to false.
      */
-    sendNotification?: boolean;
+    sendNotification?: boolean | null;
     /**
      * List of email addresses which are sent email notifications when the report is finished. Separate from sendNotification.
      */
-    shareEmailAddress?: string[];
+    shareEmailAddress?: string[] | null;
     /**
      * Query title. It is used to name the reports generated from this query.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Information on how frequently and when to run a query.
@@ -341,19 +341,19 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Datetime to periodically run the query until.
      */
-    endTimeMs?: string;
+    endTimeMs?: string | null;
     /**
      * How often the query is run.
      */
-    frequency?: string;
+    frequency?: string | null;
     /**
      * Time of day at which a new report will be generated, represented as minutes past midnight. Range is 0 to 1439. Only applies to scheduled reports.
      */
-    nextRunMinuteOfDay?: number;
+    nextRunMinuteOfDay?: number | null;
     /**
      * Canonical timezone code for report generation time. Defaults to America/New_York.
      */
-    nextRunTimezoneCode?: string;
+    nextRunTimezoneCode?: string | null;
   }
   /**
    * Represents a report.
@@ -379,7 +379,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Error code that shows why the report was not created.
      */
-    errorCode?: string;
+    errorCode?: string | null;
   }
   /**
    * Key used to identify a report.
@@ -388,11 +388,11 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Query ID.
      */
-    queryId?: string;
+    queryId?: string | null;
     /**
      * Report ID.
      */
-    reportId?: string;
+    reportId?: string | null;
   }
   /**
    * Report metadata.
@@ -401,15 +401,15 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * The path to the location in Google Cloud Storage where the report is stored.
      */
-    googleCloudStoragePath?: string;
+    googleCloudStoragePath?: string | null;
     /**
      * The ending time for the data that is shown in the report.
      */
-    reportDataEndTimeMs?: string;
+    reportDataEndTimeMs?: string | null;
     /**
      * The starting time for the data that is shown in the report.
      */
-    reportDataStartTimeMs?: string;
+    reportDataStartTimeMs?: string | null;
     /**
      * Report status.
      */
@@ -426,15 +426,15 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * The time when this report either completed successfully or failed.
      */
-    finishTimeMs?: string;
+    finishTimeMs?: string | null;
     /**
      * The file type of the report.
      */
-    format?: string;
+    format?: string | null;
     /**
      * The state of the report.
      */
-    state?: string;
+    state?: string | null;
   }
   /**
    * Represents the upload status of a row in the request.
@@ -443,27 +443,27 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Whether the stored entity is changed as a result of upload.
      */
-    changed?: boolean;
+    changed?: boolean | null;
     /**
      * Entity Id.
      */
-    entityId?: string;
+    entityId?: string | null;
     /**
      * Entity name.
      */
-    entityName?: string;
+    entityName?: string | null;
     /**
      * Reasons why the entity can&#39;t be uploaded.
      */
-    errors?: string[];
+    errors?: string[] | null;
     /**
      * Whether the entity is persisted.
      */
-    persisted?: boolean;
+    persisted?: boolean | null;
     /**
      * Row number.
      */
-    rowNumber?: number;
+    rowNumber?: number | null;
   }
   /**
    * Request to run a stored query to generate a report.
@@ -472,19 +472,19 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Report data range used to generate the report.
      */
-    dataRange?: string;
+    dataRange?: string | null;
     /**
      * The ending time for the data that is shown in the report. Note, reportDataEndTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
      */
-    reportDataEndTimeMs?: string;
+    reportDataEndTimeMs?: string | null;
     /**
      * The starting time for the data that is shown in the report. Note, reportDataStartTimeMs is required if dataRange is CUSTOM_DATES and ignored otherwise.
      */
-    reportDataStartTimeMs?: string;
+    reportDataStartTimeMs?: string | null;
     /**
      * Canonical timezone code for report data time. Defaults to America/New_York.
      */
-    timezoneCode?: string;
+    timezoneCode?: string | null;
   }
   /**
    * Request to upload line items.
@@ -493,15 +493,15 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Set to true to get upload status without actually persisting the line items.
      */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
     /**
      * Format the line items are in. Default to CSV.
      */
-    format?: string;
+    format?: string | null;
     /**
      * Line items in CSV to upload. Refer to  Entity Write File Format for more information on file format.
      */
-    lineItems?: string;
+    lineItems?: string | null;
   }
   /**
    * Upload line items response.
@@ -519,7 +519,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Reasons why upload can&#39;t be completed.
      */
-    errors?: string[];
+    errors?: string[] | null;
     /**
      * Per-row upload status.
      */

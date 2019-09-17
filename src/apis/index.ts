@@ -33,6 +33,7 @@ import * as androidpublisher from './androidpublisher';
 import * as appengine from './appengine';
 import * as appsactivity from './appsactivity';
 import * as bigquery from './bigquery';
+import * as bigqueryconnection from './bigqueryconnection';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
 import * as bigqueryreservation from './bigqueryreservation';
 import * as bigtableadmin from './bigtableadmin';
@@ -201,6 +202,7 @@ export const APIS: APIList = {
   appengine: appengine.VERSIONS,
   appsactivity: appsactivity.VERSIONS,
   bigquery: bigquery.VERSIONS,
+  bigqueryconnection: bigqueryconnection.VERSIONS,
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
   bigqueryreservation: bigqueryreservation.VERSIONS,
   bigtableadmin: bigtableadmin.VERSIONS,
@@ -366,6 +368,7 @@ export class GeneratedAPIs {
   appengine = appengine.appengine;
   appsactivity = appsactivity.appsactivity;
   bigquery = bigquery.bigquery;
+  bigqueryconnection = bigqueryconnection.bigqueryconnection;
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
   bigqueryreservation = bigqueryreservation.bigqueryreservation;
   bigtableadmin = bigtableadmin.bigtableadmin;

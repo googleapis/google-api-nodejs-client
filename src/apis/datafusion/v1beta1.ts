@@ -125,11 +125,11 @@ export namespace datafusion_v1beta1 {
      * The configuration for logging of each type of permission.
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
-    service?: string;
+    service?: string | null;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:      {       &quot;audit_log_configs&quot;: [         {           &quot;log_type&quot;: &quot;DATA_READ&quot;,           &quot;exempted_members&quot;: [             &quot;user:foo@gmail.com&quot;           ]         },         {           &quot;log_type&quot;: &quot;DATA_WRITE&quot;,         }       ]     }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting foo@gmail.com from DATA_READ logging.
@@ -138,11 +138,11 @@ export namespace datafusion_v1beta1 {
     /**
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
-    exemptedMembers?: string[];
+    exemptedMembers?: string[] | null;
     /**
      * The log type that this config enables.
      */
-    logType?: string;
+    logType?: string | null;
   }
   /**
    * Authorization-related information used by Cloud Audit Logging.
@@ -151,7 +151,7 @@ export namespace datafusion_v1beta1 {
     /**
      * The type of the permission that was checked.
      */
-    permissionType?: string;
+    permissionType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -164,11 +164,11 @@ export namespace datafusion_v1beta1 {
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@gmail.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -185,7 +185,7 @@ export namespace datafusion_v1beta1 {
     /**
      * The log_name to populate in the Cloud Audit Record.
      */
-    logName?: string;
+    logName?: string | null;
   }
   /**
    * A condition to be met.
@@ -194,23 +194,23 @@ export namespace datafusion_v1beta1 {
     /**
      * Trusted attributes supplied by the IAM system.
      */
-    iam?: string;
+    iam?: string | null;
     /**
      * An operator to apply the subject with.
      */
-    op?: string;
+    op?: string | null;
     /**
      * Trusted attributes discharged by the service.
      */
-    svc?: string;
+    svc?: string | null;
     /**
      * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
      */
-    sys?: string;
+    sys?: string | null;
     /**
      * The objects of the condition.
      */
-    values?: string[];
+    values?: string[] | null;
   }
   /**
    * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names:    - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present,      otherwise the value of IAMContext.authority_selector if present, and      otherwise a representation of IAMContext.principal; or    - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a      token or authority selector is present; or    - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples:   counter { metric: &quot;/debug_access_count&quot;  field: &quot;iam_principal&quot; }   ==&gt; increment counter /iam/policy/backend_debug_access_count                         {iam_principal=[value of IAMContext.principal]}  At this time we do not support multiple field names (though this may be supported in the future).
@@ -219,11 +219,11 @@ export namespace datafusion_v1beta1 {
     /**
      * The field value to attribute.
      */
-    field?: string;
+    field?: string | null;
     /**
      * The metric to update.
      */
-    metric?: string;
+    metric?: string | null;
   }
   /**
    * Write a Data Access (Gin) log
@@ -232,7 +232,7 @@ export namespace datafusion_v1beta1 {
     /**
      * Whether Gin logging should happen in a fail-closed manner at the caller. This is relevant only in the LocalIAM implementation, for now.
      */
-    logMode?: string;
+    logMode?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -245,19 +245,19 @@ export namespace datafusion_v1beta1 {
     /**
      * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
      */
-    expression?: string;
+    expression?: string | null;
     /**
      * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
-    location?: string;
+    location?: string | null;
     /**
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
-    title?: string;
+    title?: string | null;
   }
   /**
    * Represents a Data Fusion instance.
@@ -266,31 +266,31 @@ export namespace datafusion_v1beta1 {
     /**
      * Output only. The time the instance was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * An optional description of this instance.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Display name for an instance.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Option to enable Stackdriver Logging.
      */
-    enableStackdriverLogging?: boolean;
+    enableStackdriverLogging?: boolean | null;
     /**
      * Option to enable Stackdriver Monitoring.
      */
-    enableStackdriverMonitoring?: boolean;
+    enableStackdriverMonitoring?: boolean | null;
     /**
      * The resource labels for instance to use to annotate any related underlying resources such as GCE VMs. The character &#39;=&#39; is not allowed to be used within the labels.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Network configuration options. These are required when a private Data Fusion instance is to be created.
      */
@@ -298,43 +298,43 @@ export namespace datafusion_v1beta1 {
     /**
      * Map of additional options used to configure the behavior of Data Fusion instance.
      */
-    options?: {[key: string]: string};
+    options?: {[key: string]: string} | null;
     /**
      * Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have private IP addresses and will not be able to access the public internet.
      */
-    privateInstance?: boolean;
+    privateInstance?: boolean | null;
     /**
      * Output only. Service account which will be used to access resources in the customer project.&quot;
      */
-    serviceAccount?: string;
+    serviceAccount?: string | null;
     /**
      * Output only. Endpoint on which the Data Fusion UI and REST APIs are accessible.
      */
-    serviceEndpoint?: string;
+    serviceEndpoint?: string | null;
     /**
      * Output only. The current state of this Data Fusion instance.
      */
-    state?: string;
+    state?: string | null;
     /**
      * Output only. Additional information about the current state of this Data Fusion instance if available.
      */
-    stateMessage?: string;
+    stateMessage?: string | null;
     /**
      * Required. Instance type.
      */
-    type?: string;
+    type?: string | null;
     /**
      * Output only. The time the instance was last updated.
      */
-    updateTime?: string;
+    updateTime?: string | null;
     /**
      * Output only. Current version of the Data Fusion.
      */
-    version?: string;
+    version?: string | null;
     /**
      * Name of the zone in which the Data Fusion instance will be created.
      */
-    zone?: string;
+    zone?: string | null;
   }
   /**
    * Response message for the list instance request.
@@ -347,11 +347,11 @@ export namespace datafusion_v1beta1 {
     /**
      * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Locations that could not be reached.
      */
-    unreachable?: string[];
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -364,7 +364,7 @@ export namespace datafusion_v1beta1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -373,7 +373,7 @@ export namespace datafusion_v1beta1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -386,23 +386,23 @@ export namespace datafusion_v1beta1 {
     /**
      * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId?: string;
+    locationId?: string | null;
     /**
      * Service-specific metadata. For example the available capacity at the given location.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Specifies what kind of log the caller must write
@@ -428,11 +428,11 @@ export namespace datafusion_v1beta1 {
     /**
      * The IP range in CIDR notation to use for the managed Data Fusion instance nodes. This range must not overlap with any other ranges used in the Data Fusion instance network.
      */
-    ipAllocation?: string;
+    ipAllocation?: string | null;
     /**
      * Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines.
      */
-    network?: string;
+    network?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -441,7 +441,7 @@ export namespace datafusion_v1beta1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -449,15 +449,15 @@ export namespace datafusion_v1beta1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * Represents the metadata of a long-running operation.
@@ -466,31 +466,31 @@ export namespace datafusion_v1beta1 {
     /**
      * API version used to start the operation.
      */
-    apiVersion?: string;
+    apiVersion?: string | null;
     /**
      * The time the operation was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * The time the operation finished running.
      */
-    endTime?: string;
+    endTime?: string | null;
     /**
      * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
-    requestedCancellation?: boolean;
+    requestedCancellation?: boolean | null;
     /**
      * Human-readable status of the operation if any.
      */
-    statusDetail?: string;
+    statusDetail?: string | null;
     /**
      * Server-defined resource path for the target of the operation.
      */
-    target?: string;
+    target?: string | null;
     /**
      * Name of the verb executed by the operation.
      */
-    verb?: string;
+    verb?: string | null;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
@@ -507,8 +507,8 @@ export namespace datafusion_v1beta1 {
     /**
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
      */
-    etag?: string;
-    iamOwned?: boolean;
+    etag?: string | null;
+    iamOwned?: boolean | null;
     /**
      * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied.   Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is   granted.   Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
      */
@@ -516,7 +516,7 @@ export namespace datafusion_v1beta1 {
     /**
      * Deprecated.
      */
-    version?: number;
+    version?: number | null;
   }
   /**
    * Request message for restarting a Data Fusion instance.
@@ -529,7 +529,7 @@ export namespace datafusion_v1beta1 {
     /**
      * Required
      */
-    action?: string;
+    action?: string | null;
     /**
      * Additional restrictions that must be met. All conditions must pass for the rule to match.
      */
@@ -537,11 +537,11 @@ export namespace datafusion_v1beta1 {
     /**
      * Human-readable description of the rule.
      */
-    description?: string;
+    description?: string | null;
     /**
      * If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      */
-    in?: string[];
+    in?: string[] | null;
     /**
      * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
      */
@@ -549,11 +549,11 @@ export namespace datafusion_v1beta1 {
     /**
      * If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries. The format for in and not_in entries can be found at in the Local IAM documentation (see go/local-iam#features).
      */
-    notIn?: string[];
+    notIn?: string[] | null;
     /**
      * A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -566,7 +566,7 @@ export namespace datafusion_v1beta1 {
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
      */
-    updateMask?: string;
+    updateMask?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -575,15 +575,15 @@ export namespace datafusion_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -592,7 +592,7 @@ export namespace datafusion_v1beta1 {
     /**
      * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -601,7 +601,7 @@ export namespace datafusion_v1beta1 {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
-    permissions?: string[];
+    permissions?: string[] | null;
   }
   /**
    * Request message for upgrading a Data Fusion instance. To change the instance properties, instance update should be used.

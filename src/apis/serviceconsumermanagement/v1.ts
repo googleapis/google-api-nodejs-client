@@ -130,7 +130,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Tag of the added project. Must be less than 128 characters. Required.
      */
-    tag?: string;
+    tag?: string | null;
   }
   /**
    * Api is a light-weight descriptor for an API Interface.  Interfaces are also described as &quot;protocol buffer services&quot; in some contexts, such as by the &quot;service&quot; keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as &quot;APIs&quot; in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.
@@ -147,7 +147,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The fully qualified name of this interface, including package name followed by the interface&#39;s simple name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Any metadata attached to the interface.
      */
@@ -159,11 +159,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The source syntax of the service.
      */
-    syntax?: string;
+    syntax?: string | null;
     /**
      * A version string for this interface. If specified, must have the form `major-version.minor-version`, as in `1.10`. If the minor version is omitted, it defaults to zero. If the entire version field is empty, the major version is derived from the package name, as outlined below. If the field is not empty, the version in the package name will be verified to be consistent with what is provided here.  The versioning schema uses [semantic versioning](http://semver.org) where the major version number indicates a breaking change and the minor version an additive, non-breaking change. Both version numbers are signals to users what to expect from different versions, and should be carefully chosen based on the product plan.  The major version is also reflected in the package name of the interface, which must end in `v&lt;major-version&gt;`, as in `google.feature.v1`. For major versions 0 and 1, the suffix can be omitted. Zero major versions must only be used for experimental, non-GA interfaces.
      */
-    version?: string;
+    version?: string | null;
   }
   /**
    * Request to apply configuration to an existing tenant project.
@@ -176,7 +176,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Tag of the project. Must be less than 128 characters. Required.
      */
-    tag?: string;
+    tag?: string | null;
   }
   /**
    * Request to attach an existing project to the tenancy unit as a new tenant resource.
@@ -185,15 +185,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * When attaching an external project, this is in the format of `projects/{project_number}`.
      */
-    externalResource?: string;
+    externalResource?: string | null;
     /**
      * When attaching a reserved project already in tenancy units, this is the tag of a tenant resource under the tenancy unit for the managed service&#39;s service producer project. The reserved tenant resource must be in an active state.
      */
-    reservedResource?: string;
+    reservedResource?: string | null;
     /**
      * Tag of the tenant resource after attachment. Must be less than 128 characters. Required.
      */
-    tag?: string;
+    tag?: string | null;
   }
   /**
    * `Authentication` defines the authentication configuration for an API.  Example for an API targeted for external use:      name: calendar.googleapis.com     authentication:       providers:       - id: google_calendar_auth         jwks_uri: https://www.googleapis.com/oauth2/v1/certs         issuer: https://securetoken.google.com       rules:       - selector: &quot;*&quot;         requirements:           provider_id: google_calendar_auth
@@ -215,7 +215,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * If true, the service accepts API keys without any other credential.
      */
-    allowWithoutCredential?: boolean;
+    allowWithoutCredential?: boolean | null;
     /**
      * The requirements for OAuth credentials.
      */
@@ -227,7 +227,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
-    selector?: string;
+    selector?: string | null;
   }
   /**
    * Configuration for an authentication provider, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
@@ -236,23 +236,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
      */
-    audiences?: string;
+    audiences?: string | null;
     /**
      * Redirect URL if JWT token is required but not present or is expired. Implement authorizationUrl of securityDefinitions in OpenAPI spec.
      */
-    authorizationUrl?: string;
+    authorizationUrl?: string | null;
     /**
      * The unique identifier of the auth provider. It will be referred to by `AuthRequirement.provider_id`.  Example: &quot;bookstore_auth&quot;.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Identifies the principal that issued the JWT. See https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1 Usually a URL or an email address.  Example: https://securetoken.google.com Example: 1234567-compute@developer.gserviceaccount.com
      */
-    issuer?: string;
+    issuer?: string | null;
     /**
      * URL of the provider&#39;s public key set to validate signature of the JWT. See [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). Optional if the key set document:  - can be retrieved from    [OpenID    Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html of    the issuer.  - can be inferred from the email domain of the issuer (e.g. a Google  service account).  Example: https://www.googleapis.com/oauth2/v1/certs
      */
-    jwksUri?: string;
+    jwksUri?: string | null;
   }
   /**
    * User-defined authentication requirements, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
@@ -261,11 +261,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * NOTE: This will be deprecated soon, once AuthProvider.audiences is implemented and accepted in all the runtime components.  The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
      */
-    audiences?: string;
+    audiences?: string | null;
     /**
      * id from authentication provider.  Example:      provider_id: bookstore_auth
      */
-    providerId?: string;
+    providerId?: string | null;
   }
   /**
    * `Backend` defines the backend configuration for a service.
@@ -283,28 +283,28 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The address of the API backend.
      */
-    address?: string;
+    address?: string | null;
     /**
      * The number of seconds to wait for a response from a request.  The default deadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.
      */
-    deadline?: number;
+    deadline?: number | null;
     /**
      * The JWT audience is used when generating a JWT id token for the backend.
      */
-    jwtAudience?: string;
+    jwtAudience?: string | null;
     /**
      * Minimum deadline in seconds needed for this method. Calls having deadline value lower than this will be rejected.
      */
-    minDeadline?: number;
+    minDeadline?: number | null;
     /**
      * The number of seconds to wait for the completion of a long running operation. The default is no deadline.
      */
-    operationDeadline?: number;
-    pathTranslation?: string;
+    operationDeadline?: number | null;
+    pathTranslation?: string | null;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
-    selector?: string;
+    selector?: string | null;
   }
   /**
    * Billing related configuration of the service.  The following example shows how to configure monitored resources and metrics for billing:      monitored_resources:     - type: library.googleapis.com/branch       labels:       - key: /city         description: The city where the library branch is located in.       - key: /name         description: The name of the branch.     metrics:     - name: library.googleapis.com/book/borrowed_count       metric_kind: DELTA       value_type: INT64     billing:       consumer_destinations:       - monitored_resource: library.googleapis.com/branch         metrics:         - library.googleapis.com/book/borrowed_count
@@ -322,7 +322,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Name of the billing account. For example `billingAccounts/012345-567890-ABCDEF`.
      */
-    billingAccount?: string;
+    billingAccount?: string | null;
   }
   /**
    * Configuration of a specific billing destination (Currently only support bill against consumer project).
@@ -331,11 +331,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Names of the metrics to report to this billing destination. Each name must be defined in Service.metrics section.
      */
-    metrics?: string[];
+    metrics?: string[] | null;
     /**
      * The monitored resource type. The type must be defined in Service.monitored_resources section.
      */
-    monitoredResource?: string;
+    monitoredResource?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -357,23 +357,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A list of full type names or extension IDs of extensions allowed in grpc side channel from client to backend.
      */
-    allowedRequestExtensions?: string[];
+    allowedRequestExtensions?: string[] | null;
     /**
      * A list of full type names or extension IDs of extensions allowed in grpc side channel from backend to client.
      */
-    allowedResponseExtensions?: string[];
+    allowedResponseExtensions?: string[] | null;
     /**
      * A list of full type names of provided contexts.
      */
-    provided?: string[];
+    provided?: string[] | null;
     /**
      * A list of full type names of requested contexts.
      */
-    requested?: string[];
+    requested?: string[] | null;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
-    selector?: string;
+    selector?: string | null;
   }
   /**
    * Selects and configures the service controller used by the service.  The service controller handles features like abuse, quota, billing, logging, monitoring, etc.
@@ -382,7 +382,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The service control environment to use. If empty, no control plane feature (like quota and billing) will be enabled.
      */
-    environment?: string;
+    environment?: string | null;
   }
   /**
    * Request to create a tenancy unit for a service consumer of a managed service.
@@ -391,7 +391,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Optional service producer-provided identifier of the tenancy unit. Must be no longer than 40 characters and preferably URI friendly. If it isn&#39;t provided, a UID for the tenancy unit is automatically generated. The identifier must be unique across a managed service. If the tenancy unit already exists for the managed service and service consumer pair, calling `CreateTenancyUnit` returns the existing tenancy unit if the provided identifier is identical or empty, otherwise the call fails.
      */
-    tenancyUnitId?: string;
+    tenancyUnitId?: string | null;
   }
   /**
    * Customize service error responses.  For example, list any service specific protobuf types that can appear in error detail lists of error responses.  Example:      custom_error:       types:       - google.foo.v1.CustomError       - google.foo.v1.AnotherError
@@ -404,7 +404,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The list of custom error detail types, e.g. &#39;google.foo.v1.CustomError&#39;.
      */
-    types?: string[];
+    types?: string[] | null;
   }
   /**
    * A custom error rule.
@@ -413,11 +413,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Mark this message as possible payload in error response.  Otherwise, objects of this type will be filtered when they appear in error payload.
      */
-    isErrorType?: boolean;
+    isErrorType?: boolean | null;
     /**
      * Selects messages to which this rule applies.  Refer to selector for syntax details.
      */
-    selector?: string;
+    selector?: string | null;
   }
   /**
    * A custom pattern is used for defining custom HTTP verb.
@@ -426,11 +426,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The name of this custom HTTP verb.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The path matched by this custom verb.
      */
-    path?: string;
+    path?: string | null;
   }
   /**
    * Request message to delete tenant project resource from the tenancy unit.
@@ -439,7 +439,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Tag of the resource within the tenancy unit.
      */
-    tag?: string;
+    tag?: string | null;
   }
   /**
    * `Documentation` provides the information for describing a service.  Example: &lt;pre&gt;&lt;code&gt;documentation:   summary: &gt;     The Google Calendar API gives access     to most calendar features.   pages:   - name: Overview     content: &amp;#40;== include google/foo/overview.md ==&amp;#41;   - name: Tutorial     content: &amp;#40;== include google/foo/tutorial.md ==&amp;#41;     subpages;     - name: Java       content: &amp;#40;== include google/foo/tutorial_java.md ==&amp;#41;   rules:   - selector: google.calendar.Calendar.Get     description: &gt;       ...   - selector: google.calendar.Calendar.Put     description: &gt;       ... &lt;/code&gt;&lt;/pre&gt; Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded.  Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided.  A number of constructs specific to the API platform are supported in documentation text.  In order to reference a proto element, the following notation can be used: &lt;pre&gt;&lt;code&gt;&amp;#91;fully.qualified.proto.name]&amp;#91;]&lt;/code&gt;&lt;/pre&gt; To override the display text used for the link, this can be used: &lt;pre&gt;&lt;code&gt;&amp;#91;display text]&amp;#91;fully.qualified.proto.name]&lt;/code&gt;&lt;/pre&gt; Text can be excluded from doc using the following notation: &lt;pre&gt;&lt;code&gt;&amp;#40;-- internal comment --&amp;#41;&lt;/code&gt;&lt;/pre&gt;  A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: &lt;pre&gt;&lt;code&gt;&amp;#40;== include path/to/file ==&amp;#41;&lt;/code&gt;&lt;/pre&gt; The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: &lt;pre&gt;&lt;code&gt;&amp;#40;== resource_for v1.shelves.books ==&amp;#41;&lt;/code&gt;&lt;/pre&gt; The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
@@ -448,11 +448,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The URL to the root of documentation.
      */
-    documentationRootUrl?: string;
+    documentationRootUrl?: string | null;
     /**
      * Declares a single overview page. For example: &lt;pre&gt;&lt;code&gt;documentation:   summary: ...   overview: &amp;#40;== include overview.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; This is a shortcut for the following declaration (using pages style): &lt;pre&gt;&lt;code&gt;documentation:   summary: ...   pages:   - name: Overview     content: &amp;#40;== include overview.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; Note: you cannot specify both `overview` field and `pages` field.
      */
-    overview?: string;
+    overview?: string | null;
     /**
      * The top level pages for the documentation set.
      */
@@ -464,11 +464,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Specifies the service root url if the default one (the service name from the yaml file) is not suitable. This can be seen in any fully specified service urls as well as sections that show a base that other urls are relative to.
      */
-    serviceRootUrl?: string;
+    serviceRootUrl?: string | null;
     /**
      * A short summary of what the service does. Can only be provided by plain text.
      */
-    summary?: string;
+    summary?: string | null;
   }
   /**
    * A documentation rule provides information about individual API elements.
@@ -477,15 +477,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Deprecation description of the selected element(s). It can be provided if an element is marked as `deprecated`.
      */
-    deprecationDescription?: string;
+    deprecationDescription?: string | null;
     /**
      * Description of the selected API(s).
      */
-    description?: string;
+    description?: string | null;
     /**
      * The selector is a comma-separated list of patterns. Each pattern is a qualified name of the element which may end in &quot;*&quot;, indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. &quot;foo.*&quot; is ok, but not &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. A wildcard will match one or more components. To specify a default for all applicable elements, the whole pattern &quot;*&quot; is used.
      */
-    selector?: string;
+    selector?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -498,23 +498,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases.  Additional names that this endpoint will be hosted on.
      */
-    aliases?: string[];
+    aliases?: string[] | null;
     /**
      * Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
      */
-    allowCors?: boolean;
+    allowCors?: boolean | null;
     /**
      * The list of features enabled on this endpoint.
      */
-    features?: string[];
+    features?: string[] | null;
     /**
      * The canonical name of this endpoint.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The specification of an Internet routable address of API frontend that will handle requests to this [API Endpoint](https://cloud.google.com/apis/design/glossary). It should be either a valid IPv4 address or a fully-qualified domain name. For example, &quot;8.8.8.8&quot; or &quot;myservice.appspot.com&quot;.
      */
-    target?: string;
+    target?: string | null;
   }
   /**
    * Enum type definition.
@@ -527,7 +527,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Enum type name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Protocol buffer options.
      */
@@ -539,7 +539,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The source syntax.
      */
-    syntax?: string;
+    syntax?: string | null;
   }
   /**
    * Enum value definition.
@@ -548,11 +548,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Enum value name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Enum value number.
      */
-    number?: number;
+    number?: number | null;
     /**
      * Protocol buffer options.
      */
@@ -565,31 +565,31 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The field cardinality.
      */
-    cardinality?: string;
+    cardinality?: string | null;
     /**
      * The string value of the default value of this field. Proto2 syntax only.
      */
-    defaultValue?: string;
+    defaultValue?: string | null;
     /**
      * The field JSON name.
      */
-    jsonName?: string;
+    jsonName?: string | null;
     /**
      * The field type.
      */
-    kind?: string;
+    kind?: string | null;
     /**
      * The field name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The field number.
      */
-    number?: number;
+    number?: number | null;
     /**
      * The index of the field type in `Type.oneofs`, for message or enumeration types. The first type has index 1; zero means the type is not in the list.
      */
-    oneofIndex?: number;
+    oneofIndex?: number | null;
     /**
      * The protocol buffer options.
      */
@@ -597,11 +597,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Whether to use alternative packed wire representation.
      */
-    packed?: boolean;
+    packed?: boolean | null;
     /**
      * The field type URL, without the scheme, for message or enumeration types. Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
      */
-    typeUrl?: string;
+    typeUrl?: string | null;
   }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.
@@ -610,7 +610,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * When set to true, URL path parameters will be fully URI-decoded except in cases of single segment matches in reserved expansion, where &quot;%2F&quot; will be left encoded.  The default behavior is to not decode RFC 6570 reserved characters in multi segment matches.
      */
-    fullyDecodeReservedExpansion?: boolean;
+    fullyDecodeReservedExpansion?: boolean | null;
     /**
      * A list of HTTP configuration rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
@@ -627,7 +627,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body.  NOTE: the referred field must be present at the top-level of the request message type.
      */
-    body?: string;
+    body?: string | null;
     /**
      * The custom pattern is used for specifying an HTTP method that is not included in the `pattern` field, such as HEAD, or &quot;*&quot; to leave the HTTP method unspecified for this rule. The wild-card rule is useful for services that provide content to Web (HTML) clients.
      */
@@ -635,31 +635,31 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Maps to HTTP DELETE. Used for deleting a resource.
      */
-    delete?: string;
+    delete?: string | null;
     /**
      * Maps to HTTP GET. Used for listing and getting information about resources.
      */
-    get?: string;
+    get?: string | null;
     /**
      * Maps to HTTP PATCH. Used for updating a resource.
      */
-    patch?: string;
+    patch?: string | null;
     /**
      * Maps to HTTP POST. Used for creating a resource or performing an action.
      */
-    post?: string;
+    post?: string | null;
     /**
      * Maps to HTTP PUT. Used for replacing a resource.
      */
-    put?: string;
+    put?: string | null;
     /**
      * Optional. The name of the response field whose value is mapped to the HTTP response body. When omitted, the entire response message will be used as the HTTP response body.  NOTE: The referred field must be present at the top-level of the response message type.
      */
-    responseBody?: string;
+    responseBody?: string | null;
     /**
      * Selects a method to which this rule applies.  Refer to selector for syntax details.
      */
-    selector?: string;
+    selector?: string | null;
   }
   /**
    * A description of a label.
@@ -668,15 +668,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A human-readable description for the label.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The label key.
      */
-    key?: string;
+    key?: string | null;
     /**
      * The type of data that can be assigned to the label.
      */
-    valueType?: string;
+    valueType?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -685,7 +685,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * A list of operations that matches the specified filter in the request.
      */
@@ -698,7 +698,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Pagination token for large results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Tenancy units matching the request.
      */
@@ -711,11 +711,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A human-readable description of this log. This information appears in the documentation and can contain details.
      */
-    description?: string;
+    description?: string | null;
     /**
      * The human-readable name for this log. This information appears on the user interface and should be concise.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The set of labels that are available to describe a specific log entry. Runtime requests that contain labels not specified here are considered invalid.
      */
@@ -723,7 +723,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The name of the log. It must be less than 512 characters long and can include the following characters: upper- and lower-case alphanumeric characters [A-Za-z0-9], and punctuation characters including slash, underscore, hyphen, period [/_-.].
      */
-    name?: string;
+    name?: string | null;
   }
   /**
    * Logging configuration of the service.  The following example shows how to configure logs to be sent to the producer and consumer projects. In the example, the `activity_history` log is sent to both the producer and consumer projects, whereas the `purchase_history` log is only sent to the producer project.      monitored_resources:     - type: library.googleapis.com/branch       labels:       - key: /city         description: The city where the library branch is located in.       - key: /name         description: The name of the branch.     logs:     - name: activity_history       labels:       - key: /customer_id     - name: purchase_history     logging:       producer_destinations:       - monitored_resource: library.googleapis.com/branch         logs:         - activity_history         - purchase_history       consumer_destinations:       - monitored_resource: library.googleapis.com/branch         logs:         - activity_history
@@ -745,11 +745,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Names of the logs to be sent to this destination. Each name must be defined in the Service.logs section. If the log name is not a domain scoped name, it will be automatically prefixed with the service name followed by &quot;/&quot;.
      */
-    logs?: string[];
+    logs?: string[] | null;
     /**
      * The monitored resource type. The type must be defined in the Service.monitored_resources section.
      */
-    monitoredResource?: string;
+    monitoredResource?: string | null;
   }
   /**
    * Method represents a method of an API interface.
@@ -758,7 +758,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The simple name of this method.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Any metadata attached to the method.
      */
@@ -766,23 +766,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * If true, the request is streamed.
      */
-    requestStreaming?: boolean;
+    requestStreaming?: boolean | null;
     /**
      * A URL of the input message type.
      */
-    requestTypeUrl?: string;
+    requestTypeUrl?: string | null;
     /**
      * If true, the response is streamed.
      */
-    responseStreaming?: boolean;
+    responseStreaming?: boolean | null;
     /**
      * The URL of the output message type.
      */
-    responseTypeUrl?: string;
+    responseTypeUrl?: string | null;
     /**
      * The source syntax of this method.
      */
-    syntax?: string;
+    syntax?: string | null;
   }
   /**
    * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.
@@ -791,11 +791,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A detailed description of the metric, which can be used in documentation.
      */
-    description?: string;
+    description?: string | null;
     /**
      * A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example &quot;Request count&quot;. This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * The set of labels that can be used to describe a specific instance of this metric type. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed.
      */
@@ -803,7 +803,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Optional. The launch stage of the metric definition.
      */
-    launchStage?: string;
+    launchStage?: string | null;
     /**
      * Optional. Metadata which can be used to guide usage of the metric.
      */
@@ -811,23 +811,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Whether the metric records instantaneous values, changes to a value, etc. Some combinations of `metric_kind` and `value_type` might not be supported.
      */
-    metricKind?: string;
+    metricKind?: string | null;
     /**
      * The resource name of the metric descriptor.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The metric type, including its DNS name prefix. The type is not URL-encoded.  All user-defined metric types have the DNS name `custom.googleapis.com` or `external.googleapis.com`.  Metric types should use a natural hierarchical grouping. For example:      &quot;custom.googleapis.com/invoice/paid/amount&quot;     &quot;external.googleapis.com/prometheus/up&quot;     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
      */
-    type?: string;
+    type?: string | null;
     /**
      * The unit in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo    (10**3) * `M`     mega    (10**6) * `G`     giga    (10**9) * `T`     tera    (10**12) * `P`     peta    (10**15) * `E`     exa     (10**18) * `Z`     zetta   (10**21) * `Y`     yotta   (10**24) * `m`     milli   (10**-3) * `u`     micro   (10**-6) * `n`     nano    (10**-9) * `p`     pico    (10**-12) * `f`     femto   (10**-15) * `a`     atto    (10**-18) * `z`     zepto   (10**-21) * `y`     yocto   (10**-24) * `Ki`    kibi    (2**10) * `Mi`    mebi    (2**20) * `Gi`    gibi    (2**30) * `Ti`    tebi    (2**40)  **Grammar**  The grammar also includes these connectors:  * `/`    division (as an infix operator, e.g. `1/s`). * `.`    multiplication (as an infix operator, e.g. `GBy.d`)  The grammar for a unit is as follows:      Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation               | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a `UNIT` and is    equivalent to `1` if it is used alone. For examples,    `{requests}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not    containing &#39;{&#39; or &#39;}&#39;. * `1` represents dimensionless value 1, such as in `1/s`. * `%` represents dimensionless value 1/100, and annotates values giving    a percentage.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * Whether the measurement is an integer, a floating-point number, etc. Some combinations of `metric_kind` and `value_type` might not be supported.
      */
-    valueType?: string;
+    valueType?: string | null;
   }
   /**
    * Additional annotations that can be used to guide the usage of a metric.
@@ -836,15 +836,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors.
      */
-    ingestDelay?: string;
+    ingestDelay?: string | null;
     /**
      * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
      */
-    launchStage?: string;
+    launchStage?: string | null;
     /**
      * The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period.
      */
-    samplePeriod?: string;
+    samplePeriod?: string | null;
   }
   /**
    * Bind API methods to metrics. Binding a method to a metric causes that metric&#39;s configured quota behaviors to apply to the method call.
@@ -853,11 +853,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Metrics to update when the selected methods are called, and the associated cost applied to each metric.  The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
      */
-    metricCosts?: {[key: string]: string};
+    metricCosts?: {[key: string]: string} | null;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
-    selector?: string;
+    selector?: string | null;
   }
   /**
    * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows:  - If after comment and whitespace stripping, the documentation   string of the redeclared method is empty, it will be inherited   from the original method.  - Each annotation belonging to the service config (http,   visibility) which is not set in the redeclared method will be   inherited.  - If an http annotation is inherited, the path pattern will be   modified as follows. Any version prefix will be replaced by the   version of the including interface plus the root path if   specified.  Example of a simple mixin:      package google.acl.v1;     service AccessControl {       // Get the underlying ACL object.       rpc GetAcl(GetAclRequest) returns (Acl) {         option (google.api.http).get = &quot;/v1/{resource=**}:getAcl&quot;;       }     }      package google.storage.v2;     service Storage {       //       rpc GetAcl(GetAclRequest) returns (Acl);        // Get a data record.       rpc GetData(GetDataRequest) returns (Data) {         option (google.api.http).get = &quot;/v2/{resource=**}&quot;;       }     }  Example of a mixin configuration:      apis:     - name: google.storage.v2.Storage       mixins:       - name: google.acl.v1.AccessControl  The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inherting documentation and annotations as follows:      service Storage {       // Get the underlying ACL object.       rpc GetAcl(GetAclRequest) returns (Acl) {         option (google.api.http).get = &quot;/v2/{resource=**}:getAcl&quot;;       }       ...     }  Note how the version in the path pattern changed from `v1` to `v2`.  If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example:      apis:     - name: google.storage.v2.Storage       mixins:       - name: google.acl.v1.AccessControl         root: acls  This implies the following inherited HTTP annotation:      service Storage {       // Get the underlying ACL object.       rpc GetAcl(GetAclRequest) returns (Acl) {         option (google.api.http).get = &quot;/v2/acls/{resource=**}:getAcl&quot;;       }       ...     }
@@ -866,11 +866,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The fully qualified name of the interface which is included.
      */
-    name?: string;
+    name?: string | null;
     /**
      * If non-empty specifies a path under which inherited HTTP paths are rooted.
      */
-    root?: string;
+    root?: string | null;
   }
   /**
    * An object that describes the schema of a MonitoredResource object using a type name and a set of labels.  For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `&quot;gce_instance&quot;` and specifies the use of the labels `&quot;instance_id&quot;` and `&quot;zone&quot;` to identify particular VM instances.  Different APIs can support different monitored resource types. APIs generally provide a `list` method that returns the monitored resource descriptors used by the API.
@@ -879,11 +879,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Optional. A detailed description of the monitored resource type that might be used in documentation.
      */
-    description?: string;
+    description?: string | null;
     /**
      * Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, `&quot;Google Cloud SQL Database&quot;`.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
      * Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
      */
@@ -891,15 +891,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Optional. The launch stage of the monitored resource definition.
      */
-    launchStage?: string;
+    launchStage?: string | null;
     /**
      * Optional. The resource name of the monitored resource descriptor: `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;` where {type} is the value of the `type` field in this object and {project_id} is a project ID that provides API-specific context for accessing the type.  APIs that do not use project information can use the resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Required. The monitored resource type. For example, the type `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
      */
-    type?: string;
+    type?: string | null;
   }
   /**
    * Monitoring configuration of the service.  The example below shows how to configure monitored resources and metrics for monitoring. In the example, a monitored resource and two metrics are defined. The `library.googleapis.com/book/returned_count` metric is sent to both producer and consumer projects, whereas the `library.googleapis.com/book/overdue_count` metric is only sent to the consumer project.      monitored_resources:     - type: library.googleapis.com/branch       labels:       - key: /city         description: The city where the library branch is located in.       - key: /name         description: The name of the branch.     metrics:     - name: library.googleapis.com/book/returned_count       metric_kind: DELTA       value_type: INT64       labels:       - key: /customer_id     - name: library.googleapis.com/book/overdue_count       metric_kind: GAUGE       value_type: INT64       labels:       - key: /customer_id     monitoring:       producer_destinations:       - monitored_resource: library.googleapis.com/branch         metrics:         - library.googleapis.com/book/returned_count       consumer_destinations:       - monitored_resource: library.googleapis.com/branch         metrics:         - library.googleapis.com/book/returned_count         - library.googleapis.com/book/overdue_count
@@ -921,11 +921,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Types of the metrics to report to this monitoring destination. Each type must be defined in Service.metrics section.
      */
-    metrics?: string[];
+    metrics?: string[] | null;
     /**
      * The monitored resource type. The type must be defined in Service.monitored_resources section.
      */
-    monitoredResource?: string;
+    monitoredResource?: string | null;
   }
   /**
    * OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for &quot;Read-only access to Google Calendar&quot; and &quot;Access to Cloud Platform&quot;. Users can consent to a scope for an application, giving it permission to access that data on their behalf.  OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means.  In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs.  When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice.  Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions.
@@ -934,7 +934,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The list of publicly documented OAuth scopes that are allowed access. An OAuth token containing any of these scopes will be accepted.  Example:       canonical_scopes: https://www.googleapis.com/auth/calendar,                        https://www.googleapis.com/auth/calendar.read
      */
-    canonicalScopes?: string;
+    canonicalScopes?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -943,7 +943,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    done?: boolean;
+    done?: boolean | null;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
@@ -951,15 +951,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
      */
-    metadata?: {[key: string]: any};
+    metadata?: {[key: string]: any} | null;
     /**
      * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response?: {[key: string]: any};
+    response?: {[key: string]: any} | null;
   }
   /**
    * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
@@ -968,11 +968,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The option&#39;s name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, `&quot;map_entry&quot;`. For custom options, it should be the fully-qualified name. For example, `&quot;google.api.http&quot;`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The option&#39;s value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
      */
-    value?: {[key: string]: any};
+    value?: {[key: string]: any} | null;
   }
   /**
    * Represents a documentation page. A page can contain subpages to represent nested documentation set structure.
@@ -981,11 +981,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The Markdown content of the page. You can use &lt;code&gt;&amp;#40;== include {path} ==&amp;#41;&lt;/code&gt; to include content from a Markdown file.
      */
-    content?: string;
+    content?: string | null;
     /**
      * The name of the page. It will be used as an identity of the page to generate URI of the page, text of the link to this page in navigation, etc. The full page name (start from the root page name to this page concatenated with `.`) can be used as reference to the page in your documentation. For example: &lt;pre&gt;&lt;code&gt;pages: - name: Tutorial   content: &amp;#40;== include tutorial.md ==&amp;#41;   subpages:   - name: Java     content: &amp;#40;== include tutorial_java.md ==&amp;#41; &lt;/code&gt;&lt;/pre&gt; You can reference `Java` page using Markdown reference link syntax: `Java`.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Subpages of this page. The order of subpages specified here will be honored in the generated docset.
      */
@@ -998,11 +998,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Uses the same format as in IAM policy. `member` must include both a prefix and ID. For example, `user:{emailId}`, `serviceAccount:{emailId}`, `group:{emailId}`.
      */
-    members?: string[];
+    members?: string[] | null;
     /**
      * Role. (https://cloud.google.com/iam/docs/understanding-roles) For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
-    role?: string;
+    role?: string | null;
   }
   /**
    * Quota configuration helps to achieve fairness and budgeting in service usage.  The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with   corresponding costs. - The quota.limits defines limits on the metrics, which will be used for   quota checks at runtime.  An example quota configuration in yaml format:     quota:      limits:       - name: apiWriteQpsPerProject        metric: library.googleapis.com/write_calls        unit: &quot;1/min/{project}&quot;  # rate limit for consumer projects        values:          STANDARD: 10000        # The metric rules bind all methods to the read_calls metric,      # except for the UpdateBook and DeleteBook methods. These two methods      # are mapped to the write_calls metric, with the UpdateBook method      # consuming at twice rate as the DeleteBook method.      metric_rules:      - selector: &quot;*&quot;        metric_costs:          library.googleapis.com/read_calls: 1      - selector: google.example.library.v1.LibraryService.UpdateBook        metric_costs:          library.googleapis.com/write_calls: 2      - selector: google.example.library.v1.LibraryService.DeleteBook        metric_costs:          library.googleapis.com/write_calls: 1   Corresponding Metric definition:       metrics:      - name: library.googleapis.com/read_calls        display_name: Read requests        metric_kind: DELTA        value_type: INT64       - name: library.googleapis.com/write_calls        display_name: Write requests        metric_kind: DELTA        value_type: INT64
@@ -1024,43 +1024,43 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Default number of tokens that can be consumed during the specified duration. This is the number of tokens assigned when a client application developer activates the service for his/her project.  Specifying a value of 0 will block all requests. This can be used if you are provisioning quota to selected consumers and blocking others. Similarly, a value of -1 will indicate an unlimited quota. No other negative values are allowed.  Used by group-based quotas only.
      */
-    defaultLimit?: string;
+    defaultLimit?: string | null;
     /**
      * Optional. User-visible, extended description for this quota limit. Should be used only when more context is needed to understand this limit than provided by the limit&#39;s display name (see: `display_name`).
      */
-    description?: string;
+    description?: string | null;
     /**
      * User-visible display name for this limit. Optional. If not set, the UI will provide a default display name based on the quota configuration. This field can be used to override the default display name generated from the configuration.
      */
-    displayName?: string;
+    displayName?: string | null;
     /**
-     * Duration of this limit in textual notation. Example: &quot;100s&quot;, &quot;24h&quot;, &quot;1d&quot;. For duration longer than a day, only multiple of days is supported. We support only &quot;100s&quot; and &quot;1d&quot; for now. Additional support will be added in the future. &quot;0&quot; indicates indefinite duration.  Used by group-based quotas only.
+     * Duration of this limit in textual notation. Must be &quot;100s&quot; or &quot;1d&quot;.  Used by group-based quotas only.
      */
-    duration?: string;
+    duration?: string | null;
     /**
      * Free tier value displayed in the Developers Console for this limit. The free tier is the number of tokens that will be subtracted from the billed amount when billing is enabled. This field can only be set on a limit with duration &quot;1d&quot;, in a billable group; it is invalid on any other limit. If this field is not set, it defaults to 0, indicating that there is no free tier for this service.  Used by group-based quotas only.
      */
-    freeTier?: string;
+    freeTier?: string | null;
     /**
      * Maximum number of tokens that can be consumed during the specified duration. Client application developers can override the default limit up to this maximum. If specified, this value cannot be set to a value less than the default limit. If not specified, it is set to the default limit.  To allow clients to apply overrides with no upper bound, set this to -1, indicating unlimited maximum quota.  Used by group-based quotas only.
      */
-    maxLimit?: string;
+    maxLimit?: string | null;
     /**
      * The name of the metric this quota limit applies to. The quota limits with the same metric will be checked together during runtime. The metric must be defined within the service config.
      */
-    metric?: string;
+    metric?: string | null;
     /**
      * Name of the quota limit.  The name must be provided, and it must be unique within the service. The name can only include alphanumeric characters as well as &#39;-&#39;.  The maximum length of the limit name is 64 characters.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Specify the unit of the quota limit. It uses the same syntax as Metric.unit. The supported unit kinds are determined by the quota backend system.  Here are some examples: * &quot;1/min/{project}&quot; for quota per minute per project.  Note: the order of unit components is insignificant. The &quot;1&quot; at the beginning is required to follow the metric unit syntax.
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * Tiered limit values. You must specify this as a key:value pair, with an integer value that is the maximum number of requests allowed for the specified unit. Currently only STANDARD is supported.
      */
-    values?: {[key: string]: string};
+    values?: {[key: string]: string} | null;
   }
   /**
    * Request message to remove a tenant project resource from the tenancy unit.
@@ -1069,7 +1069,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Tag of the resource within the tenancy unit.
      */
-    tag?: string;
+    tag?: string | null;
   }
   /**
    * Response for the search query.
@@ -1078,7 +1078,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Pagination token for large results.
      */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
     /**
      * Tenancy Units matching the request.
      */
@@ -1107,7 +1107,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
      */
-    configVersion?: number;
+    configVersion?: number | null;
     /**
      * Context configuration.
      */
@@ -1139,7 +1139,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. If empty, the server may choose to generate one instead. Must be no longer than 60 characters.
      */
-    id?: string;
+    id?: string | null;
     /**
      * Logging configuration.
      */
@@ -1163,11 +1163,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The service name, which is a DNS-like logical identifier for the service, such as `calendar.googleapis.com`. The service name typically goes through DNS verification to make sure the owner of the service also owns the DNS name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The Google project that owns this service.
      */
-    producerProjectId?: string;
+    producerProjectId?: string | null;
     /**
      * Quota configuration.
      */
@@ -1187,7 +1187,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The product title for this service.
      */
-    title?: string;
+    title?: string | null;
     /**
      * A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included.  Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example:      types:     - name: google.protobuf.Int32
      */
@@ -1204,11 +1204,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * ID of the IAM service account to be created in tenant project. The email format of the service account is &quot;&lt;account-id&gt;@&lt;tenant-project-id&gt;.iam.gserviceaccount.com&quot;. This account ID must be unique within tenant project and service producers have to guarantee it. The ID must be 6-30 characters long, and match the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])`.
      */
-    accountId?: string;
+    accountId?: string | null;
     /**
      * Roles for the associated service account for the tenant project.
      */
-    tenantProjectRoles?: string[];
+    tenantProjectRoles?: string[] | null;
   }
   /**
    * `SourceContext` represents information about the source of a protobuf element, like the file in which it is defined.
@@ -1217,7 +1217,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The path-qualified name of the .proto file that contained the associated protobuf element.  For example: `&quot;google/protobuf/source_context.proto&quot;`.
      */
-    fileName?: string;
+    fileName?: string | null;
   }
   /**
    * Source information used to create a Service Config
@@ -1226,7 +1226,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * All files used during config generation.
      */
-    sourceFiles?: Array<{[key: string]: any}>;
+    sourceFiles?: Array<{[key: string]: any}> | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1235,15 +1235,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code?: number;
+    code?: number | null;
     /**
      * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
      */
-    details?: Array<{[key: string]: any}>;
+    details?: Array<{[key: string]: any}> | null;
     /**
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    message?: string;
+    message?: string | null;
   }
   /**
    * Define a parameter&#39;s name and location. The parameter may be passed as either an HTTP header or a URL query parameter, and if both are passed the behavior is implementation-dependent.
@@ -1252,15 +1252,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Define the HTTP header name to use for the parameter. It is case insensitive.
      */
-    httpHeader?: string;
+    httpHeader?: string | null;
     /**
      * Define the name of the parameter, such as &quot;api_key&quot; . It is case sensitive.
      */
-    name?: string;
+    name?: string | null;
     /**
      * Define the URL query parameter name to use for the parameter. It is case sensitive.
      */
-    urlQueryParameter?: string;
+    urlQueryParameter?: string | null;
   }
   /**
    * Define a system parameter rule mapping system parameter definitions to methods.
@@ -1273,7 +1273,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
      */
-    selector?: string;
+    selector?: string | null;
   }
   /**
    * ### System parameter configuration  A system parameter is a special kind of parameter defined by the API system, not by an individual API. It is typically mapped to an HTTP header and/or a URL query parameter. This configuration specifies which methods change the names of the system parameters.
@@ -1291,19 +1291,19 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * @OutputOnly Cloud resource name of the consumer of this service. For example &#39;projects/123456&#39;.
      */
-    consumer?: string;
+    consumer?: string | null;
     /**
      * @OutputOnly The time this tenancy unit was created.
      */
-    createTime?: string;
+    createTime?: string | null;
     /**
      * Globally unique identifier of this tenancy unit &quot;services/{service}/{collection id}/{resource id}/tenancyUnits/{unit}&quot;
      */
-    name?: string;
+    name?: string | null;
     /**
      * Output only. Google Cloud API name of the managed service owning this tenancy unit. For example &#39;serviceconsumermanagement.googleapis.com&#39;.
      */
-    service?: string;
+    service?: string | null;
     /**
      * Resources constituting the tenancy unit. There can be at most 512 tenant resources in a tenancy unit.
      */
@@ -1320,11 +1320,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Folder where project in this tenancy unit must be located This folder must have been previously created with the required permissions for the caller to create and configure a project in it. Valid folder resource names have the format `folders/{folder_number}` (for example, `folders/123456`).
      */
-    folder?: string;
+    folder?: string | null;
     /**
      * Labels that are applied to this project.
      */
-    labels?: {[key: string]: string};
+    labels?: {[key: string]: string} | null;
     /**
      * Configuration for the IAM service account on the tenant project.
      */
@@ -1332,7 +1332,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Google Cloud API names of services that are activated on this project during provisioning.  If any of these services can&#39;t be activated, the request fails. For example: &#39;compute.googleapis.com&#39;,&#39;cloudfunctions.googleapis.com&#39;
      */
-    services?: string[];
+    services?: string[] | null;
     /**
      * Describes ownership and policies for the new tenant project. Required.
      */
@@ -1354,15 +1354,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * @OutputOnly Identifier of the tenant resource. For cloud projects, it is in the form &#39;projects/{number}&#39;. For example &#39;projects/123456&#39;.
      */
-    resource?: string;
+    resource?: string | null;
     /**
      * Status of tenant resource.
      */
-    status?: string;
+    status?: string | null;
     /**
      * Unique per single tenancy unit.
      */
-    tag?: string;
+    tag?: string | null;
   }
   /**
    * A protocol buffer message type.
@@ -1375,11 +1375,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The fully qualified message name.
      */
-    name?: string;
+    name?: string | null;
     /**
      * The list of types appearing in `oneof` definitions in this type.
      */
-    oneofs?: string[];
+    oneofs?: string[] | null;
     /**
      * The protocol buffer options.
      */
@@ -1391,7 +1391,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The source syntax.
      */
-    syntax?: string;
+    syntax?: string | null;
   }
   /**
    * Request message to undelete tenant project resource previously deleted from the tenancy unit.
@@ -1400,7 +1400,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Tag of the resource within the tenancy unit.
      */
-    tag?: string;
+    tag?: string | null;
   }
   /**
    * Configuration controlling usage of a service.
@@ -1409,11 +1409,11 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The full resource name of a channel used for sending notifications to the service producer.  Google Service Management currently only supports [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) as a notification channel. To use Google Cloud Pub/Sub as the channel, this must be the name of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name format documented in https://cloud.google.com/pubsub/docs/overview.
      */
-    producerNotificationChannel?: string;
+    producerNotificationChannel?: string | null;
     /**
      * Requirements that must be satisfied before a consumer project can use the service. Each requirement is of the form &lt;service.name&gt;/&lt;requirement-id&gt;; for example &#39;serviceusage.googleapis.com/billing-enabled&#39;.
      */
-    requirements?: string[];
+    requirements?: string[] | null;
     /**
      * A list of usage rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
@@ -1426,15 +1426,15 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * If true, the selected method allows unregistered calls, e.g. calls that don&#39;t identify any user or application.
      */
-    allowUnregisteredCalls?: boolean;
+    allowUnregisteredCalls?: boolean | null;
     /**
      * Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all methods in all APIs.  Refer to selector for syntax details.
      */
-    selector?: string;
+    selector?: string | null;
     /**
      * If true, the selected method should skip service control and the control plane features, such as quota and billing, will not be available. This flag is used by Google Cloud Endpoints to bypass checks for internal methods, such as service health check methods.
      */
-    skipServiceControl?: boolean;
+    skipServiceControl?: boolean | null;
   }
   /**
    * Response message for the `AddVisibilityLabels` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
@@ -1443,7 +1443,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The updated set of visibility labels for this consumer on this service.
      */
-    labels?: string[];
+    labels?: string[] | null;
   }
   /**
    * Response message for BatchCreateProducerOverrides
@@ -1478,23 +1478,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.  For example, an override on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the override is only applied to quota consumed in that region.  This map has the following restrictions: - Keys that are not defined in the limit&#39;s unit are not valid keys.   Any string appearing in {brackets} in the unit (besides {project} or   {user}) is a defined key. - &quot;project&quot; is not a valid key; the project is already specified in   the parent resource name. - &quot;user&quot; is not a valid key; the API does not support quota overrides   that apply only to a specific user. - If &quot;region&quot; appears as a key, its value must be a valid Cloud region. - If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. - If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then   all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the map.
      */
-    dimensions?: {[key: string]: string};
+    dimensions?: {[key: string]: string} | null;
     /**
      * The name of the metric to which this override applies.  An example name would be: `compute.googleapis.com/cpus`
      */
-    metric?: string;
+    metric?: string | null;
     /**
      * The resource name of the producer override. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
      */
-    name?: string;
+    name?: string | null;
     /**
      * The overriding quota limit value. Can be any nonnegative integer, or -1 (unlimited quota).
      */
-    overrideValue?: string;
+    overrideValue?: string | null;
     /**
      * The limit unit of the limit to which this override applies.  An example unit would be: `1/{project}/{region}` Note that `{project}` and `{region}` are not placeholders in this example; the literal characters `{` and `}` occur in the string.
      */
-    unit?: string;
+    unit?: string | null;
   }
   /**
    * Response message for the `RefreshConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
@@ -1528,7 +1528,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The updated set of visibility labels for this consumer on this service.
      */
-    labels?: string[];
+    labels?: string[] | null;
   }
   /**
    * A service account in the Identity and Access Management API.
@@ -1537,23 +1537,23 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The email address of the service account.
      */
-    email?: string;
+    email?: string | null;
     /**
      * Deprecated. See b/136209818.
      */
-    iamAccountName?: string;
+    iamAccountName?: string | null;
     /**
      * P4 SA resource name.  An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/serviceAccounts/default`
      */
-    name?: string;
+    name?: string | null;
     /**
      * The P4 SA configuration tag. This must be defined in activation_grants. If not specified when creating the account, the tag is set to &quot;default&quot;.
      */
-    tag?: string;
+    tag?: string | null;
     /**
      * The unique and stable id of the service account.
      */
-    uniqueId?: string;
+    uniqueId?: string | null;
   }
 
   export class Resource$Operations {
