@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [43.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v43.0.0...v43.0.1) (2019-09-17)
+
+
+### Bug Fixes
+
+* **example:** sample exited before finishing write to disk ([#1798](https://www.github.com/googleapis/google-api-nodejs-client/issues/1798)) ([26ac7d8](https://www.github.com/googleapis/google-api-nodejs-client/commit/26ac7d8))
+
 ## [43.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v42.0.0...v43.0.0) (2019-09-06)
 
 
