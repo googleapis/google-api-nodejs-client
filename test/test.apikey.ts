@@ -52,7 +52,10 @@ async function testAuthKey(blogger: APIEndpoint) {
   nock(Utils.baseUrl)
     .get('/blogger/v3/blogs/abc123/pages?key=YOUR%20API%20KEY')
     .reply(200);
-  const res = await blogger.pages.list({auth: 'YOUR API KEY', blogId: 'abc123'});
+  const res = await blogger.pages.list({
+    auth: 'YOUR API KEY',
+    blogId: 'abc123',
+  });
   assert.strictEqual(
     Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1,
     true

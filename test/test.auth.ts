@@ -57,10 +57,7 @@ async function testNoTokens(blogger: APIEndpoint, client: OAuth2Client) {
   );
 }
 
-async function testNoBearer(
-  blogger: APIEndpoint,
-  oauth2client: OAuth2Client
-) {
+async function testNoBearer(blogger: APIEndpoint, oauth2client: OAuth2Client) {
   await blogger.pages.list({blogId: 'abc123', auth: oauth2client});
   assert.strictEqual(oauth2client.credentials.token_type, 'Bearer');
 }

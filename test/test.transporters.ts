@@ -102,10 +102,7 @@ function testNotObjectError(oauth2: APIEndpoint, cb: (err?: Error) => void) {
   });
 }
 
-function testBackendError(
-  blogger: APIEndpoint,
-  cb: (err?: Error) => void
-) {
+function testBackendError(blogger: APIEndpoint, cb: (err?: Error) => void) {
   const obj = {longUrl: 'http://google.com/'};
   blogger.posts.publish(
     {resource: obj, blogId: 'abc123', postId: 'abc123'},
