@@ -103,12 +103,12 @@ function testNotObjectError(oauth2: APIEndpoint, cb: (err?: Error) => void) {
 }
 
 function testBackendError(
-  urlshortener: APIEndpoint,
+  blogger: APIEndpoint,
   cb: (err?: Error) => void
 ) {
   const obj = {longUrl: 'http://google.com/'};
-  urlshortener.url.insert(
-    {resource: obj},
+  blogger.posts.publish(
+    {resource: obj, blogId: 'abc123', postId: 'abc123'},
     (err: NodeJS.ErrnoException, result: {}) => {
       assert(err instanceof Error);
       assert.strictEqual(Number(err.code), 500);
@@ -124,16 +124,16 @@ describe('Transporters', () => {
   let remoteDrive: APIEndpoint;
   let localOauth2: APIEndpoint;
   let remoteOauth2: APIEndpoint;
-  let localUrlshortener: APIEndpoint;
-  let remoteUrlshortener: APIEndpoint;
+  let localBlogger: APIEndpoint;
+  let remoteBlogger: APIEndpoint;
   before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    [remoteDrive, remoteOauth2, remoteUrlshortener] = await Promise.all([
+    [remoteDrive, remoteOauth2, remoteBlogger] = await Promise.all([
       Utils.loadApi(google, 'drive', 'v2'),
       Utils.loadApi(google, 'oauth2', 'v2'),
-      Utils.loadApi(google, 'urlshortener', 'v1'),
+      Utils.loadApi(google, 'blogger', 'v3'),
     ]);
     nock.disableNetConnect();
   });
@@ -144,7 +144,7 @@ describe('Transporters', () => {
     const google = new GoogleApis();
     localDrive = google.drive('v2');
     localOauth2 = google.oauth2('v2');
-    localUrlshortener = google.urlshortener('v1');
+    localBlogger = google.blogger('v3');
   });
 
   it('should add headers to the request from params', async () => {
@@ -209,12 +209,12 @@ describe('Transporters', () => {
 
   it('should return 5xx responses as errors', done => {
     const scope = nock(Utils.baseUrl)
-      .post('/urlshortener/v1/url')
+      .post('/blogger/v3/blogs/abc123/posts/abc123/publish')
       .times(2)
       .reply(500, 'There was an error!');
 
-    testBackendError(localUrlshortener, () => {
-      testBackendError(remoteUrlshortener, () => {
+    testBackendError(localBlogger, () => {
+      testBackendError(remoteBlogger, () => {
         scope.done();
         done();
       });
@@ -231,14 +231,14 @@ describe('Transporters', () => {
 
   it('should handle 5xx responses that include errors', done => {
     const scope = nock(Utils.baseUrl)
-      .post('/urlshortener/v1/url')
+      .post('/blogger/v3/blogs/abc123/posts/abc123/publish')
       .times(2)
       .reply(500, {
         error: {message: 'There was an error!'},
       });
 
-    testBackendError(localUrlshortener, () => {
-      testBackendError(remoteUrlshortener, () => {
+    testBackendError(localBlogger, () => {
+      testBackendError(remoteBlogger, () => {
         scope.done();
         done();
       });
@@ -247,7 +247,7 @@ describe('Transporters', () => {
 
   it('should handle a Backend Error', done => {
     const scope = nock(Utils.baseUrl)
-      .post('/urlshortener/v1/url')
+      .post('/blogger/v3/blogs/abc123/posts/abc123/publish')
       .times(2)
       .reply(500, {
         error: {
@@ -263,8 +263,8 @@ describe('Transporters', () => {
         },
       });
 
-    testBackendError(localUrlshortener, () => {
-      testBackendError(remoteUrlshortener, () => {
+    testBackendError(localBlogger, () => {
+      testBackendError(remoteBlogger, () => {
         scope.done();
         done();
       });
