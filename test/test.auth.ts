@@ -50,18 +50,15 @@ describe('Compute client', () => {
   });
 });
 
-async function testNoTokens(urlshortener: APIEndpoint, client: OAuth2Client) {
+async function testNoTokens(blogger: APIEndpoint, client: OAuth2Client) {
   await assertRejects(
-    urlshortener.url.get({shortUrl: '123', auth: client}),
+    blogger.pages.get({blogId: '123', pageId: '123', auth: client}),
     /No access, refresh token or API key is set./
   );
 }
 
-async function testNoBearer(
-  urlshortener: APIEndpoint,
-  oauth2client: OAuth2Client
-) {
-  await urlshortener.url.list({auth: oauth2client});
+async function testNoBearer(blogger: APIEndpoint, oauth2client: OAuth2Client) {
+  await blogger.pages.list({blogId: 'abc123', auth: oauth2client});
   assert.strictEqual(oauth2client.credentials.token_type, 'Bearer');
 }
 
@@ -102,15 +99,15 @@ async function testNoAccessToken(
 
 describe('OAuth2 client', () => {
   let localDrive: APIEndpoint, remoteDrive: APIEndpoint;
-  let localUrlshortener: APIEndpoint, remoteUrlshortener: APIEndpoint;
+  let localBlogger: APIEndpoint, remoteBlogger: APIEndpoint;
 
   before(async () => {
     nock.cleanAll();
     const google = new GoogleApis();
     nock.enableNetConnect();
-    [remoteDrive, remoteUrlshortener] = await Promise.all([
+    [remoteDrive, remoteBlogger] = await Promise.all([
       Utils.loadApi(google, 'drive', 'v2'),
-      Utils.loadApi(google, 'urlshortener', 'v1'),
+      Utils.loadApi(google, 'blogger', 'v3'),
     ]);
     nock.disableNetConnect();
   });
@@ -120,7 +117,7 @@ describe('OAuth2 client', () => {
     nock.disableNetConnect();
     const google = new GoogleApis();
     localDrive = google.drive('v2');
-    localUrlshortener = google.urlshortener('v1');
+    localBlogger = google.blogger('v3');
   });
 
   const CLIENT_ID = 'CLIENT_ID';
@@ -133,8 +130,8 @@ describe('OAuth2 client', () => {
       CLIENT_SECRET,
       REDIRECT_URI
     );
-    await testNoTokens(localUrlshortener, oauth2client);
-    await testNoTokens(remoteUrlshortener, oauth2client);
+    await testNoTokens(localBlogger, oauth2client);
+    await testNoTokens(remoteBlogger, oauth2client);
   });
 
   it('should not error if only refresh token is set', () => {
@@ -145,9 +142,9 @@ describe('OAuth2 client', () => {
     );
     oauth2client.credentials = {refresh_token: 'refresh_token'};
     assert.doesNotThrow(() => {
-      const options = {auth: oauth2client, shortUrl: '...'};
-      localUrlshortener.url.get(options, Utils.noop);
-      remoteUrlshortener.url.get(options, Utils.noop);
+      const options = {auth: oauth2client, blogId: '...'};
+      localBlogger.pages.get(options, Utils.noop);
+      remoteBlogger.pages.get(options, Utils.noop);
     });
   });
 
@@ -159,12 +156,12 @@ describe('OAuth2 client', () => {
     );
     oauth2client.credentials = {access_token: 'foo', refresh_token: ''};
     const scope = nock(Utils.baseUrl)
-      .get('/urlshortener/v1/url/history')
+      .get('/blogger/v3/blogs/abc123/pages')
       .times(2)
       .reply(200);
 
-    await testNoBearer(localUrlshortener, oauth2client);
-    await testNoBearer(remoteUrlshortener, oauth2client);
+    await testNoBearer(localBlogger, oauth2client);
+    await testNoBearer(remoteBlogger, oauth2client);
   });
 
   it('should refresh if access token is expired', async () => {
