@@ -23,16 +23,16 @@
 {% endif %}
 {% if m.supportsMediaUpload %}
   {% if m.request %}
-    * @param  {object} params.resource Media resource metadata
+    * @param  {object} params.requestBody Media resource metadata
   {% endif %}
   * @param {object} params.media Media object
   * @param {string} params.media.mimeType Media mime-type
   * @param {string|object} params.media.body Media body contents
 {% elif m.request %}
   {% if m.request.$ref %}
-    * @param {{ lb }}{{ api.name }}({{ api.version }}).{{ m.request.$ref }}{{ rb }} params.resource Request body data
+    * @param {{ lb }}{{ api.name }}({{ api.version }}).{{ m.request.$ref }}{{ rb }} params.requestBody Request body data
   {% else %}
-    * @param {object} params.resource Request body data
+    * @param {object} params.requestBody Request body data
   {% endif %}
 {% endif %}
  * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
