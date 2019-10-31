@@ -538,7 +538,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [gaxios]: https://github.com/JustinBeckwith/gaxios
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
 [releasenotes]: https://github.com/googleapis/google-api-nodejs-client/releases
-[devconsole]: https://console.developer.google.com
+[devconsole]: https://console.cloud.google.com/apis/credentials
 [oauth]: https://developers.google.com/identity/protocols/OAuth2
 [oauthexample]: https://github.com/googleapis/google-api-nodejs-client/tree/master/samples/oauth2.js
 [options]: https://github.com/googleapis/google-api-nodejs-client/tree/master#options
