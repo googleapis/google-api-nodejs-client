@@ -268,6 +268,42 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
+   * Creates a Footer. The new footer will be applied to SectionStyle or the DocumentStyle.  If a footer of the specified type already exists then a 400 bad request error will be returned.
+   */
+  export interface Schema$CreateFooterRequest {
+    /**
+     * The type of footer to create.
+     */
+    type?: string | null;
+  }
+  /**
+   * The result of creating a footer.
+   */
+  export interface Schema$CreateFooterResponse {
+    /**
+     * The ID of the created footer.
+     */
+    footerId?: string | null;
+  }
+  /**
+   * Creates a Header. The new header will be applied to SectionStyle or the DocumentStyle.  If a header of the specified type already exists then a 400 bad request error will be returned.
+   */
+  export interface Schema$CreateHeaderRequest {
+    /**
+     * The type of header to create.
+     */
+    type?: string | null;
+  }
+  /**
+   * The result of creating a header.
+   */
+  export interface Schema$CreateHeaderResponse {
+    /**
+     * The ID of the created header.
+     */
+    headerId?: string | null;
+  }
+  /**
    * Creates a NamedRange referencing the given range.
    */
   export interface Schema$CreateNamedRangeRequest {
@@ -1859,9 +1895,34 @@ export namespace docs_v1 {
     uri?: string | null;
   }
   /**
+   * Replaces the contents of the specified NamedRange or NamedRanges with the given replacement content.  Note that an individual NamedRange may consist of multiple discontinuous ranges. In this case, only the content in the first range will be replaced. The other ranges and their content will be deleted.  In cases where replacing or deleting any ranges would result in an invalid document structure, a 400 bad request error is returned.
+   */
+  export interface Schema$ReplaceNamedRangeContentRequest {
+    /**
+     * The ID of the named range whose content will be replaced.  If there is no named range with the given ID a 400 bad request error is returned.
+     */
+    namedRangeId?: string | null;
+    /**
+     * The name of the NamedRanges whose content will be replaced.  If there are multiple named ranges with the given name, then the content of each one will be replaced. If there are no named ranges with the given name, then the request will be a no-op.
+     */
+    namedRangeName?: string | null;
+    /**
+     * Replaces the content of the specified named range(s) with the given text.
+     */
+    text?: string | null;
+  }
+  /**
    * A single update to apply to a document.
    */
   export interface Schema$Request {
+    /**
+     * Creates a footer.
+     */
+    createFooter?: Schema$CreateFooterRequest;
+    /**
+     * Creates a header.
+     */
+    createHeader?: Schema$CreateHeaderRequest;
     /**
      * Creates a named range.
      */
@@ -1931,6 +1992,10 @@ export namespace docs_v1 {
      */
     replaceImage?: Schema$ReplaceImageRequest;
     /**
+     * Replaces the content in a named range.
+     */
+    replaceNamedRangeContent?: Schema$ReplaceNamedRangeContentRequest;
+    /**
      * Unmerges cells in a table.
      */
     unmergeTableCells?: Schema$UnmergeTableCellsRequest;
@@ -1963,6 +2028,14 @@ export namespace docs_v1 {
    * A single response from an update.
    */
   export interface Schema$Response {
+    /**
+     * The result of creating a footer.
+     */
+    createFooter?: Schema$CreateFooterResponse;
+    /**
+     * The result of creating a header.
+     */
+    createHeader?: Schema$CreateHeaderResponse;
     /**
      * The result of creating a named range.
      */

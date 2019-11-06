@@ -1220,6 +1220,15 @@ export namespace jobs_v2 {
     searchTextSnippet?: string | null;
   }
   /**
+   * Message representing input to a Mendel server for debug forcing. See go/mendel-debug-forcing for more details. Next ID: 2
+   */
+  export interface Schema$MendelDebugInput {
+    /**
+     * When a request spans multiple servers, a MendelDebugInput may travel with the request and take effect in all the servers. This field is a map of namespaces to NamespacedMendelDebugInput protos. In a single server, up to two NamespacedMendelDebugInput protos are applied: 1. NamespacedMendelDebugInput with the global namespace (key == &quot;&quot;). 2. NamespacedMendelDebugInput with the server&#39;s namespace. When both NamespacedMendelDebugInput protos are present, they are merged. See go/mendel-debug-forcing for more details.
+     */
+    namespacedDebugInput?: {[key: string]: Schema$NamespacedDebugInput} | null;
+  }
+  /**
    * Represents an amount of money with its currency type.
    */
   export interface Schema$Money {
@@ -1235,6 +1244,67 @@ export namespace jobs_v2 {
      * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * Next ID: 15
+   */
+  export interface Schema$NamespacedDebugInput {
+    /**
+     * Set of experiment names to be absolutely forced. These experiments will be forced without evaluating the conditions.
+     */
+    absolutelyForcedExpNames?: string[] | null;
+    /**
+     * Set of experiment ids to be absolutely forced. These ids will be forced without evaluating the conditions.
+     */
+    absolutelyForcedExps?: number[] | null;
+    /**
+     * Set of experiment tags to be absolutely forced. The experiments with these tags will be forced without evaluating the conditions.
+     */
+    absolutelyForcedExpTags?: string[] | null;
+    /**
+     * Set of experiment names to be conditionally forced. These experiments will be forced only if their conditions and their parent domain&#39;s conditions are true.
+     */
+    conditionallyForcedExpNames?: string[] | null;
+    /**
+     * Set of experiment ids to be conditionally forced. These ids will be forced only if their conditions and their parent domain&#39;s conditions are true.
+     */
+    conditionallyForcedExps?: number[] | null;
+    /**
+     * Set of experiment tags to be conditionally forced. The experiments with these tags will be forced only if their conditions and their parent domain&#39;s conditions are true.
+     */
+    conditionallyForcedExpTags?: string[] | null;
+    /**
+     * If true, disable automatic enrollment selection (at all diversion points). Automatic enrollment selection means experiment selection process based on the experiment&#39;s automatic enrollment condition. This does not disable selection of forced experiments.
+     */
+    disableAutomaticEnrollmentSelection?: boolean | null;
+    /**
+     * Set of experiment names to be disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together. If a name corresponds to a domain, the domain itself and all descendant experiments and domains are disabled together.
+     */
+    disableExpNames?: string[] | null;
+    /**
+     * Set of experiment ids to be disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together. If an ID corresponds to a domain, the domain itself and all descendant experiments and domains are disabled together.
+     */
+    disableExps?: number[] | null;
+    /**
+     * Set of experiment tags to be disabled. All experiments that are tagged with one or more of these tags are disabled. If an experiment is disabled, it is never selected nor forced. If an aggregate experiment is disabled, its partitions are disabled together. If an experiment with an enrollment is disabled, the enrollment is disabled together.
+     */
+    disableExpTags?: string[] | null;
+    /**
+     * If true, disable manual enrollment selection (at all diversion points). Manual enrollment selection means experiment selection process based on the request&#39;s manual enrollment states (a.k.a. opt-in experiments). This does not disable selection of forced experiments.
+     */
+    disableManualEnrollmentSelection?: boolean | null;
+    /**
+     * If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments.  This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem.
+     */
+    disableOrganicSelection?: boolean | null;
+    /**
+     * Flags to force in a particular experiment state. Map from flag name to flag value.
+     */
+    forcedFlags?: {[key: string]: string} | null;
+    /**
+     * Rollouts to force in a particular experiment state. Map from rollout name to rollout value.
+     */
+    forcedRollouts?: {[key: string]: boolean} | null;
   }
   /**
    * Input only.  Use this field to specify bucketing option for the histogram search response.

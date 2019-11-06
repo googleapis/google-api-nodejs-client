@@ -165,7 +165,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$BatchWriteSpansRequest {
     /**
-     * A list of new spans. The span names must not match existing spans, or the results are undefined.
+     * Required. A list of new spans. The span names must not match existing spans, or the results are undefined.
      */
     spans?: Schema$Span[];
   }
@@ -250,7 +250,7 @@ export namespace cloudtrace_v2 {
      */
     attributes?: Schema$Attributes;
     /**
-     * An optional number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.
+     * Optional. The number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.
      */
     childSpanCount?: number | null;
     /**
@@ -274,7 +274,7 @@ export namespace cloudtrace_v2 {
      */
     parentSpanId?: string | null;
     /**
-     * (Optional) Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Stackdriver Trace is unable to take advantage of this helpful information.
+     * Optional. Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Stackdriver Trace is unable to take advantage of this helpful information.
      */
     sameProcessAsParentSpan?: boolean | null;
     /**
@@ -294,7 +294,7 @@ export namespace cloudtrace_v2 {
      */
     startTime?: string | null;
     /**
-     * An optional final status for this span.
+     * Optional. The final status for this span.
      */
     status?: Schema$Status;
     /**

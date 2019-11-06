@@ -316,6 +316,19 @@ export namespace firebasehosting_v1beta1 {
     uploadUrl?: string | null;
   }
   /**
+   * Version preview configuration. If active and unexpired, this version will be accessible via a custom URL even if it is not the currently released version.
+   */
+  export interface Schema$PreviewConfig {
+    /**
+     * If true, preview URLs are enabled for this version.
+     */
+    active?: boolean | null;
+    /**
+     * Indicates the expiration time for previewing this version; preview URL requests received after this time will 404.
+     */
+    expireTime?: string | null;
+  }
+  /**
    * A [`redirect`](/docs/hosting/full-config#redirects) represents the configuration for returning an HTTP redirect response given a matching request URL path.
    */
   export interface Schema$Redirect {
@@ -476,6 +489,10 @@ export namespace firebasehosting_v1beta1 {
      * The unique identifier for a version, in the format: &lt;code&gt;sites/&lt;var&gt;site-name&lt;/var&gt;/versions/&lt;var&gt;versionID&lt;/var&gt;&lt;/code&gt; This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string | null;
+    /**
+     * Version preview configuration for the site version. This configuration specfies whether previewing is enabled for this site version. Version previews allow you to preview your site at a custom URL before releasing it as the live version.
+     */
+    preview?: Schema$PreviewConfig;
     /**
      * The deploy status of a version. &lt;br&gt; &lt;br&gt;For a successful deploy, call the [`CreateVersion`](sites.versions/create) endpoint to make a new version (`CREATED` status), [upload all desired files](sites.versions/populateFiles) to the version, then [update](sites.versions/patch) the version to the `FINALIZED` status. &lt;br&gt; &lt;br&gt;Note that if you leave the version in the `CREATED` state for more than 12&amp;nbsp;hours, the system will automatically mark the version as `ABANDONED`. &lt;br&gt; &lt;br&gt;You can also change the status of a version to `DELETED` by calling the [`DeleteVersion`](sites.versions/delete) endpoint.
      */

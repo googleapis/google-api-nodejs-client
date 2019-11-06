@@ -202,6 +202,10 @@ export namespace testing_v1 {
      */
     orchestratorOption?: string | null;
     /**
+     * The option to run tests in multiple shards in parallel.
+     */
+    shardingOption?: Schema$ShardingOption;
+    /**
      * Required. The APK containing the test code to be executed.
      */
     testApk?: Schema$FileReference;
@@ -687,7 +691,7 @@ export namespace testing_v1 {
     iosDevices?: Schema$IosDevice[];
   }
   /**
-   * A description of an iOS device tests may be run on. Next tag: 10
+   * A description of an iOS device tests may be run on. Next tag: 11
    */
   export interface Schema$IosModel {
     /**
@@ -739,6 +743,23 @@ export namespace testing_v1 {
      * The set of available orientations.
      */
     orientations?: Schema$Orientation[];
+  }
+  /**
+   * A test of an iOS application that implements one or more game loop scenarios. This test type accepts an archived application (.ipa file) and a list of integer scenarios that will be executed on the app sequentially.
+   */
+  export interface Schema$IosTestLoop {
+    /**
+     * Output only. The bundle id for the application under test.
+     */
+    appBundleId?: string | null;
+    /**
+     * Required. The .ipa of the application to test.
+     */
+    appIpa?: Schema$FileReference;
+    /**
+     * The list of scenarios that should be run during the test. Defaults to the single scenario 0 if unspecified.
+     */
+    scenarios?: number[] | null;
   }
   /**
    * A description of how to set up an iOS device prior to running the test.
@@ -819,6 +840,15 @@ export namespace testing_v1 {
      * Tags for this dimension. Example: &quot;default&quot;.
      */
     tags?: string[] | null;
+  }
+  /**
+   * Shards test cases into the specified groups of packages, classes, and/or methods.  With manual sharding enabled, specifying test targets via environment_variables or in InstrumentationTest is invalid.
+   */
+  export interface Schema$ManualSharding {
+    /**
+     * Required. Group of packages, classes, and/or test methods to be run for each shard. The number of shard_test_targets must be &gt; 1, and &lt;= 50.
+     */
+    testTargetsForShard?: Schema$TestTargetsForShard[];
   }
   export interface Schema$NetworkConfiguration {
     /**
@@ -945,6 +975,36 @@ export namespace testing_v1 {
     timeout?: string | null;
   }
   /**
+   * Output only. Details about the shard.
+   */
+  export interface Schema$Shard {
+    /**
+     * Output only. The total number of shards.
+     */
+    numShards?: number | null;
+    /**
+     * Output only. The index of the shard among all the shards.
+     */
+    shardIndex?: number | null;
+    /**
+     * Output only. Test targets for each shard.
+     */
+    testTargetsForShard?: Schema$TestTargetsForShard;
+  }
+  /**
+   * Options for enabling sharding.
+   */
+  export interface Schema$ShardingOption {
+    /**
+     * Shards test cases into the specified groups of packages, classes, and/or methods.
+     */
+    manualSharding?: Schema$ManualSharding;
+    /**
+     * Uniformly shards test cases given a total number of shards.
+     */
+    uniformSharding?: Schema$UniformSharding;
+  }
+  /**
    * A starting intent specified by an action, uri, and categories.
    */
   export interface Schema$StartActivityIntent {
@@ -1015,6 +1075,10 @@ export namespace testing_v1 {
      * Output only. The cloud project that owns the test execution.
      */
     projectId?: string | null;
+    /**
+     * Output only. Details about the shard.
+     */
+    shard?: Schema$Shard;
     /**
      * Output only. Indicates the current progress of the test execution (e.g., FINISHED).
      */
@@ -1143,6 +1207,10 @@ export namespace testing_v1 {
      */
     disableVideoRecording?: boolean | null;
     /**
+     * An iOS application with a test loop.
+     */
+    iosTestLoop?: Schema$IosTestLoop;
+    /**
      * Test setup requirements for iOS.
      */
     iosTestSetup?: Schema$IosTestSetup;
@@ -1158,6 +1226,15 @@ export namespace testing_v1 {
      * Max time a test execution is allowed to run before it is automatically cancelled. The default value is 5 min.
      */
     testTimeout?: string | null;
+  }
+  /**
+   * Test targets for a shard.
+   */
+  export interface Schema$TestTargetsForShard {
+    /**
+     * Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, “package com.my.packages” “class com.my.package.MyClass”.  The number of shard_test_targets must be greater than 0.
+     */
+    testTargets?: string[] | null;
   }
   /**
    * Represents a tool results execution resource.  This has the results of a TestMatrix.
@@ -1234,6 +1311,15 @@ export namespace testing_v1 {
      * Packet loss ratio (0.0 - 1.0).
      */
     packetLossRatio?: number | null;
+  }
+  /**
+   * Uniformly shards test cases given a total number of shards.  For Instrumentation test, it will be translated to “-e numShard” “-e shardIndex” AndroidJUnitRunner arguments. With uniform sharding enabled, specifying these sharding arguments via environment_variables is invalid.
+   */
+  export interface Schema$UniformSharding {
+    /**
+     * Required. Total number of shards. The number must be &gt; 1, and &lt;= 50.
+     */
+    numShards?: number | null;
   }
   /**
    * An Xcode version that an iOS version is compatible with.

@@ -108,7 +108,6 @@ export namespace remotebuildexecution_v1 {
     media: Resource$Media;
     operations: Resource$Operations;
     projects: Resource$Projects;
-    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -119,7 +118,6 @@ export namespace remotebuildexecution_v1 {
       this.media = new Resource$Media(this.context);
       this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
-      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -544,9 +542,21 @@ export namespace remotebuildexecution_v1 {
      */
     dockerPrep?: string | null;
     /**
+     * The timestamp when docker prepartion begins.
+     */
+    dockerPrepStartTime?: string | null;
+    /**
      * The time spent downloading the input files and constructing the working directory.
      */
     download?: string | null;
+    /**
+     * The timestamp when downloading the input files begins.
+     */
+    downloadStartTime?: string | null;
+    /**
+     * The timestamp when execution begins.
+     */
+    execStartTime?: string | null;
     /**
      * The time spent executing the command (i.e., doing useful work).
      */
@@ -567,6 +577,10 @@ export namespace remotebuildexecution_v1 {
      * The time spent uploading the output files.
      */
     upload?: string | null;
+    /**
+     * The timestamp when uploading the output files begins.
+     */
+    uploadStartTime?: string | null;
   }
   /**
    * CommandEvents contains counters for the number of warnings and errors that occurred during the execution of a command.
@@ -607,11 +621,11 @@ export namespace remotebuildexecution_v1 {
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAcceleratorConfig {
     /**
-     * The number of the guest accelerator cards exposed to this VM.
+     * The number of guest accelerator cards exposed to each VM.
      */
     acceleratorCount?: string | null;
     /**
-     * The type of accelerator to attach to this VM, e.g. &quot;nvidia-tesla-k80&quot; for nVidia Tesla K80.
+     * The type of accelerator to attach to each VM, e.g. &quot;nvidia-tesla-k80&quot; for nVidia Tesla K80.
      */
     acceleratorType?: string | null;
   }
@@ -776,6 +790,10 @@ export namespace remotebuildexecution_v1 {
      */
     minCpuPlatform?: string | null;
     /**
+     * Determines the type of network access granted to workers. Possible values:  - &quot;public&quot;: Workers can connect to the public internet. - &quot;private&quot;: Workers can only connect to Google APIs and services. - &quot;restricted-private&quot;: Workers can only connect to Google APIs that are   reachable through `restricted.googleapis.com` (`199.36.153.4/30`).
+     */
+    networkAccess?: string | null;
+    /**
      * Determines whether the worker is reserved (equivalent to a Compute Engine on-demand VM and therefore won&#39;t be preempted). See [Preemptible VMs](https://cloud.google.com/preemptible-vms/) for more details.
      */
     reserved?: boolean | null;
@@ -800,260 +818,6 @@ export namespace remotebuildexecution_v1 {
      * The desired number of workers in the worker pool. Must be a value between 0 and 1000.
      */
     workerCount?: string | null;
-  }
-  /**
-   * An ActionResult represents the result of an Action being run.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testActionResult {
-    /**
-     * The exit code of the command.
-     */
-    exitCode?: number | null;
-    /**
-     * The output directories of the action. For each output directory requested in the `output_directories` field of the Action, if the corresponding directory existed after the action completed, a single entry will be present in the output list, which will contain the digest of a Tree message containing the directory tree, and the path equal exactly to the corresponding Action output_directories member. As an example, suppose the Action had an output directory `a/b/dir` and the execution produced the following contents in `a/b/dir`: a file named `bar` and a directory named `foo` with an executable file named `baz`. Then, output_directory will contain (hashes shortened for readability):  ```json // OutputDirectory proto: {   path: &quot;a/b/dir&quot;   tree_digest: {     hash: &quot;4a73bc9d03...&quot;,     size: 55   } } // Tree proto with hash &quot;4a73bc9d03...&quot; and size 55: {   root: {     files: [       {         name: &quot;bar&quot;,         digest: {           hash: &quot;4a73bc9d03...&quot;,           size: 65534         }       }     ],     directories: [       {         name: &quot;foo&quot;,         digest: {           hash: &quot;4cf2eda940...&quot;,           size: 43         }       }     ]   }   children : {     // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43)     files: [       {         name: &quot;baz&quot;,         digest: {           hash: &quot;b2c941073e...&quot;,           size: 1294,         },         is_executable: true       }     ]   } } ```
-     */
-    outputDirectories?: Schema$GoogleDevtoolsRemoteexecutionV1testOutputDirectory[];
-    /**
-     * The output files of the action. For each output file requested in the `output_files` field of the Action, if the corresponding file existed after the action completed, a single entry will be present in the output list.  If the action does not produce the requested output, or produces a directory where a regular file is expected or vice versa, then that output will be omitted from the list. The server is free to arrange the output list as desired; clients MUST NOT assume that the output list is sorted.
-     */
-    outputFiles?: Schema$GoogleDevtoolsRemoteexecutionV1testOutputFile[];
-    /**
-     * The digest for a blob containing the standard error of the action, which can be retrieved from the ContentAddressableStorage. See `stderr_raw` for when this will be set.
-     */
-    stderrDigest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * The standard error buffer of the action. The server will determine, based on the size of the buffer, whether to return it in raw form or to return a digest in `stderr_digest` that points to the buffer. If neither is set, then the buffer is empty. The client SHOULD NOT assume it will get one of the raw buffer or a digest on any given request and should be prepared to handle either.
-     */
-    stderrRaw?: string | null;
-    /**
-     * The digest for a blob containing the standard output of the action, which can be retrieved from the ContentAddressableStorage. See `stdout_raw` for when this will be set.
-     */
-    stdoutDigest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * The standard output buffer of the action. The server will determine, based on the size of the buffer, whether to return it in raw form or to return a digest in `stdout_digest` that points to the buffer. If neither is set, then the buffer is empty. The client SHOULD NOT assume it will get one of the raw buffer or a digest on any given request and should be prepared to handle either.
-     */
-    stdoutRaw?: string | null;
-  }
-  /**
-   * A `Command` is the actual command executed by a worker running an Action.  Except as otherwise required, the environment (such as which system libraries or binaries are available, and what filesystems are mounted where) is defined by and specific to the implementation of the remote execution API.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testCommand {
-    /**
-     * The arguments to the command. The first argument must be the path to the executable, which must be either a relative path, in which case it is evaluated with respect to the input root, or an absolute path.  The working directory will always be the input root.
-     */
-    arguments?: string[] | null;
-    /**
-     * The environment variables to set when running the program. The worker may provide its own default environment variables; these defaults can be overridden using this field. Additional variables can also be specified.  In order to ensure that equivalent `Command`s always hash to the same value, the environment variables MUST be lexicographically sorted by name. Sorting of strings is done by code point, equivalently, by the UTF-8 bytes.
-     */
-    environmentVariables?: Schema$GoogleDevtoolsRemoteexecutionV1testCommandEnvironmentVariable[];
-  }
-  /**
-   * An `EnvironmentVariable` is one variable to set in the running program&#39;s environment.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testCommandEnvironmentVariable {
-    /**
-     * The variable name.
-     */
-    name?: string | null;
-    /**
-     * The variable value.
-     */
-    value?: string | null;
-  }
-  /**
-   * A content digest. A digest for a given blob consists of the size of the blob and its hash. The hash algorithm to use is defined by the server, but servers SHOULD use SHA-256.  The size is considered to be an integral part of the digest and cannot be separated. That is, even if the `hash` field is correctly specified but `size_bytes` is not, the server MUST reject the request.  The reason for including the size in the digest is as follows: in a great many cases, the server needs to know the size of the blob it is about to work with prior to starting an operation with it, such as flattening Merkle tree structures or streaming it to a worker. Technically, the server could implement a separate metadata store, but this results in a significantly more complicated implementation as opposed to having the client specify the size up-front (or storing the size along with the digest in every message where digests are embedded). This does mean that the API leaks some implementation details of (what we consider to be) a reasonable server implementation, but we consider this to be a worthwhile tradeoff.  When a `Digest` is used to refer to a proto message, it always refers to the message in binary encoded form. To ensure consistent hashing, clients and servers MUST ensure that they serialize messages according to the following rules, even if there are alternate valid encodings for the same message. - Fields are serialized in tag order. - There are no unknown fields. - There are no duplicate fields. - Fields are serialized according to the default semantics for their type.  Most protocol buffer implementations will always follow these rules when serializing, but care should be taken to avoid shortcuts. For instance, concatenating two messages to merge them may produce duplicate fields.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testDigest {
-    /**
-     * The hash. In the case of SHA-256, it will always be a lowercase hex string exactly 64 characters long.
-     */
-    hash?: string | null;
-    /**
-     * The size of the blob, in bytes.
-     */
-    sizeBytes?: string | null;
-  }
-  /**
-   * A `Directory` represents a directory node in a file tree, containing zero or more children FileNodes and DirectoryNodes. Each `Node` contains its name in the directory, the digest of its content (either a file blob or a `Directory` proto), as well as possibly some metadata about the file or directory.  In order to ensure that two equivalent directory trees hash to the same value, the following restrictions MUST be obeyed when constructing a a `Directory`:   - Every child in the directory must have a path of exactly one segment.     Multiple levels of directory hierarchy may not be collapsed.   - Each child in the directory must have a unique path segment (file name).   - The files and directories in the directory must each be sorted in     lexicographical order by path. The path strings must be sorted by code     point, equivalently, by UTF-8 bytes.  A `Directory` that obeys the restrictions is said to be in canonical form.  As an example, the following could be used for a file named `bar` and a directory named `foo` with an executable file named `baz` (hashes shortened for readability):  ```json // (Directory proto) {   files: [     {       name: &quot;bar&quot;,       digest: {         hash: &quot;4a73bc9d03...&quot;,         size: 65534       }     }   ],   directories: [     {       name: &quot;foo&quot;,       digest: {         hash: &quot;4cf2eda940...&quot;,         size: 43       }     }   ] }  // (Directory proto with hash &quot;4cf2eda940...&quot; and size 43) {   files: [     {       name: &quot;baz&quot;,       digest: {         hash: &quot;b2c941073e...&quot;,         size: 1294,       },       is_executable: true     }   ] } ```
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testDirectory {
-    /**
-     * The subdirectories in the directory.
-     */
-    directories?: Schema$GoogleDevtoolsRemoteexecutionV1testDirectoryNode[];
-    /**
-     * The files in the directory.
-     */
-    files?: Schema$GoogleDevtoolsRemoteexecutionV1testFileNode[];
-  }
-  /**
-   * A `DirectoryNode` represents a child of a Directory which is itself a `Directory` and its associated metadata.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testDirectoryNode {
-    /**
-     * The digest of the Directory object represented. See Digest for information about how to take the digest of a proto message.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * The name of the directory.
-     */
-    name?: string | null;
-  }
-  /**
-   * Metadata about an ongoing execution, which will be contained in the metadata field of the Operation.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testExecuteOperationMetadata {
-    /**
-     * The digest of the Action being executed.
-     */
-    actionDigest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    stage?: string | null;
-    /**
-     * If set, the client can use this name with ByteStream.Read to stream the standard error.
-     */
-    stderrStreamName?: string | null;
-    /**
-     * If set, the client can use this name with ByteStream.Read to stream the standard output.
-     */
-    stdoutStreamName?: string | null;
-  }
-  /**
-   * The response message for Execution.Execute, which will be contained in the response field of the Operation.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testExecuteResponse {
-    /**
-     * True if the result was served from cache, false if it was executed.
-     */
-    cachedResult?: boolean | null;
-    /**
-     * The result of the action.
-     */
-    result?: Schema$GoogleDevtoolsRemoteexecutionV1testActionResult;
-    /**
-     * An optional list of additional log outputs the server wishes to provide. A server can use this to return execution-specific logs however it wishes. This is intended primarily to make it easier for users to debug issues that may be outside of the actual job execution, such as by identifying the worker executing the action or by providing logs from the worker&#39;s setup phase. The keys SHOULD be human readable so that a client can display them to a user.
-     */
-    serverLogs?: {
-      [key: string]: Schema$GoogleDevtoolsRemoteexecutionV1testLogFile;
-    } | null;
-    /**
-     * If the status has a code other than `OK`, it indicates that the action did not finish execution. For example, if the operation times out during execution, the status will have a `DEADLINE_EXCEEDED` code. Servers MUST use this field for errors in execution, rather than the error field on the `Operation` object.  If the status code is other than `OK`, then the result MUST NOT be cached. For an error status, the `result` field is optional; the server may populate the output-, stdout-, and stderr-related fields if it has any information available, such as the stdout and stderr of a timed-out action.
-     */
-    status?: Schema$GoogleRpcStatus;
-  }
-  /**
-   * A `FileNode` represents a single file and associated metadata.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testFileNode {
-    /**
-     * The digest of the file&#39;s content.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * True if file is executable, false otherwise.
-     */
-    isExecutable?: boolean | null;
-    /**
-     * The name of the file.
-     */
-    name?: string | null;
-  }
-  /**
-   * A `LogFile` is a log stored in the CAS.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testLogFile {
-    /**
-     * The digest of the log contents.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * This is a hint as to the purpose of the log, and is set to true if the log is human-readable text that can be usefully displayed to a user, and false otherwise. For instance, if a command-line client wishes to print the server logs to the terminal for a failed action, this allows it to avoid displaying a binary file.
-     */
-    humanReadable?: boolean | null;
-  }
-  /**
-   * An `OutputDirectory` is the output in an `ActionResult` corresponding to a directory&#39;s full contents rather than a single file.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testOutputDirectory {
-    /**
-     * DEPRECATED: This field is deprecated and should no longer be used.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * The full path of the directory relative to the working directory. The path separator is a forward slash `/`. Since this is a relative path, it MUST NOT begin with a leading forward slash. The empty string value is allowed, and it denotes the entire working directory.
-     */
-    path?: string | null;
-    /**
-     * The digest of the encoded Tree proto containing the directory&#39;s contents.
-     */
-    treeDigest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-  }
-  /**
-   * An `OutputFile` is similar to a FileNode, but it is tailored for output as part of an `ActionResult`. It allows a full file path rather than only a name, and allows the server to include content inline.  `OutputFile` is binary-compatible with `FileNode`.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testOutputFile {
-    /**
-     * The raw content of the file.  This field may be used by the server to provide the content of a file inline in an ActionResult and avoid requiring that the client make a separate call to [ContentAddressableStorage.GetBlob] to retrieve it.  The client SHOULD NOT assume that it will get raw content with any request, and always be prepared to retrieve it via `digest`.
-     */
-    content?: string | null;
-    /**
-     * The digest of the file&#39;s content.
-     */
-    digest?: Schema$GoogleDevtoolsRemoteexecutionV1testDigest;
-    /**
-     * True if file is executable, false otherwise.
-     */
-    isExecutable?: boolean | null;
-    /**
-     * The full path of the file relative to the input root, including the filename. The path separator is a forward slash `/`. Since this is a relative path, it MUST NOT begin with a leading forward slash.
-     */
-    path?: string | null;
-  }
-  /**
-   * An optional Metadata to attach to any RPC request to tell the server about an external context of the request. The server may use this for logging or other purposes. To use it, the client attaches the header to the call using the canonical proto serialization: name: google.devtools.remoteexecution.v1test.requestmetadata-bin contents: the base64 encoded binary RequestMetadata message.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testRequestMetadata {
-    /**
-     * An identifier that ties multiple requests to the same action. For example, multiple requests to the CAS, Action Cache, and Execution API are used in order to compile foo.cc.
-     */
-    actionId?: string | null;
-    /**
-     * An identifier to tie multiple tool invocations together. For example, runs of foo_test, bar_test and baz_test on a post-submit of a given patch.
-     */
-    correlatedInvocationsId?: string | null;
-    /**
-     * The details for the tool invoking the requests.
-     */
-    toolDetails?: Schema$GoogleDevtoolsRemoteexecutionV1testToolDetails;
-    /**
-     * An identifier that ties multiple actions together to a final result. For example, multiple actions are required to build and run foo_test.
-     */
-    toolInvocationId?: string | null;
-  }
-  /**
-   * Details for the tool used to call the API.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testToolDetails {
-    /**
-     * Name of the tool, e.g. bazel.
-     */
-    toolName?: string | null;
-    /**
-     * Version of the tool used for the request, e.g. 5.0.3.
-     */
-    toolVersion?: string | null;
-  }
-  /**
-   * A `Tree` contains all the Directory protos in a single directory Merkle tree, compressed into one message.
-   */
-  export interface Schema$GoogleDevtoolsRemoteexecutionV1testTree {
-    /**
-     * All the child directories: the directories referred to by the root and, recursively, all its children. In order to reconstruct the directory tree, the client must take the digests of each of the child directories and then build up a tree starting from the `root`.
-     */
-    children?: Schema$GoogleDevtoolsRemoteexecutionV1testDirectory[];
-    /**
-     * The root directory in the tree.
-     */
-    root?: Schema$GoogleDevtoolsRemoteexecutionV1testDirectory;
   }
   /**
    * AdminTemp is a prelimiary set of administration tasks. It&#39;s called &quot;Temp&quot; because we do not yet know the best way to represent admin tasks; it&#39;s possible that this will be entirely replaced in later versions of this API. If this message proves to be sufficient, it will be renamed in the alpha or beta release of this API.  This message (suitably marshalled into a protobuf.Any) can be used as the inline_assignment field in a lease; the lease assignment field should simply be `&quot;admin&quot;` in these cases.  This message is heavily based on Swarming administration tasks from the LUCI project (http://github.com/luci/luci-py/appengine/swarming).
@@ -1351,40 +1115,6 @@ export namespace remotebuildexecution_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
-  }
-  /**
-   * A Change indicates the most recent state of an element.
-   */
-  export interface Schema$GoogleWatcherV1Change {
-    /**
-     * If true, this Change is followed by more Changes that are in the same group as this Change.
-     */
-    continued?: boolean | null;
-    /**
-     * The actual change data. This field is present only when `state() == EXISTS` or `state() == ERROR`. Please see google.protobuf.Any about how to use the Any type.
-     */
-    data?: {[key: string]: any} | null;
-    /**
-     * Name of the element, interpreted relative to the entity&#39;s actual name. &quot;&quot; refers to the entity itself. The element name is a valid UTF-8 string.
-     */
-    element?: string | null;
-    /**
-     * If present, provides a compact representation of all the messages that have been received by the caller for the given entity, e.g., it could be a sequence number or a multi-part timestamp/version vector. This marker can be provided in the Request message, allowing the caller to resume the stream watching at a specific point without fetching the initial state.
-     */
-    resumeMarker?: string | null;
-    /**
-     * The state of the `element`.
-     */
-    state?: string | null;
-  }
-  /**
-   * A batch of Change messages.
-   */
-  export interface Schema$GoogleWatcherV1ChangeBatch {
-    /**
-     * A list of Change messages.
-     */
-    changes?: Schema$GoogleWatcherV1Change[];
   }
 
   export class Resource$Media {
@@ -2001,107 +1731,5 @@ export namespace remotebuildexecution_v1 {
      * The name of the operation resource.
      */
     name?: string;
-  }
-
-  export class Resource$V1 {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * remotebuildexecution.watch
-     * @desc Start a streaming RPC to get watch information from the server.
-     * @alias remotebuildexecution.watch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.resumeMarker The `resume_marker` specifies how much of the existing underlying state is delivered to the client when the watch request is received by the system. The client can set this marker in one of the following ways to get different semantics:  *   Parameter is not specified or has the value "".     Semantics: Fetch initial state.     The client wants the entity's initial state to be delivered. See the     description in "Initial State".  *   Parameter is set to the string "now" (UTF-8 encoding).     Semantics: Fetch new changes only.     The client just wants to get the changes received by the system after     the watch point. The system may deliver changes from before the watch     point as well.  *   Parameter is set to a value received in an earlier     `Change.resume_marker` field while watching the same entity.     Semantics: Resume from a specific point.     The client wants to receive the changes from a specific point; this     value must correspond to a value received in the `Change.resume_marker`     field. The system may deliver changes from before the `resume_marker`     as well. If the system cannot resume the stream from this point (e.g.,     if it is too far behind in the stream), it can raise the     `FAILED_PRECONDITION` error.  An implementation MUST support an unspecified parameter and the empty string "" marker (initial state fetching) and the "now" marker. It need not support resuming from a specific point.
-     * @param {string=} params.target The `target` value **must** be a valid URL path pointing to an entity to watch. Note that the service name **must** be removed from the target field (e.g., the target field must say "/foo/bar", not "myservice.googleapis.com/foo/bar"). A client is also allowed to pass system-specific parameters in the URL that are only obeyed by some implementations. Some parameters will be implementation-specific. However, some have predefined meaning and are listed here:   * recursive = true|false [default=false]    If set to true, indicates that the client wants to watch all elements    of entities in the subtree rooted at the entity's name in `target`. For    descendants that are not the immediate children of the target, the    `Change.element` will contain slashes.     Note that some namespaces and entities will not support recursive    watching. When watching such an entity, a client must not set recursive    to true. Otherwise, it will receive an `UNIMPLEMENTED` error.  Normal URL encoding must be used inside `target`.  For example, if a query parameter name or value, or the non-query parameter portion of `target` contains a special character, it must be %-encoded.  We recommend that clients and servers use their runtime's URL library to produce and consume target values.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    watch(
-      params?: Params$Resource$V1$Watch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleWatcherV1ChangeBatch>;
-    watch(
-      params: Params$Resource$V1$Watch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>,
-      callback: BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>
-    ): void;
-    watch(
-      params: Params$Resource$V1$Watch,
-      callback: BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>
-    ): void;
-    watch(
-      callback: BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>
-    ): void;
-    watch(
-      paramsOrCallback?:
-        | Params$Resource$V1$Watch
-        | BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>,
-      callback?: BodyResponseCallback<Schema$GoogleWatcherV1ChangeBatch>
-    ): void | GaxiosPromise<Schema$GoogleWatcherV1ChangeBatch> {
-      let params = (paramsOrCallback || {}) as Params$Resource$V1$Watch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$V1$Watch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://remotebuildexecution.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1:watch').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleWatcherV1ChangeBatch>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleWatcherV1ChangeBatch>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$V1$Watch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The `resume_marker` specifies how much of the existing underlying state is delivered to the client when the watch request is received by the system. The client can set this marker in one of the following ways to get different semantics:  *   Parameter is not specified or has the value "".     Semantics: Fetch initial state.     The client wants the entity's initial state to be delivered. See the     description in "Initial State".  *   Parameter is set to the string "now" (UTF-8 encoding).     Semantics: Fetch new changes only.     The client just wants to get the changes received by the system after     the watch point. The system may deliver changes from before the watch     point as well.  *   Parameter is set to a value received in an earlier     `Change.resume_marker` field while watching the same entity.     Semantics: Resume from a specific point.     The client wants to receive the changes from a specific point; this     value must correspond to a value received in the `Change.resume_marker`     field. The system may deliver changes from before the `resume_marker`     as well. If the system cannot resume the stream from this point (e.g.,     if it is too far behind in the stream), it can raise the     `FAILED_PRECONDITION` error.  An implementation MUST support an unspecified parameter and the empty string "" marker (initial state fetching) and the "now" marker. It need not support resuming from a specific point.
-     */
-    resumeMarker?: string;
-    /**
-     * The `target` value **must** be a valid URL path pointing to an entity to watch. Note that the service name **must** be removed from the target field (e.g., the target field must say "/foo/bar", not "myservice.googleapis.com/foo/bar"). A client is also allowed to pass system-specific parameters in the URL that are only obeyed by some implementations. Some parameters will be implementation-specific. However, some have predefined meaning and are listed here:   * recursive = true|false [default=false]    If set to true, indicates that the client wants to watch all elements    of entities in the subtree rooted at the entity's name in `target`. For    descendants that are not the immediate children of the target, the    `Change.element` will contain slashes.     Note that some namespaces and entities will not support recursive    watching. When watching such an entity, a client must not set recursive    to true. Otherwise, it will receive an `UNIMPLEMENTED` error.  Normal URL encoding must be used inside `target`.  For example, if a query parameter name or value, or the non-query parameter portion of `target` contains a special character, it must be %-encoded.  We recommend that clients and servers use their runtime's URL library to produce and consume target values.
-     */
-    target?: string;
   }
 }

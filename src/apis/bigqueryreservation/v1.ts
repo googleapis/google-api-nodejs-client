@@ -118,13 +118,13 @@ export namespace bigqueryreservation_v1 {
   }
 
   /**
-   * The metadata for operation returned from ReservationService.CreateSlotPool.
+   * The metadata for operation returned from ReservationService.CreateCapacityCommitment.
    */
-  export interface Schema$CreateSlotPoolMetadata {
+  export interface Schema$CreateCapacityCommitmentMetadata {
     /**
-     * Resource name of the slot pool that is being created. E.g., projects/myproject/locations/us-central1/reservations/foo/slotPools/123
+     * Resource name of the capacity commitment that is being created. E.g., projects/myproject/locations/US/capacityCommitments/123
      */
-    slotPool?: string | null;
+    capacityCommitment?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.

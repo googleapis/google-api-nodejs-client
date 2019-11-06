@@ -73,9 +73,9 @@ export namespace licensing_v1 {
   }
 
   /**
-   * Enterprise License Manager API
+   * Licensing API
    *
-   * Views and manages licenses for your domain.
+   * Licensing API to view and manage licenses for your domain
    *
    * @example
    * const {google} = require('googleapis');
@@ -102,7 +102,7 @@ export namespace licensing_v1 {
   }
 
   /**
-   * Template for LiscenseAssignment Resource
+   * Representation of a license assignment.
    */
   export interface Schema$LicenseAssignment {
     /**
@@ -114,7 +114,7 @@ export namespace licensing_v1 {
      */
     kind?: string | null;
     /**
-     * Id of the product.
+     * A product&#39;s unique identifier. For more information about products in this version of the API, see Product and SKU IDs.
      */
     productId?: string | null;
     /**
@@ -126,7 +126,7 @@ export namespace licensing_v1 {
      */
     selfLink?: string | null;
     /**
-     * Id of the sku of the product.
+     * A product SKU&#39;s unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      */
     skuId?: string | null;
     /**
@@ -134,12 +134,12 @@ export namespace licensing_v1 {
      */
     skuName?: string | null;
     /**
-     * Email id of the user.
+     * The user&#39;s current primary email address. If the user&#39;s email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user&#39;s email address changes. If the userId is suspended, the license status changes.
      */
     userId?: string | null;
   }
   /**
-   * Template for LicenseAssignment Insert request
+   * Representation of a license assignment.
    */
   export interface Schema$LicenseAssignmentInsert {
     /**
@@ -164,7 +164,7 @@ export namespace licensing_v1 {
      */
     kind?: string | null;
     /**
-     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+     * The token that you must submit in a subsequent request to retrieve additional license results matching your query parameters. The maxResults query string is related to the nextPageToken since maxResults determines how many entries are returned on each next page.
      */
     nextPageToken?: string | null;
   }
@@ -177,14 +177,14 @@ export namespace licensing_v1 {
 
     /**
      * licensing.licenseAssignments.delete
-     * @desc Revoke License.
+     * @desc Revoke a license.
      * @alias licensing.licenseAssignments.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku
-     * @param {string} params.userId email id or unique Id of the user
+     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -251,14 +251,14 @@ export namespace licensing_v1 {
 
     /**
      * licensing.licenseAssignments.get
-     * @desc Get license assignment of a particular product and sku for a user
+     * @desc Get a specific user's license by product SKU.
      * @alias licensing.licenseAssignments.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku
-     * @param {string} params.userId email id or unique Id of the user
+     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -327,13 +327,13 @@ export namespace licensing_v1 {
 
     /**
      * licensing.licenseAssignments.insert
-     * @desc Assign License.
+     * @desc Assign a license.
      * @alias licensing.licenseAssignments.insert
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku
+     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      * @param {().LicenseAssignmentInsert} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -403,15 +403,15 @@ export namespace licensing_v1 {
 
     /**
      * licensing.licenseAssignments.listForProduct
-     * @desc List license assignments for given product of the customer.
+     * @desc List all users assigned licenses for a specific product SKU.
      * @alias licensing.licenseAssignments.listForProduct
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
-     * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-     * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
-     * @param {string} params.productId Name for product
+     * @param {string} params.customerId Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     * @param {integer=} params.maxResults The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
+     * @param {string=} params.pageToken Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
+     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -483,16 +483,16 @@ export namespace licensing_v1 {
 
     /**
      * licensing.licenseAssignments.listForProductAndSku
-     * @desc List license assignments for given product and sku of the customer.
+     * @desc List all users assigned licenses for a specific product SKU.
      * @alias licensing.licenseAssignments.listForProductAndSku
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId CustomerId represents the customer for whom licenseassignments are queried
-     * @param {integer=} params.maxResults Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
-     * @param {string=} params.pageToken Token to fetch the next page.Optional. By default server will return first page
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku
+     * @param {string} params.customerId Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     * @param {integer=} params.maxResults The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
+     * @param {string=} params.pageToken Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
+     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -565,14 +565,14 @@ export namespace licensing_v1 {
 
     /**
      * licensing.licenseAssignments.patch
-     * @desc Assign License. This method supports patch semantics.
+     * @desc Reassign a user's product SKU with a different SKU in the same product. This method supports patch semantics.
      * @alias licensing.licenseAssignments.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku for which license would be revoked
-     * @param {string} params.userId email id or unique Id of the user
+     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      * @param {().LicenseAssignment} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -642,14 +642,14 @@ export namespace licensing_v1 {
 
     /**
      * licensing.licenseAssignments.update
-     * @desc Assign License.
+     * @desc Reassign a user's product SKU with a different SKU in the same product.
      * @alias licensing.licenseAssignments.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.productId Name for product
-     * @param {string} params.skuId Name for sku for which license would be revoked
-     * @param {string} params.userId email id or unique Id of the user
+     * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
+     * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
+     * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      * @param {().LicenseAssignment} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -726,15 +726,15 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name for product
+     * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
     /**
-     * Name for sku
+     * A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      */
     skuId?: string;
     /**
-     * email id or unique Id of the user
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      */
     userId?: string;
   }
@@ -746,15 +746,15 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name for product
+     * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
     /**
-     * Name for sku
+     * A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      */
     skuId?: string;
     /**
-     * email id or unique Id of the user
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      */
     userId?: string;
   }
@@ -766,11 +766,11 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name for product
+     * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
     /**
-     * Name for sku
+     * A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      */
     skuId?: string;
 
@@ -787,19 +787,19 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * CustomerId represents the customer for whom licenseassignments are queried
+     * Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      */
     customerId?: string;
     /**
-     * Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
+     * The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      */
     maxResults?: number;
     /**
-     * Token to fetch the next page.Optional. By default server will return first page
+     * Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
      */
     pageToken?: string;
     /**
-     * Name for product
+     * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
   }
@@ -811,23 +811,23 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * CustomerId represents the customer for whom licenseassignments are queried
+     * Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      */
     customerId?: string;
     /**
-     * Maximum number of campaigns to return at one time. Must be positive. Optional. Default value is 100.
+     * The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      */
     maxResults?: number;
     /**
-     * Token to fetch the next page.Optional. By default server will return first page
+     * Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
      */
     pageToken?: string;
     /**
-     * Name for product
+     * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
     /**
-     * Name for sku
+     * A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      */
     skuId?: string;
   }
@@ -839,15 +839,15 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name for product
+     * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
     /**
-     * Name for sku for which license would be revoked
+     * A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      */
     skuId?: string;
     /**
-     * email id or unique Id of the user
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      */
     userId?: string;
 
@@ -864,15 +864,15 @@ export namespace licensing_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name for product
+     * A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      */
     productId?: string;
     /**
-     * Name for sku for which license would be revoked
+     * A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      */
     skuId?: string;
     /**
-     * email id or unique Id of the user
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
      */
     userId?: string;
 

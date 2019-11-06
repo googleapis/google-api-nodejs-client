@@ -146,7 +146,7 @@ export namespace commentanalyzer_v1alpha1 {
      */
     languages?: string[] | null;
     /**
-     * Specification of requested attributes. The AttributeParameters serve as configuration for each associated attribute. The map keys are attribute names. The following attributes are available: &quot;ATTACK_ON_AUTHOR&quot; - Attack on author of original article or post. &quot;ATTACK_ON_COMMENTER&quot; - Attack on fellow commenter. &quot;ATTACK_ON_PUBLISHER&quot; - Attack on publisher of article/post. &quot;INCOHERENT&quot; - Difficult to understand, nonsensical. &quot;INFLAMMATORY&quot; - Intending to provoke or inflame. &quot;OBSCENE&quot; - Obscene, such as cursing. &quot;OFF_TOPIC&quot; - Not related to the original topic. &quot;SPAM&quot; - Commercial/advertising spam content. &quot;UNSUBSTANTIAL&quot; - Trivial.
+     * Specification of requested attributes. The AttributeParameters serve as configuration for each associated attribute. The map keys are attribute names. The available attributes may be different on each RFE installation, and can be seen by calling ListAttributes (see above). For the prod installation, known as Perspective API, at blade:commentanalyzer-esf and commentanalyzer.googleapis.com, see go/checker-models (internal) and https://github.com/conversationai/perspectiveapi/blob/master/api_reference.md#models.
      */
     requestedAttributes?: {[key: string]: Schema$AttributeParameters} | null;
     /**
