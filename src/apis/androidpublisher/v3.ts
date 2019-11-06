@@ -594,6 +594,10 @@ export namespace androidpublisher_v3 {
      */
     orderId?: string | null;
     /**
+     * The inapp product SKU.
+     */
+    productId?: string | null;
+    /**
      * The purchase state of the order. Possible values are:   - Purchased  - Canceled  - Pending
      */
     purchaseState?: number | null;
@@ -601,6 +605,10 @@ export namespace androidpublisher_v3 {
      * The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
      */
     purchaseTimeMillis?: string | null;
+    /**
+     * The purchase token generated to identify this purchase.
+     */
+    purchaseToken?: string | null;
     /**
      * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)  - Rewarded (i.e. from watching a video ad instead of paying)
      */

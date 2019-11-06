@@ -216,7 +216,7 @@ export namespace drive_v2 {
       serviceName?: string;
     }> | null;
     /**
-     * The total number of quota bytes.
+     * The total number of quota bytes. This is only relevant when quotaType is LIMITED.
      */
     quotaBytesTotal?: string | null;
     /**
@@ -584,7 +584,7 @@ export namespace drive_v2 {
      */
     anchor?: string | null;
     /**
-     * The user who wrote this comment.
+     * The author of the comment. The author&#39;s email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
@@ -670,7 +670,7 @@ export namespace drive_v2 {
    */
   export interface Schema$CommentReply {
     /**
-     * The user who wrote this reply.
+     * The author of the reply. The author&#39;s email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
@@ -946,7 +946,7 @@ export namespace drive_v2 {
      */
     fullFileExtension?: string | null;
     /**
-     * Whether any users are granted file access directly on this file. This field is only populated for items in shared drives.
+     * Whether there are permissions directly on this file. This field is only populated for items in shared drives.
      */
     hasAugmentedPermissions?: boolean | null;
     /**
@@ -1493,7 +1493,7 @@ export namespace drive_v2 {
      */
     originalFilename?: string | null;
     /**
-     * Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive which are not Google Docs. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter.
+     * Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive which are not Google Docs. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter. Pinned revisions are stored indefinitely using additional storage quota, up to a maximum of 200 revisions.
      */
     pinned?: boolean | null;
     /**
@@ -3228,7 +3228,7 @@ export namespace drive_v2 {
 
     /**
      * drive.comments.patch
-     * @desc Updates an existing comment. This method supports patch semantics.
+     * @desc Updates an existing comment.
      * @alias drive.comments.patch
      * @memberOf! ()
      *
@@ -7947,7 +7947,7 @@ export namespace drive_v2 {
 
     /**
      * drive.replies.patch
-     * @desc Updates an existing reply. This method supports patch semantics.
+     * @desc Updates an existing reply.
      * @alias drive.replies.patch
      * @memberOf! ()
      *
@@ -8461,7 +8461,7 @@ export namespace drive_v2 {
 
     /**
      * drive.revisions.patch
-     * @desc Updates a revision. This method supports patch semantics.
+     * @desc Updates a revision.
      * @alias drive.revisions.patch
      * @memberOf! ()
      *

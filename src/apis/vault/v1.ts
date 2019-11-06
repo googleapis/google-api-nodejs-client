@@ -106,6 +106,7 @@ export namespace vault_v1 {
   export class Vault {
     context: APIRequestContext;
     matters: Resource$Matters;
+    operations: Resource$Operations;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -114,6 +115,7 @@ export namespace vault_v1 {
       };
 
       this.matters = new Resource$Matters(this.context);
+      this.operations = new Resource$Operations(this.context);
     }
   }
 
@@ -3456,5 +3458,94 @@ export namespace vault_v1 {
      * The pagination token as returned in the previous response. An empty token means start from the beginning.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * vault.operations.delete
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @alias vault.operations.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Operations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vault.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Operations$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
   }
 }

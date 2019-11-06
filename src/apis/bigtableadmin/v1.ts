@@ -199,7 +199,7 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$CreateInstanceRequest {
     /**
-     * The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most two clusters can be specified.
+     * The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most four clusters can be specified.
      */
     clusters?: {[key: string]: Schema$Cluster} | null;
     /**

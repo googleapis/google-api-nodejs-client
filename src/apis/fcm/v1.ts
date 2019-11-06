@@ -273,11 +273,11 @@ export namespace fcm_v1 {
      */
     fcmOptions?: Schema$ApnsFcmOptions;
     /**
-     * HTTP request headers defined in Apple Push Notification Service. Refer to [APNs request headers](https://goo.gl/C6Yhia) for supported headers, e.g. &quot;apns-priority&quot;: &quot;10&quot;.
+     * HTTP request headers defined in Apple Push Notification Service. Refer to [APNs request headers](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns) for supported headers, e.g. &quot;apns-priority&quot;: &quot;10&quot;.
      */
     headers?: {[key: string]: string} | null;
     /**
-     * APNs payload as a JSON object, including both `aps` dictionary and custom payload. See [Payload Key Reference](https://goo.gl/32Pl5W). If present, it overrides google.firebase.fcm.v1.Notification.title and google.firebase.fcm.v1.Notification.body.
+     * APNs payload as a JSON object, including both `aps` dictionary and custom payload. See [Payload Key Reference](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification). If present, it overrides google.firebase.fcm.v1.Notification.title and google.firebase.fcm.v1.Notification.body.
      */
     payload?: {[key: string]: any} | null;
   }
@@ -358,7 +358,7 @@ export namespace fcm_v1 {
      */
     condition?: string | null;
     /**
-     * Input only. Arbitrary key/value payload.
+     * Input only. Arbitrary key/value payload. The key should not be a reserved word (&quot;from&quot;, &quot;message_type&quot;, or any word starting with &quot;google&quot; or &quot;gcm&quot;).
      */
     data?: {[key: string]: string} | null;
     /**

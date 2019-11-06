@@ -780,10 +780,6 @@ export namespace servicecontrol_v1 {
      */
     quotaProperties?: Schema$QuotaProperties;
     /**
-     * DO NOT USE. This field is deprecated, use &quot;resources&quot; field instead. The resource name of the parent of a resource in the resource hierarchy.  This can be in one of the following formats:     - “projects/&lt;project-id or project-number&gt;”     - “folders/&lt;folder-id&gt;”     - “organizations/&lt;organization-id&gt;”
-     */
-    resourceContainer?: string | null;
-    /**
      * The resources that are involved in the operation. The maximum supported number of entries in this field is 100.
      */
     resources?: Schema$ResourceInfo[];
@@ -872,7 +868,7 @@ export namespace servicecontrol_v1 {
      */
     methodName?: string | null;
     /**
-     * Identity of the operation. This is expected to be unique within the scope of the service that generated the operation, and guarantees idempotency in case of retries.  UUID version 4 is recommended, though not required. In scenarios where an operation is computed from existing information and an idempotent id is desirable for deduplication purpose, UUID version 5 is recommended. See RFC 4122 for details.
+     * Identity of the operation. This is expected to be unique within the scope of the service that generated the operation, and guarantees idempotency in case of retries.  In order to ensure best performance and latency in the Quota backends, operation_ids are optimally associated with time, so that related operations can be accessed fast in storage. For this reason, the recommended token for services that intend to operate at a high QPS is Unix time in nanos + UUID
      */
     operationId?: string | null;
     /**

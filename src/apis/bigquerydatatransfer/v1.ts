@@ -392,11 +392,11 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$ScheduleTransferRunsRequest {
     /**
-     * End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`.
+     * Required. End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`.
      */
     endTime?: string | null;
     /**
-     * Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`.
+     * Required. Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`.
      */
     startTime?: string | null;
   }
@@ -625,7 +625,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
+     * @param {string} params.name Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
      * @param {().CheckValidCredsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -705,7 +705,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -779,7 +779,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
+     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -858,7 +858,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
+     * Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
      */
     name?: string;
 
@@ -875,7 +875,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
      */
     name?: string;
   }
@@ -895,7 +895,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
+     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
      */
     parent?: string;
   }
@@ -1115,7 +1115,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
+     * @param {string} params.name Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
      * @param {().CheckValidCredsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1195,7 +1195,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1269,7 +1269,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
+     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1348,7 +1348,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
+     * Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}`
      */
     name?: string;
 
@@ -1365,7 +1365,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}`
      */
     name?: string;
   }
@@ -1385,7 +1385,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
+     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}`
      */
     parent?: string;
   }
@@ -1408,7 +1408,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-     * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * @param {string} params.parent Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1485,7 +1485,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1555,7 +1555,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1630,7 +1630,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.dataSourceIds When specified, only configurations of requested data sources are returned.
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
+     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1714,7 +1714,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string=} params.updateMask Required. Required list of fields to be updated in this request.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1788,7 +1788,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * @param {string} params.parent Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
      * @param {().ScheduleTransferRunsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1964,7 +1964,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
      */
     parent?: string;
     /**
@@ -1985,7 +1985,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
@@ -1997,7 +1997,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
@@ -2021,7 +2021,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
+     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
      */
     parent?: string;
   }
@@ -2041,7 +2041,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. Required list of fields to be updated in this request.
      */
     updateMask?: string;
     /**
@@ -2062,7 +2062,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
 
@@ -2106,7 +2106,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2176,7 +2176,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2250,7 +2250,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
+     * @param {string} params.parent Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
      * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
      * @param {string=} params.states When specified, only transfer runs with requested states are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2328,7 +2328,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
@@ -2340,7 +2340,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
@@ -2360,7 +2360,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
     /**
@@ -2389,7 +2389,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.messageTypes Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * @param {string} params.parent Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2480,7 +2480,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      */
     parent?: string;
   }
@@ -2501,7 +2501,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
-     * @param {string} params.parent The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * @param {string} params.parent Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2578,7 +2578,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2648,7 +2648,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2723,7 +2723,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.dataSourceIds When specified, only configurations of requested data sources are returned.
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
+     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2807,7 +2807,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=<datatransferapiclientid>&scope=<data_source_scopes>&redirect_uri=<redirect_uri>  * client_id should be OAuth client_id of BigQuery DTS API for the given   data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then   authorization code is posted to the opener of authorization flow window.   Otherwise it will be sent to the redirect uri. A special value of   urn:ietf:wg:oauth:2.0:oob means that authorization code should be   returned in the title bar of the browser, with the page text prompting   the user to copy the code and paste it in the application.
      * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string=} params.updateMask Required. Required list of fields to be updated in this request.
      * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
      * @param {().TransferConfig} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2881,7 +2881,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * @param {string} params.parent Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
      * @param {().ScheduleTransferRunsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3057,7 +3057,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} If specified location and location of the destination bigquery dataset do not match - the request will fail.
      */
     parent?: string;
     /**
@@ -3078,7 +3078,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
@@ -3090,7 +3090,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}`
      */
     name?: string;
   }
@@ -3114,7 +3114,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
+     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}`.
      */
     parent?: string;
   }
@@ -3134,7 +3134,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. Required list of fields to be updated in this request.
      */
     updateMask?: string;
     /**
@@ -3155,7 +3155,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
 
@@ -3199,7 +3199,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3269,7 +3269,7 @@ export namespace bigquerydatatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3343,7 +3343,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
+     * @param {string} params.parent Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
      * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
      * @param {string=} params.states When specified, only transfer runs with requested states are returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3421,7 +3421,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
@@ -3433,7 +3433,7 @@ export namespace bigquerydatatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
     name?: string;
   }
@@ -3453,7 +3453,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
+     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}`.
      */
     parent?: string;
     /**
@@ -3482,7 +3482,7 @@ export namespace bigquerydatatransfer_v1 {
      * @param {string=} params.messageTypes Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
      * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * @param {string} params.parent Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3573,7 +3573,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
+     * Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      */
     parent?: string;
   }

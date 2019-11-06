@@ -204,7 +204,7 @@ export namespace cloudresourcemanager_v2 {
      */
     name?: string | null;
     /**
-     * The Folder’s parent&#39;s resource name. Updates to the folder&#39;s parent must be performed via MoveFolder.
+     * Required. The Folder’s parent&#39;s resource name. Updates to the folder&#39;s parent must be performed via MoveFolder.
      */
     parent?: string | null;
   }
@@ -265,7 +265,7 @@ export namespace cloudresourcemanager_v2 {
      */
     folders?: Schema$Folder[];
     /**
-     * A pagination token returned from a previous call to `ListFolders` that indicates from where listing should continue. This field is optional.
+     * A pagination token returned from a previous call to `ListFolders` that indicates from where listing should continue.
      */
     nextPageToken?: string | null;
   }
@@ -274,7 +274,7 @@ export namespace cloudresourcemanager_v2 {
    */
   export interface Schema$MoveFolderRequest {
     /**
-     * The resource name of the Folder or Organization to reparent the folder under. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the Folder or Organization to reparent the folder under. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
      */
     destinationParent?: string | null;
   }
@@ -304,7 +304,7 @@ export namespace cloudresourcemanager_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt;             timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -312,15 +312,15 @@ export namespace cloudresourcemanager_v2 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
      */
     version?: number | null;
   }
@@ -346,11 +346,11 @@ export namespace cloudresourcemanager_v2 {
    */
   export interface Schema$SearchFoldersRequest {
     /**
-     * The maximum number of folders to return in the response. This field is optional.
+     * Optional. The maximum number of folders to return in the response.
      */
     pageSize?: number | null;
     /**
-     * A pagination token returned from a previous call to `SearchFolders` that indicates from where search should continue. This field is optional.
+     * Optional. A pagination token returned from a previous call to `SearchFolders` that indicates from where search should continue.
      */
     pageToken?: string | null;
     /**
@@ -367,7 +367,7 @@ export namespace cloudresourcemanager_v2 {
      */
     folders?: Schema$Folder[];
     /**
-     * A pagination token returned from a previous call to `SearchFolders` that indicates from where searching should continue. This field is optional.
+     * A pagination token returned from a previous call to `SearchFolders` that indicates from where searching should continue.
      */
     nextPageToken?: string | null;
   }
@@ -437,7 +437,7 @@ export namespace cloudresourcemanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * @param {string=} params.parent Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
      * @param {().Folder} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -509,7 +509,7 @@ export namespace cloudresourcemanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
+     * @param {string} params.name Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -578,7 +578,7 @@ export namespace cloudresourcemanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
+     * @param {string} params.name Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -721,10 +721,10 @@ export namespace cloudresourcemanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of Folders to return in the response. This field is optional.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from. This field is optional.
-     * @param {string=} params.parent The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
-     * @param {boolean=} params.showDeleted Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false. This field is optional.
+     * @param {integer=} params.pageSize Optional. The maximum number of Folders to return in the response.
+     * @param {string=} params.pageToken Optional. A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from.
+     * @param {string=} params.parent Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
+     * @param {boolean=} params.showDeleted Optional. Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -795,7 +795,7 @@ export namespace cloudresourcemanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Folder to move. Must be of the form folders/{folder_id}
+     * @param {string} params.name Required. The resource name of the Folder to move. Must be of the form folders/{folder_id}
      * @param {().MoveFolderRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -868,7 +868,7 @@ export namespace cloudresourcemanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: "folders/1234".
-     * @param {string=} params.updateMask Fields to be updated. Only the `display_name` can be updated.
+     * @param {string=} params.updateMask Required. Fields to be updated. Only the `display_name` can be updated.
      * @param {().Folder} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1168,7 +1168,7 @@ export namespace cloudresourcemanager_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
+     * @param {string} params.name Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
      * @param {().UndeleteFolderRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1242,7 +1242,7 @@ export namespace cloudresourcemanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
      */
     parent?: string;
 
@@ -1258,7 +1258,7 @@ export namespace cloudresourcemanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
+     * Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
      */
     name?: string;
   }
@@ -1269,7 +1269,7 @@ export namespace cloudresourcemanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
+     * Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
      */
     name?: string;
   }
@@ -1297,19 +1297,19 @@ export namespace cloudresourcemanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The maximum number of Folders to return in the response. This field is optional.
+     * Optional. The maximum number of Folders to return in the response.
      */
     pageSize?: number;
     /**
-     * A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from. This field is optional.
+     * Optional. A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from.
      */
     pageToken?: string;
     /**
-     * The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
+     * Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
      */
     parent?: string;
     /**
-     * Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false. This field is optional.
+     * Optional. Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false.
      */
     showDeleted?: boolean;
   }
@@ -1320,7 +1320,7 @@ export namespace cloudresourcemanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the Folder to move. Must be of the form folders/{folder_id}
+     * Required. The resource name of the Folder to move. Must be of the form folders/{folder_id}
      */
     name?: string;
 
@@ -1340,7 +1340,7 @@ export namespace cloudresourcemanager_v2 {
      */
     name?: string;
     /**
-     * Fields to be updated. Only the `display_name` can be updated.
+     * Required. Fields to be updated. Only the `display_name` can be updated.
      */
     updateMask?: string;
 
@@ -1401,7 +1401,7 @@ export namespace cloudresourcemanager_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
+     * Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
      */
     name?: string;
 

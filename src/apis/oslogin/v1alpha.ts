@@ -168,6 +168,10 @@ export namespace oslogin_v1alpha {
      */
     homeDirectory?: string | null;
     /**
+     * Output only. The canonical resource name.
+     */
+    name?: string | null;
+    /**
      * The operating system type where this account applies.
      */
     operatingSystemType?: string | null;
@@ -208,6 +212,10 @@ export namespace oslogin_v1alpha {
      * Public key text in SSH format, defined by &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
      */
     key?: string | null;
+    /**
+     * Output only. The canonical resource name.
+     */
+    name?: string | null;
   }
 
   export class Resource$Users {

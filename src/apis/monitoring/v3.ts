@@ -637,7 +637,7 @@ export namespace monitoring_v3 {
      */
     description?: string | null;
     /**
-     * The label key.
+     * The key for this label. The key must meet the following criteria: Does not exceed 100 characters. Matches the following regular expression: [a-zA-Z][a-zA-Z0-9_]* The first character must be an upper- or lower-case letter. The remaining characters must be letters, digits, or underscores.
      */
     key?: string | null;
     /**
@@ -822,7 +822,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$MetricAbsence {
     /**
-     * Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the MetricService.ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
+     * Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
      */
     aggregations?: Schema$Aggregation[];
     /**
@@ -830,7 +830,7 @@ export namespace monitoring_v3 {
      */
     duration?: string | null;
     /**
-     * A filter that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
+     * A filter that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
      */
     filter?: string | null;
     /**
@@ -867,6 +867,10 @@ export namespace monitoring_v3 {
      */
     metricKind?: string | null;
     /**
+     * Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here.
+     */
+    monitoredResourceTypes?: string[] | null;
+    /**
      * The resource name of the metric descriptor.
      */
     name?: string | null;
@@ -892,7 +896,7 @@ export namespace monitoring_v3 {
      */
     ingestDelay?: string | null;
     /**
-     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
+     * Deprecated. Must use the MetricDescriptor.launch_stage instead.
      */
     launchStage?: string | null;
     /**
@@ -905,7 +909,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$MetricThreshold {
     /**
-     * Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the MetricService.ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
+     * Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
      */
     aggregations?: Schema$Aggregation[];
     /**
@@ -913,11 +917,11 @@ export namespace monitoring_v3 {
      */
     comparison?: string | null;
     /**
-     * Specifies the alignment of data points in individual time series selected by denominatorFilter as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources).When computing ratios, the aggregations and denominator_aggregations fields must use the same alignment period and produce time series that have the same periodicity and labels.This field is similar to the one in the MetricService.ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
+     * Specifies the alignment of data points in individual time series selected by denominatorFilter as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources).When computing ratios, the aggregations and denominator_aggregations fields must use the same alignment period and produce time series that have the same periodicity and labels.
      */
     denominatorAggregations?: Schema$Aggregation[];
     /**
-     * A filter that identifies a time series that should be used as the denominator of a ratio that will be compared with the threshold. If a denominator_filter is specified, the time series specified by the filter field will be used as the numerator.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
+     * A filter that identifies a time series that should be used as the denominator of a ratio that will be compared with the threshold. If a denominator_filter is specified, the time series specified by the filter field will be used as the numerator.The filter must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
      */
     denominatorFilter?: string | null;
     /**
@@ -925,7 +929,7 @@ export namespace monitoring_v3 {
      */
     duration?: string | null;
     /**
-     * A filter that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the MetricService.ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
+     * A filter that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
      */
     filter?: string | null;
     /**
@@ -1089,7 +1093,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$Point {
     /**
-     * The time interval to which the data point applies. For GAUGE metrics, only the end time of the interval is used. For DELTA metrics, the start and end time should specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For CUMULATIVE metrics, the start and end time should specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points.
+     * The time interval to which the data point applies. For GAUGE metrics, the start time is optional, but if it is supplied, it must equal the end time. For DELTA metrics, the start and end time should specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For CUMULATIVE metrics, the start and end time should specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points.
      */
     interval?: Schema$TimeInterval;
     /**
@@ -1172,7 +1176,7 @@ export namespace monitoring_v3 {
     port?: number | null;
   }
   /**
-   * A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time. For a GAUGE metric, the startTime value is technically optional; if  no value is specified, the start time defaults to the value of the  end time, and the interval represents a single point in time. Such an  interval is valid only for GAUGE metrics, which are point-in-time  measurements. For DELTA and CUMULATIVE metrics, the start time must be earlier  than the end time. In all cases, the start time of the next interval must be  at least a microsecond after the end time of the previous interval.  Because the interval is closed, if the start time of a new interval  is the same as the end time of the previous interval, data written  at the new start time could overwrite data written at the previous  end time.
+   * A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time. For a GAUGE metric, the startTime value is technically optional; if  no value is specified, the start time defaults to the value of the  end time, and the interval represents a single point in time. If both  start and end times are specified, they must be identical. Such an  interval is valid only for GAUGE metrics, which are point-in-time  measurements. For DELTA and CUMULATIVE metrics, the start time must be earlier  than the end time. In all cases, the start time of the next interval must be  at least a microsecond after the end time of the previous interval.  Because the interval is closed, if the start time of a new interval  is the same as the end time of the previous interval, data written  at the new start time could overwrite data written at the previous  end time.
    */
   export interface Schema$TimeInterval {
     /**
@@ -1300,6 +1304,10 @@ export namespace monitoring_v3 {
      * The internal checkers that this check will egress from. If is_internal is true and this list is empty, the check will egress from all the InternalCheckers configured for the project that owns this UptimeCheckConfig.
      */
     internalCheckers?: Schema$InternalChecker[];
+    /**
+     * If this is true, then checks are made only from the &#39;internal_checkers&#39;. If it is false, then checks are made only from the &#39;selected_regions&#39;. It is an error to provide &#39;selected_regions&#39; when is_internal is true, or to provide &#39;internal_checkers&#39; when is_internal is false.
+     */
+    isInternal?: boolean | null;
     /**
      * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for Uptime checks:  uptime_url,  gce_instance,  gae_app,  aws_ec2_instance,  aws_elb_load_balancer
      */
@@ -4874,7 +4882,7 @@ export namespace monitoring_v3 {
      * @param {string=} params.interval.endTime Required. The end of the time interval.
      * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
      * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
-     * @param {string=} params.orderBy Unsupported: must be left blank. The points in each time series are returned in reverse time order.
+     * @param {string=} params.orderBy Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
      * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned.
      * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
      * @param {string=} params.view Specifies which information is returned about the time series.
@@ -5004,7 +5012,7 @@ export namespace monitoring_v3 {
      */
     name?: string;
     /**
-     * Unsupported: must be left blank. The points in each time series are returned in reverse time order.
+     * Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
      */
     orderBy?: string;
     /**

@@ -130,7 +130,7 @@ export namespace securitycenter_v1 {
      */
     iamPolicy?: Schema$IamPolicy;
     /**
-     * The relative resource name of this asset. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/assets/456&quot;.
+     * The relative resource name of this asset. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/assets/{asset_id}&quot;.
      */
     name?: string | null;
     /**
@@ -232,7 +232,7 @@ export namespace securitycenter_v1 {
     title?: string | null;
   }
   /**
-   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
+   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
    */
   export interface Schema$Finding {
     /**
@@ -252,11 +252,11 @@ export namespace securitycenter_v1 {
      */
     externalUri?: string | null;
     /**
-     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/sources/456/findings/789&quot;
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}&quot;
      */
     name?: string | null;
     /**
-     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/123/sources/456&quot;
+     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/{organization_id}/sources/{source_id}&quot;
      */
     parent?: string | null;
     /**
@@ -290,7 +290,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     requestedPolicyVersion?: number | null;
   }
@@ -329,11 +329,11 @@ export namespace securitycenter_v1 {
      */
     compareDuration?: string | null;
     /**
-     * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * update_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;update_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;update_time = 1560208038000&quot;  * create_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;create_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;create_time = 1560208038000&quot;  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=` * security_marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.
+     * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * update_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;update_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;update_time = 1560208038000&quot;  * create_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;create_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;create_time = 1560208038000&quot;  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.
      */
     filter?: string | null;
     /**
-     * Expression that defines what assets fields to use for grouping. The string value should follow SQL syntax: comma separated list of fields. For example: &quot;security_center_properties.resource_project,security_center_properties.project&quot;.  The following fields are supported when compare_duration is not set:  * security_center_properties.resource_project * security_center_properties.resource_type * security_center_properties.resource_parent  The following fields are supported when compare_duration is set:  * security_center_properties.resource_type
+     * Required. Expression that defines what assets fields to use for grouping. The string value should follow SQL syntax: comma separated list of fields. For example: &quot;security_center_properties.resource_project,security_center_properties.project&quot;.  The following fields are supported when compare_duration is not set:  * security_center_properties.resource_project * security_center_properties.resource_type * security_center_properties.resource_parent  The following fields are supported when compare_duration is set:  * security_center_properties.resource_type
      */
     groupBy?: string | null;
     /**
@@ -379,11 +379,11 @@ export namespace securitycenter_v1 {
      */
     compareDuration?: string | null;
     /**
-     * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * parent: `=`, `:` * resource_name: `=`, `:` * state: `=`, `:` * category: `=`, `:` * external_uri: `=`, `:` * event_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;event_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;event_time = 1560208038000&quot;  * security_marks: `=`, `:` * source_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`  For example, `source_properties.size = 100` is a valid filter string.
+     * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * parent: `=`, `:` * resource_name: `=`, `:` * state: `=`, `:` * category: `=`, `:` * external_uri: `=`, `:` * event_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;event_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;event_time = 1560208038000&quot;  * security_marks.marks: `=`, `:` * source_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`  For example, `source_properties.size = 100` is a valid filter string.
      */
     filter?: string | null;
     /**
-     * Expression that defines what assets fields to use for grouping (including `state_change`). The string value should follow SQL syntax: comma separated list of fields. For example: &quot;parent,resource_name&quot;.  The following fields are supported:  * resource_name * category * state * parent  The following fields are supported when compare_duration is set:  * state_change
+     * Required. Expression that defines what assets fields to use for grouping (including `state_change`). The string value should follow SQL syntax: comma separated list of fields. For example: &quot;parent,resource_name&quot;.  The following fields are supported:  * resource_name * category * state * parent  The following fields are supported when compare_duration is set:  * state_change
      */
     groupBy?: string | null;
     /**
@@ -574,12 +574,12 @@ export namespace securitycenter_v1 {
      */
     enableAssetDiscovery?: boolean | null;
     /**
-     * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/organizationSettings&quot;.
+     * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/organizationSettings&quot;.
      */
     name?: string | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt;             timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -587,15 +587,15 @@ export namespace securitycenter_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
      */
     etag?: string | null;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
      */
     version?: number | null;
   }
@@ -637,7 +637,7 @@ export namespace securitycenter_v1 {
      */
     marks?: {[key: string]: string} | null;
     /**
-     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/123/assets/456/securityMarks&quot; &quot;organizations/123/sources/456/findings/789/securityMarks&quot;.
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/{organization_id}/assets/{asset_id}/securityMarks&quot; &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks&quot;.
      */
     name?: string | null;
   }
@@ -646,11 +646,11 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$SetFindingStateRequest {
     /**
-     * The time at which the updated state takes effect.
+     * Required. The time at which the updated state takes effect.
      */
     startTime?: string | null;
     /**
-     * The desired State of the finding.
+     * Required. The desired State of the finding.
      */
     state?: string | null;
   }
@@ -668,11 +668,11 @@ export namespace securitycenter_v1 {
     updateMask?: string | null;
   }
   /**
-   * Cloud Security Command Center&#39;s (Cloud SCC) finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, etc.
+   * Cloud Security Command Center&#39;s (Cloud SCC) finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, and other tools.
    */
   export interface Schema$Source {
     /**
-     * The description of the source (max of 1024 characters). Example: &quot;Cloud Security Scanner is a web security scanner for common vulnerabilities in App Engine applications. It can automatically scan and detect four common vulnerabilities, including cross-site-scripting (XSS), Flash injection, mixed content (HTTP in HTTPS), and outdated/insecure libraries.&quot;
+     * The description of the source (max of 1024 characters). Example: &quot;Web Security Scanner is a web security scanner for common vulnerabilities in App Engine applications. It can automatically scan and detect four common vulnerabilities, including cross-site-scripting (XSS), Flash injection, mixed content (HTTP in HTTPS), and outdated or insecure libraries.&quot;
      */
     description?: string | null;
     /**
@@ -680,7 +680,7 @@ export namespace securitycenter_v1 {
      */
     displayName?: string | null;
     /**
-     * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/123/sources/456&quot;
+     * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/sources/{source_id}&quot;
      */
     name?: string | null;
   }
@@ -786,7 +786,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
+     * @param {string} params.name Required. Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -916,7 +916,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/organizationSettings".
+     * @param {string} params.name The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/organizationSettings".
      * @param {string=} params.updateMask The FieldMask to use when updating the settings resource.   If empty all mutable fields will be updated.
      * @param {().OrganizationSettings} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -996,7 +996,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
+     * Required. Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
      */
     name?: string;
   }
@@ -1008,7 +1008,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/organizationSettings".
+     * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/organizationSettings".
      */
     name?: string;
     /**
@@ -1099,7 +1099,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the organization to groupBy. Its format is "organizations/[organization_id]".
+     * @param {string} params.parent Required. Name of the organization to groupBy. Its format is "organizations/[organization_id]".
      * @param {().GroupAssetsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1241,7 +1241,7 @@ export namespace securitycenter_v1 {
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,resource_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,resource_properties.a_property" and " name     desc  ,   resource_properties.a_property  " are equivalent.  The following fields are supported: name update_time resource_properties security_marks.marks security_center_properties.resource_name security_center_properties.resource_parent security_center_properties.resource_project security_center_properties.resource_type
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      * @param {string=} params.pageToken The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
-     * @param {string} params.parent Name of the organization assets should belong to. Its format is "organizations/[organization_id]".
+     * @param {string} params.parent Required. Name of the organization assets should belong to. Its format is "organizations/[organization_id]".
      * @param {string=} params.readTime Time used as a reference point when filtering assets. The filter is limited to assets existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1368,7 +1368,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
+     * @param {string} params.parent Required. Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
      * @param {().RunAssetDiscoveryRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1499,7 +1499,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/123/assets/456/securityMarks" "organizations/123/sources/456/findings/789/securityMarks".
+     * @param {string} params.name The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      * @param {string=} params.startTime The time at which the updated SecurityMarks take effect. If not set uses current server time.  Updates will be applied to the SecurityMarks that are active immediately preceding this time.
      * @param {string=} params.updateMask The FieldMask to use when updating the security marks resource.  The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced.  Individual marks can be updated using "marks.<mark_key>".
      * @param {().SecurityMarks} params.resource Request body data
@@ -1578,7 +1578,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the organization to groupBy. Its format is "organizations/[organization_id]".
+     * Required. Name of the organization to groupBy. Its format is "organizations/[organization_id]".
      */
     parent?: string;
 
@@ -1619,7 +1619,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Name of the organization assets should belong to. Its format is "organizations/[organization_id]".
+     * Required. Name of the organization assets should belong to. Its format is "organizations/[organization_id]".
      */
     parent?: string;
     /**
@@ -1635,7 +1635,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
+     * Required. Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
      */
     parent?: string;
 
@@ -1652,7 +1652,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/123/assets/456/securityMarks" "organizations/123/sources/456/findings/789/securityMarks".
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      */
     name?: string;
     /**
@@ -2284,7 +2284,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
+     * @param {string} params.parent Required. Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
      * @param {().Source} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2405,7 +2405,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
+     * @param {string} params.name Required. Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2662,7 +2662,7 @@ export namespace securitycenter_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      * @param {string=} params.pageToken The value returned by the last `ListSourcesResponse`; indicates that this is a continuation of a prior `ListSources` call, and that the system should return the next page of data.
-     * @param {string} params.parent Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]".
+     * @param {string} params.parent Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]".
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2791,7 +2791,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456"
+     * @param {string} params.name The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}"
      * @param {string=} params.updateMask The FieldMask to use when updating the source resource.  If empty all mutable fields will be updated.
      * @param {().Source} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3124,7 +3124,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
+     * Required. Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
      */
     parent?: string;
 
@@ -3141,7 +3141,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
+     * Required. Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
      */
     name?: string;
   }
@@ -3178,7 +3178,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]".
      */
     parent?: string;
   }
@@ -3190,7 +3190,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456"
+     * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}"
      */
     name?: string;
     /**
@@ -3302,8 +3302,8 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.findingId Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
-     * @param {string} params.parent Resource name of the new finding's parent. Its format should be "organizations/[organization_id]/sources/[source_id]".
+     * @param {string=} params.findingId Required. Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
+     * @param {string} params.parent Required. Resource name of the new finding's parent. Its format should be "organizations/[organization_id]/sources/[source_id]".
      * @param {().Finding} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3372,7 +3372,7 @@ export namespace securitycenter_v1 {
 
     /**
      * securitycenter.organizations.sources.findings.group
-     * @desc Filters an organization or source's findings and  groups them by their specified properties.  To group across all sources provide a `-` as the source id. Example: /v1/organizations/123/sources/-/findings
+     * @desc Filters an organization or source's findings and  groups them by their specified properties.  To group across all sources provide a `-` as the source id. Example: /v1/organizations/{organization_id}/sources/-/findings
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -3443,7 +3443,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/123/sources/-
+     * @param {string} params.parent Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-
      * @param {().GroupFindingsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3516,7 +3516,7 @@ export namespace securitycenter_v1 {
 
     /**
      * securitycenter.organizations.sources.findings.list
-     * @desc Lists an organization or source's findings.  To list across all sources provide a `-` as the source id. Example: /v1/organizations/123/sources/-/findings
+     * @desc Lists an organization or source's findings.  To list across all sources provide a `-` as the source id. Example: /v1/organizations/{organization_id}/sources/-/findings
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -3589,7 +3589,7 @@ export namespace securitycenter_v1 {
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,source_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,source_properties.a_property" and " name     desc  ,   source_properties.a_property  " are equivalent.  The following fields are supported: name parent state category resource_name event_time source_properties security_marks.marks
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      * @param {string=} params.pageToken The value returned by the last `ListFindingsResponse`; indicates that this is a continuation of a prior `ListFindings` call, and that the system should return the next page of data.
-     * @param {string} params.parent Name of the source the findings belong to. Its format is "organizations/[organization_id]/sources/[source_id]". To list across all sources provide a source_id of `-`. For example: organizations/123/sources/-
+     * @param {string} params.parent Required. Name of the source the findings belong to. Its format is "organizations/[organization_id]/sources/[source_id]". To list across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-
      * @param {string=} params.readTime Time used as a reference point when filtering findings. The filter is limited to findings existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3721,7 +3721,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456/findings/789"
+     * @param {string} params.name The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
      * @param {string=} params.updateMask The FieldMask to use when updating the finding resource. This field should not be specified when creating a finding.  When updating a finding, an empty mask is treated as updating all mutable fields and replacing source_properties.  Individual source_properties can be added/updated by using "source_properties.<property key>" in the field mask.
      * @param {().Finding} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3846,7 +3846,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456/finding/789".
+     * @param {string} params.name Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
      * @param {().SetFindingStateRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3975,7 +3975,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/123/assets/456/securityMarks" "organizations/123/sources/456/findings/789/securityMarks".
+     * @param {string} params.name The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      * @param {string=} params.startTime The time at which the updated SecurityMarks take effect. If not set uses current server time.  Updates will be applied to the SecurityMarks that are active immediately preceding this time.
      * @param {string=} params.updateMask The FieldMask to use when updating the security marks resource.  The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced.  Individual marks can be updated using "marks.<mark_key>".
      * @param {().SecurityMarks} params.resource Request body data
@@ -4054,11 +4054,11 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
+     * Required. Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
      */
     findingId?: string;
     /**
-     * Resource name of the new finding's parent. Its format should be "organizations/[organization_id]/sources/[source_id]".
+     * Required. Resource name of the new finding's parent. Its format should be "organizations/[organization_id]/sources/[source_id]".
      */
     parent?: string;
 
@@ -4075,7 +4075,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/123/sources/-
+     * Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-
      */
     parent?: string;
 
@@ -4116,7 +4116,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Name of the source the findings belong to. Its format is "organizations/[organization_id]/sources/[source_id]". To list across all sources provide a source_id of `-`. For example: organizations/123/sources/-
+     * Required. Name of the source the findings belong to. Its format is "organizations/[organization_id]/sources/[source_id]". To list across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-
      */
     parent?: string;
     /**
@@ -4132,7 +4132,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456/findings/789"
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
      */
     name?: string;
     /**
@@ -4153,7 +4153,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/123/sources/456/finding/789".
+     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
      */
     name?: string;
 
@@ -4170,7 +4170,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/123/assets/456/securityMarks" "organizations/123/sources/456/findings/789/securityMarks".
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      */
     name?: string;
     /**

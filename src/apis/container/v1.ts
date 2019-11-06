@@ -152,6 +152,32 @@ export namespace container_v1 {
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
   }
   /**
+   * Configuration for returning group information from authenticators.
+   */
+  export interface Schema$AuthenticatorGroupsConfig {
+    /**
+     * Whether this cluster should return group membership lookups during authentication using a group of security groups.
+     */
+    enabled?: boolean | null;
+    /**
+     * The name of the security group-of-groups to be used. Only relevant if enabled = true.
+     */
+    securityGroup?: string | null;
+  }
+  /**
+   * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
+   */
+  export interface Schema$AutoprovisioningNodePoolDefaults {
+    /**
+     * Scopes that are used by NAP when creating node pools. If oauth_scopes are specified, service_account should be empty.
+     */
+    oauthScopes?: string[] | null;
+    /**
+     * The Google Cloud Platform Service Account to be used by the node VMs. If service_account is specified, scopes should be empty.
+     */
+    serviceAccount?: string | null;
+  }
+  /**
    * AutoUpgradeOptions defines the set of options for the user to control how the Auto Upgrades will proceed.
    */
   export interface Schema$AutoUpgradeOptions {
@@ -172,6 +198,15 @@ export namespace container_v1 {
      * The ID of a BigQuery Dataset.
      */
     datasetId?: string | null;
+  }
+  /**
+   * Configuration for Binary Authorization.
+   */
+  export interface Schema$BinaryAuthorization {
+    /**
+     * Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Binary Authorization.
+     */
+    enabled?: boolean | null;
   }
   /**
    * CancelOperationRequest cancels a single operation.
@@ -225,6 +260,18 @@ export namespace container_v1 {
      */
     addonsConfig?: Schema$AddonsConfig;
     /**
+     * Configuration controlling RBAC group membership information.
+     */
+    authenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
+    /**
+     * Cluster-level autoscaling configuration.
+     */
+    autoscaling?: Schema$ClusterAutoscaling;
+    /**
+     * Configuration for Binary Authorization.
+     */
+    binaryAuthorization?: Schema$BinaryAuthorization;
+    /**
      * The IP address range of the container pods in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`). Leave blank to have one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
      */
     clusterIpv4Cidr?: string | null;
@@ -248,6 +295,10 @@ export namespace container_v1 {
      * [Output only] Deprecated, use [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools) instead. The current version of the node software components. If they are currently at multiple versions because they&#39;re in the process of being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string | null;
+    /**
+     * Configuration of etcd encryption.
+     */
+    databaseEncryption?: Schema$DatabaseEncryption;
     /**
      * The default constraint on the maximum number of pods that can be run simultaneously on a node in the node pool of this cluster. Only honored if cluster created with IP Alias support.
      */
@@ -305,7 +356,7 @@ export namespace container_v1 {
      */
     locations?: string[] | null;
     /**
-     * The logging service the cluster should use to write logs. Currently available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the Google Cloud Logging service with Kubernetes-native resource model in Stackdriver * `logging.googleapis.com` - the Google Cloud Logging service. * `none` - no logs will be exported from the cluster. * if left as an empty string,`logging.googleapis.com` will be used.
+     * The logging service the cluster should use to write logs. Currently available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the Google Cloud Logging service with Kubernetes-native resource model * `logging.googleapis.com` - the Google Cloud Logging service. * `none` - no logs will be exported from the cluster. * if left as an empty string,`logging.googleapis.com` will be used.
      */
     loggingService?: string | null;
     /**
@@ -325,7 +376,7 @@ export namespace container_v1 {
      */
     monitoringService?: string | null;
     /**
-     * The name of this cluster. The name must be unique within this project and zone, and can be up to 40 characters with the following restrictions:  * Lowercase letters, numbers, and hyphens only. * Must start with a letter. * Must end with a number or a letter.
+     * The name of this cluster. The name must be unique within this project and location (e.g. zone or region), and can be up to 40 characters with the following restrictions:  * Lowercase letters, numbers, and hyphens only. * Must start with a letter. * Must end with a number or a letter.
      */
     name?: string | null;
     /**
@@ -389,9 +440,34 @@ export namespace container_v1 {
      */
     tpuIpv4CidrBlock?: string | null;
     /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     */
+    verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
      * [Output only] The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field is deprecated, use location instead.
      */
     zone?: string | null;
+  }
+  /**
+   * ClusterAutoscaling contains global, per-cluster information required by Cluster Autoscaler to automatically adjust the size of the cluster and create/delete node pools based on the current needs.
+   */
+  export interface Schema$ClusterAutoscaling {
+    /**
+     * The list of Google Compute Engine [zones](/compute/docs/zones#available) in which the NodePool&#39;s nodes can be created by NAP.
+     */
+    autoprovisioningLocations?: string[] | null;
+    /**
+     * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
+     */
+    autoprovisioningNodePoolDefaults?: Schema$AutoprovisioningNodePoolDefaults;
+    /**
+     * Enables automatic node pool creation and deletion.
+     */
+    enableNodeAutoprovisioning?: boolean | null;
+    /**
+     * Contains global constraints regarding minimum and maximum amount of resources in the cluster.
+     */
+    resourceLimits?: Schema$ResourceLimit[];
   }
   /**
    * ClusterUpdate describes an update to the cluster. Exactly one update can be applied to a cluster with each request, so at most one field can be provided.
@@ -401,6 +477,18 @@ export namespace container_v1 {
      * Configurations for the various addons available to run in the cluster.
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
+    /**
+     * The desired configuration options for the Binary Authorization feature.
+     */
+    desiredBinaryAuthorization?: Schema$BinaryAuthorization;
+    /**
+     * Cluster-level autoscaling configuration.
+     */
+    desiredClusterAutoscaling?: Schema$ClusterAutoscaling;
+    /**
+     * Configuration of etcd encryption.
+     */
+    desiredDatabaseEncryption?: Schema$DatabaseEncryption;
     /**
      * The desired image type for the node pool. NOTE: Set the &quot;desired_node_pool&quot; field as well.
      */
@@ -414,7 +502,7 @@ export namespace container_v1 {
      */
     desiredLocations?: string[] | null;
     /**
-     * The logging service the cluster should use to write logs. Currently available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the Google Cloud Logging service with Kubernetes-native resource model in Stackdriver * &quot;logging.googleapis.com&quot; - the Google Cloud Logging service * &quot;none&quot; - no logs will be exported from the cluster
+     * The logging service the cluster should use to write logs. Currently available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the Google Cloud Logging service with Kubernetes-native resource model * &quot;logging.googleapis.com&quot; - the Google Cloud Logging service * &quot;none&quot; - no logs will be exported from the cluster
      */
     desiredLoggingService?: string | null;
     /**
@@ -426,7 +514,7 @@ export namespace container_v1 {
      */
     desiredMasterVersion?: string | null;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - the Google Cloud Monitoring service with Kubernetes-native resource model in Stackdriver * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
+     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - the Google Cloud Monitoring service with Kubernetes-native resource model * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
      */
     desiredMonitoringService?: string | null;
     /**
@@ -445,6 +533,10 @@ export namespace container_v1 {
      * The desired configuration for exporting resource usage.
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     */
+    desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
@@ -534,6 +626,19 @@ export namespace container_v1 {
      * Time within the maintenance window to start the maintenance operations. Time format should be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) format &quot;HH:MM&quot;, where HH : [00-23] and MM : [00-59] GMT.
      */
     startTime?: string | null;
+  }
+  /**
+   * Configuration of etcd encryption.
+   */
+  export interface Schema$DatabaseEncryption {
+    /**
+     * Name of CloudKMS key to use for the encryption of secrets in etcd. Ex. projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key
+     */
+    keyName?: string | null;
+    /**
+     * Denotes the state of etcd encryption.
+     */
+    state?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -954,6 +1059,10 @@ export namespace container_v1 {
      */
     serviceAccount?: string | null;
     /**
+     * Shielded Instance options.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    /**
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster or node pool creation. Each tag within the list must comply with RFC1035.
      */
     tags?: string[] | null;
@@ -1040,6 +1149,10 @@ export namespace container_v1 {
    * NodePoolAutoscaling contains information required by cluster autoscaler to adjust the size of the node pool to the current cluster usage.
    */
   export interface Schema$NodePoolAutoscaling {
+    /**
+     * Can this node pool be deleted automatically.
+     */
+    autoprovisioned?: boolean | null;
     /**
      * Is autoscaling enabled for this node pool.
      */
@@ -1151,6 +1264,23 @@ export namespace container_v1 {
      * Output only. The external IP address of this cluster&#39;s master endpoint.
      */
     publicEndpoint?: string | null;
+  }
+  /**
+   * Contains information about amount of some resource in the cluster. For memory, value should be in GB.
+   */
+  export interface Schema$ResourceLimit {
+    /**
+     * Maximum amount of the resource in the cluster.
+     */
+    maximum?: string | null;
+    /**
+     * Minimum amount of the resource in the cluster.
+     */
+    minimum?: string | null;
+    /**
+     * Resource name &quot;cpu&quot;, &quot;memory&quot; or gpu-specific string.
+     */
+    resourceType?: string | null;
   }
   /**
    * Configuration for exporting cluster resource usages.
@@ -1411,7 +1541,7 @@ export namespace container_v1 {
      */
     clusterId?: string | null;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - the Google Cloud Monitoring service with Kubernetes-native resource model in Stackdriver * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
+     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - the Google Cloud Monitoring service with Kubernetes-native resource model * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
      */
     monitoringService?: string | null;
     /**
@@ -1538,6 +1668,19 @@ export namespace container_v1 {
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * A set of Shielded Instance options.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Defines whether the instance has integrity monitoring enabled.  Enables monitoring and attestation of the boot integrity of the instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the instance is created.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Defines whether the instance has Secure Boot enabled.  Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails.
+     */
+    enableSecureBoot?: boolean | null;
   }
   /**
    * StartIPRotationRequest creates a new IP for the cluster and then performs a node upgrade on each node pool to point to the new IP.
@@ -1701,6 +1844,15 @@ export namespace container_v1 {
      * This field is to determine the status of the secondary range programmably.
      */
     status?: string | null;
+  }
+  /**
+   * VerticalPodAutoscaling contains global, per-cluster information required by Vertical Pod Autoscaler to automatically adjust the resources of pods controlled by it.
+   */
+  export interface Schema$VerticalPodAutoscaling {
+    /**
+     * Enables vertical pod autoscaling.
+     */
+    enabled?: boolean | null;
   }
 
   export class Resource$Projects {

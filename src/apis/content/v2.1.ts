@@ -134,7 +134,7 @@ export namespace content_v2_1 {
   }
 
   /**
-   * Account data. After the creation of a new account it may take a few minutes before it is fully operational. The methods delete, insert, patch, and update require the admin role.
+   * Account data. After the creation of a new account it may take a few minutes before it is fully operational. The methods delete, insert, and update require the admin role.
    */
   export interface Schema$Account {
     /**
@@ -1158,7 +1158,7 @@ export namespace content_v2_1 {
      */
     excludedDestinations?: string[] | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in excludedDestinations.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in excludedDestinations.  List of supported destinations (if available to the account):   - DisplayAds  - Shopping  - ShoppingActions  - SurfacesAcrossGoogle
      */
     includedDestinations?: string[] | null;
     /**
@@ -1645,7 +1645,7 @@ export namespace content_v2_1 {
     state?: string | null;
   }
   /**
-   * Order. All methods require the order manager role.
+   * Order. Production access (all methods) requires the order manager role. Sandbox access does not.
    */
   export interface Schema$Order {
     /**
@@ -2182,11 +2182,15 @@ export namespace content_v2_1 {
      */
     applicableItems?: Schema$OrderPromotionItem[];
     /**
-     * Items which this promotion have been applied to.
+     * Items which this promotion have been applied to. Do not provide for orders.createtestorder.
      */
     appliedItems?: Schema$OrderPromotionItem[];
     /**
-     * The party funding the promotion.
+     * Promotion end time in ISO 8601 format. Date, time, and offset required, e.g., &quot;2020-01-02T09:00:00+01:00&quot; or &quot;2020-01-02T09:00:00Z&quot;.
+     */
+    endTime?: string | null;
+    /**
+     * The party funding the promotion. Only merchant is supported for orders.createtestorder.
      */
     funder?: string | null;
     /**
@@ -2198,15 +2202,19 @@ export namespace content_v2_1 {
      */
     priceValue?: Schema$Price;
     /**
-     * A short title of the promotion to be shown on the checkout page.
+     * A short title of the promotion to be shown on the checkout page. Do not provide for orders.createtestorder.
      */
     shortTitle?: string | null;
     /**
-     * The category of the promotion.
+     * Promotion start time in ISO 8601 format. Date, time, and offset required, e.g., &quot;2020-01-02T09:00:00+01:00&quot; or &quot;2020-01-02T09:00:00Z&quot;.
+     */
+    startTime?: string | null;
+    /**
+     * The category of the promotion. Only moneyOff is supported for orders.createtestorder.
      */
     subtype?: string | null;
     /**
-     * Estimated discount applied to tax (if allowed by law).
+     * Estimated discount applied to tax (if allowed by law). Do not provide for orders.createtestorder.
      */
     taxValue?: Schema$Price;
     /**
@@ -2214,15 +2222,25 @@ export namespace content_v2_1 {
      */
     title?: string | null;
     /**
-     * The scope of the promotion.
+     * The scope of the promotion. Only product is supported for orders.createtestorder.
      */
     type?: string | null;
   }
   export interface Schema$OrderPromotionItem {
+    /**
+     * The line item ID of a product. Do not provide for orders.createtestorder.
+     */
     lineItemId?: string | null;
+    /**
+     * Offer ID of a product. Only for orders.createtestorder.
+     */
+    offerId?: string | null;
+    /**
+     * orders.createtestorder.
+     */
     productId?: string | null;
     /**
-     * The quantity of the associated product.
+     * The quantity of the associated product. Do not provide for orders.createtestorder.
      */
     quantity?: number | null;
   }
@@ -2552,7 +2570,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;  - &quot;colis prive&quot;  - &quot;boxtal&quot;  - &quot;geodis&quot;
+     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;  - &quot;jd logistics&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;  - &quot;colis prive&quot;  - &quot;boxtal&quot;  - &quot;geodis&quot;  - &quot;tnt&quot;  - &quot;la poste&quot;
      */
     carrier?: string | null;
     /**
@@ -3528,7 +3546,7 @@ export namespace content_v2_1 {
      */
     shippingWidth?: Schema$ProductShippingDimension;
     /**
-     * Size of the item.
+     * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same itemGroupId value (see size definition).
      */
     sizes?: string[] | null;
     /**

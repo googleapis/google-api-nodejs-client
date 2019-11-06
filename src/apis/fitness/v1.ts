@@ -519,7 +519,7 @@ export namespace fitness_v1 {
 
     /**
      * fitness.users.dataset.aggregate
-     * @desc Aggregates data of a certain type or stream into buckets divided by a given type of boundary. Multiple data sets of multiple types and from multiple sources can be aggreated into exactly one bucket type per request.
+     * @desc Aggregates data of a certain type or stream into buckets divided by a given type of boundary. Multiple data sets of multiple types and from multiple sources can be aggregated into exactly one bucket type per request.
      * @alias fitness.users.dataset.aggregate
      * @memberOf! ()
      *

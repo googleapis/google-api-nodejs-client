@@ -1,7 +1,7 @@
 {
-  "name": "@google/urlshortener",
+  "name": "@google/recommender",
   "version": "0.1.0",
-  "description": "urlshortener",
+  "description": "recommender",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

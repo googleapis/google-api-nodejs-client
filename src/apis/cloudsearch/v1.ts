@@ -176,6 +176,41 @@ export namespace cloudsearch_v1 {
      */
     itemCountByStatus?: Schema$ItemCountByStatus[];
   }
+  export interface Schema$CustomerQueryStats {
+    /**
+     * Date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    queryCountByStatus?: Schema$QueryCountByStatus[];
+  }
+  export interface Schema$CustomerSessionStats {
+    /**
+     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    /**
+     * The count of search sessions on the day
+     */
+    searchSessionsCount?: string | null;
+  }
+  export interface Schema$CustomerUserStats {
+    /**
+     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    /**
+     * The count of unique active users in the past one day
+     */
+    oneDayActiveUsersCount?: string | null;
+    /**
+     * The count of unique active users in the past seven days
+     */
+    sevenDaysActiveUsersCount?: string | null;
+    /**
+     * The count of unique active users in the past thirty days
+     */
+    thirtyDaysActiveUsersCount?: string | null;
+  }
   /**
    * Datasource is a logical namespace for items to be indexed. All items must belong to a datasource.  This is the prerequisite before items can be indexed into Cloud Search.
    */
@@ -543,11 +578,29 @@ export namespace cloudsearch_v1 {
      */
     stats?: Schema$CustomerIndexStats[];
   }
+  export interface Schema$GetCustomerQueryStatsResponse {
+    stats?: Schema$CustomerQueryStats[];
+  }
+  export interface Schema$GetCustomerSessionStatsResponse {
+    stats?: Schema$CustomerSessionStats[];
+  }
+  export interface Schema$GetCustomerUserStatsResponse {
+    stats?: Schema$CustomerUserStats[];
+  }
   export interface Schema$GetDataSourceIndexStatsResponse {
     /**
      * Summary of indexed item counts, one for each day in the requested range.
      */
     stats?: Schema$DataSourceIndexStats[];
+  }
+  export interface Schema$GetSearchApplicationQueryStatsResponse {
+    stats?: Schema$SearchApplicationQueryStats[];
+  }
+  export interface Schema$GetSearchApplicationSessionStatsResponse {
+    stats?: Schema$SearchApplicationSessionStats[];
+  }
+  export interface Schema$GetSearchApplicationUserStatsResponse {
+    stats?: Schema$SearchApplicationUserStats[];
   }
   /**
    * Gmail Action restricts (i.e. read/replied/snoozed).
@@ -1312,12 +1365,23 @@ export namespace cloudsearch_v1 {
      */
     item?: Schema$PushItem;
   }
+  export interface Schema$QueryCountByStatus {
+    count?: string | null;
+    /**
+     * This represents the http status code.
+     */
+    statusCode?: number | null;
+  }
   export interface Schema$QueryInterpretation {
     interpretationType?: string | null;
     /**
      * The interpretation of the query used in search. For example, queries with natural language intent like &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;. This field will not be filled when the reason is NO_RESULTS_FOUND_FOR_USER_QUERY.
      */
     interpretedQuery?: string | null;
+    /**
+     * The reason for interpretation of the query. This field will not be UNSPECIFIED if the interpretation type is not NONE.
+     */
+    reason?: string | null;
   }
   /**
    * Options to interpret user query.
@@ -1327,6 +1391,10 @@ export namespace cloudsearch_v1 {
      * Flag to disable natural language (NL) interpretation of queries. Default is false, Set to true to disable natural language interpretation. NL interpretation only applies to predefined datasources.
      */
     disableNlInterpretation?: boolean | null;
+    /**
+     * Enable this flag to turn off all internal optimizations like natural language (NL) interpretation of queries, supplemental result retrieval, and usage of synonyms including custom ones. Nl interpretation will be disabled if either one of the two flags is true.
+     */
+    enableVerbatimMode?: boolean | null;
   }
   /**
    * Information relevant only to a query entry.
@@ -1437,7 +1505,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user&#39;s language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      */
     languageCode?: string | null;
     /**
@@ -1610,6 +1678,41 @@ export namespace cloudsearch_v1 {
      * Configuration for a sources specified in data_source_restrictions.
      */
     sourceConfig?: Schema$SourceConfig[];
+  }
+  export interface Schema$SearchApplicationQueryStats {
+    /**
+     * Date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    queryCountByStatus?: Schema$QueryCountByStatus[];
+  }
+  export interface Schema$SearchApplicationSessionStats {
+    /**
+     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    /**
+     * The count of search sessions on the day
+     */
+    searchSessionsCount?: string | null;
+  }
+  export interface Schema$SearchApplicationUserStats {
+    /**
+     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     */
+    date?: Schema$Date;
+    /**
+     * The count of unique active users in the past one day
+     */
+    oneDayActiveUsersCount?: string | null;
+    /**
+     * The count of unique active users in the past seven days
+     */
+    sevenDaysActiveUsersCount?: string | null;
+    /**
+     * The count of unique active users in the past thirty days
+     */
+    thirtyDaysActiveUsersCount?: string | null;
   }
   export interface Schema$SearchItemsByViewUrlRequest {
     /**
@@ -3013,7 +3116,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.delete
-     * @desc Deletes Item resource for the specified resource name.
+     * @desc Deletes Item resource for the specified resource name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.delete
      * @memberOf! ()
      *
@@ -3091,7 +3194,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.deleteQueueItems
-     * @desc Deletes all items in a queue. This method is useful for deleting stale items.
+     * @desc Deletes all items in a queue. This method is useful for deleting stale items.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.deleteQueueItems
      * @memberOf! ()
      *
@@ -3165,7 +3268,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.get
-     * @desc Gets Item resource by item name.
+     * @desc Gets Item resource by item name.  This API requires an admin or service account to execute.  The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.get
      * @memberOf! ()
      *
@@ -3239,7 +3342,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.index
-     * @desc Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates.  Fields with no provided values are cleared out in the Cloud Search index.
+     * @desc Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates.  Fields with no provided values are cleared out in the Cloud Search index.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.index
      * @memberOf! ()
      *
@@ -3314,12 +3417,12 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.list
-     * @desc Lists all or a subset of Item resources.
+     * @desc Lists all or a subset of Item resources.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.brief When set to true, the indexing system only populates the following fields: name, version, metadata.hash, structured_data.hash, content.hash. <br />If this value is false, then all the fields are populated in Item.
+     * @param {boolean=} params.brief When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, <br />If this value is false, then all the fields are populated in Item.
      * @param {string=} params.connectorName Name of connector making this call. <br />Format: datasources/{source_id}/connectors/{ID}
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Name of the Data Source to list Items.  Format: datasources/{source_id}
@@ -3393,7 +3496,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.poll
-     * @desc Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: <br /> ERROR <br /> MODIFIED <br /> NEW_ITEM <br /> ACCEPTED <br /> Reserving items ensures that polling from other threads cannot create overlapping sets.  After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE.  Items automatically become available (unreserved) after 4 hours even if no update or push method is called.
+     * @desc Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: <br /> ERROR <br /> MODIFIED <br /> NEW_ITEM <br /> ACCEPTED <br /> Reserving items ensures that polling from other threads cannot create overlapping sets.  After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE.  Items automatically become available (unreserved) after 4 hours even if no update or push method is called.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.poll
      * @memberOf! ()
      *
@@ -3468,7 +3571,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.push
-     * @desc Pushes an item onto a queue for later polling and updating.
+     * @desc Pushes an item onto a queue for later polling and updating.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.push
      * @memberOf! ()
      *
@@ -3541,7 +3644,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.unreserve
-     * @desc Unreserves all items from a queue, making them all eligible to be polled.  This method is useful for resetting the indexing queue after a connector has been restarted.
+     * @desc Unreserves all items from a queue, making them all eligible to be polled.  This method is useful for resetting the indexing queue after a connector has been restarted.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.unreserve
      * @memberOf! ()
      *
@@ -3616,7 +3719,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.items.upload
-     * @desc Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request.
+     * @desc Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request.  This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
      * @alias cloudsearch.indexing.datasources.items.upload
      * @memberOf! ()
      *
@@ -3780,7 +3883,7 @@ export namespace cloudsearch_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When set to true, the indexing system only populates the following fields: name, version, metadata.hash, structured_data.hash, content.hash. <br />If this value is false, then all the fields are populated in Item.
+     * When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, <br />If this value is false, then all the fields are populated in Item.
      */
     brief?: boolean;
     /**
@@ -4267,7 +4370,7 @@ export namespace cloudsearch_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.pageToken Number of sources to return in the response.
      * @param {boolean=} params.requestOptions.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
-     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
+     * @param {string=} params.requestOptions.languageCode The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      * @param {string=} params.requestOptions.searchApplicationId Id of the application created using SearchApplicationsService.
      * @param {string=} params.requestOptions.timeZone Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4352,7 +4455,7 @@ export namespace cloudsearch_v1 {
      */
     'requestOptions.debugOptions.enableDebugging'?: boolean;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  When specified, the documents in search results are biased towards the specified language. Suggest API does not use this parameter. It autocompletes only based on characters in the query.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations.  Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language.  When specified, the documents in search results are biased towards the specified language.  The suggest API does not use this parameter. Instead, suggest autocompletes only based on characters in the query.
      */
     'requestOptions.languageCode'?: string;
     /**
@@ -5412,9 +5515,15 @@ export namespace cloudsearch_v1 {
   export class Resource$Stats {
     context: APIRequestContext;
     index: Resource$Stats$Index;
+    query: Resource$Stats$Query;
+    session: Resource$Stats$Session;
+    user: Resource$Stats$User;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.index = new Resource$Stats$Index(this.context);
+      this.query = new Resource$Stats$Query(this.context);
+      this.session = new Resource$Stats$Session(this.context);
+      this.user = new Resource$Stats$User(this.context);
     }
 
     /**
@@ -5500,9 +5609,354 @@ export namespace cloudsearch_v1 {
         );
       }
     }
+
+    /**
+     * cloudsearch.stats.getQuery
+     * @desc Get the query statistics for customer
+     * @alias cloudsearch.stats.getQuery
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getQuery(
+      params?: Params$Resource$Stats$Getquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetCustomerQueryStatsResponse>;
+    getQuery(
+      params: Params$Resource$Stats$Getquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+    ): void;
+    getQuery(
+      params: Params$Resource$Stats$Getquery,
+      callback: BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+    ): void;
+    getQuery(
+      callback: BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+    ): void;
+    getQuery(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Getquery
+        | BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>,
+      callback?: BodyResponseCallback<Schema$GetCustomerQueryStatsResponse>
+    ): void | GaxiosPromise<Schema$GetCustomerQueryStatsResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Getquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/query').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudsearch.stats.getSession
+     * @desc Get the # of search sessions for the customer
+     * @alias cloudsearch.stats.getSession
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getSession(
+      params?: Params$Resource$Stats$Getsession,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetCustomerSessionStatsResponse>;
+    getSession(
+      params: Params$Resource$Stats$Getsession,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+    ): void;
+    getSession(
+      params: Params$Resource$Stats$Getsession,
+      callback: BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+    ): void;
+    getSession(
+      callback: BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+    ): void;
+    getSession(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Getsession
+        | BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>,
+      callback?: BodyResponseCallback<Schema$GetCustomerSessionStatsResponse>
+    ): void | GaxiosPromise<Schema$GetCustomerSessionStatsResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getsession;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Getsession;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/session').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetCustomerSessionStatsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GetCustomerSessionStatsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * cloudsearch.stats.getUser
+     * @desc Get the users statistics for customer
+     * @alias cloudsearch.stats.getUser
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getUser(
+      params?: Params$Resource$Stats$Getuser,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetCustomerUserStatsResponse>;
+    getUser(
+      params: Params$Resource$Stats$Getuser,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerUserStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+    ): void;
+    getUser(
+      params: Params$Resource$Stats$Getuser,
+      callback: BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+    ): void;
+    getUser(
+      callback: BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+    ): void;
+    getUser(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Getuser
+        | BodyResponseCallback<Schema$GetCustomerUserStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerUserStatsResponse>,
+      callback?: BodyResponseCallback<Schema$GetCustomerUserStatsResponse>
+    ): void | GaxiosPromise<Schema$GetCustomerUserStatsResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Stats$Getuser;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Getuser;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/user').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetCustomerUserStatsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GetCustomerUserStatsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Stats$Getindex extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+  export interface Params$Resource$Stats$Getquery extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+  export interface Params$Resource$Stats$Getsession extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+  export interface Params$Resource$Stats$Getuser extends StandardParameters {
     /**
      * Auth client or API Key for the request
      */
@@ -5660,6 +6114,462 @@ export namespace cloudsearch_v1 {
     'fromDate.year'?: number;
     /**
      * The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id}"
+     */
+    name?: string;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+
+  export class Resource$Stats$Query {
+    context: APIRequestContext;
+    searchapplications: Resource$Stats$Query$Searchapplications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.searchapplications = new Resource$Stats$Query$Searchapplications(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Stats$Query$Searchapplications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudsearch.stats.query.searchapplications.get
+     * @desc Get the query statistics for search application
+     * @alias cloudsearch.stats.query.searchapplications.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {string} params.name The resource id of the search application query stats, in the following format: searchapplications/{application_id}
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Stats$Query$Searchapplications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetSearchApplicationQueryStatsResponse>;
+    get(
+      params: Params$Resource$Stats$Query$Searchapplications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
+    ): void;
+    get(
+      params: Params$Resource$Stats$Query$Searchapplications$Get,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Query$Searchapplications$Get
+        | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
+    ): void | GaxiosPromise<Schema$GetSearchApplicationQueryStatsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Stats$Query$Searchapplications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Query$Searchapplications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/query/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetSearchApplicationQueryStatsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GetSearchApplicationQueryStatsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Stats$Query$Searchapplications$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * The resource id of the search application query stats, in the following format: searchapplications/{application_id}
+     */
+    name?: string;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+
+  export class Resource$Stats$Session {
+    context: APIRequestContext;
+    searchapplications: Resource$Stats$Session$Searchapplications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.searchapplications = new Resource$Stats$Session$Searchapplications(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Stats$Session$Searchapplications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudsearch.stats.session.searchapplications.get
+     * @desc Get the # of search sessions for the search application
+     * @alias cloudsearch.stats.session.searchapplications.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {string} params.name The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Stats$Session$Searchapplications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetSearchApplicationSessionStatsResponse>;
+    get(
+      params: Params$Resource$Stats$Session$Searchapplications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
+    ): void;
+    get(
+      params: Params$Resource$Stats$Session$Searchapplications$Get,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Session$Searchapplications$Get
+        | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
+    ): void | GaxiosPromise<Schema$GetSearchApplicationSessionStatsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Stats$Session$Searchapplications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Session$Searchapplications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/session/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetSearchApplicationSessionStatsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GetSearchApplicationSessionStatsResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Stats$Session$Searchapplications$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     */
+    name?: string;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'toDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'toDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'toDate.year'?: number;
+  }
+
+  export class Resource$Stats$User {
+    context: APIRequestContext;
+    searchapplications: Resource$Stats$User$Searchapplications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.searchapplications = new Resource$Stats$User$Searchapplications(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Stats$User$Searchapplications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * cloudsearch.stats.user.searchapplications.get
+     * @desc Get the users statistics for search application
+     * @alias cloudsearch.stats.user.searchapplications.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.fromDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.fromDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.fromDate.year Year of date. Must be from 1 to 9999.
+     * @param {string} params.name The resource id of the search application session stats, in the following format: searchapplications/{application_id}
+     * @param {integer=} params.toDate.day Day of month. Must be from 1 to 31 and valid for the year and month.
+     * @param {integer=} params.toDate.month Month of date. Must be from 1 to 12.
+     * @param {integer=} params.toDate.year Year of date. Must be from 1 to 9999.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Stats$User$Searchapplications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetSearchApplicationUserStatsResponse>;
+    get(
+      params: Params$Resource$Stats$User$Searchapplications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
+    ): void;
+    get(
+      params: Params$Resource$Stats$User$Searchapplications$Get,
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Stats$User$Searchapplications$Get
+        | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
+    ): void | GaxiosPromise<Schema$GetSearchApplicationUserStatsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Stats$User$Searchapplications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$User$Searchapplications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/user/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetSearchApplicationUserStatsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GetSearchApplicationUserStatsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Stats$User$Searchapplications$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'fromDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'fromDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'fromDate.year'?: number;
+    /**
+     * The resource id of the search application session stats, in the following format: searchapplications/{application_id}
      */
     name?: string;
     /**

@@ -257,6 +257,24 @@ export namespace sheets_v4 {
     properties?: Schema$SheetProperties;
   }
   /**
+   * Adds a slicer to a sheet in the spreadsheet.
+   */
+  export interface Schema$AddSlicerRequest {
+    /**
+     * The slicer that should be added to the spreadsheet, including the position where it should be placed. The slicerId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of a slicer that already exists.)
+     */
+    slicer?: Schema$Slicer;
+  }
+  /**
+   * The result of adding a slicer to a spreadsheet.
+   */
+  export interface Schema$AddSlicerResponse {
+    /**
+     * The newly added slicer.
+     */
+    slicer?: Schema$Slicer;
+  }
+  /**
    * Adds new cells after the last row with data in a sheet, inserting new rows into the sheet if necessary.
    */
   export interface Schema$AppendCellsRequest {
@@ -374,6 +392,35 @@ export namespace sheets_v4 {
      * The second color that is alternating. (Required)
      */
     secondBandColor?: Schema$Color;
+  }
+  /**
+   * Formatting options for baseline value.
+   */
+  export interface Schema$BaselineValueFormat {
+    /**
+     * The comparison type of key value with baseline value.
+     */
+    comparisonType?: string | null;
+    /**
+     * Description which is appended after the baseline value. This field is optional.
+     */
+    description?: string | null;
+    /**
+     * Color to be used, in case baseline value represents a negative change for key value. This field is optional.
+     */
+    negativeColor?: Schema$Color;
+    /**
+     * Specifies the horizontal text positioning of baseline value. This field is optional. If not specified, default positioning is used.
+     */
+    position?: Schema$TextPosition;
+    /**
+     * Color to be used, in case baseline value represents a positive change for key value. This field is optional.
+     */
+    positiveColor?: Schema$Color;
+    /**
+     * Text formatting options for baseline value.
+     */
+    textFormat?: Schema$TextFormat;
   }
   /**
    * An axis of the chart. A chart may not have more than one axis per axis position.
@@ -1022,6 +1069,19 @@ export namespace sheets_v4 {
     viewWindowMode?: string | null;
   }
   /**
+   * Custom number formatting options for chart attributes.
+   */
+  export interface Schema$ChartCustomNumberFormatOptions {
+    /**
+     * Custom prefix to be prepended to the chart attribute. This field is optional.
+     */
+    prefix?: string | null;
+    /**
+     * Custom suffix to be appended to the chart attribute. This field is optional.
+     */
+    suffix?: string | null;
+  }
+  /**
    * The data included in a domain or series.
    */
   export interface Schema$ChartData {
@@ -1087,6 +1147,10 @@ export namespace sheets_v4 {
      * A pie chart specification.
      */
     pieChart?: Schema$PieChartSpec;
+    /**
+     * A scorecard chart specification.
+     */
+    scorecardChart?: Schema$ScorecardChartSpec;
     /**
      * The subtitle of the chart.
      */
@@ -1769,6 +1833,14 @@ export namespace sheets_v4 {
      * Values that should be hidden.
      */
     hiddenValues?: string[] | null;
+    /**
+     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with all other filter criteria. Requests to set this field will fail with a 400 error if any other filter criteria field is set.
+     */
+    visibleBackgroundColor?: Schema$Color;
+    /**
+     * The text color to filter by; only cells with this text color are shown. Mutually exclusive with all other filter criteria. Requests to set this field will fail with a 400 error if any other filter criteria field is set.
+     */
+    visibleForegroundColor?: Schema$Color;
   }
   /**
    * A filter view.
@@ -2105,6 +2177,19 @@ export namespace sheets_v4 {
      * When iterative calculation is enabled, the maximum number of calculation rounds to perform.
      */
     maxIterations?: number | null;
+  }
+  /**
+   * Formatting options for key value.
+   */
+  export interface Schema$KeyValueFormat {
+    /**
+     * Specifies the horizontal text positioning of key value. This field is optional. If not specified, default positioning is used.
+     */
+    position?: Schema$TextPosition;
+    /**
+     * Text formatting options for key value.
+     */
+    textFormat?: Schema$TextFormat;
   }
   /**
    * Properties that describe the style of a line.
@@ -2591,6 +2676,10 @@ export namespace sheets_v4 {
      */
     addSheet?: Schema$AddSheetRequest;
     /**
+     * Adds a slicer.
+     */
+    addSlicer?: Schema$AddSlicerRequest;
+    /**
      * Appends cells after the last row with data in a sheet.
      */
     appendCells?: Schema$AppendCellsRequest;
@@ -2787,6 +2876,10 @@ export namespace sheets_v4 {
      */
     updateSheetProperties?: Schema$UpdateSheetPropertiesRequest;
     /**
+     * Updates a slicer&#39;s specifications.
+     */
+    updateSlicerSpec?: Schema$UpdateSlicerSpecRequest;
+    /**
      * Updates the spreadsheet&#39;s properties.
      */
     updateSpreadsheetProperties?: Schema$UpdateSpreadsheetPropertiesRequest;
@@ -2823,6 +2916,10 @@ export namespace sheets_v4 {
      * A reply from adding a sheet.
      */
     addSheet?: Schema$AddSheetResponse;
+    /**
+     * A reply from adding a slicer.
+     */
+    addSlicer?: Schema$AddSlicerResponse;
     /**
      * A reply from creating a developer metadata entry.
      */
@@ -2880,6 +2977,43 @@ export namespace sheets_v4 {
      * The values in the row, one per column.
      */
     values?: Schema$CellData[];
+  }
+  /**
+   * A scorecard chart. Scorecard charts are used to highlight key performance indicators, known as KPIs, on the spreadsheet. A scorecard chart can represent things like total sales, average cost, or a top selling item. You can specify a single data value, or aggregate over a range of data. Percentage or absolute difference from a baseline value can be highlighted, like changes over time.
+   */
+  export interface Schema$ScorecardChartSpec {
+    /**
+     * The aggregation type for key and baseline chart data in scorecard chart. This field is optional.
+     */
+    aggregateType?: string | null;
+    /**
+     * The data for scorecard baseline value. This field is optional.
+     */
+    baselineValueData?: Schema$ChartData;
+    /**
+     * Formatting options for baseline value. This field is needed only if baseline_value_data is specified.
+     */
+    baselineValueFormat?: Schema$BaselineValueFormat;
+    /**
+     * Custom formatting options for numeric key/baseline values in scorecard chart. This field is used only when number_format_source is set to CUSTOM. This field is optional.
+     */
+    customFormatOptions?: Schema$ChartCustomNumberFormatOptions;
+    /**
+     * The data for scorecard key value.
+     */
+    keyValueData?: Schema$ChartData;
+    /**
+     * Formatting options for key value.
+     */
+    keyValueFormat?: Schema$KeyValueFormat;
+    /**
+     * The number format source used in the scorecard chart. This field is optional.
+     */
+    numberFormatSource?: string | null;
+    /**
+     * Value to scale scorecard key and baseline value. For example, a factor of 10 can be used to divide all values in the chart by 10. This field is optional.
+     */
+    scaleFactor?: number | null;
   }
   /**
    * A request to retrieve all developer metadata matching the set of specified criteria.
@@ -2973,6 +3107,10 @@ export namespace sheets_v4 {
      * All row groups on this sheet, ordered by increasing range start index, then by group depth.
      */
     rowGroups?: Schema$DimensionGroup[];
+    /**
+     * The slicers on this sheet.
+     */
+    slicers?: Schema$Slicer[];
   }
   /**
    * Properties of a sheet.
@@ -3012,6 +3150,60 @@ export namespace sheets_v4 {
     title?: string | null;
   }
   /**
+   * A slicer in a sheet.
+   */
+  export interface Schema$Slicer {
+    /**
+     * The position of the slicer. Note that slicer can be positioned only on existing sheet. Also, width and height of slicer can be automatically adjusted to keep it within permitted limits.
+     */
+    position?: Schema$EmbeddedObjectPosition;
+    /**
+     * The ID of the slicer.
+     */
+    slicerId?: number | null;
+    /**
+     * The specification of the slicer.
+     */
+    spec?: Schema$SlicerSpec;
+  }
+  /**
+   * The specifications of a slicer.
+   */
+  export interface Schema$SlicerSpec {
+    /**
+     * True if the filter should apply to pivot tables. If not set, default to `True`.
+     */
+    applyToPivotTables?: boolean | null;
+    /**
+     * The background color of the slicer.
+     */
+    backgroundColor?: Schema$Color;
+    /**
+     * The column index in the data table on which the filter is applied to.
+     */
+    columnIndex?: number | null;
+    /**
+     * The data range of the slicer.
+     */
+    dataRange?: Schema$GridRange;
+    /**
+     * The filtering criteria of the slicer.
+     */
+    filterCriteria?: Schema$FilterCriteria;
+    /**
+     * The horizontal alignment of title in the slicer. If unspecified, defaults to `LEFT`
+     */
+    horizontalAlignment?: string | null;
+    /**
+     * The text format of title in the slicer.
+     */
+    textFormat?: Schema$TextFormat;
+    /**
+     * The title of the slicer.
+     */
+    title?: string | null;
+  }
+  /**
    * Sorts data in rows based on a sort order per column.
    */
   export interface Schema$SortRangeRequest {
@@ -3029,9 +3221,17 @@ export namespace sheets_v4 {
    */
   export interface Schema$SortSpec {
     /**
+     * The background fill color to sort by. Mutually exclusive with sorting by text color. Requests to set this field will fail with a 400 error if foreground color is also set.
+     */
+    backgroundColor?: Schema$Color;
+    /**
      * The dimension the sort should be applied to.
      */
     dimensionIndex?: number | null;
+    /**
+     * The text color to sort by. Mutually exclusive with sorting by background fill color. Requests to set this field will fail with a 400 error if background color is also set.
+     */
+    foregroundColor?: Schema$Color;
     /**
      * The order data should be sorted.
      */
@@ -3553,6 +3753,23 @@ export namespace sheets_v4 {
      * The properties to update.
      */
     properties?: Schema$SheetProperties;
+  }
+  /**
+   * Updates a slicer’s specifications. (This does not move or resize a slicer. To move or resize a slicer use UpdateEmbeddedObjectPositionRequest.
+   */
+  export interface Schema$UpdateSlicerSpecRequest {
+    /**
+     * The fields that should be updated.  At least one field must be specified. The root `SlicerSpec` is implied and should not be specified. A single &quot;*&quot;` can be used as short-hand for listing every field.
+     */
+    fields?: string | null;
+    /**
+     * The id of the slicer to update.
+     */
+    slicerId?: number | null;
+    /**
+     * The specification to apply to the slicer.
+     */
+    spec?: Schema$SlicerSpec;
   }
   /**
    * Updates properties of a spreadsheet.

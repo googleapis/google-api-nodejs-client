@@ -431,7 +431,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$RegisterDebuggeeRequest {
     /**
-     * Debuggee information to register. The fields `project`, `uniquifier`, `description` and `agent_version` of the debuggee must be set.
+     * Required. Debuggee information to register. The fields `project`, `uniquifier`, `description` and `agent_version` of the debuggee must be set.
      */
     debuggee?: Schema$Debuggee;
   }
@@ -547,7 +547,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$UpdateActiveBreakpointRequest {
     /**
-     * Updated breakpoint information. The field `id` must be set. The agent must echo all Breakpoint specification fields in the update.
+     * Required. Updated breakpoint information. The field `id` must be set. The agent must echo all Breakpoint specification fields in the update.
      */
     breakpoint?: Schema$Breakpoint;
   }
@@ -803,7 +803,7 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.debuggeeId Identifies the debuggee.
+     * @param {string} params.debuggeeId Required. Identifies the debuggee.
      * @param {boolean=} params.successOnTimeout If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired.  If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
      * @param {string=} params.waitToken A token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server-selected timeout has expired. The value should be set from the `next_wait_token` field in the last response. The initial value should be set to `"init"`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -942,7 +942,7 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.debuggeeId Identifies the debuggee being debugged.
+     * @param {string} params.debuggeeId Required. Identifies the debuggee being debugged.
      * @param {string} params.id Breakpoint identifier, unique in the scope of the debuggee.
      * @param {().UpdateActiveBreakpointRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1029,7 +1029,7 @@ export namespace clouddebugger_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifies the debuggee.
+     * Required. Identifies the debuggee.
      */
     debuggeeId?: string;
     /**
@@ -1049,7 +1049,7 @@ export namespace clouddebugger_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Identifies the debuggee being debugged.
+     * Required. Identifies the debuggee being debugged.
      */
     debuggeeId?: string;
     /**
@@ -1132,9 +1132,9 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param {boolean=} params.includeInactive When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
-     * @param {string=} params.project Project number of a Google Cloud project whose debuggees to list.
+     * @param {string=} params.project Required. Project number of a Google Cloud project whose debuggees to list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1213,7 +1213,7 @@ export namespace clouddebugger_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
@@ -1221,7 +1221,7 @@ export namespace clouddebugger_v2 {
      */
     includeInactive?: boolean;
     /**
-     * Project number of a Google Cloud project whose debuggees to list.
+     * Required. Project number of a Google Cloud project whose debuggees to list.
      */
     project?: string;
   }
@@ -1285,9 +1285,9 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.breakpointId ID of the breakpoint to delete.
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to delete.
+     * @param {string} params.breakpointId Required. ID of the breakpoint to delete.
+     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string} params.debuggeeId Required. ID of the debuggee whose breakpoint to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1409,9 +1409,9 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.breakpointId ID of the breakpoint to get.
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to get.
+     * @param {string} params.breakpointId Required. ID of the breakpoint to get.
+     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string} params.debuggeeId Required. ID of the debuggee whose breakpoint to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1535,8 +1535,8 @@ export namespace clouddebugger_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.action.value Only breakpoints with the specified action will pass the filter.
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId ID of the debuggee whose breakpoints to list.
+     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string} params.debuggeeId Required. ID of the debuggee whose breakpoints to list.
      * @param {boolean=} params.includeAllUsers When set to `true`, the response includes the list of breakpoints set by any user. Otherwise, it includes only breakpoints set by the caller.
      * @param {boolean=} params.includeInactive When set to `true`, the response includes active and inactive breakpoints. Otherwise, it includes only active breakpoints.
      * @param {boolean=} params.stripResults This field is deprecated. The following fields are always stripped out of the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
@@ -1666,8 +1666,8 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clientVersion The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param {string} params.debuggeeId ID of the debuggee where the breakpoint is to be set.
+     * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param {string} params.debuggeeId Required. ID of the debuggee where the breakpoint is to be set.
      * @param {().Breakpoint} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1746,15 +1746,15 @@ export namespace clouddebugger_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the breakpoint to delete.
+     * Required. ID of the breakpoint to delete.
      */
     breakpointId?: string;
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
-     * ID of the debuggee whose breakpoint to delete.
+     * Required. ID of the debuggee whose breakpoint to delete.
      */
     debuggeeId?: string;
   }
@@ -1766,15 +1766,15 @@ export namespace clouddebugger_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the breakpoint to get.
+     * Required. ID of the breakpoint to get.
      */
     breakpointId?: string;
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
-     * ID of the debuggee whose breakpoint to get.
+     * Required. ID of the debuggee whose breakpoint to get.
      */
     debuggeeId?: string;
   }
@@ -1790,11 +1790,11 @@ export namespace clouddebugger_v2 {
      */
     'action.value'?: string;
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
-     * ID of the debuggee whose breakpoints to list.
+     * Required. ID of the debuggee whose breakpoints to list.
      */
     debuggeeId?: string;
     /**
@@ -1822,11 +1822,11 @@ export namespace clouddebugger_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */
     clientVersion?: string;
     /**
-     * ID of the debuggee where the breakpoint is to be set.
+     * Required. ID of the debuggee where the breakpoint is to be set.
      */
     debuggeeId?: string;
 

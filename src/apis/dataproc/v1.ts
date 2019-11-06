@@ -412,7 +412,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$ClusterStatus {
     /**
-     * Output only. Optional details of cluster&#39;s state.
+     * Optional. Output only. Details of cluster&#39;s state.
      */
     detail?: string | null;
     /**
@@ -618,7 +618,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$InstanceGroupAutoscalingPolicyConfig {
     /**
-     * Optional. Maximum number of instances for this group. Required for primary workers. Note that by default, clusters will not use secondary workers. Required for secondary workers if the minimum secondary instances is set.Primary workers - Bounds: [min_instances, ). Required. Secondary workers - Bounds: [min_instances, ). Default: 0.
+     * Required. Maximum number of instances for this group. Required for primary workers. Note that by default, clusters will not use secondary workers. Required for secondary workers if the minimum secondary instances is set.Primary workers - Bounds: [min_instances, ). Secondary workers - Bounds: [min_instances, ). Default: 0.
      */
     maxInstances?: number | null;
     /**
@@ -793,7 +793,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$JobStatus {
     /**
-     * Output only. Optional job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
+     * Optional. Output only. Job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
      */
     details?: string | null;
     /**
@@ -1129,19 +1129,19 @@ export namespace dataproc_v1 {
     scriptVariables?: {[key: string]: string} | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.A Policy consists of a list of bindings. A binding binds a list of members to a role, where the members can be user accounts, Google groups, Google domains, and service accounts. A role is a named list of permissions defined by IAM.JSON Example {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;roles/owner&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/viewer&quot;,       &quot;members&quot;: [&quot;user:sean@example.com&quot;]     }   ] } YAML Example bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-other-app@appspot.gserviceaccount.com   role: roles/owner - members:   - user:sean@example.com   role: roles/viewer For a description of IAM and its features, see the IAM developer&#39;s guide (https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions (defined by IAM or configured by users). A binding can optionally specify a condition, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.JSON Example {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;role/resourcemanager.organizationAdmin&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,       &quot;members&quot;: [&quot;user:eve@example.com&quot;],       &quot;condition&quot;: {         &quot;title&quot;: &quot;expirable access&quot;,         &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,         &quot;expression&quot;: &quot;request.time &lt;         timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,       }     }   ] } YAML Example bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-project-id@appspot.gserviceaccount.com   role: roles/resourcemanager.organizationAdmin - members:   - user:eve@example.com   role: roles/resourcemanager.organizationViewer   condition:     title: expirable access     description: Does not grant access after Sep 2020     expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) For a description of IAM and its features, see the IAM developer&#39;s guide (https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of members to a role. bindings with no members will result in an error.
+     * Associates a list of members to a role. Optionally may specify a condition that determines when binding is in effect. bindings with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten.
+     * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.If no etag is provided in the call to setIamPolicy, any version compliance checks on the incoming and/or stored policy is skipped.
      */
     version?: number | null;
   }
@@ -1227,7 +1227,7 @@ export namespace dataproc_v1 {
      */
     imageVersion?: string | null;
     /**
-     * The set of optional components to activate on the cluster.
+     * Optional. The set of components to activate on the cluster.
      */
     optionalComponents?: string[] | null;
     /**
@@ -1470,9 +1470,6 @@ export namespace dataproc_v1 {
      * Output only. The time template was created.
      */
     createTime?: string | null;
-    /**
-     * Required. The template id.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
-     */
     id?: string | null;
     /**
      * Required. The Directed Acyclic Graph of Jobs to submit.
@@ -1487,7 +1484,7 @@ export namespace dataproc_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Template parameters whose values are substituted into the template. Values for parameters must be provided when the template is instantiated.
+     * Optional. emplate parameters whose values are substituted into the template. Values for parameters must be provided when the template is instantiated.
      */
     parameters?: Schema$TemplateParameter[];
     /**
@@ -1512,7 +1509,7 @@ export namespace dataproc_v1 {
      */
     clusterSelector?: Schema$ClusterSelector;
     /**
-     * Optional. A cluster that is managed by the workflow.
+     * A cluster that is managed by the workflow.
      */
     managedCluster?: Schema$ManagedCluster;
   }
@@ -5674,7 +5671,7 @@ export namespace dataproc_v1 {
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
      * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
      * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
-     * @param {string=} params.updateMask Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the following fields can be updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>  </tr>  <tr>  <td><strong><em>config.worker_config.num_instances</em></strong></td>  <td>Resize primary worker group</td>  </tr>  <tr>  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>  <td>Resize secondary worker group</td>  </tr>  </tbody>  </table>
+     * @param {string=} params.updateMask Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the following fields can be updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>  </tr>  <tr>  <td><strong><em>config.worker_config.num_instances</em></strong></td>  <td>Resize primary worker group</td>  </tr>  <tr>  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>  <td>Resize secondary worker group</td>  </tr>  <tr>  <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or  change autoscaling policies</td>  </tr>  </tbody>  </table>
      * @param {().Cluster} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6171,7 +6168,7 @@ export namespace dataproc_v1 {
      */
     requestId?: string;
     /**
-     * Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the following fields can be updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>  </tr>  <tr>  <td><strong><em>config.worker_config.num_instances</em></strong></td>  <td>Resize primary worker group</td>  </tr>  <tr>  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>  <td>Resize secondary worker group</td>  </tr>  </tbody>  </table>
+     * Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the following fields can be updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>  </tr>  <tr>  <td><strong><em>config.worker_config.num_instances</em></strong></td>  <td>Resize primary worker group</td>  </tr>  <tr>  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>  <td>Resize secondary worker group</td>  </tr>  <tr>  <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or  change autoscaling policies</td>  </tr>  </tbody>  </table>
      */
     updateMask?: string;
 

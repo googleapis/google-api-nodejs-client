@@ -36,9 +36,9 @@ import {GaxiosPromise} from 'gaxios';
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace speech_v2beta {
+export namespace speech_v2beta1 {
   export interface Options extends GlobalOptions {
-    version: 'v2beta';
+    version: 'v2beta1';
   }
 
   interface StandardParameters {
@@ -95,12 +95,12 @@ export namespace speech_v2beta {
    *
    * @example
    * const {google} = require('googleapis');
-   * const speech = google.speech('v2beta');
+   * const speech = google.speech('v2beta1');
    *
    * @namespace speech
    * @type {Function}
-   * @version v2beta
-   * @variation v2beta
+   * @version v2beta1
+   * @variation v2beta1
    * @param {object=} options Options for Speech
    */
   export class Speech {
@@ -243,15 +243,15 @@ export namespace speech_v2beta {
     /**
      * Output only. Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    endTime?: string | null;
+    endOffset?: string | null;
     /**
-     * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from `1` to `diarization_speaker_count`. speaker_tag is set if `enable_speaker_diarization` = `true` and only in the top alternative.
+     * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from `1` to `diarization_config.max_speaker_count` . `speaker_tag` is set if `diarization_config.enable_speaker_diarization` = `true` and only in the top alternative.
      */
     speakerTag?: number | null;
     /**
      * Output only. Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
-    startTime?: string | null;
+    startOffset?: string | null;
     /**
      * Output only. The word corresponding to this set of information.
      */
@@ -338,7 +338,7 @@ export namespace speech_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -414,7 +414,7 @@ export namespace speech_v2beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v2beta/{+name}/operations').replace(
+            url: (rootUrl + '/v2beta1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

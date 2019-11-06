@@ -14,21 +14,25 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {urlshortener_v1} from './v1';
+import {policytroubleshooter_v1beta} from './v1beta';
 
 export const VERSIONS = {
-  v1: urlshortener_v1.Urlshortener,
+  v1beta: policytroubleshooter_v1beta.Policytroubleshooter,
 };
 
-export function urlshortener(version: 'v1'): urlshortener_v1.Urlshortener;
-export function urlshortener(
-  options: urlshortener_v1.Options
-): urlshortener_v1.Urlshortener;
-export function urlshortener<T = urlshortener_v1.Urlshortener>(
+export function policytroubleshooter(
+  version: 'v1beta'
+): policytroubleshooter_v1beta.Policytroubleshooter;
+export function policytroubleshooter(
+  options: policytroubleshooter_v1beta.Options
+): policytroubleshooter_v1beta.Policytroubleshooter;
+export function policytroubleshooter<
+  T = policytroubleshooter_v1beta.Policytroubleshooter
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | urlshortener_v1.Options
+  versionOrOptions: 'v1beta' | policytroubleshooter_v1beta.Options
 ) {
-  return getAPI<T>('urlshortener', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('policytroubleshooter', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

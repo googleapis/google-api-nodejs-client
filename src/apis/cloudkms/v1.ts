@@ -221,7 +221,7 @@ export namespace cloudkms_v1 {
      */
     primary?: Schema$CryptoKeyVersion;
     /**
-     * The immutable purpose of this CryptoKey.
+     * Immutable. The immutable purpose of this CryptoKey.
      */
     purpose?: string | null;
     /**
@@ -304,7 +304,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$DecryptRequest {
     /**
-     * Optional data that must match the data originally supplied in EncryptRequest.additional_authenticated_data.
+     * Optional. Optional data that must match the data originally supplied in EncryptRequest.additional_authenticated_data.
      */
     additionalAuthenticatedData?: string | null;
     /**
@@ -347,7 +347,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$EncryptRequest {
     /**
-     * Optional data that, if specified, must also be provided during decryption through DecryptRequest.additional_authenticated_data.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the AAD must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
+     * Optional. Optional data that, if specified, must also be provided during decryption through DecryptRequest.additional_authenticated_data.  The maximum size depends on the key version&#39;s protection_level. For SOFTWARE keys, the AAD must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.
      */
     additionalAuthenticatedData?: string | null;
     /**
@@ -402,7 +402,7 @@ export namespace cloudkms_v1 {
      */
     importJob?: string | null;
     /**
-     * Wrapped key material produced with RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256.  This field contains the concatenation of two wrapped keys: &lt;ol&gt;   &lt;li&gt;An ephemeral AES-256 wrapping key wrapped with the       public_key using RSAES-OAEP with SHA-1,       MGF1 with SHA-1, and an empty label.   &lt;/li&gt;   &lt;li&gt;The key to be imported, wrapped with the ephemeral AES-256 key       using AES-KWP (RFC 5649).   &lt;/li&gt; &lt;/ol&gt;  This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP.
+     * Wrapped key material produced with RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256.  This field contains the concatenation of two wrapped keys: &lt;ol&gt;   &lt;li&gt;An ephemeral AES-256 wrapping key wrapped with the       public_key using RSAES-OAEP with SHA-1,       MGF1 with SHA-1, and an empty label.   &lt;/li&gt;   &lt;li&gt;The key to be imported, wrapped with the ephemeral AES-256 key       using AES-KWP (RFC 5649).   &lt;/li&gt; &lt;/ol&gt;  If importing symmetric key material, it is expected that the unwrapped key contains plain bytes. If importing asymmetric key material, it is expected that the unwrapped key is in PKCS#8-encoded DER format (the PrivateKeyInfo structure from RFC 5208).  This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP.
      */
     rsaAesWrappedKey?: string | null;
   }
@@ -431,7 +431,7 @@ export namespace cloudkms_v1 {
      */
     generateTime?: string | null;
     /**
-     * Required and immutable. The wrapping method to be used for incoming key material.
+     * Required. Immutable. The wrapping method to be used for incoming key material.
      */
     importMethod?: string | null;
     /**
@@ -439,7 +439,7 @@ export namespace cloudkms_v1 {
      */
     name?: string | null;
     /**
-     * Required and immutable. The protection level of the ImportJob. This must match the protection_level of the version_template on the CryptoKey you attempt to import into.
+     * Required. Immutable. The protection level of the ImportJob. This must match the protection_level of the version_template on the CryptoKey you attempt to import into.
      */
     protectionLevel?: string | null;
     /**
@@ -593,7 +593,7 @@ export namespace cloudkms_v1 {
     hsmAvailable?: boolean | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt;             timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -601,15 +601,15 @@ export namespace cloudkms_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
      */
     etag?: string | null;
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
      */
     version?: number | null;
   }
@@ -666,7 +666,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$UpdateCryptoKeyPrimaryVersionRequest {
     /**
-     * The id of the child CryptoKeyVersion to use as primary.
+     * Required. The id of the child CryptoKeyVersion to use as primary.
      */
     cryptoKeyVersionId?: string | null;
   }
@@ -978,7 +978,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the KeyRing to get.
+     * @param {string} params.name Required. The name of the KeyRing to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1047,7 +1047,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1122,8 +1122,8 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order.  For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1195,7 +1195,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @alias cloudkms.projects.locations.keyRings.setIamPolicy
      * @memberOf! ()
      *
@@ -1378,7 +1378,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the KeyRing to get.
+     * Required. The name of the KeyRing to get.
      */
     name?: string;
   }
@@ -1390,7 +1390,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -1414,11 +1414,11 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of KeyRings to include in the response.  Further KeyRings can subsequently be obtained by including the ListKeyRingsResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
+     * Optional. Optional pagination token, returned earlier via ListKeyRingsResponse.next_page_token.
      */
     pageToken?: string;
     /**
@@ -1705,7 +1705,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the CryptoKey to get.
+     * @param {string} params.name Required. The name of the CryptoKey to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1776,7 +1776,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1851,8 +1851,8 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
      * @param {string=} params.versionView The fields of the primary version to include in the response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1931,7 +1931,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string=} params.updateMask Required. List of fields to be updated in this request.
      * @param {().CryptoKey} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1998,7 +1998,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @alias cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy
      * @memberOf! ()
      *
@@ -2158,7 +2158,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the CryptoKey to update.
+     * @param {string} params.name Required. The resource name of the CryptoKey to update.
      * @param {().UpdateCryptoKeyPrimaryVersionRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2296,7 +2296,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the CryptoKey to get.
+     * Required. The name of the CryptoKey to get.
      */
     name?: string;
   }
@@ -2308,7 +2308,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -2332,11 +2332,11 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of CryptoKeys to include in the response.  Further CryptoKeys can subsequently be obtained by including the ListCryptoKeysResponse.next_page_token in a subsequent request.  If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
+     * Optional. Optional pagination token, returned earlier via ListCryptoKeysResponse.next_page_token.
      */
     pageToken?: string;
     /**
@@ -2360,7 +2360,7 @@ export namespace cloudkms_v1 {
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. List of fields to be updated in this request.
      */
     updateMask?: string;
 
@@ -2411,7 +2411,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the CryptoKey to update.
+     * Required. The resource name of the CryptoKey to update.
      */
     name?: string;
 
@@ -2670,7 +2670,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the CryptoKeyVersion to destroy.
+     * @param {string} params.name Required. The resource name of the CryptoKeyVersion to destroy.
      * @param {().DestroyCryptoKeyVersionRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2745,7 +2745,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the CryptoKeyVersion to get.
+     * @param {string} params.name Required. The name of the CryptoKeyVersion to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2816,7 +2816,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the CryptoKeyVersion public key to get.
+     * @param {string} params.name Required. The name of the CryptoKeyVersion public key to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2967,8 +2967,8 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the CryptoKey to list, in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      * @param {string=} params.view The fields to include in the response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3054,7 +3054,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
-     * @param {string=} params.updateMask Required list of fields to be updated in this request.
+     * @param {string=} params.updateMask Required. List of fields to be updated in this request.
      * @param {().CryptoKeyVersion} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3126,7 +3126,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the CryptoKeyVersion to restore.
+     * @param {string} params.name Required. The resource name of the CryptoKeyVersion to restore.
      * @param {().RestoreCryptoKeyVersionRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3254,7 +3254,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the CryptoKeyVersion to destroy.
+     * Required. The resource name of the CryptoKeyVersion to destroy.
      */
     name?: string;
 
@@ -3271,7 +3271,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the CryptoKeyVersion to get.
+     * Required. The name of the CryptoKeyVersion to get.
      */
     name?: string;
   }
@@ -3283,7 +3283,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the CryptoKeyVersion public key to get.
+     * Required. The name of the CryptoKeyVersion public key to get.
      */
     name?: string;
   }
@@ -3320,11 +3320,11 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
+     * Optional. Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
      */
     pageToken?: string;
     /**
@@ -3348,7 +3348,7 @@ export namespace cloudkms_v1 {
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. List of fields to be updated in this request.
      */
     updateMask?: string;
 
@@ -3365,7 +3365,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the CryptoKeyVersion to restore.
+     * Required. The resource name of the CryptoKeyVersion to restore.
      */
     name?: string;
 
@@ -3464,7 +3464,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the ImportJob to get.
+     * @param {string} params.name Required. The name of the ImportJob to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3535,7 +3535,7 @@ export namespace cloudkms_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3610,8 +3610,8 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
      * @param {string=} params.orderBy Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     * @param {integer=} params.pageSize Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
+     * @param {integer=} params.pageSize Optional. Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * @param {string=} params.pageToken Optional. Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
      * @param {string} params.parent Required. The resource name of the KeyRing to list, in the format `projects/x/locations/x/keyRings/x`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3683,7 +3683,7 @@ export namespace cloudkms_v1 {
 
     /**
      * cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @alias cloudkms.projects.locations.keyRings.importJobs.setIamPolicy
      * @memberOf! ()
      *
@@ -3866,7 +3866,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the ImportJob to get.
+     * Required. The name of the ImportJob to get.
      */
     name?: string;
   }
@@ -3878,7 +3878,7 @@ export namespace cloudkms_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -3902,11 +3902,11 @@ export namespace cloudkms_v1 {
      */
     orderBy?: string;
     /**
-     * Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of ImportJobs to include in the response. Further ImportJobs can subsequently be obtained by including the ListImportJobsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
      */
     pageSize?: number;
     /**
-     * Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
+     * Optional. Optional pagination token, returned earlier via ListImportJobsResponse.next_page_token.
      */
     pageToken?: string;
     /**
