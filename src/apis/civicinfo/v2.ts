@@ -792,8 +792,8 @@ export namespace civicinfo_v2 {
     published?: boolean | null;
     schoolDistrict?: string | null;
     startHouseNumber?: string | null;
-    startLatE7?: string | null;
-    startLngE7?: string | null;
+    startLatE7?: number | null;
+    startLngE7?: number | null;
     state?: string | null;
     stateHouseDistrict?: string | null;
     stateSenateDistrict?: string | null;

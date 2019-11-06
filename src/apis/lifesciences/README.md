@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# urlshortener
+# lifesciences
 
-> Lets you create, inspect, and manage goo.gl short URLs
+> Cloud Life Sciences is a suite of services and tools for managing, processing, and transforming life sciences data.
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/urlshortener
+$ cd src/apis/lifesciences
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/urlshortener.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/lifesciences.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/urlshortener.min.js"></script>
+<script src="/path/to/lifesciences.min.js"></script>
 <script>
-const { urlshortener, auth } = Urlshortener;
+const { lifesciences, auth } = Lifesciences;
 </script>
 ```
 

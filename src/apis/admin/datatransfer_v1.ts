@@ -124,7 +124,7 @@ export namespace admin_datatransfer_v1 {
      */
     name?: string | null;
     /**
-     * The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transfered.
+     * The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transferred.
      */
     transferParams?: Schema$ApplicationTransferParam[];
   }
@@ -137,7 +137,7 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string | null;
     /**
-     * The transfer parameters for the application. These parameters are used to select the data which will get transfered in context of this application.
+     * The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application.
      */
     applicationTransferParams?: Schema$ApplicationTransferParam[];
     /**
@@ -175,7 +175,7 @@ export namespace admin_datatransfer_v1 {
      */
     key?: string | null;
     /**
-     * The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
+     * The value of the corresponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
      */
     value?: string[] | null;
   }
@@ -200,11 +200,11 @@ export namespace admin_datatransfer_v1 {
      */
     kind?: string | null;
     /**
-     * ID of the user to whom the data is being transfered.
+     * ID of the user to whom the data is being transferred.
      */
     newOwnerUserId?: string | null;
     /**
-     * ID of the user whose data is being transfered.
+     * ID of the user whose data is being transferred.
      */
     oldOwnerUserId?: string | null;
     /**
@@ -323,7 +323,7 @@ export namespace admin_datatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the Google Apps account.
+     * @param {string=} params.customerId Immutable ID of the G Suite account.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
      * @param {string=} params.pageToken Token to specify next page in the list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -414,7 +414,7 @@ export namespace admin_datatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Immutable ID of the Google Apps account.
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -585,7 +585,7 @@ export namespace admin_datatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.customerId Immutable ID of the Google Apps account.
+     * @param {string=} params.customerId Immutable ID of the G Suite account.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
      * @param {string=} params.newOwnerUserId Destination user's profile ID.
      * @param {string=} params.oldOwnerUserId Source user's profile ID.
@@ -693,7 +693,7 @@ export namespace admin_datatransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Immutable ID of the Google Apps account.
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**

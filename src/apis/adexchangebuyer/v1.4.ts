@@ -535,7 +535,7 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Schema$DealTerms {
     /**
-     * Visibilty of the URL in bid requests.
+     * Visibility of the URL in bid requests.
      */
     brandingType?: string | null;
     /**

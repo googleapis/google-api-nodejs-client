@@ -216,6 +216,10 @@ export namespace file_v1 {
      */
     endTime?: string | null;
     /**
+     * The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.
+     */
+    rolloutManagementPolicy?: string | null;
+    /**
      * The scheduled start time for the maintenance.
      */
     startTime?: string | null;
@@ -1053,7 +1057,7 @@ export namespace file_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
-     * @param {string=} params.updateMask Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields: "description"
+     * @param {string=} params.updateMask Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields: "description" "file_shares" "labels"
      * @param {().Instance} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1204,7 +1208,7 @@ export namespace file_v1 {
      */
     name?: string;
     /**
-     * Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields: "description"
+     * Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields: "description" "file_shares" "labels"
      */
     updateMask?: string;
 

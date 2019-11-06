@@ -16,10 +16,12 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {bigqueryreservation_v1} from './v1';
 import {bigqueryreservation_v1alpha2} from './v1alpha2';
+import {bigqueryreservation_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
   v1: bigqueryreservation_v1.Bigqueryreservation,
   v1alpha2: bigqueryreservation_v1alpha2.Bigqueryreservation,
+  v1beta1: bigqueryreservation_v1beta1.Bigqueryreservation,
 };
 
 export function bigqueryreservation(
@@ -34,10 +36,17 @@ export function bigqueryreservation(
 export function bigqueryreservation(
   options: bigqueryreservation_v1alpha2.Options
 ): bigqueryreservation_v1alpha2.Bigqueryreservation;
+export function bigqueryreservation(
+  version: 'v1beta1'
+): bigqueryreservation_v1beta1.Bigqueryreservation;
+export function bigqueryreservation(
+  options: bigqueryreservation_v1beta1.Options
+): bigqueryreservation_v1beta1.Bigqueryreservation;
 export function bigqueryreservation<
   T =
     | bigqueryreservation_v1.Bigqueryreservation
     | bigqueryreservation_v1alpha2.Bigqueryreservation
+    | bigqueryreservation_v1beta1.Bigqueryreservation
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -45,6 +54,8 @@ export function bigqueryreservation<
     | bigqueryreservation_v1.Options
     | 'v1alpha2'
     | bigqueryreservation_v1alpha2.Options
+    | 'v1beta1'
+    | bigqueryreservation_v1beta1.Options
 ) {
   return getAPI<T>('bigqueryreservation', versionOrOptions, VERSIONS, this);
 }

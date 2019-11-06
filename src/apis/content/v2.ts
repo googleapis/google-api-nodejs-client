@@ -97,7 +97,6 @@ export namespace content_v2 {
     inventory: Resource$Inventory;
     liasettings: Resource$Liasettings;
     orderinvoices: Resource$Orderinvoices;
-    orderpayments: Resource$Orderpayments;
     orderreports: Resource$Orderreports;
     orderreturns: Resource$Orderreturns;
     orders: Resource$Orders;
@@ -120,7 +119,6 @@ export namespace content_v2 {
       this.inventory = new Resource$Inventory(this.context);
       this.liasettings = new Resource$Liasettings(this.context);
       this.orderinvoices = new Resource$Orderinvoices(this.context);
-      this.orderpayments = new Resource$Orderpayments(this.context);
       this.orderreports = new Resource$Orderreports(this.context);
       this.orderreturns = new Resource$Orderreturns(this.context);
       this.orders = new Resource$Orders(this.context);
@@ -132,7 +130,7 @@ export namespace content_v2 {
   }
 
   /**
-   * Account data. After the creation of a new account it may take a few minutes before it is fully operational. The methods delete, insert, patch, and update require the admin role.
+   * Account data. After the creation of a new account it may take a few minutes before it is fully operational. The methods delete, insert, and update require the admin role.
    */
   export interface Schema$Account {
     /**
@@ -1214,7 +1212,7 @@ export namespace content_v2 {
      */
     excludedDestinations?: string[] | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in excludedDestinations.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in excludedDestinations.  List of supported destinations (if available to the account):   - DisplayAds  - Shopping  - ShoppingActions  - SurfacesAcrossGoogle
      */
     includedDestinations?: string[] | null;
     /**
@@ -1919,7 +1917,7 @@ export namespace content_v2 {
     state?: string | null;
   }
   /**
-   * Order. All methods require the order manager role.
+   * Order. Production access (all methods) requires the order manager role. Sandbox access does not.
    */
   export interface Schema$Order {
     /**
@@ -2480,90 +2478,6 @@ export namespace content_v2 {
      * The type of instrument.  Acceptable values are:   - &quot;AMEX&quot;  - &quot;DISCOVER&quot;  - &quot;JCB&quot;  - &quot;MASTERCARD&quot;  - &quot;UNIONPAY&quot;  - &quot;VISA&quot;  - &quot;&quot;
      */
     type?: string | null;
-  }
-  export interface Schema$OrderpaymentsNotifyAuthApprovedRequest {
-    /**
-     * Authorized amount for pre-tax charge on user&#39;s credit card.
-     */
-    authAmountPretax?: Schema$Price;
-    /**
-     * Authorized amount for tax charge on user&#39;s credit card.
-     */
-    authAmountTax?: Schema$Price;
-  }
-  export interface Schema$OrderpaymentsNotifyAuthApprovedResponse {
-    /**
-     * The status of the execution.
-     */
-    executionStatus?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderpaymentsNotifyAuthApprovedResponse&quot;.
-     */
-    kind?: string | null;
-  }
-  export interface Schema$OrderpaymentsNotifyAuthDeclinedRequest {
-    /**
-     * Reason why payment authorization was declined.
-     */
-    declineReason?: string | null;
-  }
-  export interface Schema$OrderpaymentsNotifyAuthDeclinedResponse {
-    /**
-     * The status of the execution.
-     */
-    executionStatus?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderpaymentsNotifyAuthDeclinedResponse&quot;.
-     */
-    kind?: string | null;
-  }
-  export interface Schema$OrderpaymentsNotifyChargeRequest {
-    /**
-     * Whether charge was successful.
-     */
-    chargeState?: string | null;
-    /**
-     * Deprecated. Please use invoiceIds instead.
-     */
-    invoiceId?: string | null;
-    /**
-     * Invoice IDs from the orderinvoices service that correspond to the charge.
-     */
-    invoiceIds?: string[] | null;
-  }
-  export interface Schema$OrderpaymentsNotifyChargeResponse {
-    /**
-     * The status of the execution.
-     */
-    executionStatus?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderpaymentsNotifyChargeResponse&quot;.
-     */
-    kind?: string | null;
-  }
-  export interface Schema$OrderpaymentsNotifyRefundRequest {
-    /**
-     * Deprecated. Please use invoiceIds instead.
-     */
-    invoiceId?: string | null;
-    /**
-     * Invoice IDs from the orderinvoices service that correspond to the refund.
-     */
-    invoiceIds?: string[] | null;
-    /**
-     * Whether refund was successful.
-     */
-    refundState?: string | null;
-  }
-  export interface Schema$OrderpaymentsNotifyRefundResponse {
-    /**
-     * The status of the execution.
-     */
-    executionStatus?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderpaymentsNotifyRefundResponse&quot;.
-     */
-    kind?: string | null;
   }
   export interface Schema$OrderPickupDetails {
     /**
@@ -3286,7 +3200,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;  - &quot;colis prive&quot;  - &quot;boxtal&quot;  - &quot;geodis&quot;
+     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;  - &quot;jd logistics&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;  - &quot;colis prive&quot;  - &quot;boxtal&quot;  - &quot;geodis&quot;  - &quot;tnt&quot;  - &quot;la poste&quot;
      */
     carrier?: string | null;
     /**
@@ -4354,7 +4268,7 @@ export namespace content_v2 {
      */
     shippingWidth?: Schema$ProductShippingDimension;
     /**
-     * Size of the item.
+     * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same itemGroupId value (see size definition).
      */
     sizes?: string[] | null;
     /**
@@ -5942,79 +5856,6 @@ export namespace content_v2 {
     }
 
     /**
-     * content.accounts.patch
-     * @desc Updates a Merchant Center account. This method supports patch semantics.
-     * @alias content.accounts.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account.
-     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     * @param {().Account} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Accounts$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Account>;
-    patch(
-      params: Params$Resource$Accounts$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback: BodyResponseCallback<Schema$Account>
-    ): void;
-    patch(
-      params: Params$Resource$Accounts$Patch,
-      callback: BodyResponseCallback<Schema$Account>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Account>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Patch
-        | BodyResponseCallback<Schema$Account>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Account>,
-      callback?: BodyResponseCallback<Schema$Account>
-    ): void | GaxiosPromise<Schema$Account> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/content/v2/{merchantId}/accounts/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'accountId'],
-        pathParams: ['accountId', 'merchantId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Account>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Account>(parameters);
-      }
-    }
-
-    /**
      * content.accounts.update
      * @desc Updates a Merchant Center account.
      * @alias content.accounts.update
@@ -6228,30 +6069,6 @@ export namespace content_v2 {
      * The token returned by the previous request.
      */
     pageToken?: string;
-  }
-  export interface Params$Resource$Accounts$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the account.
-     */
-    accountId?: string;
-    /**
-     * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     */
-    dryRun?: boolean;
-    /**
-     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     */
-    merchantId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Account;
   }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
@@ -6825,81 +6642,6 @@ export namespace content_v2 {
     }
 
     /**
-     * content.accounttax.patch
-     * @desc Updates the tax settings of the account. This method supports patch semantics.
-     * @alias content.accounttax.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     * @param {().AccountTax} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Accounttax$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AccountTax>;
-    patch(
-      params: Params$Resource$Accounttax$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$AccountTax>,
-      callback: BodyResponseCallback<Schema$AccountTax>
-    ): void;
-    patch(
-      params: Params$Resource$Accounttax$Patch,
-      callback: BodyResponseCallback<Schema$AccountTax>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$AccountTax>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Accounttax$Patch
-        | BodyResponseCallback<Schema$AccountTax>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccountTax>,
-      callback?: BodyResponseCallback<Schema$AccountTax>
-    ): void | GaxiosPromise<Schema$AccountTax> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Accounttax$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounttax$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/content/v2/{merchantId}/accounttax/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'accountId'],
-        pathParams: ['accountId', 'merchantId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AccountTax>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$AccountTax>(parameters);
-      }
-    }
-
-    /**
      * content.accounttax.update
      * @desc Updates the tax settings of the account.
      * @alias content.accounttax.update
@@ -7026,30 +6768,6 @@ export namespace content_v2 {
      * The token returned by the previous request.
      */
     pageToken?: string;
-  }
-  export interface Params$Resource$Accounttax$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the account for which to get/update account tax settings.
-     */
-    accountId?: string;
-    /**
-     * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     */
-    dryRun?: boolean;
-    /**
-     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     */
-    merchantId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AccountTax;
   }
   export interface Params$Resource$Accounttax$Update
     extends StandardParameters {
@@ -7544,79 +7262,6 @@ export namespace content_v2 {
     }
 
     /**
-     * content.datafeeds.patch
-     * @desc Updates a datafeed configuration of your Merchant Center account. This method supports patch semantics.
-     * @alias content.datafeeds.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.datafeedId The ID of the datafeed.
-     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     * @param {().Datafeed} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Datafeeds$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Datafeed>;
-    patch(
-      params: Params$Resource$Datafeeds$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Datafeed>,
-      callback: BodyResponseCallback<Schema$Datafeed>
-    ): void;
-    patch(
-      params: Params$Resource$Datafeeds$Patch,
-      callback: BodyResponseCallback<Schema$Datafeed>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Datafeed>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Datafeeds$Patch
-        | BodyResponseCallback<Schema$Datafeed>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Datafeed>,
-      callback?: BodyResponseCallback<Schema$Datafeed>
-    ): void | GaxiosPromise<Schema$Datafeed> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Datafeeds$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Datafeeds$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/content/v2/{merchantId}/datafeeds/{datafeedId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'datafeedId'],
-        pathParams: ['datafeedId', 'merchantId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Datafeed>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Datafeed>(parameters);
-      }
-    }
-
-    /**
      * content.datafeeds.update
      * @desc Updates a datafeed configuration of your Merchant Center account.
      * @alias content.datafeeds.update
@@ -7799,30 +7444,6 @@ export namespace content_v2 {
      * The token returned by the previous request.
      */
     pageToken?: string;
-  }
-  export interface Params$Resource$Datafeeds$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the datafeed.
-     */
-    datafeedId?: string;
-    /**
-     * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     */
-    dryRun?: boolean;
-    /**
-     * The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     */
-    merchantId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Datafeed;
   }
   export interface Params$Resource$Datafeeds$Update extends StandardParameters {
     /**
@@ -8805,82 +8426,6 @@ export namespace content_v2 {
     }
 
     /**
-     * content.liasettings.patch
-     * @desc Updates the LIA settings of the account. This method supports patch semantics.
-     * @alias content.liasettings.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get or update LIA settings.
-     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     * @param {().LiaSettings} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Liasettings$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$LiaSettings>;
-    patch(
-      params: Params$Resource$Liasettings$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$LiaSettings>,
-      callback: BodyResponseCallback<Schema$LiaSettings>
-    ): void;
-    patch(
-      params: Params$Resource$Liasettings$Patch,
-      callback: BodyResponseCallback<Schema$LiaSettings>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$LiaSettings>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Liasettings$Patch
-        | BodyResponseCallback<Schema$LiaSettings>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LiaSettings>,
-      callback?: BodyResponseCallback<Schema$LiaSettings>
-    ): void | GaxiosPromise<Schema$LiaSettings> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Liasettings$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Liasettings$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/content/v2/{merchantId}/liasettings/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'accountId'],
-        pathParams: ['accountId', 'merchantId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$LiaSettings>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$LiaSettings>(parameters);
-      }
-    }
-
-    /**
      * content.liasettings.requestgmbaccess
      * @desc Requests access to a specified Google My Business account.
      * @alias content.liasettings.requestgmbaccess
@@ -9423,31 +8968,6 @@ export namespace content_v2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
-  export interface Params$Resource$Liasettings$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the account for which to get or update LIA settings.
-     */
-    accountId?: string;
-    /**
-     * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     */
-    dryRun?: boolean;
-    /**
-     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     */
-    merchantId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$LiaSettings;
-  }
   export interface Params$Resource$Liasettings$Requestgmbaccess
     extends StandardParameters {
     /**
@@ -9808,454 +9328,6 @@ export namespace content_v2 {
      * Request body metadata
      */
     requestBody?: Schema$OrderinvoicesCreateRefundInvoiceRequest;
-  }
-
-  export class Resource$Orderpayments {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * content.orderpayments.notifyauthapproved
-     * @desc Notify about successfully authorizing user's payment method for a given amount.
-     * @alias content.orderpayments.notifyauthapproved
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for for which payment authorization is happening.
-     * @param {().OrderpaymentsNotifyAuthApprovedRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    notifyauthapproved(
-      params?: Params$Resource$Orderpayments$Notifyauthapproved,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OrderpaymentsNotifyAuthApprovedResponse>;
-    notifyauthapproved(
-      params: Params$Resource$Orderpayments$Notifyauthapproved,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyAuthApprovedResponse>,
-      callback: BodyResponseCallback<
-        Schema$OrderpaymentsNotifyAuthApprovedResponse
-      >
-    ): void;
-    notifyauthapproved(
-      params: Params$Resource$Orderpayments$Notifyauthapproved,
-      callback: BodyResponseCallback<
-        Schema$OrderpaymentsNotifyAuthApprovedResponse
-      >
-    ): void;
-    notifyauthapproved(
-      callback: BodyResponseCallback<
-        Schema$OrderpaymentsNotifyAuthApprovedResponse
-      >
-    ): void;
-    notifyauthapproved(
-      paramsOrCallback?:
-        | Params$Resource$Orderpayments$Notifyauthapproved
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyAuthApprovedResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyAuthApprovedResponse>,
-      callback?: BodyResponseCallback<
-        Schema$OrderpaymentsNotifyAuthApprovedResponse
-      >
-    ): void | GaxiosPromise<Schema$OrderpaymentsNotifyAuthApprovedResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Orderpayments$Notifyauthapproved;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderpayments$Notifyauthapproved;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/content/v2/{merchantId}/orderpayments/{orderId}/notifyAuthApproved'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'orderId'],
-        pathParams: ['merchantId', 'orderId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderpaymentsNotifyAuthApprovedResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$OrderpaymentsNotifyAuthApprovedResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * content.orderpayments.notifyauthdeclined
-     * @desc Notify about failure to authorize user's payment method.
-     * @alias content.orderpayments.notifyauthdeclined
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which payment authorization was declined.
-     * @param {().OrderpaymentsNotifyAuthDeclinedRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    notifyauthdeclined(
-      params?: Params$Resource$Orderpayments$Notifyauthdeclined,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OrderpaymentsNotifyAuthDeclinedResponse>;
-    notifyauthdeclined(
-      params: Params$Resource$Orderpayments$Notifyauthdeclined,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyAuthDeclinedResponse>,
-      callback: BodyResponseCallback<
-        Schema$OrderpaymentsNotifyAuthDeclinedResponse
-      >
-    ): void;
-    notifyauthdeclined(
-      params: Params$Resource$Orderpayments$Notifyauthdeclined,
-      callback: BodyResponseCallback<
-        Schema$OrderpaymentsNotifyAuthDeclinedResponse
-      >
-    ): void;
-    notifyauthdeclined(
-      callback: BodyResponseCallback<
-        Schema$OrderpaymentsNotifyAuthDeclinedResponse
-      >
-    ): void;
-    notifyauthdeclined(
-      paramsOrCallback?:
-        | Params$Resource$Orderpayments$Notifyauthdeclined
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyAuthDeclinedResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyAuthDeclinedResponse>,
-      callback?: BodyResponseCallback<
-        Schema$OrderpaymentsNotifyAuthDeclinedResponse
-      >
-    ): void | GaxiosPromise<Schema$OrderpaymentsNotifyAuthDeclinedResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Orderpayments$Notifyauthdeclined;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderpayments$Notifyauthdeclined;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/content/v2/{merchantId}/orderpayments/{orderId}/notifyAuthDeclined'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'orderId'],
-        pathParams: ['merchantId', 'orderId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderpaymentsNotifyAuthDeclinedResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$OrderpaymentsNotifyAuthDeclinedResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * content.orderpayments.notifycharge
-     * @desc Notify about charge on user's selected payments method.
-     * @alias content.orderpayments.notifycharge
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which charge is happening.
-     * @param {().OrderpaymentsNotifyChargeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    notifycharge(
-      params?: Params$Resource$Orderpayments$Notifycharge,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OrderpaymentsNotifyChargeResponse>;
-    notifycharge(
-      params: Params$Resource$Orderpayments$Notifycharge,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>,
-      callback: BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>
-    ): void;
-    notifycharge(
-      params: Params$Resource$Orderpayments$Notifycharge,
-      callback: BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>
-    ): void;
-    notifycharge(
-      callback: BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>
-    ): void;
-    notifycharge(
-      paramsOrCallback?:
-        | Params$Resource$Orderpayments$Notifycharge
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>,
-      callback?: BodyResponseCallback<Schema$OrderpaymentsNotifyChargeResponse>
-    ): void | GaxiosPromise<Schema$OrderpaymentsNotifyChargeResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Orderpayments$Notifycharge;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderpayments$Notifycharge;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/content/v2/{merchantId}/orderpayments/{orderId}/notifyCharge'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'orderId'],
-        pathParams: ['merchantId', 'orderId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderpaymentsNotifyChargeResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$OrderpaymentsNotifyChargeResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * content.orderpayments.notifyrefund
-     * @desc Notify about refund on user's selected payments method.
-     * @alias content.orderpayments.notifyrefund
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order for which charge is happening.
-     * @param {().OrderpaymentsNotifyRefundRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    notifyrefund(
-      params?: Params$Resource$Orderpayments$Notifyrefund,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OrderpaymentsNotifyRefundResponse>;
-    notifyrefund(
-      params: Params$Resource$Orderpayments$Notifyrefund,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>,
-      callback: BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>
-    ): void;
-    notifyrefund(
-      params: Params$Resource$Orderpayments$Notifyrefund,
-      callback: BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>
-    ): void;
-    notifyrefund(
-      callback: BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>
-    ): void;
-    notifyrefund(
-      paramsOrCallback?:
-        | Params$Resource$Orderpayments$Notifyrefund
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>,
-      callback?: BodyResponseCallback<Schema$OrderpaymentsNotifyRefundResponse>
-    ): void | GaxiosPromise<Schema$OrderpaymentsNotifyRefundResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Orderpayments$Notifyrefund;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orderpayments$Notifyrefund;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/content/v2/{merchantId}/orderpayments/{orderId}/notifyRefund'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'orderId'],
-        pathParams: ['merchantId', 'orderId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrderpaymentsNotifyRefundResponse>(
-          parameters,
-          callback
-        );
-      } else {
-        return createAPIRequest<Schema$OrderpaymentsNotifyRefundResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Orderpayments$Notifyauthapproved
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the account that manages the order. This cannot be a multi-client account.
-     */
-    merchantId?: string;
-    /**
-     * The ID of the order for for which payment authorization is happening.
-     */
-    orderId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OrderpaymentsNotifyAuthApprovedRequest;
-  }
-  export interface Params$Resource$Orderpayments$Notifyauthdeclined
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the account that manages the order. This cannot be a multi-client account.
-     */
-    merchantId?: string;
-    /**
-     * The ID of the order for which payment authorization was declined.
-     */
-    orderId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OrderpaymentsNotifyAuthDeclinedRequest;
-  }
-  export interface Params$Resource$Orderpayments$Notifycharge
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the account that manages the order. This cannot be a multi-client account.
-     */
-    merchantId?: string;
-    /**
-     * The ID of the order for which charge is happening.
-     */
-    orderId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OrderpaymentsNotifyChargeRequest;
-  }
-  export interface Params$Resource$Orderpayments$Notifyrefund
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the account that manages the order. This cannot be a multi-client account.
-     */
-    merchantId?: string;
-    /**
-     * The ID of the order for which charge is happening.
-     */
-    orderId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OrderpaymentsNotifyRefundRequest;
   }
 
   export class Resource$Orderreports {
@@ -14963,82 +14035,6 @@ export namespace content_v2 {
     }
 
     /**
-     * content.shippingsettings.patch
-     * @desc Updates the shipping settings of the account. This method supports patch semantics.
-     * @alias content.shippingsettings.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-     * @param {boolean=} params.dryRun Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     * @param {().ShippingSettings} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Shippingsettings$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ShippingSettings>;
-    patch(
-      params: Params$Resource$Shippingsettings$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$ShippingSettings>,
-      callback: BodyResponseCallback<Schema$ShippingSettings>
-    ): void;
-    patch(
-      params: Params$Resource$Shippingsettings$Patch,
-      callback: BodyResponseCallback<Schema$ShippingSettings>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$ShippingSettings>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Shippingsettings$Patch
-        | BodyResponseCallback<Schema$ShippingSettings>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ShippingSettings>,
-      callback?: BodyResponseCallback<Schema$ShippingSettings>
-    ): void | GaxiosPromise<Schema$ShippingSettings> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Shippingsettings$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Shippingsettings$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/content/v2/{merchantId}/shippingsettings/{accountId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'accountId'],
-        pathParams: ['accountId', 'merchantId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ShippingSettings>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ShippingSettings>(parameters);
-      }
-    }
-
-    /**
      * content.shippingsettings.update
      * @desc Updates the shipping settings of the account.
      * @alias content.shippingsettings.update
@@ -15191,31 +14187,6 @@ export namespace content_v2 {
      * The token returned by the previous request.
      */
     pageToken?: string;
-  }
-  export interface Params$Resource$Shippingsettings$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the account for which to get/update shipping settings.
-     */
-    accountId?: string;
-    /**
-     * Flag to simulate a request like in a live environment. If set to true, dry-run mode checks the validity of the request and returns errors (if any).
-     */
-    dryRun?: boolean;
-    /**
-     * The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
-     */
-    merchantId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ShippingSettings;
   }
   export interface Params$Resource$Shippingsettings$Update
     extends StandardParameters {

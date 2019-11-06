@@ -126,7 +126,7 @@ export namespace container_v1beta1 {
      */
     acceleratorCount?: string | null;
     /**
-     * The accelerator type resource name. List of supported accelerators [here](/compute/docs/gpus/#Introduction)
+     * The accelerator type resource name. List of supported accelerators [here](/compute/docs/gpus)
      */
     acceleratorType?: string | null;
   }
@@ -177,6 +177,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$AutoprovisioningNodePoolDefaults {
     /**
+     * Specifies the node management options for NAP created node-pools.
+     */
+    management?: Schema$NodeManagement;
+    /**
      * Scopes that are used by NAP when creating node pools. If oauth_scopes are specified, service_account should be empty.
      */
     oauthScopes?: string[] | null;
@@ -184,6 +188,10 @@ export namespace container_v1beta1 {
      * The Google Cloud Platform Service Account to be used by the node VMs. If service_account is specified, scopes should be empty.
      */
     serviceAccount?: string | null;
+    /**
+     * Specifies the upgrade settings for NAP created node pools
+     */
+    upgradeSettings?: Schema$UpgradeSettings;
   }
   /**
    * AutoUpgradeOptions defines the set of options for the user to control how the Auto Upgrades will proceed.
@@ -397,7 +405,7 @@ export namespace container_v1beta1 {
      */
     monitoringService?: string | null;
     /**
-     * The name of this cluster. The name must be unique within this project and zone, and can be up to 40 characters with the following restrictions:  * Lowercase letters, numbers, and hyphens only. * Must start with a letter. * Must end with a number or a letter.
+     * The name of this cluster. The name must be unique within this project and location (e.g. zone or region), and can be up to 40 characters with the following restrictions:  * Lowercase letters, numbers, and hyphens only. * Must start with a letter. * Must end with a number or a letter.
      */
     name?: string | null;
     /**
@@ -547,7 +555,7 @@ export namespace container_v1beta1 {
      */
     desiredLocations?: string[] | null;
     /**
-     * The logging service the cluster should use to write metrics. Currently available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the Google Cloud Logging service with Kubernetes-native resource model in Stackdriver * &quot;logging.googleapis.com&quot; - the Google Cloud Logging service * &quot;none&quot; - no logs will be exported from the cluster
+     * The logging service the cluster should use to write metrics. Currently available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the Google Cloud Logging service with Kubernetes-native resource model * &quot;logging.googleapis.com&quot; - the Google Cloud Logging service * &quot;none&quot; - no logs will be exported from the cluster
      */
     desiredLoggingService?: string | null;
     /**
@@ -559,7 +567,7 @@ export namespace container_v1beta1 {
      */
     desiredMasterVersion?: string | null;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - the Google Cloud Monitoring service with Kubernetes-native resource model in Stackdriver * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
+     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - the Google Cloud Monitoring service with Kubernetes-native resource model * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
      */
     desiredMonitoringService?: string | null;
     /**
@@ -1024,6 +1032,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$MaintenancePolicy {
     /**
+     * A hash identifying the version of this policy, so that updates to fields of the policy won&#39;t accidentally undo intermediate changes (and so that users of the API unaware of some fields won&#39;t accidentally remove other fields). Make a &lt;code&gt;get()&lt;/code&gt; request to the cluster to get the current resource version and include it with requests to set the policy.
+     */
+    resourceVersion?: string | null;
+    /**
      * Specifies the maintenance window in which maintenance may be performed.
      */
     window?: Schema$MaintenanceWindow;
@@ -1036,6 +1048,14 @@ export namespace container_v1beta1 {
      * DailyMaintenanceWindow specifies a daily maintenance operation window.
      */
     dailyMaintenanceWindow?: Schema$DailyMaintenanceWindow;
+    /**
+     * Exceptions to maintenance window. Non-emergency maintenance should not occur in these windows.
+     */
+    maintenanceExclusions?: {[key: string]: Schema$TimeWindow} | null;
+    /**
+     * RecurringWindow specifies some number of recurring time periods for maintenance to occur. The time windows may be overlapping. If no maintenance windows are set, maintenance can occur at any time.
+     */
+    recurringWindow?: Schema$RecurringTimeWindow;
   }
   /**
    * The authentication information for accessing the master endpoint. Authentication can be done using HTTP basic auth or using client certificates.
@@ -1170,7 +1190,7 @@ export namespace container_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The number of local SSD disks to be attached to the node.  The limit for this value is dependant upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd#local_ssd_limits for more information.
+     * The number of local SSD disks to be attached to the node.  The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
      */
     localSsdCount?: number | null;
     /**
@@ -1291,6 +1311,10 @@ export namespace container_v1beta1 {
      * [Output only] Additional information about the current status of this node pool instance, if available.
      */
     statusMessage?: string | null;
+    /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     */
+    upgradeSettings?: Schema$UpgradeSettings;
     /**
      * The version of the Kubernetes of this node.
      */
@@ -1459,6 +1483,10 @@ export namespace container_v1beta1 {
      */
     masterIpv4CidrBlock?: string | null;
     /**
+     * Output only. The peering name in the customer VPC used by this cluster.
+     */
+    peeringName?: string | null;
+    /**
      * Output only. The internal IP address of this cluster&#39;s master endpoint.
      */
     privateEndpoint?: string | null;
@@ -1466,6 +1494,19 @@ export namespace container_v1beta1 {
      * Output only. The external IP address of this cluster&#39;s master endpoint.
      */
     publicEndpoint?: string | null;
+  }
+  /**
+   * Represents an arbitrary window of time that recurs.
+   */
+  export interface Schema$RecurringTimeWindow {
+    /**
+     * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time.  For example, to have something repeat every weekday, you&#39;d use:   &lt;code&gt;FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR&lt;/code&gt; To repeat some window daily (equivalent to the DailyMaintenanceWindow):   &lt;code&gt;FREQ=DAILY&lt;/code&gt; For the first weekend of every month:   &lt;code&gt;FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU&lt;/code&gt; This specifies how frequently the window starts. Eg, if you wanted to have a 9-5 UTC-4 window every weekday, you&#39;d use something like: &lt;code&gt;   start time = 2019-01-01T09:00:00-0400   end time = 2019-01-01T17:00:00-0400   recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR &lt;/code&gt; Windows can span multiple days. Eg, to make the window encompass every weekend from midnight Saturday till the last minute of Sunday UTC: &lt;code&gt;   start time = 2019-01-05T00:00:00Z   end time = 2019-01-07T23:59:00Z   recurrence = FREQ=WEEKLY;BYDAY=SA &lt;/code&gt; Note the start and end time&#39;s specific dates are largely arbitrary except to specify duration of the window and when it first starts. The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
+     */
+    recurrence?: string | null;
+    /**
+     * The window of the first recurrence.
+     */
+    window?: Schema$TimeWindow;
   }
   /**
    * ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk and frequency of updates.  When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled. Updates to version related fields (e.g. current_master_version) return an error.
@@ -1993,6 +2034,19 @@ export namespace container_v1beta1 {
     tier?: string | null;
   }
   /**
+   * Represents an arbitrary window of time.
+   */
+  export interface Schema$TimeWindow {
+    /**
+     * The time that the window ends. The end time should take place after the start time.
+     */
+    endTime?: string | null;
+    /**
+     * The time that the window first starts.
+     */
+    startTime?: string | null;
+  }
+  /**
    * UpdateClusterRequest updates the settings of a cluster.
    */
   export interface Schema$UpdateClusterRequest {
@@ -2075,6 +2129,10 @@ export namespace container_v1beta1 {
      */
     projectId?: string | null;
     /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     */
+    upgradeSettings?: Schema$UpgradeSettings;
+    /**
      * The desired image type for the node pool.
      */
     workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
@@ -2082,6 +2140,19 @@ export namespace container_v1beta1 {
      * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * These upgrade settings control the level of parallelism and the level of disruption caused by an upgrade.  maxUnavailable controls the number of nodes that can be simultaneously unavailable.  maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes.  (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time).  Note: upgrades inevitably introduce some disruption since workloads need to be moved from old nodes to new, upgraded ones. Even if maxUnavailable=0, this holds true. (Disruption stays within the limits of PodDisruptionBudget, if it is configured.)  Consider a hypothetical node pool with 5 nodes having maxSurge=2, maxUnavailable=1. This means the upgrade process upgrades 3 nodes simultaneously. It creates 2 additional (upgraded) nodes, then it brings down 3 old (not yet upgraded) nodes at the same time. This ensures that there are always at least 4 nodes available.
+   */
+  export interface Schema$UpgradeSettings {
+    /**
+     * The maximum number of nodes that can be created beyond the current size of the node pool during the upgrade process.
+     */
+    maxSurge?: number | null;
+    /**
+     * The maximum number of nodes that can be simultaneously unavailable during the upgrade process. A node is considered available if its status is Ready.
+     */
+    maxUnavailable?: number | null;
   }
   /**
    * UsableSubnetwork resource returns the subnetwork name, its associated network and the primary CIDR range.

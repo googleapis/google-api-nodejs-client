@@ -139,7 +139,7 @@ export namespace cloudidentity_v1beta1 {
      */
     additionalGroupKeys?: Schema$EntityKey[];
     /**
-     * The time when the Group was created. Output only
+     * Output only. The time when the Group was created. Output only
      */
     createTime?: string | null;
     /**
@@ -151,23 +151,23 @@ export namespace cloudidentity_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * EntityKey of the Group.  Must be set when creating a Group, read-only afterwards.
+     * Required. Immutable. EntityKey of the Group.  Must be set when creating a Group, read-only afterwards.
      */
     groupKey?: Schema$EntityKey;
     /**
-     * Labels for Group resource. Required. For creating Groups under a namespace, set label key to &#39;labels/system/groups/external&#39; and label value as empty.
+     * Required. Labels for Group resource. Required. For creating Groups under a namespace, set label key to &#39;labels/system/groups/external&#39; and label value as empty.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
      */
     name?: string | null;
     /**
-     * The entity under which this Group resides in Cloud Identity resource hierarchy. Must be set when creating a Group, read-only afterwards.  Currently allowed types: &#39;identitysources&#39;.
+     * Required. Immutable. The entity under which this Group resides in Cloud Identity resource hierarchy. Must be set when creating a Group, read-only afterwards.  Currently allowed types: &#39;identitysources&#39;.
      */
     parent?: string | null;
     /**
-     * The time when the Group was last updated. Output only
+     * Output only. The time when the Group was last updated. Output only
      */
     updateTime?: string | null;
   }
@@ -198,23 +198,23 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$Membership {
     /**
-     * Creation timestamp of the Membership.
+     * Output only. Creation timestamp of the Membership.
      */
     createTime?: string | null;
     /**
-     * EntityKey of the entity to be added as the member. Must be set while creating a Membership, read-only afterwards.  Currently allowed entity types: `Users`, `Groups`.
+     * Required. Immutable. EntityKey of the entity to be added as the member. Must be set while creating a Membership, read-only afterwards.  Currently allowed entity types: `Users`, `Groups`. This field will be deprecated soon.
      */
     memberKey?: Schema$EntityKey;
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership in the format: `groups/{group_id}/memberships/{member_id}`, where group_id is the unique id assigned to the Group to which Membership belongs to, and member_id is the unique id assigned to the member  Must be left blank while creating a Membership.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Membership in the format: `groups/{group_id}/memberships/{member_id}`, where group_id is the unique id assigned to the Group to which Membership belongs to, and member_id is the unique id assigned to the member  Must be left blank while creating a Membership.
      */
     name?: string | null;
     /**
-     * Roles for a member within the Group.  Currently supported MembershipRoles: `&quot;MEMBER&quot;`.
+     * Roles for a member within the Group.  Currently supported MembershipRoles: `&quot;MEMBER&quot;, &quot;OWNER&quot;, &quot;MANAGER&quot;`.
      */
     roles?: Schema$MembershipRole[];
     /**
-     * Last updated timestamp of the Membership.
+     * Output only. Last updated timestamp of the Membership.
      */
     updateTime?: string | null;
   }
@@ -223,7 +223,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$MembershipRole {
     /**
-     * MembershipRole in string format.  Currently supported MembershipRoles: `&quot;MEMBER&quot;`.
+     * MembershipRole in string format. Currently supported MembershipRoles: `&quot;MEMBER&quot;, &quot;OWNER&quot;, &quot;MANAGER&quot;`.
      */
     name?: string | null;
   }
@@ -585,7 +585,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
+     * @param {string} params.name Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
      * @param {string=} params.updateMask Editable fields: `display_name`, `description`
      * @param {().Group} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -786,7 +786,7 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique id assigned to the Group.  Must be left blank while creating a Group
      */
     name?: string;
     /**

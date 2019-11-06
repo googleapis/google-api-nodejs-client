@@ -756,9 +756,6 @@ export namespace compute_v1 {
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
      */
     exemptedMembers?: string[] | null;
-    /**
-     * Specifies whether principals can be exempted for the same LogType in lower-level resource policies. If true, any lower-level exemptions will be ignored.
-     */
     ignoreChildExemptions?: boolean | null;
     /**
      * The log type that this config enables.
@@ -1115,7 +1112,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents a Backend Service resource.    Backend services must have an associated health check. Backend services also store information about session affinity. For more information, read Backend Services.  A backendServices resource represents a global backend service. Global backend services are used for HTTP(S), SSL Proxy, TCP Proxy load balancing and Traffic Director.  A regionBackendServices resource represents a regional backend service. Regional backend services are used for internal TCP/UDP load balancing. For more information, read Internal TCP/UDP Load balancing. (== resource_for v1.backendService ==) (== resource_for beta.backendService ==)
+   * Represents a Backend Service resource.  A backend service contains configuration values for Google Cloud Platform load balancing services.  For more information, read Backend Services.  (== resource_for v1.backendService ==) (== resource_for beta.backendService ==)
    */
   export interface Schema$BackendService {
     /**
@@ -1130,7 +1127,15 @@ export namespace compute_v1 {
      * Cloud CDN configuration for this BackendService.
      */
     cdnPolicy?: Schema$BackendServiceCdnPolicy;
+    /**
+     * Settings controlling the volume of connections to a backend service. If not set, this feature is considered disabled.  This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     */
+    circuitBreakers?: Schema$CircuitBreakers;
     connectionDraining?: Schema$ConnectionDraining;
+    /**
+     * Consistent Hash-based load balancing can be used to provide soft session affinity based on HTTP headers, cookies or other properties. This load balancing policy is applicable only for HTTP connections. The affinity to a particular destination host will be lost when one or more hosts are added/removed from the destination service. This field specifies parameters that control consistent hashing. This field is only applicable when localityLbPolicy is set to MAGLEV or RING_HASH.  This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     */
+    consistentHash?: Schema$ConsistentHashLoadBalancerSettings;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
@@ -1165,13 +1170,21 @@ export namespace compute_v1 {
      */
     kind?: string | null;
     /**
-     * Indicates whether the backend service will be used with internal or external load balancing. A backend service created for one type of load balancing cannot be used with the other. Possible values are INTERNAL and EXTERNAL.
+     * Specifies the load balancer type. Choose EXTERNAL for load balancers that receive traffic from external clients. Choose INTERNAL for Internal TCP/UDP Load Balancing. Choose INTERNAL_MANAGED for Internal HTTP(S) Load Balancing. Choose INTERNAL_SELF_MANAGED for Traffic Director. A backend service created for one type of load balancing cannot be used with another. For more information, refer to Choosing a load balancer.
      */
     loadBalancingScheme?: string | null;
+    /**
+     * The load balancing algorithm used within the scope of the locality. The possible values are:   - ROUND_ROBIN: This is a simple policy in which each healthy backend is selected in round robin order. This is the default.  - LEAST_REQUEST: An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests.  - RING_HASH: The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests.  - RANDOM: The load balancer selects a random healthy host.  - ORIGINAL_DESTINATION: Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer.  - MAGLEV: used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, refer to https://ai.google/research/pubs/pub44824   This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     */
+    localityLbPolicy?: string | null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string | null;
+    /**
+     * Settings controlling the eviction of unhealthy hosts from the load balancing pool for the backend service. If not set, this feature is considered disabled.  This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     */
+    outlierDetection?: Schema$OutlierDetection;
     /**
      * Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.  This cannot be used if the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Balancing).
      */
@@ -1181,7 +1194,7 @@ export namespace compute_v1 {
      */
     portName?: string | null;
     /**
-     * The protocol this BackendService uses to communicate with backends.  Possible values are HTTP, HTTPS, TCP, SSL, or UDP, depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancer or for Traffic director for more information.
+     * The protocol this BackendService uses to communicate with backends.  Possible values are HTTP, HTTPS, HTTP2, TCP, SSL, or UDP, depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancer or for Traffic Director for more information.
      */
     protocol?: string | null;
     /**
@@ -1377,6 +1390,31 @@ export namespace compute_v1 {
     queryStringWhitelist?: string[] | null;
   }
   /**
+   * Settings controlling the volume of connections to a backend service.
+   */
+  export interface Schema$CircuitBreakers {
+    /**
+     * The maximum number of connections to the backend service. If not specified, there is no limit.
+     */
+    maxConnections?: number | null;
+    /**
+     * The maximum number of pending requests allowed to the backend service. If not specified, there is no limit.
+     */
+    maxPendingRequests?: number | null;
+    /**
+     * The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
+     */
+    maxRequests?: number | null;
+    /**
+     * Maximum requests for a single connection to the backend service. This parameter is respected by both the HTTP/1.1 and HTTP/2 implementations. If not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive.
+     */
+    maxRequestsPerConnection?: number | null;
+    /**
+     * The maximum number of parallel retries allowed to the backend cluster. If not specified, the default is 1.
+     */
+    maxRetries?: number | null;
+  }
+  /**
    * Represents a regional Commitment resource.  Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for beta.regionCommitments ==) (== resource_for v1.regionCommitments ==)
    */
   export interface Schema$Commitment {
@@ -1547,6 +1585,77 @@ export namespace compute_v1 {
      * The amount of time in seconds to allow existing connections to persist while on unhealthy backend VMs. Only applicable if the protocol is not UDP. The valid range is [0, 3600].
      */
     drainingTimeoutSec?: number | null;
+  }
+  /**
+   * This message defines settings for a consistent hash style load balancer.
+   */
+  export interface Schema$ConsistentHashLoadBalancerSettings {
+    /**
+     * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will be used as the hash key for the consistent hash load balancer. If the cookie is not present, it will be generated. This field is applicable if the sessionAffinity is set to HTTP_COOKIE.
+     */
+    httpCookie?: Schema$ConsistentHashLoadBalancerSettingsHttpCookie;
+    /**
+     * The hash based on the value of the specified header field. This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+     */
+    httpHeaderName?: string | null;
+    /**
+     * The minimum number of virtual nodes to use for the hash ring. Defaults to 1024. Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.
+     */
+    minimumRingSize?: string | null;
+  }
+  /**
+   * The information about the HTTP Cookie on which the hash function is based for load balancing policies that use a consistent hash.
+   */
+  export interface Schema$ConsistentHashLoadBalancerSettingsHttpCookie {
+    /**
+     * Name of the cookie.
+     */
+    name?: string | null;
+    /**
+     * Path to set for the cookie.
+     */
+    path?: string | null;
+    /**
+     * Lifetime of the cookie.
+     */
+    ttl?: Schema$Duration;
+  }
+  /**
+   * The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing
+   */
+  export interface Schema$CorsPolicy {
+    /**
+     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
+     */
+    allowCredentials?: boolean | null;
+    /**
+     * Specifies the content for the Access-Control-Allow-Headers header.
+     */
+    allowHeaders?: string[] | null;
+    /**
+     * Specifies the content for the Access-Control-Allow-Methods header.
+     */
+    allowMethods?: string[] | null;
+    /**
+     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  An origin is allowed if it matches either allow_origins or allow_origin_regex.
+     */
+    allowOriginRegexes?: string[] | null;
+    /**
+     * Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either allow_origins or allow_origin_regex.
+     */
+    allowOrigins?: string[] | null;
+    /**
+     * If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     */
+    disabled?: boolean | null;
+    /**
+     * Specifies the content for the Access-Control-Expose-Headers header.
+     */
+    exposeHeaders?: string[] | null;
+    /**
+     * Specifies how long the results of a preflight request can be cached. This translates to the content for the Access-Control-Max-Age header.
+     */
+    maxAge?: number | null;
   }
   /**
    * Represents a customer-supplied encryption key
@@ -1821,7 +1930,7 @@ export namespace compute_v1 {
   }
   export interface Schema$DisksAddResourcePoliciesRequest {
     /**
-     * Resource policies to be added to this disk.
+     * Resource policies to be added to this disk. Currently you can only specify one policy here.
      */
     resourcePolicies?: string[] | null;
   }
@@ -1997,6 +2106,19 @@ export namespace compute_v1 {
      * The URL of the zone. The zone must exist in the region where the managed instance group is located.
      */
     zone?: string | null;
+  }
+  /**
+   * A Duration represents a fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like &quot;day&quot; or &quot;month&quot;. Range is approximately 10,000 years.
+   */
+  export interface Schema$Duration {
+    /**
+     * Span of time that&#39;s a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 `seconds` field and a positive `nanos` field. Must be from 0 to 999,999,999 inclusive.
+     */
+    nanos?: number | null;
+    /**
+     * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
+     */
+    seconds?: string | null;
   }
   /**
    * Represents an expression text. Example:  title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
@@ -2252,7 +2374,7 @@ export namespace compute_v1 {
     percent?: number | null;
   }
   /**
-   * Represents a Forwarding Rule resource.    A forwardingRules resource represents a regional forwarding rule.  Regional external forwarding rules can reference any of the following resources:   - A target instance  - A Cloud VPN Classic gateway (targetVpnGateway),   - A target pool for a Network Load Balancer  - A global target HTTP(S) proxy for an HTTP(S) load balancer using Standard Tier  - A target SSL proxy for a SSL Proxy load balancer using Standard Tier  - A target TCP proxy for a TCP Proxy load balancer using Standard Tier.    Regional internal forwarding rules can reference the backend service of an internal TCP/UDP load balancer.  For regional internal forwarding rules, the following applies:   - If the loadBalancingScheme for the load balancer is INTERNAL, then the forwarding rule references a regional internal backend service.  - If the loadBalancingScheme for the load balancer is INTERNAL_MANAGED, then the forwarding rule must reference a regional target HTTP(S) proxy.    For more information, read Using Forwarding rules.  A globalForwardingRules resource represents a global forwarding rule.  Global forwarding rules are only used by load balancers that use Premium Tier. (== resource_for beta.forwardingRules ==) (== resource_for v1.forwardingRules ==) (== resource_for beta.globalForwardingRules ==) (== resource_for v1.globalForwardingRules ==) (== resource_for beta.regionForwardingRules ==) (== resource_for v1.regionForwardingRules ==)
+   * Represents a Forwarding Rule resource.  A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud Platform load balancer. Forwarding rules can also reference target instances and Cloud VPN Classic gateways (targetVpnGateway).  For more information, read Forwarding rule concepts and Using protocol forwarding.  (== resource_for beta.forwardingRules ==) (== resource_for v1.forwardingRules ==) (== resource_for beta.globalForwardingRules ==) (== resource_for v1.globalForwardingRules ==) (== resource_for beta.regionForwardingRules ==) (== resource_for v1.regionForwardingRules ==)
    */
   export interface Schema$ForwardingRule {
     /**
@@ -2280,7 +2402,7 @@ export namespace compute_v1 {
      */
     IPAddress?: string | null;
     /**
-     * The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.  When the load balancing scheme is INTERNAL, only TCP and UDP are valid. When the load balancing scheme is INTERNAL_SELF_MANAGED, only TCPis valid.
+     * The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.  For Internal TCP/UDP Load Balancing, the load balancing scheme is INTERNAL, and one of TCP or UDP are valid. For Traffic Director, the load balancing scheme is INTERNAL_SELF_MANAGED, and only TCPis valid. For Internal HTTP(S) Load Balancing, the load balancing scheme is INTERNAL_MANAGED, and only TCP is valid. For HTTP(S), SSL Proxy, and TCP Proxy Load Balancing, the load balancing scheme is EXTERNAL and only TCP is valid. For Network TCP/UDP Load Balancing, the load balancing scheme is EXTERNAL, and one of TCP or UDP is valid.
      */
     IPProtocol?: string | null;
     /**
@@ -2292,9 +2414,13 @@ export namespace compute_v1 {
      */
     kind?: string | null;
     /**
-     * This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL, INTERNAL_SELF_MANAGED, EXTERNAL. The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of INTERNAL_SELF_MANAGED means that this will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
+     * Specifies the forwarding rule type. EXTERNAL is used for: - Classic Cloud VPN gateways - Protocol forwarding to VMs from an external IP address - The following load balancers: HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP.  INTERNAL is used for: - Protocol forwarding to VMs from an internal IP address - Internal TCP/UDP load balancers  INTERNAL_MANAGED is used for: - Internal HTTP(S) load balancers  INTERNAL_SELF_MANAGED is used for: - Traffic Director  For more information about forwarding rules, refer to Forwarding rule concepts.
      */
     loadBalancingScheme?: string | null;
+    /**
+     * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified here can be overridden by those specified in the UrlMap that this ForwardingRule references. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     */
+    metadataFilters?: Schema$MetadataFilter[];
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
@@ -2729,6 +2855,120 @@ export namespace compute_v1 {
      */
     response?: string | null;
   }
+  /**
+   * Specification for how requests are aborted as part of fault injection.
+   */
+  export interface Schema$HttpFaultAbort {
+    /**
+     * The HTTP status code used to abort the request. The value must be between 200 and 599 inclusive.
+     */
+    httpStatus?: number | null;
+    /**
+     * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection. The value must be between 0.0 and 100.0 inclusive.
+     */
+    percentage?: number | null;
+  }
+  /**
+   * Specifies the delay introduced by Loadbalancer before forwarding the request to the backend service as part of fault injection.
+   */
+  export interface Schema$HttpFaultDelay {
+    /**
+     * Specifies the value of the fixed delay interval.
+     */
+    fixedDelay?: Schema$Duration;
+    /**
+     * The percentage of traffic (connections/operations/requests) on which delay will be introduced as part of fault injection. The value must be between 0.0 and 100.0 inclusive.
+     */
+    percentage?: number | null;
+  }
+  /**
+   * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests.
+   */
+  export interface Schema$HttpFaultInjection {
+    /**
+     * The specification for how client requests are aborted as part of fault injection.
+     */
+    abort?: Schema$HttpFaultAbort;
+    /**
+     * The specification for how client requests are delayed as part of fault injection, before being sent to a backend service.
+     */
+    delay?: Schema$HttpFaultDelay;
+  }
+  /**
+   * The request and response header transformations that take effect before the request is passed along to the selected backendService.
+   */
+  export interface Schema$HttpHeaderAction {
+    /**
+     * Headers to add to a matching request prior to forwarding the request to the backendService.
+     */
+    requestHeadersToAdd?: Schema$HttpHeaderOption[];
+    /**
+     * A list of header names for headers that need to be removed from the request prior to forwarding the request to the backendService.
+     */
+    requestHeadersToRemove?: string[] | null;
+    /**
+     * Headers to add the response prior to sending the response back to the client.
+     */
+    responseHeadersToAdd?: Schema$HttpHeaderOption[];
+    /**
+     * A list of header names for headers that need to be removed from the response prior to sending the response back to the client.
+     */
+    responseHeadersToRemove?: string[] | null;
+  }
+  /**
+   * matchRule criteria for request header matches.
+   */
+  export interface Schema$HttpHeaderMatch {
+    /**
+     * The value should exactly match contents of exactMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    exactMatch?: string | null;
+    /**
+     * The name of the HTTP header to match. For matching against the HTTP request&#39;s authority, use a headerMatch with the header name &quot;:authority&quot;. For matching a request&#39;s method, use the headerName &quot;:method&quot;.
+     */
+    headerName?: string | null;
+    /**
+     * If set to false, the headerMatch is considered a match if the match criteria above are met. If set to true, the headerMatch is considered a match if the match criteria above are NOT met. The default setting is false.
+     */
+    invertMatch?: boolean | null;
+    /**
+     * The value of the header must start with the contents of prefixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    prefixMatch?: string | null;
+    /**
+     * A header with the contents of headerName must exist. The match takes place whether or not the request&#39;s header has a value or not. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    presentMatch?: boolean | null;
+    /**
+     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will not match.  - 0.25 will not match.  - -3someString will not match.   Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    rangeMatch?: Schema$Int64RangeMatch;
+    /**
+     * The value of the header must match the regualar expression specified in regexMatch. For regular expression grammar, please see:  en.cppreference.com/w/cpp/regex/ecmascript  For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header&#39;s port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    regexMatch?: string | null;
+    /**
+     * The value of the header must end with the contents of suffixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     */
+    suffixMatch?: string | null;
+  }
+  /**
+   * Specification determining how headers are added to requests or responses.
+   */
+  export interface Schema$HttpHeaderOption {
+    /**
+     * The name of the header.
+     */
+    headerName?: string | null;
+    /**
+     * The value of the header to add.
+     */
+    headerValue?: string | null;
+    /**
+     * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false.
+     */
+    replace?: boolean | null;
+  }
   export interface Schema$HTTPHealthCheck {
     /**
      * The value of the host header in the HTTP health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
@@ -2850,6 +3090,196 @@ export namespace compute_v1 {
     } | null;
   }
   /**
+   * HttpRouteRuleMatch criteria for a request&#39;s query parameter.
+   */
+  export interface Schema$HttpQueryParameterMatch {
+    /**
+     * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch must be set.
+     */
+    exactMatch?: string | null;
+    /**
+     * The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.
+     */
+    name?: string | null;
+    /**
+     * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch and regexMatch must be set.
+     */
+    presentMatch?: boolean | null;
+    /**
+     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch, exactMatch and regexMatch must be set.
+     */
+    regexMatch?: string | null;
+  }
+  /**
+   * Specifies settings for an HTTP redirect.
+   */
+  export interface Schema$HttpRedirectAction {
+    /**
+     * The host that will be used in the redirect response instead of the one that was supplied in the request. The value must be between 1 and 255 characters.
+     */
+    hostRedirect?: string | null;
+    /**
+     * If set to true, the URL scheme in the redirected request is set to https. If set to false, the URL scheme of the redirected request will remain the same as that of the request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this true for TargetHttpsProxy is not permitted. The default is set to false.
+     */
+    httpsRedirect?: boolean | null;
+    /**
+     * The path that will be used in the redirect response instead of the one that was supplied in the request. Only one of pathRedirect or prefixRedirect must be specified. The value must be between 1 and 1024 characters.
+     */
+    pathRedirect?: string | null;
+    /**
+     * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request.
+     */
+    prefixRedirect?: string | null;
+    /**
+     * The HTTP Status code to use for this RedirectAction. Supported values are:   - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  - FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method will be retained.
+     */
+    redirectResponseCode?: string | null;
+    /**
+     * If set to true, any accompanying query portion of the original URL is removed prior to redirecting the request. If set to false, the query portion of the original URL is retained. The default is set to false.
+     */
+    stripQuery?: boolean | null;
+  }
+  /**
+   * The retry policy associates with HttpRouteRule
+   */
+  export interface Schema$HttpRetryPolicy {
+    /**
+     * Specifies the allowed number retries. This number must be &gt; 0. If not specified, defaults to 1.
+     */
+    numRetries?: number | null;
+    /**
+     * Specifies a non-zero timeout per retry attempt. If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set, will use the largest timeout among all backend services associated with the route.
+     */
+    perTryTimeout?: Schema$Duration;
+    /**
+     * Specfies one or more conditions when this retry rule applies. Valid values are:   - 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code, or if the backend service does not respond at all, example: disconnects, reset, read timeout, connection failure, and refused streams.  - gateway-error: Similar to 5xx, but only applies to response codes 502, 503 or 504. -  - connect-failure: Loadbalancer will retry on failures connecting to backend services, for example due to connection timeouts.  - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes. Currently the only retriable error supported is 409.  - refused-stream:Loadbalancer will retry if the backend service resets the stream with a REFUSED_STREAM error code. This reset type indicates that it is safe to retry.  - cancelledLoadbalancer will retry if the gRPC status code in the response header is set to cancelled  - deadline-exceeded: Loadbalancer will retry if the gRPC status code in the response header is set to deadline-exceeded  - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response header is set to resource-exhausted  - unavailable: Loadbalancer will retry if the gRPC status code in the response header is set to unavailable
+     */
+    retryConditions?: string[] | null;
+  }
+  export interface Schema$HttpRouteAction {
+    /**
+     * The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing
+     */
+    corsPolicy?: Schema$CorsPolicy;
+    /**
+     * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests. timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy.
+     */
+    faultInjectionPolicy?: Schema$HttpFaultInjection;
+    /**
+     * Specifies the policy on how requests intended for the route&#39;s backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.
+     */
+    requestMirrorPolicy?: Schema$RequestMirrorPolicy;
+    /**
+     * Specifies the retry policy associated with this route.
+     */
+    retryPolicy?: Schema$HttpRetryPolicy;
+    /**
+     * Specifies the timeout for the selected route. Timeout is computed from the time the request has been fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries. If not specified, will use the largest timeout among all backend services associated with the route.
+     */
+    timeout?: Schema$Duration;
+    /**
+     * The spec to modify the URL of the request, prior to forwarding the request to the matched service
+     */
+    urlRewrite?: Schema$UrlRewrite;
+    /**
+     * A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one  weightedBackendService with weight set to a non 0 number. Once a backendService is identified and before forwarding the request to the backend service, advanced routing actions like Url rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.
+     */
+    weightedBackendServices?: Schema$WeightedBackendService[];
+  }
+  /**
+   * An HttpRouteRule specifies how to match an HTTP request and the corresponding routing action that load balancing proxies will perform.
+   */
+  export interface Schema$HttpRouteRule {
+    /**
+     * The short description conveying the intent of this routeRule. The description can have a maximum length of 1024 characters.
+     */
+    description?: string | null;
+    /**
+     * Specifies changes to request and response headers that need to take effect for the selected backendService. The headerAction specified here are applied before the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].routeAction.weightedBackendService.backendServiceWeightAction[].headerAction
+     */
+    headerAction?: Schema$HttpHeaderAction;
+    matchRules?: Schema$HttpRouteRuleMatch[];
+    /**
+     * For routeRules within a given pathMatcher, priority determines the order in which load balancer will interpret routeRules. RouteRules are evaluated in order of priority, from the lowest to highest number. The priority of a rule decreases as its number increases (1, 2, 3, N+1). The first rule that matches the request is applied. You cannot configure two or more routeRules with the same priority. Priority for each rule must be set to a number between 0 and 2147483647 inclusive. Priority numbers can have gaps, which enable you to add or remove rules in the future without affecting the rest of the rules. For example, 1, 2, 3, 4, 5, 9, 12, 16 is a valid series of priority numbers to which you could add rules numbered from 6 to 8, 10 to 11, and 13 to 15 in the future without any impact on existing rules.
+     */
+    priority?: number | null;
+    /**
+     * In response to a matching matchRule, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If  routeAction specifies any  weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any  weightedBackendServices. Only one of routeAction or urlRedirect must be set.
+     */
+    routeAction?: Schema$HttpRouteAction;
+    /**
+     * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified. Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
+     */
+    service?: string | null;
+    /**
+     * When this rule is matched, the request is redirected to a URL specified by urlRedirect. If urlRedirect is specified, service or routeAction must not be set.
+     */
+    urlRedirect?: Schema$HttpRedirectAction;
+  }
+  /**
+   * HttpRouteRuleMatch specifies a set of criteria for matching requests to an HttpRouteRule. All specified criteria must be satisfied for a match to occur.
+   */
+  export interface Schema$HttpRouteRuleMatch {
+    /**
+     * For satifying the matchRule condition, the path of the request must exactly match the value specified in fullPathMatch after removing any query parameters and anchor that may be part of the original URL. FullPathMatch must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     */
+    fullPathMatch?: string | null;
+    /**
+     * Specifies a list of header match criteria, all of which must match corresponding headers in the request.
+     */
+    headerMatches?: Schema$HttpHeaderMatch[];
+    /**
+     * Specifies that prefixMatch and fullPathMatch matches are case sensitive. The default value is false. caseSensitive must not be used with regexMatch.
+     */
+    ignoreCase?: boolean | null;
+    /**
+     * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified here can be overrides those specified in ForwardingRule that refers to this UrlMap. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     */
+    metadataFilters?: Schema$MetadataFilter[];
+    /**
+     * For satifying the matchRule condition, the request&#39;s path must begin with the specified prefixMatch. prefixMatch must begin with a /. The value must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     */
+    prefixMatch?: string | null;
+    /**
+     * Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request.
+     */
+    queryParameterMatches?: Schema$HttpQueryParameterMatch[];
+    /**
+     * For satifying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     */
+    regexMatch?: string | null;
+  }
+  export interface Schema$HTTPSHealthCheck {
+    /**
+     * The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+     */
+    host?: string | null;
+    /**
+     * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
+     */
+    port?: number | null;
+    /**
+     * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+     */
+    portName?: string | null;
+    /**
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.   If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     */
+    portSpecification?: string | null;
+    /**
+     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     */
+    proxyHeader?: string | null;
+    /**
+     * The request path of the HTTPS health check request. The default value is /.
+     */
+    requestPath?: string | null;
+    /**
+     * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
+     */
+    response?: string | null;
+  }
+  /**
    * Represents a legacy HTTPS Health Check resource.  Legacy health checks are required by network load balancers. For more information, read Health Check Concepts.
    */
   export interface Schema$HttpsHealthCheck {
@@ -2905,36 +3335,6 @@ export namespace compute_v1 {
      * A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
      */
     unhealthyThreshold?: number | null;
-  }
-  export interface Schema$HTTPSHealthCheck {
-    /**
-     * The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
-     */
-    host?: string | null;
-    /**
-     * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
-     */
-    port?: number | null;
-    /**
-     * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
-     */
-    portName?: string | null;
-    /**
-     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.   If not specified, HTTPS health check follows behavior specified in port and portName fields.
-     */
-    portSpecification?: string | null;
-    /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
-     */
-    proxyHeader?: string | null;
-    /**
-     * The request path of the HTTPS health check request. The default value is /.
-     */
-    requestPath?: string | null;
-    /**
-     * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
-     */
-    response?: string | null;
   }
   /**
    * Contains a list of HttpsHealthCheck resources.
@@ -4033,6 +4433,19 @@ export namespace compute_v1 {
     status?: string | null;
   }
   /**
+   * HttpRouteRuleMatch criteria for field values that must stay within the specified integer range.
+   */
+  export interface Schema$Int64RangeMatch {
+    /**
+     * The end of the range (exclusive) in signed long integer format.
+     */
+    rangeEnd?: string | null;
+    /**
+     * The start of the range (inclusive) in signed long integer format.
+     */
+    rangeStart?: string | null;
+  }
+  /**
    * Represents an Interconnect resource.  An Interconnect resource is a dedicated connection between the GCP network and your on-premises network. For more information, read the  Dedicated Interconnect Overview. (== resource_for v1.interconnects ==) (== resource_for beta.interconnects ==)
    */
   export interface Schema$Interconnect {
@@ -4771,9 +5184,13 @@ export namespace compute_v1 {
     logName?: string | null;
   }
   /**
-   * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names: - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a token or authority selector is present; or - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples: counter { metric: &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt; increment counter /iam/policy/backend_debug_access_count {iam_principal=[value of IAMContext.principal]}  At this time we do not support multiple field names (though this may be supported in the future).
+   * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names: - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a token or authority selector is present; or - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples: counter { metric: &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt; increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]}  TODO(b/141846426): Consider supporting &quot;authority&quot; and &quot;iam_principal&quot; fields in the same counter.
    */
   export interface Schema$LogConfigCounterOptions {
+    /**
+     * Custom fields.
+     */
+    customFields?: Schema$LogConfigCounterOptionsCustomField[];
     /**
      * The field value to attribute.
      */
@@ -4782,6 +5199,19 @@ export namespace compute_v1 {
      * The metric to update.
      */
     metric?: string | null;
+  }
+  /**
+   * Custom fields. These can be used to create a counter with arbitrary field/value pairs. See: go/rpcsp-custom-fields.
+   */
+  export interface Schema$LogConfigCounterOptionsCustomField {
+    /**
+     * Name is the field name.
+     */
+    name?: string | null;
+    /**
+     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     */
+    value?: string | null;
   }
   /**
    * Write a Data Access (Gin) log
@@ -4997,6 +5427,32 @@ export namespace compute_v1 {
      * [Output Only] Type of the resource. Always compute#metadata for metadata.
      */
     kind?: string | null;
+  }
+  /**
+   * Opaque filter criteria used by loadbalancers to restrict routing configuration to a limited set of loadbalancing proxies. Proxies and sidecars involved in loadbalancing would typically present metadata to the loadbalancers which need to match criteria specified here. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. An example for using metadataFilters would be: if loadbalancing involves  Envoys, they will only receive routing configuration when values in metadataFilters match values supplied in &lt;a href=&quot;https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/core/base.proto#envoy-api-msg-core-node&quot; Node metadata of their XDS requests to loadbalancers.
+   */
+  export interface Schema$MetadataFilter {
+    /**
+     * The list of label value pairs that must match labels in the provided metadata based on filterMatchCriteria  This list must not be empty and can have at the most 64 entries.
+     */
+    filterLabels?: Schema$MetadataFilterLabelMatch[];
+    /**
+     * Specifies how individual filterLabel matches within the list of filterLabels contribute towards the overall metadataFilter match. Supported values are:   - MATCH_ANY: At least one of the filterLabels must have a matching label in the provided metadata.  - MATCH_ALL: All filterLabels must have matching labels in the provided metadata.
+     */
+    filterMatchCriteria?: string | null;
+  }
+  /**
+   * MetadataFilter label name value pairs that are expected to match corresponding labels presented as metadata to the loadbalancer.
+   */
+  export interface Schema$MetadataFilterLabelMatch {
+    /**
+     * Name of metadata label. The name can have a maximum length of 1024 characters and must be at least 1 character long.
+     */
+    name?: string | null;
+    /**
+     * The value of the label must match the specified value. value can have a maximum length of 1024 characters.
+     */
+    value?: string | null;
   }
   /**
    * The named port. For example: .
@@ -6041,25 +6497,90 @@ export namespace compute_v1 {
     } | null;
   }
   /**
+   * Settings controlling the eviction of unhealthy hosts from the load balancing pool for the backend service.
+   */
+  export interface Schema$OutlierDetection {
+    /**
+     * The base time that a host is ejected for. The real ejection time is equal to the base ejection time multiplied by the number of times the host has been ejected. Defaults to 30000ms or 30s.
+     */
+    baseEjectionTime?: Schema$Duration;
+    /**
+     * Number of errors before a host is ejected from the connection pool. When the backend host is accessed over HTTP, a 5xx return code qualifies as an error. Defaults to 5.
+     */
+    consecutiveErrors?: number | null;
+    /**
+     * The number of consecutive gateway failures (502, 503, 504 status or connection errors that are mapped to one of those status codes) before a consecutive gateway failure ejection occurs. Defaults to 3.
+     */
+    consecutiveGatewayFailure?: number | null;
+    /**
+     * The percentage chance that a host will be actually ejected when an outlier status is detected through consecutive 5xx. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 0.
+     */
+    enforcingConsecutiveErrors?: number | null;
+    /**
+     * The percentage chance that a host will be actually ejected when an outlier status is detected through consecutive gateway failures. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100.
+     */
+    enforcingConsecutiveGatewayFailure?: number | null;
+    /**
+     * The percentage chance that a host will be actually ejected when an outlier status is detected through success rate statistics. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100.
+     */
+    enforcingSuccessRate?: number | null;
+    /**
+     * Time interval between ejection sweep analysis. This can result in both new ejections as well as hosts being returned to service. Defaults to 1 seconds.
+     */
+    interval?: Schema$Duration;
+    /**
+     * Maximum percentage of hosts in the load balancing pool for the backend service that can be ejected. Defaults to 50%.
+     */
+    maxEjectionPercent?: number | null;
+    /**
+     * The number of hosts in a cluster that must have enough request volume to detect success rate outliers. If the number of hosts is less than this setting, outlier detection via success rate statistics is not performed for any host in the cluster. Defaults to 5.
+     */
+    successRateMinimumHosts?: number | null;
+    /**
+     * The minimum number of total requests that must be collected in one interval (as defined by the interval duration above) to include this host in success rate based outlier detection. If the volume is lower than this setting, outlier detection via success rate statistics is not performed for that host. Defaults to 100.
+     */
+    successRateRequestVolume?: number | null;
+    /**
+     * This factor is used to determine the ejection threshold for success rate outlier ejection. The ejection threshold is the difference between the mean success rate, and the product of this factor and the standard deviation of the mean success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided by a thousand to get a double. That is, if the desired factor is 1.9, the runtime value should be 1900. Defaults to 1900.
+     */
+    successRateStdevFactor?: number | null;
+  }
+  /**
    * A matcher for the path portion of the URL. The BackendService from the longest-matched rule will serve the URL. If no rule was matched, the default service will be used.
    */
   export interface Schema$PathMatcher {
+    /**
+     * defaultRouteAction takes effect when none of the  pathRules or routeRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any  weightedBackendServices. Only one of defaultRouteAction or defaultUrlRedirect must be set.
+     */
+    defaultRouteAction?: Schema$HttpRouteAction;
     /**
      * The full or partial URL to the BackendService resource. This will be used if none of the pathRules or routeRules defined by this PathMatcher are matched. For example, the following are all valid URLs to a BackendService resource:   - https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService  - compute/v1/projects/project/global/backendServices/backendService  - global/backendServices/backendService  If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if defaultRouteAction specifies any weightedBackendServices, defaultService must not be specified. Only one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set. Authorization requires one or more of the following Google IAM permissions on the specified resource default_service:   - compute.backendBuckets.use  - compute.backendServices.use
      */
     defaultService?: string | null;
     /**
+     * When when none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
+     */
+    defaultUrlRedirect?: Schema$HttpRedirectAction;
+    /**
      * An optional description of this resource. Provide this property when you create the resource.
      */
     description?: string | null;
+    /**
+     * Specifies changes to request and response headers that need to take effect for the selected backendService. HeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap
+     */
+    headerAction?: Schema$HttpHeaderAction;
     /**
      * The name to which this PathMatcher is referred by the HostRule.
      */
     name?: string | null;
     /**
-     * The list of path rules. Use this list instead of routeRules when routing based on simple path matching is all that&#39;s required. The order by which path rules are specified does not matter. Matches are always done on the longest-path-first basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/* irrespective of the order in which those paths appear in this list. Only one of pathRules or routeRules must be set.
+     * The list of path rules. Use this list instead of routeRules when routing based on simple path matching is all that&#39;s required. The order by which path rules are specified does not matter. Matches are always done on the longest-path-first basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/* irrespective of the order in which those paths appear in this list. Within a given pathMatcher, only one of pathRules or routeRules must be set.
      */
     pathRules?: Schema$PathRule[];
+    /**
+     * The list of ordered HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. The order of specifying routeRules matters: the first rule that matches will cause its specified routing action to take effect. Within a given pathMatcher, only one of pathRules or routeRules must be set. routeRules are not supported in UrlMaps intended for External Load balancers.
+     */
+    routeRules?: Schema$HttpRouteRule[];
   }
   /**
    * A path-matching rule for a URL. If matched, will use the specified BackendService to handle the traffic arriving at this URL.
@@ -6070,12 +6591,20 @@ export namespace compute_v1 {
      */
     paths?: string[] | null;
     /**
+     * In response to a matching path, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If routeAction specifies any  weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any  weightedBackendServices. Only one of routeAction or urlRedirect must be set.
+     */
+    routeAction?: Schema$HttpRouteAction;
+    /**
      * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified. Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
      */
     service?: string | null;
+    /**
+     * When a path pattern is matched, the request is redirected to a URL specified by urlRedirect. If urlRedirect is specified, service or routeAction must not be set.
+     */
+    urlRedirect?: Schema$HttpRedirectAction;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.    A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**  { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/owner&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/viewer&quot;, &quot;members&quot;: [&quot;user:sean@example.com&quot;] } ] }  **YAML Example**  bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-other-app@appspot.gserviceaccount.com role: roles/owner - members: - user:sean@example.com role: roles/viewer    For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.    A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**  { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [&quot;user:eve@example.com&quot;], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ] }  **YAML Example**  bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -6083,11 +6612,11 @@ export namespace compute_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
      */
     etag?: string | null;
     iamOwned?: boolean | null;
@@ -6096,7 +6625,7 @@ export namespace compute_v1 {
      */
     rules?: Schema$Rule[];
     /**
-     * Deprecated.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
      */
     version?: number | null;
   }
@@ -6589,6 +7118,15 @@ export namespace compute_v1 {
     resource?: Schema$UrlMap;
   }
   /**
+   * A policy that specifies how requests intended for the route&#39;s backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.
+   */
+  export interface Schema$RequestMirrorPolicy {
+    /**
+     * The full or partial URL to the BackendService resource being mirrored to.
+     */
+    backendService?: string | null;
+  }
+  /**
    * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for beta.reservations ==) (== resource_for v1.reservations ==)
    */
   export interface Schema$Reservation {
@@ -7020,6 +7558,10 @@ export namespace compute_v1 {
      */
     nextHopGateway?: string | null;
     /**
+     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets. You can only specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:   - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule  - regions/region/forwardingRules/forwardingRule
+     */
+    nextHopIlb?: string | null;
+    /**
      * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      */
     nextHopInstance?: string | null;
@@ -7312,6 +7854,10 @@ export namespace compute_v1 {
    */
   export interface Schema$RouterNat {
     /**
+     * A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
+     */
+    drainNatIps?: string[] | null;
+    /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      */
     icmpIdleTimeoutSec?: number | null;
@@ -7472,6 +8018,14 @@ export namespace compute_v1 {
      * A list of IPs auto-allocated for NAT. Example: [&quot;1.1.1.1&quot;, &quot;129.2.16.89&quot;]
      */
     autoAllocatedNatIps?: string[] | null;
+    /**
+     * A list of IPs auto-allocated for NAT that are in drain mode. Example: [&quot;1.1.1.1&quot;, ?179.12.26.133?].
+     */
+    drainAutoAllocatedNatIps?: string[] | null;
+    /**
+     * A list of IPs user-allocated for NAT that are in drain mode. Example: [&quot;1.1.1.1&quot;, ?179.12.26.133?].
+     */
+    drainUserAllocatedNatIps?: string[] | null;
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if user-specified IPs are NOT enough to allow all configured VMs to use NAT. This value is meaningful only when auto-allocation of NAT IPs is *not* used.
      */
@@ -8529,7 +9083,7 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
-     * Specifies the QUIC override policy for this TargetHttpsProxy resource. This determines whether the load balancer will attempt to negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. Specify ENABLE to always enable QUIC, Enables QUIC when set to ENABLE, and disables QUIC when set to DISABLE. If NONE is specified, uses the QUIC policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is equivalent to specifying NONE.
+     * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE.   - When quic-override is set to NONE, Google manages whether QUIC is used.  - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.  - When quic-override is set to DISABLE, the load balancer doesn&#39;t use QUIC.  - If the quic-override flag is not specified, NONE is implied. -
      */
     quicOverride?: string | null;
     /**
@@ -8545,7 +9099,7 @@ export namespace compute_v1 {
      */
     sslCertificates?: string[] | null;
     /**
-     * URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource will not have any SSL policy configured.
+     * URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource has no SSL policy configured.
      */
     sslPolicy?: string | null;
     /**
@@ -9255,9 +9809,17 @@ export namespace compute_v1 {
      */
     creationTimestamp?: string | null;
     /**
+     * defaultRouteAction takes effect when none of the  hostRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any  weightedBackendServices. Only one of defaultRouteAction or defaultUrlRedirect must be set.
+     */
+    defaultRouteAction?: Schema$HttpRouteAction;
+    /**
      * The full or partial URL of the defaultService resource to which traffic is directed if none of the hostRules match. If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if routeAction specifies any weightedBackendServices, service must not be specified. Only one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.
      */
     defaultService?: string | null;
+    /**
+     * When none of the specified hostRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
+     */
+    defaultUrlRedirect?: Schema$HttpRedirectAction;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      */
@@ -9266,6 +9828,10 @@ export namespace compute_v1 {
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a UrlMap. An up-to-date fingerprint must be provided in order to update the UrlMap, otherwise the request will fail with error 412 conditionNotMet.  To see the latest fingerprint, make a get() request to retrieve a UrlMap.
      */
     fingerprint?: string | null;
+    /**
+     * Specifies changes to request and response headers that need to take effect for the selected backendService. The headerAction specified here take effect after headerAction specified under pathMatcher.
+     */
+    headerAction?: Schema$HttpHeaderAction;
     /**
      * The list of HostRules to use against the URL.
      */
@@ -9425,6 +9991,19 @@ export namespace compute_v1 {
     testPassed?: boolean | null;
   }
   /**
+   * The spec for modifying the path before sending the request to the matched backend service.
+   */
+  export interface Schema$UrlRewrite {
+    /**
+     * Prior to forwarding the request to the selected service, the request&#39;s host header is replaced with contents of hostRewrite. The value must be between 1 and 255 characters.
+     */
+    hostRewrite?: string | null;
+    /**
+     * Prior to forwarding the request to the selected backend service, the matching portion of the request&#39;s path is replaced by pathPrefixRewrite. The value must be between 1 and 1024 characters.
+     */
+    pathPrefixRewrite?: string | null;
+  }
+  /**
    * Subnetwork which the current user has compute.subnetworks.use permission on.
    */
   export interface Schema$UsableSubnetwork {
@@ -9516,9 +10095,17 @@ export namespace compute_v1 {
    */
   export interface Schema$VmEndpointNatMappingsInterfaceNatMappings {
     /**
+     * List of all drain IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;, &quot;1.1.1.1:2234-2234&quot;].
+     */
+    drainNatIpPortRanges?: string[] | null;
+    /**
      * A list of all IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: [&quot;2.2.2.2:12345-12355&quot;, &quot;1.1.1.1:2234-2234&quot;].
      */
     natIpPortRanges?: string[] | null;
+    /**
+     * Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
+     */
+    numTotalDrainNatPorts?: number | null;
     /**
      * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
      */
@@ -9841,7 +10428,7 @@ export namespace compute_v1 {
      */
     sharedSecretHash?: string | null;
     /**
-     * [Output Only] The status of the VPN tunnel, which can be one of the following:  - PROVISIONING: Resource is being allocated for the VPN tunnel.  - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel.  - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.  - ESTABLISHED: Secure session is successfully established with the peer VPN.  - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS  - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).  - NEGOTIATION_FAILURE: Handshake failed.  - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.  - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
+     * [Output Only] The status of the VPN tunnel, which can be one of the following:  - PROVISIONING: Resource is being allocated for the VPN tunnel.  - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel.  - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.  - ESTABLISHED: Secure session is successfully established with the peer VPN.  - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS  - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).  - NEGOTIATION_FAILURE: Handshake failed.  - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.  - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.  - NO_INCOMING_PACKETS: No incoming packets from peer.  - REJECTED: Tunnel configuration was rejected, can be result of being blacklisted.  - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.  - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.  - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.  - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
      */
     status?: string | null;
     /**
@@ -9933,6 +10520,23 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * In contrast to a single BackendService in  HttpRouteAction to which all matching traffic is directed to, WeightedBackendService allows traffic to be split across multiple BackendServices. The volume of traffic for each BackendService is proportional to the weight specified in each WeightedBackendService
+   */
+  export interface Schema$WeightedBackendService {
+    /**
+     * The full or partial URL to the default BackendService resource. Before forwarding the request to backendService, the loadbalancer applies any relevant headerActions specified as part of this backendServiceWeight.
+     */
+    backendService?: string | null;
+    /**
+     * Specifies changes to request and response headers that need to take effect for the selected backendService. headerAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.
+     */
+    headerAction?: Schema$HttpHeaderAction;
+    /**
+     * Specifies the fraction of traffic sent to backendService, computed as weight / (sum of all weightedBackendService weights in routeAction) . The selection of a backend service is determined only for new traffic. Once a user&#39;s request has been directed to a backendService, subsequent requests will be sent to the same backendService as determined by the BackendService&#39;s session affinity policy. The value must be between 0 and 1000
+     */
+    weight?: number | null;
   }
   export interface Schema$XpnHostList {
     /**
@@ -10088,7 +10692,7 @@ export namespace compute_v1 {
 
     /**
      * compute.acceleratorTypes.aggregatedList
-     * @desc Retrieves an aggregated list of accelerator types.
+     * @desc Retrieves an aggregated list of accelerator types. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -10238,7 +10842,7 @@ export namespace compute_v1 {
 
     /**
      * compute.acceleratorTypes.get
-     * @desc Returns the specified accelerator type.
+     * @desc Returns the specified accelerator type. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -10370,7 +10974,7 @@ export namespace compute_v1 {
 
     /**
      * compute.acceleratorTypes.list
-     * @desc Retrieves a list of accelerator types available to the specified project.
+     * @desc Retrieves a list of accelerator types available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -10603,7 +11207,7 @@ export namespace compute_v1 {
 
     /**
      * compute.addresses.aggregatedList
-     * @desc Retrieves an aggregated list of addresses.
+     * @desc Retrieves an aggregated list of addresses. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -10747,7 +11351,7 @@ export namespace compute_v1 {
 
     /**
      * compute.addresses.delete
-     * @desc Deletes the specified address resource.
+     * @desc Deletes the specified address resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -10879,7 +11483,7 @@ export namespace compute_v1 {
 
     /**
      * compute.addresses.get
-     * @desc Returns the specified address resource.
+     * @desc Returns the specified address resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11008,7 +11612,7 @@ export namespace compute_v1 {
 
     /**
      * compute.addresses.insert
-     * @desc Creates an address resource in the specified project by using the data included in the request.
+     * @desc Creates an address resource in the specified project by using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11141,7 +11745,7 @@ export namespace compute_v1 {
 
     /**
      * compute.addresses.list
-     * @desc Retrieves a list of addresses contained within the specified region.
+     * @desc Retrieves a list of addresses contained within the specified region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11418,7 +12022,7 @@ export namespace compute_v1 {
 
     /**
      * compute.autoscalers.aggregatedList
-     * @desc Retrieves an aggregated list of autoscalers.
+     * @desc Retrieves an aggregated list of autoscalers. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11562,7 +12166,7 @@ export namespace compute_v1 {
 
     /**
      * compute.autoscalers.delete
-     * @desc Deletes the specified autoscaler.
+     * @desc Deletes the specified autoscaler. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11695,7 +12299,7 @@ export namespace compute_v1 {
 
     /**
      * compute.autoscalers.get
-     * @desc Returns the specified autoscaler resource. Gets a list of available autoscalers by making a list() request.
+     * @desc Returns the specified autoscaler resource. Gets a list of available autoscalers by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11826,7 +12430,7 @@ export namespace compute_v1 {
 
     /**
      * compute.autoscalers.insert
-     * @desc Creates an autoscaler in the specified project using the data included in the request.
+     * @desc Creates an autoscaler in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11960,7 +12564,7 @@ export namespace compute_v1 {
 
     /**
      * compute.autoscalers.list
-     * @desc Retrieves a list of autoscalers contained within the specified zone.
+     * @desc Retrieves a list of autoscalers contained within the specified zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -12104,7 +12708,7 @@ export namespace compute_v1 {
 
     /**
      * compute.autoscalers.patch
-     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -12240,7 +12844,7 @@ export namespace compute_v1 {
 
     /**
      * compute.autoscalers.update
-     * @desc Updates an autoscaler in the specified project using the data included in the request.
+     * @desc Updates an autoscaler in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -12569,7 +13173,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendBuckets.addSignedUrlKey
-     * @desc Adds a key for validating requests with signed URLs for this backend bucket.
+     * @desc Adds a key for validating requests with signed URLs for this backend bucket. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.backendBuckets.addSignedUrlKey
      * @memberOf! ()
      *
@@ -12646,7 +13250,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendBuckets.delete
-     * @desc Deletes the specified BackendBucket resource.
+     * @desc Deletes the specified BackendBucket resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -12775,7 +13379,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendBuckets.deleteSignedUrlKey
-     * @desc Deletes a key for validating requests with signed URLs for this backend bucket.
+     * @desc Deletes a key for validating requests with signed URLs for this backend bucket. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.backendBuckets.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -12852,7 +13456,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendBuckets.get
-     * @desc Returns the specified BackendBucket resource. Gets a list of available backend buckets by making a list() request.
+     * @desc Returns the specified BackendBucket resource. Gets a list of available backend buckets by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -12980,7 +13584,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendBuckets.insert
-     * @desc Creates a BackendBucket resource in the specified project using the data included in the request.
+     * @desc Creates a BackendBucket resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -13109,7 +13713,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendBuckets.list
-     * @desc Retrieves the list of BackendBucket resources available to the specified project.
+     * @desc Retrieves the list of BackendBucket resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -13249,7 +13853,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendBuckets.patch
-     * @desc Updates the specified BackendBucket resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates the specified BackendBucket resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -13384,7 +13988,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendBuckets.update
-     * @desc Updates the specified BackendBucket resource with the data included in the request.
+     * @desc Updates the specified BackendBucket resource with the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -13711,7 +14315,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.addSignedUrlKey
-     * @desc Adds a key for validating requests with signed URLs for this backend service.
+     * @desc Adds a key for validating requests with signed URLs for this backend service. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.backendServices.addSignedUrlKey
      * @memberOf! ()
      *
@@ -13788,7 +14392,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.aggregatedList
-     * @desc Retrieves the list of all BackendService resources, regional and global, available to the specified project.
+     * @desc Retrieves the list of all BackendService resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -13938,7 +14542,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.delete
-     * @desc Deletes the specified BackendService resource.
+     * @desc Deletes the specified BackendService resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -14067,7 +14671,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.deleteSignedUrlKey
-     * @desc Deletes a key for validating requests with signed URLs for this backend service.
+     * @desc Deletes a key for validating requests with signed URLs for this backend service. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.backendServices.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -14144,7 +14748,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.get
-     * @desc Returns the specified BackendService resource. Gets a list of available backend services.
+     * @desc Returns the specified BackendService resource. Gets a list of available backend services. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -14272,7 +14876,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.getHealth
-     * @desc Gets the most recent health check results for this BackendService.
+     * @desc Gets the most recent health check results for this BackendService. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -14411,7 +15015,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.insert
-     * @desc Creates a BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a backend service. Read  Restrictions and Guidelines for more information.
+     * @desc Creates a BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a backend service. Read  Restrictions and Guidelines for more information. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -14540,7 +15144,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.list
-     * @desc Retrieves the list of BackendService resources available to the specified project.
+     * @desc Retrieves the list of BackendService resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -14680,7 +15284,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.patch
-     * @desc Patches the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Patches the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -14815,7 +15419,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.setSecurityPolicy
-     * @desc Sets the security policy for the specified backend service.
+     * @desc Sets the security policy for the specified backend service. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.backendServices.setSecurityPolicy
      * @memberOf! ()
      *
@@ -14892,7 +15496,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.update
-     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -15293,7 +15897,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.addResourcePolicies
-     * @desc Adds existing resource policies to a disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation.
+     * @desc Adds existing resource policies to a disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.disks.addResourcePolicies
      * @memberOf! ()
      *
@@ -15371,7 +15975,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.aggregatedList
-     * @desc Retrieves an aggregated list of persistent disks.
+     * @desc Retrieves an aggregated list of persistent disks. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -15513,7 +16117,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.createSnapshot
-     * @desc Creates a snapshot of a specified persistent disk.
+     * @desc Creates a snapshot of a specified persistent disk. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -15652,7 +16256,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.delete
-     * @desc Deletes the specified persistent disk. Deleting a disk removes its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
+     * @desc Deletes the specified persistent disk. Deleting a disk removes its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -15784,7 +16388,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.get
-     * @desc Returns a specified persistent disk. Gets a list of available persistent disks by making a list() request.
+     * @desc Returns a specified persistent disk. Gets a list of available persistent disks by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -15913,7 +16517,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.disks.getIamPolicy
      * @memberOf! ()
      *
@@ -15987,7 +16591,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.insert
-     * @desc Creates a persistent disk in the specified project using the data in the request. You can create a disk with a sourceImage, a sourceSnapshot, or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
+     * @desc Creates a persistent disk in the specified project using the data in the request. You can create a disk with a sourceImage, a sourceSnapshot, or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -16120,7 +16724,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.list
-     * @desc Retrieves a list of persistent disks contained within the specified zone.
+     * @desc Retrieves a list of persistent disks contained within the specified zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -16261,7 +16865,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.removeResourcePolicies
-     * @desc Removes resource policies from a disk.
+     * @desc Removes resource policies from a disk. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.disks.removeResourcePolicies
      * @memberOf! ()
      *
@@ -16341,7 +16945,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.resize
-     * @desc Resizes the specified persistent disk. You can only increase the size of the disk.
+     * @desc Resizes the specified persistent disk. You can only increase the size of the disk. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -16478,7 +17082,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.disks.setIamPolicy
      * @memberOf! ()
      *
@@ -16553,7 +17157,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.setLabels
-     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -16690,7 +17294,7 @@ export namespace compute_v1 {
 
     /**
      * compute.disks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.disks.testIamPermissions
      * @memberOf! ()
      *
@@ -17125,7 +17729,7 @@ export namespace compute_v1 {
 
     /**
      * compute.diskTypes.aggregatedList
-     * @desc Retrieves an aggregated list of disk types.
+     * @desc Retrieves an aggregated list of disk types. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -17269,7 +17873,7 @@ export namespace compute_v1 {
 
     /**
      * compute.diskTypes.get
-     * @desc Returns the specified disk type. Gets a list of available disk types by making a list() request.
+     * @desc Returns the specified disk type. Gets a list of available disk types by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -17398,7 +18002,7 @@ export namespace compute_v1 {
 
     /**
      * compute.diskTypes.list
-     * @desc Retrieves a list of disk types available to the specified project.
+     * @desc Retrieves a list of disk types available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -17627,7 +18231,7 @@ export namespace compute_v1 {
 
     /**
      * compute.externalVpnGateways.delete
-     * @desc Deletes the specified externalVpnGateway.
+     * @desc Deletes the specified externalVpnGateway. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.externalVpnGateways.delete
      * @memberOf! ()
      *
@@ -17703,7 +18307,7 @@ export namespace compute_v1 {
 
     /**
      * compute.externalVpnGateways.get
-     * @desc Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
+     * @desc Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.externalVpnGateways.get
      * @memberOf! ()
      *
@@ -17778,7 +18382,7 @@ export namespace compute_v1 {
 
     /**
      * compute.externalVpnGateways.insert
-     * @desc Creates a ExternalVpnGateway in the specified project using the data included in the request.
+     * @desc Creates a ExternalVpnGateway in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.externalVpnGateways.insert
      * @memberOf! ()
      *
@@ -17854,7 +18458,7 @@ export namespace compute_v1 {
 
     /**
      * compute.externalVpnGateways.list
-     * @desc Retrieves the list of ExternalVpnGateway available to the specified project.
+     * @desc Retrieves the list of ExternalVpnGateway available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.externalVpnGateways.list
      * @memberOf! ()
      *
@@ -17934,7 +18538,7 @@ export namespace compute_v1 {
 
     /**
      * compute.externalVpnGateways.setLabels
-     * @desc Sets the labels on an ExternalVpnGateway. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on an ExternalVpnGateway. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.externalVpnGateways.setLabels
      * @memberOf! ()
      *
@@ -18010,7 +18614,7 @@ export namespace compute_v1 {
 
     /**
      * compute.externalVpnGateways.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.externalVpnGateways.testIamPermissions
      * @memberOf! ()
      *
@@ -18225,7 +18829,7 @@ export namespace compute_v1 {
 
     /**
      * compute.firewalls.delete
-     * @desc Deletes the specified firewall.
+     * @desc Deletes the specified firewall. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -18353,7 +18957,7 @@ export namespace compute_v1 {
 
     /**
      * compute.firewalls.get
-     * @desc Returns the specified firewall.
+     * @desc Returns the specified firewall. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -18478,7 +19082,7 @@ export namespace compute_v1 {
 
     /**
      * compute.firewalls.insert
-     * @desc Creates a firewall rule in the specified project using the data included in the request.
+     * @desc Creates a firewall rule in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -18606,7 +19210,7 @@ export namespace compute_v1 {
 
     /**
      * compute.firewalls.list
-     * @desc Retrieves the list of firewall rules available to the specified project.
+     * @desc Retrieves the list of firewall rules available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -18745,7 +19349,7 @@ export namespace compute_v1 {
 
     /**
      * compute.firewalls.patch
-     * @desc Updates the specified firewall rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates the specified firewall rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -18879,7 +19483,7 @@ export namespace compute_v1 {
 
     /**
      * compute.firewalls.update
-     * @desc Updates the specified firewall rule with the data included in the request. The PUT method can only update the following fields of firewall rule: allowed, description, sourceRanges, sourceTags, targetTags.
+     * @desc Updates the specified firewall rule with the data included in the request. Note that all fields will be updated if using PUT, even fields that are not specified. To update individual fields, please use PATCH instead. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -19150,7 +19754,7 @@ export namespace compute_v1 {
 
     /**
      * compute.forwardingRules.aggregatedList
-     * @desc Retrieves an aggregated list of forwarding rules.
+     * @desc Retrieves an aggregated list of forwarding rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -19300,7 +19904,7 @@ export namespace compute_v1 {
 
     /**
      * compute.forwardingRules.delete
-     * @desc Deletes the specified ForwardingRule resource.
+     * @desc Deletes the specified ForwardingRule resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -19433,7 +20037,7 @@ export namespace compute_v1 {
 
     /**
      * compute.forwardingRules.get
-     * @desc Returns the specified ForwardingRule resource.
+     * @desc Returns the specified ForwardingRule resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -19565,7 +20169,7 @@ export namespace compute_v1 {
 
     /**
      * compute.forwardingRules.insert
-     * @desc Creates a ForwardingRule resource in the specified project and region using the data included in the request.
+     * @desc Creates a ForwardingRule resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -19699,7 +20303,7 @@ export namespace compute_v1 {
 
     /**
      * compute.forwardingRules.list
-     * @desc Retrieves a list of ForwardingRule resources available to the specified project and region.
+     * @desc Retrieves a list of ForwardingRule resources available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -19844,7 +20448,7 @@ export namespace compute_v1 {
 
     /**
      * compute.forwardingRules.setTarget
-     * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
+     * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -20148,7 +20752,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalAddresses.delete
-     * @desc Deletes the specified address resource.
+     * @desc Deletes the specified address resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -20277,7 +20881,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalAddresses.get
-     * @desc Returns the specified address resource. Gets a list of available addresses by making a list() request.
+     * @desc Returns the specified address resource. Gets a list of available addresses by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -20403,7 +21007,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalAddresses.insert
-     * @desc Creates an address resource in the specified project by using the data included in the request.
+     * @desc Creates an address resource in the specified project by using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -20532,7 +21136,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalAddresses.list
-     * @desc Retrieves a list of global addresses.
+     * @desc Retrieves a list of global addresses. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -20765,7 +21369,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalForwardingRules.delete
-     * @desc Deletes the specified GlobalForwardingRule resource.
+     * @desc Deletes the specified GlobalForwardingRule resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -20894,7 +21498,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalForwardingRules.get
-     * @desc Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request.
+     * @desc Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -21022,7 +21626,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalForwardingRules.insert
-     * @desc Creates a GlobalForwardingRule resource in the specified project using the data included in the request.
+     * @desc Creates a GlobalForwardingRule resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -21151,7 +21755,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalForwardingRules.list
-     * @desc Retrieves a list of GlobalForwardingRule resources available to the specified project.
+     * @desc Retrieves a list of GlobalForwardingRule resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -21291,7 +21895,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalForwardingRules.setTarget
-     * @desc Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
+     * @desc Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -21543,7 +22147,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalOperations.aggregatedList
-     * @desc Retrieves an aggregated list of all operations.
+     * @desc Retrieves an aggregated list of all operations. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -21687,7 +22291,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalOperations.delete
-     * @desc Deletes the specified Operations resource.
+     * @desc Deletes the specified Operations resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -21810,7 +22414,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalOperations.get
-     * @desc Retrieves the specified Operations resource. Gets a list of operations by making a list() request.
+     * @desc Retrieves the specified Operations resource. Gets a list of operations by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -21938,7 +22542,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalOperations.list
-     * @desc Retrieves a list of Operation resources contained within the specified project.
+     * @desc Retrieves a list of Operation resources contained within the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -22174,7 +22778,7 @@ export namespace compute_v1 {
 
     /**
      * compute.healthChecks.aggregatedList
-     * @desc Retrieves the list of all HealthCheck resources, regional and global, available to the specified project.
+     * @desc Retrieves the list of all HealthCheck resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.healthChecks.aggregatedList
      * @memberOf! ()
      *
@@ -22258,7 +22862,7 @@ export namespace compute_v1 {
 
     /**
      * compute.healthChecks.delete
-     * @desc Deletes the specified HealthCheck resource.
+     * @desc Deletes the specified HealthCheck resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -22387,7 +22991,7 @@ export namespace compute_v1 {
 
     /**
      * compute.healthChecks.get
-     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request.
+     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -22514,7 +23118,7 @@ export namespace compute_v1 {
 
     /**
      * compute.healthChecks.insert
-     * @desc Creates a HealthCheck resource in the specified project using the data included in the request.
+     * @desc Creates a HealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -22643,7 +23247,7 @@ export namespace compute_v1 {
 
     /**
      * compute.healthChecks.list
-     * @desc Retrieves the list of HealthCheck resources available to the specified project.
+     * @desc Retrieves the list of HealthCheck resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -22783,7 +23387,7 @@ export namespace compute_v1 {
 
     /**
      * compute.healthChecks.patch
-     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -22918,7 +23522,7 @@ export namespace compute_v1 {
 
     /**
      * compute.healthChecks.update
-     * @desc Updates a HealthCheck resource in the specified project using the data included in the request.
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -23223,7 +23827,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpHealthChecks.delete
-     * @desc Deletes the specified HttpHealthCheck resource.
+     * @desc Deletes the specified HttpHealthCheck resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -23352,7 +23956,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpHealthChecks.get
-     * @desc Returns the specified HttpHealthCheck resource. Gets a list of available HTTP health checks by making a list() request.
+     * @desc Returns the specified HttpHealthCheck resource. Gets a list of available HTTP health checks by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -23480,7 +24084,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpHealthChecks.insert
-     * @desc Creates a HttpHealthCheck resource in the specified project using the data included in the request.
+     * @desc Creates a HttpHealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -23609,7 +24213,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpHealthChecks.list
-     * @desc Retrieves the list of HttpHealthCheck resources available to the specified project.
+     * @desc Retrieves the list of HttpHealthCheck resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -23749,7 +24353,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpHealthChecks.patch
-     * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -23884,7 +24488,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpHealthChecks.update
-     * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request.
+     * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -24162,7 +24766,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpsHealthChecks.delete
-     * @desc Deletes the specified HttpsHealthCheck resource.
+     * @desc Deletes the specified HttpsHealthCheck resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -24291,7 +24895,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpsHealthChecks.get
-     * @desc Returns the specified HttpsHealthCheck resource. Gets a list of available HTTPS health checks by making a list() request.
+     * @desc Returns the specified HttpsHealthCheck resource. Gets a list of available HTTPS health checks by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -24419,7 +25023,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpsHealthChecks.insert
-     * @desc Creates a HttpsHealthCheck resource in the specified project using the data included in the request.
+     * @desc Creates a HttpsHealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -24549,7 +25153,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpsHealthChecks.list
-     * @desc Retrieves the list of HttpsHealthCheck resources available to the specified project.
+     * @desc Retrieves the list of HttpsHealthCheck resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -24692,7 +25296,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpsHealthChecks.patch
-     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -24827,7 +25431,7 @@ export namespace compute_v1 {
 
     /**
      * compute.httpsHealthChecks.update
-     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request.
+     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -25105,7 +25709,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.delete
-     * @desc Deletes the specified image.
+     * @desc Deletes the specified image. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -25232,7 +25836,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.deprecate
-     * @desc Sets the deprecation status of an image.  If an empty request body is given, clears the deprecation status instead.
+     * @desc Sets the deprecation status of an image.  If an empty request body is given, clears the deprecation status instead. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -25365,7 +25969,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.get
-     * @desc Returns the specified image. Gets a list of available images by making a list() request.
+     * @desc Returns the specified image. Gets a list of available images by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -25489,7 +26093,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.getFromFamily
-     * @desc Returns the latest image that is part of an image family and is not deprecated.
+     * @desc Returns the latest image that is part of an image family and is not deprecated. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -25615,7 +26219,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.images.getIamPolicy
      * @memberOf! ()
      *
@@ -25688,7 +26292,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.insert
-     * @desc Creates an image in the specified project using the data included in the request.
+     * @desc Creates an image in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -25817,7 +26421,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.list
-     * @desc Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+     * @desc Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -25956,7 +26560,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.images.setIamPolicy
      * @memberOf! ()
      *
@@ -26030,7 +26634,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.setLabels
-     * @desc Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -26162,7 +26766,7 @@ export namespace compute_v1 {
 
     /**
      * compute.images.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.images.testIamPermissions
      * @memberOf! ()
      *
@@ -26453,7 +27057,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.abandonInstances
-     * @desc Flags the specified instances to be removed from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances to be removed from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -26591,7 +27195,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.aggregatedList
-     * @desc Retrieves the list of managed instance groups and groups them by zone.
+     * @desc Retrieves the list of managed instance groups and groups them by zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -26741,7 +27345,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.delete
-     * @desc Deletes the specified managed instance group and all of the instances in that group. Note that the instance group must not belong to a backend service. Read  Deleting an instance group for more information.
+     * @desc Deletes the specified managed instance group and all of the instances in that group. Note that the instance group must not belong to a backend service. Read  Deleting an instance group for more information. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -26874,7 +27478,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.deleteInstances
-     * @desc Flags the specified instances in the managed instance group for immediate deletion. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances in the managed instance group for immediate deletion. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -27012,7 +27616,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.get
-     * @desc Returns all of the details about the specified managed instance group. Gets a list of available managed instance groups by making a list() request.
+     * @desc Returns all of the details about the specified managed instance group. Gets a list of available managed instance groups by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -27146,7 +27750,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.insert
-     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A managed instance group can have up to 1000 VM instances per group. Please contact Cloud Support if you need an increase in this limit.
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A managed instance group can have up to 1000 VM instances per group. Please contact Cloud Support if you need an increase in this limit. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -27280,7 +27884,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.list
-     * @desc Retrieves a list of managed instance groups that are contained within the specified project and zone.
+     * @desc Retrieves a list of managed instance groups that are contained within the specified project and zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -27427,7 +28031,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.listManagedInstances
-     * @desc Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action.
+     * @desc Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -27587,7 +28191,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.patch
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listManagedInstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listManagedInstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instanceGroupManagers.patch
      * @memberOf! ()
      *
@@ -27665,7 +28269,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.recreateInstances
-     * @desc Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -27803,7 +28407,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.resize
-     * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.  When resizing down, the instance group arbitrarily chooses the order in which VMs are deleted. The group takes into account some VM attributes when making the selection including:  + The status of the VM instance. + The health of the VM instance. + The instance template version the VM is based on. + For regional managed instance groups, the location of the VM instance.  This list is subject to change.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
+     * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.  When resizing down, the instance group arbitrarily chooses the order in which VMs are deleted. The group takes into account some VM attributes when making the selection including:  + The status of the VM instance. + The health of the VM instance. + The instance template version the VM is based on. + For regional managed instance groups, the location of the VM instance.  This list is subject to change.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -27942,7 +28546,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.setInstanceTemplate
-     * @desc Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you recreate them.
+     * @desc Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you recreate them. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -28080,7 +28684,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroupManagers.setTargetPools
-     * @desc Modifies the target pools to which all instances in this managed instance group are assigned. The target pools automatically apply to all of the instances in the managed instance group. This operation is marked DONE when you make the request even if the instances have not yet been added to their target pools. The change might take some time to apply to all of the instances in the group depending on the size of the group.
+     * @desc Modifies the target pools to which all instances in this managed instance group are assigned. The target pools automatically apply to all of the instances in the managed instance group. This operation is marked DONE when you make the request even if the instances have not yet been added to their target pools. The change might take some time to apply to all of the instances in the group depending on the size of the group. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -28593,7 +29197,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.addInstances
-     * @desc Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork. Read  Adding instances for more information.
+     * @desc Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork. Read  Adding instances for more information. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -28731,7 +29335,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.aggregatedList
-     * @desc Retrieves the list of instance groups and sorts them by zone.
+     * @desc Retrieves the list of instance groups and sorts them by zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -28879,7 +29483,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.delete
-     * @desc Deletes the specified instance group. The instances in the group are not deleted. Note that instance group must not belong to a backend service. Read  Deleting an instance group for more information.
+     * @desc Deletes the specified instance group. The instances in the group are not deleted. Note that instance group must not belong to a backend service. Read  Deleting an instance group for more information. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -29012,7 +29616,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.get
-     * @desc Returns the specified instance group. Gets a list of available instance groups by making a list() request.
+     * @desc Returns the specified instance group. Gets a list of available instance groups by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -29144,7 +29748,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.insert
-     * @desc Creates an instance group in the specified project using the parameters that are included in the request.
+     * @desc Creates an instance group in the specified project using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -29278,7 +29882,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.list
-     * @desc Retrieves the list of instance groups that are located in the specified project and zone.
+     * @desc Retrieves the list of instance groups that are located in the specified project and zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -29423,7 +30027,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.listInstances
-     * @desc Lists the instances in the specified instance group.
+     * @desc Lists the instances in the specified instance group. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -29584,7 +30188,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.removeInstances
-     * @desc Removes one or more instances from the specified instance group, but does not delete those instances.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration before the VM instance is removed or deleted.
+     * @desc Removes one or more instances from the specified instance group, but does not delete those instances.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration before the VM instance is removed or deleted. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -29722,7 +30326,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceGroups.setNamedPorts
-     * @desc Sets the named ports for the specified instance group.
+     * @desc Sets the named ports for the specified instance group. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -30125,7 +30729,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.addAccessConfig
-     * @desc Adds an access config to an instance's network interface.
+     * @desc Adds an access config to an instance's network interface. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -30267,7 +30871,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.aggregatedList
-     * @desc Retrieves aggregated list of all of the instances in your project across all regions and zones.
+     * @desc Retrieves aggregated list of all of the instances in your project across all regions and zones. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -30411,7 +31015,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.attachDisk
-     * @desc Attaches an existing Disk resource to an instance. You must first create the disk before you can attach it. It is not possible to create and attach a disk at the same time. For more information, read Adding a persistent disk to your instance.
+     * @desc Attaches an existing Disk resource to an instance. You must first create the disk before you can attach it. It is not possible to create and attach a disk at the same time. For more information, read Adding a persistent disk to your instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -30550,7 +31154,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.delete
-     * @desc Deletes the specified Instance resource. For more information, see Stopping or Deleting an Instance.
+     * @desc Deletes the specified Instance resource. For more information, see Stopping or Deleting an Instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -30682,7 +31286,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.deleteAccessConfig
-     * @desc Deletes an access config from an instance's network interface.
+     * @desc Deletes an access config from an instance's network interface. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -30829,7 +31433,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.detachDisk
-     * @desc Detaches a disk from an instance.
+     * @desc Detaches a disk from an instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -30966,7 +31570,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.get
-     * @desc Returns the specified Instance resource. Gets a list of available instances by making a list() request.
+     * @desc Returns the specified Instance resource. Gets a list of available instances by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -31095,7 +31699,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.getGuestAttributes
-     * @desc Returns the specified guest attributes entry.
+     * @desc Returns the specified guest attributes entry. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.getGuestAttributes
      * @memberOf! ()
      *
@@ -31175,7 +31779,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.getIamPolicy
      * @memberOf! ()
      *
@@ -31249,7 +31853,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.getSerialPortOutput
-     * @desc Returns the last 1 MB of serial port output from the specified instance.
+     * @desc Returns the last 1 MB of serial port output from the specified instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -31385,7 +31989,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.getShieldedInstanceIdentity
-     * @desc Returns the Shielded Instance Identity of an instance
+     * @desc Returns the Shielded Instance Identity of an instance (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.getShieldedInstanceIdentity
      * @memberOf! ()
      *
@@ -31465,7 +32069,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.insert
-     * @desc Creates an instance resource in the specified project using the data included in the request.
+     * @desc Creates an instance resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -31598,7 +32202,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.list
-     * @desc Retrieves the list of instances contained within the specified zone.
+     * @desc Retrieves the list of instances contained within the specified zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -31741,7 +32345,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.listReferrers
-     * @desc Retrieves the list of referrers to instances contained within the specified zone. For more information, read Viewing Referrers to VM Instances.
+     * @desc Retrieves the list of referrers to instances contained within the specified zone. For more information, read Viewing Referrers to VM Instances. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.listReferrers
      * @memberOf! ()
      *
@@ -31825,7 +32429,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.reset
-     * @desc Performs a reset on the instance. This is a hard reset the VM does not do a graceful shutdown. For more information, see Resetting an instance.
+     * @desc Performs a reset on the instance. This is a hard reset the VM does not do a graceful shutdown. For more information, see Resetting an instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -31957,7 +32561,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setDeletionProtection
-     * @desc Sets deletion protection on the instance.
+     * @desc Sets deletion protection on the instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32093,7 +32697,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setDiskAutoDelete
-     * @desc Sets the auto-delete flag for a disk attached to an instance.
+     * @desc Sets the auto-delete flag for a disk attached to an instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32240,7 +32844,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.setIamPolicy
      * @memberOf! ()
      *
@@ -32315,7 +32919,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setLabels
-     * @desc Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32453,7 +33057,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setMachineResources
-     * @desc Changes the number and/or type of accelerator for a stopped instance to the values specified in the request.
+     * @desc Changes the number and/or type of accelerator for a stopped instance to the values specified in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32591,7 +33195,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setMachineType
-     * @desc Changes the machine type for a stopped instance to the machine type specified in the request.
+     * @desc Changes the machine type for a stopped instance to the machine type specified in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32729,7 +33333,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setMetadata
-     * @desc Sets metadata for the specified instance to the data included in the request.
+     * @desc Sets metadata for the specified instance to the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -32867,7 +33471,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setMinCpuPlatform
-     * @desc Changes the minimum CPU platform that this instance should use. This method can only be called on a stopped instance. For more information, read Specifying a Minimum CPU Platform.
+     * @desc Changes the minimum CPU platform that this instance should use. This method can only be called on a stopped instance. For more information, read Specifying a Minimum CPU Platform. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -33005,7 +33609,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setScheduling
-     * @desc Sets an instance's scheduling options.
+     * @desc Sets an instance's scheduling options. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -33143,7 +33747,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setServiceAccount
-     * @desc Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance.
+     * @desc Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -33281,7 +33885,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setShieldedInstanceIntegrityPolicy
-     * @desc Sets the Shielded Instance integrity policy for an instance. You can only use this method on a running instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Sets the Shielded Instance integrity policy for an instance. You can only use this method on a running instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.setShieldedInstanceIntegrityPolicy
      * @memberOf! ()
      *
@@ -33361,7 +33965,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.setTags
-     * @desc Sets network tags for the specified instance to the data included in the request.
+     * @desc Sets network tags for the specified instance to the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -33499,7 +34103,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.simulateMaintenanceEvent
-     * @desc Simulates a maintenance event on the instance.
+     * @desc Simulates a maintenance event on the instance. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.simulateMaintenanceEvent
      * @memberOf! ()
      *
@@ -33577,7 +34181,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.start
-     * @desc Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
+     * @desc Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -33709,7 +34313,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.startWithEncryptionKey
-     * @desc Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
+     * @desc Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -33849,7 +34453,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.stop
-     * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
+     * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -33981,7 +34585,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.testIamPermissions
      * @memberOf! ()
      *
@@ -34062,7 +34666,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.updateAccessConfig
-     * @desc Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.updateAccessConfig
      * @memberOf! ()
      *
@@ -34141,7 +34745,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.updateDisplayDevice
-     * @desc Updates the Display config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates the Display config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.updateDisplayDevice
      * @memberOf! ()
      *
@@ -34219,7 +34823,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.updateNetworkInterface
-     * @desc Updates an instance's network interface. This method follows PATCH semantics.
+     * @desc Updates an instance's network interface. This method follows PATCH semantics. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.updateNetworkInterface
      * @memberOf! ()
      *
@@ -34300,7 +34904,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instances.updateShieldedInstanceConfig
-     * @desc Updates the Shielded Instance config for an instance. You can only use this method on a stopped instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates the Shielded Instance config for an instance. You can only use this method on a stopped instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instances.updateShieldedInstanceConfig
      * @memberOf! ()
      *
@@ -35388,7 +35992,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceTemplates.delete
-     * @desc Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone. It is not possible to delete templates that are already in use by a managed instance group.
+     * @desc Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone. It is not possible to delete templates that are already in use by a managed instance group. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -35517,7 +36121,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceTemplates.get
-     * @desc Returns the specified instance template. Gets a list of available instance templates by making a list() request.
+     * @desc Returns the specified instance template. Gets a list of available instance templates by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -35645,7 +36249,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceTemplates.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instanceTemplates.getIamPolicy
      * @memberOf! ()
      *
@@ -35718,7 +36322,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceTemplates.insert
-     * @desc Creates an instance template in the specified project using the data that is included in the request. If you are creating a new template to update an existing instance group, your new instance template must use the same network or, if applicable, the same subnetwork as the original template.
+     * @desc Creates an instance template in the specified project using the data that is included in the request. If you are creating a new template to update an existing instance group, your new instance template must use the same network or, if applicable, the same subnetwork as the original template. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -35848,7 +36452,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceTemplates.list
-     * @desc Retrieves a list of instance templates that are contained within the specified project.
+     * @desc Retrieves a list of instance templates that are contained within the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -35991,7 +36595,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceTemplates.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instanceTemplates.setIamPolicy
      * @memberOf! ()
      *
@@ -36065,7 +36669,7 @@ export namespace compute_v1 {
 
     /**
      * compute.instanceTemplates.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.instanceTemplates.testIamPermissions
      * @memberOf! ()
      *
@@ -36296,7 +36900,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnectAttachments.aggregatedList
-     * @desc Retrieves an aggregated list of interconnect attachments.
+     * @desc Retrieves an aggregated list of interconnect attachments. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -36454,7 +37058,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnectAttachments.delete
-     * @desc Deletes the specified interconnect attachment.
+     * @desc Deletes the specified interconnect attachment. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -36587,7 +37191,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnectAttachments.get
-     * @desc Returns the specified interconnect attachment.
+     * @desc Returns the specified interconnect attachment. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -36721,7 +37325,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnectAttachments.insert
-     * @desc Creates an InterconnectAttachment in the specified project using the data included in the request.
+     * @desc Creates an InterconnectAttachment in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -36855,7 +37459,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnectAttachments.list
-     * @desc Retrieves the list of interconnect attachments contained within the specified region.
+     * @desc Retrieves the list of interconnect attachments contained within the specified region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -37007,7 +37611,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnectAttachments.patch
-     * @desc Updates the specified interconnect attachment with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates the specified interconnect attachment with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.interconnectAttachments.patch
      * @memberOf! ()
      *
@@ -37251,7 +37855,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnectLocations.get
-     * @desc Returns the details for the specified interconnect location. Gets a list of available interconnect locations by making a list() request.
+     * @desc Returns the details for the specified interconnect location. Gets a list of available interconnect locations by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -37381,7 +37985,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnectLocations.list
-     * @desc Retrieves the list of interconnect locations available to the specified project.
+     * @desc Retrieves the list of interconnect locations available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -37576,7 +38180,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnects.delete
-     * @desc Deletes the specified interconnect.
+     * @desc Deletes the specified interconnect. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -37705,7 +38309,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnects.get
-     * @desc Returns the specified interconnect. Get a list of available interconnects by making a list() request.
+     * @desc Returns the specified interconnect. Get a list of available interconnects by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -37833,7 +38437,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnects.getDiagnostics
-     * @desc Returns the interconnectDiagnostics for the specified interconnect.
+     * @desc Returns the interconnectDiagnostics for the specified interconnect. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.interconnects.getDiagnostics
      * @memberOf! ()
      *
@@ -37919,7 +38523,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnects.insert
-     * @desc Creates a Interconnect in the specified project using the data included in the request.
+     * @desc Creates a Interconnect in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -38048,7 +38652,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnects.list
-     * @desc Retrieves the list of interconnect available to the specified project.
+     * @desc Retrieves the list of interconnect available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -38188,7 +38792,7 @@ export namespace compute_v1 {
 
     /**
      * compute.interconnects.patch
-     * @desc Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -38457,7 +39061,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenseCodes.get
-     * @desc Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code.
+     * @desc Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.licenseCodes.get
      * @memberOf! ()
      *
@@ -38531,7 +39135,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenseCodes.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.licenseCodes.testIamPermissions
      * @memberOf! ()
      *
@@ -38655,7 +39259,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenses.delete
-     * @desc Deletes the specified license.
+     * @desc Deletes the specified license. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.licenses.delete
      * @memberOf! ()
      *
@@ -38730,7 +39334,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenses.get
-     * @desc Returns the specified License resource.
+     * @desc Returns the specified License resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -38855,7 +39459,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenses.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.licenses.getIamPolicy
      * @memberOf! ()
      *
@@ -38928,7 +39532,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenses.insert
-     * @desc Create a License resource in the specified project.
+     * @desc Create a License resource in the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.licenses.insert
      * @memberOf! ()
      *
@@ -39002,7 +39606,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenses.list
-     * @desc Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 9. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+     * @desc Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 9. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.licenses.list
      * @memberOf! ()
      *
@@ -39080,7 +39684,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenses.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.licenses.setIamPolicy
      * @memberOf! ()
      *
@@ -39154,7 +39758,7 @@ export namespace compute_v1 {
 
     /**
      * compute.licenses.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.licenses.testIamPermissions
      * @memberOf! ()
      *
@@ -39381,7 +39985,7 @@ export namespace compute_v1 {
 
     /**
      * compute.machineTypes.aggregatedList
-     * @desc Retrieves an aggregated list of machine types.
+     * @desc Retrieves an aggregated list of machine types. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -39528,7 +40132,7 @@ export namespace compute_v1 {
 
     /**
      * compute.machineTypes.get
-     * @desc Returns the specified machine type. Gets a list of available machine types by making a list() request.
+     * @desc Returns the specified machine type. Gets a list of available machine types by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -39659,7 +40263,7 @@ export namespace compute_v1 {
 
     /**
      * compute.machineTypes.list
-     * @desc Retrieves a list of machine types available to the specified project.
+     * @desc Retrieves a list of machine types available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -39891,7 +40495,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.aggregatedList
-     * @desc Retrieves the list of network endpoint groups and sorts them by zone.
+     * @desc Retrieves the list of network endpoint groups and sorts them by zone. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.aggregatedList
      * @memberOf! ()
      *
@@ -39978,7 +40582,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.attachNetworkEndpoints
-     * @desc Attach a list of network endpoints to the specified network endpoint group.
+     * @desc Attach a list of network endpoints to the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.attachNetworkEndpoints
      * @memberOf! ()
      *
@@ -40058,7 +40662,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.delete
-     * @desc Deletes the specified network endpoint group. The network endpoints in the NEG and the VM instances they belong to are not terminated when the NEG is deleted. Note that the NEG cannot be deleted if there are backend services referencing it.
+     * @desc Deletes the specified network endpoint group. The network endpoints in the NEG and the VM instances they belong to are not terminated when the NEG is deleted. Note that the NEG cannot be deleted if there are backend services referencing it. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.delete
      * @memberOf! ()
      *
@@ -40135,7 +40739,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.detachNetworkEndpoints
-     * @desc Detach a list of network endpoints from the specified network endpoint group.
+     * @desc Detach a list of network endpoints from the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.detachNetworkEndpoints
      * @memberOf! ()
      *
@@ -40215,7 +40819,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.get
-     * @desc Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request.
+     * @desc Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.get
      * @memberOf! ()
      *
@@ -40293,7 +40897,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.insert
-     * @desc Creates a network endpoint group in the specified project using the parameters that are included in the request.
+     * @desc Creates a network endpoint group in the specified project using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.insert
      * @memberOf! ()
      *
@@ -40370,7 +40974,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.list
-     * @desc Retrieves the list of network endpoint groups that are located in the specified project and zone.
+     * @desc Retrieves the list of network endpoint groups that are located in the specified project and zone. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.list
      * @memberOf! ()
      *
@@ -40451,7 +41055,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.listNetworkEndpoints
-     * @desc Lists the network endpoints in the specified network endpoint group.
+     * @desc Lists the network endpoints in the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.listNetworkEndpoints
      * @memberOf! ()
      *
@@ -40555,7 +41159,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networkEndpointGroups.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networkEndpointGroups.testIamPermissions
      * @memberOf! ()
      *
@@ -40897,7 +41501,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.addPeering
-     * @desc Adds a peering to the specified network.
+     * @desc Adds a peering to the specified network. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -41031,7 +41635,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.delete
-     * @desc Deletes the specified network.
+     * @desc Deletes the specified network. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -41159,7 +41763,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.get
-     * @desc Returns the specified network. Gets a list of available networks by making a list() request.
+     * @desc Returns the specified network. Gets a list of available networks by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -41284,7 +41888,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.insert
-     * @desc Creates a network in the specified project using the data included in the request.
+     * @desc Creates a network in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -41412,7 +42016,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.list
-     * @desc Retrieves the list of networks available to the specified project.
+     * @desc Retrieves the list of networks available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -41551,7 +42155,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.patch
-     * @desc Patches the specified network with the data included in the request. Only the following fields can be modified: routingConfig.routingMode.
+     * @desc Patches the specified network with the data included in the request. Only the following fields can be modified: routingConfig.routingMode. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -41685,7 +42289,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.removePeering
-     * @desc Removes a peering from the specified network.
+     * @desc Removes a peering from the specified network. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -41819,7 +42423,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.switchToCustomMode
-     * @desc Switches the network mode from auto subnet mode to custom subnet mode.
+     * @desc Switches the network mode from auto subnet mode to custom subnet mode. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -41948,7 +42552,7 @@ export namespace compute_v1 {
 
     /**
      * compute.networks.updatePeering
-     * @desc Updates the specified network peering with the data included in the request Only the following fields can be modified: NetworkPeering.export_custom_routes, and NetworkPeering.import_custom_routes
+     * @desc Updates the specified network peering with the data included in the request Only the following fields can be modified: NetworkPeering.export_custom_routes, and NetworkPeering.import_custom_routes (== suppress_warning http-rest-shadowed ==)
      * @alias compute.networks.updatePeering
      * @memberOf! ()
      *
@@ -42233,7 +42837,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.addNodes
-     * @desc Adds specified number of nodes to the node group.
+     * @desc Adds specified number of nodes to the node group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.addNodes
      * @memberOf! ()
      *
@@ -42311,7 +42915,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.aggregatedList
-     * @desc Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group.
+     * @desc Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.aggregatedList
      * @memberOf! ()
      *
@@ -42392,7 +42996,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.delete
-     * @desc Deletes the specified NodeGroup resource.
+     * @desc Deletes the specified NodeGroup resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.delete
      * @memberOf! ()
      *
@@ -42469,7 +43073,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.deleteNodes
-     * @desc Deletes specified nodes from the node group.
+     * @desc Deletes specified nodes from the node group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.deleteNodes
      * @memberOf! ()
      *
@@ -42547,7 +43151,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.get
-     * @desc Returns the specified NodeGroup. Get a list of available NodeGroups by making a list() request. Note: the "nodes" field should not be used. Use nodeGroups.listNodes instead.
+     * @desc Returns the specified NodeGroup. Get a list of available NodeGroups by making a list() request. Note: the "nodes" field should not be used. Use nodeGroups.listNodes instead. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.get
      * @memberOf! ()
      *
@@ -42622,7 +43226,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.getIamPolicy
      * @memberOf! ()
      *
@@ -42696,7 +43300,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.insert
-     * @desc Creates a NodeGroup resource in the specified project using the data included in the request.
+     * @desc Creates a NodeGroup resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.insert
      * @memberOf! ()
      *
@@ -42773,7 +43377,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.list
-     * @desc Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group.
+     * @desc Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.list
      * @memberOf! ()
      *
@@ -42850,7 +43454,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.listNodes
-     * @desc Lists nodes in the node group.
+     * @desc Lists nodes in the node group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.listNodes
      * @memberOf! ()
      *
@@ -42930,7 +43534,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.setIamPolicy
      * @memberOf! ()
      *
@@ -43005,7 +43609,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.setNodeTemplate
-     * @desc Updates the node template of the node group.
+     * @desc Updates the node template of the node group. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.setNodeTemplate
      * @memberOf! ()
      *
@@ -43083,7 +43687,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeGroups.testIamPermissions
      * @memberOf! ()
      *
@@ -43496,7 +44100,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTemplates.aggregatedList
-     * @desc Retrieves an aggregated list of node templates.
+     * @desc Retrieves an aggregated list of node templates. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTemplates.aggregatedList
      * @memberOf! ()
      *
@@ -43581,7 +44185,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTemplates.delete
-     * @desc Deletes the specified NodeTemplate resource.
+     * @desc Deletes the specified NodeTemplate resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTemplates.delete
      * @memberOf! ()
      *
@@ -43658,7 +44262,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTemplates.get
-     * @desc Returns the specified node template. Gets a list of available node templates by making a list() request.
+     * @desc Returns the specified node template. Gets a list of available node templates by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTemplates.get
      * @memberOf! ()
      *
@@ -43734,7 +44338,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTemplates.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTemplates.getIamPolicy
      * @memberOf! ()
      *
@@ -43808,7 +44412,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTemplates.insert
-     * @desc Creates a NodeTemplate resource in the specified project using the data included in the request.
+     * @desc Creates a NodeTemplate resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTemplates.insert
      * @memberOf! ()
      *
@@ -43885,7 +44489,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTemplates.list
-     * @desc Retrieves a list of node templates available to the specified project.
+     * @desc Retrieves a list of node templates available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTemplates.list
      * @memberOf! ()
      *
@@ -43964,7 +44568,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTemplates.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTemplates.setIamPolicy
      * @memberOf! ()
      *
@@ -44039,7 +44643,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTemplates.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTemplates.testIamPermissions
      * @memberOf! ()
      *
@@ -44327,7 +44931,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTypes.aggregatedList
-     * @desc Retrieves an aggregated list of node types.
+     * @desc Retrieves an aggregated list of node types. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTypes.aggregatedList
      * @memberOf! ()
      *
@@ -44408,7 +45012,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTypes.get
-     * @desc Returns the specified node type. Gets a list of available node types by making a list() request.
+     * @desc Returns the specified node type. Gets a list of available node types by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTypes.get
      * @memberOf! ()
      *
@@ -44481,7 +45085,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeTypes.list
-     * @desc Retrieves a list of node types available to the specified project.
+     * @desc Retrieves a list of node types available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.nodeTypes.list
      * @memberOf! ()
      *
@@ -44644,7 +45248,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.disableXpnHost
-     * @desc Disable this project as a shared VPC host project.
+     * @desc Disable this project as a shared VPC host project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -44768,7 +45372,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.disableXpnResource
-     * @desc Disable a service resource (also known as service project) associated with this host project.
+     * @desc Disable a service resource (also known as service project) associated with this host project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -44897,7 +45501,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.enableXpnHost
-     * @desc Enable this project as a shared VPC host project.
+     * @desc Enable this project as a shared VPC host project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -45021,7 +45625,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.enableXpnResource
-     * @desc Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project.
+     * @desc Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -45150,7 +45754,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.get
-     * @desc Returns the specified Project resource.
+     * @desc Returns the specified Project resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -45271,7 +45875,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.getXpnHost
-     * @desc Gets the shared VPC host project that this project links to. May be empty if no link exists.
+     * @desc Gets the shared VPC host project that this project links to. May be empty if no link exists. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -45392,7 +45996,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.getXpnResources
-     * @desc Gets service resources (a.k.a service project) associated with this host project.
+     * @desc Gets service resources (a.k.a service project) associated with this host project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -45536,7 +46140,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.listXpnHosts
-     * @desc Lists all shared VPC host projects visible to the user in an organization.
+     * @desc Lists all shared VPC host projects visible to the user in an organization. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -45681,7 +46285,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.moveDisk
-     * @desc Moves a persistent disk from one zone to another.
+     * @desc Moves a persistent disk from one zone to another. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -45811,7 +46415,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.moveInstance
-     * @desc Moves an instance and its attached persistent disks from one zone to another.
+     * @desc Moves an instance and its attached persistent disks from one zone to another. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -45940,7 +46544,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.setCommonInstanceMetadata
-     * @desc Sets metadata common to all instances within the specified project using the data included in the request.
+     * @desc Sets metadata common to all instances within the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -46072,7 +46676,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.setDefaultNetworkTier
-     * @desc Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field.
+     * @desc Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.projects.setDefaultNetworkTier
      * @memberOf! ()
      *
@@ -46149,7 +46753,7 @@ export namespace compute_v1 {
 
     /**
      * compute.projects.setUsageExportBucket
-     * @desc Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled.
+     * @desc Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -46551,7 +47155,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionAutoscalers.delete
-     * @desc Deletes the specified autoscaler.
+     * @desc Deletes the specified autoscaler. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -46684,7 +47288,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionAutoscalers.get
-     * @desc Returns the specified autoscaler.
+     * @desc Returns the specified autoscaler. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -46816,7 +47420,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionAutoscalers.insert
-     * @desc Creates an autoscaler in the specified project using the data included in the request.
+     * @desc Creates an autoscaler in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -46950,7 +47554,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionAutoscalers.list
-     * @desc Retrieves a list of autoscalers contained within the specified region.
+     * @desc Retrieves a list of autoscalers contained within the specified region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -47097,7 +47701,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionAutoscalers.patch
-     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -47233,7 +47837,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionAutoscalers.update
-     * @desc Updates an autoscaler in the specified project using the data included in the request.
+     * @desc Updates an autoscaler in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -47536,7 +48140,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionBackendServices.delete
-     * @desc Deletes the specified regional BackendService resource.
+     * @desc Deletes the specified regional BackendService resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -47669,7 +48273,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionBackendServices.get
-     * @desc Returns the specified regional BackendService resource.
+     * @desc Returns the specified regional BackendService resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -47801,7 +48405,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionBackendServices.getHealth
-     * @desc Gets the most recent health check results for this regional BackendService.
+     * @desc Gets the most recent health check results for this regional BackendService. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -47944,7 +48548,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionBackendServices.insert
-     * @desc Creates a regional BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a regional backend service. Read  Restrictions and Guidelines for more information.
+     * @desc Creates a regional BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a regional backend service. Read  Restrictions and Guidelines for more information. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48078,7 +48682,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionBackendServices.list
-     * @desc Retrieves the list of regional BackendService resources available to the specified project in the given region.
+     * @desc Retrieves the list of regional BackendService resources available to the specified project in the given region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48223,7 +48827,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionBackendServices.patch
-     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48362,7 +48966,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionBackendServices.update
-     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48693,7 +49297,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionCommitments.aggregatedList
-     * @desc Retrieves an aggregated list of commitments.
+     * @desc Retrieves an aggregated list of commitments. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48837,7 +49441,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionCommitments.get
-     * @desc Returns the specified commitment resource. Gets a list of available commitments by making a list() request.
+     * @desc Returns the specified commitment resource. Gets a list of available commitments by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -48969,7 +49573,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionCommitments.insert
-     * @desc Creates a commitment in the specified project using the data included in the request.
+     * @desc Creates a commitment in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -49103,7 +49707,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionCommitments.list
-     * @desc Retrieves a list of commitments contained within the specified region.
+     * @desc Retrieves a list of commitments contained within the specified region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -49361,7 +49965,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.addResourcePolicies
-     * @desc Adds existing resource policies to a regional disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation.
+     * @desc Adds existing resource policies to a regional disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.addResourcePolicies
      * @memberOf! ()
      *
@@ -49439,7 +50043,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.createSnapshot
-     * @desc Creates a snapshot of this regional disk.
+     * @desc Creates a snapshot of this regional disk. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.createSnapshot
      * @memberOf! ()
      *
@@ -49517,7 +50121,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.delete
-     * @desc Deletes the specified regional persistent disk. Deleting a regional disk removes all the replicas of its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
+     * @desc Deletes the specified regional persistent disk. Deleting a regional disk removes all the replicas of its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.delete
      * @memberOf! ()
      *
@@ -49594,7 +50198,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.get
-     * @desc Returns a specified regional persistent disk.
+     * @desc Returns a specified regional persistent disk. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.get
      * @memberOf! ()
      *
@@ -49667,7 +50271,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.insert
-     * @desc Creates a persistent regional disk in the specified project using the data included in the request.
+     * @desc Creates a persistent regional disk in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.insert
      * @memberOf! ()
      *
@@ -49744,7 +50348,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.list
-     * @desc Retrieves the list of persistent disks contained within the specified region.
+     * @desc Retrieves the list of persistent disks contained within the specified region. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.list
      * @memberOf! ()
      *
@@ -49819,7 +50423,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.removeResourcePolicies
-     * @desc Removes resource policies from a regional disk.
+     * @desc Removes resource policies from a regional disk. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.removeResourcePolicies
      * @memberOf! ()
      *
@@ -49899,7 +50503,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.resize
-     * @desc Resizes the specified regional persistent disk.
+     * @desc Resizes the specified regional persistent disk. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.resize
      * @memberOf! ()
      *
@@ -49977,7 +50581,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.setLabels
-     * @desc Sets the labels on the target regional disk.
+     * @desc Sets the labels on the target regional disk. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.setLabels
      * @memberOf! ()
      *
@@ -50055,7 +50659,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDisks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDisks.testIamPermissions
      * @memberOf! ()
      *
@@ -50417,7 +51021,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDiskTypes.get
-     * @desc Returns the specified regional disk type. Gets a list of available disk types by making a list() request.
+     * @desc Returns the specified regional disk type. Gets a list of available disk types by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDiskTypes.get
      * @memberOf! ()
      *
@@ -50491,7 +51095,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionDiskTypes.list
-     * @desc Retrieves a list of regional disk types available to the specified project.
+     * @desc Retrieves a list of regional disk types available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionDiskTypes.list
      * @memberOf! ()
      *
@@ -50630,7 +51234,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionHealthChecks.delete
-     * @desc Deletes the specified HealthCheck resource.
+     * @desc Deletes the specified HealthCheck resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionHealthChecks.delete
      * @memberOf! ()
      *
@@ -50707,7 +51311,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionHealthChecks.get
-     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request.
+     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionHealthChecks.get
      * @memberOf! ()
      *
@@ -50783,7 +51387,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionHealthChecks.insert
-     * @desc Creates a HealthCheck resource in the specified project using the data included in the request.
+     * @desc Creates a HealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionHealthChecks.insert
      * @memberOf! ()
      *
@@ -50860,7 +51464,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionHealthChecks.list
-     * @desc Retrieves the list of HealthCheck resources available to the specified project.
+     * @desc Retrieves the list of HealthCheck resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionHealthChecks.list
      * @memberOf! ()
      *
@@ -50939,7 +51543,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionHealthChecks.patch
-     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionHealthChecks.patch
      * @memberOf! ()
      *
@@ -51017,7 +51621,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionHealthChecks.update
-     * @desc Updates a HealthCheck resource in the specified project using the data included in the request.
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionHealthChecks.update
      * @memberOf! ()
      *
@@ -51262,7 +51866,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.abandonInstances
-     * @desc Flags the specified instances to be immediately removed from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances to be immediately removed from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -51400,7 +52004,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.delete
-     * @desc Deletes the specified managed instance group and all of the instances in that group.
+     * @desc Deletes the specified managed instance group and all of the instances in that group. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -51533,7 +52137,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.deleteInstances
-     * @desc Flags the specified instances in the managed instance group to be immediately deleted. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. The deleteInstances operation is marked DONE if the deleteInstances request is successful. The underlying actions take additional time. You must separately verify the status of the deleting action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances in the managed instance group to be immediately deleted. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. The deleteInstances operation is marked DONE if the deleteInstances request is successful. The underlying actions take additional time. You must separately verify the status of the deleting action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -51671,7 +52275,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.get
-     * @desc Returns all of the details about the specified managed instance group.
+     * @desc Returns all of the details about the specified managed instance group. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -51805,7 +52409,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.insert
-     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A regional managed instance group can contain up to 2000 instances.
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A regional managed instance group can contain up to 2000 instances. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -51939,7 +52543,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.list
-     * @desc Retrieves the list of managed instance groups that are contained within the specified region.
+     * @desc Retrieves the list of managed instance groups that are contained within the specified region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -52093,7 +52697,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.listManagedInstances
-     * @desc Lists the instances in the managed instance group and instances that are scheduled to be created. The list includes any current actions that the group has scheduled for its instances.
+     * @desc Lists the instances in the managed instance group and instances that are scheduled to be created. The list includes any current actions that the group has scheduled for its instances. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -52253,7 +52857,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.patch
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionInstanceGroupManagers.patch
      * @memberOf! ()
      *
@@ -52331,7 +52935,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.recreateInstances
-     * @desc Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
+     * @desc Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -52469,7 +53073,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.resize
-     * @desc Changes the intended size of the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances.  The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
+     * @desc Changes the intended size of the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances.  The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -52606,7 +53210,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.setInstanceTemplate
-     * @desc Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
+     * @desc Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -52744,7 +53348,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroupManagers.setTargetPools
-     * @desc Modifies the target pools to which all new instances in this group are assigned. Existing instances in the group are not affected.
+     * @desc Modifies the target pools to which all new instances in this group are assigned. Existing instances in the group are not affected. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -53229,7 +53833,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroups.get
-     * @desc Returns the specified instance group resource.
+     * @desc Returns the specified instance group resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -53361,7 +53965,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroups.list
-     * @desc Retrieves the list of instance group resources contained within the specified region.
+     * @desc Retrieves the list of instance group resources contained within the specified region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -53508,7 +54112,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroups.listInstances
-     * @desc Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running.
+     * @desc Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -53671,7 +54275,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionInstanceGroups.setNamedPorts
-     * @desc Sets the named ports for the specified regional instance group.
+     * @desc Sets the named ports for the specified regional instance group. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -53939,7 +54543,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionOperations.delete
-     * @desc Deletes the specified region-specific Operations resource.
+     * @desc Deletes the specified region-specific Operations resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -54066,7 +54670,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionOperations.get
-     * @desc Retrieves the specified region-specific Operations resource.
+     * @desc Retrieves the specified region-specific Operations resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -54198,7 +54802,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionOperations.list
-     * @desc Retrieves a list of Operation resources contained within the specified region.
+     * @desc Retrieves a list of Operation resources contained within the specified region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -54423,7 +55027,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regions.get
-     * @desc Returns the specified Region resource. Gets a list of available regions by making a list() request.
+     * @desc Returns the specified Region resource. Gets a list of available regions by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -54547,7 +55151,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regions.list
-     * @desc Retrieves the list of region resources available to the specified project.
+     * @desc Retrieves the list of region resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -54737,7 +55341,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionSslCertificates.delete
-     * @desc Deletes the specified SslCertificate resource in the region.
+     * @desc Deletes the specified SslCertificate resource in the region. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionSslCertificates.delete
      * @memberOf! ()
      *
@@ -54814,7 +55418,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionSslCertificates.get
-     * @desc Returns the specified SslCertificate resource in the specified region. Get a list of available SSL certificates by making a list() request.
+     * @desc Returns the specified SslCertificate resource in the specified region. Get a list of available SSL certificates by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionSslCertificates.get
      * @memberOf! ()
      *
@@ -54890,7 +55494,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionSslCertificates.insert
-     * @desc Creates a SslCertificate resource in the specified project and region using the data included in the request
+     * @desc Creates a SslCertificate resource in the specified project and region using the data included in the request (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionSslCertificates.insert
      * @memberOf! ()
      *
@@ -54967,7 +55571,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionSslCertificates.list
-     * @desc Retrieves the list of SslCertificate resources available to the specified project in the specified region.
+     * @desc Retrieves the list of SslCertificate resources available to the specified project in the specified region. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionSslCertificates.list
      * @memberOf! ()
      *
@@ -55155,7 +55759,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpProxies.delete
-     * @desc Deletes the specified TargetHttpProxy resource.
+     * @desc Deletes the specified TargetHttpProxy resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpProxies.delete
      * @memberOf! ()
      *
@@ -55232,7 +55836,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpProxies.get
-     * @desc Returns the specified TargetHttpProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request.
+     * @desc Returns the specified TargetHttpProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpProxies.get
      * @memberOf! ()
      *
@@ -55308,7 +55912,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpProxies.insert
-     * @desc Creates a TargetHttpProxy resource in the specified project and region using the data included in the request.
+     * @desc Creates a TargetHttpProxy resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpProxies.insert
      * @memberOf! ()
      *
@@ -55385,7 +55989,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpProxies.list
-     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project in the specified region.
+     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project in the specified region. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpProxies.list
      * @memberOf! ()
      *
@@ -55464,7 +56068,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpProxies.setUrlMap
-     * @desc Changes the URL map for TargetHttpProxy.
+     * @desc Changes the URL map for TargetHttpProxy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpProxies.setUrlMap
      * @memberOf! ()
      *
@@ -55680,7 +56284,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpsProxies.delete
-     * @desc Deletes the specified TargetHttpsProxy resource.
+     * @desc Deletes the specified TargetHttpsProxy resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpsProxies.delete
      * @memberOf! ()
      *
@@ -55757,7 +56361,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpsProxies.get
-     * @desc Returns the specified TargetHttpsProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request.
+     * @desc Returns the specified TargetHttpsProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpsProxies.get
      * @memberOf! ()
      *
@@ -55833,7 +56437,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpsProxies.insert
-     * @desc Creates a TargetHttpsProxy resource in the specified project and region using the data included in the request.
+     * @desc Creates a TargetHttpsProxy resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpsProxies.insert
      * @memberOf! ()
      *
@@ -55910,7 +56514,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpsProxies.list
-     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project in the specified region.
+     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project in the specified region. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpsProxies.list
      * @memberOf! ()
      *
@@ -55991,7 +56595,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpsProxies.setSslCertificates
-     * @desc Replaces SslCertificates for TargetHttpsProxy.
+     * @desc Replaces SslCertificates for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpsProxies.setSslCertificates
      * @memberOf! ()
      *
@@ -56069,7 +56673,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionTargetHttpsProxies.setUrlMap
-     * @desc Changes the URL map for TargetHttpsProxy.
+     * @desc Changes the URL map for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionTargetHttpsProxies.setUrlMap
      * @memberOf! ()
      *
@@ -56314,7 +56918,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionUrlMaps.delete
-     * @desc Deletes the specified UrlMap resource.
+     * @desc Deletes the specified UrlMap resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionUrlMaps.delete
      * @memberOf! ()
      *
@@ -56391,7 +56995,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionUrlMaps.get
-     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request.
+     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionUrlMaps.get
      * @memberOf! ()
      *
@@ -56465,7 +57069,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionUrlMaps.insert
-     * @desc Creates a UrlMap resource in the specified project using the data included in the request.
+     * @desc Creates a UrlMap resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionUrlMaps.insert
      * @memberOf! ()
      *
@@ -56542,7 +57146,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionUrlMaps.list
-     * @desc Retrieves the list of UrlMap resources available to the specified project in the specified region.
+     * @desc Retrieves the list of UrlMap resources available to the specified project in the specified region. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionUrlMaps.list
      * @memberOf! ()
      *
@@ -56621,7 +57225,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionUrlMaps.patch
-     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionUrlMaps.patch
      * @memberOf! ()
      *
@@ -56699,7 +57303,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionUrlMaps.update
-     * @desc Updates the specified UrlMap resource with the data included in the request.
+     * @desc Updates the specified UrlMap resource with the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionUrlMaps.update
      * @memberOf! ()
      *
@@ -56777,7 +57381,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionUrlMaps.validate
-     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
+     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.regionUrlMaps.validate
      * @memberOf! ()
      *
@@ -57050,7 +57654,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.aggregatedList
-     * @desc Retrieves an aggregated list of reservations.
+     * @desc Retrieves an aggregated list of reservations. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.aggregatedList
      * @memberOf! ()
      *
@@ -57134,7 +57738,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.delete
-     * @desc Deletes the specified reservation.
+     * @desc Deletes the specified reservation. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.delete
      * @memberOf! ()
      *
@@ -57211,7 +57815,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.get
-     * @desc Retrieves information about the specified reservation.
+     * @desc Retrieves information about the specified reservation. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.get
      * @memberOf! ()
      *
@@ -57286,7 +57890,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.getIamPolicy
      * @memberOf! ()
      *
@@ -57360,7 +57964,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.insert
-     * @desc Creates a new reservation. For more information, read Reserving zonal resources.
+     * @desc Creates a new reservation. For more information, read Reserving zonal resources. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.insert
      * @memberOf! ()
      *
@@ -57437,7 +58041,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.list
-     * @desc A list of all the reservations that have been configured for the specified project in specified zone.
+     * @desc A list of all the reservations that have been configured for the specified project in specified zone. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.list
      * @memberOf! ()
      *
@@ -57516,7 +58120,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.resize
-     * @desc Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations.
+     * @desc Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.resize
      * @memberOf! ()
      *
@@ -57594,7 +58198,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.setIamPolicy
      * @memberOf! ()
      *
@@ -57669,7 +58273,7 @@ export namespace compute_v1 {
 
     /**
      * compute.reservations.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.reservations.testIamPermissions
      * @memberOf! ()
      *
@@ -57985,7 +58589,7 @@ export namespace compute_v1 {
 
     /**
      * compute.resourcePolicies.aggregatedList
-     * @desc Retrieves an aggregated list of resource policies.
+     * @desc Retrieves an aggregated list of resource policies. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.resourcePolicies.aggregatedList
      * @memberOf! ()
      *
@@ -58072,7 +58676,7 @@ export namespace compute_v1 {
 
     /**
      * compute.resourcePolicies.delete
-     * @desc Deletes the specified resource policy.
+     * @desc Deletes the specified resource policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.resourcePolicies.delete
      * @memberOf! ()
      *
@@ -58149,7 +58753,7 @@ export namespace compute_v1 {
 
     /**
      * compute.resourcePolicies.get
-     * @desc Retrieves all information of the specified resource policy.
+     * @desc Retrieves all information of the specified resource policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.resourcePolicies.get
      * @memberOf! ()
      *
@@ -58225,7 +58829,7 @@ export namespace compute_v1 {
 
     /**
      * compute.resourcePolicies.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.resourcePolicies.getIamPolicy
      * @memberOf! ()
      *
@@ -58299,7 +58903,7 @@ export namespace compute_v1 {
 
     /**
      * compute.resourcePolicies.insert
-     * @desc Creates a new resource policy.
+     * @desc Creates a new resource policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.resourcePolicies.insert
      * @memberOf! ()
      *
@@ -58376,7 +58980,7 @@ export namespace compute_v1 {
 
     /**
      * compute.resourcePolicies.list
-     * @desc A list all the resource policies that have been configured for the specified project in specified region.
+     * @desc A list all the resource policies that have been configured for the specified project in specified region. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.resourcePolicies.list
      * @memberOf! ()
      *
@@ -58455,7 +59059,7 @@ export namespace compute_v1 {
 
     /**
      * compute.resourcePolicies.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.resourcePolicies.setIamPolicy
      * @memberOf! ()
      *
@@ -58530,7 +59134,7 @@ export namespace compute_v1 {
 
     /**
      * compute.resourcePolicies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.resourcePolicies.testIamPermissions
      * @memberOf! ()
      *
@@ -58818,7 +59422,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.aggregatedList
-     * @desc Retrieves an aggregated list of routers.
+     * @desc Retrieves an aggregated list of routers. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -58962,7 +59566,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.delete
-     * @desc Deletes the specified Router resource.
+     * @desc Deletes the specified Router resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59094,7 +59698,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.get
-     * @desc Returns the specified Router resource. Gets a list of available routers by making a list() request.
+     * @desc Returns the specified Router resource. Gets a list of available routers by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59223,7 +59827,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.getNatMappingInfo
-     * @desc Retrieves runtime Nat mapping information of VM endpoints.
+     * @desc Retrieves runtime Nat mapping information of VM endpoints. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.routers.getNatMappingInfo
      * @memberOf! ()
      *
@@ -59310,7 +59914,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.getRouterStatus
-     * @desc Retrieves runtime information of the specified router.
+     * @desc Retrieves runtime information of the specified router. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59446,7 +60050,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.insert
-     * @desc Creates a Router resource in the specified project and region using the data included in the request.
+     * @desc Creates a Router resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59579,7 +60183,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.list
-     * @desc Retrieves a list of Router resources available to the specified project.
+     * @desc Retrieves a list of Router resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59723,7 +60327,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.patch
-     * @desc Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * @desc Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -59861,7 +60465,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.preview
-     * @desc Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
+     * @desc Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -60001,7 +60605,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routers.update
-     * @desc Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload.
+     * @desc Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -60408,7 +61012,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routes.delete
-     * @desc Deletes the specified Route resource.
+     * @desc Deletes the specified Route resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -60535,7 +61139,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routes.get
-     * @desc Returns the specified Route resource. Gets a list of available routes by making a list() request.
+     * @desc Returns the specified Route resource. Gets a list of available routes by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -60659,7 +61263,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routes.insert
-     * @desc Creates a Route resource in the specified project using the data included in the request.
+     * @desc Creates a Route resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -60787,7 +61391,7 @@ export namespace compute_v1 {
 
     /**
      * compute.routes.list
-     * @desc Retrieves the list of Route resources available to the specified project.
+     * @desc Retrieves the list of Route resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -61015,7 +61619,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.addRule
-     * @desc Inserts a rule into a security policy.
+     * @desc Inserts a rule into a security policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.addRule
      * @memberOf! ()
      *
@@ -61091,7 +61695,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.delete
-     * @desc Deletes the specified policy.
+     * @desc Deletes the specified policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.delete
      * @memberOf! ()
      *
@@ -61167,7 +61771,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.get
-     * @desc List all of the ordered rules present in a single specified policy.
+     * @desc List all of the ordered rules present in a single specified policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.get
      * @memberOf! ()
      *
@@ -61242,7 +61846,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.getRule
-     * @desc Gets a rule at the specified priority.
+     * @desc Gets a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.getRule
      * @memberOf! ()
      *
@@ -61318,7 +61922,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.insert
-     * @desc Creates a new policy in the specified project using the data included in the request.
+     * @desc Creates a new policy in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.insert
      * @memberOf! ()
      *
@@ -61393,7 +61997,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.list
-     * @desc List all the policies that have been configured for the specified project.
+     * @desc List all the policies that have been configured for the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.list
      * @memberOf! ()
      *
@@ -61470,7 +62074,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.patch
-     * @desc Patches the specified policy with the data included in the request.
+     * @desc Patches the specified policy with the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.patch
      * @memberOf! ()
      *
@@ -61547,7 +62151,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.patchRule
-     * @desc Patches a rule at the specified priority.
+     * @desc Patches a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.patchRule
      * @memberOf! ()
      *
@@ -61624,7 +62228,7 @@ export namespace compute_v1 {
 
     /**
      * compute.securityPolicies.removeRule
-     * @desc Deletes a rule at the specified priority.
+     * @desc Deletes a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.securityPolicies.removeRule
      * @memberOf! ()
      *
@@ -61904,7 +62508,7 @@ export namespace compute_v1 {
 
     /**
      * compute.snapshots.delete
-     * @desc Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot.  For more information, see Deleting snapshots.
+     * @desc Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot.  For more information, see Deleting snapshots. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -62032,7 +62636,7 @@ export namespace compute_v1 {
 
     /**
      * compute.snapshots.get
-     * @desc Returns the specified Snapshot resource. Gets a list of available snapshots by making a list() request.
+     * @desc Returns the specified Snapshot resource. Gets a list of available snapshots by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -62157,7 +62761,7 @@ export namespace compute_v1 {
 
     /**
      * compute.snapshots.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.snapshots.getIamPolicy
      * @memberOf! ()
      *
@@ -62230,7 +62834,7 @@ export namespace compute_v1 {
 
     /**
      * compute.snapshots.list
-     * @desc Retrieves the list of Snapshot resources contained within the specified project.
+     * @desc Retrieves the list of Snapshot resources contained within the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -62369,7 +62973,7 @@ export namespace compute_v1 {
 
     /**
      * compute.snapshots.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.snapshots.setIamPolicy
      * @memberOf! ()
      *
@@ -62443,7 +63047,7 @@ export namespace compute_v1 {
 
     /**
      * compute.snapshots.setLabels
-     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -62576,7 +63180,7 @@ export namespace compute_v1 {
 
     /**
      * compute.snapshots.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.snapshots.testIamPermissions
      * @memberOf! ()
      *
@@ -62804,7 +63408,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslCertificates.aggregatedList
-     * @desc Retrieves the list of all SslCertificate resources, regional and global, available to the specified project.
+     * @desc Retrieves the list of all SslCertificate resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.sslCertificates.aggregatedList
      * @memberOf! ()
      *
@@ -62891,7 +63495,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslCertificates.delete
-     * @desc Deletes the specified SslCertificate resource.
+     * @desc Deletes the specified SslCertificate resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -63020,7 +63624,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslCertificates.get
-     * @desc Returns the specified SslCertificate resource. Gets a list of available SSL certificates by making a list() request.
+     * @desc Returns the specified SslCertificate resource. Gets a list of available SSL certificates by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -63148,7 +63752,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslCertificates.insert
-     * @desc Creates a SslCertificate resource in the specified project using the data included in the request.
+     * @desc Creates a SslCertificate resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -63277,7 +63881,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslCertificates.list
-     * @desc Retrieves the list of SslCertificate resources available to the specified project.
+     * @desc Retrieves the list of SslCertificate resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -63538,7 +64142,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslPolicies.delete
-     * @desc Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
+     * @desc Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.sslPolicies.delete
      * @memberOf! ()
      *
@@ -63614,7 +64218,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslPolicies.get
-     * @desc Lists all of the ordered rules present in a single specified policy.
+     * @desc Lists all of the ordered rules present in a single specified policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.sslPolicies.get
      * @memberOf! ()
      *
@@ -63688,7 +64292,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslPolicies.insert
-     * @desc Returns the specified SSL policy resource. Gets a list of available SSL policies by making a list() request.
+     * @desc Returns the specified SSL policy resource. Gets a list of available SSL policies by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.sslPolicies.insert
      * @memberOf! ()
      *
@@ -63763,7 +64367,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslPolicies.list
-     * @desc Lists all the SSL policies that have been configured for the specified project.
+     * @desc Lists all the SSL policies that have been configured for the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.sslPolicies.list
      * @memberOf! ()
      *
@@ -63839,7 +64443,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslPolicies.listAvailableFeatures
-     * @desc Lists all features that can be specified in the SSL policy when using custom profile.
+     * @desc Lists all features that can be specified in the SSL policy when using custom profile. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.sslPolicies.listAvailableFeatures
      * @memberOf! ()
      *
@@ -63934,7 +64538,7 @@ export namespace compute_v1 {
 
     /**
      * compute.sslPolicies.patch
-     * @desc Patches the specified SSL policy with the data included in the request.
+     * @desc Patches the specified SSL policy with the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.sslPolicies.patch
      * @memberOf! ()
      *
@@ -64155,7 +64759,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.aggregatedList
-     * @desc Retrieves an aggregated list of subnetworks.
+     * @desc Retrieves an aggregated list of subnetworks. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -64299,7 +64903,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.delete
-     * @desc Deletes the specified subnetwork.
+     * @desc Deletes the specified subnetwork. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -64432,7 +65036,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.expandIpCidrRange
-     * @desc Expands the IP CIDR range of the subnetwork to a specified value.
+     * @desc Expands the IP CIDR range of the subnetwork to a specified value. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -64570,7 +65174,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.get
-     * @desc Returns the specified subnetwork. Gets a list of available subnetworks list() request.
+     * @desc Returns the specified subnetwork. Gets a list of available subnetworks list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -64701,7 +65305,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.subnetworks.getIamPolicy
      * @memberOf! ()
      *
@@ -64775,7 +65379,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.insert
-     * @desc Creates a subnetwork in the specified project using the data included in the request.
+     * @desc Creates a subnetwork in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -64909,7 +65513,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.list
-     * @desc Retrieves a list of subnetworks available to the specified project.
+     * @desc Retrieves a list of subnetworks available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -65053,7 +65657,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.listUsable
-     * @desc Retrieves an aggregated list of all usable subnetworks in the project. The list contains all of the subnetworks in the project and the subnetworks that were shared by a Shared VPC host project.
+     * @desc Retrieves an aggregated list of all usable subnetworks in the project. The list contains all of the subnetworks in the project and the subnetworks that were shared by a Shared VPC host project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.subnetworks.listUsable
      * @memberOf! ()
      *
@@ -65140,11 +65744,12 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.patch
-     * @desc Patches the specified subnetwork with the data included in the request. Only certain fields can up updated with a patch request as indicated in the field descriptions. You must specify the current fingeprint of the subnetwork resource being patched.
+     * @desc Patches the specified subnetwork with the data included in the request. Only certain fields can up updated with a patch request as indicated in the field descriptions. You must specify the current fingeprint of the subnetwork resource being patched. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.subnetworks.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.drainTimeoutSeconds The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -65218,7 +65823,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.subnetworks.setIamPolicy
      * @memberOf! ()
      *
@@ -65293,7 +65898,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.setPrivateIpGoogleAccess
-     * @desc Set whether VMs in this subnet can access Google services without assigning external IP addresses through Private Google Access.
+     * @desc Set whether VMs in this subnet can access Google services without assigning external IP addresses through Private Google Access. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -65433,7 +66038,7 @@ export namespace compute_v1 {
 
     /**
      * compute.subnetworks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.subnetworks.testIamPermissions
      * @memberOf! ()
      *
@@ -65725,6 +66330,10 @@ export namespace compute_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
+     */
+    drainTimeoutSeconds?: number;
+    /**
      * Project ID for this request.
      */
     project?: string;
@@ -65834,7 +66443,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpProxies.aggregatedList
-     * @desc Retrieves the list of all TargetHttpProxy resources, regional and global, available to the specified project.
+     * @desc Retrieves the list of all TargetHttpProxy resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.targetHttpProxies.aggregatedList
      * @memberOf! ()
      *
@@ -65921,7 +66530,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpProxies.delete
-     * @desc Deletes the specified TargetHttpProxy resource.
+     * @desc Deletes the specified TargetHttpProxy resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -66050,7 +66659,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpProxies.get
-     * @desc Returns the specified TargetHttpProxy resource. Gets a list of available target HTTP proxies by making a list() request.
+     * @desc Returns the specified TargetHttpProxy resource. Gets a list of available target HTTP proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -66178,7 +66787,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpProxies.insert
-     * @desc Creates a TargetHttpProxy resource in the specified project using the data included in the request.
+     * @desc Creates a TargetHttpProxy resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -66308,7 +66917,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpProxies.list
-     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project.
+     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -66449,7 +67058,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpProxies.setUrlMap
-     * @desc Changes the URL map for TargetHttpProxy.
+     * @desc Changes the URL map for TargetHttpProxy. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -66729,7 +67338,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.aggregatedList
-     * @desc Retrieves the list of all TargetHttpsProxy resources, regional and global, available to the specified project.
+     * @desc Retrieves the list of all TargetHttpsProxy resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.targetHttpsProxies.aggregatedList
      * @memberOf! ()
      *
@@ -66816,7 +67425,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.delete
-     * @desc Deletes the specified TargetHttpsProxy resource.
+     * @desc Deletes the specified TargetHttpsProxy resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -66945,7 +67554,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.get
-     * @desc Returns the specified TargetHttpsProxy resource. Gets a list of available target HTTPS proxies by making a list() request.
+     * @desc Returns the specified TargetHttpsProxy resource. Gets a list of available target HTTPS proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -67073,7 +67682,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.insert
-     * @desc Creates a TargetHttpsProxy resource in the specified project using the data included in the request.
+     * @desc Creates a TargetHttpsProxy resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -67203,7 +67812,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.list
-     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project.
+     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -67346,7 +67955,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.setQuicOverride
-     * @desc Sets the QUIC override policy for TargetHttpsProxy.
+     * @desc Sets the QUIC override policy for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.targetHttpsProxies.setQuicOverride
      * @memberOf! ()
      *
@@ -67423,7 +68032,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.setSslCertificates
-     * @desc Replaces SslCertificates for TargetHttpsProxy.
+     * @desc Replaces SslCertificates for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -67557,7 +68166,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.setSslPolicy
-     * @desc Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the HTTPS proxy load balancer. They do not affect the connection between the load balancer and the backends.
+     * @desc Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the HTTPS proxy load balancer. They do not affect the connection between the load balancer and the backends. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.targetHttpsProxies.setSslPolicy
      * @memberOf! ()
      *
@@ -67634,7 +68243,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetHttpsProxies.setUrlMap
-     * @desc Changes the URL map for TargetHttpsProxy.
+     * @desc Changes the URL map for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -67989,7 +68598,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetInstances.aggregatedList
-     * @desc Retrieves an aggregated list of target instances.
+     * @desc Retrieves an aggregated list of target instances. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -68139,7 +68748,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetInstances.delete
-     * @desc Deletes the specified TargetInstance resource.
+     * @desc Deletes the specified TargetInstance resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -68272,7 +68881,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetInstances.get
-     * @desc Returns the specified TargetInstance resource. Gets a list of available target instances by making a list() request.
+     * @desc Returns the specified TargetInstance resource. Gets a list of available target instances by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -68404,7 +69013,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetInstances.insert
-     * @desc Creates a TargetInstance resource in the specified project and zone using the data included in the request.
+     * @desc Creates a TargetInstance resource in the specified project and zone using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -68538,7 +69147,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetInstances.list
-     * @desc Retrieves a list of TargetInstance resources available to the specified project and zone.
+     * @desc Retrieves a list of TargetInstance resources available to the specified project and zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -68820,7 +69429,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.addHealthCheck
-     * @desc Adds health check URLs to a target pool.
+     * @desc Adds health check URLs to a target pool. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -68958,7 +69567,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.addInstance
-     * @desc Adds an instance to a target pool.
+     * @desc Adds an instance to a target pool. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -69096,7 +69705,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.aggregatedList
-     * @desc Retrieves an aggregated list of target pools.
+     * @desc Retrieves an aggregated list of target pools. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -69240,7 +69849,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.delete
-     * @desc Deletes the specified target pool.
+     * @desc Deletes the specified target pool. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -69373,7 +69982,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.get
-     * @desc Returns the specified target pool. Gets a list of available target pools by making a list() request.
+     * @desc Returns the specified target pool. Gets a list of available target pools by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -69504,7 +70113,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.getHealth
-     * @desc Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
+     * @desc Gets the most recent health check results for each IP for the instance that is referenced by the given target pool. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -69645,7 +70254,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.insert
-     * @desc Creates a target pool in the specified project and region using the data included in the request.
+     * @desc Creates a target pool in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -69779,7 +70388,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.list
-     * @desc Retrieves a list of target pools available to the specified project and region.
+     * @desc Retrieves a list of target pools available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -69923,7 +70532,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.removeHealthCheck
-     * @desc Removes health check URL from a target pool.
+     * @desc Removes health check URL from a target pool. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -70061,7 +70670,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.removeInstance
-     * @desc Removes instance URL from a target pool.
+     * @desc Removes instance URL from a target pool. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -70199,7 +70808,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetPools.setBackup
-     * @desc Changes a backup target pool's configurations.
+     * @desc Changes a backup target pool's configurations. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -70647,7 +71256,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetSslProxies.delete
-     * @desc Deletes the specified TargetSslProxy resource.
+     * @desc Deletes the specified TargetSslProxy resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -70776,7 +71385,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetSslProxies.get
-     * @desc Returns the specified TargetSslProxy resource. Gets a list of available target SSL proxies by making a list() request.
+     * @desc Returns the specified TargetSslProxy resource. Gets a list of available target SSL proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -70904,7 +71513,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetSslProxies.insert
-     * @desc Creates a TargetSslProxy resource in the specified project using the data included in the request.
+     * @desc Creates a TargetSslProxy resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -71033,7 +71642,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetSslProxies.list
-     * @desc Retrieves the list of TargetSslProxy resources available to the specified project.
+     * @desc Retrieves the list of TargetSslProxy resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -71173,7 +71782,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetSslProxies.setBackendService
-     * @desc Changes the BackendService for TargetSslProxy.
+     * @desc Changes the BackendService for TargetSslProxy. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -71307,7 +71916,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetSslProxies.setProxyHeader
-     * @desc Changes the ProxyHeaderType for TargetSslProxy.
+     * @desc Changes the ProxyHeaderType for TargetSslProxy. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -71441,7 +72050,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetSslProxies.setSslCertificates
-     * @desc Changes SslCertificates for TargetSslProxy.
+     * @desc Changes SslCertificates for TargetSslProxy. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -71575,7 +72184,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetSslProxies.setSslPolicy
-     * @desc Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the SSL proxy load balancer. They do not affect the connection between the load balancer and the backends.
+     * @desc Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the SSL proxy load balancer. They do not affect the connection between the load balancer and the backends. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.targetSslProxies.setSslPolicy
      * @memberOf! ()
      *
@@ -71845,7 +72454,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetTcpProxies.delete
-     * @desc Deletes the specified TargetTcpProxy resource.
+     * @desc Deletes the specified TargetTcpProxy resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -71974,7 +72583,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetTcpProxies.get
-     * @desc Returns the specified TargetTcpProxy resource. Gets a list of available target TCP proxies by making a list() request.
+     * @desc Returns the specified TargetTcpProxy resource. Gets a list of available target TCP proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -72102,7 +72711,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetTcpProxies.insert
-     * @desc Creates a TargetTcpProxy resource in the specified project using the data included in the request.
+     * @desc Creates a TargetTcpProxy resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -72231,7 +72840,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetTcpProxies.list
-     * @desc Retrieves the list of TargetTcpProxy resources available to the specified project.
+     * @desc Retrieves the list of TargetTcpProxy resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -72371,7 +72980,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetTcpProxies.setBackendService
-     * @desc Changes the BackendService for TargetTcpProxy.
+     * @desc Changes the BackendService for TargetTcpProxy. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -72505,7 +73114,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetTcpProxies.setProxyHeader
-     * @desc Changes the ProxyHeaderType for TargetTcpProxy.
+     * @desc Changes the ProxyHeaderType for TargetTcpProxy. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -72782,7 +73391,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetVpnGateways.aggregatedList
-     * @desc Retrieves an aggregated list of target VPN gateways.
+     * @desc Retrieves an aggregated list of target VPN gateways. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -72932,7 +73541,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetVpnGateways.delete
-     * @desc Deletes the specified target VPN gateway.
+     * @desc Deletes the specified target VPN gateway. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -73065,7 +73674,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetVpnGateways.get
-     * @desc Returns the specified target VPN gateway. Gets a list of available target VPN gateways by making a list() request.
+     * @desc Returns the specified target VPN gateway. Gets a list of available target VPN gateways by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -73197,7 +73806,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetVpnGateways.insert
-     * @desc Creates a target VPN gateway in the specified project and region using the data included in the request.
+     * @desc Creates a target VPN gateway in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -73331,7 +73940,7 @@ export namespace compute_v1 {
 
     /**
      * compute.targetVpnGateways.list
-     * @desc Retrieves a list of target VPN gateways available to the specified project and region.
+     * @desc Retrieves a list of target VPN gateways available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -73615,7 +74224,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.aggregatedList
-     * @desc Retrieves the list of all UrlMap resources, regional and global, available to the specified project.
+     * @desc Retrieves the list of all UrlMap resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.urlMaps.aggregatedList
      * @memberOf! ()
      *
@@ -73696,7 +74305,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.delete
-     * @desc Deletes the specified UrlMap resource.
+     * @desc Deletes the specified UrlMap resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -73823,7 +74432,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.get
-     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request.
+     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -73947,7 +74556,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.insert
-     * @desc Creates a UrlMap resource in the specified project using the data included in the request.
+     * @desc Creates a UrlMap resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -74075,7 +74684,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.invalidateCache
-     * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap.
+     * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -74209,7 +74818,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.list
-     * @desc Retrieves the list of UrlMap resources available to the specified project.
+     * @desc Retrieves the list of UrlMap resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -74348,7 +74957,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.patch
-     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -74481,7 +75090,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.update
-     * @desc Updates the specified UrlMap resource with the data included in the request.
+     * @desc Updates the specified UrlMap resource with the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -74614,7 +75223,7 @@ export namespace compute_v1 {
 
     /**
      * compute.urlMaps.validate
-     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
+     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -74960,7 +75569,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnGateways.aggregatedList
-     * @desc Retrieves an aggregated list of VPN gateways.
+     * @desc Retrieves an aggregated list of VPN gateways. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.vpnGateways.aggregatedList
      * @memberOf! ()
      *
@@ -75041,7 +75650,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnGateways.delete
-     * @desc Deletes the specified VPN gateway.
+     * @desc Deletes the specified VPN gateway. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.vpnGateways.delete
      * @memberOf! ()
      *
@@ -75118,7 +75727,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnGateways.get
-     * @desc Returns the specified VPN gateway. Gets a list of available VPN gateways by making a list() request.
+     * @desc Returns the specified VPN gateway. Gets a list of available VPN gateways by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.vpnGateways.get
      * @memberOf! ()
      *
@@ -75193,7 +75802,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnGateways.getStatus
-     * @desc Returns the status for the specified VPN gateway.
+     * @desc Returns the status for the specified VPN gateway. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.vpnGateways.getStatus
      * @memberOf! ()
      *
@@ -75278,7 +75887,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnGateways.insert
-     * @desc Creates a VPN gateway in the specified project and region using the data included in the request.
+     * @desc Creates a VPN gateway in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.vpnGateways.insert
      * @memberOf! ()
      *
@@ -75355,7 +75964,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnGateways.list
-     * @desc Retrieves a list of VPN gateways available to the specified project and region.
+     * @desc Retrieves a list of VPN gateways available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.vpnGateways.list
      * @memberOf! ()
      *
@@ -75433,7 +76042,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnGateways.setLabels
-     * @desc Sets the labels on a VpnGateway. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on a VpnGateway. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.vpnGateways.setLabels
      * @memberOf! ()
      *
@@ -75511,7 +76120,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnGateways.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
      * @alias compute.vpnGateways.testIamPermissions
      * @memberOf! ()
      *
@@ -75801,7 +76410,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnTunnels.aggregatedList
-     * @desc Retrieves an aggregated list of VPN tunnels.
+     * @desc Retrieves an aggregated list of VPN tunnels. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -75945,7 +76554,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnTunnels.delete
-     * @desc Deletes the specified VpnTunnel resource.
+     * @desc Deletes the specified VpnTunnel resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -76078,7 +76687,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnTunnels.get
-     * @desc Returns the specified VpnTunnel resource. Gets a list of available VPN tunnels by making a list() request.
+     * @desc Returns the specified VpnTunnel resource. Gets a list of available VPN tunnels by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -76209,7 +76818,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnTunnels.insert
-     * @desc Creates a VpnTunnel resource in the specified project and region using the data included in the request.
+     * @desc Creates a VpnTunnel resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -76343,7 +76952,7 @@ export namespace compute_v1 {
 
     /**
      * compute.vpnTunnels.list
-     * @desc Retrieves a list of VpnTunnel resources contained in the specified project and region.
+     * @desc Retrieves a list of VpnTunnel resources contained in the specified project and region. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -76622,7 +77231,7 @@ export namespace compute_v1 {
 
     /**
      * compute.zoneOperations.delete
-     * @desc Deletes the specified zone-specific Operations resource.
+     * @desc Deletes the specified zone-specific Operations resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -76749,7 +77358,7 @@ export namespace compute_v1 {
 
     /**
      * compute.zoneOperations.get
-     * @desc Retrieves the specified zone-specific Operations resource.
+     * @desc Retrieves the specified zone-specific Operations resource. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -76881,7 +77490,7 @@ export namespace compute_v1 {
 
     /**
      * compute.zoneOperations.list
-     * @desc Retrieves a list of Operation resources contained within the specified zone.
+     * @desc Retrieves a list of Operation resources contained within the specified zone. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -77105,7 +77714,7 @@ export namespace compute_v1 {
 
     /**
      * compute.zones.get
-     * @desc Returns the specified Zone resource. Gets a list of available zones by making a list() request.
+     * @desc Returns the specified Zone resource. Gets a list of available zones by making a list() request. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -77229,7 +77838,7 @@ export namespace compute_v1 {
 
     /**
      * compute.zones.list
-     * @desc Retrieves the list of Zone resources available to the specified project.
+     * @desc Retrieves the list of Zone resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

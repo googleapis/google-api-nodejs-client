@@ -187,19 +187,6 @@ export namespace accesscontextmanager_v1beta {
     conditions?: Schema$Condition[];
   }
   /**
-   * Alpha. Specifies which services are granted access via this Bridge Service Perimeter.
-   */
-  export interface Schema$BridgeServiceRestriction {
-    /**
-     * The list of APIs usable through the Bridge Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
-     */
-    allowedServices?: string[] | null;
-    /**
-     * Whether to restrict the set of APIs callable through the Bridge Service Perimeter.
-     */
-    enableRestriction?: boolean | null;
-  }
-  /**
    * A condition necessary for an `AccessLevel` to be granted. The Condition is an AND over its fields. So a Condition is true if: 1) the request IP is from one of the listed subnetworks AND 2) the originating device complies with the listed device policy AND 3) all listed access levels are granted AND 4) the request was sent at a time allowed by the DateTimeRestriction.
    */
   export interface Schema$Condition {
@@ -256,19 +243,6 @@ export namespace accesscontextmanager_v1beta {
      * Whether or not screenlock is required for the DevicePolicy to be true. Defaults to `false`.
      */
     requireScreenlock?: boolean | null;
-  }
-  /**
-   * Alpha. Specifies how Access Levels are to be used for accessing the Service Perimeter.
-   */
-  export interface Schema$IngressServiceRestriction {
-    /**
-     * The list of APIs usable with a valid Access Level. Must be empty unless &#39;enable_restriction&#39; is True.
-     */
-    allowedServices?: string[] | null;
-    /**
-     * Whether to restrict the set of APIs callable outside the Service Perimeter via Access Levels.
-     */
-    enableRestriction?: boolean | null;
   }
   /**
    * A response to `ListAccessLevelsRequest`.
@@ -347,7 +321,7 @@ export namespace accesscontextmanager_v1beta {
      */
     osType?: string | null;
     /**
-     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to Dasher domain policies, and the caller has permission to call the API targeted by the request.
+     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to domain policies, and the caller has permission to call the API targeted by the request.
      */
     requireVerifiedChromeOs?: boolean | null;
   }
@@ -392,14 +366,6 @@ export namespace accesscontextmanager_v1beta {
      * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via GCP calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
      */
     accessLevels?: string[] | null;
-    /**
-     * Alpha. Configuration for what services are accessible via the Bridge Perimeter. Must be empty for non-Bridge Perimeters.
-     */
-    bridgeServiceRestriction?: Schema$BridgeServiceRestriction;
-    /**
-     * Alpha. Configuration for which services may be used with Access Levels.
-     */
-    ingressServiceRestriction?: Schema$IngressServiceRestriction;
     /**
      * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
      */

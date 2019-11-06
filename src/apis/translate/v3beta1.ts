@@ -130,11 +130,11 @@ export namespace translate_v3beta1 {
      */
     inputConfigs?: Schema$InputConfig[];
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The models to use for translation. Map&#39;s key is target language code. Map&#39;s value is model name. Value can be a built-in general model, or an AutoML Translation model.  The value format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
+     * Optional. The models to use for translation. Map&#39;s key is target language code. Map&#39;s value is model name. Value can be a built-in general model, or an AutoML Translation model.  The value format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
      */
     models?: {[key: string]: string} | null;
     /**
@@ -176,7 +176,7 @@ export namespace translate_v3beta1 {
      */
     content?: string | null;
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -184,7 +184,7 @@ export namespace translate_v3beta1 {
      */
     mimeType?: string | null;
     /**
-     * Optional. The language detection model to be used.  Format: `projects/{project-id}/locations/{location-id}/models/language-detection/{model-id}`  Only one language detection model is currently supported: `projects/{project-id}/locations/{location-id}/models/language-detection/default`.  If not specified, the default model is used.
+     * Optional. The language detection model to be used.  Format: `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/{model-id}`  Only one language detection model is currently supported: `projects/{project-number-or-id}/locations/{location-id}/models/language-detection/default`.  If not specified, the default model is used.
      */
     model?: string | null;
   }
@@ -244,7 +244,7 @@ export namespace translate_v3beta1 {
      */
     languagePair?: Schema$LanguageCodePair;
     /**
-     * Required. The resource name of the glossary. Glossary names have the form `projects/{project-id}/locations/{location-id}/glossaries/{glossary-id}`.
+     * Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.
      */
     name?: string | null;
     /**
@@ -467,7 +467,7 @@ export namespace translate_v3beta1 {
      */
     glossaryConfig?: Schema$TranslateTextGlossaryConfig;
     /**
-     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://goo.gl/xmQnxf for more information on and examples of labels.
+     * Optional. The labels with user-defined metadata for the request.  Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.  See https://cloud.google.com/translate/docs/labels for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -475,7 +475,7 @@ export namespace translate_v3beta1 {
      */
     mimeType?: string | null;
     /**
-     * Optional. The `model` type requested for this translation.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-id}/locations/global/models/general/nmt`.  If missing, the system decides which google base model to use.
+     * Optional. The `model` type requested for this translation.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id}/locations/global/models/general/nmt`.  If missing, the system decides which google base model to use.
      */
     model?: string | null;
     /**
@@ -510,7 +510,7 @@ export namespace translate_v3beta1 {
      */
     glossaryConfig?: Schema$TranslateTextGlossaryConfig;
     /**
-     * Only present when `model` is present in the request. This is same as `model` provided in the request.
+     * Only present when `model` is present in the request. `model` here is normalized to have project number.  For example: If the `model` requested in TranslationTextRequest is `projects/{project-id}/locations/{location-id}/models/general/nmt` then `model` here would be normalized to `projects/{project-number}/locations/{location-id}/models/general/nmt`.
      */
     model?: string | null;
     /**
@@ -543,7 +543,7 @@ export namespace translate_v3beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}` or `projects/{project-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().DetectLanguageRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -623,8 +623,8 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.displayLanguageCode Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
-     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -700,7 +700,7 @@ export namespace translate_v3beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().TranslateTextRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -781,7 +781,7 @@ export namespace translate_v3beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}` or `projects/{project-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -802,11 +802,11 @@ export namespace translate_v3beta1 {
      */
     displayLanguageCode?: string;
     /**
-     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
      */
     model?: string;
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
   }
@@ -818,7 +818,7 @@ export namespace translate_v3beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -849,7 +849,7 @@ export namespace translate_v3beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().BatchTranslateTextRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -924,7 +924,7 @@ export namespace translate_v3beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}` or `projects/{project-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().DetectLanguageRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1073,8 +1073,8 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.displayLanguageCode Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
-     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string=} params.model Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1229,7 +1229,7 @@ export namespace translate_v3beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      * @param {().TranslateTextRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1310,7 +1310,7 @@ export namespace translate_v3beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -1327,7 +1327,7 @@ export namespace translate_v3beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}/locations/{location-id}` or `projects/{project-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 
@@ -1360,11 +1360,11 @@ export namespace translate_v3beta1 {
      */
     displayLanguageCode?: string;
     /**
-     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * Optional. Get supported languages of this model.  The format depends on model type:  - AutoML Translation models:   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`  - General (built-in) models:   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`   Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
      */
     model?: string;
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for AutoML models.  Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
   }
@@ -1400,7 +1400,7 @@ export namespace translate_v3beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-id}` or `projects/{project-id}/locations/{location-id}`.  For global calls, use `projects/{project-id}/locations/global` or `projects/{project-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
      */
     parent?: string;
 

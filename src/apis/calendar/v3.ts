@@ -442,7 +442,7 @@ export namespace calendar_v3 {
   }
   export interface Schema$ConferenceSolutionKey {
     /**
-     * The conference solution type. If a client encounters an unfamiliar or empty type, it should still be able to display the entry points. However, it should disallow modifications. The possible values are:   - &quot;eventHangout&quot; for Hangouts for consumers (http://hangouts.google.com) - &quot;eventNamedHangout&quot; for classic Hangouts for G Suite users (http://hangouts.google.com) - &quot;hangoutsMeet&quot; for Hangouts Meet (http://meet.google.com)
+     * The conference solution type. If a client encounters an unfamiliar or empty type, it should still be able to display the entry points. However, it should disallow modifications. The possible values are:   - &quot;eventHangout&quot; for Hangouts for consumers (http://hangouts.google.com) - &quot;eventNamedHangout&quot; for classic Hangouts for G Suite users (http://hangouts.google.com) - &quot;hangoutsMeet&quot; for Hangouts Meet (http://meet.google.com) - &quot;addOn&quot; for 3P conference providers
      */
     type?: string | null;
   }

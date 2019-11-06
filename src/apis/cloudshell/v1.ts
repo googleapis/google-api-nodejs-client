@@ -134,7 +134,7 @@ export namespace cloudshell_v1 {
      */
     dockerImage?: string | null;
     /**
-     * Output only. The environment&#39;s identifier, which is always &quot;default&quot;.
+     * Output only. The environment&#39;s identifier, unique among the user&#39;s environments.
      */
     id?: string | null;
     /**
@@ -145,6 +145,10 @@ export namespace cloudshell_v1 {
      * Output only. Public keys associated with the environment. Clients can connect to this environment via SSH only if they possess a private key corresponding to at least one of these public keys. Keys can be added to or removed from the environment using the CreatePublicKey and DeletePublicKey methods.
      */
     publicKeys?: Schema$PublicKey[];
+    /**
+     * Indicates the size of the backing VM running the environment.  If set to something other than DEFAULT, it will be reverted to the default VM size after vm_size_expire_time.
+     */
+    size?: string | null;
     /**
      * Output only. Host to which clients can connect to initiate SSH sessions with the environment.
      */
@@ -162,9 +166,17 @@ export namespace cloudshell_v1 {
      */
     state?: string | null;
     /**
+     * Output only. The time when the Environment will expire back to the default VM size.
+     */
+    vmSizeExpireTime?: string | null;
+    /**
      * Output only. Host to which clients can connect to initiate HTTPS or WSS connections with the environment.
      */
     webHost?: string | null;
+    /**
+     * Output only. Ports to which clients can connect to initiate HTTPS or WSS connections with the environment.
+     */
+    webPorts?: number[] | null;
   }
   /**
    * The response message for Operations.ListOperations.
