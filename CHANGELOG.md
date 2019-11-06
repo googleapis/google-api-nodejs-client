@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [45.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v45.0.0...v45.0.1) (2019-11-06)
+
+
+### Bug Fixes
+
+* **docs:** change JSDoc from `.resource` to `.requestBody` ([#1864](https://www.github.com/googleapis/google-api-nodejs-client/issues/1864)) ([8803e77](https://www.github.com/googleapis/google-api-nodejs-client/commit/8803e7700a0799c484defc776afd04ef26d50e91))
+
 ## [45.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v44.0.0...v45.0.0) (2019-11-06)
 
 
