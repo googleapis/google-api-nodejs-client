@@ -4,6 +4,23 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [45.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v44.0.0...v45.0.0) (2019-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* run the generator (#1873)
+
+### Features
+
+* run the generator ([#1873](https://www.github.com/googleapis/google-api-nodejs-client/issues/1873)) ([8e45b55](https://www.github.com/googleapis/google-api-nodejs-client/commit/8e45b55152874d4b4b93e1a29604ca03dc887d6e))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis to v44 ([#1854](https://www.github.com/googleapis/google-api-nodejs-client/issues/1854)) ([c9b253c](https://www.github.com/googleapis/google-api-nodejs-client/commit/c9b253cf5fad4b4ecdaeecd31e3041bf1e16427e))
+* **deps:** update dependency open to v7 ([#1858](https://www.github.com/googleapis/google-api-nodejs-client/issues/1858)) ([34c95dc](https://www.github.com/googleapis/google-api-nodejs-client/commit/34c95dc795ef316dd89b96f83e80579dbea1b4c3))
+
 ## [44.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v43.0.0...v44.0.0) (2019-10-12)
 
 
