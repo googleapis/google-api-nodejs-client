@@ -518,10 +518,14 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$DisableServiceRequest {
     /**
-     * The identity of consumer resource which service disablement will be applied to.  The Google Service Management implementation accepts the following forms: - &quot;project:&lt;project_id&gt;&quot;  Note: this is made compatible with google.api.servicecontrol.v1.Operation.consumer_id.
+     * Required. The identity of consumer resource which service disablement will be applied to.  The Google Service Management implementation accepts the following forms: - &quot;project:&lt;project_id&gt;&quot;  Note: this is made compatible with google.api.servicecontrol.v1.Operation.consumer_id.
      */
     consumerId?: string | null;
   }
+  /**
+   * Operation payload for DisableService method.
+   */
+  export interface Schema$DisableServiceResponse {}
   /**
    * `Documentation` provides the information for describing a service.  Example: &lt;pre&gt;&lt;code&gt;documentation:   summary: &gt;     The Google Calendar API gives access     to most calendar features.   pages:   - name: Overview     content: &amp;#40;== include google/foo/overview.md ==&amp;#41;   - name: Tutorial     content: &amp;#40;== include google/foo/tutorial.md ==&amp;#41;     subpages;     - name: Java       content: &amp;#40;== include google/foo/tutorial_java.md ==&amp;#41;   rules:   - selector: google.calendar.Calendar.Get     description: &gt;       ...   - selector: google.calendar.Calendar.Put     description: &gt;       ... &lt;/code&gt;&lt;/pre&gt; Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded.  Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided.  A number of constructs specific to the API platform are supported in documentation text.  In order to reference a proto element, the following notation can be used: &lt;pre&gt;&lt;code&gt;&amp;#91;fully.qualified.proto.name]&amp;#91;]&lt;/code&gt;&lt;/pre&gt; To override the display text used for the link, this can be used: &lt;pre&gt;&lt;code&gt;&amp;#91;display text]&amp;#91;fully.qualified.proto.name]&lt;/code&gt;&lt;/pre&gt; Text can be excluded from doc using the following notation: &lt;pre&gt;&lt;code&gt;&amp;#40;-- internal comment --&amp;#41;&lt;/code&gt;&lt;/pre&gt;  A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: &lt;pre&gt;&lt;code&gt;&amp;#40;== include path/to/file ==&amp;#41;&lt;/code&gt;&lt;/pre&gt; The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: &lt;pre&gt;&lt;code&gt;&amp;#40;== resource_for v1.shelves.books ==&amp;#41;&lt;/code&gt;&lt;/pre&gt; The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
    */
@@ -573,10 +577,14 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$EnableServiceRequest {
     /**
-     * The identity of consumer resource which service enablement will be applied to.  The Google Service Management implementation accepts the following forms: - &quot;project:&lt;project_id&gt;&quot;  Note: this is made compatible with google.api.servicecontrol.v1.Operation.consumer_id.
+     * Required. The identity of consumer resource which service enablement will be applied to.  The Google Service Management implementation accepts the following forms: - &quot;project:&lt;project_id&gt;&quot;  Note: this is made compatible with google.api.servicecontrol.v1.Operation.consumer_id.
      */
     consumerId?: string | null;
   }
+  /**
+   * Operation payload for EnableService method.
+   */
+  export interface Schema$EnableServiceResponse {}
   /**
    * `Endpoint` describes a network endpoint that serves a set of APIs. A service may expose any number of endpoints, and all endpoints share the same service configuration, such as quota configuration and monitoring configuration.  Example service configuration:      name: library-example.googleapis.com     endpoints:       # Below entry makes &#39;google.example.library.v1.Library&#39;       # API be served from endpoint address library-example.googleapis.com.       # It also allows HTTP OPTIONS calls to be passed to the backend, for       # it to decide whether the subsequent cross-origin request is       # allowed to proceed.     - name: library-example.googleapis.com       allow_cors: true
    */
@@ -728,11 +736,11 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$GenerateConfigReportRequest {
     /**
-     * Service configuration for which we want to generate the report. For this version of API, the supported types are google.api.servicemanagement.v1.ConfigRef, google.api.servicemanagement.v1.ConfigSource, and google.api.Service
+     * Required. Service configuration for which we want to generate the report. For this version of API, the supported types are google.api.servicemanagement.v1.ConfigRef, google.api.servicemanagement.v1.ConfigSource, and google.api.Service
      */
     newConfig?: {[key: string]: any} | null;
     /**
-     * Service configuration against which the comparison will be done. For this version of API, the supported types are google.api.servicemanagement.v1.ConfigRef, google.api.servicemanagement.v1.ConfigSource, and google.api.Service
+     * Optional. Service configuration against which the comparison will be done. For this version of API, the supported types are google.api.servicemanagement.v1.ConfigRef, google.api.servicemanagement.v1.ConfigSource, and google.api.Service
      */
     oldConfig?: {[key: string]: any} | null;
   }
@@ -1024,6 +1032,10 @@ export namespace servicemanagement_v1 {
      */
     metricKind?: string | null;
     /**
+     * Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here.
+     */
+    monitoredResourceTypes?: string[] | null;
+    /**
      * The resource name of the metric descriptor.
      */
     name?: string | null;
@@ -1049,7 +1061,7 @@ export namespace servicemanagement_v1 {
      */
     ingestDelay?: string | null;
     /**
-     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
+     * Deprecated. Must use the MetricDescriptor.launch_stage instead.
      */
     launchStage?: string | null;
     /**
@@ -1224,7 +1236,7 @@ export namespace servicemanagement_v1 {
     subpages?: Schema$Page[];
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt;             timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -1232,15 +1244,15 @@ export namespace servicemanagement_v1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
      */
     version?: number | null;
   }
@@ -1274,7 +1286,7 @@ export namespace servicemanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * Duration of this limit in textual notation. Example: &quot;100s&quot;, &quot;24h&quot;, &quot;1d&quot;. For duration longer than a day, only multiple of days is supported. We support only &quot;100s&quot; and &quot;1d&quot; for now. Additional support will be added in the future. &quot;0&quot; indicates indefinite duration.  Used by group-based quotas only.
+     * Duration of this limit in textual notation. Must be &quot;100s&quot; or &quot;1d&quot;.  Used by group-based quotas only.
      */
     duration?: string | null;
     /**
@@ -1319,7 +1331,7 @@ export namespace servicemanagement_v1 {
      */
     deleteServiceStrategy?: Schema$DeleteServiceStrategy;
     /**
-     * Optional unique identifier of this Rollout. Only lower case letters, digits  and &#39;-&#39; are allowed.  If not specified by client, the server will generate one. The generated id will have the form of &lt;date&gt;&lt;revision number&gt;, where &quot;date&quot; is the create date in ISO 8601 format.  &quot;revision number&quot; is a monotonically increasing positive number that is reset every day for each service. An example of the generated rollout_id is &#39;2016-02-16r1&#39;
+     * Optional. Unique identifier of this Rollout. Only lower case letters, digits  and &#39;-&#39; are allowed.  If not specified by client, the server will generate one. The generated id will have the form of &lt;date&gt;&lt;revision number&gt;, where &quot;date&quot; is the create date in ISO 8601 format.  &quot;revision number&quot; is a monotonically increasing positive number that is reset every day for each service. An example of the generated rollout_id is &#39;2016-02-16r1&#39;
      */
     rolloutId?: string | null;
     /**
@@ -1514,7 +1526,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$SubmitConfigSourceRequest {
     /**
-     * The source configuration for the service.
+     * Required. The source configuration for the service.
      */
     configSource?: Schema$ConfigSource;
     /**
@@ -1589,7 +1601,7 @@ export namespace servicemanagement_v1 {
     permissions?: string[] | null;
   }
   /**
-   * Strategy that specifies how clients of Google Service Controller want to send traffic to use different config versions. This is generally used by API proxy to split traffic based on your configured precentage for each config version.  One example of how to gradually rollout a new service configuration using this strategy: Day 1      Rollout {       id: &quot;example.googleapis.com/rollout_20160206&quot;       traffic_percent_strategy {         percentages: {           &quot;example.googleapis.com/20160201&quot;: 70.00           &quot;example.googleapis.com/20160206&quot;: 30.00         }       }     }  Day 2      Rollout {       id: &quot;example.googleapis.com/rollout_20160207&quot;       traffic_percent_strategy: {         percentages: {           &quot;example.googleapis.com/20160206&quot;: 100.00         }       }     }
+   * Strategy that specifies how clients of Google Service Controller want to send traffic to use different config versions. This is generally used by API proxy to split traffic based on your configured percentage for each config version.  One example of how to gradually rollout a new service configuration using this strategy: Day 1      Rollout {       id: &quot;example.googleapis.com/rollout_20160206&quot;       traffic_percent_strategy {         percentages: {           &quot;example.googleapis.com/20160201&quot;: 70.00           &quot;example.googleapis.com/20160206&quot;: 30.00         }       }     }  Day 2      Rollout {       id: &quot;example.googleapis.com/rollout_20160207&quot;       traffic_percent_strategy: {         percentages: {           &quot;example.googleapis.com/20160206&quot;: 100.00         }       }     }
    */
   export interface Schema$TrafficPercentStrategy {
     /**
@@ -1949,7 +1961,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2023,7 +2035,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service to disable. Specifying an unknown service name will cause the request to fail.
+     * @param {string} params.serviceName Required. Name of the service to disable. Specifying an unknown service name will cause the request to fail.
      * @param {().DisableServiceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2098,7 +2110,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service to enable. Specifying an unknown service name will cause the request to fail.
+     * @param {string} params.serviceName Required. Name of the service to enable. Specifying an unknown service name will cause the request to fail.
      * @param {().EnableServiceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2257,7 +2269,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName Required. The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2331,8 +2343,8 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.configId The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string=} params.configId Required. The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2551,7 +2563,7 @@ export namespace servicemanagement_v1 {
 
     /**
      * servicemanagement.services.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @alias servicemanagement.services.setIamPolicy
      * @memberOf! ()
      *
@@ -2713,7 +2725,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * @param {string} params.serviceName Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2800,7 +2812,7 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -2811,7 +2823,7 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the service to disable. Specifying an unknown service name will cause the request to fail.
+     * Required. Name of the service to disable. Specifying an unknown service name will cause the request to fail.
      */
     serviceName?: string;
 
@@ -2827,7 +2839,7 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the service to enable. Specifying an unknown service name will cause the request to fail.
+     * Required. Name of the service to enable. Specifying an unknown service name will cause the request to fail.
      */
     serviceName?: string;
 
@@ -2855,7 +2867,7 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -2867,11 +2879,11 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
+     * Required. The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
      */
     configId?: string;
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
     /**
@@ -2961,7 +2973,7 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -2979,7 +2991,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {().Service} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3053,8 +3065,8 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.configId The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.configId Required. The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3129,7 +3141,7 @@ export namespace servicemanagement_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      * @param {string=} params.pageToken The token of the page to retrieve.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3211,7 +3223,7 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {().SubmitConfigSourceRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3288,7 +3300,7 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -3305,11 +3317,11 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
+     * Required. The id of the service configuration resource.  This field must be specified for the server to return all fields, including `SourceInfo`.
      */
     configId?: string;
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
     /**
@@ -3333,7 +3345,7 @@ export namespace servicemanagement_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -3345,7 +3357,7 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -3437,7 +3449,7 @@ export namespace servicemanagement_v1 {
 
     /**
      * servicemanagement.services.consumers.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @alias servicemanagement.services.consumers.setIamPolicy
      * @memberOf! ()
      *
@@ -3659,7 +3671,7 @@ export namespace servicemanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.baseRolloutId Unimplemented. Do not use this feature until this comment is removed.  The rollout id that rollout to be created based on.  Rollout should be constructed based on current successful rollout, this field indicates the current successful rollout id that new rollout based on to construct, if current successful rollout changed when server receives the request, request will be rejected for safety.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {().Rollout} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3735,8 +3747,8 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.rolloutId The id of the rollout resource.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.rolloutId Required. The id of the rollout resource.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3808,10 +3820,10 @@ export namespace servicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * @param {string=} params.filter Required. Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
      * @param {integer=} params.pageSize The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100.
      * @param {string=} params.pageToken The token of the page to retrieve.
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3899,7 +3911,7 @@ export namespace servicemanagement_v1 {
      */
     baseRolloutId?: string;
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
 
@@ -3916,11 +3928,11 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The id of the rollout resource.
+     * Required. The id of the rollout resource.
      */
     rolloutId?: string;
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }
@@ -3932,7 +3944,7 @@ export namespace servicemanagement_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
+     * Required. Use `filter` to return subset of rollouts. The following filters are supported:   -- To limit the results to only those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'SUCCESS',      use filter='status=SUCCESS'   -- To limit the results to those in      [status](google.api.servicemanagement.v1.RolloutStatus) 'CANCELLED'      or 'FAILED', use filter='status=CANCELLED OR status=FAILED'
      */
     filter?: string;
     /**
@@ -3944,7 +3956,7 @@ export namespace servicemanagement_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      */
     serviceName?: string;
   }

@@ -366,11 +366,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CharacterMaskConfig {
     /**
-     * When masking a string, items in this list will be skipped when replacing. For example, if your string is 555-555-5555 and you ask us to skip `-` and mask 5 chars with * we would produce ***-*55-5555.
+     * When masking a string, items in this list will be skipped when replacing characters. For example, if the input string is `555-555-5555` and you instruct Cloud DLP to skip `-` and mask 5 characters with `*`, Cloud DLP returns `***-**5-5555`.
      */
     charactersToIgnore?: Schema$GooglePrivacyDlpV2CharsToIgnore[];
     /**
-     * Character to mask the sensitive values&amp;mdash;for example, &quot;*&quot; for an alphabetic string such as name, or &quot;0&quot; for a numeric string such as ZIP code or credit card number. String must have length 1. If not supplied, we will default to &quot;*&quot; for strings, 0 for digits.
+     * Character to use to mask the sensitive values&amp;mdash;for example, `*` for an alphabetic string such as a name, or `0` for a numeric string such as ZIP code or credit card number. This string must have a length of 1. If not supplied, this value defaults to `*` for strings, and `0` for digits.
      */
     maskingCharacter?: string | null;
     /**
@@ -378,7 +378,7 @@ export namespace dlp_v2 {
      */
     numberToMask?: number | null;
     /**
-     * Mask characters in reverse order. For example, if `masking_character` is &#39;0&#39;, number_to_mask is 14, and `reverse_order` is false, then 1234-5678-9012-3456 -&gt; 00000000000000-3456 If `masking_character` is &#39;*&#39;, `number_to_mask` is 3, and `reverse_order` is true, then 12345 -&gt; 12***
+     * Mask characters in reverse order. For example, if `masking_character` is `0`, `number_to_mask` is `14`, and `reverse_order` is `false`, then the input string `1234-5678-9012-3456` is masked as `00000000000000-3456`. If `masking_character` is `*`, `number_to_mask` is `3`, and `reverse_order` is `true`, then the string `12345` is masked as `12***`.
      */
     reverseOrder?: boolean | null;
   }
@@ -1279,7 +1279,7 @@ export namespace dlp_v2 {
      */
     includeQuote?: boolean | null;
     /**
-     * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/dlp/docs/infotypes-reference.  When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.  The special InfoType name &quot;ALL_BASIC&quot; can be used to trigger all detectors, but may change over time as new InfoTypes are added. If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference.
+     * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/dlp/docs/infotypes-reference.  When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.  If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference, otherwise a default list will be used, which may change over time.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
@@ -1754,19 +1754,6 @@ export namespace dlp_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * Request for the list of infoTypes.
-   */
-  export interface Schema$GooglePrivacyDlpV2ListInfoTypesRequest {
-    /**
-     * Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
-     */
-    filter?: string | null;
-    /**
-     * Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
-     */
-    languageCode?: string | null;
-  }
-  /**
    * Response to the ListInfoTypes request.
    */
   export interface Schema$GooglePrivacyDlpV2ListInfoTypesResponse {
@@ -2097,6 +2084,10 @@ export namespace dlp_v2 {
      * Configuration for the inspector.
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
+    /**
+     * The geographic location to process the request. Reserved for future extensions.
+     */
+    location?: string | null;
   }
   /**
    * Results of redacting an image.
@@ -2149,7 +2140,7 @@ export namespace dlp_v2 {
      */
     location?: string | null;
     /**
-     * Configuration for the re-identification of the content item. This field shares the same proto message type that is used for de-identification, however its usage here is for the reversal of the previous de-identification. Re-identification is performed by examining the transformations used to de-identify the items and executing the reverse. This requires that only reversible transformations be provided here. The reversible transformations are:   - `CryptoReplaceFfxFpeConfig`
+     * Configuration for the re-identification of the content item. This field shares the same proto message type that is used for de-identification, however its usage here is for the reversal of the previous de-identification. Re-identification is performed by examining the transformations used to de-identify the items and executing the reverse. This requires that only reversible transformations be provided here. The reversible transformations are:   - `CryptoDeterministicConfig`  - `CryptoReplaceFfxFpeConfig`
      */
     reidentifyConfig?: Schema$GooglePrivacyDlpV2DeidentifyConfig;
     /**
@@ -2430,7 +2421,7 @@ export namespace dlp_v2 {
      */
     startTime?: string | null;
     /**
-     * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore or BigQuery. If not specified for BigQuery, table last modification timestamp is checked against given time span. The valid data types of the timestamp field are: for BigQuery - timestamp, date, datetime; for Datastore - timestamp. Datastore entity will be scanned if the timestamp property does not exist or its value is empty or invalid.
+     * Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore and BigQuery.  For BigQuery: Required to filter out rows based on the given start and end times. If not specified and the table was modified between the given start and end times, the entire table will be scanned. The valid data types of the timestamp field are: `INTEGER`, `DATE`, `TIMESTAMP`, or `DATETIME` BigQuery column.  For Datastore. Valid data types of the timestamp field are: `TIMESTAMP`. Datastore entity will be scanned if the timestamp property does not exist or its value is empty or invalid.
      */
     timestampField?: Schema$GooglePrivacyDlpV2FieldId;
   }
@@ -2775,29 +2766,39 @@ export namespace dlp_v2 {
 
   export class Resource$Locations {
     context: APIRequestContext;
+    infoTypes: Resource$Locations$Infotypes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.infoTypes = new Resource$Locations$Infotypes(this.context);
+    }
+  }
+
+  export class Resource$Locations$Infotypes {
+    context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * dlp.locations.infoTypes
+     * dlp.locations.infoTypes.list
      * @desc Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/dlp/docs/infotypes-reference to learn more.
-     * @alias dlp.locations.infoTypes
+     * @alias dlp.locations.infoTypes.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     * @param {string=} params.languageCode Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      * @param {string} params.location The geographic location to list info types. Reserved for future extensions.
-     * @param {().GooglePrivacyDlpV2ListInfoTypesRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    infoTypes(
-      params?: Params$Resource$Locations$Infotypes,
+    list(
+      params?: Params$Resource$Locations$Infotypes$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
-    infoTypes(
-      params: Params$Resource$Locations$Infotypes,
+    list(
+      params: Params$Resource$Locations$Infotypes$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
@@ -2805,20 +2806,20 @@ export namespace dlp_v2 {
         Schema$GooglePrivacyDlpV2ListInfoTypesResponse
       >
     ): void;
-    infoTypes(
-      params: Params$Resource$Locations$Infotypes,
+    list(
+      params: Params$Resource$Locations$Infotypes$List,
       callback: BodyResponseCallback<
         Schema$GooglePrivacyDlpV2ListInfoTypesResponse
       >
     ): void;
-    infoTypes(
+    list(
       callback: BodyResponseCallback<
         Schema$GooglePrivacyDlpV2ListInfoTypesResponse
       >
     ): void;
-    infoTypes(
+    list(
       paramsOrCallback?:
-        | Params$Resource$Locations$Infotypes
+        | Params$Resource$Locations$Infotypes$List
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
       optionsOrCallback?:
         | MethodOptions
@@ -2828,12 +2829,12 @@ export namespace dlp_v2 {
       >
     ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Infotypes;
+        {}) as Params$Resource$Locations$Infotypes$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Locations$Infotypes;
+        params = {} as Params$Resource$Locations$Infotypes$List;
         options = {};
       }
 
@@ -2850,7 +2851,7 @@ export namespace dlp_v2 {
               /([^:]\/)\/+/g,
               '$1'
             ),
-            method: 'POST',
+            method: 'GET',
           },
           options
         ),
@@ -2872,7 +2873,7 @@ export namespace dlp_v2 {
     }
   }
 
-  export interface Params$Resource$Locations$Infotypes
+  export interface Params$Resource$Locations$Infotypes$List
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -2880,14 +2881,17 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     */
+    filter?: string;
+    /**
+     * Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     */
+    languageCode?: string;
+    /**
      * The geographic location to list info types. Reserved for future extensions.
      */
     location?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GooglePrivacyDlpV2ListInfoTypesRequest;
   }
 
   export class Resource$Organizations {
@@ -7091,9 +7095,11 @@ export namespace dlp_v2 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     content: Resource$Projects$Locations$Content;
+    image: Resource$Projects$Locations$Image;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.content = new Resource$Projects$Locations$Content(this.context);
+      this.image = new Resource$Projects$Locations$Image(this.context);
     }
   }
 
@@ -7458,6 +7464,127 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2ReidentifyContentRequest;
+  }
+
+  export class Resource$Projects$Locations$Image {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dlp.projects.locations.image.redact
+     * @desc Redacts potentially sensitive info from an image. This method has limits on input size, processing time, and output size. See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to learn more.  When no InfoTypes or CustomInfoTypes are specified in this request, the system will automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+     * @alias dlp.projects.locations.image.redact
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location The geographic location to process the request. Reserved for future extensions.
+     * @param {string} params.parent The parent resource name, for example projects/my-project-id.
+     * @param {().GooglePrivacyDlpV2RedactImageRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    redact(
+      params?: Params$Resource$Projects$Locations$Image$Redact,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>;
+    redact(
+      params: Params$Resource$Projects$Locations$Image$Redact,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
+    ): void;
+    redact(
+      params: Params$Resource$Projects$Locations$Image$Redact,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
+    ): void;
+    redact(
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
+    ): void;
+    redact(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Image$Redact
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
+    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Image$Redact;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Image$Redact;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/locations/{location}/image:redact'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'location'],
+        pathParams: ['location', 'parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Image$Redact
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The geographic location to process the request. Reserved for future extensions.
+     */
+    location?: string;
+    /**
+     * The parent resource name, for example projects/my-project-id.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2RedactImageRequest;
   }
 
   export class Resource$Projects$Storedinfotypes {

@@ -1249,7 +1249,7 @@ export namespace datastore_v1beta3 {
 
     /**
      * datastore.projects.reserveIds
-     * @desc Prevents the supplied keys' IDs from being auto-allocated by Cloud Datastore.
+     * @desc Prevents the supplied keys' IDs from being auto-allocated by Cloud Datastore. Used for imports only; other workloads are not supported.
      * @alias datastore.projects.reserveIds
      * @memberOf! ()
      *

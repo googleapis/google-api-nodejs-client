@@ -224,7 +224,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     billedImpressions?: Schema$MetricValue;
     /**
-     * The number of bids that won an impression.
+     * The number of bids that won the auction.
      */
     impressionsWon?: Schema$MetricValue;
     /**

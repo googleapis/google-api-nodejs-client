@@ -726,6 +726,14 @@ export namespace dataflow_v1b3 {
      * The worker pools. At least one &quot;harness&quot; worker pool must be specified in order for the job to have workers.
      */
     workerPools?: Schema$WorkerPool[];
+    /**
+     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1&quot;. Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane&#39;s region.
+     */
+    workerRegion?: string | null;
+    /**
+     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1-a&quot;. Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane&#39;s region is chosen based on available capacity.
+     */
+    workerZone?: string | null;
   }
   /**
    * A message describing the state of a particular execution stage.
@@ -1773,6 +1781,10 @@ export namespace dataflow_v1b3 {
      */
     bypassTempDirValidation?: boolean | null;
     /**
+     * Configuration for VM IPs.
+     */
+    ipConfiguration?: string | null;
+    /**
      * Optional. Name for the Cloud KMS key for the job. Key format is: projects/&lt;project&gt;/locations/&lt;location&gt;/keyRings/&lt;keyring&gt;/cryptoKeys/&lt;key&gt;
      */
     kmsKeyName?: string | null;
@@ -1805,11 +1817,15 @@ export namespace dataflow_v1b3 {
      */
     tempLocation?: string | null;
     /**
-     * Optional. Specifies whether worker pools should be started with private IP addresses. False by default.
+     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1&quot;. Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane&#39;s region.
      */
-    usePrivateIps?: boolean | null;
+    workerRegion?: string | null;
     /**
-     * The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline.
+     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. &quot;us-west1-a&quot;. Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane&#39;s region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence.
+     */
+    workerZone?: string | null;
+    /**
+     * The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.
      */
     zone?: string | null;
   }

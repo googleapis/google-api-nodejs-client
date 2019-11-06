@@ -122,7 +122,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$BatchCreateSessionsRequest {
     /**
-     * Required. The number of sessions to be created in this batch call. The API may return fewer than the requested number of sessions. If a specific number of sessions are desired, the client can make additional calls to BatchCreateSessions (adjusting session_count as necessary). The maximum allowed sessions are documented at https://goo.gl/hBUQED.
+     * Required. The number of sessions to be created in this batch call. The API may return fewer than the requested number of sessions. If a specific number of sessions are desired, the client can make additional calls to BatchCreateSessions (adjusting session_count as necessary).
      */
     sessionCount?: number | null;
     /**
@@ -427,7 +427,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Acceptable values are 0 and 1. If the value is 0, or the field is omitted, policy format version 1 will be returned.
+     * Optional. The policy format version to be returned. Acceptable values are 0, 1, and 3. If the value is 0, or the field is omitted, policy format version 1 will be returned.
      */
     requestedPolicyVersion?: number | null;
   }
@@ -597,7 +597,7 @@ export namespace spanner_v1 {
      */
     insertOrUpdate?: Schema$Write;
     /**
-     * Like insert, except that if the row already exists, it is deleted, and the column values provided are inserted instead. Unlike insert_or_update, this means any values not explicitly written become `NULL`.
+     * Like insert, except that if the row already exists, it is deleted, and the column values provided are inserted instead. Unlike insert_or_update, this means any values not explicitly written become `NULL`.  In an interleaved table, if you create the child table with the `ON DELETE CASCADE` annotation, then replacing a parent row also deletes the child rows. Otherwise, you must delete the child rows before you replace the parent row.
      */
     replace?: Schema$Write;
     /**
@@ -3335,7 +3335,7 @@ export namespace spanner_v1 {
 
     /**
      * spanner.projects.instances.databases.sessions.batchCreate
-     * @desc Creates multiple new sessions. If the requested number of sessions would cause the database to exceed its session limit, returns a RESOURCE_EXHAUSTED error.  This API can be used to initialize a session cache on the clients. See https://goo.gl/TgSFN2 for best practices on session cache management.
+     * @desc Creates multiple new sessions.  This API can be used to initialize a session cache on the clients. See https://goo.gl/TgSFN2 for best practices on session cache management.
      * @alias spanner.projects.instances.databases.sessions.batchCreate
      * @memberOf! ()
      *

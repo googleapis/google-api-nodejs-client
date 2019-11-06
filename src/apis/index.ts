@@ -115,6 +115,7 @@ import * as kgsearch from './kgsearch';
 import * as language from './language';
 import * as libraryagent from './libraryagent';
 import * as licensing from './licensing';
+import * as lifesciences from './lifesciences';
 import * as logging from './logging';
 import * as manufacturers from './manufacturers';
 import * as mirror from './mirror';
@@ -127,9 +128,11 @@ import * as people from './people';
 import * as playcustomapp from './playcustomapp';
 import * as plus from './plus';
 import * as plusDomains from './plusDomains';
+import * as policytroubleshooter from './policytroubleshooter';
 import * as poly from './poly';
 import * as proximitybeacon from './proximitybeacon';
 import * as pubsub from './pubsub';
+import * as recommender from './recommender';
 import * as redis from './redis';
 import * as remotebuildexecution from './remotebuildexecution';
 import * as replicapool from './replicapool';
@@ -152,6 +155,7 @@ import * as slides from './slides';
 import * as sourcerepo from './sourcerepo';
 import * as spanner from './spanner';
 import * as speech from './speech';
+import * as sql from './sql';
 import * as sqladmin from './sqladmin';
 import * as storage from './storage';
 import * as storagetransfer from './storagetransfer';
@@ -164,7 +168,6 @@ import * as texttospeech from './texttospeech';
 import * as toolresults from './toolresults';
 import * as tpu from './tpu';
 import * as translate from './translate';
-import * as urlshortener from './urlshortener';
 import * as vault from './vault';
 import * as verifiedaccess from './verifiedaccess';
 import * as videointelligence from './videointelligence';
@@ -284,6 +287,7 @@ export const APIS: APIList = {
   language: language.VERSIONS,
   libraryagent: libraryagent.VERSIONS,
   licensing: licensing.VERSIONS,
+  lifesciences: lifesciences.VERSIONS,
   logging: logging.VERSIONS,
   manufacturers: manufacturers.VERSIONS,
   mirror: mirror.VERSIONS,
@@ -296,9 +300,11 @@ export const APIS: APIList = {
   playcustomapp: playcustomapp.VERSIONS,
   plus: plus.VERSIONS,
   plusDomains: plusDomains.VERSIONS,
+  policytroubleshooter: policytroubleshooter.VERSIONS,
   poly: poly.VERSIONS,
   proximitybeacon: proximitybeacon.VERSIONS,
   pubsub: pubsub.VERSIONS,
+  recommender: recommender.VERSIONS,
   redis: redis.VERSIONS,
   remotebuildexecution: remotebuildexecution.VERSIONS,
   replicapool: replicapool.VERSIONS,
@@ -321,6 +327,7 @@ export const APIS: APIList = {
   sourcerepo: sourcerepo.VERSIONS,
   spanner: spanner.VERSIONS,
   speech: speech.VERSIONS,
+  sql: sql.VERSIONS,
   sqladmin: sqladmin.VERSIONS,
   storage: storage.VERSIONS,
   storagetransfer: storagetransfer.VERSIONS,
@@ -333,7 +340,6 @@ export const APIS: APIList = {
   toolresults: toolresults.VERSIONS,
   tpu: tpu.VERSIONS,
   translate: translate.VERSIONS,
-  urlshortener: urlshortener.VERSIONS,
   vault: vault.VERSIONS,
   verifiedaccess: verifiedaccess.VERSIONS,
   videointelligence: videointelligence.VERSIONS,
@@ -451,6 +457,7 @@ export class GeneratedAPIs {
   language = language.language;
   libraryagent = libraryagent.libraryagent;
   licensing = licensing.licensing;
+  lifesciences = lifesciences.lifesciences;
   logging = logging.logging;
   manufacturers = manufacturers.manufacturers;
   mirror = mirror.mirror;
@@ -463,9 +470,11 @@ export class GeneratedAPIs {
   playcustomapp = playcustomapp.playcustomapp;
   plus = plus.plus;
   plusDomains = plusDomains.plusDomains;
+  policytroubleshooter = policytroubleshooter.policytroubleshooter;
   poly = poly.poly;
   proximitybeacon = proximitybeacon.proximitybeacon;
   pubsub = pubsub.pubsub;
+  recommender = recommender.recommender;
   redis = redis.redis;
   remotebuildexecution = remotebuildexecution.remotebuildexecution;
   replicapool = replicapool.replicapool;
@@ -489,6 +498,7 @@ export class GeneratedAPIs {
   sourcerepo = sourcerepo.sourcerepo;
   spanner = spanner.spanner;
   speech = speech.speech;
+  sql = sql.sql;
   sqladmin = sqladmin.sqladmin;
   storage = storage.storage;
   storagetransfer = storagetransfer.storagetransfer;
@@ -501,7 +511,6 @@ export class GeneratedAPIs {
   toolresults = toolresults.toolresults;
   tpu = tpu.tpu;
   translate = translate.translate;
-  urlshortener = urlshortener.urlshortener;
   vault = vault.vault;
   verifiedaccess = verifiedaccess.verifiedaccess;
   videointelligence = videointelligence.videointelligence;

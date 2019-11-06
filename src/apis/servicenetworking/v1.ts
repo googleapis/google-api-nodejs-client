@@ -818,6 +818,10 @@ export namespace servicenetworking_v1 {
      */
     metricKind?: string | null;
     /**
+     * Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here.
+     */
+    monitoredResourceTypes?: string[] | null;
+    /**
      * The resource name of the metric descriptor.
      */
     name?: string | null;
@@ -843,7 +847,7 @@ export namespace servicenetworking_v1 {
      */
     ingestDelay?: string | null;
     /**
-     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
+     * Deprecated. Must use the MetricDescriptor.launch_stage instead.
      */
     launchStage?: string | null;
     /**

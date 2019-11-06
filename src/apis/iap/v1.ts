@@ -118,6 +118,32 @@ export namespace iap_v1 {
   }
 
   /**
+   * Access related settings for IAP protected apps.
+   */
+  export interface Schema$AccessSettings {
+    /**
+     * Configuration to allow cross-origin requests via IAP.
+     */
+    corsSettings?: Schema$CorsSettings;
+    /**
+     * GCIP claims and endpoint configurations for 3p identity providers.
+     */
+    gcipSettings?: Schema$GcipSettings;
+    /**
+     * Settings to configure IAP&#39;s OAuth behavior.
+     */
+    oauthSettings?: Schema$OAuthSettings;
+  }
+  /**
+   * Wrapper over application specific settings for IAP.
+   */
+  export interface Schema$ApplicationSettings {
+    /**
+     * Settings to configure IAP&#39;s behavior for a CSM mesh.
+     */
+    csmSettings?: Schema$CsmSettings;
+  }
+  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -133,6 +159,24 @@ export namespace iap_v1 {
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Allows customers to configure HTTP request paths that&#39;ll allow HTTP OPTIONS call to bypass authentication and authorization.
+   */
+  export interface Schema$CorsSettings {
+    /**
+     * Configuration to allow HTTP OPTIONS calls to skip authorization. If undefined, IAP will not apply any special logic to OPTIONS requests.
+     */
+    allowHttpOptions?: boolean | null;
+  }
+  /**
+   * Configuration for RCTokens generated for CSM workloads protected by IAP. RCTokens are IAP generated JWTs that can be verified at the application. The RCToken is primarily used for ISTIO deployments, and can be scoped to a single mesh by configuring the audience field accordingly
+   */
+  export interface Schema$CsmSettings {
+    /**
+     * Audience claim set in the generated RCToken. This value is not validated by IAP.
+     */
+    rctokenAud?: string | null;
   }
   /**
    * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
@@ -156,6 +200,19 @@ export namespace iap_v1 {
     title?: string | null;
   }
   /**
+   * Allows customers to configure tenant_id for GCIP instance per-app.
+   */
+  export interface Schema$GcipSettings {
+    /**
+     * Login page URI associated with the GCIP tenants. Typically, all resources within the same project share the same login page, though it could be overridden at the sub resource level.
+     */
+    loginPageUri?: string | null;
+    /**
+     * GCIP tenant ids that are linked to the IAP resource. tenant_ids could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of _&lt;ProjectNumber&gt; to indicate authenticating with GCIP agent flow. If agent flow is used, tenant_ids should only contain one single element, while for tenant flow, tenant_ids can contain multiple elements.
+     */
+    tenantIds?: string[] | null;
+  }
+  /**
    * Request message for `GetIamPolicy` method.
    */
   export interface Schema$GetIamPolicyRequest {
@@ -174,19 +231,45 @@ export namespace iap_v1 {
     requestedPolicyVersion?: number | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` consists of a list of `bindings`. A `binding` binds a list of `members` to a `role`, where the members can be user accounts, Google groups, Google domains, and service accounts. A `role` is a named list of permissions defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-other-app@appspot.gserviceaccount.com       role: roles/owner     - members:       - user:sean@example.com       role: roles/viewer   For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * The IAP configurable settings.
+   */
+  export interface Schema$IapSettings {
+    /**
+     * Top level wrapper for all access related setting in IAP
+     */
+    accessSettings?: Schema$AccessSettings;
+    /**
+     * Top level wrapper for all application related settings in IAP
+     */
+    applicationSettings?: Schema$ApplicationSettings;
+    /**
+     * Required. The resource name of the IAP protected resource.
+     */
+    name?: string | null;
+  }
+  /**
+   * Configuration for OAuth login&amp;consent flow behavior.
+   */
+  export interface Schema$OAuthSettings {
+    /**
+     * Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google&#39;s login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token&#39;s hd claim matches this value since access behavior is managed by IAM policies.
+     */
+    loginHint?: string | null;
+  }
+  /**
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt;             timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of `members` to a `role`. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
      */
     version?: number | null;
   }
@@ -293,6 +376,80 @@ export namespace iap_v1 {
         createAPIRequest<Schema$Policy>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * iap.getIapSettings
+     * @desc Gets the IAP settings on a particular IAP protected resource.
+     * @alias iap.getIapSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name for which to retrieve the settings. Authorization: Requires the `getSettings` permission for the associated resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIapSettings(
+      params?: Params$Resource$V1$Getiapsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IapSettings>;
+    getIapSettings(
+      params: Params$Resource$V1$Getiapsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$IapSettings>,
+      callback: BodyResponseCallback<Schema$IapSettings>
+    ): void;
+    getIapSettings(
+      params: Params$Resource$V1$Getiapsettings,
+      callback: BodyResponseCallback<Schema$IapSettings>
+    ): void;
+    getIapSettings(callback: BodyResponseCallback<Schema$IapSettings>): void;
+    getIapSettings(
+      paramsOrCallback?:
+        | Params$Resource$V1$Getiapsettings
+        | BodyResponseCallback<Schema$IapSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IapSettings>,
+      callback?: BodyResponseCallback<Schema$IapSettings>
+    ): void | GaxiosPromise<Schema$IapSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Getiapsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Getiapsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:iapSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IapSettings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$IapSettings>(parameters);
       }
     }
 
@@ -449,6 +606,82 @@ export namespace iap_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * iap.updateIapSettings
+     * @desc Updates the IAP settings on a particular IAP protected resource. It replaces all fields unless the `update_mask` is set.
+     * @alias iap.updateIapSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the IAP protected resource.
+     * @param {string=} params.updateMask The field mask specifying which IAP settings should be updated. If omitted, the all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * @param {().IapSettings} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateIapSettings(
+      params?: Params$Resource$V1$Updateiapsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IapSettings>;
+    updateIapSettings(
+      params: Params$Resource$V1$Updateiapsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$IapSettings>,
+      callback: BodyResponseCallback<Schema$IapSettings>
+    ): void;
+    updateIapSettings(
+      params: Params$Resource$V1$Updateiapsettings,
+      callback: BodyResponseCallback<Schema$IapSettings>
+    ): void;
+    updateIapSettings(callback: BodyResponseCallback<Schema$IapSettings>): void;
+    updateIapSettings(
+      paramsOrCallback?:
+        | Params$Resource$V1$Updateiapsettings
+        | BodyResponseCallback<Schema$IapSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IapSettings>,
+      callback?: BodyResponseCallback<Schema$IapSettings>
+    ): void | GaxiosPromise<Schema$IapSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Updateiapsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Updateiapsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:iapSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IapSettings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$IapSettings>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$V1$Getiampolicy extends StandardParameters {
@@ -466,6 +699,18 @@ export namespace iap_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$V1$Getiapsettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name for which to retrieve the settings. Authorization: Requires the `getSettings` permission for the associated resource.
+     */
+    name?: string;
   }
   export interface Params$Resource$V1$Setiampolicy extends StandardParameters {
     /**
@@ -499,5 +744,26 @@ export namespace iap_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$V1$Updateiapsettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name of the IAP protected resource.
+     */
+    name?: string;
+    /**
+     * The field mask specifying which IAP settings should be updated. If omitted, the all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IapSettings;
   }
 }

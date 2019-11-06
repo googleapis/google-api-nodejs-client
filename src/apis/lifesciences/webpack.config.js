@@ -24,8 +24,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Urlshortener',
-    filename: 'urlshortener.min.js',
+    library: 'Lifesciences',
+    filename: 'lifesciences.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

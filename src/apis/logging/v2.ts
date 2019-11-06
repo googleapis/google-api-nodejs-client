@@ -308,7 +308,7 @@ export namespace logging_v2 {
    */
   export interface Schema$ListLogEntriesRequest {
     /**
-     * Optional. A filter that chooses which log entries to return. See Advanced Logs Filters. Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of the filter is 20000 characters.
+     * Optional. A filter that chooses which log entries to return. See Advanced Logs Queries. Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of the filter is 20000 characters.
      */
     filter?: string | null;
     /**
@@ -620,6 +620,10 @@ export namespace logging_v2 {
      */
     destination?: string | null;
     /**
+     * Do not use. This field is ignored.
+     */
+    endTime?: string | null;
+    /**
      * Optional. An advanced logs filter. The only exported log entries are those that are in the resource owning the sink and that match the filter. For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND severity&gt;=ERROR
      */
     filter?: string | null;
@@ -635,6 +639,10 @@ export namespace logging_v2 {
      * Deprecated. The log entry format to use for this sink&#39;s exported log entries. The v2 format is used by default and cannot be changed.
      */
     outputVersionFormat?: string | null;
+    /**
+     * Do not use. This field is ignored.
+     */
+    startTime?: string | null;
     /**
      * Output only. The last update timestamp of the sink.This field may not be present for older sinks.
      */
@@ -673,6 +681,10 @@ export namespace logging_v2 {
      */
     metricKind?: string | null;
     /**
+     * Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here.
+     */
+    monitoredResourceTypes?: string[] | null;
+    /**
      * The resource name of the metric descriptor.
      */
     name?: string | null;
@@ -698,7 +710,7 @@ export namespace logging_v2 {
      */
     ingestDelay?: string | null;
     /**
-     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
+     * Deprecated. Must use the MetricDescriptor.launch_stage instead.
      */
     launchStage?: string | null;
     /**
@@ -1439,7 +1451,7 @@ export namespace logging_v2 {
 
     /**
      * logging.billingAccounts.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
      * @alias logging.billingAccounts.logs.delete
      * @memberOf! ()
      *
@@ -3269,7 +3281,7 @@ export namespace logging_v2 {
 
     /**
      * logging.folders.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
      * @alias logging.folders.logs.delete
      * @memberOf! ()
      *
@@ -4006,7 +4018,7 @@ export namespace logging_v2 {
 
     /**
      * logging.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
      * @alias logging.logs.delete
      * @memberOf! ()
      *
@@ -4769,7 +4781,7 @@ export namespace logging_v2 {
 
     /**
      * logging.organizations.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
      * @alias logging.organizations.logs.delete
      * @memberOf! ()
      *
@@ -5977,7 +5989,7 @@ export namespace logging_v2 {
 
     /**
      * logging.projects.logs.delete
-     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+     * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.
      * @alias logging.projects.logs.delete
      * @memberOf! ()
      *

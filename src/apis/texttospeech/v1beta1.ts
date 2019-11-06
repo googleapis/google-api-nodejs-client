@@ -136,7 +136,7 @@ export namespace texttospeech_v1beta1 {
      */
     pitch?: number | null;
     /**
-     * The synthesis sample rate (in hertz) for this audio. Optional. When this is specified in SynthesizeSpeechRequest, if this is different from the voice&#39;s natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality), unless the specified sample rate is not supported for the encoding chosen, in which case it will fail the request and return google.rpc.Code.INVALID_ARGUMENT.
+     * Optional. The synthesis sample rate (in hertz) for this audio. When this is specified in SynthesizeSpeechRequest, if this is different from the voice&#39;s natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality), unless the specified sample rate is not supported for the encoding chosen, in which case it will fail the request and return google.rpc.Code.INVALID_ARGUMENT.
      */
     sampleRateHertz?: number | null;
     /**
@@ -222,15 +222,15 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$VoiceSelectionParams {
     /**
-     * The language (and optionally also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. &quot;en-US&quot;. Required. This should not include a script tag (e.g. use &quot;cmn-cn&quot; rather than &quot;cmn-Hant-cn&quot;), because the script will be inferred from the input provided in the SynthesisInput.  The TTS service will use this parameter to help choose an appropriate voice.  Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn&#39;t a Canadian voice available), or even a different language, e.g. using &quot;nb&quot; (Norwegian Bokmal) instead of &quot;no&quot; (Norwegian)&quot;.
+     * Required. The language (and potentially also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. &quot;en-US&quot;. This should not include a script tag (e.g. use &quot;cmn-cn&quot; rather than &quot;cmn-Hant-cn&quot;), because the script will be inferred from the input provided in the SynthesisInput.  The TTS service will use this parameter to help choose an appropriate voice.  Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn&#39;t a Canadian voice available), or even a different language, e.g. using &quot;nb&quot; (Norwegian Bokmal) instead of &quot;no&quot; (Norwegian)&quot;.
      */
     languageCode?: string | null;
     /**
-     * The name of the voice. Optional; if not set, the service will choose a voice based on the other parameters such as language_code and gender.
+     * The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and gender.
      */
     name?: string | null;
     /**
-     * The preferred gender of the voice. Optional; if not set, the service will choose a voice based on the other parameters such as language_code and name. Note that this is only a preference, not requirement; if a voice of the appropriate gender is not available, the synthesizer should substitute a voice with a different gender rather than failing the request.
+     * The preferred gender of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and name. Note that this is only a preference, not requirement; if a voice of the appropriate gender is not available, the synthesizer should substitute a voice with a different gender rather than failing the request.
      */
     ssmlGender?: string | null;
   }
@@ -344,7 +344,7 @@ export namespace texttospeech_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional (but recommended) [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
+     * @param {string=} params.languageCode Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -415,7 +415,7 @@ export namespace texttospeech_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional (but recommended) [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
+     * Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-*" voices; when specifying "no", you will get supported "no-*" (Norwegian) and "nb-*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-*" voices; specifying "zh-hk" will also get supported "yue-*" voices.
      */
     languageCode?: string;
   }

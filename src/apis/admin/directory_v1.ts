@@ -571,7 +571,7 @@ export namespace admin_directory_v1 {
      */
     ethernetMacAddress?: string | null;
     /**
-     * (Read-only) MAC address used by the Chromebook’s internal ethernet port, and for onboard network (ethernet) interface. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for Dell devices.
+     * (Read-only) MAC address used by the Chromebook’s internal ethernet port, and for onboard network (ethernet) interface. The format is twelve (12) hexadecimal digits without any delimiter (uppercase letters). This is only relevant for some devices.
      */
     ethernetMacAddress0?: string | null;
     /**
@@ -599,7 +599,7 @@ export namespace admin_directory_v1 {
      */
     manufactureDate?: string | null;
     /**
-     * Mobile Equipment identifier for the 3G mobile card in the Chromebook (Read-only)
+     * Contains either the Mobile Equipment identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in the Chromebook (Read-only)
      */
     meid?: string | null;
     /**

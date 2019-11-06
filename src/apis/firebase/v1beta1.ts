@@ -172,7 +172,7 @@ export namespace firebase_v1beta1 {
      */
     analyticsProperty?: Schema$AnalyticsProperty;
     /**
-     * A map of `AppId` to `StreamId` for each Firebase App in the specified `FirebaseProject`. Each `AppId` and `StreamId` appears only once.
+     * For Android Apps and iOS Apps: A map of `app` to `streamId` for each Firebase App in the specified `FirebaseProject`. Each `app` and `streamId` appears only once.&lt;br&gt; &lt;br&gt; For Web Apps: A map of `app` to `streamId` and `measurementId` for each Firebase App in the specified `FirebaseProject`. Each `app`, `streamId`, and `measurementId` appears only once.
      */
     streamMappings?: Schema$StreamMapping[];
   }
@@ -551,9 +551,13 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$StreamMapping {
     /**
-     * The fully qualified resource name of the Firebase App associated with the Google Analytics data stream, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
+     * The fully qualified resource name of the Firebase App associated with the Google Analytics data stream, in the format: &lt;br&gt;&lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/androidApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/iosApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt; or &lt;code&gt;projects/&lt;var&gt;projectId&lt;/var&gt;/webApps/&lt;var&gt;appId&lt;/var&gt;&lt;/code&gt;
      */
     app?: string | null;
+    /**
+     * Applicable for Firebase Web Apps only.&lt;br&gt; &lt;br&gt;The unique Google-assigned identifier of the Google Analytics web stream associated with the Firebase Web App. Firebase SDKs use this ID to interact with Google Analytics APIs. &lt;br&gt; &lt;br&gt;Learn more about this ID and Google Analytics web streams in the [Analytics documentation](https://support.google.com/analytics/topic/9303475).
+     */
+    measurementId?: string | null;
     /**
      * The unique Google-assigned identifier of the Google Analytics data stream associated with the Firebase App. &lt;br&gt; &lt;br&gt;Learn more about Google Analytics data streams in the [Analytics documentation](https://support.google.com/analytics/answer/9303323).
      */
@@ -621,6 +625,10 @@ export namespace firebase_v1beta1 {
      * The ID of the project&#39;s default GCP resource location. The location is one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). &lt;br&gt; &lt;br&gt;This field is omitted if the default GCP resource location has not been finalized yet. To set your project&#39;s default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase services to your project.
      */
     locationId?: string | null;
+    /**
+     * The unique Google-assigned identifier of the Google Analytics web stream associated with the Firebase Web App. Firebase SDKs use this ID to interact with Google Analytics APIs. &lt;br&gt; &lt;br&gt;This field is only present if the App is linked to a web stream in a Google Analytics App + Web property. Learn more about this ID and Google Analytics web streams in the [Analytics documentation](https://support.google.com/analytics/topic/9303475). &lt;br&gt; &lt;br&gt;To generate a `measurementId` and link the Web App with a Google Analytics web stream, call [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics).
+     */
+    measurementId?: string | null;
     /**
      * The sender ID for use with Firebase Cloud Messaging.
      */
@@ -929,7 +937,7 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.addGoogleAnalytics
-     * @desc Links a FirebaseProject with an existing [Google Analytics account](http://www.google.com/analytics/). <br> <br>Using this call, you can either: <ul> <li>Provision a new Google Analytics property and associate the new property with your `FirebaseProject`.</li> <li>Associate an existing Google Analytics property with your `FirebaseProject`.</li> </ul> <br> Note that when you call `AddGoogleAnalytics`: <ul> <li>Any Firebase Apps already in your `FirebaseProject` are automatically provisioned as new <em>data streams</em> in the Google Analytics property.</li> <li>Any <em>data streams</em> already in the Google Analytics property are automatically associated with their corresponding Firebase Apps (only applies when an app's `packageName` or `bundleId` match those for an existing data stream).</li> </ul> Learn more about the hierarchy and structure of Google Analytics accounts in the [Analytics documentation](https://support.google.com/analytics/answer/9303323). <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to an AnalyticsDetails; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. <br> <br>To call `AddGoogleAnalytics`, a member must be an Owner for the existing `FirebaseProject` and have the [`Edit` permission](https://support.google.com/analytics/answer/2884495) for the Google Analytics account. <br> <br>If a `FirebaseProject` already has Google Analytics enabled, and you call `AddGoogleAnalytics` using an `analyticsPropertyId` that's different from the currently associated property, then the call will fail. Analytics may have already been enabled in the Firebase console or by specifying `timeZone` and `regionCode` in the call to [`AddFirebase`](../../v1beta1/projects/addFirebase).
+     * @desc Links a FirebaseProject with an existing [Google Analytics account](http://www.google.com/analytics/). <br> <br>Using this call, you can either: <ul> <li>Specify an `analyticsAccountId` to provision a new Google Analytics property within the specified account and associate the new property with your `FirebaseProject`.</li> <li>Specify an existing `analyticsPropertyId` to associate the property with your `FirebaseProject`.</li> </ul> <br> Note that when you call `AddGoogleAnalytics`: <ol> <li>The first check determines if any existing data streams in the Google Analytics property correspond to any existing Firebase Apps in your `FirebaseProject` (based on the `packageName` or `bundleId` associated with the data stream). Then, as applicable, the data streams and apps are linked. Note that this auto-linking only applies to Android Apps and iOS Apps.</li> <li>If no corresponding data streams are found for your Firebase Apps, new data streams are provisioned in the Google Analytics property for each of your Firebase Apps. Note that a new data stream is always provisioned for a Web App even if it was previously associated with a data stream in your Analytics property.</li> </ol> Learn more about the hierarchy and structure of Google Analytics accounts in the [Analytics documentation](https://support.google.com/analytics/answer/9303323). <br> <br>The result of this call is an [`Operation`](../../v1beta1/operations). Poll the `Operation` to track the provisioning process by calling GetOperation until [`done`](../../v1beta1/operations#Operation.FIELDS.done) is `true`. When `done` is `true`, the `Operation` has either succeeded or failed. If the `Operation` succeeded, its [`response`](../../v1beta1/operations#Operation.FIELDS.response) is set to an AnalyticsDetails; if the `Operation` failed, its [`error`](../../v1beta1/operations#Operation.FIELDS.error) is set to a google.rpc.Status. <br> <br>To call `AddGoogleAnalytics`, a member must be an Owner for the existing `FirebaseProject` and have the [`Edit` permission](https://support.google.com/analytics/answer/2884495) for the Google Analytics account. <br> <br>If a `FirebaseProject` already has Google Analytics enabled, and you call `AddGoogleAnalytics` using an `analyticsPropertyId` that's different from the currently associated property, then the call will fail. Analytics may have already been enabled in the Firebase console or by specifying `timeZone` and `regionCode` in the call to [`AddFirebase`](../../v1beta1/projects/addFirebase).
      * @alias firebase.projects.addGoogleAnalytics
      * @memberOf! ()
      *
@@ -1372,7 +1380,7 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.removeAnalytics
-     * @desc Unlinks the specified `FirebaseProject` from its Google Analytics account. <br> <br>This call removes the association of the specified `FirebaseProject` with its current Google Analytics property. However, this call does not delete the Google Analytics resources, such as the Google Analytics property or any data streams. <br> <br>These resources may be re-associated later to the `FirebaseProject` by calling [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) and specifying the same `analyticsPropertyId`. <br> <br>To call `RemoveAnalytics`, a member must be an Owner for the `FirebaseProject`.
+     * @desc Unlinks the specified `FirebaseProject` from its Google Analytics account. <br> <br>This call removes the association of the specified `FirebaseProject` with its current Google Analytics property. However, this call does not delete the Google Analytics resources, such as the Google Analytics property or any data streams. <br> <br>These resources may be re-associated later to the `FirebaseProject` by calling [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) and specifying the same `analyticsPropertyId`. For Android Apps and iOS Apps, this call re-links data streams with their corresponding apps. However, for Web Apps, this call provisions a <em>new</em> data stream for each Web App. <br> <br>To call `RemoveAnalytics`, a member must be an Owner for the `FirebaseProject`.
      * @alias firebase.projects.removeAnalytics
      * @memberOf! ()
      *

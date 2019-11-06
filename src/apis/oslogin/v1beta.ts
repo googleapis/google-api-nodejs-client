@@ -135,7 +135,7 @@ export namespace oslogin_v1beta {
    */
   export interface Schema$LoginProfile {
     /**
-     * A unique user ID.
+     * Required. A unique user ID.
      */
     name?: string | null;
     /**
@@ -167,6 +167,10 @@ export namespace oslogin_v1beta {
      * The path to the home directory for this account.
      */
     homeDirectory?: string | null;
+    /**
+     * Output only. The canonical resource name.
+     */
+    name?: string | null;
     /**
      * The operating system type where this account applies.
      */
@@ -208,6 +212,10 @@ export namespace oslogin_v1beta {
      * Public key text in SSH format, defined by &lt;a href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot; target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
      */
     key?: string | null;
+    /**
+     * Output only. The canonical resource name.
+     */
+    name?: string | null;
   }
 
   export class Resource$Users {
@@ -227,7 +235,7 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique ID for the user in format `users/{user}`.
+     * @param {string} params.name Required. The unique ID for the user in format `users/{user}`.
      * @param {string=} params.projectId The project ID of the Google Cloud Platform project.
      * @param {string=} params.systemId A system ID for filtering the results of the request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -388,7 +396,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique ID for the user in format `users/{user}`.
+     * Required. The unique ID for the user in format `users/{user}`.
      */
     name?: string;
     /**
@@ -435,7 +443,7 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
+     * @param {string} params.name Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -506,7 +514,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
+     * Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
      */
     name?: string;
   }
@@ -524,7 +532,7 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {string} params.name Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -593,7 +601,7 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {string} params.name Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -664,7 +672,7 @@ export namespace oslogin_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * @param {string} params.name Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param {string=} params.updateMask Mask to control which fields get updated. Updates all if not present.
      * @param {().SshPublicKey} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -739,7 +747,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
   }
@@ -751,7 +759,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
   }
@@ -763,7 +771,7 @@ export namespace oslogin_v1beta {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     * Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
     name?: string;
     /**

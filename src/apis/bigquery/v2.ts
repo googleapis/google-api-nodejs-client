@@ -167,6 +167,87 @@ export namespace bigquery_v2 {
      */
     name?: string | null;
   }
+  /**
+   * Arima coefficients.
+   */
+  export interface Schema$ArimaCoefficients {
+    /**
+     * Auto-regressive coefficients, an array of double.
+     */
+    autoRegressiveCoefficients?: number[] | null;
+    /**
+     * Intercept coefficient, just a double not an array.
+     */
+    interceptCoefficient?: number | null;
+    /**
+     * Moving-average coefficients, an array of double.
+     */
+    movingAverageCoefficients?: number[] | null;
+  }
+  /**
+   * ARIMA model fitting metrics.
+   */
+  export interface Schema$ArimaFittingMetrics {
+    /**
+     * AIC
+     */
+    aic?: number | null;
+    /**
+     * log-likelihood
+     */
+    logLikelihood?: number | null;
+    /**
+     * variance.
+     */
+    variance?: number | null;
+  }
+  /**
+   * Arima model information.
+   */
+  export interface Schema$ArimaModelInfo {
+    /**
+     * Arima coefficients.
+     */
+    arimaCoefficients?: Schema$ArimaCoefficients;
+    /**
+     * Arima fitting metrics.
+     */
+    arimaFittingMetrics?: Schema$ArimaFittingMetrics;
+    /**
+     * Non-seasonal order.
+     */
+    nonSeasonalOrder?: Schema$ArimaOrder;
+  }
+  /**
+   * Arima order, can be used for both non-seasonal and seasonal parts.
+   */
+  export interface Schema$ArimaOrder {
+    /**
+     * Order of the differencing part.
+     */
+    d?: string | null;
+    /**
+     * Order of the autoregressive part.
+     */
+    p?: string | null;
+    /**
+     * Order of the moving-average part.
+     */
+    q?: string | null;
+  }
+  /**
+   * (Auto-)arima fitting result. Wrap everything in ArimaResult for easier refactoring if we want to use model-specific iteration results.
+   */
+  export interface Schema$ArimaResult {
+    /**
+     * This message is repeated because there are multiple arima models fitted in auto-arima. For non-auto-arima model, its size is one.
+     */
+    arimaModelInfo?: Schema$ArimaModelInfo[];
+    /**
+     * Seasonal periods. Repeated because multiple periods are supported for one time series.
+     */
+    seasonalPeriods?: string[] | null;
+  }
   export interface Schema$BigQueryModelTraining {
     /**
      * [Output-only, Beta] Index of current ML training iteration. Updated during create model query job to show job progress.
@@ -462,7 +543,7 @@ export namespace bigquery_v2 {
      */
     quote?: string | null;
     /**
-     * [Optional] The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped.
+     * [Optional] The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped. When autodetect is on, the behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N &gt; 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
      */
     skipLeadingRows?: string | null;
   }
@@ -471,13 +552,13 @@ export namespace bigquery_v2 {
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
+      iamMember?: string;
+      specialGroup?: string;
       role?: string;
       view?: Schema$TableReference;
       groupByEmail?: string;
-      domain?: string;
       userByEmail?: string;
-      iamMember?: string;
-      specialGroup?: string;
+      domain?: string;
     }> | null;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds since the epoch.
@@ -538,12 +619,12 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
+      labels?: {[key: string]: string};
       datasetReference?: Schema$DatasetReference;
       id?: string;
       location?: string;
       friendlyName?: string;
       kind?: string;
-      labels?: {[key: string]: string};
     }> | null;
     /**
      * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -790,7 +871,7 @@ export namespace bigquery_v2 {
      */
     googleSheetsOptions?: Schema$GoogleSheetsOptions;
     /**
-     * [Optional, Trusted Tester] If hive partitioning is enabled, which mode to use. Two modes are supported: - AUTO: automatically infer partition key name(s) and type(s). - STRINGS: automatic infer partition key name(s). All types are strings. Not all storage formats support hive partitioning -- requesting hive partitioning on an unsupported format will lead to an error. Note: this setting is in the process of being deprecated in favor of hivePartitioningOptions.
+     * [Optional, Trusted Tester] Deprecated, do not use. Please set hivePartitioningOptions instead.
      */
     hivePartitioningMode?: string | null;
     /**
@@ -919,6 +1000,7 @@ export namespace bigquery_v2 {
    * Information about a single iteration of the training run.
    */
   export interface Schema$IterationResult {
+    arimaResult?: Schema$ArimaResult;
     /**
      * Information about top clusters for clustering models.
      */
@@ -1106,7 +1188,7 @@ export namespace bigquery_v2 {
      */
     fieldDelimiter?: string | null;
     /**
-     * [Optional, Trusted Tester] If hive partitioning is enabled, which mode to use. Two modes are supported: - AUTO: automatically infer partition key name(s) and type(s). - STRINGS: automatic infer partition key name(s). All types are strings. Not all storage formats support hive partitioning -- requesting hive partitioning on an unsupported format will lead to an error.
+     * [Optional, Trusted Tester] Deprecated, do not use. Please set hivePartitioningOptions instead.
      */
     hivePartitioningMode?: string | null;
     /**
@@ -1310,8 +1392,8 @@ export namespace bigquery_v2 {
       id?: string;
       configuration?: Schema$JobConfiguration;
       user_email?: string;
-      kind?: string;
       errorResult?: Schema$ErrorProto;
+      kind?: string;
     }> | null;
     /**
      * The resource type of the response.
@@ -1382,6 +1464,10 @@ export namespace bigquery_v2 {
      */
     reservation_id?: string | null;
     /**
+     * [Output-only] Statistics for a child job of a script.
+     */
+    scriptStatistics?: Schema$ScriptStatistics;
+    /**
      * [Output-only] Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.
      */
     startTime?: string | null;
@@ -1450,13 +1536,13 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
+    reservationUsage?: Array<{slotMs?: string; name?: string}> | null;
     /**
      * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
     schema?: Schema$TableSchema;
     /**
-     * The type of query statement, if valid. Possible values (new values might be added in the future): &quot;SELECT&quot;: SELECT query. &quot;INSERT&quot;: INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;UPDATE&quot;: UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;DELETE&quot;: DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;MERGE&quot;: MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;ALTER_TABLE&quot;: ALTER TABLE query. &quot;ALTER_VIEW&quot;: ALTER VIEW query. &quot;CREATE_FUNCTION&quot;: CREATE FUNCTION query. &quot;CREATE_MODEL&quot;: CREATE [OR REPLACE] MODEL ... AS SELECT ... . &quot;CREATE_PROCEDURE&quot;: CREATE PROCEDURE query. &quot;CREATE_TABLE&quot;: CREATE [OR REPLACE] TABLE without AS SELECT. &quot;CREATE_TABLE_AS_SELECT&quot;: CREATE [OR REPLACE] TABLE ... AS SELECT ... . &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ... . &quot;DROP_FUNCTION&quot; : DROP FUNCTION query. &quot;DROP_PROCEDURE&quot;: DROP PROCEDURE query. &quot;DROP_TABLE&quot;: DROP TABLE query. &quot;DROP_VIEW&quot;: DROP VIEW query.
+     * The type of query statement, if valid. Possible values (new values might be added in the future): &quot;SELECT&quot;: SELECT query. &quot;INSERT&quot;: INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;UPDATE&quot;: UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;DELETE&quot;: DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;MERGE&quot;: MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;ALTER_TABLE&quot;: ALTER TABLE query. &quot;ALTER_VIEW&quot;: ALTER VIEW query. &quot;ASSERT&quot;: ASSERT condition AS &#39;description&#39;. &quot;CREATE_FUNCTION&quot;: CREATE FUNCTION query. &quot;CREATE_MODEL&quot;: CREATE [OR REPLACE] MODEL ... AS SELECT ... . &quot;CREATE_PROCEDURE&quot;: CREATE PROCEDURE query. &quot;CREATE_TABLE&quot;: CREATE [OR REPLACE] TABLE without AS SELECT. &quot;CREATE_TABLE_AS_SELECT&quot;: CREATE [OR REPLACE] TABLE ... AS SELECT ... . &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ... . &quot;DROP_FUNCTION&quot; : DROP FUNCTION query. &quot;DROP_PROCEDURE&quot;: DROP PROCEDURE query. &quot;DROP_TABLE&quot;: DROP TABLE query. &quot;DROP_VIEW&quot;: DROP VIEW query.
      */
     statementType?: string | null;
     /**
@@ -1641,9 +1727,9 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
      */
     modelOptions?: {
+      labels?: string[];
       lossType?: string;
       modelType?: string;
-      labels?: string[];
     } | null;
     /**
      * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
@@ -1694,11 +1780,11 @@ export namespace bigquery_v2 {
      * Projects to which you have at least READ access.
      */
     projects?: Array<{
+      id?: string;
+      projectReference?: Schema$ProjectReference;
       friendlyName?: string;
       numericId?: string;
       kind?: string;
-      id?: string;
-      projectReference?: Schema$ProjectReference;
     }> | null;
     /**
      * The total number of projects in the list.
@@ -1883,7 +1969,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {start?: string; end?: string; interval?: string} | null;
+    range?: {end?: string; interval?: string; start?: string} | null;
   }
   /**
    * Evaluation metrics for regression and explicit feedback type matrix factorization models.
@@ -1985,6 +2071,42 @@ export namespace bigquery_v2 {
      * Info describing predicted label distribution.
      */
     entries?: Schema$Entry[];
+  }
+  export interface Schema$ScriptStackFrame {
+    /**
+     * [Output-only] One-based end column.
+     */
+    endColumn?: number | null;
+    /**
+     * [Output-only] One-based end line.
+     */
+    endLine?: number | null;
+    /**
+     * [Output-only] Name of the active procedure, empty if in a top-level script.
+     */
+    procedureId?: string | null;
+    /**
+     * [Output-only] One-based start column.
+     */
+    startColumn?: number | null;
+    /**
+     * [Output-only] One-based start line.
+     */
+    startLine?: number | null;
+    /**
+     * [Output-only] Text of the current statement/expression.
+     */
+    text?: string | null;
+  }
+  export interface Schema$ScriptStatistics {
+    /**
+     * [Output-only] Whether this child job was a statement or expression.
+     */
+    evaluationKind?: string | null;
+    /**
+     * Stack trace showing the line/column/procedure name of each frame on the stack at the point where the current evaluation happened. The leaf frame is first, the primary script is last. Never empty.
+     */
+    stackFrames?: Schema$ScriptStackFrame[];
   }
   /**
    * The type of a variable, e.g., a function argument. Examples: INT64: {type_kind=&quot;INT64&quot;} ARRAY&lt;STRING&gt;: {type_kind=&quot;ARRAY&quot;, array_element_type=&quot;STRING&quot;} STRUCT&lt;x STRING, y ARRAY&lt;DATE&gt;&gt;:   {type_kind=&quot;STRUCT&quot;,    struct_type={fields=[      {name=&quot;x&quot;, type={type_kind=&quot;STRING&quot;}},      {name=&quot;y&quot;, type={type_kind=&quot;ARRAY&quot;, array_element_type=&quot;DATE&quot;}}    ]}}
@@ -2247,17 +2369,18 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
-      tableReference?: Schema$TableReference;
-      friendlyName?: string;
-      timePartitioning?: Schema$TimePartitioning;
-      kind?: string;
-      view?: {useLegacySql?: boolean};
       creationTime?: string;
+      rangePartitioning?: Schema$RangePartitioning;
+      id?: string;
+      tableReference?: Schema$TableReference;
+      timePartitioning?: Schema$TimePartitioning;
+      friendlyName?: string;
       labels?: {[key: string]: string};
       type?: string;
       clustering?: Schema$Clustering;
       expirationTime?: string;
-      id?: string;
+      kind?: string;
+      view?: {useLegacySql?: boolean};
     }> | null;
     /**
      * The total number of tables in the dataset.

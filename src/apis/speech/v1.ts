@@ -156,11 +156,11 @@ export namespace speech_v1 {
    */
   export interface Schema$LongRunningRecognizeRequest {
     /**
-     * *Required* The audio data to be recognized.
+     * Required. The audio data to be recognized.
      */
     audio?: Schema$RecognitionAudio;
     /**
-     * *Required* Provides information to the recognizer that specifies how to process the request.
+     * Required. Provides information to the recognizer that specifies how to process the request.
      */
     config?: Schema$RecognitionConfig;
   }
@@ -169,7 +169,7 @@ export namespace speech_v1 {
    */
   export interface Schema$LongRunningRecognizeResponse {
     /**
-     * Output only. Sequential list of transcription results corresponding to sequential portions of audio.
+     * Sequential list of transcription results corresponding to sequential portions of audio.
      */
     results?: Schema$SpeechRecognitionResult[];
   }
@@ -216,11 +216,15 @@ export namespace speech_v1 {
    */
   export interface Schema$RecognitionConfig {
     /**
-     * *Optional* The number of channels in the input audio data. ONLY set this for MULTI-CHANNEL recognition. Valid values for LINEAR16 and FLAC are `1`-`8`. Valid values for OGG_OPUS are &#39;1&#39;-&#39;254&#39;. Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`. If `0` or omitted, defaults to one channel (mono). Note: We only recognize the first channel by default. To perform independent recognition on each channel set `enable_separate_recognition_per_channel` to &#39;true&#39;.
+     * The number of channels in the input audio data. ONLY set this for MULTI-CHANNEL recognition. Valid values for LINEAR16 and FLAC are `1`-`8`. Valid values for OGG_OPUS are &#39;1&#39;-&#39;254&#39;. Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`. If `0` or omitted, defaults to one channel (mono). Note: We only recognize the first channel by default. To perform independent recognition on each channel set `enable_separate_recognition_per_channel` to &#39;true&#39;.
      */
     audioChannelCount?: number | null;
     /**
-     * *Optional* If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. Note: This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.
+     * Config to enable speaker diarization and set additional parameters to make diarization better suited for your application. Note: When this is enabled, we send all the words from the beginning of the audio for the top alternative in every consecutive STREAMING responses. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time. For non-streaming requests, the diarization results will be provided only in the top alternative of the FINAL SpeechRecognitionResult.
+     */
+    diarizationConfig?: Schema$SpeakerDiarizationConfig;
+    /**
+     * If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. Note: This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.
      */
     enableAutomaticPunctuation?: boolean | null;
     /**
@@ -228,7 +232,7 @@ export namespace speech_v1 {
      */
     enableSeparateRecognitionPerChannel?: boolean | null;
     /**
-     * *Optional* If `true`, the top result includes a list of words and the start and end time offsets (timestamps) for those words. If `false`, no word-level time offset information is returned. The default is `false`.
+     * If `true`, the top result includes a list of words and the start and end time offsets (timestamps) for those words. If `false`, no word-level time offset information is returned. The default is `false`.
      */
     enableWordTimeOffsets?: boolean | null;
     /**
@@ -236,23 +240,23 @@ export namespace speech_v1 {
      */
     encoding?: string | null;
     /**
-     * *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes.
+     * Required. The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes.
      */
     languageCode?: string | null;
     /**
-     * *Optional* Maximum number of recognition hypotheses to be returned. Specifically, the maximum number of `SpeechRecognitionAlternative` messages within each `SpeechRecognitionResult`. The server may return fewer than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of one. If omitted, will return a maximum of one.
+     * Maximum number of recognition hypotheses to be returned. Specifically, the maximum number of `SpeechRecognitionAlternative` messages within each `SpeechRecognitionResult`. The server may return fewer than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of one. If omitted, will return a maximum of one.
      */
     maxAlternatives?: number | null;
     /**
-     * *Optional* Metadata regarding this request.
+     * Metadata regarding this request.
      */
     metadata?: Schema$RecognitionMetadata;
     /**
-     * *Optional* Which model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the RecognitionConfig. &lt;table&gt;   &lt;tr&gt;     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that originated from a phone call (typically     recorded at an 8khz sampling rate).&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that originated from from video or includes multiple         speakers. Ideally the audio is recorded at a 16khz or greater         sampling rate. This is a premium model that costs more than the         standard rate.&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that is not one of the specific audio models.         For example, long-form audio. Ideally the audio is high-fidelity,         recorded at a 16khz or greater sampling rate.&lt;/td&gt;   &lt;/tr&gt; &lt;/table&gt;
+     * Which model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the RecognitionConfig. &lt;table&gt;   &lt;tr&gt;     &lt;td&gt;&lt;b&gt;Model&lt;/b&gt;&lt;/td&gt;     &lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;command_and_search&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for short queries such as voice commands or voice search.&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;phone_call&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that originated from a phone call (typically     recorded at an 8khz sampling rate).&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;video&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that originated from from video or includes multiple         speakers. Ideally the audio is recorded at a 16khz or greater         sampling rate. This is a premium model that costs more than the         standard rate.&lt;/td&gt;   &lt;/tr&gt;   &lt;tr&gt;     &lt;td&gt;&lt;code&gt;default&lt;/code&gt;&lt;/td&gt;     &lt;td&gt;Best for audio that is not one of the specific audio models.         For example, long-form audio. Ideally the audio is high-fidelity,         recorded at a 16khz or greater sampling rate.&lt;/td&gt;   &lt;/tr&gt; &lt;/table&gt;
      */
     model?: string | null;
     /**
-     * *Optional* If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities won&#39;t be filtered out.
+     * If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities won&#39;t be filtered out.
      */
     profanityFilter?: boolean | null;
     /**
@@ -260,11 +264,11 @@ export namespace speech_v1 {
      */
     sampleRateHertz?: number | null;
     /**
-     * *Optional* array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
      */
     speechContexts?: Schema$SpeechContext[];
     /**
-     * *Optional* Set to true to use an enhanced model for speech recognition. If `use_enhanced` is set to true and the `model` field is not set, then an appropriate enhanced model is chosen if an enhanced model exists for the audio.  If `use_enhanced` is true and an enhanced version of the specified model does not exist, then the speech is recognized using the standard version of the specified model.
+     * Set to true to use an enhanced model for speech recognition. If `use_enhanced` is set to true and the `model` field is not set, then an appropriate enhanced model is chosen if an enhanced model exists for the audio.  If `use_enhanced` is true and an enhanced version of the specified model does not exist, then the speech is recognized using the standard version of the specified model.
      */
     useEnhanced?: boolean | null;
   }
@@ -314,11 +318,11 @@ export namespace speech_v1 {
    */
   export interface Schema$RecognizeRequest {
     /**
-     * *Required* The audio data to be recognized.
+     * Required. The audio data to be recognized.
      */
     audio?: Schema$RecognitionAudio;
     /**
-     * *Required* Provides information to the recognizer that specifies how to process the request.
+     * Required. Provides information to the recognizer that specifies how to process the request.
      */
     config?: Schema$RecognitionConfig;
   }
@@ -327,16 +331,33 @@ export namespace speech_v1 {
    */
   export interface Schema$RecognizeResponse {
     /**
-     * Output only. Sequential list of transcription results corresponding to sequential portions of audio.
+     * Sequential list of transcription results corresponding to sequential portions of audio.
      */
     results?: Schema$SpeechRecognitionResult[];
+  }
+  /**
+   * Config to enable speaker diarization.
+   */
+  export interface Schema$SpeakerDiarizationConfig {
+    /**
+     * If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo.
+     */
+    enableSpeakerDiarization?: boolean | null;
+    /**
+     * Maximum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 6.
+     */
+    maxSpeakerCount?: number | null;
+    /**
+     * Minimum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 2.
+     */
+    minSpeakerCount?: number | null;
   }
   /**
    * Provides &quot;hints&quot; to the speech recognizer to favor specific words and phrases in the results.
    */
   export interface Schema$SpeechContext {
     /**
-     * *Optional* A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content).  List items can also be set to classes for groups of words that represent common concepts that occur in natural language. For example, rather than providing phrase hints for every month of the year, using the $MONTH class improves the likelihood of correctly transcribing audio that includes months.
+     * A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content).  List items can also be set to classes for groups of words that represent common concepts that occur in natural language. For example, rather than providing phrase hints for every month of the year, using the $MONTH class improves the likelihood of correctly transcribing audio that includes months.
      */
     phrases?: string[] | null;
   }
@@ -345,15 +366,15 @@ export namespace speech_v1 {
    */
   export interface Schema$SpeechRecognitionAlternative {
     /**
-     * Output only. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     * The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set.
      */
     confidence?: number | null;
     /**
-     * Output only. Transcript text representing the words that the user spoke.
+     * Transcript text representing the words that the user spoke.
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$WordInfo[];
   }
@@ -362,7 +383,7 @@ export namespace speech_v1 {
    */
   export interface Schema$SpeechRecognitionResult {
     /**
-     * Output only. May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
+     * May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer.
      */
     alternatives?: Schema$SpeechRecognitionAlternative[];
     /**
@@ -392,15 +413,19 @@ export namespace speech_v1 {
    */
   export interface Schema$WordInfo {
     /**
-     * Output only. Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
+     * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
     endTime?: string | null;
     /**
-     * Output only. Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
+     * A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from &#39;1&#39; to diarization_speaker_count. speaker_tag is set if enable_speaker_diarization = &#39;true&#39; and only in the top alternative.
+     */
+    speakerTag?: number | null;
+    /**
+     * Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
     startTime?: string | null;
     /**
-     * Output only. The word corresponding to this set of information.
+     * The word corresponding to this set of information.
      */
     word?: string | null;
   }

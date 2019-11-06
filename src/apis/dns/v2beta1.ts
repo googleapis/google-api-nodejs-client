@@ -506,6 +506,10 @@ export namespace dns_v2beta1 {
      */
     enableInboundForwarding?: boolean | null;
     /**
+     * Controls whether logging is enabled for the networks bound to this policy. Defaults to no logging if not set.
+     */
+    enableLogging?: boolean | null;
+    /**
      * Unique identifier for the resource; defined by the server (output only).
      */
     id?: string | null;

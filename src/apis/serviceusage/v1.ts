@@ -744,6 +744,32 @@ export namespace serviceusage_v1 {
     usage?: Schema$Usage;
   }
   /**
+   * Response message for getting service identity.
+   */
+  export interface Schema$GoogleApiServiceusageV1beta1GetServiceIdentityResponse {
+    /**
+     * Service identity that service producer can use to access consumer resources. If exists is true, it contains email and unique_id. If exists is false, it contains pre-constructed email and empty unique_id.
+     */
+    identity?: Schema$GoogleApiServiceusageV1beta1ServiceIdentity;
+    /**
+     * Service identity state.
+     */
+    state?: string | null;
+  }
+  /**
+   * Service identity for a service. This is the identity that service producer should use to access consumer resources.
+   */
+  export interface Schema$GoogleApiServiceusageV1beta1ServiceIdentity {
+    /**
+     * The email address of the service account that a service producer would use to access consumer resources.
+     */
+    email?: string | null;
+    /**
+     * The unique and stable id of the service account. https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts#ServiceAccount
+     */
+    uniqueId?: string | null;
+  }
+  /**
    * The operation metadata returned for the batchend services operation.
    */
   export interface Schema$GoogleApiServiceusageV1OperationMetadata {
@@ -1020,6 +1046,10 @@ export namespace serviceusage_v1 {
      */
     metricKind?: string | null;
     /**
+     * Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here.
+     */
+    monitoredResourceTypes?: string[] | null;
+    /**
      * The resource name of the metric descriptor.
      */
     name?: string | null;
@@ -1045,7 +1075,7 @@ export namespace serviceusage_v1 {
      */
     ingestDelay?: string | null;
     /**
-     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
+     * Deprecated. Must use the MetricDescriptor.launch_stage instead.
      */
     launchStage?: string | null;
     /**

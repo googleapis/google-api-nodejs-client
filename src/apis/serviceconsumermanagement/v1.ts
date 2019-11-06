@@ -813,6 +813,10 @@ export namespace serviceconsumermanagement_v1 {
      */
     metricKind?: string | null;
     /**
+     * Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here.
+     */
+    monitoredResourceTypes?: string[] | null;
+    /**
      * The resource name of the metric descriptor.
      */
     name?: string | null;
@@ -838,7 +842,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     ingestDelay?: string | null;
     /**
-     * Deprecated. Please use the MetricDescriptor.launch_stage instead. The launch stage of the metric definition.
+     * Deprecated. Must use the MetricDescriptor.launch_stage instead.
      */
     launchStage?: string | null;
     /**
@@ -1463,6 +1467,15 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$V1Beta1EnableConsumerResponse {}
   /**
+   * Response message for the `GenerateServiceIdentity` method.  This response message is assigned to the `response` field of the returned Operation when that operation is done.
+   */
+  export interface Schema$V1Beta1GenerateServiceIdentityResponse {
+    /**
+     * ServiceIdentity that was created or retrieved.
+     */
+    identity?: Schema$V1Beta1ServiceIdentity;
+  }
+  /**
    * Response message for ImportProducerOverrides
    */
   export interface Schema$V1Beta1ImportProducerOverridesResponse {
@@ -1500,6 +1513,27 @@ export namespace serviceconsumermanagement_v1 {
    * Response message for the `RefreshConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
   export interface Schema$V1Beta1RefreshConsumerResponse {}
+  /**
+   * A service identity in the Identity and Access Management API.
+   */
+  export interface Schema$V1Beta1ServiceIdentity {
+    /**
+     * The email address of the service identity.
+     */
+    email?: string | null;
+    /**
+     * P4 service identity resource name.  An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/serviceIdentities/default`
+     */
+    name?: string | null;
+    /**
+     * The P4 service identity configuration tag. This must be defined in activation_grants. If not specified when creating the account, the tag is set to &quot;default&quot;.
+     */
+    tag?: string | null;
+    /**
+     * The unique and stable id of the service identity.
+     */
+    uniqueId?: string | null;
+  }
   /**
    * Response message for the `DisableConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */

@@ -342,7 +342,7 @@ export namespace accesscontextmanager_v1 {
      */
     osType?: string | null;
     /**
-     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to Dasher domain policies, and the caller has permission to call the API targeted by the request.
+     * Only allows requests from devices with a verified Chrome OS. Verifications includes requirements that the device is enterprise-managed, conformant to domain policies, and the caller has permission to call the API targeted by the request.
      */
     requireVerifiedChromeOs?: boolean | null;
   }

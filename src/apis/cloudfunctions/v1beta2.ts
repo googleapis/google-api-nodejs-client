@@ -124,7 +124,7 @@ export namespace cloudfunctions_v1beta2 {
    */
   export interface Schema$CallFunctionRequest {
     /**
-     * Input to be passed to the function.
+     * Required. Input to be passed to the function.
      */
     data?: string | null;
   }
@@ -316,6 +316,10 @@ export namespace cloudfunctions_v1beta2 {
      * If not empty, indicates that there may be more functions that match the request; this value should be passed in a new google.cloud.functions.v1beta2.ListFunctionsRequest to get more functions.
      */
     nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached. The response does not include any functions from these locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -578,10 +582,10 @@ export namespace cloudfunctions_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
+     * @param {string=} params.filter Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for a specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
      * @param {string=} params.name Must not be set.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
+     * @param {integer=} params.pageSize The maximum number of records that should be returned.<br> Requested page size cannot exceed 100. If not set, the default page size is 100.<br><br> Pagination is only supported when querying for a specific function.
+     * @param {string=} params.pageToken Token identifying which result to start with, which is returned by a previous list call.<br><br> Pagination is only supported when querying for a specific function.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -669,7 +673,7 @@ export namespace cloudfunctions_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
+     * Required. A filter for matching the requested operations.<br><br> The supported formats of <b>filter</b> are:<br> To query for a specific function: <code>project:*,location:*,function:*</code><br> To query for all of the latest operations for a project: <code>project:*,latest:true</code>
      */
     filter?: string;
     /**
@@ -677,11 +681,11 @@ export namespace cloudfunctions_v1beta2 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of records that should be returned.<br> Requested page size cannot exceed 100. If not set, the default page size is 100.<br><br> Pagination is only supported when querying for a specific function.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * Token identifying which result to start with, which is returned by a previous list call.<br><br> Pagination is only supported when querying for a specific function.
      */
     pageToken?: string;
   }
@@ -822,7 +826,7 @@ export namespace cloudfunctions_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the function to be called.
+     * @param {string} params.name Required. The name of the function to be called.
      * @param {().CallFunctionRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -900,7 +904,7 @@ export namespace cloudfunctions_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.location The project and location in which the function should be created, specified in the format `projects/x/locations/x`
+     * @param {string} params.location Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
      * @param {().CloudFunction} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -976,7 +980,7 @@ export namespace cloudfunctions_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the function which should be deleted.
+     * @param {string} params.name Required. The name of the function which should be deleted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1213,7 +1217,7 @@ export namespace cloudfunctions_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the function which details should be obtained.
+     * @param {string} params.name Required. The name of the function which details should be obtained.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1285,7 +1289,7 @@ export namespace cloudfunctions_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.location The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location.
+     * @param {string} params.location Required. The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location. When listing functions in all locations, if one or more location(s) are unreachable, the response will contain functions from all reachable locations along with the names of any unreachable locations.
      * @param {integer=} params.pageSize Maximum number of functions to return per call.
      * @param {string=} params.pageToken The value returned by the last `ListFunctionsResponse`; indicates that this is a continuation of a prior `ListFunctions` call, and that the system should return the next page of data.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1364,7 +1368,7 @@ export namespace cloudfunctions_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the function to be updated.
+     * @param {string} params.name Required. The name of the function to be updated.
      * @param {().CloudFunction} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1439,7 +1443,7 @@ export namespace cloudfunctions_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the function to be called.
+     * Required. The name of the function to be called.
      */
     name?: string;
 
@@ -1456,7 +1460,7 @@ export namespace cloudfunctions_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The project and location in which the function should be created, specified in the format `projects/x/locations/x`
+     * Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
      */
     location?: string;
 
@@ -1473,7 +1477,7 @@ export namespace cloudfunctions_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the function which should be deleted.
+     * Required. The name of the function which should be deleted.
      */
     name?: string;
   }
@@ -1519,7 +1523,7 @@ export namespace cloudfunctions_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the function which details should be obtained.
+     * Required. The name of the function which details should be obtained.
      */
     name?: string;
   }
@@ -1531,7 +1535,7 @@ export namespace cloudfunctions_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location.
+     * Required. The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location. When listing functions in all locations, if one or more location(s) are unreachable, the response will contain functions from all reachable locations along with the names of any unreachable locations.
      */
     location?: string;
     /**
@@ -1551,7 +1555,7 @@ export namespace cloudfunctions_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the function to be updated.
+     * Required. The name of the function to be updated.
      */
     name?: string;
 

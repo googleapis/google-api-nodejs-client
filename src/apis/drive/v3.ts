@@ -313,7 +313,7 @@ export namespace drive_v3 {
      */
     anchor?: string | null;
     /**
-     * The user who created the comment.
+     * The author of the comment. The author&#39;s email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
@@ -556,7 +556,7 @@ export namespace drive_v3 {
      */
     fullFileExtension?: string | null;
     /**
-     * Whether any users are granted file access directly on this file. This field is only populated for shared drive files.
+     * Whether there are permissions directly on this file. This field is only populated for items in shared drives.
      */
     hasAugmentedPermissions?: boolean | null;
     /**
@@ -885,7 +885,7 @@ export namespace drive_v3 {
      */
     action?: string | null;
     /**
-     * The user who created the reply.
+     * The author of the reply. The author&#39;s email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
@@ -2800,7 +2800,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
@@ -2876,7 +2876,7 @@ export namespace drive_v3 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.ignoreDefaultVisibility Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
@@ -3402,7 +3402,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string=} params.addParents A comma-separated list of parent IDs to add.
      * @param {string} params.fileId The ID of the file.
-     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * @param {boolean=} params.keepRevisionForever Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {string=} params.removeParents A comma-separated list of parent IDs to remove.
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
@@ -3570,7 +3570,7 @@ export namespace drive_v3 {
      */
     ignoreDefaultVisibility?: boolean;
     /**
-     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
     keepRevisionForever?: boolean;
     /**
@@ -3602,7 +3602,7 @@ export namespace drive_v3 {
      */
     ignoreDefaultVisibility?: boolean;
     /**
-     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
     keepRevisionForever?: boolean;
     /**
@@ -3795,7 +3795,7 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive.
+     * Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.
      */
     keepRevisionForever?: boolean;
     /**

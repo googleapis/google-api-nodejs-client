@@ -1319,7 +1319,7 @@ export namespace reseller_v1 {
 
     /**
      * reseller.subscriptions.delete
-     * @desc Cancel or transfer a subscription to direct.
+     * @desc Cancel, suspend, or transfer a subscription to direct.
      * @alias reseller.subscriptions.delete
      * @memberOf! ()
      *

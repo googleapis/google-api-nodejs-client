@@ -458,7 +458,7 @@ export namespace dataproc_v1beta2 {
      */
     bootDiskType?: string | null;
     /**
-     * Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and HDFS (https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.
+     * Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and HDFS (https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.
      */
     numLocalSsds?: number | null;
   }
@@ -652,7 +652,7 @@ export namespace dataproc_v1beta2 {
     weight?: number | null;
   }
   /**
-   * Optional. The config settings for Compute Engine resources in an instance group, such as a master or worker group.
+   * The config settings for Compute Engine resources in an instance group, such as a master or worker group.
    */
   export interface Schema$InstanceGroupConfig {
     /**
@@ -684,7 +684,7 @@ export namespace dataproc_v1beta2 {
      */
     managedGroupConfig?: Schema$ManagedGroupConfig;
     /**
-     * Optional. Specifies the minimum cpu platform for the Instance Group. See Cloud Dataproc&amp;rarr;Minimum CPU Platform.
+     * Specifies the minimum cpu platform for the Instance Group. See Cloud Dataproc&amp;rarr;Minimum CPU Platform.
      */
     minCpuPlatform?: string | null;
     /**
@@ -1170,19 +1170,19 @@ export namespace dataproc_v1beta2 {
     scriptVariables?: {[key: string]: string} | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.A Policy consists of a list of bindings. A binding binds a list of members to a role, where the members can be user accounts, Google groups, Google domains, and service accounts. A role is a named list of permissions defined by IAM.JSON Example {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;roles/owner&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/viewer&quot;,       &quot;members&quot;: [&quot;user:sean@example.com&quot;]     }   ] } YAML Example bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-other-app@appspot.gserviceaccount.com   role: roles/owner - members:   - user:sean@example.com   role: roles/viewer For a description of IAM and its features, see the IAM developer&#39;s guide (https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions (defined by IAM or configured by users). A binding can optionally specify a condition, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.JSON Example {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;role/resourcemanager.organizationAdmin&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,       &quot;members&quot;: [&quot;user:eve@example.com&quot;],       &quot;condition&quot;: {         &quot;title&quot;: &quot;expirable access&quot;,         &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,         &quot;expression&quot;: &quot;request.time &lt;         timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,       }     }   ] } YAML Example bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-project-id@appspot.gserviceaccount.com   role: roles/resourcemanager.organizationAdmin - members:   - user:eve@example.com   role: roles/resourcemanager.organizationViewer   condition:     title: expirable access     description: Does not grant access after Sep 2020     expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) For a description of IAM and its features, see the IAM developer&#39;s guide (https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of members to a role. bindings with no members will result in an error.
+     * Associates a list of members to a role. Optionally may specify a condition that determines when binding is in effect. bindings with no members will result in an error.
      */
     bindings?: Schema$Binding[];
     /**
-     * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten.
+     * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.If no etag is provided in the call to setIamPolicy, any version compliance checks on the incoming and/or stored policy is skipped.
      */
     version?: number | null;
   }
@@ -1327,7 +1327,7 @@ export namespace dataproc_v1beta2 {
     properties?: {[key: string]: string} | null;
   }
   /**
-   * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/) applications on YARN.
+   * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/) applications on YARN. The specification of the main method to call to drive the job. Specify either the jar file that contains the main class or the main class name. To pass both a main jar and a main class in that jar, add the jar to CommonJob.jar_file_uris, and then specify the main class name in main_class.
    */
   export interface Schema$SparkJob {
     /**
@@ -1641,19 +1641,19 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$YarnApplication {
     /**
-     * Required. The application name.
+     * Output only. The application name.
      */
     name?: string | null;
     /**
-     * Required. The numerical progress of the application, from 1 to 100.
+     * Output only. The numerical progress of the application, from 1 to 100.
      */
     progress?: number | null;
     /**
-     * Required. The application state.
+     * Output only. The application state.
      */
     state?: string | null;
     /**
-     * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.
+     * Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.
      */
     trackingUrl?: string | null;
   }
@@ -4279,7 +4279,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.clusters.diagnose
-     * @desc Gets cluster diagnostic information. The returned Operation.metadata will be ClusterOperationMetadata. After the operation completes, Operation.response contains DiagnoseClusterResults.
+     * @desc Gets cluster diagnostic information. The returned Operation.metadata will be ClusterOperationMetadata. After the operation completes, Operation.response contains Empty.
      * @alias dataproc.projects.regions.clusters.diagnose
      * @memberOf! ()
      *
