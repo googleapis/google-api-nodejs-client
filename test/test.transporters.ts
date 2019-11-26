@@ -15,28 +15,67 @@
 import * as assert from 'assert';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
-import {GoogleApis} from '../src';
+import {AuthPlus} from '../src/googleapis';
+import {GoogleApis, google} from '../src';
 import {Utils} from './utils';
 
 async function testHeaders(drive: APIEndpoint) {
   const req = nock(Utils.baseUrl)
     .post('/drive/v2/files/a/comments')
     .reply(200, function() {
+      const headers = this.req.headers;
+      // ensure that the x-goog-user-project is loaded from default credentials:
+      assert.strictEqual(headers['x-goog-user-project'][0], 'my-quota-project');
+
       // ensure that the x-goog-api-client header is populated by
       // googleapis-common:
-      const headers = this.req.headers['x-goog-api-client'];
       assert.ok(
         /gdcl\/[0-9]+\.[\w-.]+ gl-node\/[0-9]+\.[\w-.]+ auth\/[0-9]+\.[\w-.]+/.test(
-          headers
+          headers['x-goog-api-client'][0]
         )
       );
     });
+  const auth = getAuthClientMock();
   const res = await drive.comments.insert({
     fileId: 'a',
     headers: {'If-None-Match': '12345'},
+    auth: await auth.getClient(),
   });
   req.done();
+  auth.done();
   assert.strictEqual(res.config.headers['If-None-Match'], '12345');
+}
+
+// Returns an auth client that fakes loading application default credentials
+// from a fixtures directory:
+function getAuthClientMock() {
+  // mock environment variables such that default credentials are loaded.
+  const projectOriginal = process.env.GCLOUD_PROJECT;
+  process.env.GCLOUD_PROJECT = 'my-fake-project';
+  const homeOriginal = process.env.HOME;
+  process.env.HOME = './test/fixtures/';
+  const appdataOriginal = process.env.APPDATA;
+  process.env.APPDATA = './test/fixtures/.config';
+
+  // an attempt will be made to fetch access token on first request.
+  const req = nock('https://oauth2.googleapis.com')
+    .post('/token')
+    .reply(200, {});
+
+  // An "AuthPlus" client with an added "done" method for resetting mocks.
+  class AuthMock extends AuthPlus {
+    done() {
+      process.env.GCLOUD_PROJECT = projectOriginal;
+      process.env.HOME = homeOriginal;
+      process.env.APPDATA = appdataOriginal;
+      req.done();
+    }
+  }
+  const auth = new AuthMock({
+    // Scopes can be specified either as an array or as a single, space-delimited string.
+    scopes: 'https://www.googleapis.com/auth/drive',
+  });
+  return auth;
 }
 
 async function testContentType(drive: APIEndpoint) {
