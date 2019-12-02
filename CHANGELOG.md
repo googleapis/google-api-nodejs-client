@@ -4,6 +4,14 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [45.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v45.0.0...v45.0.1) (2019-12-02)
+
+
+### Bug Fixes
+
+* **docs:** add jsdoc-region-tag plugin ([#1879](https://www.github.com/googleapis/google-api-nodejs-client/issues/1879)) ([36635c7](https://www.github.com/googleapis/google-api-nodejs-client/commit/36635c752fae99161d02a0dc8631c57ff0814151))
+* **docs:** change JSDoc from `.resource` to `.requestBody` ([#1864](https://www.github.com/googleapis/google-api-nodejs-client/issues/1864)) ([8803e77](https://www.github.com/googleapis/google-api-nodejs-client/commit/8803e7700a0799c484defc776afd04ef26d50e91))
+
 ## [45.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v44.0.0...v45.0.0) (2019-11-06)
 
 
