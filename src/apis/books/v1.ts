@@ -811,9 +811,12 @@ export namespace books_v1 {
     kind?: string | null;
     series?: Array<{
       bannerImageUrl?: string;
+      eligibleForSubscription?: boolean;
       imageUrl?: string;
+      isComplete?: boolean;
       seriesId?: string;
       seriesType?: string;
+      subscriptionId?: string;
       title?: string;
     }> | null;
   }
@@ -1604,7 +1607,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BooksCloudloadingResource} params.resource Request body data
+     * @param {().BooksCloudloadingResource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3198,7 +3201,7 @@ export namespace books_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Usersettings} params.resource Request body data
+     * @param {().Usersettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3488,7 +3491,7 @@ export namespace books_v1 {
      * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
      * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {().Annotation} params.resource Request body data
+     * @param {().Annotation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3722,7 +3725,7 @@ export namespace books_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.annotationId The ID for the annotation to update.
      * @param {string=} params.source String to identify the originator of this request.
-     * @param {().Annotation} params.resource Request body data
+     * @param {().Annotation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

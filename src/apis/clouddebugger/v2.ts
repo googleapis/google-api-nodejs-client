@@ -656,7 +656,7 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().RegisterDebuggeeRequest} params.resource Request body data
+     * @param {().RegisterDebuggeeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -942,7 +942,7 @@ export namespace clouddebugger_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.debuggeeId Required. Identifies the debuggee being debugged.
      * @param {string} params.id Breakpoint identifier, unique in the scope of the debuggee.
-     * @param {().UpdateActiveBreakpointRequest} params.resource Request body data
+     * @param {().UpdateActiveBreakpointRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1666,7 +1666,7 @@ export namespace clouddebugger_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param {string} params.debuggeeId Required. ID of the debuggee where the breakpoint is to be set.
-     * @param {().Breakpoint} params.resource Request body data
+     * @param {().Breakpoint} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

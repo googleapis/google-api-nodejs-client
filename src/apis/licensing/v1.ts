@@ -332,7 +332,7 @@ export namespace licensing_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
-     * @param {().LicenseAssignmentInsert} params.resource Request body data
+     * @param {().LicenseAssignmentInsert} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -571,7 +571,7 @@ export namespace licensing_v1 {
      * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
-     * @param {().LicenseAssignment} params.resource Request body data
+     * @param {().LicenseAssignment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -648,7 +648,7 @@ export namespace licensing_v1 {
      * @param {string} params.productId A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      * @param {string} params.skuId A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      * @param {string} params.userId The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
-     * @param {().LicenseAssignment} params.resource Request body data
+     * @param {().LicenseAssignment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

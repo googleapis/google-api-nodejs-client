@@ -1384,7 +1384,7 @@ export namespace deploymentmanager_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID for this request.
-     * @param {().CompositeType} params.resource Request body data
+     * @param {().CompositeType} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1545,7 +1545,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.compositeType The name of the composite type for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {().CompositeType} params.resource Request body data
+     * @param {().CompositeType} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1621,7 +1621,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.compositeType The name of the composite type for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {().CompositeType} params.resource Request body data
+     * @param {().CompositeType} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1824,7 +1824,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {().DeploymentsCancelPreviewRequest} params.resource Request body data
+     * @param {().DeploymentsCancelPreviewRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2124,7 +2124,7 @@ export namespace deploymentmanager_alpha {
      * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
      * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
-     * @param {().Deployment} params.resource Request body data
+     * @param {().Deployment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2282,7 +2282,7 @@ export namespace deploymentmanager_alpha {
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
-     * @param {().Deployment} params.resource Request body data
+     * @param {().Deployment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2358,7 +2358,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {().GlobalSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2432,7 +2432,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {().DeploymentsStopRequest} params.resource Request body data
+     * @param {().DeploymentsStopRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2507,7 +2507,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2590,7 +2590,7 @@ export namespace deploymentmanager_alpha {
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
-     * @param {().Deployment} params.resource Request body data
+     * @param {().Deployment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3774,7 +3774,7 @@ export namespace deploymentmanager_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID for this request.
-     * @param {().TypeProvider} params.resource Request body data
+     * @param {().TypeProvider} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4023,7 +4023,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID for this request.
      * @param {string} params.typeProvider The name of the type provider for this request.
-     * @param {().TypeProvider} params.resource Request body data
+     * @param {().TypeProvider} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4099,7 +4099,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID for this request.
      * @param {string} params.typeProvider The name of the type provider for this request.
-     * @param {().TypeProvider} params.resource Request body data
+     * @param {().TypeProvider} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4499,7 +4499,7 @@ export namespace deploymentmanager_alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID for this request.
-     * @param {().Type} params.resource Request body data
+     * @param {().Type} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4651,7 +4651,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID for this request.
      * @param {string} params.type The name of the type for this request.
-     * @param {().Type} params.resource Request body data
+     * @param {().Type} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4726,7 +4726,7 @@ export namespace deploymentmanager_alpha {
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID for this request.
      * @param {string} params.type The name of the type for this request.
-     * @param {().Type} params.resource Request body data
+     * @param {().Type} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -1012,7 +1012,7 @@ export namespace script_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateProjectRequest} params.resource Request body data
+     * @param {().CreateProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1299,7 +1299,7 @@ export namespace script_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().Content} params.resource Request body data
+     * @param {().Content} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1455,7 +1455,7 @@ export namespace script_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().DeploymentConfig} params.resource Request body data
+     * @param {().DeploymentConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1755,7 +1755,7 @@ export namespace script_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deploymentId The deployment ID for this deployment.
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().UpdateDeploymentRequest} params.resource Request body data
+     * @param {().UpdateDeploymentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1927,7 +1927,7 @@ export namespace script_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().Version} params.resource Request body data
+     * @param {().Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2211,7 +2211,7 @@ export namespace script_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.scriptId The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
-     * @param {().ExecutionRequest} params.resource Request body data
+     * @param {().ExecutionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

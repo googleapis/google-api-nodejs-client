@@ -206,6 +206,22 @@ export namespace ml_v1 {
     tpuServiceAccount?: string | null;
   }
   /**
+   * Request for explanations to be issued against a trained model.
+   */
+  export interface Schema$GoogleCloudMlV1__ExplainRequest {
+    /**
+     * Required. The explanation request body.
+     */
+    httpBody?: Schema$GoogleApi__HttpBody;
+  }
+  /**
+   * Message holding configuration options for explaining model predictions. Currently, the only supported mechanism to explain a model&#39;s prediction is through attributing its output back to its inputs which is essentially a credit assignment task. We support multiple attribution methods, some specific to particular frameworks like Tensorflow and XGBoost. Next idx: 7.
+   */
+  export interface Schema$GoogleCloudMlV1__ExplanationConfig {
+    integratedGradientsAttribution?: Schema$GoogleCloudMlV1__IntegratedGradientsAttribution;
+    sampledShapleyAttribution?: Schema$GoogleCloudMlV1__SampledShapleyAttribution;
+  }
+  /**
    * Returns service account information associated with a project.
    */
   export interface Schema$GoogleCloudMlV1__GetConfigResponse {
@@ -300,6 +316,15 @@ export namespace ml_v1 {
      * Optional. The prior hyperparameter tuning job id that users hope to continue with. The job id will be used to find the corresponding vizier study guid and resume the study.
      */
     resumePreviousJobId?: string | null;
+  }
+  /**
+   * Attributes credit by computing the Aumann-Shapley value taking advantage of the model&#39;s fully differentiable structure. Refer to this paper for more details: http://proceedings.mlr.press/v70/sundararajan17a.html
+   */
+  export interface Schema$GoogleCloudMlV1__IntegratedGradientsAttribution {
+    /**
+     * Number of steps for approximating the path integral. A good value to start is 50 and gradually increase until the sum to diff property is met within the desired error range.
+     */
+    numIntegralSteps?: number | null;
   }
   /**
    * Represents a training or prediction job.
@@ -644,6 +669,15 @@ export namespace ml_v1 {
     samplingPercentage?: number | null;
   }
   /**
+   * An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features.
+   */
+  export interface Schema$GoogleCloudMlV1__SampledShapleyAttribution {
+    /**
+     * The number of feature permutations to consider when approximating the shapley values.
+     */
+    numPaths?: number | null;
+  }
+  /**
    * Request message for the SetDefaultVersion request.
    */
   export interface Schema$GoogleCloudMlV1__SetDefaultVersionRequest {}
@@ -668,7 +702,7 @@ export namespace ml_v1 {
      */
     masterConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
-     * Optional. Specifies the type of virtual machine to use for your training job&#39;s master worker.  The following types are supported:  &lt;dl&gt;   &lt;dt&gt;standard&lt;/dt&gt;   &lt;dd&gt;   A basic machine configuration suitable for training simple models with   small to moderate datasets.   &lt;/dd&gt;   &lt;dt&gt;large_model&lt;/dt&gt;   &lt;dd&gt;   A machine with a lot of memory, specially suited for parameter servers   when your model is large (having many hidden layers or layers with very   large numbers of nodes).   &lt;/dd&gt;   &lt;dt&gt;complex_model_s&lt;/dt&gt;   &lt;dd&gt;   A machine suitable for the master and workers of the cluster when your   model requires more computation than the standard machine can handle   satisfactorily.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly twice the number of cores and roughly double the   memory of &lt;i&gt;complex_model_s&lt;/i&gt;.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly twice the number of cores and roughly double the   memory of &lt;i&gt;complex_model_m&lt;/i&gt;.   &lt;/dd&gt;   &lt;dt&gt;standard_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that   also includes a single NVIDIA Tesla K80 GPU. See more about   &lt;a href=&quot;/ml-engine/docs/tensorflow/using-gpus&quot;&gt;using GPUs to   train your model&lt;/a&gt;.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes   four NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that also includes   eight NVIDIA Tesla K80 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that   also includes a single NVIDIA Tesla P100 GPU.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_p100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that also includes   four NVIDIA Tesla P100 GPUs.   &lt;/dd&gt;   &lt;dt&gt;standard_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;standard&lt;/i&gt; that   also includes a single NVIDIA Tesla V100 GPU.   &lt;/dd&gt;   &lt;dt&gt;large_model_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;large_model&lt;/i&gt; that   also includes a single NVIDIA Tesla V100 GPU.   &lt;/dd&gt;   &lt;dt&gt;complex_model_m_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_m&lt;/i&gt; that   also includes four NVIDIA Tesla V100 GPUs.   &lt;/dd&gt;   &lt;dt&gt;complex_model_l_v100&lt;/dt&gt;   &lt;dd&gt;   A machine equivalent to &lt;i&gt;complex_model_l&lt;/i&gt; that   also includes eight NVIDIA Tesla V100 GPUs.   &lt;/dd&gt;   &lt;dt&gt;cloud_tpu&lt;/dt&gt;   &lt;dd&gt;   A TPU VM including one Cloud TPU. See more about   &lt;a href=&quot;/ml-engine/docs/tensorflow/using-tpus&quot;&gt;using TPUs to train   your model&lt;/a&gt;.   &lt;/dd&gt; &lt;/dl&gt;  You may also use certain Compute Engine machine types directly in this field. The following types are supported:  - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96`  See more about [using Compute Engine machine types](/ml-engine/docs/tensorflow/machine-types#compute-engine-machine-types).  You must set this value when `scaleTier` is set to `CUSTOM`.
+     * Optional. Specifies the type of virtual machine to use for your training job&#39;s master worker. You must specify this field when `scaleTier` is set to `CUSTOM`.  You can use certain Compute Engine machine types directly in this field. The following types are supported:  - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96`  Learn more about [using Compute Engine machine types](/ml-engine/docs/machine-types#compute-engine-machine-types).  Alternatively, you can use the following legacy machine types:  - `standard` - `large_model` - `complex_model_s` - `complex_model_m` - `complex_model_l` - `standard_gpu` - `complex_model_m_gpu` - `complex_model_l_gpu` - `standard_p100` - `complex_model_m_p100` - `standard_v100` - `large_model_v100` - `complex_model_m_v100` - `complex_model_l_v100`  Learn more about [using legacy machine types](/ml-engine/docs/machine-types#legacy-machine-types).  Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPUs](/ml-engine/docs/tensorflow/using-tpus#configuring_a_custom_tpu_machine).
      */
     masterType?: string | null;
     /**
@@ -684,7 +718,7 @@ export namespace ml_v1 {
      */
     parameterServerCount?: string | null;
     /**
-     * Optional. Specifies the type of virtual machine to use for your training job&#39;s parameter server.  The supported values are the same as those described in the entry for `master_type`.  This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be AI Platform machine types or both must be Compute Engine machine types.  This value must be present when `scaleTier` is set to `CUSTOM` and `parameter_server_count` is greater than zero.
+     * Optional. Specifies the type of virtual machine to use for your training job&#39;s parameter server.  The supported values are the same as those described in the entry for `master_type`.  This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be Compute Engine machine types or both must be legacy machine types.  This value must be present when `scaleTier` is set to `CUSTOM` and `parameter_server_count` is greater than zero.
      */
     parameterServerType?: string | null;
     /**
@@ -720,7 +754,7 @@ export namespace ml_v1 {
      */
     workerCount?: string | null;
     /**
-     * Optional. Specifies the type of virtual machine to use for your training job&#39;s worker nodes.  The supported values are the same as those described in the entry for `masterType`.  This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be AI Platform machine types or both must be Compute Engine machine types.  If you use `cloud_tpu` for this value, see special instructions for [configuring a custom TPU machine](/ml-engine/docs/tensorflow/using-tpus#configuring_a_custom_tpu_machine).  This value must be present when `scaleTier` is set to `CUSTOM` and `workerCount` is greater than zero.
+     * Optional. Specifies the type of virtual machine to use for your training job&#39;s worker nodes.  The supported values are the same as those described in the entry for `masterType`.  This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be Compute Engine machine types or both must be legacy machine types.  If you use `cloud_tpu` for this value, see special instructions for [configuring a custom TPU machine](/ml-engine/docs/tensorflow/using-tpus#configuring_a_custom_tpu_machine).  This value must be present when `scaleTier` is set to `CUSTOM` and `workerCount` is greater than zero.
      */
     workerType?: string | null;
   }
@@ -789,6 +823,10 @@ export namespace ml_v1 {
      * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a model from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform model updates in order to avoid race conditions: An `etag` is returned in the response to `GetVersion`, and systems are expected to put that etag in the request to `UpdateVersion` to ensure that their change will be applied to the model as intended.
      */
     etag?: string | null;
+    /**
+     * Optional. Configures explainability features on the model&#39;s version. Some explanation features require additional metadata to be loaded as part of the model payload.
+     */
+    explanationConfig?: Schema$GoogleCloudMlV1__ExplanationConfig;
     /**
      * Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater.  Do **not** specify a framework if you&#39;re deploying a [custom prediction routine](/ml-engine/docs/tensorflow/custom-prediction-routines).  If you specify a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction) in the `machineType` field, you must specify `TENSORFLOW` for the framework.
      */
@@ -902,11 +940,11 @@ export namespace ml_v1 {
      */
     bindings?: Schema$GoogleIamV1__Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if the incoming policy version does not meet the requirements for modifying the stored policy.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a binding (conditional or unconditional) from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, version compliance checks against the stored policy is skipped.
      */
     version?: number | null;
   }
@@ -1037,6 +1075,80 @@ export namespace ml_v1 {
     }
 
     /**
+     * ml.projects.explain
+     * @desc Performs explanation on the data in the request. AI Platform implements a custom `explain` verb on top of an HTTP POST method. <p>For details of the request and response format, see the **guide to the [explain request format](/ml-engine/docs/v1/explain-request)**.
+     * @alias ml.projects.explain
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of a model or a version.  Authorization: requires the `predict` permission on the specified resource.
+     * @param {().GoogleCloudMlV1__ExplainRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    explain(
+      params?: Params$Resource$Projects$Explain,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleApi__HttpBody>;
+    explain(
+      params: Params$Resource$Projects$Explain,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+      callback: BodyResponseCallback<Schema$GoogleApi__HttpBody>
+    ): void;
+    explain(
+      params: Params$Resource$Projects$Explain,
+      callback: BodyResponseCallback<Schema$GoogleApi__HttpBody>
+    ): void;
+    explain(callback: BodyResponseCallback<Schema$GoogleApi__HttpBody>): void;
+    explain(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Explain
+        | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+      callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>
+    ): void | GaxiosPromise<Schema$GoogleApi__HttpBody> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Explain;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Explain;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:explain').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleApi__HttpBody>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleApi__HttpBody>(parameters);
+      }
+    }
+
+    /**
      * ml.projects.getConfig
      * @desc Get the service account information associated with your project. You need this information in order to grant the service account permissions for the Google Cloud Storage location where you put your model training code for training the model with Google Cloud Machine Learning.
      * @alias ml.projects.getConfig
@@ -1127,7 +1239,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of a model or a version.  Authorization: requires the `predict` permission on the specified resource.
-     * @param {().GoogleCloudMlV1__PredictRequest} params.resource Request body data
+     * @param {().GoogleCloudMlV1__PredictRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1194,6 +1306,22 @@ export namespace ml_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Explain extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name of a model or a version.  Authorization: requires the `predict` permission on the specified resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__ExplainRequest;
+  }
   export interface Params$Resource$Projects$Getconfig
     extends StandardParameters {
     /**
@@ -1237,7 +1365,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the job to cancel.
-     * @param {().GoogleCloudMlV1__CancelJobRequest} params.resource Request body data
+     * @param {().GoogleCloudMlV1__CancelJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1311,7 +1439,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The project name.
-     * @param {().GoogleCloudMlV1__Job} params.resource Request body data
+     * @param {().GoogleCloudMlV1__Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1619,7 +1747,7 @@ export namespace ml_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The job name.
      * @param {string=} params.updateMask Required. Specifies the path, relative to `Job`, of the field to update. To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your job resource.  For example, to change the labels of a job, the `update_mask` parameter would be specified as `labels`, `etag`, and the `PATCH` request body would specify the new value, as follows:     {       "labels": {          "owner": "Google",          "color": "Blue"       }       "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4"     } If `etag` matches the one on the server, the labels of the job will be replaced with the given ones, and the server end `etag` will be recalculated.  Currently the only supported update masks are `labels` and `etag`.
-     * @param {().GoogleCloudMlV1__Job} params.resource Request body data
+     * @param {().GoogleCloudMlV1__Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1693,7 +1821,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().GoogleIamV1__SetIamPolicyRequest} params.resource Request body data
+     * @param {().GoogleIamV1__SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1770,7 +1898,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GoogleIamV1__TestIamPermissionsRequest} params.resource Request body data
+     * @param {().GoogleIamV1__TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2222,7 +2350,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The project name.
-     * @param {().GoogleCloudMlV1__Model} params.resource Request body data
+     * @param {().GoogleCloudMlV1__Model} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2618,7 +2746,7 @@ export namespace ml_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The project name.
      * @param {string=} params.updateMask Required. Specifies the path, relative to `Model`, of the field to update.  For example, to change the description of a model to "foo" and set its default version to "version_1", the `update_mask` parameter would be specified as `description`, `default_version.name`, and the `PATCH` request body would specify the new value, as follows:     {       "description": "foo",       "defaultVersion": {         "name":"version_1"       }     }  Currently the supported update masks are `description` and `default_version.name`.
-     * @param {().GoogleCloudMlV1__Model} params.resource Request body data
+     * @param {().GoogleCloudMlV1__Model} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2699,7 +2827,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().GoogleIamV1__SetIamPolicyRequest} params.resource Request body data
+     * @param {().GoogleIamV1__SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2776,7 +2904,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GoogleIamV1__TestIamPermissionsRequest} params.resource Request body data
+     * @param {().GoogleIamV1__TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3012,7 +3140,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The name of the model.
-     * @param {().GoogleCloudMlV1__Version} params.resource Request body data
+     * @param {().GoogleCloudMlV1__Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3344,7 +3472,7 @@ export namespace ml_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the model.
      * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:  ``` {   "description": "foo" } ```  Currently the only supported update mask fields are `description`, `autoScaling.minNodes`, and `manualScaling.nodes`. However, you can only update `manualScaling.nodes` if the version uses a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction).
-     * @param {().GoogleCloudMlV1__Version} params.resource Request body data
+     * @param {().GoogleCloudMlV1__Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3425,7 +3553,7 @@ export namespace ml_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the version to make the default for the model. You can get the names of all the versions of a model by calling [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
-     * @param {().GoogleCloudMlV1__SetDefaultVersionRequest} params.resource Request body data
+     * @param {().GoogleCloudMlV1__SetDefaultVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -505,7 +505,7 @@ export namespace sourcerepo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the requested project. Values are of the form `projects/<project>`.
-     * @param {().UpdateProjectConfigRequest} params.resource Request body data
+     * @param {().UpdateProjectConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -614,7 +614,7 @@ export namespace sourcerepo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/<project>`.
-     * @param {().Repo} params.resource Request body data
+     * @param {().Repo} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -970,7 +970,7 @@ export namespace sourcerepo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the requested repository. Values are of the form `projects/<project>/repos/<repo>`.
-     * @param {().UpdateRepoRequest} params.resource Request body data
+     * @param {().UpdateRepoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1040,7 +1040,7 @@ export namespace sourcerepo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1113,7 +1113,7 @@ export namespace sourcerepo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the repo to synchronize. Values are of the form `projects/<project>/repos/<repo>`.
-     * @param {().SyncRepoRequest} params.resource Request body data
+     * @param {().SyncRepoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1185,7 +1185,7 @@ export namespace sourcerepo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -341,7 +341,7 @@ export namespace cloudscheduler_v1 {
    */
   export interface Schema$PubsubMessage {
     /**
-     * Optional attributes for this message.
+     * Attributes for this message. If this field is empty, the message must contain non-empty data.
      */
     attributes?: {[key: string]: string} | null;
     /**
@@ -801,7 +801,7 @@ export namespace cloudscheduler_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1307,7 +1307,7 @@ export namespace cloudscheduler_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Optionally caller-specified in CreateJob, after which it becomes output only.  The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.  * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), colons (:), or periods (.).    For more information, see    [Identifying    projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the job's location.    The list of available locations can be obtained by calling    ListLocations.    For more information, see https://cloud.google.com/about/locations/. * `JOB_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), or underscores (_). The maximum length is 500 characters.
      * @param {string=} params.updateMask A  mask used to specify which fields of the job are being updated.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1430,7 +1430,7 @@ export namespace cloudscheduler_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param {().PauseJobRequest} params.resource Request body data
+     * @param {().PauseJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1553,7 +1553,7 @@ export namespace cloudscheduler_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param {().ResumeJobRequest} params.resource Request body data
+     * @param {().ResumeJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1676,7 +1676,7 @@ export namespace cloudscheduler_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param {().RunJobRequest} params.resource Request body data
+     * @param {().RunJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

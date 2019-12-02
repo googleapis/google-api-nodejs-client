@@ -744,7 +744,7 @@ export namespace fusiontables_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new column is being added.
-     * @param {().Column} params.resource Request body data
+     * @param {().Column} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -890,7 +890,7 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.columnId Name or identifier for the column that is being updated.
      * @param {string} params.tableId Table for which the column is being updated.
-     * @param {().Column} params.resource Request body data
+     * @param {().Column} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -962,7 +962,7 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.columnId Name or identifier for the column that is being updated.
      * @param {string} params.tableId Table for which the column is being updated.
-     * @param {().Column} params.resource Request body data
+     * @param {().Column} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1486,7 +1486,7 @@ export namespace fusiontables_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new style is being added
-     * @param {().StyleSetting} params.resource Request body data
+     * @param {().StyleSetting} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1636,7 +1636,7 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {integer} params.styleId Identifier (within a table) for the style being updated.
      * @param {string} params.tableId Table whose style is being updated.
-     * @param {().StyleSetting} params.resource Request body data
+     * @param {().StyleSetting} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1710,7 +1710,7 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {integer} params.styleId Identifier (within a table) for the style being updated.
      * @param {string} params.tableId Table whose style is being updated.
-     * @param {().StyleSetting} params.resource Request body data
+     * @param {().StyleSetting} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2272,7 +2272,7 @@ export namespace fusiontables_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Table} params.resource Request body data
+     * @param {().Table} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2419,7 +2419,7 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.replaceViewDefinition Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param {string} params.tableId ID of the table that is being updated.
-     * @param {().Table} params.resource Request body data
+     * @param {().Table} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2492,7 +2492,7 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.replaceViewDefinition Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param {string} params.tableId ID of the table that is being updated.
-     * @param {().Table} params.resource Request body data
+     * @param {().Table} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3177,7 +3177,7 @@ export namespace fusiontables_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new template is being created
-     * @param {().Template} params.resource Request body data
+     * @param {().Template} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3323,7 +3323,7 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table to which the updated template belongs
      * @param {integer} params.templateId Identifier for the template that is being updated
-     * @param {().Template} params.resource Request body data
+     * @param {().Template} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3396,7 +3396,7 @@ export namespace fusiontables_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table to which the updated template belongs
      * @param {integer} params.templateId Identifier for the template that is being updated
-     * @param {().Template} params.resource Request body data
+     * @param {().Template} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

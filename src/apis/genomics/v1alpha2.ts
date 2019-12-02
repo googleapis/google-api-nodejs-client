@@ -771,7 +771,7 @@ export namespace genomics_v1alpha2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1199,7 +1199,7 @@ export namespace genomics_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Pipeline} params.resource Request body data
+     * @param {().Pipeline} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1804,7 +1804,7 @@ export namespace genomics_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().RunPipelineRequest} params.resource Request body data
+     * @param {().RunPipelineRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1922,7 +1922,7 @@ export namespace genomics_v1alpha2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SetOperationStatusRequest} params.resource Request body data
+     * @param {().SetOperationStatusRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

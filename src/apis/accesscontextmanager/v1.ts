@@ -433,7 +433,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AccessPolicy} params.resource Request body data
+     * @param {().AccessPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -732,7 +732,7 @@ export namespace accesscontextmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
-     * @param {().AccessPolicy} params.resource Request body data
+     * @param {().AccessPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -890,7 +890,7 @@ export namespace accesscontextmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Resource name for the access policy which owns this Access Level.  Format: `accessPolicies/{policy_id}`
-     * @param {().AccessLevel} params.resource Request body data
+     * @param {().AccessLevel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1192,7 +1192,7 @@ export namespace accesscontextmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
      * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
-     * @param {().AccessLevel} params.resource Request body data
+     * @param {().AccessLevel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1363,7 +1363,7 @@ export namespace accesscontextmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Resource name for the access policy which owns this Service Perimeter.  Format: `accessPolicies/{policy_id}`
-     * @param {().ServicePerimeter} params.resource Request body data
+     * @param {().ServicePerimeter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1670,7 +1670,7 @@ export namespace accesscontextmanager_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Required. Resource name for the ServicePerimeter.  The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`
      * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
-     * @param {().ServicePerimeter} params.resource Request body data
+     * @param {().ServicePerimeter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1833,7 +1833,7 @@ export namespace accesscontextmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

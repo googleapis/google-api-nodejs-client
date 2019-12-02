@@ -688,7 +688,7 @@ export namespace firebasedynamiclinks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateManagedShortLinkRequest} params.resource Request body data
+     * @param {().CreateManagedShortLinkRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -792,7 +792,7 @@ export namespace firebasedynamiclinks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateShortDynamicLinkRequest} params.resource Request body data
+     * @param {().CreateShortDynamicLinkRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -969,7 +969,7 @@ export namespace firebasedynamiclinks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GetIosPostInstallAttributionRequest} params.resource Request body data
+     * @param {().GetIosPostInstallAttributionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1061,7 +1061,7 @@ export namespace firebasedynamiclinks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GetIosReopenAttributionRequest} params.resource Request body data
+     * @param {().GetIosReopenAttributionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

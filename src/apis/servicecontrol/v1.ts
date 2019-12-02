@@ -258,6 +258,10 @@ export namespace servicecontrol_v1 {
      */
     principalEmail?: string | null;
     /**
+     * String representation of identity of requesting party. Populated for both first and third party identities.
+     */
+    principalSubject?: string | null;
+    /**
      * Identity delegation history of an authenticated service account that makes the request. It contains information on the real authorities that try to access GCP resources by delegating on a service account. When multiple authorities present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.
      */
     serviceAccountDelegationInfo?: Schema$ServiceAccountDelegationInfo[];
@@ -1130,7 +1134,7 @@ export namespace servicecontrol_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
-     * @param {().AllocateQuotaRequest} params.resource Request body data
+     * @param {().AllocateQuotaRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1210,7 +1214,7 @@ export namespace servicecontrol_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
-     * @param {().CheckRequest} params.resource Request body data
+     * @param {().CheckRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1285,7 +1289,7 @@ export namespace servicecontrol_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
-     * @param {().ReportRequest} params.resource Request body data
+     * @param {().ReportRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

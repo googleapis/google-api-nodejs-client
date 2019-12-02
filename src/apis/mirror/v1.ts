@@ -600,7 +600,7 @@ export namespace mirror_v1 {
      * @param {string} params.accountName The name of the account to be passed to the Android Account Manager.
      * @param {string} params.accountType Account type to be passed to Android Account Manager.
      * @param {string} params.userToken The ID for the user.
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -845,7 +845,7 @@ export namespace mirror_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Contact} params.resource Request body data
+     * @param {().Contact} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -991,7 +991,7 @@ export namespace mirror_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the contact.
-     * @param {().Contact} params.resource Request body data
+     * @param {().Contact} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1063,7 +1063,7 @@ export namespace mirror_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the contact.
-     * @param {().Contact} params.resource Request body data
+     * @param {().Contact} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1545,7 +1545,7 @@ export namespace mirror_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Subscription} params.resource Request body data
+     * @param {().Subscription} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1700,7 +1700,7 @@ export namespace mirror_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the subscription.
-     * @param {().Subscription} params.resource Request body data
+     * @param {().Subscription} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1976,7 +1976,7 @@ export namespace mirror_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -2138,7 +2138,7 @@ export namespace mirror_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the timeline item.
-     * @param {().TimelineItem} params.resource Request body data
+     * @param {().TimelineItem} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2212,7 +2212,7 @@ export namespace mirror_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the timeline item.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents

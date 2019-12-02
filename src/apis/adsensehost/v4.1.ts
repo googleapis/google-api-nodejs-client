@@ -1021,7 +1021,7 @@ export namespace adsensehost_v4_1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account which will contain the ad unit.
      * @param {string} params.adClientId Ad client into which to insert the ad unit.
-     * @param {().AdUnit} params.resource Request body data
+     * @param {().AdUnit} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1172,7 +1172,7 @@ export namespace adsensehost_v4_1 {
      * @param {string} params.accountId Account which contains the ad client.
      * @param {string} params.adClientId Ad client which contains the ad unit.
      * @param {string} params.adUnitId Ad unit to get.
-     * @param {().AdUnit} params.resource Request body data
+     * @param {().AdUnit} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1246,7 +1246,7 @@ export namespace adsensehost_v4_1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account which contains the ad client.
      * @param {string} params.adClientId Ad client which contains the ad unit.
-     * @param {().AdUnit} params.resource Request body data
+     * @param {().AdUnit} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2144,7 +2144,7 @@ export namespace adsensehost_v4_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client to which the new custom channel will be added.
-     * @param {().CustomChannel} params.resource Request body data
+     * @param {().CustomChannel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2296,7 +2296,7 @@ export namespace adsensehost_v4_1 {
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client in which the custom channel will be updated.
      * @param {string} params.customChannelId Custom channel to get.
-     * @param {().CustomChannel} params.resource Request body data
+     * @param {().CustomChannel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2371,7 +2371,7 @@ export namespace adsensehost_v4_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client in which the custom channel will be updated.
-     * @param {().CustomChannel} params.resource Request body data
+     * @param {().CustomChannel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2766,7 +2766,7 @@ export namespace adsensehost_v4_1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client to which the new URL channel will be added.
-     * @param {().UrlChannel} params.resource Request body data
+     * @param {().UrlChannel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

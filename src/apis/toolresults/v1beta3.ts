@@ -1321,7 +1321,7 @@ export namespace toolresults_v1beta3 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId A Project id.  Required.
      * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     * @param {().History} params.resource Request body data
+     * @param {().History} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1623,7 +1623,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
      * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     * @param {().Execution} params.resource Request body data
+     * @param {().Execution} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1856,7 +1856,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.historyId Required.
      * @param {string} params.projectId A Project id. Required.
      * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     * @param {().Execution} params.resource Request body data
+     * @param {().Execution} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2270,7 +2270,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.historyId Required. A History id.
      * @param {string} params.projectId Required. A Project id.
      * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
-     * @param {().Step} params.resource Request body data
+     * @param {().Step} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2579,7 +2579,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.projectId A Project id.  Required.
      * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
      * @param {string} params.stepId A Step id.  Required.
-     * @param {().Step} params.resource Request body data
+     * @param {().Step} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2655,7 +2655,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.historyId A History id.  Required.
      * @param {string} params.projectId A Project id.  Required.
      * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
-     * @param {().PublishXunitXmlFilesRequest} params.resource Request body data
+     * @param {().PublishXunitXmlFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2906,7 +2906,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.historyId A tool results history ID.
      * @param {string} params.projectId The cloud project
      * @param {string} params.stepId A tool results step ID.
-     * @param {().PerfMetricsSummary} params.resource Request body data
+     * @param {().PerfMetricsSummary} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3025,7 +3025,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.historyId A tool results history ID.
      * @param {string} params.projectId The cloud project
      * @param {string} params.stepId A tool results step ID.
-     * @param {().PerfSampleSeries} params.resource Request body data
+     * @param {().PerfSampleSeries} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3374,7 +3374,7 @@ export namespace toolresults_v1beta3 {
      * @param {string} params.projectId The cloud project
      * @param {string} params.sampleSeriesId A sample series id
      * @param {string} params.stepId A tool results step ID.
-     * @param {().BatchCreatePerfSamplesRequest} params.resource Request body data
+     * @param {().BatchCreatePerfSamplesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

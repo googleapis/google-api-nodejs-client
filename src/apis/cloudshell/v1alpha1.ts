@@ -312,7 +312,7 @@ export namespace cloudshell_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the resource that should receive the credentials, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
-     * @param {().AuthorizeEnvironmentRequest} params.resource Request body data
+     * @param {().AuthorizeEnvironmentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -457,7 +457,7 @@ export namespace cloudshell_v1alpha1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the resource to be updated, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      * @param {string=} params.updateMask Mask specifying which fields in the environment should be updated.
-     * @param {().Environment} params.resource Request body data
+     * @param {().Environment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -529,7 +529,7 @@ export namespace cloudshell_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the resource that should be started, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
-     * @param {().StartEnvironmentRequest} params.resource Request body data
+     * @param {().StartEnvironmentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -679,7 +679,7 @@ export namespace cloudshell_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Parent resource name, e.g. `users/me/environments/default`.
-     * @param {().CreatePublicKeyRequest} params.resource Request body data
+     * @param {().CreatePublicKeyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

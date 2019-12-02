@@ -1284,6 +1284,45 @@ export namespace videointelligence_v1 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults[];
   }
   /**
+   * Celebrity definition.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_Celebrity {
+    /**
+     * Textual description of additional information about the celebrity, if applicable.
+     */
+    description?: string | null;
+    /**
+     * The celebrity name.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the celebrity. Have the format `video-intelligence/kg-mid` indicates a celebrity from preloaded gallery. kg-mid is the id in Google knowledge graph, which is unique for the celebrity.
+     */
+    name?: string | null;
+  }
+  /**
+   * Celebrity recognition annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation {
+    /**
+     * The tracks detected from the input video, including recognized celebrities and other detected faces in the video.
+     */
+    celebrityTracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityTrack[];
+  }
+  /**
+   * The annotation result of a celebrity face track. RecognizedCelebrity field could be empty if the face track does not have any matched celebrities.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityTrack {
+    /**
+     * Top N match of the celebrities for the face in this track.
+     */
+    celebrities?: Schema$GoogleCloudVideointelligenceV1p3beta1_RecognizedCelebrity[];
+    /**
+     * A track of a person&#39;s face.
+     */
+    faceTrack?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track;
+  }
+  /**
    * A generic detected attribute represented by name in string format.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute {
@@ -1485,6 +1524,19 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
+   * The recognized celebrity with confidence score.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_RecognizedCelebrity {
+    /**
+     * The recognized celebrity.
+     */
+    celebrity?: Schema$GoogleCloudVideointelligenceV1p3beta1_Celebrity;
+    /**
+     * Recognition confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+  }
+  /**
    * Alternative hypotheses (a.k.a. n-best list).
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative {
@@ -1666,6 +1718,10 @@ export namespace videointelligence_v1 {
    * Annotation results for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults {
+    /**
+     * Celebrity recognition annotations.
+     */
+    celebrityRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation;
     /**
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest` some videos may succeed and some may fail.
      */
@@ -2727,7 +2783,7 @@ export namespace videointelligence_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().GoogleLongrunning_CancelOperationRequest} params.resource Request body data
+     * @param {().GoogleLongrunning_CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3122,7 +3178,7 @@ export namespace videointelligence_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVideointelligenceV1_AnnotateVideoRequest} params.resource Request body data
+     * @param {().GoogleCloudVideointelligenceV1_AnnotateVideoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

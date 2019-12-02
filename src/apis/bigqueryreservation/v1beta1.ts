@@ -133,13 +133,34 @@ export namespace bigqueryreservation_v1beta1 {
     name?: string | null;
   }
   /**
-   * Capacity commitment is a way to purchase compute capacity for BigQuery jobs (in the form of slots) with some minimum committed period of usage. Capacity commitment is immutable and cannot be deleted until the end of the commitment period. After the end of the commitment period, slots are still available but can be freely removed any time.  A capacity commitment resource exists as a child resource of the admin project.
+   * Represents a BI Reservation.
+   */
+  export interface Schema$BiReservation {
+    /**
+     * The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id}/locations/{location_id}/bireservation`.
+     */
+    name?: string | null;
+    /**
+     * Size of a reservation, in bytes.
+     */
+    size?: string | null;
+    /**
+     * Output only. The last update timestamp of a reservation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Capacity commitment is a way to purchase compute capacity for BigQuery jobs (in the form of slots) with some minimum committed period of usage. Capacity commitment is immutable and cannot be deleted until the end of the commitment period. After the end of the commitment period, slots are still available but can be freely removed any time. Annual commitments will automatically be downgraded to monthly after the commitment ends.  A capacity commitment resource exists as a child resource of the admin project.
    */
   export interface Schema$CapacityCommitment {
     /**
      * Output only. The end of the commitment period. Capacity commitment cannot be removed before commitment_end_time. It is applicable only for ACTIVE capacity commitments and is computed as a combination of the plan and the time when the capacity commitment became ACTIVE.
      */
     commitmentEndTime?: string | null;
+    /**
+     * Output only. For FAILED commitment plan, provides the reason of failure.
+     */
+    failureStatus?: Schema$Status;
     /**
      * Output only. The resource name of the capacity commitment, e.g.,    projects/myproject/locations/US/capacityCommitments/123
      */
@@ -156,15 +177,6 @@ export namespace bigqueryreservation_v1beta1 {
      * Output only. State of the commitment.
      */
     state?: string | null;
-  }
-  /**
-   * The metadata for operation returned from ReservationService.CreateCapacityCommitment.
-   */
-  export interface Schema$CreateCapacityCommitmentMetadata {
-    /**
-     * Resource name of the capacity commitment that is being created. E.g., projects/myproject/locations/US/capacityCommitments/123
-     */
-    capacityCommitment?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -257,36 +269,20 @@ export namespace bigqueryreservation_v1beta1 {
     legacyLocationId?: string | null;
   }
   /**
-   * This resource represents a long-running operation that is the result of a network API call.
+   * The request for ReservationService.MoveAssignment. Note: &quot;bigquery.reservationAssignments.create&quot; permission is required on the destination_id. Note: &quot;bigquery.reservationAssignments.create&quot; and &quot;bigquery.reservationAssignments.delete&quot; permission is required on the related assignee.
    */
-  export interface Schema$Operation {
+  export interface Schema$MoveAssignmentRequest {
     /**
-     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     * The new reservation ID, e.g.:   projects/myotherproject/locations/US/reservations/team2-prod
      */
-    done?: boolean | null;
-    /**
-     * The error result of the operation in case of failure or cancellation.
-     */
-    error?: Schema$Status;
-    /**
-     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
-     */
-    metadata?: {[key: string]: any} | null;
-    /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
-     */
-    name?: string | null;
-    /**
-     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-     */
-    response?: {[key: string]: any} | null;
+    destinationId?: string | null;
   }
   /**
    * A reservation is a mechanism used to guarantee slots to users.
    */
   export interface Schema$Reservation {
     /**
-     * If true, any query using this reservation might be able to use the idle slots from other reservations within the same admin project. If false, a query using this reservation will execute with the maximum slot capacity as specified above. If not specified, default value is true.
+     * If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the maximum slot capacity as specified above.
      */
     ignoreIdleSlots?: boolean | null;
     /**
@@ -341,14 +337,10 @@ export namespace bigqueryreservation_v1beta1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     capacityCommitments: Resource$Projects$Locations$Capacitycommitments;
-    operations: Resource$Projects$Locations$Operations;
     reservations: Resource$Projects$Locations$Reservations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.capacityCommitments = new Resource$Projects$Locations$Capacitycommitments(
-        this.context
-      );
-      this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
       this.reservations = new Resource$Projects$Locations$Reservations(
@@ -423,6 +415,80 @@ export namespace bigqueryreservation_v1beta1 {
         createAPIRequest<Schema$Location>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Location>(parameters);
+      }
+    }
+
+    /**
+     * bigqueryreservation.projects.locations.getBiReservation
+     * @desc Retrieves a BI reservation.
+     * @alias bigqueryreservation.projects.locations.getBiReservation
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of the requested reservation, for example: `projects/{project_id}/locations/{location_id}/bireservation`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getBiReservation(
+      params?: Params$Resource$Projects$Locations$Getbireservation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BiReservation>;
+    getBiReservation(
+      params: Params$Resource$Projects$Locations$Getbireservation,
+      options: MethodOptions | BodyResponseCallback<Schema$BiReservation>,
+      callback: BodyResponseCallback<Schema$BiReservation>
+    ): void;
+    getBiReservation(
+      params: Params$Resource$Projects$Locations$Getbireservation,
+      callback: BodyResponseCallback<Schema$BiReservation>
+    ): void;
+    getBiReservation(
+      callback: BodyResponseCallback<Schema$BiReservation>
+    ): void;
+    getBiReservation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getbireservation
+        | BodyResponseCallback<Schema$BiReservation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BiReservation>,
+      callback?: BodyResponseCallback<Schema$BiReservation>
+    ): void | GaxiosPromise<Schema$BiReservation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getbireservation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getbireservation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BiReservation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$BiReservation>(parameters);
       }
     }
 
@@ -508,7 +574,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.searchAssignments
-     * @desc Looks up assignments for a specified resource for a particular region. If the request is about a project:   1) Assignments created on the project will be returned if they exist.   2) Otherwise assignments created on the closest ancestor will be   returned. 3) Assignments for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then assignments created on the organization will be returned (organization doesn't have ancestors). Comparing to ListAssignments, there are some behavior differences:   1) permission on the assignee will be verified in this API.   2) Hierarchy lookup (project->folder->organization) happens in this API.   3) Parent here is projects/x/locations/x, instead of   projects/x/locations/xreservations/x. Wildcard "-" can be used for projects in SearchAssignmentsRequest.parent. Note "-" cannot be used for projects nor locations.
+     * @desc Looks up assignments for a specified resource for a particular region. If the request is about a project:   1) Assignments created on the project will be returned if they exist.   2) Otherwise assignments created on the closest ancestor will be   returned. 3) Assignments for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then assignments created on the organization will be returned (organization doesn't have ancestors). Comparing to ListAssignments, there are some behavior differences:   1) permission on the assignee will be verified in this API.   2) Hierarchy lookup (project->folder->organization) happens in this API.   3) Parent here is projects/x/locations/x, instead of   projects/x/locations/xreservations/x. Note "-" cannot be used for projects nor locations.
      * @alias bigqueryreservation.projects.locations.searchAssignments
      * @memberOf! ()
      *
@@ -590,6 +656,82 @@ export namespace bigqueryreservation_v1beta1 {
         return createAPIRequest<Schema$SearchAssignmentsResponse>(parameters);
       }
     }
+
+    /**
+     * bigqueryreservation.projects.locations.updateBiReservation
+     * @desc Updates a BI reservation. Only fields specified in the field_mask are updated. Singleton BI reservation always exists with default size 0. In order to reserve BI capacity it needs to be updated to an amount greater than 0. In order to release BI capacity reservation size must be set to 0.
+     * @alias bigqueryreservation.projects.locations.updateBiReservation
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id}/locations/{location_id}/bireservation`.
+     * @param {string=} params.updateMask A list of fields to be updated in this request.
+     * @param {().BiReservation} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateBiReservation(
+      params?: Params$Resource$Projects$Locations$Updatebireservation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BiReservation>;
+    updateBiReservation(
+      params: Params$Resource$Projects$Locations$Updatebireservation,
+      options: MethodOptions | BodyResponseCallback<Schema$BiReservation>,
+      callback: BodyResponseCallback<Schema$BiReservation>
+    ): void;
+    updateBiReservation(
+      params: Params$Resource$Projects$Locations$Updatebireservation,
+      callback: BodyResponseCallback<Schema$BiReservation>
+    ): void;
+    updateBiReservation(
+      callback: BodyResponseCallback<Schema$BiReservation>
+    ): void;
+    updateBiReservation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updatebireservation
+        | BodyResponseCallback<Schema$BiReservation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BiReservation>,
+      callback?: BodyResponseCallback<Schema$BiReservation>
+    ): void | GaxiosPromise<Schema$BiReservation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updatebireservation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updatebireservation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BiReservation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$BiReservation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
@@ -601,6 +743,18 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getbireservation
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the requested reservation, for example: `projects/{project_id}/locations/{location_id}/bireservation`
      */
     name?: string;
   }
@@ -652,11 +806,108 @@ export namespace bigqueryreservation_v1beta1 {
      */
     query?: string;
   }
+  export interface Params$Resource$Projects$Locations$Updatebireservation
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id}/locations/{location_id}/bireservation`.
+     */
+    name?: string;
+    /**
+     * A list of fields to be updated in this request.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BiReservation;
+  }
 
   export class Resource$Projects$Locations$Capacitycommitments {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * bigqueryreservation.projects.locations.capacityCommitments.create
+     * @desc Creates a new capacity commitment resource.
+     * @alias bigqueryreservation.projects.locations.capacityCommitments.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * @param {().CapacityCommitment} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Locations$Capacitycommitments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CapacityCommitment>;
+    create(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CapacityCommitment>,
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Create,
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CapacityCommitment>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Capacitycommitments$Create
+        | BodyResponseCallback<Schema$CapacityCommitment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CapacityCommitment>,
+      callback?: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void | GaxiosPromise<Schema$CapacityCommitment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Capacitycommitments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/capacityCommitments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CapacityCommitment>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CapacityCommitment>(parameters);
+      }
     }
 
     /**
@@ -888,6 +1139,23 @@ export namespace bigqueryreservation_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CapacityCommitment;
+  }
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Delete
     extends StandardParameters {
     /**
@@ -933,183 +1201,6 @@ export namespace bigqueryreservation_v1beta1 {
     parent?: string;
   }
 
-  export class Resource$Projects$Locations$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * bigqueryreservation.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @alias bigqueryreservation.projects.locations.operations.cancel
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    cancel(
-      params?: Params$Resource$Projects$Locations$Operations$Cancel,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    cancel(
-      params: Params$Resource$Projects$Locations$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * bigqueryreservation.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @alias bigqueryreservation.projects.locations.operations.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Projects$Locations$Operations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    get(
-      params: Params$Resource$Projects$Locations$Operations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Operations$Get,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-
   export class Resource$Projects$Locations$Reservations {
     context: APIRequestContext;
     assignments: Resource$Projects$Locations$Reservations$Assignments;
@@ -1128,8 +1219,8 @@ export namespace bigqueryreservation_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Project, location. E.g.,    projects/myproject/locations/US
-     * @param {string=} params.reservationId The reservation ID. This field must only contain alphanumeric characters or dash.
-     * @param {().Reservation} params.resource Request body data
+     * @param {string=} params.reservationId The reservation ID. This field must only contain lower case alphanumeric characters or dash.
+     * @param {().Reservation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1199,7 +1290,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.reservations.delete
-     * @desc Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has assignments. This check can be bypassed by      setting DeleteReservationRequest.force flag to true.
+     * @desc Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has assignments.
      * @alias bigqueryreservation.projects.locations.reservations.delete
      * @memberOf! ()
      *
@@ -1428,7 +1519,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the reservation, e.g., "projects/x/locations/x/reservations/team1-prod".
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().Reservation} params.resource Request body data
+     * @param {().Reservation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1506,7 +1597,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     parent?: string;
     /**
-     * The reservation ID. This field must only contain alphanumeric characters or dash.
+     * The reservation ID. This field must only contain lower case alphanumeric characters or dash.
      */
     reservationId?: string;
 
@@ -1598,8 +1689,8 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name of the assignment E.g.: projects/myproject/location/US/reservations/team1-prod
-     * @param {().Assignment} params.resource Request body data
+     * @param {string} params.parent The parent resource name of the assignment E.g.: projects/myproject/locations/US/reservations/team1-prod
+     * @param {().Assignment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1746,7 +1837,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name e.g.: projects/myproject/location/US/reservations/team1-prod Or: projects/myproject/location/US/reservations/-
+     * @param {string} params.parent The parent resource name e.g.: projects/myproject/locations/US/reservations/team1-prod Or: projects/myproject/locations/US/reservations/-
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1823,8 +1914,8 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.destinationId The new reservation ID, e.g.:   projects/myotherproject/locations/US/reservations/team2-prod
      * @param {string} params.name The resource name of the assignment, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
+     * @param {().MoveAssignmentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1901,7 +1992,7 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent resource name of the assignment E.g.: projects/myproject/location/US/reservations/team1-prod
+     * The parent resource name of the assignment E.g.: projects/myproject/locations/US/reservations/team1-prod
      */
     parent?: string;
 
@@ -1938,7 +2029,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name e.g.: projects/myproject/location/US/reservations/team1-prod Or: projects/myproject/location/US/reservations/-
+     * The parent resource name e.g.: projects/myproject/locations/US/reservations/team1-prod Or: projects/myproject/locations/US/reservations/-
      */
     parent?: string;
   }
@@ -1950,12 +2041,13 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The new reservation ID, e.g.:   projects/myotherproject/locations/US/reservations/team2-prod
-     */
-    destinationId?: string;
-    /**
      * The resource name of the assignment, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
      */
     name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MoveAssignmentRequest;
   }
 }

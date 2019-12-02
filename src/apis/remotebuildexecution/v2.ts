@@ -1002,6 +1002,23 @@ export namespace remotebuildexecution_v2 {
     workerPools?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
   }
   /**
+   * The request used for `UpdateInstance`.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest {
+    /**
+     * Whether to enable Stackdriver logging for this instance.
+     */
+    loggingEnabled?: boolean | null;
+    /**
+     * Name of the instance to update. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     */
+    name?: string | null;
+    /**
+     * The fields to update.
+     */
+    updateMask?: string | null;
+  }
+  /**
    * The request used for UpdateWorkerPool.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest {
@@ -1462,7 +1479,7 @@ export namespace remotebuildexecution_v2 {
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
      * @param {integer=} params.resultsCachePolicy.priority The priority (relative importance) of this content in the overall cache. Generally, a lower value means a longer retention time or other advantage, but the interpretation of a given value is server-dependent. A priority of 0 means a *default* value, decided by the server.  The particular semantics of this field is up to the server. In particular, every server will have their own supported range of priorities, and will decide how these map into retention/eviction policy.
      * @param {string} params.sizeBytes The size of the blob, in bytes.
-     * @param {().BuildBazelRemoteExecutionV2ActionResult} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2ActionResult} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1623,7 +1640,7 @@ export namespace remotebuildexecution_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
-     * @param {().BuildBazelRemoteExecutionV2ExecuteRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2ExecuteRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1729,7 +1746,7 @@ export namespace remotebuildexecution_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
-     * @param {().BuildBazelRemoteExecutionV2BatchReadBlobsRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2BatchReadBlobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1828,7 +1845,7 @@ export namespace remotebuildexecution_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
-     * @param {().BuildBazelRemoteExecutionV2BatchUpdateBlobsRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2BatchUpdateBlobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1930,7 +1947,7 @@ export namespace remotebuildexecution_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instanceName The instance of the execution system to operate against. A server may support multiple instances of the execution system (with their own workers, storage, caches, etc.). The server MAY require use of this field to select between them in an implementation-defined fashion, otherwise it can be omitted.
-     * @param {().BuildBazelRemoteExecutionV2FindMissingBlobsRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2FindMissingBlobsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2217,7 +2234,7 @@ export namespace remotebuildexecution_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the Operation returned by Execute.
-     * @param {().BuildBazelRemoteExecutionV2WaitExecutionRequest} params.resource Request body data
+     * @param {().BuildBazelRemoteExecutionV2WaitExecutionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

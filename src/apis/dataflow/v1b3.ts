@@ -3059,7 +3059,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId The project to send the WorkerMessages to.
-     * @param {().SendWorkerMessagesRequest} params.resource Request body data
+     * @param {().SendWorkerMessagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3252,7 +3252,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
      * @param {string=} params.view The level of information requested in response.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3557,7 +3557,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job ID.
      * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3805,7 +3805,7 @@ export namespace dataflow_v1b3 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job id.
      * @param {string} params.projectId The project id.
-     * @param {().GetDebugConfigRequest} params.resource Request body data
+     * @param {().GetDebugConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3885,7 +3885,7 @@ export namespace dataflow_v1b3 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job id.
      * @param {string} params.projectId The project id.
-     * @param {().SendDebugCaptureRequest} params.resource Request body data
+     * @param {().SendDebugCaptureRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4145,7 +4145,7 @@ export namespace dataflow_v1b3 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId Identifies the workflow job this worker belongs to.
      * @param {string} params.projectId Identifies the project this worker belongs to.
-     * @param {().LeaseWorkItemRequest} params.resource Request body data
+     * @param {().LeaseWorkItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4223,7 +4223,7 @@ export namespace dataflow_v1b3 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId The job which the WorkItem is part of.
      * @param {string} params.projectId The project which owns the WorkItem's job.
-     * @param {().ReportWorkItemStatusRequest} params.resource Request body data
+     * @param {().ReportWorkItemStatusRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4364,7 +4364,7 @@ export namespace dataflow_v1b3 {
      * @param {object} params Parameters for request
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job.
      * @param {string} params.projectId The project to send the WorkerMessages to.
-     * @param {().SendWorkerMessagesRequest} params.resource Request body data
+     * @param {().SendWorkerMessagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4488,7 +4488,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
      * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
      * @param {string=} params.view The level of information requested in response.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4792,7 +4792,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job ID.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5009,7 +5009,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job id.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string} params.projectId The project id.
-     * @param {().GetDebugConfigRequest} params.resource Request body data
+     * @param {().GetDebugConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5090,7 +5090,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job id.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      * @param {string} params.projectId The project id.
-     * @param {().SendDebugCaptureRequest} params.resource Request body data
+     * @param {().SendDebugCaptureRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5360,7 +5360,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId Identifies the workflow job this worker belongs to.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      * @param {string} params.projectId Identifies the project this worker belongs to.
-     * @param {().LeaseWorkItemRequest} params.resource Request body data
+     * @param {().LeaseWorkItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5439,7 +5439,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.jobId The job which the WorkItem is part of.
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      * @param {string} params.projectId The project which owns the WorkItem's job.
-     * @param {().ReportWorkItemStatusRequest} params.resource Request body data
+     * @param {().ReportWorkItemStatusRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5686,7 +5686,7 @@ export namespace dataflow_v1b3 {
      * @param {object} params Parameters for request
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {().CreateJobFromTemplateRequest} params.resource Request body data
+     * @param {().CreateJobFromTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5841,7 +5841,7 @@ export namespace dataflow_v1b3 {
      * @param {string} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
-     * @param {().LaunchTemplateParameters} params.resource Request body data
+     * @param {().LaunchTemplateParameters} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6008,7 +6008,7 @@ export namespace dataflow_v1b3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-     * @param {().CreateJobFromTemplateRequest} params.resource Request body data
+     * @param {().CreateJobFromTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6163,7 +6163,7 @@ export namespace dataflow_v1b3 {
      * @param {string=} params.location The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request.
      * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
      * @param {boolean=} params.validateOnly If true, the request is validated but not actually executed. Defaults to false.
-     * @param {().LaunchTemplateParameters} params.resource Request body data
+     * @param {().LaunchTemplateParameters} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

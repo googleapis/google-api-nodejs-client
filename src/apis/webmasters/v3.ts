@@ -270,7 +270,7 @@ export namespace webmasters_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {().SearchAnalyticsQueryRequest} params.resource Request body data
+     * @param {().SearchAnalyticsQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

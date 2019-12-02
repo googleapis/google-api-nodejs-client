@@ -128,6 +128,10 @@ export namespace fcm_v1 {
      */
     data?: {[key: string]: string} | null;
     /**
+     * If set to true, messages will be allowed to be delivered to the app while the device is in direct boot mode. See [Support Direct Boot mode](https://developer.android.com/training/articles/direct-boot).
+     */
+    directBootOk?: boolean | null;
+    /**
      * Options for features provided by the FCM SDK for Android.
      */
     fcmOptions?: Schema$AndroidFcmOptions;
@@ -440,6 +444,10 @@ export namespace fcm_v1 {
    */
   export interface Schema$WebpushFcmOptions {
     /**
+     * Label associated with the message&#39;s analytics data.
+     */
+    analyticsLabel?: string | null;
+    /**
      * The link to open when the user clicks on the notification. For all URL values, HTTPS is required.
      */
     link?: string | null;
@@ -468,7 +476,7 @@ export namespace fcm_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id}`. For legacy support, the numeric project number with no padding is also supported in the format of `projects/{project_number}`.
-     * @param {().SendMessageRequest} params.resource Request body data
+     * @param {().SendMessageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -676,7 +676,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AchievementResetMultipleForAllRequest} params.resource Request body data
+     * @param {().AchievementResetMultipleForAllRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1192,7 +1192,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().EventsResetMultipleForAllRequest} params.resource Request body data
+     * @param {().EventsResetMultipleForAllRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1960,7 +1960,7 @@ export namespace gamesManagement_v1management {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ScoresResetMultipleForAllRequest} params.resource Request body data
+     * @param {().ScoresResetMultipleForAllRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
