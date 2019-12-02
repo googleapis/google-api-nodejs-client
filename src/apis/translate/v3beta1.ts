@@ -542,7 +542,7 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().DetectLanguageRequest} params.resource Request body data
+     * @param {().DetectLanguageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -699,7 +699,7 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().TranslateTextRequest} params.resource Request body data
+     * @param {().TranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -848,7 +848,7 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}`.  The `global` location is not supported for batch translation.  Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().BatchTranslateTextRequest} params.resource Request body data
+     * @param {().BatchTranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -923,7 +923,7 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().DetectLanguageRequest} params.resource Request body data
+     * @param {().DetectLanguageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1228,7 +1228,7 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Project or location to make a call. Must refer to a caller's project.  Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`.  For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.  Non-global location is required for requests using AutoML models or custom glossaries.  Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
-     * @param {().TranslateTextRequest} params.resource Request body data
+     * @param {().TranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1422,7 +1422,7 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The project name.
-     * @param {().Glossary} params.resource Request body data
+     * @param {().Glossary} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1789,7 +1789,7 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2081,7 +2081,7 @@ export namespace translate_v3beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to wait on.
-     * @param {().WaitOperationRequest} params.resource Request body data
+     * @param {().WaitOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

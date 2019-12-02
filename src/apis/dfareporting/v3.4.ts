@@ -34,9 +34,9 @@ import {GaxiosPromise} from 'gaxios';
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
-export namespace dfareporting_v3_3 {
+export namespace dfareporting_v3_4 {
   export interface Options extends GlobalOptions {
-    version: 'v3.3';
+    version: 'v3.4';
   }
 
   interface StandardParameters {
@@ -77,12 +77,12 @@ export namespace dfareporting_v3_3 {
    *
    * @example
    * const {google} = require('googleapis');
-   * const dfareporting = google.dfareporting('v3.3');
+   * const dfareporting = google.dfareporting('v3.4');
    *
    * @namespace dfareporting
    * @type {Function}
-   * @version v3.3
-   * @variation v3.3
+   * @version v3.4
+   * @variation v3.4
    * @param {object=} options Options for Dfareporting
    */
   export class Dfareporting {
@@ -110,6 +110,7 @@ export namespace dfareporting_v3_3 {
     creativeFieldValues: Resource$Creativefieldvalues;
     creativeGroups: Resource$Creativegroups;
     creatives: Resource$Creatives;
+    customEvents: Resource$Customevents;
     dimensionValues: Resource$Dimensionvalues;
     directorySites: Resource$Directorysites;
     dynamicTargetingKeys: Resource$Dynamictargetingkeys;
@@ -185,6 +186,7 @@ export namespace dfareporting_v3_3 {
       this.creativeFieldValues = new Resource$Creativefieldvalues(this.context);
       this.creativeGroups = new Resource$Creativegroups(this.context);
       this.creatives = new Resource$Creatives(this.context);
+      this.customEvents = new Resource$Customevents(this.context);
       this.dimensionValues = new Resource$Dimensionvalues(this.context);
       this.directorySites = new Resource$Directorysites(this.context);
       this.dynamicTargetingKeys = new Resource$Dynamictargetingkeys(
@@ -274,7 +276,7 @@ export namespace dfareporting_v3_3 {
      */
     countryId?: string | null;
     /**
-     * ID of currency associated with this account. This is a required field. Acceptable values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD  - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD  - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot; for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  - &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot; for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  - &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot; for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  - &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot; for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  - &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot; for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  - &quot;50&quot; for NGN
+     * ID of currency associated with this account. This is a required field. Acceptable values are:  - &quot;1&quot; for USD  - &quot;2&quot; for GBP  - &quot;3&quot; for ESP  - &quot;4&quot; for SEK  - &quot;5&quot; for CAD  - &quot;6&quot; for JPY  - &quot;7&quot; for DEM  - &quot;8&quot; for AUD  - &quot;9&quot; for FRF  - &quot;10&quot; for ITL  - &quot;11&quot; for DKK  - &quot;12&quot; for NOK  - &quot;13&quot; for FIM  - &quot;14&quot; for ZAR  - &quot;15&quot; for IEP  - &quot;16&quot; for NLG  - &quot;17&quot; for EUR  - &quot;18&quot; for KRW  - &quot;19&quot; for TWD  - &quot;20&quot; for SGD  - &quot;21&quot; for CNY  - &quot;22&quot; for HKD  - &quot;23&quot; for NZD  - &quot;24&quot; for MYR  - &quot;25&quot; for BRL  - &quot;26&quot; for PTE  - &quot;27&quot; for MXP  - &quot;28&quot; for CLP  - &quot;29&quot; for TRY  - &quot;30&quot; for ARS  - &quot;31&quot; for PEN  - &quot;32&quot; for ILS  - &quot;33&quot; for CHF  - &quot;34&quot; for VEF  - &quot;35&quot; for COP  - &quot;36&quot; for GTQ  - &quot;37&quot; for PLN  - &quot;39&quot; for INR  - &quot;40&quot; for THB  - &quot;41&quot; for IDR  - &quot;42&quot; for CZK  - &quot;43&quot; for RON  - &quot;44&quot; for HUF  - &quot;45&quot; for RUB  - &quot;46&quot; for AED  - &quot;47&quot; for BGN  - &quot;48&quot; for HRK  - &quot;49&quot; for MXN  - &quot;50&quot; for NGN  - &quot;51&quot; for EGP
      */
     currencyId?: string | null;
     /**
@@ -913,6 +915,19 @@ export namespace dfareporting_v3_3 {
     nextPageToken?: string | null;
   }
   /**
+   * Annotate a click event.
+   */
+  export interface Schema$AnnotateClickEvent {
+    /**
+     * The Google click ID. Use this field to annotate the click associated with the gclid.
+     */
+    gclid?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#annotateClickEvent&quot;.
+     */
+    kind?: string | null;
+  }
+  /**
    * Audience Segment.
    */
   export interface Schema$AudienceSegment {
@@ -1134,6 +1149,35 @@ export namespace dfareporting_v3_3 {
      * Pagination token to be used for the next list operation.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Campaign Manager IDs related to the custom event.
+   */
+  export interface Schema$CampaignManagerIds {
+    /**
+     * Ad ID for Campaign Manager.
+     */
+    adId?: string | null;
+    /**
+     * Campaign ID for Campaign Manager.
+     */
+    campaignId?: string | null;
+    /**
+     * Creative ID for Campaign Manager.
+     */
+    creativeId?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignManagerIds&quot;.
+     */
+    kind?: string | null;
+    /**
+     * Placement ID for Campaign Manager.
+     */
+    placementId?: string | null;
+    /**
+     * Site ID for Campaign Manager.
+     */
+    siteId?: string | null;
   }
   /**
    * Campaign List Response
@@ -1483,7 +1527,7 @@ export namespace dfareporting_v3_3 {
      */
     encryptedUserId?: string | null;
     /**
-     * A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with NO_COOKIE_MATCH_FOUND error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, matchId, mobileDeviceId and gclid. This or encryptedUserId or matchId or mobileDeviceId or gclid is a required field.
+     * A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with INVALID_ARGUMENT error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, matchId, mobileDeviceId and gclid. This or encryptedUserId or matchId or mobileDeviceId or gclid is a required field.
      */
     encryptedUserIdCandidates?: string[] | null;
     /**
@@ -2572,6 +2616,107 @@ export namespace dfareporting_v3_3 {
     overlapMetrics?: Schema$Metric[];
   }
   /**
+   * Experimental feature (no support provided) A custom event represents a third party impression, a third party click, an annotation on a first party impression, or an annotation on a first party click.
+   */
+  export interface Schema$CustomEvent {
+    /**
+     * Annotate a click event.
+     */
+    annotateClickEvent?: Schema$AnnotateClickEvent;
+    /**
+     * Custom variables associated with the event.
+     */
+    customVariables?: Schema$CustomVariables[];
+    /**
+     * The type of event. If INSERT, the fields in insertEvent need to be populated. If ANNOTATE_CLICK, the fields in annotateClickEvent need to be populated. A custom event cannot have both insertEvent and annotateClickEvent populated.
+     */
+    eventType?: string | null;
+    /**
+     * Floodlight configuration ID of the advertiser the event is linked to. This is a required field.
+     */
+    floodlightConfigurationId?: string | null;
+    /**
+     * Insert custom event.
+     */
+    insertEvent?: Schema$InsertEvent;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEvent&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The ordinal of this custom event. This is a required field.
+     */
+    ordinal?: string | null;
+    /**
+     * The timestamp of this custom event, in Unix epoch micros. This is a required field.
+     */
+    timestampMicros?: string | null;
+  }
+  /**
+   * The error code and description for a custom event that failed to insert.
+   */
+  export interface Schema$CustomEventError {
+    /**
+     * The error code.
+     */
+    code?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventError&quot;.
+     */
+    kind?: string | null;
+    /**
+     * A description of the error.
+     */
+    message?: string | null;
+  }
+  /**
+   * Insert Custom Events Request.
+   */
+  export interface Schema$CustomEventsBatchInsertRequest {
+    /**
+     * The set of custom events to insert.
+     */
+    customEvents?: Schema$CustomEvent[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventsBatchInsertRequest&quot;.
+     */
+    kind?: string | null;
+  }
+  /**
+   * Insert Custom Events Response.
+   */
+  export interface Schema$CustomEventsBatchInsertResponse {
+    /**
+     * Indicates that some or all custom events failed to insert.
+     */
+    hasFailures?: boolean | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventsBatchInsertResponse&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The insert status of each custom event. Statuses are returned in the same order that conversions are inserted.
+     */
+    status?: Schema$CustomEventStatus[];
+  }
+  /**
+   * The original custom event that was inserted and whether there were any errors.
+   */
+  export interface Schema$CustomEventStatus {
+    /**
+     * The original custom event that was inserted.
+     */
+    customEvent?: Schema$CustomEvent;
+    /**
+     * A list of errors related to this custom event.
+     */
+    errors?: Schema$CustomEventError[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventStatus&quot;.
+     */
+    kind?: string | null;
+  }
+  /**
    * A custom floodlight variable.
    */
   export interface Schema$CustomFloodlightVariable {
@@ -2600,6 +2745,23 @@ export namespace dfareporting_v3_3 {
      * The kind of resource this is, in this case dfareporting#customRichMediaEvents.
      */
     kind?: string | null;
+  }
+  /**
+   * A custom variable.
+   */
+  export interface Schema$CustomVariables {
+    /**
+     * The index of the custom variable.
+     */
+    index?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customVariables&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The value of the custom variable. The length of string must not exceed 50 characters.
+     */
+    value?: string | null;
   }
   /**
    * Custom Viewability Metric
@@ -2946,6 +3108,35 @@ export namespace dfareporting_v3_3 {
     nextPageToken?: string | null;
   }
   /**
+   * DV360 IDs related to the custom event.
+   */
+  export interface Schema$DV3Ids {
+    /**
+     * Campaign ID for DV360.
+     */
+    dvCampaignId?: string | null;
+    /**
+     * Creative ID for DV360.
+     */
+    dvCreativeId?: string | null;
+    /**
+     * Insertion Order ID for DV360.
+     */
+    dvInsertionOrderId?: string | null;
+    /**
+     * Line Item ID for DV360.
+     */
+    dvLineItemId?: string | null;
+    /**
+     * Site ID for DV360.
+     */
+    dvSiteId?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dV3Ids&quot;.
+     */
+    kind?: string | null;
+  }
+  /**
    * Contains properties of a dynamic targeting key. Dynamic targeting keys are unique, user-friendly labels, created at the advertiser level in DCM, that can be assigned to ads, creatives, and placements and used for targeting with Studio dynamic creatives. Use these labels instead of numeric Campaign Manager IDs (such as placement IDs) to save time and avoid errors in your dynamic feeds.
    */
   export interface Schema$DynamicTargetingKey {
@@ -3285,10 +3476,6 @@ export namespace dfareporting_v3_3 {
      */
     floodlightTagType?: string | null;
     /**
-     * Whether this activity is archived.
-     */
-    hidden?: boolean | null;
-    /**
      * ID of this floodlight activity. This is a read-only, auto-generated field.
      */
     id?: string | null;
@@ -3324,6 +3511,10 @@ export namespace dfareporting_v3_3 {
      * Whether this floodlight activity must be SSL-compliant.
      */
     sslRequired?: boolean | null;
+    /**
+     * The status of the activity. This can only be set to ACTIVE or ARCHIVED_AND_DISABLED. The ARCHIVED status is no longer supported and cannot be set for Floodlight activities. The DISABLED_POLICY status indicates that a Floodlight activity is violating Google policy. Contact your account manager for more information.
+     */
+    status?: string | null;
     /**
      * Subaccount ID of this floodlight activity. This is a read-only field that can be left blank.
      */
@@ -3634,6 +3825,35 @@ export namespace dfareporting_v3_3 {
      * Regions to be targeted. For each region only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a region, do not target or exclude the country of the region.
      */
     regions?: Schema$Region[];
+  }
+  /**
+   * Insert custom event.
+   */
+  export interface Schema$InsertEvent {
+    /**
+     * Campaign Manager dimensions associated with the event.
+     */
+    cmDimensions?: Schema$CampaignManagerIds;
+    /**
+     * DV360 dimensions associated with the event.
+     */
+    dv3Dimensions?: Schema$DV3Ids;
+    /**
+     * The type of insert event.
+     */
+    insertEventType?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#insertEvent&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with mobileDeviceId, and at least one of the two fields is required.
+     */
+    matchId?: string | null;
+    /**
+     * The mobile device ID. This field is mutually exclusive with matchId, and at least one of the two fields is required.
+     */
+    mobileDeviceId?: string | null;
   }
   /**
    * Represents a buy from the Planning inventory store.
@@ -4981,10 +5201,6 @@ export namespace dfareporting_v3_3 {
      */
     capCostOption?: string | null;
     /**
-     * Whether cap costs are ignored by ad serving.
-     */
-    disregardOverdelivery?: boolean | null;
-    /**
      * Placement end date. This date must be later than, or the same day as, the placement start date, but not later than the campaign end date. If, for example, you set 6/25/2015 as both the start and end dates, the effective placement date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This field is required on insertion.
      */
     endDate?: string | null;
@@ -5536,7 +5752,7 @@ export namespace dfareporting_v3_3 {
      */
     lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
-     * Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are:  - &quot;1&quot; for &quot;America/New_York&quot;  - &quot;2&quot; for &quot;Europe/London&quot;  - &quot;3&quot; for &quot;Europe/Paris&quot;  - &quot;4&quot; for &quot;Africa/Johannesburg&quot;  - &quot;5&quot; for &quot;Asia/Jerusalem&quot;  - &quot;6&quot; for &quot;Asia/Shanghai&quot;  - &quot;7&quot; for &quot;Asia/Hong_Kong&quot;  - &quot;8&quot; for &quot;Asia/Tokyo&quot;  - &quot;9&quot; for &quot;Australia/Sydney&quot;  - &quot;10&quot; for &quot;Asia/Dubai&quot;  - &quot;11&quot; for &quot;America/Los_Angeles&quot;  - &quot;12&quot; for &quot;Pacific/Auckland&quot;  - &quot;13&quot; for &quot;America/Sao_Paulo&quot;
+     * Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are:  - &quot;1&quot; for &quot;America/New_York&quot;  - &quot;2&quot; for &quot;Europe/London&quot;  - &quot;3&quot; for &quot;Europe/Paris&quot;  - &quot;4&quot; for &quot;Africa/Johannesburg&quot;  - &quot;5&quot; for &quot;Asia/Jerusalem&quot;  - &quot;6&quot; for &quot;Asia/Shanghai&quot;  - &quot;7&quot; for &quot;Asia/Hong_Kong&quot;  - &quot;8&quot; for &quot;Asia/Tokyo&quot;  - &quot;9&quot; for &quot;Australia/Sydney&quot;  - &quot;10&quot; for &quot;Asia/Dubai&quot;  - &quot;11&quot; for &quot;America/Los_Angeles&quot;  - &quot;12&quot; for &quot;Pacific/Auckland&quot;  - &quot;13&quot; for &quot;America/Sao_Paulo&quot;  - &quot;16&quot; for &quot;America/Asuncion&quot;  - &quot;17&quot; for &quot;America/Chicago&quot;  - &quot;18&quot; for &quot;America/Denver&quot;  - &quot;19&quot; for &quot;America/St_Johns&quot;  - &quot;20&quot; for &quot;Asia/Dhaka&quot;  - &quot;21&quot; for &quot;Asia/Jakarta&quot;  - &quot;22&quot; for &quot;Asia/Kabul&quot;  - &quot;23&quot; for &quot;Asia/Karachi&quot;  - &quot;24&quot; for &quot;Asia/Calcutta&quot;  - &quot;25&quot; for &quot;Asia/Pyongyang&quot;  - &quot;26&quot; for &quot;Asia/Rangoon&quot;  - &quot;27&quot; for &quot;Atlantic/Cape_Verde&quot;  - &quot;28&quot; for &quot;Atlantic/South_Georgia&quot;  - &quot;29&quot; for &quot;Australia/Adelaide&quot;  - &quot;30&quot; for &quot;Australia/Lord_Howe&quot;  - &quot;31&quot; for &quot;Europe/Moscow&quot;  - &quot;32&quot; for &quot;Pacific/Kiritimati&quot;  - &quot;35&quot; for &quot;Pacific/Norfolk&quot;  - &quot;36&quot; for &quot;Pacific/Tongatapu&quot;
      */
     reportGenerationTimeZoneId?: string | null;
   }
@@ -6544,7 +6760,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -6645,7 +6861,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountPermissionGroups/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountPermissionGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -6725,7 +6941,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountPermissionGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountPermissionGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -6841,7 +7057,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountPermissions/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountPermissions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -6919,7 +7135,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountPermissions'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7032,7 +7248,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accounts/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accounts/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7113,7 +7329,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7140,7 +7356,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Account ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7185,7 +7401,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -7211,7 +7427,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7256,7 +7472,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/accounts'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -7429,7 +7645,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountUserProfiles/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountUserProfiles/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7455,7 +7671,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AccountUserProfile} params.resource Request body data
+     * @param {().AccountUserProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7504,7 +7720,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -7591,7 +7807,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7623,7 +7839,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id User profile ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AccountUserProfile} params.resource Request body data
+     * @param {().AccountUserProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7672,7 +7888,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -7698,7 +7914,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AccountUserProfile} params.resource Request body data
+     * @param {().AccountUserProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7747,7 +7963,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/accountUserProfiles'
+              '/dfareporting/v3.4/userprofiles/{profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -7945,7 +8161,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/ads/{id}'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/ads/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -7971,7 +8187,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Ad} params.resource Request body data
+     * @param {().Ad} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8016,7 +8232,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -8111,7 +8327,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8138,7 +8354,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Ad ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Ad} params.resource Request body data
+     * @param {().Ad} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8183,7 +8399,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -8209,7 +8425,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Ad} params.resource Request body data
+     * @param {().Ad} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8254,7 +8470,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/ads'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -8505,7 +8721,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserGroups/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -8580,7 +8796,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserGroups/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8606,7 +8822,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AdvertiserGroup} params.resource Request body data
+     * @param {().AdvertiserGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8655,7 +8871,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -8739,7 +8955,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -8771,7 +8987,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AdvertiserGroup} params.resource Request body data
+     * @param {().AdvertiserGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8820,7 +9036,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -8846,7 +9062,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AdvertiserGroup} params.resource Request body data
+     * @param {().AdvertiserGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8895,7 +9111,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -9101,7 +9317,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserLandingPages/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserLandingPages/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9127,7 +9343,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.resource Request body data
+     * @param {().LandingPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9176,7 +9392,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9264,7 +9480,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9296,7 +9512,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Landing page ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.resource Request body data
+     * @param {().LandingPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9345,7 +9561,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -9371,7 +9587,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.resource Request body data
+     * @param {().LandingPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9420,7 +9636,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertiserLandingPages'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -9625,7 +9841,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertisers/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertisers/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9651,7 +9867,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Advertiser} params.resource Request body data
+     * @param {().Advertiser} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9700,7 +9916,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertisers'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -9787,7 +10003,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertisers'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -9814,7 +10030,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Advertiser} params.resource Request body data
+     * @param {().Advertiser} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9863,7 +10079,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertisers'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -9889,7 +10105,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Advertiser} params.resource Request body data
+     * @param {().Advertiser} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9938,7 +10154,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/advertisers'
+              '/dfareporting/v3.4/userprofiles/{profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -10149,7 +10365,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/browsers'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/browsers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10195,7 +10411,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Campaign ID in this association.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CampaignCreativeAssociation} params.resource Request body data
+     * @param {().CampaignCreativeAssociation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10248,7 +10464,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
+              '/dfareporting/v3.4/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -10341,7 +10557,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
+              '/dfareporting/v3.4/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10475,7 +10691,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/campaigns/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/campaigns/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10501,7 +10717,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Campaign} params.resource Request body data
+     * @param {().Campaign} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10546,7 +10762,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -10633,7 +10849,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -10660,7 +10876,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Campaign} params.resource Request body data
+     * @param {().Campaign} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10705,7 +10921,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -10731,7 +10947,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Campaign} params.resource Request body data
+     * @param {().Campaign} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10776,7 +10992,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/campaigns'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -10988,7 +11204,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/changeLogs/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/changeLogs/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11017,7 +11233,7 @@ export namespace dfareporting_v3_3 {
      * @param {string=} params.ids Select only change logs with these IDs.
      * @param {string=} params.maxChangeTime Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
      * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.minChangeTime Select only change logs whose change time is before the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     * @param {string=} params.minChangeTime Select only change logs whose change time is after the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
      * @param {string=} params.objectIds Select only change logs with these object IDs.
      * @param {string=} params.objectType Select only change logs with the specified object type.
      * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
@@ -11072,7 +11288,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/changeLogs'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/changeLogs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11129,7 +11345,7 @@ export namespace dfareporting_v3_3 {
      */
     maxResults?: number;
     /**
-     * Select only change logs whose change time is before the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
+     * Select only change logs whose change time is after the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
      */
     minChangeTime?: string;
     /**
@@ -11222,7 +11438,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/cities'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/cities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11332,7 +11548,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/connectionTypes/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/connectionTypes/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11410,7 +11626,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/connectionTypes'
+              '/dfareporting/v3.4/userprofiles/{profileId}/connectionTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11522,7 +11738,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/contentCategories/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/contentCategories/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -11597,7 +11813,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/contentCategories/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/contentCategories/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11623,7 +11839,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ContentCategory} params.resource Request body data
+     * @param {().ContentCategory} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11672,7 +11888,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v3.4/userprofiles/{profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -11756,7 +11972,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v3.4/userprofiles/{profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -11788,7 +12004,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ContentCategory} params.resource Request body data
+     * @param {().ContentCategory} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11837,7 +12053,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v3.4/userprofiles/{profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -11863,7 +12079,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ContentCategory} params.resource Request body data
+     * @param {().ContentCategory} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11912,7 +12128,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/contentCategories'
+              '/dfareporting/v3.4/userprofiles/{profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -12069,7 +12285,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ConversionsBatchInsertRequest} params.resource Request body data
+     * @param {().ConversionsBatchInsertRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12122,7 +12338,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/conversions/batchinsert'
+              '/dfareporting/v3.4/userprofiles/{profileId}/conversions/batchinsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12153,7 +12369,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ConversionsBatchUpdateRequest} params.resource Request body data
+     * @param {().ConversionsBatchUpdateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12206,7 +12422,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/conversions/batchupdate'
+              '/dfareporting/v3.4/userprofiles/{profileId}/conversions/batchupdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12325,7 +12541,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/countries/{dartId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/countries/{dartId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12399,7 +12615,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/countries'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/countries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12460,7 +12676,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Advertiser ID of this creative. This is a required field.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -12514,7 +12730,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12523,7 +12739,7 @@ export namespace dfareporting_v3_3 {
         params,
         mediaUrl: (
           rootUrl +
-          '/upload/dfareporting/v3.3/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
+          '/upload/dfareporting/v3.4/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets'
         ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
@@ -12635,7 +12851,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -12710,7 +12926,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12736,7 +12952,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeField} params.resource Request body data
+     * @param {().CreativeField} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12785,7 +13001,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -12870,7 +13086,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -12900,7 +13116,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeField} params.resource Request body data
+     * @param {().CreativeField} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12949,7 +13165,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -12975,7 +13191,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeField} params.resource Request body data
+     * @param {().CreativeField} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13024,7 +13240,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -13233,7 +13449,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -13309,7 +13525,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13336,7 +13552,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeFieldValue} params.resource Request body data
+     * @param {().CreativeFieldValue} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13385,7 +13601,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -13470,7 +13686,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13503,7 +13719,7 @@ export namespace dfareporting_v3_3 {
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.id Creative Field Value ID
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeFieldValue} params.resource Request body data
+     * @param {().CreativeFieldValue} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13552,7 +13768,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -13579,7 +13795,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeFieldValue} params.resource Request body data
+     * @param {().CreativeFieldValue} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13628,7 +13844,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -13858,7 +14074,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeGroups/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -13884,7 +14100,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeGroup} params.resource Request body data
+     * @param {().CreativeGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13933,7 +14149,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -14019,7 +14235,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14049,7 +14265,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Creative group ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeGroup} params.resource Request body data
+     * @param {().CreativeGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14098,7 +14314,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -14124,7 +14340,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeGroup} params.resource Request body data
+     * @param {().CreativeGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14173,7 +14389,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creativeGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -14368,7 +14584,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/creatives/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/creatives/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14394,7 +14610,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14439,7 +14655,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -14529,7 +14745,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -14556,7 +14772,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Creative ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14601,7 +14817,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -14627,7 +14843,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14672,7 +14888,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/creatives'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -14834,6 +15050,115 @@ export namespace dfareporting_v3_3 {
     requestBody?: Schema$Creative;
   }
 
+  export class Resource$Customevents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dfareporting.customEvents.batchinsert
+     * @desc Inserts custom events.
+     * @alias dfareporting.customEvents.batchinsert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {().CustomEventsBatchInsertRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchinsert(
+      params?: Params$Resource$Customevents$Batchinsert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomEventsBatchInsertResponse>;
+    batchinsert(
+      params: Params$Resource$Customevents$Batchinsert,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomEventsBatchInsertResponse>,
+      callback: BodyResponseCallback<Schema$CustomEventsBatchInsertResponse>
+    ): void;
+    batchinsert(
+      params: Params$Resource$Customevents$Batchinsert,
+      callback: BodyResponseCallback<Schema$CustomEventsBatchInsertResponse>
+    ): void;
+    batchinsert(
+      callback: BodyResponseCallback<Schema$CustomEventsBatchInsertResponse>
+    ): void;
+    batchinsert(
+      paramsOrCallback?:
+        | Params$Resource$Customevents$Batchinsert
+        | BodyResponseCallback<Schema$CustomEventsBatchInsertResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomEventsBatchInsertResponse>,
+      callback?: BodyResponseCallback<Schema$CustomEventsBatchInsertResponse>
+    ): void | GaxiosPromise<Schema$CustomEventsBatchInsertResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customevents$Batchinsert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customevents$Batchinsert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v3.4/userprofiles/{profileId}/customEvents/batchinsert'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomEventsBatchInsertResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$CustomEventsBatchInsertResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customevents$Batchinsert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * User profile ID associated with this request.
+     */
+    profileId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomEventsBatchInsertRequest;
+  }
+
   export class Resource$Dimensionvalues {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -14850,7 +15175,7 @@ export namespace dfareporting_v3_3 {
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken The value of the nextToken from the previous result page.
      * @param {string} params.profileId The DFA user profile ID.
-     * @param {().DimensionValueRequest} params.resource Request body data
+     * @param {().DimensionValueRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14899,7 +15224,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/dimensionvalues/query'
+              '/dfareporting/v3.4/userprofiles/{profileId}/dimensionvalues/query'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15007,7 +15332,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/directorySites/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/directorySites/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15033,7 +15358,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().DirectorySite} params.resource Request body data
+     * @param {().DirectorySite} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15082,7 +15407,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/directorySites'
+              '/dfareporting/v3.4/userprofiles/{profileId}/directorySites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15171,7 +15496,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/directorySites'
+              '/dfareporting/v3.4/userprofiles/{profileId}/directorySites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15346,7 +15671,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -15372,7 +15697,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().DynamicTargetingKey} params.resource Request body data
+     * @param {().DynamicTargetingKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15421,7 +15746,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/dynamicTargetingKeys'
+              '/dfareporting/v3.4/userprofiles/{profileId}/dynamicTargetingKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15503,7 +15828,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/dynamicTargetingKeys'
+              '/dfareporting/v3.4/userprofiles/{profileId}/dynamicTargetingKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15657,7 +15982,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/eventTags/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/eventTags/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -15729,7 +16054,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/eventTags/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/eventTags/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15755,7 +16080,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().EventTag} params.resource Request body data
+     * @param {().EventTag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15800,7 +16125,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -15884,7 +16209,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -15911,7 +16236,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().EventTag} params.resource Request body data
+     * @param {().EventTag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15956,7 +16281,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -15982,7 +16307,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().EventTag} params.resource Request body data
+     * @param {().EventTag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16027,7 +16352,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/eventTags'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -16239,7 +16564,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/reports/{reportId}/files/{fileId}'
+              rootUrl + '/dfareporting/v3.4/reports/{reportId}/files/{fileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16314,7 +16639,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/files'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/files'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16441,7 +16766,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivities/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivities/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -16528,7 +16853,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivities/generatetag'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivities/generatetag'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -16608,7 +16933,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivities/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivities/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16634,7 +16959,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivity} params.resource Request body data
+     * @param {().FloodlightActivity} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16683,7 +17008,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -16774,7 +17099,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -16806,7 +17131,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivity} params.resource Request body data
+     * @param {().FloodlightActivity} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16855,7 +17180,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -16881,7 +17206,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivity} params.resource Request body data
+     * @param {().FloodlightActivity} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16930,7 +17255,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivities'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -17182,7 +17507,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivityGroups/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivityGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17208,7 +17533,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivityGroup} params.resource Request body data
+     * @param {().FloodlightActivityGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17261,7 +17586,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -17356,7 +17681,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17388,7 +17713,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity Group ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivityGroup} params.resource Request body data
+     * @param {().FloodlightActivityGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17439,7 +17764,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -17465,7 +17790,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivityGroup} params.resource Request body data
+     * @param {().FloodlightActivityGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17518,7 +17843,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightActivityGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -17722,7 +18047,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightConfigurations/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightConfigurations/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17809,7 +18134,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -17841,7 +18166,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight configuration ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightConfiguration} params.resource Request body data
+     * @param {().FloodlightConfiguration} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17892,7 +18217,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -17918,7 +18243,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightConfiguration} params.resource Request body data
+     * @param {().FloodlightConfiguration} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17971,7 +18296,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/floodlightConfigurations'
+              '/dfareporting/v3.4/userprofiles/{profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -18125,7 +18450,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18213,7 +18538,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/projects/{projectId}/inventoryItems'
+              '/dfareporting/v3.4/userprofiles/{profileId}/projects/{projectId}/inventoryItems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18370,7 +18695,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/languages'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/languages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18461,7 +18786,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/metros'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/metros'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18554,7 +18879,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/mobileApps/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/mobileApps/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18633,7 +18958,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/mobileApps'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/mobileApps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18762,7 +19087,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/mobileCarriers/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/mobileCarriers/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18840,7 +19165,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/mobileCarriers'
+              '/dfareporting/v3.4/userprofiles/{profileId}/mobileCarriers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -18954,7 +19279,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/operatingSystems/{dartId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/operatingSystems/{dartId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19032,7 +19357,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/operatingSystems'
+              '/dfareporting/v3.4/userprofiles/{profileId}/operatingSystems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19150,7 +19475,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/operatingSystemVersions/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/operatingSystemVersions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19230,7 +19555,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/operatingSystemVersions'
+              '/dfareporting/v3.4/userprofiles/{profileId}/operatingSystemVersions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19347,7 +19672,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19435,7 +19760,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/projects/{projectId}/orderDocuments'
+              '/dfareporting/v3.4/userprofiles/{profileId}/projects/{projectId}/orderDocuments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19591,7 +19916,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/projects/{projectId}/orders/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/projects/{projectId}/orders/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19672,7 +19997,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/projects/{projectId}/orders'
+              '/dfareporting/v3.4/userprofiles/{profileId}/projects/{projectId}/orders'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19817,7 +20142,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementGroups/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -19843,7 +20168,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementGroup} params.resource Request body data
+     * @param {().PlacementGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -19892,7 +20217,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -19989,7 +20314,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20019,7 +20344,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Placement group ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementGroup} params.resource Request body data
+     * @param {().PlacementGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20068,7 +20393,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -20094,7 +20419,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementGroup} params.resource Request body data
+     * @param {().PlacementGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20143,7 +20468,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -20391,7 +20716,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placements/generatetags'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placements/generatetags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20470,7 +20795,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placements/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placements/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20496,7 +20821,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Placement} params.resource Request body data
+     * @param {().Placement} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20544,7 +20869,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -20640,7 +20965,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -20667,7 +20992,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Placement ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Placement} params.resource Request body data
+     * @param {().Placement} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20714,7 +21039,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -20740,7 +21065,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Placement} params.resource Request body data
+     * @param {().Placement} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20788,7 +21113,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/placements'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -21061,7 +21386,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementStrategies/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementStrategies/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -21136,7 +21461,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementStrategies/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementStrategies/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21162,7 +21487,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementStrategy} params.resource Request body data
+     * @param {().PlacementStrategy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -21211,7 +21536,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -21295,7 +21620,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21327,7 +21652,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementStrategy} params.resource Request body data
+     * @param {().PlacementStrategy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -21376,7 +21701,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -21402,7 +21727,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementStrategy} params.resource Request body data
+     * @param {().PlacementStrategy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -21451,7 +21776,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/placementStrategies'
+              '/dfareporting/v3.4/userprofiles/{profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -21657,7 +21982,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/platformTypes/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/platformTypes/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21735,7 +22060,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/platformTypes'
+              '/dfareporting/v3.4/userprofiles/{profileId}/platformTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21848,7 +22173,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/postalCodes/{code}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/postalCodes/{code}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -21923,7 +22248,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/postalCodes'
+              '/dfareporting/v3.4/userprofiles/{profileId}/postalCodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22029,7 +22354,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/projects/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/projects/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22110,7 +22435,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/projects'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/projects'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22244,7 +22569,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/regions'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/regions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22338,7 +22663,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingLists/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingLists/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22364,7 +22689,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingList} params.resource Request body data
+     * @param {().RemarketingList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22413,7 +22738,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -22499,7 +22824,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22531,7 +22856,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingList} params.resource Request body data
+     * @param {().RemarketingList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22580,7 +22905,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -22606,7 +22931,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingList} params.resource Request body data
+     * @param {().RemarketingList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22655,7 +22980,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingLists'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -22855,7 +23180,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingListShares/{remarketingListId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingListShares/{remarketingListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -22882,7 +23207,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.remarketingListId Remarketing list ID.
-     * @param {().RemarketingListShare} params.resource Request body data
+     * @param {().RemarketingListShare} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22933,7 +23258,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingListShares'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -22959,7 +23284,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingListShare} params.resource Request body data
+     * @param {().RemarketingListShare} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -23010,7 +23335,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/remarketingListShares'
+              '/dfareporting/v3.4/userprofiles/{profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -23150,7 +23475,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -23222,7 +23547,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23248,7 +23573,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
-     * @param {().Report} params.resource Request body data
+     * @param {().Report} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -23293,7 +23618,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/reports'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/reports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23370,7 +23695,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/reports'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/reports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23385,79 +23710,6 @@ export namespace dfareporting_v3_3 {
         createAPIRequest<Schema$ReportList>(parameters, callback);
       } else {
         return createAPIRequest<Schema$ReportList>(parameters);
-      }
-    }
-
-    /**
-     * dfareporting.reports.patch
-     * @desc Updates a report. This method supports patch semantics.
-     * @alias dfareporting.reports.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {string} params.reportId The ID of the report.
-     * @param {().Report} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Reports$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Report>;
-    patch(
-      params: Params$Resource$Reports$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Report>,
-      callback: BodyResponseCallback<Schema$Report>
-    ): void;
-    patch(
-      params: Params$Resource$Reports$Patch,
-      callback: BodyResponseCallback<Schema$Report>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Report>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Reports$Patch
-        | BodyResponseCallback<Schema$Report>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Report>,
-      callback?: BodyResponseCallback<Schema$Report>
-    ): void | GaxiosPromise<Schema$Report> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Reports$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/reports/{reportId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'reportId'],
-        pathParams: ['profileId', 'reportId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Report>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Report>(parameters);
       }
     }
 
@@ -23516,7 +23768,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/reports/{reportId}/run'
+              '/dfareporting/v3.4/userprofiles/{profileId}/reports/{reportId}/run'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23543,7 +23795,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
-     * @param {().Report} params.resource Request body data
+     * @param {().Report} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -23589,7 +23841,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -23685,26 +23937,6 @@ export namespace dfareporting_v3_3 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Reports$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The DFA user profile ID.
-     */
-    profileId?: string;
-    /**
-     * The ID of the report.
-     */
-    reportId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Report;
-  }
   export interface Params$Resource$Reports$Run extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -23759,7 +23991,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
-     * @param {().Report} params.resource Request body data
+     * @param {().Report} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -23808,7 +24040,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/reports/compatiblefields/query'
+              '/dfareporting/v3.4/userprofiles/{profileId}/reports/compatiblefields/query'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -23907,7 +24139,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/reports/{reportId}/files/{fileId}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/reports/{reportId}/files/{fileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -23984,7 +24216,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/reports/{reportId}/files'
+              '/dfareporting/v3.4/userprofiles/{profileId}/reports/{reportId}/files'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24115,7 +24347,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/sites/{id}'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/sites/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24141,7 +24373,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Site} params.resource Request body data
+     * @param {().Site} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24186,7 +24418,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -24273,7 +24505,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24300,7 +24532,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Site ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Site} params.resource Request body data
+     * @param {().Site} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24345,7 +24577,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -24371,7 +24603,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Site} params.resource Request body data
+     * @param {().Site} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24416,7 +24648,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/sites'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -24633,7 +24865,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/sizes/{id}'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/sizes/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24659,7 +24891,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Size} params.resource Request body data
+     * @param {().Size} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24704,7 +24936,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/sizes'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/sizes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -24780,7 +25012,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/sizes'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/sizes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24920,7 +25152,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/subaccounts/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/subaccounts/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -24946,7 +25178,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Subaccount} params.resource Request body data
+     * @param {().Subaccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24995,7 +25227,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/subaccounts'
+              '/dfareporting/v3.4/userprofiles/{profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -25076,7 +25308,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/subaccounts'
+              '/dfareporting/v3.4/userprofiles/{profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25103,7 +25335,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Subaccount ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Subaccount} params.resource Request body data
+     * @param {().Subaccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -25152,7 +25384,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/subaccounts'
+              '/dfareporting/v3.4/userprofiles/{profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -25178,7 +25410,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Subaccount} params.resource Request body data
+     * @param {().Subaccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -25227,7 +25459,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/subaccounts'
+              '/dfareporting/v3.4/userprofiles/{profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -25417,7 +25649,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/targetableRemarketingLists/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/targetableRemarketingLists/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25513,7 +25745,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/targetableRemarketingLists'
+              '/dfareporting/v3.4/userprofiles/{profileId}/targetableRemarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25657,7 +25889,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/targetingTemplates/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/targetingTemplates/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25683,7 +25915,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().TargetingTemplate} params.resource Request body data
+     * @param {().TargetingTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -25732,7 +25964,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v3.4/userprofiles/{profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -25817,7 +26049,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v3.4/userprofiles/{profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -25849,7 +26081,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id Targeting template ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().TargetingTemplate} params.resource Request body data
+     * @param {().TargetingTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -25898,7 +26130,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v3.4/userprofiles/{profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -25924,7 +26156,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().TargetingTemplate} params.resource Request body data
+     * @param {().TargetingTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -25973,7 +26205,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/targetingTemplates'
+              '/dfareporting/v3.4/userprofiles/{profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -26164,7 +26396,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26235,7 +26467,7 @@ export namespace dfareporting_v3_3 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v3.3/userprofiles').replace(
+            url: (rootUrl + '/dfareporting/v3.4/userprofiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -26340,7 +26572,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/userRolePermissionGroups/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/userRolePermissionGroups/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26426,7 +26658,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/userRolePermissionGroups'
+              '/dfareporting/v3.4/userprofiles/{profileId}/userRolePermissionGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26542,7 +26774,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/userRolePermissions/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/userRolePermissions/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26621,7 +26853,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/userRolePermissions'
+              '/dfareporting/v3.4/userprofiles/{profileId}/userRolePermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26738,7 +26970,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/userRoles/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/userRoles/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
@@ -26810,7 +27042,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/userRoles/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/userRoles/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26836,7 +27068,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().UserRole} params.resource Request body data
+     * @param {().UserRole} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -26881,7 +27113,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -26963,7 +27195,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -26990,7 +27222,7 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().UserRole} params.resource Request body data
+     * @param {().UserRole} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -27035,7 +27267,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
@@ -27061,7 +27293,7 @@ export namespace dfareporting_v3_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().UserRole} params.resource Request body data
+     * @param {().UserRole} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -27106,7 +27338,7 @@ export namespace dfareporting_v3_3 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v3.3/userprofiles/{profileId}/userRoles'
+              rootUrl + '/dfareporting/v3.4/userprofiles/{profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
           },
@@ -27313,7 +27545,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/videoFormats/{id}'
+              '/dfareporting/v3.4/userprofiles/{profileId}/videoFormats/{id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -27389,7 +27621,7 @@ export namespace dfareporting_v3_3 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v3.3/userprofiles/{profileId}/videoFormats'
+              '/dfareporting/v3.4/userprofiles/{profileId}/videoFormats'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },

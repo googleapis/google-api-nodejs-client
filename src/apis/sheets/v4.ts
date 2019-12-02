@@ -1824,7 +1824,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$FilterCriteria {
     /**
-     * A condition that must be true for values to be shown. (This does not override hiddenValues -- if a value is listed there,  it will still be hidden.)
+     * A condition that must be true for values to be shown. (This does not override hidden_values -- if a value is listed there,  it will still be hidden.)
      */
     condition?: Schema$BooleanCondition;
     /**
@@ -4037,7 +4037,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The spreadsheet to apply the updates to.
-     * @param {().BatchUpdateSpreadsheetRequest} params.resource Request body data
+     * @param {().BatchUpdateSpreadsheetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4167,7 +4167,7 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Spreadsheet} params.resource Request body data
+     * @param {().Spreadsheet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4429,7 +4429,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The spreadsheet to request.
-     * @param {().GetSpreadsheetByDataFilterRequest} params.resource Request body data
+     * @param {().GetSpreadsheetByDataFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4752,7 +4752,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve metadata from.
-     * @param {().SearchDeveloperMetadataRequest} params.resource Request body data
+     * @param {().SearchDeveloperMetadataRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4935,7 +4935,7 @@ export namespace sheets_v4 {
      * @param {object} params Parameters for request
      * @param {integer} params.sheetId The ID of the sheet to copy.
      * @param {string} params.spreadsheetId The ID of the spreadsheet containing the sheet to copy.
-     * @param {().CopySheetToAnotherSpreadsheetRequest} params.resource Request body data
+     * @param {().CopySheetToAnotherSpreadsheetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5106,7 +5106,7 @@ export namespace sheets_v4 {
      * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
      * @param {string=} params.valueInputOption How the input data should be interpreted.
-     * @param {().ValueRange} params.resource Request body data
+     * @param {().ValueRange} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5236,7 +5236,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchClearValuesRequest} params.resource Request body data
+     * @param {().BatchClearValuesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5368,7 +5368,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchClearValuesByDataFilterRequest} params.resource Request body data
+     * @param {().BatchClearValuesByDataFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5669,7 +5669,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
-     * @param {().BatchGetValuesByDataFilterRequest} params.resource Request body data
+     * @param {().BatchGetValuesByDataFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5810,7 +5810,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchUpdateValuesRequest} params.resource Request body data
+     * @param {().BatchUpdateValuesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5950,7 +5950,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().BatchUpdateValuesByDataFilterRequest} params.resource Request body data
+     * @param {().BatchUpdateValuesByDataFilterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6097,7 +6097,7 @@ export namespace sheets_v4 {
      * @param {object} params Parameters for request
      * @param {string} params.range The A1 notation of the values to clear.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-     * @param {().ClearValuesRequest} params.resource Request body data
+     * @param {().ClearValuesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6373,7 +6373,7 @@ export namespace sheets_v4 {
      * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
      * @param {string=} params.valueInputOption How the input data should be interpreted.
-     * @param {().ValueRange} params.resource Request body data
+     * @param {().ValueRange} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

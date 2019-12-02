@@ -202,6 +202,10 @@ export namespace genomics_v2alpha1 {
      */
     event?: {[key: string]: any} | null;
     /**
+     * A list of timestamped events.
+     */
+    events?: Schema$TimestampedEvent[];
+    /**
      * The operation has finished with the given result.
      */
     result?: Schema$Status;
@@ -657,6 +661,19 @@ export namespace genomics_v2alpha1 {
     message?: string | null;
   }
   /**
+   * An event that occured in the operation assigned to the worker and the time of occurance.
+   */
+  export interface Schema$TimestampedEvent {
+    /**
+     * The event data.
+     */
+    data?: {[key: string]: any} | null;
+    /**
+     * The time when the event happened.
+     */
+    timestamp?: string | null;
+  }
+  /**
    * An event generated when the execution of a container results in a non-zero exit status that was not otherwise ignored. Execution will continue, but only actions that are flagged as `ALWAYS_RUN` will be executed. Other actions will be skipped.
    */
   export interface Schema$UnexpectedExitStatusEvent {
@@ -838,7 +855,7 @@ export namespace genomics_v2alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().RunPipelineRequest} params.resource Request body data
+     * @param {().RunPipelineRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -987,7 +1004,7 @@ export namespace genomics_v2alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1423,7 +1440,7 @@ export namespace genomics_v2alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The worker id, assigned when it was created.
-     * @param {().CheckInRequest} params.resource Request body data
+     * @param {().CheckInRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

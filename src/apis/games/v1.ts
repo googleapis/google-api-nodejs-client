@@ -2906,7 +2906,7 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
-     * @param {().AchievementUpdateMultipleRequest} params.resource Request body data
+     * @param {().AchievementUpdateMultipleRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3545,7 +3545,7 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().EventRecordRequest} params.resource Request body data
+     * @param {().EventRecordRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4266,7 +4266,7 @@ export namespace games_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().PushTokenId} params.resource Request body data
+     * @param {().PushTokenId} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4338,7 +4338,7 @@ export namespace games_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().PushToken} params.resource Request body data
+     * @param {().PushToken} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4537,7 +4537,7 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().RoomCreateRequest} params.resource Request body data
+     * @param {().RoomCreateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4825,7 +4825,7 @@ export namespace games_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
-     * @param {().RoomJoinRequest} params.resource Request body data
+     * @param {().RoomJoinRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4898,7 +4898,7 @@ export namespace games_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
-     * @param {().RoomLeaveRequest} params.resource Request body data
+     * @param {().RoomLeaveRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5041,7 +5041,7 @@ export namespace games_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
-     * @param {().RoomP2PStatuses} params.resource Request body data
+     * @param {().RoomP2PStatuses} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5583,7 +5583,7 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().PlayerScoreSubmissionList} params.resource Request body data
+     * @param {().PlayerScoreSubmissionList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6083,7 +6083,7 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
-     * @param {().TurnBasedMatchCreateRequest} params.resource Request body data
+     * @param {().TurnBasedMatchCreateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6304,7 +6304,7 @@ export namespace games_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
-     * @param {().TurnBasedMatchResults} params.resource Request body data
+     * @param {().TurnBasedMatchResults} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6912,7 +6912,7 @@ export namespace games_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
-     * @param {().TurnBasedMatchTurn} params.resource Request body data
+     * @param {().TurnBasedMatchTurn} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

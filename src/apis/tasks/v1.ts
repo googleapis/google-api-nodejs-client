@@ -381,7 +381,7 @@ export namespace tasks_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().TaskList} params.resource Request body data
+     * @param {().TaskList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -527,7 +527,7 @@ export namespace tasks_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {().TaskList} params.resource Request body data
+     * @param {().TaskList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -599,7 +599,7 @@ export namespace tasks_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {().TaskList} params.resource Request body data
+     * @param {().TaskList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -976,7 +976,7 @@ export namespace tasks_v1 {
      * @param {string=} params.parent Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
      * @param {string=} params.previous Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.resource Request body data
+     * @param {().Task} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1203,7 +1203,7 @@ export namespace tasks_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.resource Request body data
+     * @param {().Task} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1276,7 +1276,7 @@ export namespace tasks_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.resource Request body data
+     * @param {().Task} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

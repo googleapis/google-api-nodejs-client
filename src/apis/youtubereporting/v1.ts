@@ -593,7 +593,7 @@ export namespace youtubereporting_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

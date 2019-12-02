@@ -436,7 +436,7 @@ export namespace admin_reports_v1 {
      * @param {string=} params.pageToken The token to specify next page. A report with multiple pages has a nextPageToken property in the response. In your follow-on request getting the next page of the report, enter the nextPageToken value in the pageToken query string.
      * @param {string=} params.startTime Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from startTime until endTime. The startTime must be before the endTime (if specified) and the current time when the request is made, or the API returns an error.
      * @param {string} params.userKey Represents the profile ID or the user email for which the data should be filtered. Can be all for all information, or userKey for a user's unique G Suite profile ID or their primary email address.
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -622,7 +622,7 @@ export namespace admin_reports_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

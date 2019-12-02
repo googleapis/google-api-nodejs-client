@@ -779,7 +779,7 @@ export namespace storagetransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().TransferJob} params.resource Request body data
+     * @param {().TransferJob} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1153,7 +1153,7 @@ export namespace storagetransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobName Required. The name of job to update.
-     * @param {().UpdateTransferJobRequest} params.resource Request body data
+     * @param {().UpdateTransferJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1825,7 +1825,7 @@ export namespace storagetransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the transfer operation.
-     * @param {().PauseTransferOperationRequest} params.resource Request body data
+     * @param {().PauseTransferOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1943,7 +1943,7 @@ export namespace storagetransfer_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the transfer operation.
-     * @param {().ResumeTransferOperationRequest} params.resource Request body data
+     * @param {().ResumeTransferOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

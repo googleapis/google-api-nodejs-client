@@ -1346,7 +1346,7 @@ export namespace testing_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().FileReference} params.resource Request body data
+     * @param {().FileReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1533,7 +1533,7 @@ export namespace testing_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId The GCE project under which this job will run.
      * @param {string=} params.requestId A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended.  Optional, but strongly recommended.
-     * @param {().TestMatrix} params.resource Request body data
+     * @param {().TestMatrix} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

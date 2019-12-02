@@ -104,6 +104,7 @@ export namespace monitoring_v3 {
   export class Monitoring {
     context: APIRequestContext;
     projects: Resource$Projects;
+    services: Resource$Services;
     uptimeCheckIps: Resource$Uptimecheckips;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -113,6 +114,7 @@ export namespace monitoring_v3 {
       };
 
       this.projects = new Resource$Projects(this.context);
+      this.services = new Resource$Services(this.context);
       this.uptimeCheckIps = new Resource$Uptimecheckips(this.context);
     }
   }
@@ -188,6 +190,19 @@ export namespace monitoring_v3 {
     validity?: Schema$Status;
   }
   /**
+   * App Engine service. Learn more at https://cloud.google.com/appengine.
+   */
+  export interface Schema$AppEngine {
+    /**
+     * The ID of the App Engine module underlying this service. Corresponds to the module_id resource label in the gae_app monitored resource: https://cloud.google.com/monitoring/api/resources#tag_gae_app
+     */
+    moduleId?: string | null;
+  }
+  /**
+   * Future parameters for the availability SLI.
+   */
+  export interface Schema$AvailabilityCriteria {}
+  /**
    * The authentication parameters to provide to the specified resource or URL that requires a username and password. Currently, only Basic HTTP authentication (https://tools.ietf.org/html/rfc7617) is supported in Uptime checks.
    */
   export interface Schema$BasicAuthentication {
@@ -199,6 +214,31 @@ export namespace monitoring_v3 {
      * The username to use when authenticating with the HTTP server.
      */
     username?: string | null;
+  }
+  /**
+   * An SLI measuring performance on a well-known service type. Performance will be computed on the basis of pre-defined metrics. The type of the service_resource determines the metrics to use and the service_resource.labels and metric_labels are used to construct a monitoring filter to filter that metric down to just the data relevant to this service.
+   */
+  export interface Schema$BasicSli {
+    /**
+     * Good service is defined to be the count of requests made to this service that return successfully.
+     */
+    availability?: Schema$AvailabilityCriteria;
+    /**
+     * Good service is defined to be the count of requests made to this service that are fast enough with respect to latency.threshold.
+     */
+    latency?: Schema$LatencyCriteria;
+    /**
+     * OPTIONAL: The set of locations to which this SLI is relevant. Telemetry from other locations will not be used to calculate performance for this SLI. If omitted, this SLI applies to all locations in which the Service has activity. For service types that don&#39;t support breaking down by location, setting this field will result in an error.
+     */
+    location?: string[] | null;
+    /**
+     * OPTIONAL: The set of RPCs to which this SLI is relevant. Telemetry from other methods will not be used to calculate performance for this SLI. If omitted, this SLI applies to all the Service&#39;s methods. For service types that don&#39;t support breaking down by method, setting this field will result in an error.
+     */
+    method?: string[] | null;
+    /**
+     * OPTIONAL: The set of API versions to which this SLI is relevant. Telemetry from other API versions will not be used to calculate performance for this SLI. If omitted, this SLI applies to all API versions. For service types that don&#39;t support breaking down by version, setting this field will result in an error.
+     */
+    version?: string[] | null;
   }
   /**
    * BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i &gt; 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
@@ -216,6 +256,36 @@ export namespace monitoring_v3 {
      * The linear bucket.
      */
     linearBuckets?: Schema$Linear;
+  }
+  /**
+   * Cloud Endpoints service. Learn more at https://cloud.google.com/endpoints.
+   */
+  export interface Schema$CloudEndpoints {
+    /**
+     * The name of the Cloud Endpoints service underlying this service. Corresponds to the service resource label in the api monitored resource: https://cloud.google.com/monitoring/api/resources#tag_api
+     */
+    service?: string | null;
+  }
+  /**
+   * Istio service. Learn more at http://istio.io.
+   */
+  export interface Schema$ClusterIstio {
+    /**
+     * The name of the Kubernetes cluster in which this Istio service is defined. Corresponds to the cluster_name resource label in k8s_cluster resources.
+     */
+    clusterName?: string | null;
+    /**
+     * The location of the Kubernetes cluster in which this Istio service is defined. Corresponds to the location resource label in k8s_cluster resources.
+     */
+    location?: string | null;
+    /**
+     * The name of the Istio service underlying this service. Corresponds to the destination_service_name metric label in Istio metrics.
+     */
+    serviceName?: string | null;
+    /**
+     * The namespace of the Istio service underlying this service. Corresponds to the destination_service_namespace metric label in Istio metrics.
+     */
+    serviceNamespace?: string | null;
   }
   /**
    * A collection of data points sent from a collectd-based plugin. See the collectd documentation for more information.
@@ -323,11 +393,11 @@ export namespace monitoring_v3 {
     name?: string | null;
   }
   /**
-   * Used to perform string matching. It allows substring and regular expressions, together with their negations.
+   * Optional. Used to perform content matching. This allows matching based on substrings and regular expressions, together with their negations. Only the first 4&amp;nbsp;MB of an HTTP or HTTPS check&#39;s response (and the first 1&amp;nbsp;MB of a TCP check&#39;s response) are examined for purposes of content matching.
    */
   export interface Schema$ContentMatcher {
     /**
-     * String or regex content to match (max 1024 bytes)
+     * String or regex content to match. Maximum 1024 bytes. An empty content string indicates no content matching is to be performed.
      */
     content?: string | null;
     /**
@@ -357,9 +427,13 @@ export namespace monitoring_v3 {
    */
   export interface Schema$CreateCollectdTimeSeriesResponse {
     /**
-     * Records the error status for points that were not written due to an error.Failed requests for which nothing is written will return an error response instead.
+     * Records the error status for points that were not written due to an error in the request.Failed requests for which nothing is written will return an error response instead. Requests where data points were rejected by the backend will set summary instead.
      */
     payloadErrors?: Schema$CollectdPayloadError[];
+    /**
+     * Aggregate statistics from writing the payloads. This field is omitted if all points were successfully written, so that the response is empty. This is for backwards compatibility with clients that log errors on any non-empty response.
+     */
+    summary?: Schema$CreateTimeSeriesSummary;
   }
   /**
    * The CreateTimeSeries request.
@@ -370,6 +444,27 @@ export namespace monitoring_v3 {
      */
     timeSeries?: Schema$TimeSeries[];
   }
+  /**
+   * Summary of the result of a failed request to write data to a time series.
+   */
+  export interface Schema$CreateTimeSeriesSummary {
+    /**
+     * The number of points that failed to be written. Order is not guaranteed.
+     */
+    errors?: Schema$Error[];
+    /**
+     * The number of points that were successfully written.
+     */
+    successPointCount?: number | null;
+    /**
+     * The number of points in the request.
+     */
+    totalPointCount?: number | null;
+  }
+  /**
+   * Custom view of service telemetry. Currently a place-holder pending final design.
+   */
+  export interface Schema$Custom {}
   /**
    * Distribution contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets.The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths.Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the mean and sum_of_squared_deviation fields meaningless.
    */
@@ -404,6 +499,19 @@ export namespace monitoring_v3 {
     sumOfSquaredDeviation?: number | null;
   }
   /**
+   * A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the count of values x in the Distribution such that range.min &lt;= x &lt; range.max.
+   */
+  export interface Schema$DistributionCut {
+    /**
+     * A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries aggregating values. Must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE.
+     */
+    distributionFilter?: string | null;
+    /**
+     * Range of values considered &quot;good.&quot; For a one-sided range, set one bound to an infinite value.
+     */
+    range?: Schema$GoogleMonitoringV3Range;
+  }
+  /**
    * A content string and a MIME type that describes the content string&#39;s format.
    */
   export interface Schema$Documentation {
@@ -429,6 +537,19 @@ export namespace monitoring_v3 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
    */
   export interface Schema$Empty {}
+  /**
+   * Detailed information about an error category.
+   */
+  export interface Schema$Error {
+    /**
+     * The number of points that couldn&#39;t be written because of status.
+     */
+    pointCount?: number | null;
+    /**
+     * The status of the requested write operation.
+     */
+    status?: Schema$Status;
+  }
   /**
    * Exemplars are example points that may be used to annotate aggregated distribution values. They are metadata that gives information about a particular value added to a Distribution bucket, such as a trace ID that was active when a value was added. They may contain further information, such as a example values and timestamps, origin, etc.
    */
@@ -540,6 +661,19 @@ export namespace monitoring_v3 {
     expireTime?: string | null;
   }
   /**
+   * Range of numerical values, inclusive of min and exclusive of max. If the open range &quot;&lt; range.max&quot; is desired, set range.min = -infinity. If the open range &quot;&gt;= range.min&quot; is desired, set range.max = infinity.
+   */
+  export interface Schema$GoogleMonitoringV3Range {
+    /**
+     * Range maximum.
+     */
+    max?: number | null;
+    /**
+     * Range minimum.
+     */
+    min?: number | null;
+  }
+  /**
    * The description of a dynamic collection of monitored resources. Each group has a filter that is matched against monitored resources and their associated metadata. If a group&#39;s filter matches an available monitored resource, then that resource is a member of that group. Groups can contain any number of monitored resources, and each monitored resource can be a member of any number of groups.Groups can be nested in parent-child hierarchies. The parentName field identifies an optional parent for each group. If a group has a parent, then the only monitored resources available to be matched by the group&#39;s filter are the resources contained in the parent group. In other words, a group contains the monitored resources that match its filter and the filters of all the group&#39;s ancestors. A group without a parent can contain any monitored resource.For example, consider an infrastructure running a set of instances with two user-defined tags: &quot;environment&quot; and &quot;role&quot;. A parent group has a filter, environment=&quot;production&quot;. A child of that parent group has a filter, role=&quot;transcoder&quot;. The parent group contains all instances in the production environment, regardless of their roles. The child group contains instances that have the transcoder role and are in the production environment.The monitored resources contained in a group can change at any moment, depending on what resources exist and what filters are associated with the group and its ancestors.
    */
   export interface Schema$Group {
@@ -642,6 +776,15 @@ export namespace monitoring_v3 {
      * The type of data that can be assigned to the label.
      */
     valueType?: string | null;
+  }
+  /**
+   * Parameters for a latency threshold SLI.
+   */
+  export interface Schema$LatencyCriteria {
+    /**
+     * Good service is defined to be the count of requests made to this service that return in no more than threshold.
+     */
+    threshold?: string | null;
   }
   /**
    * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): offset + (width * i).  Lower bound (1 &lt;= i &lt; N): offset + (width * (i - 1)).
@@ -754,6 +897,32 @@ export namespace monitoring_v3 {
      * The notification channels defined for the specified project.
      */
     notificationChannels?: Schema$NotificationChannel[];
+  }
+  /**
+   * The ListServiceLevelObjectives response.
+   */
+  export interface Schema$ListServiceLevelObjectivesResponse {
+    /**
+     * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The ServiceLevelObjectives matching the specified filter.
+     */
+    serviceLevelObjectives?: Schema$ServiceLevelObjective[];
+  }
+  /**
+   * The ListServices response.
+   */
+  export interface Schema$ListServicesResponse {
+    /**
+     * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The Services matching the specified filter.
+     */
+    services?: Schema$Service[];
   }
   /**
    * The ListTimeSeries response.
@@ -901,6 +1070,19 @@ export namespace monitoring_v3 {
      * The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period.
      */
     samplePeriod?: string | null;
+  }
+  /**
+   * A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min &lt;= x &lt; range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE.
+   */
+  export interface Schema$MetricRange {
+    /**
+     * Range of values considered &quot;good.&quot; For a one-sided range, set one bound to an infinite value.
+     */
+    range?: Schema$GoogleMonitoringV3Range;
+    /**
+     * A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying the TimeSeries to use for evaluating window quality.
+     */
+    timeSeries?: string | null;
   }
   /**
    * A condition type that compares a collection of time series against a threshold.
@@ -1087,6 +1269,23 @@ export namespace monitoring_v3 {
     value?: {[key: string]: any} | null;
   }
   /**
+   * A PerformanceThreshold is used when each window is good when that window has a sufficiently high performance.
+   */
+  export interface Schema$PerformanceThreshold {
+    /**
+     * BasicSli to evaluate to judge window quality.
+     */
+    basicSliPerformance?: Schema$BasicSli;
+    /**
+     * RequestBasedSli to evaluate to judge window quality.
+     */
+    performance?: Schema$RequestBasedSli;
+    /**
+     * If window performance &gt;= threshold, the window is counted as good.
+     */
+    threshold?: number | null;
+  }
+  /**
    * A single data point in a time series.
    */
   export interface Schema$Point {
@@ -1113,6 +1312,19 @@ export namespace monitoring_v3 {
     min?: number | null;
   }
   /**
+   * Service Level Indicators for which atomic units of service are counted directly.
+   */
+  export interface Schema$RequestBasedSli {
+    /**
+     * distribution_cut is used when good_service is a count of values aggregated in a Distribution that fall into a good range. The total_service is the total count of all values aggregated in the Distribution.
+     */
+    distributionCut?: Schema$DistributionCut;
+    /**
+     * good_total_ratio is used when the ratio of good_service to total_service is computed from two TimeSeries.
+     */
+    goodTotalRatio?: Schema$TimeSeriesRatio;
+  }
+  /**
    * The resource submessage for group checks. It can be used instead of a monitored resource, when multiple resources are being monitored.
    */
   export interface Schema$ResourceGroup {
@@ -1129,6 +1341,85 @@ export namespace monitoring_v3 {
    * The SendNotificationChannelVerificationCode request.
    */
   export interface Schema$SendNotificationChannelVerificationCodeRequest {}
+  /**
+   * A Service is a discrete, autonomous, and network-accessible unit, designed to solve an individual concern (Wikipedia (https://en.wikipedia.org/wiki/Service-orientation)). In Stackdriver Monitoring, a Service acts as the root resource under which operational aspects of the service are accessible.
+   */
+  export interface Schema$Service {
+    /**
+     * Type used for App Engine services.
+     */
+    appEngine?: Schema$AppEngine;
+    /**
+     * Type used for Cloud Endpoints services.
+     */
+    cloudEndpoints?: Schema$CloudEndpoints;
+    /**
+     * Type used for Istio services that live in a Kubernetes cluster.
+     */
+    clusterIstio?: Schema$ClusterIstio;
+    /**
+     * Custom service type.
+     */
+    custom?: Schema$Custom;
+    /**
+     * Name used for UI elements listing this Service.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name for this Service. Of the form projects/{project_id}/services/{service_id}.
+     */
+    name?: string | null;
+    /**
+     * Configuration for how to query telemetry on a Service.
+     */
+    telemetry?: Schema$Telemetry;
+  }
+  /**
+   * A Service-Level Indicator (SLI) describes the &quot;performance&quot; of a service. For some services, the SLI is well-defined. In such cases, the SLI can be described easily by referencing the well-known SLI and providing the needed parameters. Alternatively, a &quot;custom&quot; SLI can be defined with a query to the underlying metric store. An SLI is defined to be good_service / total_service over any queried time interval. The value of performance always falls into the range 0 &lt;= performance &lt;= 1. A custom SLI describes how to compute this ratio, whether this is by dividing values from a pair of time series, cutting a Distribution into good and bad counts, or counting time windows in which the service complies with a criterion. For separation of concerns, a single Service-Level Indicator measures performance for only one aspect of service quality, such as fraction of successful queries or fast-enough queries.
+   */
+  export interface Schema$ServiceLevelIndicator {
+    /**
+     * Basic SLI on a well-known service type.
+     */
+    basicSli?: Schema$BasicSli;
+    /**
+     * Request-based SLIs
+     */
+    requestBased?: Schema$RequestBasedSli;
+    /**
+     * Windows-based SLIs
+     */
+    windowsBased?: Schema$WindowsBasedSli;
+  }
+  /**
+   * A Service-Level Objective (SLO) describes a level of desired good service. It consists of a service-level indicator (SLI), a performance goal, and a period over which the objective is to be evaluated against that goal. The SLO can use SLIs defined in a number of different manners. Typical SLOs might include &quot;99% of requests in each rolling week have latency below 200 milliseconds&quot; or &quot;99.5% of requests in each calendar month return successfully.&quot;
+   */
+  export interface Schema$ServiceLevelObjective {
+    /**
+     * A calendar period, semantically &quot;since the start of the current &lt;calendar_period&gt;&quot;. At this time, only DAY, WEEK, FORTNIGHT, and MONTH are supported.
+     */
+    calendarPeriod?: string | null;
+    /**
+     * Name used for UI elements listing this SLO.
+     */
+    displayName?: string | null;
+    /**
+     * The fraction of service that must be good in order for this objective to be met. 0 &lt; goal &lt;= 1.
+     */
+    goal?: number | null;
+    /**
+     * Resource name for this ServiceLevelObjective. Of the form projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}.
+     */
+    name?: string | null;
+    /**
+     * A rolling time period, semantically &quot;in the past &lt;rolling_period&gt;&quot;. Must be an integer multiple of 1 day no larger than 30 days.
+     */
+    rollingPeriod?: string | null;
+    /**
+     * The definition of good service, used to measure and calculate the quality of the Service&#39;s performance with respect to a single aspect of service quality.
+     */
+    serviceLevelIndicator?: Schema$ServiceLevelIndicator;
+  }
   /**
    * SourceContext represents information about the source of a protobuf element, like the file in which it is defined.
    */
@@ -1174,6 +1465,15 @@ export namespace monitoring_v3 {
     port?: number | null;
   }
   /**
+   * Configuration for how to query telemetry on a Service.
+   */
+  export interface Schema$Telemetry {
+    /**
+     * The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names.
+     */
+    resourceName?: string | null;
+  }
+  /**
    * A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind of the metric value. In no case can the end time be earlier than the start time. For a GAUGE metric, the startTime value is technically optional; if  no value is specified, the start time defaults to the value of the  end time, and the interval represents a single point in time. If both  start and end times are specified, they must be identical. Such an  interval is valid only for GAUGE metrics, which are point-in-time  measurements. For DELTA and CUMULATIVE metrics, the start time must be earlier  than the end time. In all cases, the start time of the next interval must be  at least a microsecond after the end time of the previous interval.  Because the interval is closed, if the start time of a new interval  is the same as the end time of the previous interval, data written  at the new start time could overwrite data written at the previous  end time.
    */
   export interface Schema$TimeInterval {
@@ -1214,6 +1514,23 @@ export namespace monitoring_v3 {
      * The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field.
      */
     valueType?: string | null;
+  }
+  /**
+   * A TimeSeriesRatio specifies two TimeSeries to use for computing the good_service / total_service ratio. The specified TimeSeries must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. The TimeSeriesRatio must specify exactly two of good, bad, and total, and the relationship good_service + bad_service = total_service will be assumed.
+   */
+  export interface Schema$TimeSeriesRatio {
+    /**
+     * A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying bad service, either demanded service that was not provided or demanded service that was of inadequate quality. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE.
+     */
+    badServiceFilter?: string | null;
+    /**
+     * A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying good service provided. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE.
+     */
+    goodServiceFilter?: string | null;
+    /**
+     * A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying total demanded service. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE.
+     */
+    totalServiceFilter?: string | null;
   }
   /**
    * Specifies how many time series must fail a predicate to trigger a condition. If not specified, then a {count: 1} trigger is used.
@@ -1361,6 +1678,31 @@ export namespace monitoring_v3 {
      */
     code?: string | null;
   }
+  /**
+   * A WindowsBasedSli defines good_service as the count of time windows for which the provided service was of good quality. Criteria for determining if service was good are embedded in the window_criterion.
+   */
+  export interface Schema$WindowsBasedSli {
+    /**
+     * A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries with ValueType = BOOL. The window is good if any true values appear in the window.
+     */
+    goodBadMetricFilter?: string | null;
+    /**
+     * A window is good if its performance is high enough.
+     */
+    goodTotalRatioThreshold?: Schema$PerformanceThreshold;
+    /**
+     * A window is good if the metric&#39;s value is in a good range, averaged across returned streams.
+     */
+    metricMeanInRange?: Schema$MetricRange;
+    /**
+     * A window is good if the metric&#39;s value is in a good range, summed across returned streams.
+     */
+    metricSumInRange?: Schema$MetricRange;
+    /**
+     * Duration over which window quality is evaluated. Must be an integer fraction of a day and at least 60s.
+     */
+    windowPeriod?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1413,7 +1755,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The project in which to create the alerting policy. The format is projects/[PROJECT_ID].Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[POLICY_ID], identifying the policy in the container.
-     * @param {().AlertPolicy} params.resource Request body data
+     * @param {().AlertPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1714,7 +2056,7 @@ export namespace monitoring_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.name Required if the policy exists. The resource name for this policy. The syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      * @param {string=} params.updateMask Optional. A list of alerting policy field names. If this field is not empty, each listed field in the existing alerting policy is set to the value of the corresponding field in the supplied policy (alert_policy), or to the field's default value if the field is not in the supplied alerting policy. Fields not listed retain their previous value.Examples of valid field masks include display_name, documentation, documentation.content, documentation.mime_type, user_labels, user_label.nameofkey, enabled, conditions, combiner, etc.If this field is empty, then the supplied alerting policy replaces the existing policy. It is the same as deleting the existing policy and adding the supplied policy, except for the following: The new policy will have the same [ALERT_POLICY_ID] as the former policy. This gives you continuity with the former policy in your notifications and incidents. Conditions in the new policy will keep their former [CONDITION_ID] if the supplied condition includes the name field with that [CONDITION_ID]. If the supplied condition omits the name field, then a new [CONDITION_ID] is created.
-     * @param {().AlertPolicy} params.resource Request body data
+     * @param {().AlertPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1924,7 +2266,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The project in which to create the time series. The format is "projects/PROJECT_ID_OR_NUMBER".
-     * @param {().CreateCollectdTimeSeriesRequest} params.resource Request body data
+     * @param {().CreateCollectdTimeSeriesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2076,7 +2418,7 @@ export namespace monitoring_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.name The project in which to create the group. The format is "projects/{project_id_or_number}".
      * @param {boolean=} params.validateOnly If true, validate this request but do not create the group.
-     * @param {().Group} params.resource Request body data
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2529,7 +2871,7 @@ export namespace monitoring_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The name of this group. The format is "projects/{project_id_or_number}/groups/{group_id}". When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique {group_id} that is generated automatically.
      * @param {boolean=} params.validateOnly If true, validate this request but do not update the existing group.
-     * @param {().Group} params.resource Request body data
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2917,7 +3259,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
-     * @param {().MetricDescriptor} params.resource Request body data
+     * @param {().MetricDescriptor} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3940,7 +4282,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The project on which to execute the request. The format is: projects/[PROJECT_ID] Note that this names the container into which the channel will be written. This does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
-     * @param {().NotificationChannel} params.resource Request body data
+     * @param {().NotificationChannel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4156,7 +4498,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The notification channel for which a verification code is to be generated and retrieved. This must name a channel that is already verified; if the specified channel is not verified, the request will fail.
-     * @param {().GetNotificationChannelVerificationCodeRequest} params.resource Request body data
+     * @param {().GetNotificationChannelVerificationCodeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4344,7 +4686,7 @@ export namespace monitoring_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.name The full REST resource name for this channel. The syntax is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      * @param {string=} params.updateMask The fields to update.
-     * @param {().NotificationChannel} params.resource Request body data
+     * @param {().NotificationChannel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4416,7 +4758,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The notification channel to which to send a verification code.
-     * @param {().SendNotificationChannelVerificationCodeRequest} params.resource Request body data
+     * @param {().SendNotificationChannelVerificationCodeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4489,7 +4831,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The notification channel to verify.
-     * @param {().VerifyNotificationChannelRequest} params.resource Request body data
+     * @param {().VerifyNotificationChannelRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4754,7 +5096,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
-     * @param {().CreateTimeSeriesRequest} params.resource Request body data
+     * @param {().CreateTimeSeriesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5041,7 +5383,7 @@ export namespace monitoring_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The project in which to create the Uptime check. The format  is projects/[PROJECT_ID].
-     * @param {().UptimeCheckConfig} params.resource Request body data
+     * @param {().UptimeCheckConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5342,7 +5684,7 @@ export namespace monitoring_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.name A unique resource name for this Uptime check configuration. The format is:projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
      * @param {string=} params.updateMask Optional. If present, only the listed fields in the current Uptime check configuration are updated with values from the new configuration. If this field is empty, then the current configuration is completely replaced with the new configuration.
-     * @param {().UptimeCheckConfig} params.resource Request body data
+     * @param {().UptimeCheckConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5488,6 +5830,949 @@ export namespace monitoring_v3 {
      * Request body metadata
      */
     requestBody?: Schema$UptimeCheckConfig;
+  }
+
+  export class Resource$Services {
+    context: APIRequestContext;
+    serviceLevelObjectives: Resource$Services$Servicelevelobjectives;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.serviceLevelObjectives = new Resource$Services$Servicelevelobjectives(
+        this.context
+      );
+    }
+
+    /**
+     * monitoring.services.create
+     * @desc Create a Service.
+     * @alias monitoring.services.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Resource name of the parent workspace. Of the form projects/{project_id}.
+     * @param {string=} params.serviceId Optional. The Service id to use for this Service. If omitted, an id will be generated instead. Must match the pattern a-z0-9-+
+     * @param {().Service} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Services$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    create(
+      params: Params$Resource$Services$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    create(
+      params: Params$Resource$Services$Create,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Service>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Services$Create
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/services').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Service>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Service>(parameters);
+      }
+    }
+
+    /**
+     * monitoring.services.delete
+     * @desc Soft delete this Service.
+     * @alias monitoring.services.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the Service to delete. Of the form projects/{project_id}/service/{service_id}.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Services$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Services$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Services$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Services$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * monitoring.services.get
+     * @desc Get the named Service.
+     * @alias monitoring.services.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the Service. Of the form projects/{project_id}/services/{service_id}.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Services$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    get(
+      params: Params$Resource$Services$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(
+      params: Params$Resource$Services$Get,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Service>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Get
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Service>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Service>(parameters);
+      }
+    }
+
+    /**
+     * monitoring.services.list
+     * @desc List Services for this workspace.
+     * @alias monitoring.services.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `cluster_istio.location` - `cluster_istio.cluster_name` - `cluster_istio.service_namespace` - `cluster_istio.service_name` identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", and "CLUSTER_ISTIO".
+     * @param {integer=} params.pageSize A non-negative number that is the maximum number of results to return. When 0, use default page size.
+     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     * @param {string} params.parent Resource name of the parent Workspace. Of the form projects/{project_id}.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Services$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServicesResponse>;
+    list(
+      params: Params$Resource$Services$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$List,
+      callback: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$List
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServicesResponse>,
+      callback?: BodyResponseCallback<Schema$ListServicesResponse>
+    ): void | GaxiosPromise<Schema$ListServicesResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/services').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListServicesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListServicesResponse>(parameters);
+      }
+    }
+
+    /**
+     * monitoring.services.patch
+     * @desc Update this Service.
+     * @alias monitoring.services.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name for this Service. Of the form projects/{project_id}/services/{service_id}.
+     * @param {string=} params.updateMask A set of field paths defining which fields to use for the update.
+     * @param {().Service} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Services$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Service>;
+    patch(
+      params: Params$Resource$Services$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    patch(
+      params: Params$Resource$Services$Patch,
+      callback: BodyResponseCallback<Schema$Service>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Service>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Services$Patch
+        | BodyResponseCallback<Schema$Service>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Service>,
+      callback?: BodyResponseCallback<Schema$Service>
+    ): void | GaxiosPromise<Schema$Service> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Services$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Service>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Service>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Create extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name of the parent workspace. Of the form projects/{project_id}.
+     */
+    parent?: string;
+    /**
+     * Optional. The Service id to use for this Service. If omitted, an id will be generated instead. Must match the pattern a-z0-9-+
+     */
+    serviceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Service;
+  }
+  export interface Params$Resource$Services$Delete extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name of the Service to delete. Of the form projects/{project_id}/service/{service_id}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$Get extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name of the Service. Of the form projects/{project_id}/services/{service_id}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `cluster_istio.location` - `cluster_istio.cluster_name` - `cluster_istio.service_namespace` - `cluster_istio.service_name` identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", and "CLUSTER_ISTIO".
+     */
+    filter?: string;
+    /**
+     * A non-negative number that is the maximum number of results to return. When 0, use default page size.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+    /**
+     * Resource name of the parent Workspace. Of the form projects/{project_id}.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Services$Patch extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name for this Service. Of the form projects/{project_id}/services/{service_id}.
+     */
+    name?: string;
+    /**
+     * A set of field paths defining which fields to use for the update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Service;
+  }
+
+  export class Resource$Services$Servicelevelobjectives {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * monitoring.services.serviceLevelObjectives.create
+     * @desc Create a ServiceLevelObjective for the given Service.
+     * @alias monitoring.services.serviceLevelObjectives.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Resource name of the parent Service. Of the form projects/{project_id}/services/{service_id}.
+     * @param {string=} params.serviceLevelObjectiveId Optional. The ServiceLevelObjective id to use for this ServiceLevelObjective. If omitted, an id will be generated instead. Must match the pattern a-z0-9-+
+     * @param {().ServiceLevelObjective} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Services$Servicelevelobjectives$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceLevelObjective>;
+    create(
+      params: Params$Resource$Services$Servicelevelobjectives$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      callback: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void;
+    create(
+      params: Params$Resource$Services$Servicelevelobjectives$Create,
+      callback: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ServiceLevelObjective>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Services$Servicelevelobjectives$Create
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      callback?: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void | GaxiosPromise<Schema$ServiceLevelObjective> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Servicelevelobjectives$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Servicelevelobjectives$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/serviceLevelObjectives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ServiceLevelObjective>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
+      }
+    }
+
+    /**
+     * monitoring.services.serviceLevelObjectives.delete
+     * @desc Delete the given ServiceLevelObjective.
+     * @alias monitoring.services.serviceLevelObjectives.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the ServiceLevelObjective to delete. Of the form projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Services$Servicelevelobjectives$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Services$Servicelevelobjectives$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Services$Servicelevelobjectives$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Services$Servicelevelobjectives$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Servicelevelobjectives$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Servicelevelobjectives$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * monitoring.services.serviceLevelObjectives.get
+     * @desc Get a ServiceLevelObjective by name.
+     * @alias monitoring.services.serviceLevelObjectives.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name of the ServiceLevelObjective to get. Of the form projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}.
+     * @param {string=} params.view View of the ServiceLevelObjective to return. If DEFAULT, return the ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Services$Servicelevelobjectives$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceLevelObjective>;
+    get(
+      params: Params$Resource$Services$Servicelevelobjectives$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      callback: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void;
+    get(
+      params: Params$Resource$Services$Servicelevelobjectives$Get,
+      callback: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ServiceLevelObjective>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Servicelevelobjectives$Get
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      callback?: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void | GaxiosPromise<Schema$ServiceLevelObjective> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Servicelevelobjectives$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Servicelevelobjectives$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ServiceLevelObjective>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
+      }
+    }
+
+    /**
+     * monitoring.services.serviceLevelObjectives.list
+     * @desc List the ServiceLevelObjectives for the given Service.
+     * @alias monitoring.services.serviceLevelObjectives.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter specifying what ServiceLevelObjectives to return.
+     * @param {integer=} params.pageSize A non-negative number that is the maximum number of results to return. When 0, use default page size.
+     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     * @param {string} params.parent Resource name of the parent Service. Of the form projects/{project_id}/services/{service_id}.
+     * @param {string=} params.view View of the ServiceLevelObjectives to return. If DEFAULT, return each ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Services$Servicelevelobjectives$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListServiceLevelObjectivesResponse>;
+    list(
+      params: Params$Resource$Services$Servicelevelobjectives$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceLevelObjectivesResponse>,
+      callback: BodyResponseCallback<Schema$ListServiceLevelObjectivesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Servicelevelobjectives$List,
+      callback: BodyResponseCallback<Schema$ListServiceLevelObjectivesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListServiceLevelObjectivesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Servicelevelobjectives$List
+        | BodyResponseCallback<Schema$ListServiceLevelObjectivesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListServiceLevelObjectivesResponse>,
+      callback?: BodyResponseCallback<Schema$ListServiceLevelObjectivesResponse>
+    ): void | GaxiosPromise<Schema$ListServiceLevelObjectivesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Servicelevelobjectives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Servicelevelobjectives$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/serviceLevelObjectives').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListServiceLevelObjectivesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListServiceLevelObjectivesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * monitoring.services.serviceLevelObjectives.patch
+     * @desc Update the given ServiceLevelObjective.
+     * @alias monitoring.services.serviceLevelObjectives.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Resource name for this ServiceLevelObjective. Of the form projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}.
+     * @param {string=} params.updateMask A set of field paths defining which fields to use for the update.
+     * @param {().ServiceLevelObjective} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Services$Servicelevelobjectives$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceLevelObjective>;
+    patch(
+      params: Params$Resource$Services$Servicelevelobjectives$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      callback: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void;
+    patch(
+      params: Params$Resource$Services$Servicelevelobjectives$Patch,
+      callback: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$ServiceLevelObjective>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Services$Servicelevelobjectives$Patch
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+      callback?: BodyResponseCallback<Schema$ServiceLevelObjective>
+    ): void | GaxiosPromise<Schema$ServiceLevelObjective> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Servicelevelobjectives$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Servicelevelobjectives$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ServiceLevelObjective>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Servicelevelobjectives$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name of the parent Service. Of the form projects/{project_id}/services/{service_id}.
+     */
+    parent?: string;
+    /**
+     * Optional. The ServiceLevelObjective id to use for this ServiceLevelObjective. If omitted, an id will be generated instead. Must match the pattern a-z0-9-+
+     */
+    serviceLevelObjectiveId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ServiceLevelObjective;
+  }
+  export interface Params$Resource$Services$Servicelevelobjectives$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name of the ServiceLevelObjective to delete. Of the form projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$Servicelevelobjectives$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name of the ServiceLevelObjective to get. Of the form projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}.
+     */
+    name?: string;
+    /**
+     * View of the ServiceLevelObjective to return. If DEFAULT, return the ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Services$Servicelevelobjectives$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter specifying what ServiceLevelObjectives to return.
+     */
+    filter?: string;
+    /**
+     * A non-negative number that is the maximum number of results to return. When 0, use default page size.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+    /**
+     * Resource name of the parent Service. Of the form projects/{project_id}/services/{service_id}.
+     */
+    parent?: string;
+    /**
+     * View of the ServiceLevelObjectives to return. If DEFAULT, return each ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Services$Servicelevelobjectives$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Resource name for this ServiceLevelObjective. Of the form projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}.
+     */
+    name?: string;
+    /**
+     * A set of field paths defining which fields to use for the update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ServiceLevelObjective;
   }
 
   export class Resource$Uptimecheckips {

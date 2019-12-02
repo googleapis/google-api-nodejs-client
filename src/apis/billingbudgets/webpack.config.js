@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Sqladmin',
-    filename: 'sqladmin.min.js',
+    library: 'Billingbudgets',
+    filename: 'billingbudgets.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

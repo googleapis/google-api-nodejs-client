@@ -1850,7 +1850,7 @@ export namespace blogger_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog to add the page to.
      * @param {boolean=} params.isDraft Whether to create the page as a draft (default: false).
-     * @param {().Page} params.resource Request body data
+     * @param {().Page} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2001,7 +2001,7 @@ export namespace blogger_v3 {
      * @param {string} params.pageId The ID of the Page.
      * @param {boolean=} params.publish Whether a publish action should be performed when the page is updated (default: false).
      * @param {boolean=} params.revert Whether a revert action should be performed when the page is updated (default: false).
-     * @param {().Page} params.resource Request body data
+     * @param {().Page} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2217,7 +2217,7 @@ export namespace blogger_v3 {
      * @param {string} params.pageId The ID of the Page.
      * @param {boolean=} params.publish Whether a publish action should be performed when the page is updated (default: false).
      * @param {boolean=} params.revert Whether a revert action should be performed when the page is updated (default: false).
-     * @param {().Page} params.resource Request body data
+     * @param {().Page} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2787,7 +2787,7 @@ export namespace blogger_v3 {
      * @param {boolean=} params.fetchBody Whether the body content of the post is included with the result (default: true).
      * @param {boolean=} params.fetchImages Whether image URL metadata for each post is included in the returned result (default: false).
      * @param {boolean=} params.isDraft Whether to create the post as a draft (default: false).
-     * @param {().Post} params.resource Request body data
+     * @param {().Post} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2946,7 +2946,7 @@ export namespace blogger_v3 {
      * @param {string} params.postId The ID of the Post.
      * @param {boolean=} params.publish Whether a publish action should be performed when the post is updated (default: false).
      * @param {boolean=} params.revert Whether a revert action should be performed when the post is updated (default: false).
-     * @param {().Post} params.resource Request body data
+     * @param {().Post} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3240,7 +3240,7 @@ export namespace blogger_v3 {
      * @param {string} params.postId The ID of the Post.
      * @param {boolean=} params.publish Whether a publish action should be performed when the post is updated (default: false).
      * @param {boolean=} params.revert Whether a revert action should be performed when the post is updated (default: false).
-     * @param {().Post} params.resource Request body data
+     * @param {().Post} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

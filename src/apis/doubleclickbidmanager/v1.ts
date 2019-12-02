@@ -537,7 +537,7 @@ export namespace doubleclickbidmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DownloadLineItemsRequest} params.resource Request body data
+     * @param {().DownloadLineItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -617,7 +617,7 @@ export namespace doubleclickbidmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().UploadLineItemsRequest} params.resource Request body data
+     * @param {().UploadLineItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -726,7 +726,7 @@ export namespace doubleclickbidmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Query} params.resource Request body data
+     * @param {().Query} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1015,7 +1015,7 @@ export namespace doubleclickbidmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID to run.
-     * @param {().RunQueryRequest} params.resource Request body data
+     * @param {().RunQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1246,7 +1246,7 @@ export namespace doubleclickbidmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DownloadRequest} params.resource Request body data
+     * @param {().DownloadRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

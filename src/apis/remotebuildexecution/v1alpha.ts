@@ -734,6 +734,23 @@ export namespace remotebuildexecution_v1alpha {
     workerPools?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
   }
   /**
+   * The request used for `UpdateInstance`.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest {
+    /**
+     * Whether to enable Stackdriver logging for this instance.
+     */
+    loggingEnabled?: boolean | null;
+    /**
+     * Name of the instance to update. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     */
+    name?: string | null;
+    /**
+     * The fields to update.
+     */
+    updateMask?: string | null;
+  }
+  /**
    * The request used for UpdateWorkerPool.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest {
@@ -1110,7 +1127,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Resource name of the project containing the instance. Format: `projects/[PROJECT_ID]`.
-     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest} params.resource Request body data
+     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1532,7 +1549,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Resource name of the instance in which to create the new worker pool. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
-     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest} params.resource Request body data
+     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1894,7 +1911,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name WorkerPool resource name formatted as: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`. name should not be populated when creating a worker pool since it is provided in the `poolId` field.
-     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest} params.resource Request body data
+     * @param {().GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

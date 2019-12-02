@@ -3493,6 +3493,23 @@ export namespace vision_v1 {
     vertices?: Schema$GoogleCloudVisionV1p4beta1Vertex[];
   }
   /**
+   * A Celebrity is a group of Faces with an identity.
+   */
+  export interface Schema$GoogleCloudVisionV1p4beta1Celebrity {
+    /**
+     * The Celebrity&#39;s description.
+     */
+    description?: string | null;
+    /**
+     * The Celebrity&#39;s display name.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the preloaded Celebrity. Has the format `builtin/{mid}`.
+     */
+    name?: string | null;
+  }
+  /**
    * Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image.
    */
   export interface Schema$GoogleCloudVisionV1p4beta1ColorInfo {
@@ -3630,6 +3647,10 @@ export namespace vision_v1 {
      */
     panAngle?: number | null;
     /**
+     * Additional recognition information. Only computed if image_context.face_recognition_params is provided, **and** a match is found to a Celebrity in the input CelebritySet. This field is sorted in order of decreasing confidence values.
+     */
+    recognitionResult?: Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult[];
+    /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
     rollAngle?: number | null;
@@ -3662,6 +3683,19 @@ export namespace vision_v1 {
      * Face landmark type.
      */
     type?: string | null;
+  }
+  /**
+   * Information about a face&#39;s identity.
+   */
+  export interface Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult {
+    /**
+     * The Celebrity that this face was matched to.
+     */
+    celebrity?: Schema$GoogleCloudVisionV1p4beta1Celebrity;
+    /**
+     * Recognition confidence. Range [0, 1].
+     */
+    confidence?: number | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -5160,7 +5194,7 @@ export namespace vision_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5284,7 +5318,7 @@ export namespace vision_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5436,7 +5470,7 @@ export namespace vision_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5563,7 +5597,7 @@ export namespace vision_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5862,7 +5896,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6380,7 +6414,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6462,7 +6496,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6579,7 +6613,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6661,7 +6695,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6799,7 +6833,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6881,7 +6915,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6998,7 +7032,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7080,7 +7114,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7391,7 +7425,7 @@ export namespace vision_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The project in which the Product should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      * @param {string=} params.productId A user-supplied resource id for this Product. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().Product} params.resource Request body data
+     * @param {().Product} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7889,7 +7923,7 @@ export namespace vision_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the product.  Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.  This field is ignored when creating a product.
      * @param {string=} params.updateMask The FieldMask that specifies which fields to update. If update_mask isn't specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.
-     * @param {().Product} params.resource Request body data
+     * @param {().Product} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7959,7 +7993,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The project and location in which the Products should be deleted.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {().PurgeProductsRequest} params.resource Request body data
+     * @param {().PurgeProductsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8198,7 +8232,7 @@ export namespace vision_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Resource name of the product in which to create the reference image.  Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      * @param {string=} params.referenceImageId A user-supplied resource id for the ReferenceImage to be added. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().ReferenceImage} params.resource Request body data
+     * @param {().ReferenceImage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8776,7 +8810,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {().AddProductToProductSetRequest} params.resource Request body data
+     * @param {().AddProductToProductSetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8901,7 +8935,7 @@ export namespace vision_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The project in which the ProductSet should be created.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
      * @param {string=} params.productSetId A user-supplied resource id for this ProductSet. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().ProductSet} params.resource Request body data
+     * @param {().ProductSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9260,7 +9294,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The project in which the ProductSets should be imported.  Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {().ImportProductSetsRequest} params.resource Request body data
+     * @param {().ImportProductSetsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9528,7 +9562,7 @@ export namespace vision_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the ProductSet.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.  This field is ignored when creating a ProductSet.
      * @param {string=} params.updateMask The FieldMask that specifies which fields to update. If update_mask isn't specified, all mutable fields are to be updated. Valid mask path is `display_name`.
-     * @param {().ProductSet} params.resource Request body data
+     * @param {().ProductSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9649,7 +9683,7 @@ export namespace vision_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name for the ProductSet to modify.  Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {().RemoveProductFromProductSetRequest} params.resource Request body data
+     * @param {().RemoveProductFromProductSetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

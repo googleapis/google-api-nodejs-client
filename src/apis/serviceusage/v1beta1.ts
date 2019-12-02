@@ -672,7 +672,7 @@ export namespace serviceusage_v1beta1 {
      */
     http?: Schema$Http;
     /**
-     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. If empty, the server may choose to generate one instead. Must be no longer than 60 characters.
+     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. Must be no longer than 63 characters and only lower case letters, digits, &#39;.&#39;, &#39;_&#39; and &#39;-&#39; are allowed. If empty, the server may choose to generate one instead.
      */
     id?: string | null;
     /**
@@ -1714,7 +1714,7 @@ export namespace serviceusage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Parent to enable services on.  An example name would be: `projects/123` where `123` is the project number (not project ID).  The `BatchEnableServices` method currently only supports projects.
-     * @param {().BatchEnableServicesRequest} params.resource Request body data
+     * @param {().BatchEnableServicesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1789,7 +1789,7 @@ export namespace serviceusage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the consumer and service to disable the service on.  The enable and disable methods currently only support projects.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
-     * @param {().DisableServiceRequest} params.resource Request body data
+     * @param {().DisableServiceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1863,7 +1863,7 @@ export namespace serviceusage_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the consumer and service to enable the service on.  The `EnableService` and `DisableService` methods currently only support projects.  Enabling a service requires that the service is public or is shared with the user enabling the service.  An example name would be: `projects/123/services/serviceusage.googleapis.com` where `123` is the project number (not project ID).
-     * @param {().EnableServiceRequest} params.resource Request body data
+     * @param {().EnableServiceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

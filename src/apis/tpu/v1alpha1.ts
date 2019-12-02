@@ -862,7 +862,7 @@ export namespace tpu_v1alpha1 {
      * @param {object} params Parameters for request
      * @param {string=} params.nodeId The unqualified resource name.
      * @param {string} params.parent The parent resource name.
-     * @param {().Node} params.resource Request body data
+     * @param {().Node} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1153,7 +1153,7 @@ export namespace tpu_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
-     * @param {().ReimageNodeRequest} params.resource Request body data
+     * @param {().ReimageNodeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1228,7 +1228,7 @@ export namespace tpu_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
-     * @param {().StartNodeRequest} params.resource Request body data
+     * @param {().StartNodeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1303,7 +1303,7 @@ export namespace tpu_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name.
-     * @param {().StopNodeRequest} params.resource Request body data
+     * @param {().StopNodeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

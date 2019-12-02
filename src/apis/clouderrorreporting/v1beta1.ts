@@ -582,7 +582,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectName Required. The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
-     * @param {().ReportedErrorEvent} params.resource Request body data
+     * @param {().ReportedErrorEvent} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -802,7 +802,7 @@ export namespace clouderrorreporting_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
-     * @param {().ErrorGroup} params.resource Request body data
+     * @param {().ErrorGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

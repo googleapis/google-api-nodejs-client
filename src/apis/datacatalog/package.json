@@ -1,7 +1,7 @@
 {
-  "name": "@google/sqladmin",
+  "name": "@google/datacatalog",
   "version": "0.1.0",
-  "description": "sqladmin",
+  "description": "datacatalog",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

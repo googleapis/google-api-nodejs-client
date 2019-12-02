@@ -2677,7 +2677,7 @@ export namespace admin_directory_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2768,7 +2768,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.resourceId Immutable ID of Chrome OS Device
-     * @param {().ChromeOsDeviceAction} params.resource Request body data
+     * @param {().ChromeOsDeviceAction} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2999,7 +2999,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.orgUnitPath Full path of the target organizational unit or its ID
-     * @param {().ChromeOsMoveDevicesToOu} params.resource Request body data
+     * @param {().ChromeOsMoveDevicesToOu} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3074,7 +3074,7 @@ export namespace admin_directory_v1 {
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.deviceId Immutable ID of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {().ChromeOsDevice} params.resource Request body data
+     * @param {().ChromeOsDevice} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3151,7 +3151,7 @@ export namespace admin_directory_v1 {
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.deviceId Immutable ID of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {().ChromeOsDevice} params.resource Request body data
+     * @param {().ChromeOsDevice} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3456,7 +3456,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerKey Id of the customer to be updated
-     * @param {().Customer} params.resource Request body data
+     * @param {().Customer} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3527,7 +3527,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerKey Id of the customer to be updated
-     * @param {().Customer} params.resource Request body data
+     * @param {().Customer} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3797,7 +3797,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {().DomainAlias} params.resource Request body data
+     * @param {().DomainAlias} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4162,7 +4162,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {().Domains} params.resource Request body data
+     * @param {().Domains} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4511,7 +4511,7 @@ export namespace admin_directory_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Group} params.resource Request body data
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4661,7 +4661,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {().Group} params.resource Request body data
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4733,7 +4733,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {().Group} params.resource Request body data
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4989,7 +4989,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {().Alias} params.resource Request body data
+     * @param {().Alias} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5404,7 +5404,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {().Member} params.resource Request body data
+     * @param {().Member} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5550,7 +5550,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
      * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
-     * @param {().Member} params.resource Request body data
+     * @param {().Member} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5623,7 +5623,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
      * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
-     * @param {().Member} params.resource Request body data
+     * @param {().Member} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5833,7 +5833,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.resourceId Immutable ID of Mobile Device
-     * @param {().MobileDeviceAction} params.resource Request body data
+     * @param {().MobileDeviceAction} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6461,7 +6461,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's G Suite account.
      * @param {string} params.notificationId The unique ID of the notification.
-     * @param {().Notification} params.resource Request body data
+     * @param {().Notification} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6537,7 +6537,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's G Suite account.
      * @param {string} params.notificationId The unique ID of the notification.
-     * @param {().Notification} params.resource Request body data
+     * @param {().Notification} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6862,7 +6862,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {().OrgUnit} params.resource Request body data
+     * @param {().OrgUnit} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7006,7 +7006,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {().OrgUnit} params.resource Request body data
+     * @param {().OrgUnit} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7079,7 +7079,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {().OrgUnit} params.resource Request body data
+     * @param {().OrgUnit} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7687,7 +7687,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().Building} params.resource Request body data
+     * @param {().Building} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7838,7 +7838,7 @@ export namespace admin_directory_v1 {
      * @param {string} params.buildingId The ID of the building to update.
      * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().Building} params.resource Request body data
+     * @param {().Building} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7913,7 +7913,7 @@ export namespace admin_directory_v1 {
      * @param {string} params.buildingId The ID of the building to update.
      * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().Building} params.resource Request body data
+     * @param {().Building} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8265,7 +8265,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().CalendarResource} params.resource Request body data
+     * @param {().CalendarResource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8419,7 +8419,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().CalendarResource} params.resource Request body data
+     * @param {().CalendarResource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8495,7 +8495,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().CalendarResource} params.resource Request body data
+     * @param {().CalendarResource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8843,7 +8843,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().Feature} params.resource Request body data
+     * @param {().Feature} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8991,7 +8991,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {string} params.featureKey The unique ID of the feature to update.
-     * @param {().Feature} params.resource Request body data
+     * @param {().Feature} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9065,7 +9065,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {string} params.oldName The unique ID of the feature to rename.
-     * @param {().FeatureRename} params.resource Request body data
+     * @param {().FeatureRename} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9139,7 +9139,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
      * @param {string} params.featureKey The unique ID of the feature to update.
-     * @param {().Feature} params.resource Request body data
+     * @param {().Feature} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9500,7 +9500,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {().RoleAssignment} params.resource Request body data
+     * @param {().RoleAssignment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9880,7 +9880,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {().Role} params.resource Request body data
+     * @param {().Role} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10024,7 +10024,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.roleId Immutable ID of the role.
-     * @param {().Role} params.resource Request body data
+     * @param {().Role} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10096,7 +10096,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.roleId Immutable ID of the role.
-     * @param {().Role} params.resource Request body data
+     * @param {().Role} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10424,7 +10424,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {().Schema} params.resource Request body data
+     * @param {().Schema} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10566,7 +10566,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.schemaKey Name or immutable ID of the schema.
-     * @param {().Schema} params.resource Request body data
+     * @param {().Schema} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10639,7 +10639,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.schemaKey Name or immutable ID of the schema.
-     * @param {().Schema} params.resource Request body data
+     * @param {().Schema} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11225,7 +11225,7 @@ export namespace admin_directory_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().User} params.resource Request body data
+     * @param {().User} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11379,7 +11379,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable ID of the user as admin
-     * @param {().UserMakeAdmin} params.resource Request body data
+     * @param {().UserMakeAdmin} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11450,7 +11450,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
-     * @param {().User} params.resource Request body data
+     * @param {().User} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11522,7 +11522,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey The immutable id of the user
-     * @param {().UserUndelete} params.resource Request body data
+     * @param {().UserUndelete} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11593,7 +11593,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
-     * @param {().User} params.resource Request body data
+     * @param {().User} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11676,7 +11676,7 @@ export namespace admin_directory_v1 {
      * @param {string=} params.showDeleted If set to true, retrieves the list of deleted users. (Default: false)
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12052,7 +12052,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable ID of the user
-     * @param {().Alias} params.resource Request body data
+     * @param {().Alias} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12197,7 +12197,7 @@ export namespace admin_directory_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.event Event on which subscription is intended (if subscribing)
      * @param {string} params.userKey Email or immutable ID of the user
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12490,7 +12490,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable ID of the user
-     * @param {().UserPhoto} params.resource Request body data
+     * @param {().UserPhoto} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12564,7 +12564,7 @@ export namespace admin_directory_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable ID of the user
-     * @param {().UserPhoto} params.resource Request body data
+     * @param {().UserPhoto} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

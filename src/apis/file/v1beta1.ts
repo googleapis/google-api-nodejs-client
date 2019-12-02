@@ -760,7 +760,7 @@ export namespace file_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.instanceId The name of the instance to create. The name must be unique for the specified project and location.
      * @param {string} params.parent The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
-     * @param {().Instance} params.resource Request body data
+     * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1056,7 +1056,7 @@ export namespace file_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
      * @param {string=} params.updateMask Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields: "description" "file_shares" "labels"
-     * @param {().Instance} params.resource Request body data
+     * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1230,7 +1230,7 @@ export namespace file_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

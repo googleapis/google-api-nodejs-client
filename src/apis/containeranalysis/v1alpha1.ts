@@ -1028,11 +1028,11 @@ export namespace containeranalysis_v1alpha1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if the incoming policy version does not meet the requirements for modifying the stored policy.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a binding (conditional or unconditional) from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, version compliance checks against the stored policy is skipped.
      */
     version?: number | null;
   }
@@ -1401,7 +1401,7 @@ export namespace containeranalysis_v1alpha1 {
      * @param {string=} params.name The name of the project. Should be of the form "providers/{provider_id}". @Deprecated
      * @param {string=} params.noteId The ID to use for this note.
      * @param {string} params.parent This field contains the project Id for example: "projects/{project_id}
-     * @param {().Note} params.resource Request body data
+     * @param {().Note} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1615,7 +1615,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1769,7 +1769,7 @@ export namespace containeranalysis_v1alpha1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the note. Should be of the form "projects/{provider_id}/notes/{note_id}".
      * @param {string=} params.updateMask The fields to update.
-     * @param {().Note} params.resource Request body data
+     * @param {().Note} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1840,7 +1840,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1914,7 +1914,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2272,7 +2272,7 @@ export namespace containeranalysis_v1alpha1 {
      * @param {object} params Parameters for request
      * @param {string=} params.name The name of the project.  Should be of the form "projects/{project_id}". @Deprecated
      * @param {string} params.parent This field contains the project Id for example: "projects/{project_id}"
-     * @param {().Occurrence} params.resource Request body data
+     * @param {().Occurrence} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2490,7 +2490,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2804,7 +2804,7 @@ export namespace containeranalysis_v1alpha1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the occurrence. Should be of the form "projects/{project_id}/occurrences/{OCCURRENCE_ID}".
      * @param {string=} params.updateMask The fields to update.
-     * @param {().Occurrence} params.resource Request body data
+     * @param {().Occurrence} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2877,7 +2877,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2951,7 +2951,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3219,7 +3219,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The project Id that this operation should be created under.
-     * @param {().CreateOperationRequest} params.resource Request body data
+     * @param {().CreateOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3295,7 +3295,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the Operation. Should be of the form "projects/{provider_id}/operations/{operation_id}".
-     * @param {().UpdateOperationRequest} params.resource Request body data
+     * @param {().UpdateOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3563,7 +3563,7 @@ export namespace containeranalysis_v1alpha1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The scan config to update of the form projects/{project_id}/scanConfigs/{scan_config_id}.
      * @param {string=} params.updateMask The fields to update.
-     * @param {().ScanConfig} params.resource Request body data
+     * @param {().ScanConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3714,7 +3714,7 @@ export namespace containeranalysis_v1alpha1 {
      * @param {string} params.name The name of the project. Should be of the form "providers/{provider_id}". @Deprecated
      * @param {string=} params.noteId The ID to use for this note.
      * @param {string=} params.parent This field contains the project Id for example: "projects/{project_id}
-     * @param {().Note} params.resource Request body data
+     * @param {().Note} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3928,7 +3928,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4082,7 +4082,7 @@ export namespace containeranalysis_v1alpha1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the note. Should be of the form "projects/{provider_id}/notes/{note_id}".
      * @param {string=} params.updateMask The fields to update.
-     * @param {().Note} params.resource Request body data
+     * @param {().Note} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4153,7 +4153,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4227,7 +4227,7 @@ export namespace containeranalysis_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

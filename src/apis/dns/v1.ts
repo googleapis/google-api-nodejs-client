@@ -767,7 +767,7 @@ export namespace dns_v1 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Change} params.resource Request body data
+     * @param {().Change} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1692,7 +1692,7 @@ export namespace dns_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.resource Request body data
+     * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2161,7 +2161,7 @@ export namespace dns_v1 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.resource Request body data
+     * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2237,7 +2237,7 @@ export namespace dns_v1 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.resource Request body data
+     * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2454,7 +2454,7 @@ export namespace dns_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.resource Request body data
+     * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2749,7 +2749,7 @@ export namespace dns_v1 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.policy User given friendly name of the policy addressed by this request.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.resource Request body data
+     * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2826,7 +2826,7 @@ export namespace dns_v1 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.policy User given friendly name of the policy addressed by this request.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.resource Request body data
+     * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

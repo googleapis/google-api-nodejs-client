@@ -430,7 +430,7 @@ export namespace adexchangebuyer_v1_2 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -502,7 +502,7 @@ export namespace adexchangebuyer_v1_2 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -702,7 +702,7 @@ export namespace adexchangebuyer_v1_2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

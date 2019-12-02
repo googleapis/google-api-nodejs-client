@@ -1338,7 +1338,7 @@ export namespace androidmanagement_v1 {
      */
     passwordPolicies?: Schema$PasswordRequirements[];
     /**
-     * Password requirements. DEPRECATED - Use password_policies
+     * Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use password_policies.
      */
     passwordRequirements?: Schema$PasswordRequirements;
     /**
@@ -1860,7 +1860,7 @@ export namespace androidmanagement_v1 {
      * @param {string=} params.enterpriseToken The enterprise token appended to the callback URL.
      * @param {string=} params.projectId The ID of the Google Cloud Platform project which will own the enterprise.
      * @param {string=} params.signupUrlName The name of the SignupUrl used to sign up for the enterprise.
-     * @param {().Enterprise} params.resource Request body data
+     * @param {().Enterprise} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2005,7 +2005,7 @@ export namespace androidmanagement_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the enterprise in the form enterprises/{enterpriseId}.
      * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-     * @param {().Enterprise} params.resource Request body data
+     * @param {().Enterprise} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2385,7 +2385,7 @@ export namespace androidmanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
-     * @param {().Command} params.resource Request body data
+     * @param {().Command} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2539,7 +2539,7 @@ export namespace androidmanagement_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-     * @param {().Device} params.resource Request body data
+     * @param {().Device} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3061,7 +3061,7 @@ export namespace androidmanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-     * @param {().EnrollmentToken} params.resource Request body data
+     * @param {().EnrollmentToken} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3464,7 +3464,7 @@ export namespace androidmanagement_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the policy in the form enterprises/{enterpriseId}/policies/{policyId}.
      * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-     * @param {().Policy} params.resource Request body data
+     * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3608,7 +3608,7 @@ export namespace androidmanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-     * @param {().WebApp} params.resource Request body data
+     * @param {().WebApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3900,7 +3900,7 @@ export namespace androidmanagement_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the web app in the form enterprises/{enterpriseId}/webApps/{packageName}.
      * @param {string=} params.updateMask The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-     * @param {().WebApp} params.resource Request body data
+     * @param {().WebApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4061,7 +4061,7 @@ export namespace androidmanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the enterprise in the form enterprises/{enterpriseId}.
-     * @param {().WebToken} params.resource Request body data
+     * @param {().WebToken} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -126,6 +126,10 @@ export namespace pagespeedonline_v5 {
      * The audit&#39;s id.
      */
     id?: string | null;
+    /**
+     * A numeric value that has a meaning specific to the audit, e.g. the number of nodes in the DOM or the timestamp of a specific load event. More information can be found in the audit details, if present.
+     */
+    numericValue?: number | null;
     score?: any | null;
     /**
      * The enumerated score display mode.

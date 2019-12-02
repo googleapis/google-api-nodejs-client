@@ -471,7 +471,7 @@ export namespace proximitybeacon_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GetInfoForObservedBeaconsRequest} params.resource Request body data
+     * @param {().GetInfoForObservedBeaconsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1021,7 +1021,7 @@ export namespace proximitybeacon_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.projectId The project id of the project the beacon will be registered to. If the project id is not specified then the project making the request is used. Optional.
-     * @param {().Beacon} params.resource Request body data
+     * @param {().Beacon} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1095,7 +1095,7 @@ export namespace proximitybeacon_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.beaconName Resource name of this beacon. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone, `1` for iBeacon, or `5` for AltBeacon.  This field must be left empty when registering. After reading a beacon, clients can use the name for future operations.
      * @param {string=} params.projectId The project id of the beacon to update. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
-     * @param {().Beacon} params.resource Request body data
+     * @param {().Beacon} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1396,7 +1396,7 @@ export namespace proximitybeacon_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.beaconName Beacon on which the attachment should be created. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
      * @param {string=} params.projectId The project id of the project the attachment will belong to. If the project id is not specified then the project making the request is used. Optional.
-     * @param {().BeaconAttachment} params.resource Request body data
+     * @param {().BeaconAttachment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1911,7 +1911,7 @@ export namespace proximitybeacon_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.namespaceName Resource name of this namespace. Namespaces names have the format: <code>namespaces/<var>namespace</var></code>.
      * @param {string=} params.projectId The project id of the namespace to update. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
-     * @param {().Namespace} params.resource Request body data
+     * @param {().Namespace} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

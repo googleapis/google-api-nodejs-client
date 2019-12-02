@@ -803,7 +803,7 @@ export namespace drive_v3 {
      */
     deleted?: boolean | null;
     /**
-     * A displayable name for users, groups or domains.
+     * The &quot;pretty&quot; name of the value of the permission. The following is a list of examples for each type of permission:   - user - User&#39;s full name, as defined for their Google account, such as &quot;Joe Smith.&quot;  - group - Name of the Google Group, such as &quot;The Company Administrators.&quot;  - domain - String domain name, such as &quot;thecompany.com.&quot;  - anyone - No displayName is present.
      */
     displayName?: string | null;
     /**
@@ -819,7 +819,7 @@ export namespace drive_v3 {
      */
     expirationTime?: string | null;
     /**
-     * The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as permissionId.
+     * The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as permissionId. IDs should be treated as opaque values.
      */
     id?: string | null;
     /**
@@ -853,7 +853,7 @@ export namespace drive_v3 {
       teamDrivePermissionType?: string;
     }> | null;
     /**
-     * The type of the grantee. Valid values are:   - user  - group  - domain  - anyone
+     * The type of the grantee. Valid values are:   - user  - group  - domain  - anyone  When creating a permission, if type is user or group, you must provide an emailAddress for the user or group. When type is domain, you must provide a domain. There isn&#39;t extra information required for a anyone type.
      */
     type?: string | null;
   }
@@ -1404,7 +1404,7 @@ export namespace drive_v3 {
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {string=} params.teamDriveId Deprecated use driveId instead.
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1622,7 +1622,7 @@ export namespace drive_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1713,7 +1713,7 @@ export namespace drive_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {().Comment} params.resource Request body data
+     * @param {().Comment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2006,7 +2006,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {().Comment} params.resource Request body data
+     * @param {().Comment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2182,7 +2182,7 @@ export namespace drive_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
-     * @param {().Drive} params.resource Request body data
+     * @param {().Drive} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2610,7 +2610,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.driveId The ID of the shared drive.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
-     * @param {().Drive} params.resource Request body data
+     * @param {().Drive} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2802,7 +2802,7 @@ export namespace drive_v3 {
      * @param {string=} params.ocrLanguage A language hint for OCR processing during image import (ISO 639-1 code).
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {().File} params.resource Request body data
+     * @param {().File} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2879,7 +2879,7 @@ export namespace drive_v3 {
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -3406,7 +3406,7 @@ export namespace drive_v3 {
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the uploaded content as indexable text.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -3488,7 +3488,7 @@ export namespace drive_v3 {
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.supportsAllDrives Deprecated - Whether the requesting application supports both My Drives and shared drives. This parameter will only be effective until June 1, 2020. Afterwards all applications are assumed to support shared drives.
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
-     * @param {().Channel} params.resource Request body data
+     * @param {().Channel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3886,7 +3886,7 @@ export namespace drive_v3 {
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {().Permission} params.resource Request body data
+     * @param {().Permission} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4196,7 +4196,7 @@ export namespace drive_v3 {
      * @param {boolean=} params.supportsTeamDrives Deprecated use supportsAllDrives instead.
      * @param {boolean=} params.transferOwnership Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect.
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     * @param {().Permission} params.resource Request body data
+     * @param {().Permission} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4447,7 +4447,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {().Reply} params.resource Request body data
+     * @param {().Reply} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4743,7 +4743,7 @@ export namespace drive_v3 {
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
-     * @param {().Reply} params.resource Request body data
+     * @param {().Reply} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5155,7 +5155,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
-     * @param {().Revision} params.resource Request body data
+     * @param {().Revision} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5307,7 +5307,7 @@ export namespace drive_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
-     * @param {().TeamDrive} params.resource Request body data
+     * @param {().TeamDrive} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5605,7 +5605,7 @@ export namespace drive_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.teamDriveId The ID of the Team Drive
      * @param {boolean=} params.useDomainAdminAccess Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
-     * @param {().TeamDrive} params.resource Request body data
+     * @param {().TeamDrive} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -193,7 +193,7 @@ export namespace verifiedaccess_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Empty} params.resource Request body data
+     * @param {().Empty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -264,7 +264,7 @@ export namespace verifiedaccess_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().VerifyChallengeResponseRequest} params.resource Request body data
+     * @param {().VerifyChallengeResponseRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
