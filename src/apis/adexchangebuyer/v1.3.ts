@@ -607,6 +607,10 @@ export namespace adexchangebuyer_v1_3 {
      */
     languages?: string[] | null;
     /**
+     * The maximum QPS allocated to this pretargeting configuration, used for pretargeting-level QPS limits. By default, this is not set, which indicates that there is no QPS limit at the configuration level (a global or account-level limit may still be imposed).
+     */
+    maximumQps?: string | null;
+    /**
      * Requests containing any of these mobile carrier ids will match. Values are from mobile-carriers.csv in the downloadable files section.
      */
     mobileCarriers?: string[] | null;
@@ -811,7 +815,7 @@ export namespace adexchangebuyer_v1_3 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -883,7 +887,7 @@ export namespace adexchangebuyer_v1_3 {
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1254,7 +1258,7 @@ export namespace adexchangebuyer_v1_3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id associated with the budget being updated.
      * @param {string} params.billingId The billing id associated with the budget being updated.
-     * @param {().Budget} params.resource Request body data
+     * @param {().Budget} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1327,7 +1331,7 @@ export namespace adexchangebuyer_v1_3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id associated with the budget being updated.
      * @param {string} params.billingId The billing id associated with the budget being updated.
-     * @param {().Budget} params.resource Request body data
+     * @param {().Budget} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1533,7 +1537,7 @@ export namespace adexchangebuyer_v1_3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2177,7 +2181,7 @@ export namespace adexchangebuyer_v1_3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to insert the pretargeting config for.
-     * @param {().PretargetingConfig} params.resource Request body data
+     * @param {().PretargetingConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2327,7 +2331,7 @@ export namespace adexchangebuyer_v1_3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to update the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to update.
-     * @param {().PretargetingConfig} params.resource Request body data
+     * @param {().PretargetingConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2403,7 +2407,7 @@ export namespace adexchangebuyer_v1_3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to update the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to update.
-     * @param {().PretargetingConfig} params.resource Request body data
+     * @param {().PretargetingConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

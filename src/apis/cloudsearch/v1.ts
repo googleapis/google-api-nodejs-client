@@ -600,36 +600,6 @@ export namespace cloudsearch_v1 {
   export interface Schema$GetSearchApplicationUserStatsResponse {
     stats?: Schema$SearchApplicationUserStats[];
   }
-  /**
-   * Gmail Action restricts (i.e. read/replied/snoozed).
-   */
-  export interface Schema$GmailActionRestrict {
-    type?: string | null;
-  }
-  /**
-   * Gmail Attachment restricts (i.e. has:attachment, has:drive, filename:pdf).
-   */
-  export interface Schema$GmailAttachmentRestrict {
-    type?: string | null;
-  }
-  /**
-   * Gmail Folder restricts (i.e. in Drafts/Sent/Chats/User Generated Labels).
-   */
-  export interface Schema$GmailFolderRestrict {
-    type?: string | null;
-  }
-  /**
-   * Gmail Intelligent restricts (i.e. smartlabels, important).
-   */
-  export interface Schema$GmailIntelligentRestrict {
-    type?: string | null;
-  }
-  /**
-   * Gmail Time restricts (i.e. received today, this week).
-   */
-  export interface Schema$GmailTimeRestrict {
-    type?: string | null;
-  }
   export interface Schema$GSuitePrincipal {
     /**
      * This principal represents all users of the G Suite domain of the customer.
@@ -1212,7 +1182,7 @@ export namespace cloudsearch_v1 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * Maximum number of items to return. &lt;br /&gt;The maximum and the default value is 1000
+     * Maximum number of items to return. &lt;br /&gt;The maximum value is 100 and the default value is 20.
      */
     limit?: number | null;
     /**
@@ -1544,14 +1514,6 @@ export namespace cloudsearch_v1 {
      */
     driveMimeTypeRestrict?: Schema$DriveMimeTypeRestrict;
     driveTimeSpanRestrict?: Schema$DriveTimeSpanRestrict;
-    gmailActionRestrict?: Schema$GmailActionRestrict;
-    gmailAttachmentRestrict?: Schema$GmailAttachmentRestrict;
-    /**
-     * Gmail Types.
-     */
-    gmailFolderRestrict?: Schema$GmailFolderRestrict;
-    gmailIntelligentRestrict?: Schema$GmailIntelligentRestrict;
-    gmailTimeRestrict?: Schema$GmailTimeRestrict;
     /**
      * The search restrict (e.g. &quot;after:2017-09-11 before:2017-09-12&quot;).
      */
@@ -2009,7 +1971,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$SuggestRequest {
     /**
-     * The sources to use for suggestions. If not specified, all data sources from the current search application are used. Suggestions are based on Gmail titles. Suggestions from third party sources are not available.
+     * The sources to use for suggestions. If not specified, the data sources are taken from the current search application.  NOTE: Suggestions are supported only for third party data sources and people (i.e. PredefinedSource.PERSON).
      */
     dataSourceRestrictions?: Schema$DataSourceRestriction[];
     /**
@@ -2226,14 +2188,14 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.checkAccess
-     * @desc Checks whether an item is accessible by specified principal.
+     * @desc Checks whether an item is accessible by specified principal.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.debug.datasources.items.checkAccess
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.debugOptions.enableDebugging If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      * @param {string} params.name Item name, format: datasources/{source_id}/items/{item_id}
-     * @param {().Principal} params.resource Request body data
+     * @param {().Principal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2304,13 +2266,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.searchByViewUrl
-     * @desc Fetches the item whose viewUrl exactly matches that of the URL provided in the request.
+     * @desc Fetches the item whose viewUrl exactly matches that of the URL provided in the request.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.debug.datasources.items.searchByViewUrl
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Source name, format: datasources/{source_id}
-     * @param {().SearchItemsByViewUrlRequest} params.resource Request body data
+     * @param {().SearchItemsByViewUrlRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2434,7 +2396,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.datasources.items.unmappedids.list
-     * @desc List all unmapped identities for a specific item.
+     * @desc List all unmapped identities for a specific item.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.debug.datasources.items.unmappedids.list
      * @memberOf! ()
      *
@@ -2565,7 +2527,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.identitysources.items.listForunmappedidentity
-     * @desc Lists names of items associated with an unmapped identity.
+     * @desc Lists names of items associated with an unmapped identity.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.debug.identitysources.items.listForunmappedidentity
      * @memberOf! ()
      *
@@ -2700,7 +2662,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.debug.identitysources.unmappedids.list
-     * @desc Lists unmapped user identities for an identity source.
+     * @desc Lists unmapped user identities for an identity source.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.debug.identitysources.unmappedids.list
      * @memberOf! ()
      *
@@ -2834,7 +2796,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.deleteSchema
-     * @desc Deletes the schema of a data source.
+     * @desc Deletes the schema of a data source.  **Note:** This API requires an admin or service account to execute.
      * @alias cloudsearch.indexing.datasources.deleteSchema
      * @memberOf! ()
      *
@@ -2909,7 +2871,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.getSchema
-     * @desc Gets the schema of a data source.
+     * @desc Gets the schema of a data source.  **Note:** This API requires an admin or service account to execute.
      * @alias cloudsearch.indexing.datasources.getSchema
      * @memberOf! ()
      *
@@ -2982,13 +2944,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.indexing.datasources.updateSchema
-     * @desc Updates the schema of a data source.
+     * @desc Updates the schema of a data source. This method does not perform incremental updates to the schema. Instead, this method updates the schema by overwriting the entire schema.  **Note:** This API requires an admin or service account to execute.
      * @alias cloudsearch.indexing.datasources.updateSchema
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the data source to update Schema.  Format: datasources/{source_id}
-     * @param {().UpdateSchemaRequest} params.resource Request body data
+     * @param {().UpdateSchemaRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3198,7 +3160,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Data Source to delete items in a queue. Format: datasources/{source_id}
-     * @param {().DeleteQueueItemsRequest} params.resource Request body data
+     * @param {().DeleteQueueItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3346,7 +3308,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Item. Format: datasources/{source_id}/items/{item_id} <br />This is a required field. The maximum length is 1536 characters.
-     * @param {().IndexItemRequest} params.resource Request body data
+     * @param {().IndexItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3500,7 +3462,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Data Source to poll items. Format: datasources/{source_id}
-     * @param {().PollItemsRequest} params.resource Request body data
+     * @param {().PollItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3575,7 +3537,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the item to push into the indexing queue.<br /> Format: datasources/{source_id}/items/{ID} <br />This is a required field. The maximum length is 1536 characters.
-     * @param {().PushItemRequest} params.resource Request body data
+     * @param {().PushItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3648,7 +3610,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Data Source to unreserve all items. Format: datasources/{source_id}
-     * @param {().UnreserveItemsRequest} params.resource Request body data
+     * @param {().UnreserveItemsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3723,7 +3685,7 @@ export namespace cloudsearch_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Item to start a resumable upload. Format: datasources/{source_id}/items/{item_id}.
-     * @param {().StartUploadItemRequest} params.resource Request body data
+     * @param {().StartUploadItemRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3982,13 +3944,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.media.upload
-     * @desc Uploads media for indexing.  The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content:  1. Call    indexing.datasources.items.upload    with the resource name to begin an upload session and retrieve the    UploadItemRef. 1. Call media.upload to upload the content using the same resource name from step 1. 1. Call indexing.datasources.items.index    to index the item. Populate the    [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent)    with the UploadItemRef from step 1.   For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest).
+     * @desc Uploads media for indexing.  The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content:  1. Call    indexing.datasources.items.upload    with the resource name to begin an upload session and retrieve the    UploadItemRef. 1. Call media.upload to upload the content using the same resource name from step 1. 1. Call indexing.datasources.items.index    to index the item. Populate the    [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent)    with the UploadItemRef from step 1.   For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest).    **Note:** This API requires a service account to execute.
      * @alias cloudsearch.media.upload
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName Name of the media that is being downloaded.  See ReadRequest.resource_name.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -4191,12 +4153,12 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.search
-     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query.  The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party.
+     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query.  The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.query.search
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SearchRequest} params.resource Request body data
+     * @param {().SearchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4261,12 +4223,12 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.suggest
-     * @desc Provides suggestions for autocompleting the query.
+     * @desc Provides suggestions for autocompleting the query.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.query.suggest
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SuggestRequest} params.resource Request body data
+     * @param {().SuggestRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4361,7 +4323,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.sources.list
-     * @desc Returns list of sources that user can use for Search and Suggest APIs.
+     * @desc Returns list of sources that user can use for Search and Suggest APIs.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.query.sources.list
      * @memberOf! ()
      *
@@ -4487,12 +4449,12 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.create
-     * @desc Creates a datasource.
+     * @desc Creates a datasource.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.datasources.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DataSource} params.resource Request body data
+     * @param {().DataSource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4561,7 +4523,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.delete
-     * @desc Deletes a datasource.
+     * @desc Deletes a datasource.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.datasources.delete
      * @memberOf! ()
      *
@@ -4636,7 +4598,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.get
-     * @desc Gets a datasource.
+     * @desc Gets a datasource.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.datasources.get
      * @memberOf! ()
      *
@@ -4711,7 +4673,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.list
-     * @desc Lists datasources.
+     * @desc Lists datasources.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.datasources.list
      * @memberOf! ()
      *
@@ -4789,13 +4751,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.datasources.update
-     * @desc Updates a datasource.
+     * @desc Updates a datasource.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.datasources.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the datasource resource. Format: datasources/{source_id}. <br />The name is ignored when creating a datasource.
-     * @param {().UpdateDataSourceRequest} params.resource Request body data
+     * @param {().UpdateDataSourceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4953,12 +4915,12 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.create
-     * @desc Creates a search application.
+     * @desc Creates a search application.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.searchapplications.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SearchApplication} params.resource Request body data
+     * @param {().SearchApplication} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5027,7 +4989,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.delete
-     * @desc Deletes a search application.
+     * @desc Deletes a search application.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.searchapplications.delete
      * @memberOf! ()
      *
@@ -5102,7 +5064,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.get
-     * @desc Gets the specified search application.
+     * @desc Gets the specified search application.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.searchapplications.get
      * @memberOf! ()
      *
@@ -5177,7 +5139,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.list
-     * @desc Lists all search applications.
+     * @desc Lists all search applications.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.searchapplications.list
      * @memberOf! ()
      *
@@ -5262,13 +5224,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.reset
-     * @desc Resets a search application to default settings. This will return an empty response.
+     * @desc Resets a search application to default settings. This will return an empty response.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.searchapplications.reset
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the search application to be reset. <br />Format: applications/{application_id}.
-     * @param {().ResetSearchApplicationRequest} params.resource Request body data
+     * @param {().ResetSearchApplicationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5337,13 +5299,13 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.settings.searchapplications.update
-     * @desc Updates a search application.
+     * @desc Updates a search application.  **Note:** This API requires an admin account to execute.
      * @alias cloudsearch.settings.searchapplications.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Search Application. <br />Format: searchapplications/{application_id}.
-     * @param {().SearchApplication} params.resource Request body data
+     * @param {().SearchApplication} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5526,7 +5488,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.getIndex
-     * @desc Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day.
+     * @desc Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.stats.getIndex
      * @memberOf! ()
      *
@@ -5610,7 +5572,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.getQuery
-     * @desc Get the query statistics for customer
+     * @desc Get the query statistics for customer.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.stats.getQuery
      * @memberOf! ()
      *
@@ -5694,7 +5656,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.getSession
-     * @desc Get the # of search sessions for the customer
+     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for customer.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.stats.getSession
      * @memberOf! ()
      *
@@ -5778,7 +5740,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.getUser
-     * @desc Get the users statistics for customer
+     * @desc Get the users statistics for customer.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.stats.getUser
      * @memberOf! ()
      *
@@ -6003,7 +5965,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.index.datasources.get
-     * @desc Gets indexed item statistics for a single data source.
+     * @desc Gets indexed item statistics for a single data source.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.stats.index.datasources.get
      * @memberOf! ()
      *
@@ -6147,7 +6109,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.query.searchapplications.get
-     * @desc Get the query statistics for search application
+     * @desc Get the query statistics for search application.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.stats.query.searchapplications.get
      * @memberOf! ()
      *
@@ -6299,7 +6261,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.session.searchapplications.get
-     * @desc Get the # of search sessions for the search application
+     * @desc Get the # of search sessions, % of successful sessions with a click query statistics for search application.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.stats.session.searchapplications.get
      * @memberOf! ()
      *
@@ -6451,7 +6413,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.stats.user.searchapplications.get
-     * @desc Get the users statistics for search application
+     * @desc Get the users statistics for search application.  **Note:** This API requires a standard end user account to execute.
      * @alias cloudsearch.stats.user.searchapplications.get
      * @memberOf! ()
      *

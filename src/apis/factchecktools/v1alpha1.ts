@@ -502,7 +502,7 @@ export namespace factchecktools_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.resource Request body data
+     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -869,7 +869,7 @@ export namespace factchecktools_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user.
-     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.resource Request body data
+     * @param {().GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

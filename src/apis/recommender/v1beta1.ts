@@ -198,7 +198,7 @@ export namespace recommender_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommenderV1beta1Operation {
     /**
-     * Type of this operation. Contains one of &#39;and&#39;, &#39;remove&#39;, &#39;replace&#39;, &#39;move&#39;, &#39;copy&#39;, &#39;test&#39; and custom operations. This field is case-insensitive and always populated.
+     * Type of this operation. Contains one of &#39;and&#39;, &#39;remove&#39;, &#39;replace&#39;, &#39;move&#39;, &#39;copy&#39;, &#39;test&#39; and &#39;custom&#39; operations. This field is case-insensitive and always populated.
      */
     action?: string | null;
     /**
@@ -206,7 +206,7 @@ export namespace recommender_v1beta1 {
      */
     path?: string | null;
     /**
-     * Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers.  * Example: {   &quot;/versions/x/name&quot; : &quot;it-123&quot;   &quot;/versions/x/targetSize/percent&quot;: 20  } * Example: {   &quot;/bindings/x/role&quot;: &quot;roles/admin&quot;   &quot;/bindings/x/condition&quot; : null  } * Example: {   &quot;/bindings/x/role&quot;: &quot;roles/admin&quot;   &quot;/bindings/x/members/*&quot; : [&quot;x@google.com&quot;, &quot;y@google.com&quot;]  } When both path_filters and path_value_matchers are set, an implicit AND must be performed.
+     * Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers.  * Example: {   &quot;/versions/x/name&quot; : &quot;it-123&quot;   &quot;/versions/x/targetSize/percent&quot;: 20   } * Example: {   &quot;/bindings/x/role&quot;: &quot;roles/admin&quot;   &quot;/bindings/x/condition&quot; : null   } * Example: {   &quot;/bindings/x/role&quot;: &quot;roles/admin&quot;   &quot;/bindings/x/members/*&quot; : [&quot;x@google.com&quot;, &quot;y@google.com&quot;]   } When both path_filters and path_value_matchers are set, an implicit AND must be performed.
      */
     pathFilters?: {[key: string]: any} | null;
     /**
@@ -577,13 +577,13 @@ export namespace recommender_v1beta1 {
 
     /**
      * recommender.projects.locations.recommenders.recommendations.markClaimed
-     * @desc Mark the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated.  MarkRecommendationClaimed can be applied to recommendations in CLAIMED, SUCCEEDED, FAILED, or ACTIVE state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @desc Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationClaimed can be applied to recommendations in CLAIMED or ACTIVE state.  Requires the recommender.*.update IAM permission for the specified recommender.
      * @alias recommender.projects.locations.recommenders.recommendations.markClaimed
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the recommendation.
-     * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest} params.resource Request body data
+     * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -677,13 +677,13 @@ export namespace recommender_v1beta1 {
 
     /**
      * recommender.projects.locations.recommenders.recommendations.markFailed
-     * @desc Mark the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated.  MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @desc Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state.  Requires the recommender.*.update IAM permission for the specified recommender.
      * @alias recommender.projects.locations.recommenders.recommendations.markFailed
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the recommendation.
-     * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest} params.resource Request body data
+     * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -777,13 +777,13 @@ export namespace recommender_v1beta1 {
 
     /**
      * recommender.projects.locations.recommenders.recommendations.markSucceeded
-     * @desc Mark the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated.  MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state.  Requires the recommender.*.update IAM permission for the specified recommender.
+     * @desc Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state.  MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state.  Requires the recommender.*.update IAM permission for the specified recommender.
      * @alias recommender.projects.locations.recommenders.recommendations.markSucceeded
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the recommendation.
-     * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest} params.resource Request body data
+     * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

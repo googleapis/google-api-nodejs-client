@@ -929,7 +929,7 @@ export namespace lifesciences_v2beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1213,7 +1213,7 @@ export namespace lifesciences_v2beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The project and location that this request should be executed against.
-     * @param {().RunPipelineRequest} params.resource Request body data
+     * @param {().RunPipelineRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

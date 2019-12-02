@@ -863,7 +863,7 @@ export namespace datafusion_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.instanceId The name of the instance to create.
      * @param {string} params.parent The instance's project and location in the format projects/{project}/locations/{location}.
-     * @param {().Instance} params.resource Request body data
+     * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1232,7 +1232,7 @@ export namespace datafusion_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}.
      * @param {string=} params.updateMask Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels and options currently) will be overwritten.
-     * @param {().Instance} params.resource Request body data
+     * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1304,7 +1304,7 @@ export namespace datafusion_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Data Fusion instance which need to be restarted in the form of projects/{project}/locations/{location}/instances/{instance}
-     * @param {().RestartInstanceRequest} params.resource Request body data
+     * @param {().RestartInstanceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1379,7 +1379,7 @@ export namespace datafusion_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1452,7 +1452,7 @@ export namespace datafusion_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1534,7 +1534,7 @@ export namespace datafusion_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the Data Fusion instance which need to be upgraded in the form of projects/{project}/locations/{location}/instances/{instance} Instance will be upgraded with the latest stable version of the Data Fusion.
-     * @param {().UpgradeInstanceRequest} params.resource Request body data
+     * @param {().UpgradeInstanceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1795,7 +1795,7 @@ export namespace datafusion_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

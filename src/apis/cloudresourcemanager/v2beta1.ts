@@ -314,11 +314,11 @@ export namespace cloudresourcemanager_v2beta1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if the incoming policy version does not meet the requirements for modifying the stored policy.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a binding (conditional or unconditional) from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, version compliance checks against the stored policy is skipped.
      */
     version?: number | null;
   }
@@ -436,7 +436,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.parent Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
-     * @param {().Folder} params.resource Request body data
+     * @param {().Folder} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -646,7 +646,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -794,7 +794,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the Folder to move. Must be of the form folders/{folder_id}
-     * @param {().MoveFolderRequest} params.resource Request body data
+     * @param {().MoveFolderRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -867,7 +867,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: "folders/1234".
      * @param {string=} params.updateMask Required. Fields to be updated. Only the `display_name` can be updated.
-     * @param {().Folder} params.resource Request body data
+     * @param {().Folder} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -936,7 +936,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SearchFoldersRequest} params.resource Request body data
+     * @param {().SearchFoldersRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1010,7 +1010,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1084,7 +1084,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1167,7 +1167,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
-     * @param {().UndeleteFolderRequest} params.resource Request body data
+     * @param {().UndeleteFolderRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

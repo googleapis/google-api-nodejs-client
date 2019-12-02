@@ -995,7 +995,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().WatchRequest} params.resource Request body data
+     * @param {().WatchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1115,7 +1115,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -1419,7 +1419,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -1499,7 +1499,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the draft to update.
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -1868,7 +1868,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().Label} params.resource Request body data
+     * @param {().Label} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2161,7 +2161,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to update.
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().Label} params.resource Request body data
+     * @param {().Label} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2235,7 +2235,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the label to update.
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().Label} params.resource Request body data
+     * @param {().Label} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2420,7 +2420,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().BatchDeleteMessagesRequest} params.resource Request body data
+     * @param {().BatchDeleteMessagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2492,7 +2492,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().BatchModifyMessagesRequest} params.resource Request body data
+     * @param {().BatchModifyMessagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2716,7 +2716,7 @@ export namespace gmail_v1 {
      * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
      * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -2797,7 +2797,7 @@ export namespace gmail_v1 {
      * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
      * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -2958,7 +2958,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the message to modify.
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().ModifyMessageRequest} params.resource Request body data
+     * @param {().ModifyMessageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3030,7 +3030,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -4023,7 +4023,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().AutoForwarding} params.resource Request body data
+     * @param {().AutoForwarding} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4099,7 +4099,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().ImapSettings} params.resource Request body data
+     * @param {().ImapSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4174,7 +4174,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().LanguageSettings} params.resource Request body data
+     * @param {().LanguageSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4250,7 +4250,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().PopSettings} params.resource Request body data
+     * @param {().PopSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4325,7 +4325,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().VacationSettings} params.resource Request body data
+     * @param {().VacationSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4554,7 +4554,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().Delegate} params.resource Request body data
+     * @param {().Delegate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4916,7 +4916,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().Filter} params.resource Request body data
+     * @param {().Filter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5274,7 +5274,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().ForwardingAddress} params.resource Request body data
+     * @param {().ForwardingAddress} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5651,7 +5651,7 @@ export namespace gmail_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().SendAs} params.resource Request body data
+     * @param {().SendAs} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5943,7 +5943,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The send-as alias to be updated.
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().SendAs} params.resource Request body data
+     * @param {().SendAs} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6016,7 +6016,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The send-as alias to be updated.
      * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().SendAs} params.resource Request body data
+     * @param {().SendAs} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6439,7 +6439,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().SmimeInfo} params.resource Request body data
+     * @param {().SmimeInfo} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6998,7 +6998,7 @@ export namespace gmail_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.id The ID of the thread to modify.
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
-     * @param {().ModifyThreadRequest} params.resource Request body data
+     * @param {().ModifyThreadRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

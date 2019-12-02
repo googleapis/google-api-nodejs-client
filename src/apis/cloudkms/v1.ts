@@ -215,7 +215,7 @@ export namespace cloudkms_v1 {
      */
     nextRotationTime?: string | null;
     /**
-     * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will be used by Encrypt when this CryptoKey is given in EncryptRequest.name.  The CryptoKey&#39;s primary version can be updated via UpdateCryptoKeyPrimaryVersion.  All keys with purpose ENCRYPT_DECRYPT have a primary. For other keys, this field will be omitted.
+     * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will be used by Encrypt when this CryptoKey is given in EncryptRequest.name.  The CryptoKey&#39;s primary version can be updated via UpdateCryptoKeyPrimaryVersion.  Keys with purpose ENCRYPT_DECRYPT may have a primary. For other keys, this field will be omitted.
      */
     primary?: Schema$CryptoKeyVersion;
     /**
@@ -603,11 +603,11 @@ export namespace cloudkms_v1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if the incoming policy version does not meet the requirements for modifying the stored policy.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a binding (conditional or unconditional) from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, version compliance checks against the stored policy is skipped.
      */
     version?: number | null;
   }
@@ -904,7 +904,7 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.keyRingId Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      * @param {string} params.parent Required. The resource name of the location associated with the KeyRings, in the format `projects/x/locations/x`.
-     * @param {().KeyRing} params.resource Request body data
+     * @param {().KeyRing} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1199,7 +1199,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1272,7 +1272,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1479,7 +1479,7 @@ export namespace cloudkms_v1 {
      * @param {string=} params.cryptoKeyId Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      * @param {string} params.parent Required. The name of the KeyRing associated with the CryptoKeys.
      * @param {boolean=} params.skipInitialVersionCreation If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.
-     * @param {().CryptoKey} params.resource Request body data
+     * @param {().CryptoKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1554,7 +1554,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
-     * @param {().DecryptRequest} params.resource Request body data
+     * @param {().DecryptRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1629,7 +1629,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption.  If a CryptoKey is specified, the server will use its primary version.
-     * @param {().EncryptRequest} params.resource Request body data
+     * @param {().EncryptRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1930,7 +1930,7 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      * @param {string=} params.updateMask Required. List of fields to be updated in this request.
-     * @param {().CryptoKey} params.resource Request body data
+     * @param {().CryptoKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2002,7 +2002,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2075,7 +2075,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2157,7 +2157,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKey to update.
-     * @param {().UpdateCryptoKeyPrimaryVersionRequest} params.resource Request body data
+     * @param {().UpdateCryptoKeyPrimaryVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2433,7 +2433,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKeyVersion to use for decryption.
-     * @param {().AsymmetricDecryptRequest} params.resource Request body data
+     * @param {().AsymmetricDecryptRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2515,7 +2515,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKeyVersion to use for signing.
-     * @param {().AsymmetricSignRequest} params.resource Request body data
+     * @param {().AsymmetricSignRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2594,7 +2594,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The name of the CryptoKey associated with the CryptoKeyVersions.
-     * @param {().CryptoKeyVersion} params.resource Request body data
+     * @param {().CryptoKeyVersion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2669,7 +2669,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKeyVersion to destroy.
-     * @param {().DestroyCryptoKeyVersionRequest} params.resource Request body data
+     * @param {().DestroyCryptoKeyVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2889,7 +2889,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The name of the CryptoKey to be imported into.
-     * @param {().ImportCryptoKeyVersionRequest} params.resource Request body data
+     * @param {().ImportCryptoKeyVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3053,7 +3053,7 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
      * @param {string=} params.updateMask Required. List of fields to be updated in this request.
-     * @param {().CryptoKeyVersion} params.resource Request body data
+     * @param {().CryptoKeyVersion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3125,7 +3125,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the CryptoKeyVersion to restore.
-     * @param {().RestoreCryptoKeyVersionRequest} params.resource Request body data
+     * @param {().RestoreCryptoKeyVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3388,7 +3388,7 @@ export namespace cloudkms_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.importJobId Required. It must be unique within a KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
      * @param {string} params.parent Required. The name of the KeyRing associated with the ImportJobs.
-     * @param {().ImportJob} params.resource Request body data
+     * @param {().ImportJob} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3687,7 +3687,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3760,7 +3760,7 @@ export namespace cloudkms_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

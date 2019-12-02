@@ -1114,7 +1114,7 @@ export namespace servicenetworking_v1beta {
      */
     http?: Schema$Http;
     /**
-     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. If empty, the server may choose to generate one instead. Must be no longer than 60 characters.
+     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. Must be no longer than 63 characters and only lower case letters, digits, &#39;.&#39;, &#39;_&#39; and &#39;-&#39; are allowed. If empty, the server may choose to generate one instead.
      */
     id?: string | null;
     /**
@@ -1439,7 +1439,7 @@ export namespace servicenetworking_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. A tenant project in the service producer organization, in the following format: services/{service}/{collection-id}/{resource-id}. {collection-id} is the cloud resource collection type that represents the tenant project. Only `projects` are supported. {resource-id} is the tenant project numeric id, such as `123456`. {service} the name of the peering service, such as `service-peering.example.com`. This service must already be enabled in the service consumer's project.
-     * @param {().AddSubnetworkRequest} params.resource Request body data
+     * @param {().AddSubnetworkRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1515,7 +1515,7 @@ export namespace servicenetworking_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. This is in a form services/{service}. {service} the name of the private access management service, for example 'service-peering.example.com'.
-     * @param {().SearchRangeRequest} params.resource Request body data
+     * @param {().SearchRangeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1593,7 +1593,7 @@ export namespace servicenetworking_v1beta {
      * @param {boolean=} params.force If a previously defined allocated range is removed, force flag must be set to true.
      * @param {string} params.name The service producer peering service that is managing peering connectivity for a service producer organization. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com`.
      * @param {string=} params.updateMask The update mask. If this is omitted, it defaults to "*". You can only update the listed peering ranges.
-     * @param {().Connection} params.resource Request body data
+     * @param {().Connection} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1736,7 +1736,7 @@ export namespace servicenetworking_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     * @param {().Connection} params.resource Request body data
+     * @param {().Connection} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

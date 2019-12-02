@@ -443,7 +443,7 @@ export namespace datastore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1beta1ExportEntitiesRequest} params.resource Request body data
+     * @param {().GoogleDatastoreAdminV1beta1ExportEntitiesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -524,7 +524,7 @@ export namespace datastore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.resource Request body data
+     * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

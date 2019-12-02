@@ -1538,7 +1538,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyCreateAuthUriRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyCreateAuthUriRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1615,7 +1615,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyDeleteAccountRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyDeleteAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1692,7 +1692,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyDownloadAccountRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyDownloadAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1769,7 +1769,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyEmailLinkSigninRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyEmailLinkSigninRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1846,7 +1846,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyGetAccountInfoRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyGetAccountInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1923,7 +1923,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Relyingparty} params.resource Request body data
+     * @param {().Relyingparty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2281,7 +2281,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyResetPasswordRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyResetPasswordRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2358,7 +2358,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySendVerificationCodeRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySendVerificationCodeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2457,7 +2457,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySetAccountInfoRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySetAccountInfoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2534,7 +2534,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySetProjectConfigRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySetProjectConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2633,7 +2633,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySignOutUserRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySignOutUserRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2731,7 +2731,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySignupNewUserRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartySignupNewUserRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2808,7 +2808,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyUploadAccountRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyUploadAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2885,7 +2885,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyAssertionRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyVerifyAssertionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2962,7 +2962,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyCustomTokenRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyVerifyCustomTokenRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3042,7 +3042,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyPasswordRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyVerifyPasswordRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3119,7 +3119,7 @@ export namespace identitytoolkit_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest} params.resource Request body data
+     * @param {().IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

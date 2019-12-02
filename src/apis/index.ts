@@ -37,6 +37,7 @@ import * as bigqueryconnection from './bigqueryconnection';
 import * as bigquerydatatransfer from './bigquerydatatransfer';
 import * as bigqueryreservation from './bigqueryreservation';
 import * as bigtableadmin from './bigtableadmin';
+import * as billingbudgets from './billingbudgets';
 import * as binaryauthorization from './binaryauthorization';
 import * as blogger from './blogger';
 import * as books from './books';
@@ -69,6 +70,7 @@ import * as container from './container';
 import * as containeranalysis from './containeranalysis';
 import * as content from './content';
 import * as customsearch from './customsearch';
+import * as datacatalog from './datacatalog';
 import * as dataflow from './dataflow';
 import * as datafusion from './datafusion';
 import * as dataproc from './dataproc';
@@ -156,7 +158,6 @@ import * as sourcerepo from './sourcerepo';
 import * as spanner from './spanner';
 import * as speech from './speech';
 import * as sql from './sql';
-import * as sqladmin from './sqladmin';
 import * as storage from './storage';
 import * as storagetransfer from './storagetransfer';
 import * as streetviewpublish from './streetviewpublish';
@@ -209,6 +210,7 @@ export const APIS: APIList = {
   bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
   bigqueryreservation: bigqueryreservation.VERSIONS,
   bigtableadmin: bigtableadmin.VERSIONS,
+  billingbudgets: billingbudgets.VERSIONS,
   binaryauthorization: binaryauthorization.VERSIONS,
   blogger: blogger.VERSIONS,
   books: books.VERSIONS,
@@ -241,6 +243,7 @@ export const APIS: APIList = {
   containeranalysis: containeranalysis.VERSIONS,
   content: content.VERSIONS,
   customsearch: customsearch.VERSIONS,
+  datacatalog: datacatalog.VERSIONS,
   dataflow: dataflow.VERSIONS,
   datafusion: datafusion.VERSIONS,
   dataproc: dataproc.VERSIONS,
@@ -328,7 +331,6 @@ export const APIS: APIList = {
   spanner: spanner.VERSIONS,
   speech: speech.VERSIONS,
   sql: sql.VERSIONS,
-  sqladmin: sqladmin.VERSIONS,
   storage: storage.VERSIONS,
   storagetransfer: storagetransfer.VERSIONS,
   streetviewpublish: streetviewpublish.VERSIONS,
@@ -378,6 +380,7 @@ export class GeneratedAPIs {
   bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
   bigqueryreservation = bigqueryreservation.bigqueryreservation;
   bigtableadmin = bigtableadmin.bigtableadmin;
+  billingbudgets = billingbudgets.billingbudgets;
   binaryauthorization = binaryauthorization.binaryauthorization;
   blogger = blogger.blogger;
   books = books.books;
@@ -411,6 +414,7 @@ export class GeneratedAPIs {
   containeranalysis = containeranalysis.containeranalysis;
   content = content.content;
   customsearch = customsearch.customsearch;
+  datacatalog = datacatalog.datacatalog;
   dataflow = dataflow.dataflow;
   datafusion = datafusion.datafusion;
   dataproc = dataproc.dataproc;
@@ -499,7 +503,6 @@ export class GeneratedAPIs {
   spanner = spanner.spanner;
   speech = speech.speech;
   sql = sql.sql;
-  sqladmin = sqladmin.sqladmin;
   storage = storage.storage;
   storagetransfer = storagetransfer.storagetransfer;
   streetviewpublish = streetviewpublish.streetviewpublish;

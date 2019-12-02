@@ -632,7 +632,7 @@ export namespace doubleclicksearch_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ConversionList} params.resource Request body data
+     * @param {().ConversionList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -713,7 +713,7 @@ export namespace doubleclicksearch_v2 {
      * @param {integer} params.rowCount The number of conversions to return per call.
      * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
-     * @param {().ConversionList} params.resource Request body data
+     * @param {().ConversionList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -794,7 +794,7 @@ export namespace doubleclicksearch_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ConversionList} params.resource Request body data
+     * @param {().ConversionList} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -868,7 +868,7 @@ export namespace doubleclicksearch_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().UpdateAvailabilityRequest} params.resource Request body data
+     * @param {().UpdateAvailabilityRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1083,7 +1083,7 @@ export namespace doubleclicksearch_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ReportRequest} params.resource Request body data
+     * @param {().ReportRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1297,7 +1297,7 @@ export namespace doubleclicksearch_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ReportRequest} params.resource Request body data
+     * @param {().ReportRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

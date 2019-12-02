@@ -393,7 +393,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AcknowledgeRequest} params.resource Request body data
+     * @param {().AcknowledgeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -465,7 +465,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Subscription} params.resource Request body data
+     * @param {().Subscription} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -768,7 +768,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ModifyAckDeadlineRequest} params.resource Request body data
+     * @param {().ModifyAckDeadlineRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -839,7 +839,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ModifyPushConfigRequest} params.resource Request body data
+     * @param {().ModifyPushConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -911,7 +911,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().PullRequest} params.resource Request body data
+     * @param {().PullRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -985,7 +985,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().PullBatchRequest} params.resource Request body data
+     * @param {().PullBatchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1183,7 +1183,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Topic} params.resource Request body data
+     * @param {().Topic} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1465,7 +1465,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().PublishRequest} params.resource Request body data
+     * @param {().PublishRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1536,7 +1536,7 @@ export namespace pubsub_v1beta1a {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().PublishBatchRequest} params.resource Request body data
+     * @param {().PublishBatchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

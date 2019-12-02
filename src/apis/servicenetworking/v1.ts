@@ -130,7 +130,7 @@ export namespace servicenetworking_v1 {
      */
     consumerNetwork?: string | null;
     /**
-     * An optional description of the subnet.
+     * Optional. Description of the subnet.
      */
     description?: string | null;
     /**
@@ -344,6 +344,15 @@ export namespace servicenetworking_v1 {
      * Output only. The name of the peering service that&#39;s associated with this connection, in the following format: `services/{service name}`.
      */
     service?: string | null;
+  }
+  /**
+   * Represents a consumer project.
+   */
+  export interface Schema$ConsumerProject {
+    /**
+     * Required. Project number of the consumer that is launching the service instance. It can own the network that is peered with Google or, be a service project in an XPN where the host project has the network.
+     */
+    projectNum?: string | null;
   }
   /**
    * `Context` defines which contexts an API requests.  Example:      context:       rules:       - selector: &quot;*&quot;         requested:         - google.rpc.context.ProjectContext         - google.rpc.context.OriginContext  The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`.  Available context types are defined in package `google.rpc.context`.  This also provides mechanism to whitelist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext-&lt;extension_id&gt;-bin” and “x-goog-ext-&lt;extension_id&gt;-jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file:  Example:      context:       rules:        - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot;          allowed_request_extensions:          - google.foo.v1.NewExtension          allowed_response_extensions:          - google.foo.v1.NewExtension  You can also specify extension ID instead of fully qualified extension name here.
@@ -1070,6 +1079,15 @@ export namespace servicenetworking_v1 {
     network?: string | null;
   }
   /**
+   * Represents a range reservation.
+   */
+  export interface Schema$RangeReservation {
+    /**
+     * Required. The size of the desired subnet. Use usual CIDR range notation. For example, &#39;30&#39; to find unused x.x.x.x/30 CIDR range. The goal is to determine if one of the allocated ranges has enough free space for a subnet of the requested size.
+     */
+    ipPrefixLength?: number | null;
+  }
+  /**
    * Request to search for an unused range within allocated ranges.
    */
   export interface Schema$SearchRangeRequest {
@@ -1078,7 +1096,7 @@ export namespace servicenetworking_v1 {
      */
     ipPrefixLength?: number | null;
     /**
-     * Network name in the consumer project.   This network must have been already peered with a shared VPC network using CreateConnection method. Must be in a form &#39;projects/{project}/global/networks/{network}&#39;. {project} is a project number, as in &#39;12345&#39; {network} is network name.
+     * Network name in the consumer project. This network must have been already peered with a shared VPC network using CreateConnection method. Must be in a form &#39;projects/{project}/global/networks/{network}&#39;. {project} is a project number, as in &#39;12345&#39; {network} is network name.
      */
     network?: string | null;
   }
@@ -1135,7 +1153,7 @@ export namespace servicenetworking_v1 {
      */
     http?: Schema$Http;
     /**
-     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. If empty, the server may choose to generate one instead. Must be no longer than 60 characters.
+     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. Must be no longer than 63 characters and only lower case letters, digits, &#39;.&#39;, &#39;_&#39; and &#39;-&#39; are allowed. If empty, the server may choose to generate one instead.
      */
     id?: string | null;
     /**
@@ -1353,6 +1371,28 @@ export namespace servicenetworking_v1 {
      */
     skipServiceControl?: boolean | null;
   }
+  export interface Schema$ValidateConsumerConfigRequest {
+    /**
+     * Required. The network that the consumer is using to connect with services. Must be in the form of projects/{project}/global/networks/{network} {project} is a project number, as in &#39;12345&#39; {network} is network name.
+     */
+    consumerNetwork?: string | null;
+    /**
+     * NETWORK_NOT_IN_CONSUMERS_PROJECT, NETWORK_NOT_IN_CONSUMERS_HOST_PROJECT, and HOST_PROJECT_NOT_FOUND are done when consumer_project is provided.
+     */
+    consumerProject?: Schema$ConsumerProject;
+    /**
+     * RANGES_EXHAUSTED, RANGES_EXHAUSTED, and RANGES_DELETED_LATER are done when range_reservation is provided.
+     */
+    rangeReservation?: Schema$RangeReservation;
+    /**
+     * The validations will be performed in the order listed in the ValidationError enum. The first failure will return. If a validation is not requested, then the next one will be performed. SERVICE_NETWORKING_NOT_ENABLED and NETWORK_NOT_PEERED checks are performed for all requests where validation is requested. NETWORK_NOT_FOUND and NETWORK_DISCONNECTED checks are done for requests that have validate_network set to true.
+     */
+    validateNetwork?: boolean | null;
+  }
+  export interface Schema$ValidateConsumerConfigResponse {
+    isValid?: boolean | null;
+    validationError?: string | null;
+  }
 
   export class Resource$Operations {
     context: APIRequestContext;
@@ -1368,7 +1408,7 @@ export namespace servicenetworking_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1729,7 +1769,7 @@ export namespace servicenetworking_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. A tenant project in the service producer organization, in the following format: services/{service}/{collection-id}/{resource-id}. {collection-id} is the cloud resource collection type that represents the tenant project. Only `projects` are supported. {resource-id} is the tenant project numeric id, such as `123456`. {service} the name of the peering service, such as `service-peering.example.com`. This service must already be enabled in the service consumer's project.
-     * @param {().AddSubnetworkRequest} params.resource Request body data
+     * @param {().AddSubnetworkRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1805,7 +1845,7 @@ export namespace servicenetworking_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. This is in a form services/{service}. {service} the name of the private access management service, for example 'service-peering.example.com'.
-     * @param {().SearchRangeRequest} params.resource Request body data
+     * @param {().SearchRangeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1872,6 +1912,91 @@ export namespace servicenetworking_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * servicenetworking.services.validate
+     * @desc Service producers use this method to validate if the consumer provided network, project and the requested range is valid. This allows them to use a fail-fast mechanism for consumer requests, and not have to wait for AddSubnetwork operation completion to determine if user request is invalid.
+     * @alias servicenetworking.services.validate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. This is in a form services/{service} where {service} is the name of the private access management service. For example 'service-peering.example.com'.
+     * @param {().ValidateConsumerConfigRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    validate(
+      params?: Params$Resource$Services$Validate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateConsumerConfigResponse>;
+    validate(
+      params: Params$Resource$Services$Validate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateConsumerConfigResponse>,
+      callback: BodyResponseCallback<Schema$ValidateConsumerConfigResponse>
+    ): void;
+    validate(
+      params: Params$Resource$Services$Validate,
+      callback: BodyResponseCallback<Schema$ValidateConsumerConfigResponse>
+    ): void;
+    validate(
+      callback: BodyResponseCallback<Schema$ValidateConsumerConfigResponse>
+    ): void;
+    validate(
+      paramsOrCallback?:
+        | Params$Resource$Services$Validate
+        | BodyResponseCallback<Schema$ValidateConsumerConfigResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateConsumerConfigResponse>,
+      callback?: BodyResponseCallback<Schema$ValidateConsumerConfigResponse>
+    ): void | GaxiosPromise<Schema$ValidateConsumerConfigResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Validate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Validate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:validate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateConsumerConfigResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateConsumerConfigResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Services$Addsubnetwork
@@ -1908,6 +2033,23 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$SearchRangeRequest;
   }
+  export interface Params$Resource$Services$Validate
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. This is in a form services/{service} where {service} is the name of the private access management service. For example 'service-peering.example.com'.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateConsumerConfigRequest;
+  }
 
   export class Resource$Services$Connections {
     context: APIRequestContext;
@@ -1923,7 +2065,7 @@ export namespace servicenetworking_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     * @param {().Connection} params.resource Request body data
+     * @param {().Connection} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2079,7 +2221,7 @@ export namespace servicenetworking_v1 {
      * @param {boolean=} params.force If a previously defined allocated range is removed, force flag must be set to true.
      * @param {string} params.name The private service connection that connects to a service producer organization. The name includes both the private service name and the VPC network peering name in the format of `services/{peering_service_name}/connections/{vpc_peering_name}`. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.
      * @param {string=} params.updateMask The update mask. If this is omitted, it defaults to "*". You can only update the listed peering ranges.
-     * @param {().Connection} params.resource Request body data
+     * @param {().Connection} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

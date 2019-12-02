@@ -231,7 +231,7 @@ export namespace searchconsole_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().RunMobileFriendlyTestRequest} params.resource Request body data
+     * @param {().RunMobileFriendlyTestRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

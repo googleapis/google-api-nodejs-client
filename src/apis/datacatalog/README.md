@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# sqladmin
+# datacatalog
 
-> Creates and manages Cloud SQL instances, which provide fully managed MySQL or PostgreSQL databases.
+> A fully managed and highly scalable data discovery and metadata management service.
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/sqladmin
+$ cd src/apis/datacatalog
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/sqladmin.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/datacatalog.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/sqladmin.min.js"></script>
+<script src="/path/to/datacatalog.min.js"></script>
 <script>
-const { sqladmin, auth } = Sqladmin;
+const { datacatalog, auth } = Datacatalog;
 </script>
 ```
 

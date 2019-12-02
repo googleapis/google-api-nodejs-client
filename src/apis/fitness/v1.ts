@@ -523,7 +523,7 @@ export namespace fitness_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().AggregateRequest} params.resource Request body data
+     * @param {().AggregateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -628,7 +628,7 @@ export namespace fitness_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().DataSource} params.resource Request body data
+     * @param {().DataSource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -929,7 +929,7 @@ export namespace fitness_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.dataSourceId The data stream ID of the data source to update.
      * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().DataSource} params.resource Request body data
+     * @param {().DataSource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1370,7 +1370,7 @@ export namespace fitness_v1 {
      * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
      * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
      * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().Dataset} params.resource Request body data
+     * @param {().Dataset} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1691,7 +1691,7 @@ export namespace fitness_v1 {
      * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
      * @param {string} params.sessionId The ID of the session to be created.
      * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().Session} params.resource Request body data
+     * @param {().Session} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

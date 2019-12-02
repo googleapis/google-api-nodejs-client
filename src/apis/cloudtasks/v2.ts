@@ -256,6 +256,35 @@ export namespace cloudtasks_v2 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * HTTP request.  The task will be pushed to the worker as an HTTP request. If the worker or the redirected worker acknowledges the task by returning a successful HTTP response code ([`200` - `299`]), the task will removed from the queue. If any other HTTP response code is returned or no response is received, the task will be retried according to the following:  * User-specified throttling: retry configuration,   rate limits, and the queue&#39;s state.  * System throttling: To prevent the worker from overloading, Cloud Tasks may   temporarily reduce the queue&#39;s effective rate. User-specified settings   will not be changed.   System throttling happens because:    * Cloud Tasks backs off on all errors. Normally the backoff specified in     rate limits will be used. But if the worker returns     `429` (Too Many Requests), `503` (Service Unavailable), or the rate of     errors is high, Cloud Tasks will use a higher backoff rate. The retry     specified in the `Retry-After` HTTP response header is considered.    * To prevent traffic spikes and to smooth sudden large traffic spikes,     dispatches ramp up slowly when the queue is newly created or idle and     if large numbers of tasks suddenly become available to dispatch (due to     spikes in create task rates, the queue being unpaused, or many tasks     that are scheduled at the same time).
+   */
+  export interface Schema$HttpRequest {
+    /**
+     * HTTP request body.  A request body is allowed only if the HTTP method is POST, PUT, or PATCH. It is an error to set body on a task with an incompatible HttpMethod.
+     */
+    body?: string | null;
+    /**
+     * HTTP request headers.  This map contains the header field names and values. Headers can be set when the task is created.  These headers represent a subset of the headers that will accompany the task&#39;s HTTP request. Some HTTP request headers will be ignored or replaced.  A partial list of headers that will be ignored or replaced is:  * Host: This will be computed by Cloud Tasks and derived from   HttpRequest.url. * Content-Length: This will be computed by Cloud Tasks. * User-Agent: This will be set to `&quot;Google-Cloud-Tasks&quot;`. * X-Google-*: Google use only. * X-AppEngine-*: Google use only.  `Content-Type` won&#39;t be set by Cloud Tasks. You can explicitly set `Content-Type` to a media type when the  task is created.  For example, `Content-Type` can be set to `&quot;application/octet-stream&quot;` or  `&quot;application/json&quot;`.  Headers which can have multiple values (according to RFC2616) can be specified using comma-separated values.  The size of the headers must be less than 80KB.
+     */
+    headers?: {[key: string]: string} | null;
+    /**
+     * The HTTP method to use for the request. The default is POST.
+     */
+    httpMethod?: string | null;
+    /**
+     * If specified, an [OAuth token](https://developers.google.com/identity/protocols/OAuth2) will be generated and attached as an `Authorization` header in the HTTP request.  This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+     */
+    oauthToken?: Schema$OAuthToken;
+    /**
+     * If specified, an [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect) token will be generated and attached as an `Authorization` header in the HTTP request.  This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+     */
+    oidcToken?: Schema$OidcToken;
+    /**
+     * Required. The full url path that the request will be sent to.  This string must begin with either &quot;http://&quot; or &quot;https://&quot;. Some examples are: `http://acme.com` and `https://acme.com/sales:8080`. Cloud Tasks will encode some characters for safety and compatibility. The maximum allowed URL length is 2083 characters after encoding.  The `Location` header response from a redirect response [`300` - `399`] may be followed. The redirect is not counted as a separate attempt.
+     */
+    url?: string | null;
+  }
+  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$ListLocationsResponse {
@@ -320,6 +349,32 @@ export namespace cloudtasks_v2 {
     name?: string | null;
   }
   /**
+   * Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com.
+   */
+  export interface Schema$OAuthToken {
+    /**
+     * OAuth scope to be used for generating OAuth access token. If not specified, &quot;https://www.googleapis.com/auth/cloud-platform&quot; will be used.
+     */
+    scope?: string | null;
+    /**
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating OAuth token. The service account must be within the same project as the queue. The caller must have iam.serviceAccounts.actAs permission for the service account.
+     */
+    serviceAccountEmail?: string | null;
+  }
+  /**
+   * Contains information needed for generating an [OpenID Connect token](https://developers.google.com/identity/protocols/OpenIDConnect). This type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.
+   */
+  export interface Schema$OidcToken {
+    /**
+     * Audience to be used when generating OIDC token. If not specified, the URI specified in target will be used.
+     */
+    audience?: string | null;
+    /**
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating OIDC token. The service account must be within the same project as the queue. The caller must have iam.serviceAccounts.actAs permission for the service account.
+     */
+    serviceAccountEmail?: string | null;
+  }
+  /**
    * Request message for PauseQueue.
    */
   export interface Schema$PauseQueueRequest {}
@@ -332,11 +387,11 @@ export namespace cloudtasks_v2 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if the incoming policy version does not meet the requirements for modifying the stored policy.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a binding (conditional or unconditional) from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, version compliance checks against the stored policy is skipped.
      */
     version?: number | null;
   }
@@ -349,7 +404,7 @@ export namespace cloudtasks_v2 {
    */
   export interface Schema$Queue {
     /**
-     * Overrides for task-level app_engine_routing. These settings apply only to App Engine tasks in this queue.  If set, `app_engine_routing_override` is used for all App Engine tasks in the queue, no matter what the setting is for the task-level app_engine_routing.
+     * Overrides for task-level app_engine_routing. These settings apply only to App Engine tasks in this queue. Http tasks are not affected.  If set, `app_engine_routing_override` is used for all App Engine tasks in the queue, no matter what the setting is for the task-level app_engine_routing.
      */
     appEngineRoutingOverride?: Schema$AppEngineRouting;
     /**
@@ -471,13 +526,17 @@ export namespace cloudtasks_v2 {
      */
     dispatchCount?: number | null;
     /**
-     * The deadline for requests sent to the worker. If the worker does not respond by this deadline then the request is cancelled and the attempt is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the task according to the RetryConfig.  Note that when the request is cancelled, Cloud Tasks will stop listing for the response, but whether the worker stops processing depends on the worker. For example, if the worker is stuck, it may not react to cancelled requests.  The default and maximum values depend on the type of request:   * For App Engine tasks, 0 indicates that the   request has the default deadline. The default deadline depends on the   [scaling   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)   of the service: 10 minutes for standard apps with automatic scaling, 24   hours for standard apps with manual and basic scaling, and 60 minutes for   flex apps. If the request deadline is set, it must be in the interval [15   seconds, 24 hours 15 seconds]. Regardless of the task&#39;s   `dispatch_deadline`, the app handler will not run for longer than than   the service&#39;s timeout. We recommend setting the `dispatch_deadline` to   at most a few seconds more than the app handler&#39;s timeout. For more   information see   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).  `dispatch_deadline` will be truncated to the nearest millisecond. The deadline is an approximate deadline.
+     * The deadline for requests sent to the worker. If the worker does not respond by this deadline then the request is cancelled and the attempt is marked as a `DEADLINE_EXCEEDED` failure. Cloud Tasks will retry the task according to the RetryConfig.  Note that when the request is cancelled, Cloud Tasks will stop listing for the response, but whether the worker stops processing depends on the worker. For example, if the worker is stuck, it may not react to cancelled requests.  The default and maximum values depend on the type of request:  * For HTTP tasks, the default is 10 minutes. The deadline   must be in the interval [15 seconds, 30 minutes].  * For App Engine tasks, 0 indicates that the   request has the default deadline. The default deadline depends on the   [scaling   type](https://cloud.google.com/appengine/docs/standard/go/how-instances-are-managed#instance_scaling)   of the service: 10 minutes for standard apps with automatic scaling, 24   hours for standard apps with manual and basic scaling, and 60 minutes for   flex apps. If the request deadline is set, it must be in the interval [15   seconds, 24 hours 15 seconds]. Regardless of the task&#39;s   `dispatch_deadline`, the app handler will not run for longer than than   the service&#39;s timeout. We recommend setting the `dispatch_deadline` to   at most a few seconds more than the app handler&#39;s timeout. For more   information see   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).  `dispatch_deadline` will be truncated to the nearest millisecond. The deadline is an approximate deadline.
      */
     dispatchDeadline?: string | null;
     /**
      * Output only. The status of the task&#39;s first attempt.  Only dispatch_time will be set. The other Attempt information is not retained by Cloud Tasks.
      */
     firstAttempt?: Schema$Attempt;
+    /**
+     * HTTP request that is sent to the worker.  An HTTP task is a task that has HttpRequest set.
+     */
+    httpRequest?: Schema$HttpRequest;
     /**
      * Output only. The status of the task&#39;s last attempt.
      */
@@ -897,7 +956,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The location name in which the queue will be created. For example: `projects/PROJECT_ID/locations/LOCATION_ID`  The list of allowed locations can be obtained by calling Cloud Tasks' implementation of ListLocations.
-     * @param {().Queue} params.resource Request body data
+     * @param {().Queue} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1252,7 +1311,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1531,7 +1590,7 @@ export namespace cloudtasks_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.name Caller-specified and required in CreateQueue, after which it becomes output only.  The queue name.  The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens (-), colons (:), or periods (.).    For more information, see    [Identifying    projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location.    The list of available locations can be obtained by calling    ListLocations.    For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens (-). The maximum length is 100 characters.
      * @param {string=} params.updateMask A mask used to specify which fields of the queue are being updated.  If empty, then all fields will be updated.
-     * @param {().Queue} params.resource Request body data
+     * @param {().Queue} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1653,7 +1712,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param {().PauseQueueRequest} params.resource Request body data
+     * @param {().PauseQueueRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1775,7 +1834,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param {().PurgeQueueRequest} params.resource Request body data
+     * @param {().PurgeQueueRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1897,7 +1956,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param {().ResumeQueueRequest} params.resource Request body data
+     * @param {().ResumeQueueRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2018,7 +2077,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2142,7 +2201,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2473,7 +2532,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  The queue must already exist.
-     * @param {().CreateTaskRequest} params.resource Request body data
+     * @param {().CreateTaskRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2968,7 +3027,7 @@ export namespace cloudtasks_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param {().RunTaskRequest} params.resource Request body data
+     * @param {().RunTaskRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

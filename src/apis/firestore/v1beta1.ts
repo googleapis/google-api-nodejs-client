@@ -1176,7 +1176,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
-     * @param {().GoogleFirestoreAdminV1beta1ExportDocumentsRequest} params.resource Request body data
+     * @param {().GoogleFirestoreAdminV1beta1ExportDocumentsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1258,7 +1258,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
-     * @param {().GoogleFirestoreAdminV1beta1ImportDocumentsRequest} params.resource Request body data
+     * @param {().GoogleFirestoreAdminV1beta1ImportDocumentsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1382,7 +1382,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
-     * @param {().BatchGetDocumentsRequest} params.resource Request body data
+     * @param {().BatchGetDocumentsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1464,7 +1464,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
-     * @param {().BeginTransactionRequest} params.resource Request body data
+     * @param {().BeginTransactionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1542,7 +1542,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
-     * @param {().CommitRequest} params.resource Request body data
+     * @param {().CommitRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1620,7 +1620,7 @@ export namespace firestore_v1beta1 {
      * @param {string=} params.documentId The client-assigned document ID to use for this document.  Optional. If not specified, an ID will be assigned by the service.
      * @param {string=} params.mask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
      * @param {string} params.parent The parent resource. For example: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
-     * @param {().Document} params.resource Request body data
+     * @param {().Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1920,7 +1920,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent document. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param {().ListCollectionIdsRequest} params.resource Request body data
+     * @param {().ListCollectionIdsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2002,7 +2002,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
-     * @param {().ListenRequest} params.resource Request body data
+     * @param {().ListenRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2081,7 +2081,7 @@ export namespace firestore_v1beta1 {
      * @param {string=} params.mask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
      * @param {string} params.name The resource name of the document, for example `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * @param {string=} params.updateMask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
-     * @param {().Document} params.resource Request body data
+     * @param {().Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2151,7 +2151,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`.
-     * @param {().RollbackRequest} params.resource Request body data
+     * @param {().RollbackRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2224,7 +2224,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param {().RunQueryRequest} params.resource Request body data
+     * @param {().RunQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2299,7 +2299,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.database The database name. In the format: `projects/{project_id}/databases/{database_id}`. This is only required in the first message.
-     * @param {().WriteRequest} params.resource Request body data
+     * @param {().WriteRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2668,7 +2668,7 @@ export namespace firestore_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the database this index will apply to. For example: `projects/{project_id}/databases/{database_id}`
-     * @param {().GoogleFirestoreAdminV1beta1Index} params.resource Request body data
+     * @param {().GoogleFirestoreAdminV1beta1Index} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

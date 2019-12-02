@@ -3575,6 +3575,23 @@ export namespace vision_v1p1beta1 {
     vertices?: Schema$GoogleCloudVisionV1p4beta1Vertex[];
   }
   /**
+   * A Celebrity is a group of Faces with an identity.
+   */
+  export interface Schema$GoogleCloudVisionV1p4beta1Celebrity {
+    /**
+     * The Celebrity&#39;s description.
+     */
+    description?: string | null;
+    /**
+     * The Celebrity&#39;s display name.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the preloaded Celebrity. Has the format `builtin/{mid}`.
+     */
+    name?: string | null;
+  }
+  /**
    * Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image.
    */
   export interface Schema$GoogleCloudVisionV1p4beta1ColorInfo {
@@ -3712,6 +3729,10 @@ export namespace vision_v1p1beta1 {
      */
     panAngle?: number | null;
     /**
+     * Additional recognition information. Only computed if image_context.face_recognition_params is provided, **and** a match is found to a Celebrity in the input CelebritySet. This field is sorted in order of decreasing confidence values.
+     */
+    recognitionResult?: Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult[];
+    /**
      * Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].
      */
     rollAngle?: number | null;
@@ -3744,6 +3765,19 @@ export namespace vision_v1p1beta1 {
      * Face landmark type.
      */
     type?: string | null;
+  }
+  /**
+   * Information about a face&#39;s identity.
+   */
+  export interface Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult {
+    /**
+     * The Celebrity that this face was matched to.
+     */
+    celebrity?: Schema$GoogleCloudVisionV1p4beta1Celebrity;
+    /**
+     * Recognition confidence. Range [0, 1].
+     */
+    confidence?: number | null;
   }
   /**
    * The Google Cloud Storage location where the output will be written to.
@@ -4949,7 +4983,7 @@ export namespace vision_v1p1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5048,7 +5082,7 @@ export namespace vision_v1p1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5153,7 +5187,7 @@ export namespace vision_v1p1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5252,7 +5286,7 @@ export namespace vision_v1p1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5371,7 +5405,7 @@ export namespace vision_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5472,7 +5506,7 @@ export namespace vision_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5588,7 +5622,7 @@ export namespace vision_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5689,7 +5723,7 @@ export namespace vision_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5816,7 +5850,7 @@ export namespace vision_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5917,7 +5951,7 @@ export namespace vision_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6033,7 +6067,7 @@ export namespace vision_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6134,7 +6168,7 @@ export namespace vision_v1p1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Optional. Target project and location to make a call.  Format: `projects/{project-id}/locations/{location-id}`.  If no parent is specified, a region will be chosen automatically.  Supported location-ids:     `us`: USA country only,     `asia`: East asia areas, like Japan, Taiwan,     `eu`: The European Union.  Example: `projects/project-A/locations/eu`.
-     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateImagesRequest} params.resource Request body data
+     * @param {().GoogleCloudVisionV1p1beta1AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

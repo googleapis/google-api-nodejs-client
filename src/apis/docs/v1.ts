@@ -266,7 +266,7 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * Creates a Footer. The new footer will be applied to SectionStyle or the DocumentStyle.  If a footer of the specified type already exists then a 400 bad request error will be returned.
+   * Creates a Footer. The new footer will be applied to the DocumentStyle.  If a footer of the specified type already exists then a 400 bad request error will be returned.
    */
   export interface Schema$CreateFooterRequest {
     /**
@@ -284,7 +284,7 @@ export namespace docs_v1 {
     footerId?: string | null;
   }
   /**
-   * Creates a Header. The new header will be applied to SectionStyle or the DocumentStyle.  If a header of the specified type already exists then a 400 bad request error will be returned.
+   * Creates a Header. The new header will be applied to the DocumentStyle.  If a header of the specified type already exists then a 400 bad request error will be returned.
    */
   export interface Schema$CreateHeaderRequest {
     /**
@@ -2968,7 +2968,7 @@ export namespace docs_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.documentId The ID of the document to update.
-     * @param {().BatchUpdateDocumentRequest} params.resource Request body data
+     * @param {().BatchUpdateDocumentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3049,7 +3049,7 @@ export namespace docs_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Document} params.resource Request body data
+     * @param {().Document} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

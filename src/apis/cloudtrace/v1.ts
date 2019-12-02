@@ -256,7 +256,7 @@ export namespace cloudtrace_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Required. ID of the Cloud project where the trace data is stored.
-     * @param {().Traces} params.resource Request body data
+     * @param {().Traces} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

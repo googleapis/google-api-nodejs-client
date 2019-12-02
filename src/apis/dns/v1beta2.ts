@@ -319,6 +319,10 @@ export namespace dns_v1beta2 {
      */
     privateVisibilityConfig?: Schema$ManagedZonePrivateVisibilityConfig;
     /**
+     * The presence of this field indicates that this is a managed reverse lookup zone and Cloud DNS will resolve reverse lookup queries using automatically configured records for VPC resources. This only applies to networks listed under private_visibility_config.
+     */
+    reverseLookupConfig?: Schema$ManagedZoneReverseLookupConfig;
+    /**
      * The zone&#39;s visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
      */
     visibility?: string | null;
@@ -352,6 +356,10 @@ export namespace dns_v1beta2 {
     targetNameServers?: Schema$ManagedZoneForwardingConfigNameServerTarget[];
   }
   export interface Schema$ManagedZoneForwardingConfigNameServerTarget {
+    /**
+     * Forwarding path for this NameServerTarget, if unset or set to DEFAULT, Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go to the Internet. When set to PRIVATE, Cloud DNS will always send queries through VPC for this target
+     */
+    forwardingPath?: string | null;
     /**
      * IPv4 address of a target name server.
      */
@@ -419,6 +427,12 @@ export namespace dns_v1beta2 {
      * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
      */
     networkUrl?: string | null;
+  }
+  export interface Schema$ManagedZoneReverseLookupConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZoneReverseLookupConfig&quot;.
+     */
+    kind?: string | null;
   }
   export interface Schema$ManagedZonesListResponse {
     header?: Schema$ResponseHeader;
@@ -563,6 +577,10 @@ export namespace dns_v1beta2 {
     targetNameServers?: Schema$PolicyAlternativeNameServerConfigTargetNameServer[];
   }
   export interface Schema$PolicyAlternativeNameServerConfigTargetNameServer {
+    /**
+     * Forwarding path for this TargetNameServer, if unset or set to DEFAULT, Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go to the Internet. When set to PRIVATE, Cloud DNS will always send queries through VPC for this target
+     */
+    forwardingPath?: string | null;
     /**
      * IPv4 address to forward to.
      */
@@ -738,7 +756,7 @@ export namespace dns_v1beta2 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Change} params.resource Request body data
+     * @param {().Change} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1487,7 +1505,7 @@ export namespace dns_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.resource Request body data
+     * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1790,7 +1808,7 @@ export namespace dns_v1beta2 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.resource Request body data
+     * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1867,7 +1885,7 @@ export namespace dns_v1beta2 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.resource Request body data
+     * @param {().ManagedZone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2085,7 +2103,7 @@ export namespace dns_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.resource Request body data
+     * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2380,7 +2398,7 @@ export namespace dns_v1beta2 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.policy User given friendly name of the policy addressed by this request.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.resource Request body data
+     * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2457,7 +2475,7 @@ export namespace dns_v1beta2 {
      * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      * @param {string} params.policy User given friendly name of the policy addressed by this request.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.resource Request body data
+     * @param {().Policy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -1236,7 +1236,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The unique name of the project in which to create the new instance. Values are of the form `projects/<project>`.
-     * @param {().CreateInstanceRequest} params.resource Request body data
+     * @param {().CreateInstanceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1452,7 +1452,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1605,7 +1605,7 @@ export namespace bigtableadmin_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.name (`OutputOnly`) The unique name of the instance. Values are of the form `projects/<project>/instances/a-z+[a-z0-9]`.
      * @param {string=} params.updateMask The subset of Instance fields which should be replaced. Must be explicitly set.
-     * @param {().Instance} params.resource Request body data
+     * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1680,7 +1680,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1754,7 +1754,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1837,7 +1837,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name (`OutputOnly`) The unique name of the instance. Values are of the form `projects/<project>/instances/a-z+[a-z0-9]`.
-     * @param {().Instance} params.resource Request body data
+     * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2064,7 +2064,7 @@ export namespace bigtableadmin_v2 {
      * @param {string=} params.appProfileId The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      * @param {boolean=} params.ignoreWarnings If true, ignore safety checks when creating the app profile.
      * @param {string} params.parent The unique name of the instance in which to create the new app profile. Values are of the form `projects/<project>/instances/<instance>`.
-     * @param {().AppProfile} params.resource Request body data
+     * @param {().AppProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2364,7 +2364,7 @@ export namespace bigtableadmin_v2 {
      * @param {boolean=} params.ignoreWarnings If true, ignore safety checks when updating the app profile.
      * @param {string} params.name (`OutputOnly`) The unique name of the app profile. Values are of the form `projects/<project>/instances/<instance>/appProfiles/_a-zA-Z0-9*`.
      * @param {string=} params.updateMask The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
-     * @param {().AppProfile} params.resource Request body data
+     * @param {().AppProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2544,7 +2544,7 @@ export namespace bigtableadmin_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.clusterId The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      * @param {string} params.parent The unique name of the instance in which to create the new cluster. Values are of the form `projects/<project>/instances/<instance>`.
-     * @param {().Cluster} params.resource Request body data
+     * @param {().Cluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2838,7 +2838,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/<project>/instances/<instance>/clusters/a-z*`.
-     * @param {().Cluster} params.resource Request body data
+     * @param {().Cluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2997,7 +2997,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The unique name of the Table for which to check replication consistency. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param {().CheckConsistencyRequest} params.resource Request body data
+     * @param {().CheckConsistencyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3077,7 +3077,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The unique name of the instance in which to create the table. Values are of the form `projects/<project>/instances/<instance>`.
-     * @param {().CreateTableRequest} params.resource Request body data
+     * @param {().CreateTableRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3221,7 +3221,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The unique name of the table on which to drop a range of rows. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param {().DropRowRangeRequest} params.resource Request body data
+     * @param {().DropRowRangeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3295,7 +3295,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The unique name of the Table for which to create a consistency token. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param {().GenerateConsistencyTokenRequest} params.resource Request body data
+     * @param {().GenerateConsistencyTokenRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3451,7 +3451,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3527,7 +3527,7 @@ export namespace bigtableadmin_v2 {
      * @param {integer=} params.pageSize Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
      * @param {string} params.parent The unique name of the instance for which tables should be listed. Values are of the form `projects/<project>/instances/<instance>`.
-     * @param {string=} params.view The view to be applied to the returned tables' fields. Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
+     * @param {string=} params.view The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3603,7 +3603,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The unique name of the table whose families should be modified. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param {().ModifyColumnFamiliesRequest} params.resource Request body data
+     * @param {().ModifyColumnFamiliesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3677,7 +3677,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3751,7 +3751,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3960,7 +3960,7 @@ export namespace bigtableadmin_v2 {
      */
     parent?: string;
     /**
-     * The view to be applied to the returned tables' fields. Defaults to `NAME_ONLY` if unspecified; no others are currently supported.
+     * The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      */
     view?: string;
   }

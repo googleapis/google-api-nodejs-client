@@ -233,7 +233,7 @@ export namespace translate_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DetectLanguageRequest} params.resource Request body data
+     * @param {().DetectLanguageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -595,7 +595,7 @@ export namespace translate_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().TranslateTextRequest} params.resource Request body data
+     * @param {().TranslateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
