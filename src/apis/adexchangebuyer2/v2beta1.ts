@@ -2129,7 +2129,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
-     * @param {().Client} params.resource Request body data
+     * @param {().Client} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2356,7 +2356,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
      * @param {string} params.clientAccountId Unique numerical account ID of the client to update. (required)
-     * @param {().Client} params.resource Request body data
+     * @param {().Client} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2517,7 +2517,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
      * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user should be associated with. (required)
-     * @param {().ClientUserInvitation} params.resource Request body data
+     * @param {().ClientUserInvitation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2993,7 +2993,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
      * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
      * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
-     * @param {().ClientUser} params.resource Request body data
+     * @param {().ClientUser} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3151,7 +3151,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      * @param {string=} params.duplicateIdMode Indicates if multiple creatives can share an ID or not. Default is NO_DUPLICATES (one ID per creative).
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3379,7 +3379,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account of the creative to stop notifications for.
      * @param {string} params.creativeId The creative ID of the creative to stop notifications for. Specify "-" to specify stopping account level notifications.
-     * @param {().StopWatchingCreativeRequest} params.resource Request body data
+     * @param {().StopWatchingCreativeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3454,7 +3454,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account that this creative belongs to. Can be used to filter the response of the creatives.list method.
      * @param {string} params.creativeId The buyer-defined creative ID of this creative. Can be used to filter the response of the creatives.list method.
-     * @param {().Creative} params.resource Request body data
+     * @param {().Creative} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3528,7 +3528,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account of the creative to watch.
      * @param {string} params.creativeId The creative ID to watch for status changes. Specify "-" to watch all creatives under the above account. If both creative-level and account-level notifications are sent, only a single notification will be sent to the creative-level notification topic.
-     * @param {().WatchCreativeRequest} params.resource Request body data
+     * @param {().WatchCreativeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3735,7 +3735,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account the creative belongs to.
      * @param {string} params.creativeId The ID of the creative associated with the deal.
-     * @param {().AddDealAssociationRequest} params.resource Request body data
+     * @param {().AddDealAssociationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3898,7 +3898,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account the creative belongs to.
      * @param {string} params.creativeId The ID of the creative associated with the deal.
-     * @param {().RemoveDealAssociationRequest} params.resource Request body data
+     * @param {().RemoveDealAssociationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4368,7 +4368,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to accept.
-     * @param {().AcceptProposalRequest} params.resource Request body data
+     * @param {().AcceptProposalRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4443,7 +4443,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to attach the note to.
-     * @param {().AddNoteRequest} params.resource Request body data
+     * @param {().AddNoteRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4518,7 +4518,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to cancel negotiation for.
-     * @param {().CancelNegotiationRequest} params.resource Request body data
+     * @param {().CancelNegotiationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4593,7 +4593,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to mark as setup completed.
-     * @param {().CompleteSetupRequest} params.resource Request body data
+     * @param {().CompleteSetupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4667,7 +4667,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
-     * @param {().Proposal} params.resource Request body data
+     * @param {().Proposal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4896,7 +4896,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to pause.
-     * @param {().PauseProposalRequest} params.resource Request body data
+     * @param {().PauseProposalRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4971,7 +4971,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The ID of the proposal to resume.
-     * @param {().ResumeProposalRequest} params.resource Request body data
+     * @param {().ResumeProposalRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5046,7 +5046,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID of the buyer.
      * @param {string} params.proposalId The unique ID of the proposal.
-     * @param {().Proposal} params.resource Request body data
+     * @param {().Proposal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5593,7 +5593,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.isTransient Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
-     * @param {().FilterSet} params.resource Request body data
+     * @param {().FilterSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7162,7 +7162,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.isTransient Whether the filter set is transient, or should be persisted indefinitely. By default, filter sets are not transient. If transient, it will be available for at least 1 hour after creation.
      * @param {string} params.ownerName Name of the owner (bidder or account) of the filter set to be created. For example:  - For a bidder-level filter set for bidder 123: `bidders/123`  - For an account-level filter set for the buyer account representing bidder   123: `bidders/123/accounts/123`  - For an account-level filter set for the child seat buyer account 456   whose bidder is 123: `bidders/123/accounts/456`
-     * @param {().FilterSet} params.resource Request body data
+     * @param {().FilterSet} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -416,15 +416,15 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Training options used by this training run. These options are mutable for subsequent training runs. Default values are explicitly stored for options not specified in the input query of the first training run. For subsequent training runs, any option not explicitly specified in the input query will be copied from the previous training run.
      */
     trainingOptions?: {
+      l2Reg?: number;
+      warmStart?: boolean;
+      learnRateStrategy?: string;
+      lineSearchInitLearnRate?: number;
+      earlyStop?: boolean;
       l1Reg?: number;
       maxIteration?: string;
       learnRate?: number;
       minRelProgress?: number;
-      l2Reg?: number;
-      learnRateStrategy?: string;
-      warmStart?: boolean;
-      lineSearchInitLearnRate?: number;
-      earlyStop?: boolean;
     } | null;
   }
   /**
@@ -550,13 +550,13 @@ export namespace bigquery_v2 {
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
-      iamMember?: string;
-      specialGroup?: string;
       role?: string;
       view?: Schema$TableReference;
       groupByEmail?: string;
       userByEmail?: string;
       domain?: string;
+      iamMember?: string;
+      specialGroup?: string;
     }> | null;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds since the epoch.
@@ -617,12 +617,12 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
-      labels?: {[key: string]: string};
-      datasetReference?: Schema$DatasetReference;
       id?: string;
       location?: string;
       friendlyName?: string;
       kind?: string;
+      labels?: {[key: string]: string};
+      datasetReference?: Schema$DatasetReference;
     }> | null;
     /**
      * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -646,6 +646,19 @@ export namespace bigquery_v2 {
      * [Optional] The ID of the project containing this dataset.
      */
     projectId?: string | null;
+  }
+  /**
+   * Data split result. This contains references to the training and evaluation data tables that were used to train the model.
+   */
+  export interface Schema$DataSplitResult {
+    /**
+     * Table reference of the evaluation data after split.
+     */
+    evaluationTable?: Schema$TableReference;
+    /**
+     * Table reference of the training data after split.
+     */
+    trainingTable?: Schema$TableReference;
   }
   export interface Schema$DestinationTableProperties {
     /**
@@ -1383,15 +1396,15 @@ export namespace bigquery_v2 {
      * List of jobs that were requested.
      */
     jobs?: Array<{
+      user_email?: string;
+      kind?: string;
+      errorResult?: Schema$ErrorProto;
       jobReference?: Schema$JobReference;
       status?: Schema$JobStatus;
       state?: string;
       statistics?: Schema$JobStatistics;
       id?: string;
       configuration?: Schema$JobConfiguration;
-      user_email?: string;
-      errorResult?: Schema$ErrorProto;
-      kind?: string;
     }> | null;
     /**
      * The resource type of the response.
@@ -1534,7 +1547,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{slotMs?: string; name?: string}> | null;
+    reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
     /**
      * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
@@ -1639,7 +1652,7 @@ export namespace bigquery_v2 {
      */
     nextPageToken?: string | null;
     /**
-     * Routines in the requested dataset. Only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, language.
+     * Routines in the requested dataset. Unless read_mask is set in the request, only the following fields are populated: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.
      */
     routines?: Schema$Routine[];
   }
@@ -1654,6 +1667,10 @@ export namespace bigquery_v2 {
   }
   export interface Schema$MaterializedViewDefinition {
     /**
+     * [Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is &quot;true&quot;.
+     */
+    enableRefresh?: boolean | null;
+    /**
      * [Output-only] [TrustedTester] The time when this materialized view was last modified, in milliseconds since the epoch.
      */
     lastRefreshTime?: string | null;
@@ -1661,6 +1678,10 @@ export namespace bigquery_v2 {
      * [Required] A query whose result is persisted.
      */
     query?: string | null;
+    /**
+     * [Optional] [TrustedTester] The maximum frequency at which this materialized view will be refreshed. The default value is &quot;1800000&quot; (30 minutes).
+     */
+    refreshIntervalMs?: string | null;
   }
   export interface Schema$Model {
     /**
@@ -1725,9 +1746,9 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
      */
     modelOptions?: {
+      modelType?: string;
       labels?: string[];
       lossType?: string;
-      modelType?: string;
     } | null;
     /**
      * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
@@ -1818,9 +1839,9 @@ export namespace bigquery_v2 {
      * [Optional] The types of the fields of this struct, in order, if this is a struct.
      */
     structTypes?: Array<{
-      type?: Schema$QueryParameterType;
       name?: string;
       description?: string;
+      type?: Schema$QueryParameterType;
     }> | null;
     /**
      * [Required] The top level type of this field.
@@ -1967,7 +1988,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {end?: string; interval?: string; start?: string} | null;
+    range?: {interval?: string; start?: string; end?: string} | null;
   }
   /**
    * Evaluation metrics for regression and explicit feedback type matrix factorization models.
@@ -2235,7 +2256,7 @@ export namespace bigquery_v2 {
      */
     rangePartitioning?: Schema$RangePartitioning;
     /**
-     * [Beta] [Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified.
+     * [Optional] If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified.
      */
     requirePartitionFilter?: boolean | null;
     /**
@@ -2345,6 +2366,7 @@ export namespace bigquery_v2 {
      * [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.
      */
     name?: string | null;
+    policyTags?: {names?: string[]} | null;
     /**
      * [Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).
      */
@@ -2367,18 +2389,18 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
-      creationTime?: string;
-      rangePartitioning?: Schema$RangePartitioning;
       id?: string;
       tableReference?: Schema$TableReference;
-      timePartitioning?: Schema$TimePartitioning;
       friendlyName?: string;
+      timePartitioning?: Schema$TimePartitioning;
       labels?: {[key: string]: string};
-      type?: string;
       clustering?: Schema$Clustering;
+      type?: string;
       expirationTime?: string;
       kind?: string;
       view?: {useLegacySql?: boolean};
+      creationTime?: string;
+      rangePartitioning?: Schema$RangePartitioning;
     }> | null;
     /**
      * The total number of tables in the dataset.
@@ -2516,6 +2538,10 @@ export namespace bigquery_v2 {
    * Information about a single training query run for the model.
    */
   export interface Schema$TrainingRun {
+    /**
+     * Data split result of the training run. Only set when the input data is actually split.
+     */
+    dataSplitResult?: Schema$DataSplitResult;
     /**
      * The evaluation metrics over training/eval data that were computed at the end of training.
      */
@@ -2860,7 +2886,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID of the new dataset
-     * @param {().Dataset} params.resource Request body data
+     * @param {().Dataset} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3121,7 +3147,7 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the dataset being updated
      * @param {string} params.projectId Project ID of the dataset being updated
-     * @param {().Dataset} params.resource Request body data
+     * @param {().Dataset} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3247,7 +3273,7 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the dataset being updated
      * @param {string} params.projectId Project ID of the dataset being updated
-     * @param {().Dataset} params.resource Request body data
+     * @param {().Dataset} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3889,7 +3915,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID of the project that will be billed for the job
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -4155,7 +4181,7 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID of the project billed for the query
-     * @param {().QueryRequest} params.resource Request body data
+     * @param {().QueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4844,7 +4870,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Required. Dataset ID of the model to patch.
      * @param {string} params.modelId Required. Model ID of the model to patch.
      * @param {string} params.projectId Required. Project ID of the model to patch.
-     * @param {().Model} params.resource Request body data
+     * @param {().Model} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5474,7 +5500,6 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Required. Dataset ID of the requested routine
-     * @param {string=} params.fieldMask If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.
      * @param {string} params.projectId Required. Project ID of the requested routine
      * @param {string} params.routineId Required. Routine ID of the requested routine
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5602,7 +5627,7 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Required. Dataset ID of the new routine
      * @param {string} params.projectId Required. Project ID of the new routine
-     * @param {().Routine} params.resource Request body data
+     * @param {().Routine} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5873,7 +5898,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Required. Dataset ID of the routine to update
      * @param {string} params.projectId Required. Project ID of the routine to update
      * @param {string} params.routineId Required. Routine ID of the routine to update
-     * @param {().Routine} params.resource Request body data
+     * @param {().Routine} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5967,10 +5992,6 @@ export namespace bigquery_v2 {
      * Required. Dataset ID of the requested routine
      */
     datasetId?: string;
-    /**
-     * If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.
-     */
-    fieldMask?: string;
     /**
      * Required. Project ID of the requested routine
      */
@@ -6120,7 +6141,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the destination table.
      * @param {string} params.projectId Project ID of the destination table.
      * @param {string} params.tableId Table ID of the destination table.
-     * @param {().TableDataInsertAllRequest} params.resource Request body data
+     * @param {().TableDataInsertAllRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6716,7 +6737,7 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the new table
      * @param {string} params.projectId Project ID of the new table
-     * @param {().Table} params.resource Request body data
+     * @param {().Table} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6985,7 +7006,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the table to update
      * @param {string} params.projectId Project ID of the table to update
      * @param {string} params.tableId Table ID of the table to update
-     * @param {().Table} params.resource Request body data
+     * @param {().Table} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7116,7 +7137,7 @@ export namespace bigquery_v2 {
      * @param {string} params.datasetId Dataset ID of the table to update
      * @param {string} params.projectId Project ID of the table to update
      * @param {string} params.tableId Table ID of the table to update
-     * @param {().Table} params.resource Request body data
+     * @param {().Table} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

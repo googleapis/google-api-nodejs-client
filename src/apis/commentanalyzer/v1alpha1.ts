@@ -140,7 +140,7 @@ export namespace commentanalyzer_v1alpha1 {
      */
     doNotStore?: boolean | null;
     /**
-     * The language(s) of the comment and context (if none are specified, the language is automatically detected). If multiple languages are specified, the text is checked in all of them that are supported. Both ISO and BCP-47 language codes are accepted. Current Language Restrictions:  * Only English text (&quot;en&quot;) is supported. If none of the languages specified by the caller are supported, an `UNIMPLEMENTED` error is returned.
+     * The language(s) of the comment and context. If none are specified, we attempt to automatically detect the language. Specifying multiple languages means the text contains multiple lanugages. Both ISO and BCP-47 language codes are accepted.  The server returns an error if no language was specified and language detection fails. The server also returns an error if the languages (either specified by the caller, or auto-detected) are not *all* supported by the service.
      */
     languages?: string[] | null;
     /**
@@ -173,7 +173,7 @@ export namespace commentanalyzer_v1alpha1 {
      */
     detectedLanguages?: string[] | null;
     /**
-     * The language(s) used by CommentAnalyzer service to choose which Model to use when analyzing the comment. Might better be called &quot;effective_languages&quot;. The logic used to make the choice is as follows:   if Request.languages.empty()     effective_languages = detected_languages   else     effective_languages = Request.languages
+     * The language(s) used by CommentAnalyzer service to choose which Model to use when analyzing the comment. Might better be called &quot;effective_languages&quot;. The logic used to make the choice is as follows:   if !Request.languages.empty()     effective_languages = Request.languages   else     effective_languages = detected_languages[0]
      */
     languages?: string[] | null;
   }
@@ -281,7 +281,7 @@ export namespace commentanalyzer_v1alpha1 {
      */
     context?: Schema$Context;
     /**
-     * The language(s) of the comment and context (if none are specified, the language is automatically detected). If multiple languages are specified, the text is checked in all of them that are supported. Both ISO and BCP-47 language codes are accepted. Current Language Restrictions:  * Only English text (&quot;en&quot;) is supported. If none of the languages specified by the caller are supported, an `UNIMPLEMENTED` error is returned.
+     * The language(s) of the comment and context. If none are specified, we attempt to automatically detect the language. Both ISO and BCP-47 language codes are accepted.
      */
     languages?: string[] | null;
     /**
@@ -333,7 +333,7 @@ export namespace commentanalyzer_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeCommentRequest} params.resource Request body data
+     * @param {().AnalyzeCommentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -411,7 +411,7 @@ export namespace commentanalyzer_v1alpha1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SuggestCommentScoreRequest} params.resource Request body data
+     * @param {().SuggestCommentScoreRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

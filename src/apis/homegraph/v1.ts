@@ -150,7 +150,7 @@ export namespace homegraph_v1 {
     /**
      * Custom JSON data provided by the manufacturer and attached to QUERY and EXECUTE requests in AoG.
      */
-    customData?: string | null;
+    customData?: {[key: string]: any} | null;
     /**
      * Device manufacturer, model, hardware version, and software version.
      */
@@ -163,6 +163,10 @@ export namespace homegraph_v1 {
      * Name of the device given by the third party. This includes names given to the device via third party device manufacturer&#39;s app, model names for the device, etc.
      */
     name?: Schema$DeviceNames;
+    /**
+     * Indicates whether the device is capable of sending notifications. This field will be set by the agent (partner) on an incoming SYNC. If a device is not capable of generating notifications, the partner should set this flag to false. If a partner is not capable of calling ReportStateAndNotification to send notifications to Google, the partner should set this flag to false. If there is a user setting in the partner app to enable notifications and it is turned off, the partner should set this flag to false.
+     */
+    notificationSupportedByAgent?: boolean | null;
     /**
      * IDs of other devices associated with this device. This is used to represent a device group (e.g. bonded zone) or &quot;facets&quot; synced through different flows (e.g. Google Nest Hub Max with a Nest Camera).  This may also be used to pass in alternate IDs used to identify a cloud synced device for local execution (i.e. local verification). If used for local verification, this field is synced from the cloud.
      */
@@ -507,7 +511,7 @@ export namespace homegraph_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().QueryRequest} params.resource Request body data
+     * @param {().QueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -577,7 +581,7 @@ export namespace homegraph_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ReportStateAndNotificationRequest} params.resource Request body data
+     * @param {().ReportStateAndNotificationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -660,7 +664,7 @@ export namespace homegraph_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().RequestSyncDevicesRequest} params.resource Request body data
+     * @param {().RequestSyncDevicesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -741,7 +745,7 @@ export namespace homegraph_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().SyncRequest} params.resource Request body data
+     * @param {().SyncRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

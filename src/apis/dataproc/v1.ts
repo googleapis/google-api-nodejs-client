@@ -633,7 +633,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$InstanceGroupConfig {
     /**
-     * Optional. The Compute Engine accelerator configuration for these instances.Beta Feature: This feature is still under development. It may be changed before final release.
+     * Optional. The Compute Engine accelerator configuration for these instances.
      */
     accelerators?: Schema$AcceleratorConfig[];
     /**
@@ -660,6 +660,10 @@ export namespace dataproc_v1 {
      * Output only. The config for Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
      */
     managedGroupConfig?: Schema$ManagedGroupConfig;
+    /**
+     * Optional. Specifies the minimum cpu platform for the Instance Group. See Cloud Dataproc&amp;rarr;Minimum CPU Platform.
+     */
+    minCpuPlatform?: string | null;
     /**
      * Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
      */
@@ -734,6 +738,10 @@ export namespace dataproc_v1 {
      * Job is a Spark job.
      */
     sparkJob?: Schema$SparkJob;
+    /**
+     * Job is a SparkR job.
+     */
+    sparkRJob?: Schema$SparkRJob;
     /**
      * Job is a SparkSql job.
      */
@@ -1127,7 +1135,7 @@ export namespace dataproc_v1 {
     scriptVariables?: {[key: string]: string} | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions (defined by IAM or configured by users). A binding can optionally specify a condition, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.JSON Example {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;role/resourcemanager.organizationAdmin&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,       &quot;members&quot;: [&quot;user:eve@example.com&quot;],       &quot;condition&quot;: {         &quot;title&quot;: &quot;expirable access&quot;,         &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,         &quot;expression&quot;: &quot;request.time &lt;         timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,       }     }   ] } YAML Example bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-project-id@appspot.gserviceaccount.com   role: roles/resourcemanager.organizationAdmin - members:   - user:eve@example.com   role: roles/resourcemanager.organizationViewer   condition:     title: expirable access     description: Does not grant access after Sep 2020     expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) For a description of IAM and its features, see the IAM developer&#39;s guide (https://cloud.google.com/iam/docs).
+   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions (defined by IAM or configured by users). A binding can optionally specify a condition, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.JSON Example {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,       &quot;members&quot;: [&quot;user:eve@example.com&quot;],       &quot;condition&quot;: {         &quot;title&quot;: &quot;expirable access&quot;,         &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,         &quot;expression&quot;: &quot;request.time &lt;         timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,       }     }   ] } YAML Example bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-project-id@appspot.gserviceaccount.com   role: roles/resourcemanager.organizationAdmin - members:   - user:eve@example.com   role: roles/resourcemanager.organizationViewer   condition:     title: expirable access     description: Does not grant access after Sep 2020     expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) For a description of IAM and its features, see the IAM developer&#39;s guide (https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -1267,6 +1275,35 @@ export namespace dataproc_v1 {
     mainJarFileUri?: string | null;
     /**
      * Optional. A mapping of property names to values, used to configure Spark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
+     */
+    properties?: {[key: string]: string} | null;
+  }
+  /**
+   * A Cloud Dataproc job for running Apache SparkR (https://spark.apache.org/docs/latest/sparkr.html) applications on YARN.
+   */
+  export interface Schema$SparkRJob {
+    /**
+     * Optional. HCFS URIs of archives to be extracted in the working directory of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
+     */
+    archiveUris?: string[] | null;
+    /**
+     * Optional. The arguments to pass to the driver. Do not include arguments, such as --conf, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+     */
+    args?: string[] | null;
+    /**
+     * Optional. HCFS URIs of files to be copied to the working directory of R drivers and distributed tasks. Useful for naively parallel tasks.
+     */
+    fileUris?: string[] | null;
+    /**
+     * Optional. The runtime log config for job execution.
+     */
+    loggingConfig?: Schema$LoggingConfig;
+    /**
+     * Required. The HCFS URI of the main R file to use as the driver. Must be a .R file.
+     */
+    mainRFileUri?: string | null;
+    /**
+     * Optional. A mapping of property names to values, used to configure SparkR. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
   }
@@ -1573,7 +1610,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.create, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
-     * @param {().AutoscalingPolicy} params.resource Request body data
+     * @param {().AutoscalingPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1839,7 +1876,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1991,7 +2028,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.locations.autoscalingPolicies.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -2048,7 +2085,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2172,7 +2209,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2254,7 +2291,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
-     * @param {().AutoscalingPolicy} params.resource Request body data
+     * @param {().AutoscalingPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2515,7 +2552,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}
-     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {().WorkflowTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2876,7 +2913,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3001,7 +3038,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
-     * @param {().InstantiateWorkflowTemplateRequest} params.resource Request body data
+     * @param {().InstantiateWorkflowTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3129,7 +3166,7 @@ export namespace dataproc_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
-     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {().WorkflowTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3343,7 +3380,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.locations.workflowTemplates.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -3400,7 +3437,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3524,7 +3561,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3659,7 +3696,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
-     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {().WorkflowTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3935,7 +3972,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The "resource name" of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.create, the resource name  of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.autoscalingPolicies.create, the resource name  of the location has the following format:  projects/{project_id}/locations/{location}
-     * @param {().AutoscalingPolicy} params.resource Request body data
+     * @param {().AutoscalingPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4201,7 +4238,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4353,7 +4390,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.autoscalingPolicies.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -4410,7 +4447,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4534,7 +4571,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4616,7 +4653,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id} For projects.locations.autoscalingPolicies, the resource name of the  policy has the following format:  projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}
-     * @param {().AutoscalingPolicy} params.resource Request body data
+     * @param {().AutoscalingPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4880,7 +4917,7 @@ export namespace dataproc_v1 {
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
      * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
-     * @param {().Cluster} params.resource Request body data
+     * @param {().Cluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5142,7 +5179,7 @@ export namespace dataproc_v1 {
      * @param {string} params.clusterName Required. The cluster name.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {().DiagnoseClusterRequest} params.resource Request body data
+     * @param {().DiagnoseClusterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5394,7 +5431,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5670,7 +5707,7 @@ export namespace dataproc_v1 {
      * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
      * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {string=} params.updateMask Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the following fields can be updated:<table>  <tbody>  <tr>  <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>  <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>  </tr>  <tr>  <td><strong><em>config.worker_config.num_instances</em></strong></td>  <td>Resize primary worker group</td>  </tr>  <tr>  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>  <td>Resize secondary worker group</td>  </tr>  <tr>  <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or  change autoscaling policies</td>  </tr>  </tbody>  </table>
-     * @param {().Cluster} params.resource Request body data
+     * @param {().Cluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5739,7 +5776,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.clusters.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -5796,7 +5833,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5920,7 +5957,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6282,7 +6319,7 @@ export namespace dataproc_v1 {
      * @param {string} params.jobId Required. The job ID.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
      * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {().CancelJobRequest} params.resource Request body data
+     * @param {().CancelJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6653,7 +6690,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6927,7 +6964,7 @@ export namespace dataproc_v1 {
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
      * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
      * @param {string=} params.updateMask Required. Specifies the path, relative to <code>Job</code>, of the field to update. For example, to update the labels of a Job the <code>update_mask</code> parameter would be specified as <code>labels</code>, and the PATCH request body would specify the new value. <strong>Note:</strong> Currently, <code>labels</code> is the only field that can be updated.
-     * @param {().Job} params.resource Request body data
+     * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6993,7 +7030,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.jobs.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -7050,7 +7087,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7177,7 +7214,7 @@ export namespace dataproc_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
      * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
-     * @param {().SubmitJobRequest} params.resource Request body data
+     * @param {().SubmitJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7300,7 +7337,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7984,7 +8021,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8186,7 +8223,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.operations.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8243,7 +8280,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8367,7 +8404,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8620,7 +8657,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,create, the resource name of the  region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.create, the resource name of  the location has the following format:  projects/{project_id}/locations/{location}
-     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {().WorkflowTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8981,7 +9018,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9106,7 +9143,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates.instantiate, the resource name  of the template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
-     * @param {().InstantiateWorkflowTemplateRequest} params.resource Request body data
+     * @param {().InstantiateWorkflowTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9234,7 +9271,7 @@ export namespace dataproc_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource  name of the region has the following format:  projects/{project_id}/regions/{region} For projects.locations.workflowTemplates.instantiateinline, the  resource name of the location has the following format:  projects/{project_id}/locations/{location}
      * @param {string=} params.requestId Optional. A tag that prevents multiple concurrent workflow instances with the same tag from running. This mitigates risk of concurrent instances started due to retries.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
-     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {().WorkflowTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9448,7 +9485,7 @@ export namespace dataproc_v1 {
 
     /**
      * dataproc.projects.regions.workflowTemplates.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -9505,7 +9542,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9629,7 +9666,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9764,7 +9801,7 @@ export namespace dataproc_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/regions/{region}/workflowTemplates/{template_id} For projects.locations.workflowTemplates, the resource name of the  template has the following format:  projects/{project_id}/locations/{location}/workflowTemplates/{template_id}
-     * @param {().WorkflowTemplate} params.resource Request body data
+     * @param {().WorkflowTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

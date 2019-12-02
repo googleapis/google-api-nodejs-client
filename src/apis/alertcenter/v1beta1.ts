@@ -788,7 +788,7 @@ export namespace alertcenter_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchDeleteAlertsRequest} params.resource Request body data
+     * @param {().BatchDeleteAlertsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -869,7 +869,7 @@ export namespace alertcenter_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().BatchUndeleteAlertsRequest} params.resource Request body data
+     * @param {().BatchUndeleteAlertsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1244,7 +1244,7 @@ export namespace alertcenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.alertId Required. The identifier of the alert to undelete.
-     * @param {().UndeleteAlertRequest} params.resource Request body data
+     * @param {().UndeleteAlertRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1438,7 +1438,7 @@ export namespace alertcenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.alertId Required. The identifier of the alert this feedback belongs to.
      * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
-     * @param {().AlertFeedback} params.resource Request body data
+     * @param {().AlertFeedback} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1714,7 +1714,7 @@ export namespace alertcenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
-     * @param {().Settings} params.resource Request body data
+     * @param {().Settings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

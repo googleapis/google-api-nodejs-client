@@ -446,7 +446,7 @@ export namespace accessapproval_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      * @param {string=} params.updateMask For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.resource Request body data
+     * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -576,7 +576,7 @@ export namespace accessapproval_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.resource Request body data
+     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -652,7 +652,7 @@ export namespace accessapproval_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.resource Request body data
+     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1118,7 +1118,7 @@ export namespace accessapproval_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      * @param {string=} params.updateMask For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.resource Request body data
+     * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1248,7 +1248,7 @@ export namespace accessapproval_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.resource Request body data
+     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1324,7 +1324,7 @@ export namespace accessapproval_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.resource Request body data
+     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1790,7 +1790,7 @@ export namespace accessapproval_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the settings. Format is one of: <ol>   <li>"projects/{project_id}/accessApprovalSettings"</li>   <li>"folders/{folder_id}/accessApprovalSettings"</li>   <li>"organizations/{organization_id}/accessApprovalSettings"</li> <ol>
      * @param {string=} params.updateMask For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.resource Request body data
+     * @param {().AccessApprovalSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1920,7 +1920,7 @@ export namespace accessapproval_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.resource Request body data
+     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1996,7 +1996,7 @@ export namespace accessapproval_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.resource Request body data
+     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

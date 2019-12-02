@@ -37,9 +37,7 @@ export {alertcenter_v1beta1} from './apis/alertcenter/v1beta1';
 export {analytics_v2_4} from './apis/analytics/v2.4';
 export {analytics_v3} from './apis/analytics/v3';
 export {analyticsreporting_v4} from './apis/analyticsreporting/v4';
-export {
-  androiddeviceprovisioning_v1,
-} from './apis/androiddeviceprovisioning/v1';
+export {androiddeviceprovisioning_v1} from './apis/androiddeviceprovisioning/v1';
 export {androidenterprise_v1} from './apis/androidenterprise/v1';
 export {androidmanagement_v1} from './apis/androidmanagement/v1';
 export {androidpublisher_v1_1} from './apis/androidpublisher/v1.1';
@@ -54,12 +52,11 @@ export {bigquery_v2} from './apis/bigquery/v2';
 export {bigqueryconnection_v1beta1} from './apis/bigqueryconnection/v1beta1';
 export {bigquerydatatransfer_v1} from './apis/bigquerydatatransfer/v1';
 export {bigqueryreservation_v1} from './apis/bigqueryreservation/v1';
-export {
-  bigqueryreservation_v1alpha2,
-} from './apis/bigqueryreservation/v1alpha2';
+export {bigqueryreservation_v1alpha2} from './apis/bigqueryreservation/v1alpha2';
 export {bigqueryreservation_v1beta1} from './apis/bigqueryreservation/v1beta1';
 export {bigtableadmin_v1} from './apis/bigtableadmin/v1';
 export {bigtableadmin_v2} from './apis/bigtableadmin/v2';
+export {billingbudgets_v1beta1} from './apis/billingbudgets/v1beta1';
 export {binaryauthorization_v1} from './apis/binaryauthorization/v1';
 export {binaryauthorization_v1beta1} from './apis/binaryauthorization/v1beta1';
 export {blogger_v2} from './apis/blogger/v2';
@@ -83,18 +80,12 @@ export {cloudidentity_v1beta1} from './apis/cloudidentity/v1beta1';
 export {cloudiot_v1} from './apis/cloudiot/v1';
 export {cloudkms_v1} from './apis/cloudkms/v1';
 export {cloudprivatecatalog_v1beta1} from './apis/cloudprivatecatalog/v1beta1';
-export {
-  cloudprivatecatalogproducer_v1beta1,
-} from './apis/cloudprivatecatalogproducer/v1beta1';
+export {cloudprivatecatalogproducer_v1beta1} from './apis/cloudprivatecatalogproducer/v1beta1';
 export {cloudprofiler_v2} from './apis/cloudprofiler/v2';
 export {cloudresourcemanager_v1} from './apis/cloudresourcemanager/v1';
-export {
-  cloudresourcemanager_v1beta1,
-} from './apis/cloudresourcemanager/v1beta1';
+export {cloudresourcemanager_v1beta1} from './apis/cloudresourcemanager/v1beta1';
 export {cloudresourcemanager_v2} from './apis/cloudresourcemanager/v2';
-export {
-  cloudresourcemanager_v2beta1,
-} from './apis/cloudresourcemanager/v2beta1';
+export {cloudresourcemanager_v2beta1} from './apis/cloudresourcemanager/v2beta1';
 export {cloudscheduler_v1} from './apis/cloudscheduler/v1';
 export {cloudscheduler_v1beta1} from './apis/cloudscheduler/v1beta1';
 export {cloudsearch_v1} from './apis/cloudsearch/v1';
@@ -118,6 +109,7 @@ export {containeranalysis_v1beta1} from './apis/containeranalysis/v1beta1';
 export {content_v2_1} from './apis/content/v2.1';
 export {content_v2} from './apis/content/v2';
 export {customsearch_v1} from './apis/customsearch/v1';
+export {datacatalog_v1beta1} from './apis/datacatalog/v1beta1';
 export {dataflow_v1b3} from './apis/dataflow/v1b3';
 export {datafusion_v1beta1} from './apis/datafusion/v1beta1';
 export {dataproc_v1} from './apis/dataproc/v1';
@@ -128,7 +120,7 @@ export {datastore_v1beta3} from './apis/datastore/v1beta3';
 export {deploymentmanager_alpha} from './apis/deploymentmanager/alpha';
 export {deploymentmanager_v2} from './apis/deploymentmanager/v2';
 export {deploymentmanager_v2beta} from './apis/deploymentmanager/v2beta';
-export {dfareporting_v3_3} from './apis/dfareporting/v3.3';
+export {dfareporting_v3_4} from './apis/dfareporting/v3.4';
 export {dialogflow_v2} from './apis/dialogflow/v2';
 export {dialogflow_v2beta1} from './apis/dialogflow/v2beta1';
 export {digitalassetlinks_v1} from './apis/digitalassetlinks/v1';
@@ -139,6 +131,7 @@ export {dns_v1beta2} from './apis/dns/v1beta2';
 export {dns_v2beta1} from './apis/dns/v2beta1';
 export {docs_v1} from './apis/docs/v1';
 export {domainsrdap_v1} from './apis/domainsrdap/v1';
+export {doubleclickbidmanager_v1_1} from './apis/doubleclickbidmanager/v1.1';
 export {doubleclickbidmanager_v1} from './apis/doubleclickbidmanager/v1';
 export {doubleclicksearch_v2} from './apis/doubleclicksearch/v2';
 export {drive_v2} from './apis/drive/v2';
@@ -159,12 +152,8 @@ export {fitness_v1} from './apis/fitness/v1';
 export {fusiontables_v1} from './apis/fusiontables/v1';
 export {fusiontables_v2} from './apis/fusiontables/v2';
 export {games_v1} from './apis/games/v1';
-export {
-  gamesConfiguration_v1configuration,
-} from './apis/gamesConfiguration/v1configuration';
-export {
-  gamesManagement_v1management,
-} from './apis/gamesManagement/v1management';
+export {gamesConfiguration_v1configuration} from './apis/gamesConfiguration/v1configuration';
+export {gamesManagement_v1management} from './apis/gamesManagement/v1management';
 export {genomics_v1} from './apis/genomics/v1';
 export {genomics_v1alpha2} from './apis/genomics/v1alpha2';
 export {genomics_v2alpha1} from './apis/genomics/v2alpha1';
@@ -218,9 +207,7 @@ export {recommender_v1beta1} from './apis/recommender/v1beta1';
 export {redis_v1} from './apis/redis/v1';
 export {redis_v1beta1} from './apis/redis/v1beta1';
 export {remotebuildexecution_v1} from './apis/remotebuildexecution/v1';
-export {
-  remotebuildexecution_v1alpha,
-} from './apis/remotebuildexecution/v1alpha';
+export {remotebuildexecution_v1alpha} from './apis/remotebuildexecution/v1alpha';
 export {remotebuildexecution_v2} from './apis/remotebuildexecution/v2';
 export {replicapool_v1beta1} from './apis/replicapool/v1beta1';
 export {reseller_v1} from './apis/reseller/v1';
@@ -238,9 +225,7 @@ export {securitycenter_v1p1alpha1} from './apis/securitycenter/v1p1alpha1';
 export {servicebroker_v1} from './apis/servicebroker/v1';
 export {servicebroker_v1alpha1} from './apis/servicebroker/v1alpha1';
 export {servicebroker_v1beta1} from './apis/servicebroker/v1beta1';
-export {
-  serviceconsumermanagement_v1,
-} from './apis/serviceconsumermanagement/v1';
+export {serviceconsumermanagement_v1} from './apis/serviceconsumermanagement/v1';
 export {servicecontrol_v1} from './apis/servicecontrol/v1';
 export {servicemanagement_v1} from './apis/servicemanagement/v1';
 export {servicenetworking_v1} from './apis/servicenetworking/v1';
@@ -256,9 +241,7 @@ export {speech_v1} from './apis/speech/v1';
 export {speech_v1p1beta1} from './apis/speech/v1p1beta1';
 export {speech_v2beta1} from './apis/speech/v2beta1';
 export {sql_v1beta4} from './apis/sql/v1beta4';
-export {sqladmin_v1beta4} from './apis/sqladmin/v1beta4';
 export {storage_v1} from './apis/storage/v1';
-export {storage_v1beta1} from './apis/storage/v1beta1';
 export {storage_v1beta2} from './apis/storage/v1beta2';
 export {storagetransfer_v1} from './apis/storagetransfer/v1';
 export {streetviewpublish_v1} from './apis/streetviewpublish/v1';

@@ -1623,7 +1623,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the account in storage.
      * @param {string} params.path GTM Accounts's API relative path. Example: accounts/{account_id}
-     * @param {().Account} params.resource Request body data
+     * @param {().Account} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1759,7 +1759,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Account's API relative path. Example: accounts/{account_id}.
-     * @param {().Container} params.resource Request body data
+     * @param {().Container} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2058,7 +2058,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container in storage.
      * @param {string} params.path GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
-     * @param {().Container} params.resource Request body data
+     * @param {().Container} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2219,7 +2219,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
-     * @param {().Environment} params.resource Request body data
+     * @param {().Environment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2517,7 +2517,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.path GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
-     * @param {().Environment} params.resource Request body data
+     * @param {().Environment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2593,7 +2593,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
      * @param {string} params.path GTM Environment's API relative path. Example: accounts/{account_id}/containers/{container_id}/environments/{environment_id}
-     * @param {().Environment} params.resource Request body data
+     * @param {().Environment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3225,7 +3225,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
      * @param {string} params.path GTM ContainerVersion's API relative path. Example: accounts/{account_id}/containers/{container_id}/versions/{version_id}
-     * @param {().ContainerVersion} params.resource Request body data
+     * @param {().ContainerVersion} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3637,7 +3637,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM parent Container's API relative path. Example: accounts/{account_id}/containers/{container_id}
-     * @param {().Workspace} params.resource Request body data
+     * @param {().Workspace} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3712,7 +3712,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.path GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().CreateContainerVersionRequestVersionOptions} params.resource Request body data
+     * @param {().CreateContainerVersionRequestVersionOptions} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4179,7 +4179,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the entity_in_workspace in the merge conflict.
      * @param {string} params.path GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Entity} params.resource Request body data
+     * @param {().Entity} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4329,7 +4329,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the workspace in storage.
      * @param {string} params.path GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Workspace} params.resource Request body data
+     * @param {().Workspace} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4960,7 +4960,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Folder} params.resource Request body data
+     * @param {().Folder} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5330,7 +5330,7 @@ export namespace tagmanager_v2 {
      * @param {string=} params.tagId The tags to be moved to the folder.
      * @param {string=} params.triggerId The triggers to be moved to the folder.
      * @param {string=} params.variableId The variables to be moved to the folder.
-     * @param {().Folder} params.resource Request body data
+     * @param {().Folder} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5480,7 +5480,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the folder in storage.
      * @param {string} params.path GTM Folder's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
-     * @param {().Folder} params.resource Request body data
+     * @param {().Folder} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5700,7 +5700,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Tag} params.resource Request body data
+     * @param {().Tag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6068,7 +6068,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the tag in storage.
      * @param {string} params.path GTM Tag's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
-     * @param {().Tag} params.resource Request body data
+     * @param {().Tag} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6243,7 +6243,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().CustomTemplate} params.resource Request body data
+     * @param {().CustomTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6619,7 +6619,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the templates in storage.
      * @param {string} params.path GTM Custom Template's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/templates/{template_id}
-     * @param {().CustomTemplate} params.resource Request body data
+     * @param {().CustomTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6796,7 +6796,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspaces's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Trigger} params.resource Request body data
+     * @param {().Trigger} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7168,7 +7168,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the trigger in storage.
      * @param {string} params.path GTM Trigger's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
-     * @param {().Trigger} params.resource Request body data
+     * @param {().Trigger} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7343,7 +7343,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Variable} params.resource Request body data
+     * @param {().Variable} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7715,7 +7715,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the variable in storage.
      * @param {string} params.path GTM Variable's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
-     * @param {().Variable} params.resource Request body data
+     * @param {().Variable} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7890,7 +7890,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
-     * @param {().Zone} params.resource Request body data
+     * @param {().Zone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8258,7 +8258,7 @@ export namespace tagmanager_v2 {
      * @param {object} params Parameters for request
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the zone in storage.
      * @param {string} params.path GTM Zone's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/zones/{zone_id}
-     * @param {().Zone} params.resource Request body data
+     * @param {().Zone} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8433,7 +8433,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent GTM Account's API relative path. Example: accounts/{account_id}
-     * @param {().UserPermission} params.resource Request body data
+     * @param {().UserPermission} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8734,7 +8734,7 @@ export namespace tagmanager_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.path GTM UserPermission's API relative path. Example: accounts/{account_id}/user_permissions/{user_permission_id}
-     * @param {().UserPermission} params.resource Request body data
+     * @param {().UserPermission} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

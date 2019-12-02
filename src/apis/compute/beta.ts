@@ -636,7 +636,7 @@ export namespace compute_beta {
      */
     instanceProperties?: Schema$AllocationSpecificSKUAllocationReservedInstanceProperties;
     /**
-     * [OutputOnly] Indicates how many instances are in use.
+     * [Output Only] Indicates how many instances are in use.
      */
     inUseCount?: string | null;
   }
@@ -824,7 +824,7 @@ export namespace compute_beta {
      */
     selfLink?: string | null;
     /**
-     * [Output Only] The status of the autoscaler configuration.
+     * [Output Only] The status of the autoscaler configuration. Current set of possible values: PENDING: Autoscaler backend hasn&#39;t read new/updated configuration DELETING: Configuration is being deleted ACTIVE: Configuration is acknowledged to be effective. Some warnings might or might not be present in the status_details field. ERROR: Configuration has errors. Actionable for users. Details are present in the status_details field. New values might be added in the future.
      */
     status?: string | null;
     /**
@@ -923,7 +923,7 @@ export namespace compute_beta {
      */
     message?: string | null;
     /**
-     * The type of error returned.
+     * The type of error, warning or notice returned. Current set of possible values: ALL_INSTANCES_UNHEALTHY (WARNING): All instances in the instance group are unhealthy (not in RUNNING state). BACKEND_SERVICE_DOES_NOT_EXIST (ERROR): There is no backend service attached to the instance group. CAPPED_AT_MAX_NUM_REPLICAS (WARNING): Autoscaler recommends size bigger than maxNumReplicas. CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE (WARNING): The custom metric samples are not exported often enough to be a credible base for autoscaling. CUSTOM_METRIC_INVALID (ERROR): The custom metric that was specified does not exist or does not have the necessary labels. MIN_EQUALS_MAX (WARNING): The minNumReplicas is equal to maxNumReplicas. This means the autoscaler cannot add or remove instances from the instance group. MISSING_CUSTOM_METRIC_DATA_POINTS (WARNING): The autoscaler did not receive any data from the custom metric configured for autoscaling. MISSING_LOAD_BALANCING_DATA_POINTS (WARNING): The autoscaler is configured to scale based on a load balancing signal but the instance group has not received any requests from the load balancer. MODE_OFF (WARNING): Autoscaling is turned off. The number of instances in the group won&#39;t change automatically. The autoscaling configuration is preserved. MODE_ONLY_UP (WARNING): Autoscaling is in the &quot;Autoscale only up&quot; mode. Instances in the group will be only added. MORE_THAN_ONE_BACKEND_SERVICE (ERROR): The instance group cannot be autoscaled because it has more than one backend service attached to it. NOT_ENOUGH_QUOTA_AVAILABLE (ERROR): Exceeded quota for necessary resources, such as CPU, number of instances and so on. REGION_RESOURCE_STOCKOUT (ERROR): Showed only for regional autoscalers: there is a resource stockout in the chosen region. SCALING_TARGET_DOES_NOT_EXIST (ERROR): The target to be scaled does not exist. UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION (ERROR): Autoscaling does not work with an HTTP/S load balancer that has been configured for maxRate. ZONE_RESOURCE_STOCKOUT (ERROR): For zonal autoscalers: there is a resource stockout in the chosen zone. For regional autoscalers: in at least one of the zones you&#39;re using there is a resource stockout. New values might be added in the future. Some of the values might not be available in all API versions.
      */
     type?: string | null;
   }
@@ -5971,7 +5971,7 @@ export namespace compute_beta {
     port?: number | null;
   }
   /**
-   * Represents a collection of network endpoints.
+   * Represents a collection of network endpoints.  For more information read Setting up network endpoint groups in load balancing. (== resource_for v1.networkEndpointGroups ==) (== resource_for beta.networkEndpointGroups ==)
    */
   export interface Schema$NetworkEndpointGroup {
     /**
@@ -6320,7 +6320,7 @@ export namespace compute_beta {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==) NextID: 15
+   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==) NextID: 16
    */
   export interface Schema$NodeGroup {
     /**
@@ -7874,7 +7874,7 @@ export namespace compute_beta {
    */
   export interface Schema$Reservation {
     /**
-     * [OutputOnly] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
+     * [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      */
     commitment?: string | null;
     /**
@@ -8688,7 +8688,7 @@ export namespace compute_beta {
      */
     enable?: boolean | null;
     /**
-     * Specifies the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT.
+     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:  - ERRORS_ONLY: Export logs only for connection failures.  - TRANSLATIONS_ONLY: Export logs only for successful connections.  - ALL: Export logs for all connections, successful and unsuccessful.
      */
     filter?: string | null;
   }
@@ -8797,11 +8797,11 @@ export namespace compute_beta {
      */
     autoAllocatedNatIps?: string[] | null;
     /**
-     * A list of IPs auto-allocated for NAT that are in drain mode. Example: [&quot;1.1.1.1&quot;, ?179.12.26.133?].
+     * A list of IPs auto-allocated for NAT that are in drain mode. Example: [&quot;1.1.1.1&quot;, &quot;179.12.26.133&quot;].
      */
     drainAutoAllocatedNatIps?: string[] | null;
     /**
-     * A list of IPs user-allocated for NAT that are in drain mode. Example: [&quot;1.1.1.1&quot;, ?179.12.26.133?].
+     * A list of IPs user-allocated for NAT that are in drain mode. Example: [&quot;1.1.1.1&quot;, &quot;179.12.26.133&quot;].
      */
     drainUserAllocatedNatIps?: string[] | null;
     /**
@@ -9098,7 +9098,7 @@ export namespace compute_beta {
    */
   export interface Schema$ShieldedInstanceIdentity {
     /**
-     * An Endorsement Key (EK) issued to the Shielded Instance&#39;s vTPM.
+     * An Endorsement Key (EK) made by the RSA 2048 algorithm issued to the Shielded Instance&#39;s vTPM.
      */
     encryptionKey?: Schema$ShieldedInstanceIdentityEntry;
     /**
@@ -9106,7 +9106,7 @@ export namespace compute_beta {
      */
     kind?: string | null;
     /**
-     * An Attestation Key (AK) issued to the Shielded Instance&#39;s vTPM.
+     * An Attestation Key (AK) made by the RSA 2048 algorithm issued to the Shielded Instance&#39;s vTPM.
      */
     signingKey?: Schema$ShieldedInstanceIdentityEntry;
   }
@@ -9218,7 +9218,7 @@ export namespace compute_beta {
      */
     description?: string | null;
     /**
-     * [Output Only] Size of the snapshot, specified in GB.
+     * [Output Only] Size of the source disk, specified in GB.
      */
     diskSizeGb?: string | null;
     /**
@@ -12627,7 +12627,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Address} params.resource Request body data
+     * @param {().Address} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12908,7 +12908,7 @@ export namespace compute_beta {
      * @param {string} params.region The region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {().RegionSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13045,7 +13045,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13779,7 +13779,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone for this request.
-     * @param {().Autoscaler} params.resource Request body data
+     * @param {().Autoscaler} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14059,7 +14059,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone for this request.
-     * @param {().Autoscaler} params.resource Request body data
+     * @param {().Autoscaler} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14196,7 +14196,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14336,7 +14336,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone for this request.
-     * @param {().Autoscaler} params.resource Request body data
+     * @param {().Autoscaler} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14631,7 +14631,7 @@ export namespace compute_beta {
      * @param {string} params.backendBucket Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().SignedUrlKey} params.resource Request body data
+     * @param {().SignedUrlKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15095,7 +15095,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendBucket} params.resource Request body data
+     * @param {().BackendBucket} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15369,7 +15369,7 @@ export namespace compute_beta {
      * @param {string} params.backendBucket Name of the BackendBucket resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendBucket} params.resource Request body data
+     * @param {().BackendBucket} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15504,7 +15504,7 @@ export namespace compute_beta {
      * @param {string} params.backendBucket Name of the BackendBucket resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendBucket} params.resource Request body data
+     * @param {().BackendBucket} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15773,7 +15773,7 @@ export namespace compute_beta {
      * @param {string} params.backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().SignedUrlKey} params.resource Request body data
+     * @param {().SignedUrlKey} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16389,7 +16389,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
      * @param {string} params.project
-     * @param {().ResourceGroupReference} params.resource Request body data
+     * @param {().ResourceGroupReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16526,7 +16526,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendService} params.resource Request body data
+     * @param {().BackendService} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16802,7 +16802,7 @@ export namespace compute_beta {
      * @param {string} params.backendService Name of the BackendService resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendService} params.resource Request body data
+     * @param {().BackendService} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16937,7 +16937,7 @@ export namespace compute_beta {
      * @param {string} params.backendService Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().SecurityPolicyReference} params.resource Request body data
+     * @param {().SecurityPolicyReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17070,7 +17070,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17209,7 +17209,7 @@ export namespace compute_beta {
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendService} params.resource Request body data
+     * @param {().BackendService} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17574,7 +17574,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().DisksAddResourcePoliciesRequest} params.resource Request body data
+     * @param {().DisksAddResourcePoliciesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17855,7 +17855,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().Snapshot} params.resource Request body data
+     * @param {().Snapshot} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18326,7 +18326,7 @@ export namespace compute_beta {
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().Disk} params.resource Request body data
+     * @param {().Disk} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18543,7 +18543,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().DisksRemoveResourcePoliciesRequest} params.resource Request body data
+     * @param {().DisksRemoveResourcePoliciesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18683,7 +18683,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().DisksResizeRequest} params.resource Request body data
+     * @param {().DisksResizeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18759,7 +18759,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {().ZoneSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18895,7 +18895,7 @@ export namespace compute_beta {
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ZoneSetLabelsRequest} params.resource Request body data
+     * @param {().ZoneSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -19031,7 +19031,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20123,7 +20123,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ExternalVpnGateway} params.resource Request body data
+     * @param {().ExternalVpnGateway} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20279,7 +20279,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {().GlobalSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20355,7 +20355,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -20877,7 +20877,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Firewall} params.resource Request body data
+     * @param {().Firewall} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -21149,7 +21149,7 @@ export namespace compute_beta {
      * @param {string} params.firewall Name of the firewall rule to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Firewall} params.resource Request body data
+     * @param {().Firewall} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -21281,7 +21281,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -21420,7 +21420,7 @@ export namespace compute_beta {
      * @param {string} params.firewall Name of the firewall rule to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Firewall} params.resource Request body data
+     * @param {().Firewall} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22126,7 +22126,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ForwardingRule} params.resource Request body data
+     * @param {().ForwardingRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22349,7 +22349,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ForwardingRule} params.resource Request body data
+     * @param {().ForwardingRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22487,7 +22487,7 @@ export namespace compute_beta {
      * @param {string} params.region The region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {().RegionSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22625,7 +22625,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetReference} params.resource Request body data
+     * @param {().TargetReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -22762,7 +22762,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -23400,7 +23400,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Address} params.resource Request body data
+     * @param {().Address} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -23672,7 +23672,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {().GlobalSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -23805,7 +23805,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24331,7 +24331,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ForwardingRule} params.resource Request body data
+     * @param {().ForwardingRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24549,7 +24549,7 @@ export namespace compute_beta {
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ForwardingRule} params.resource Request body data
+     * @param {().ForwardingRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24682,7 +24682,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {().GlobalSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24816,7 +24816,7 @@ export namespace compute_beta {
      * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetReference} params.resource Request body data
+     * @param {().TargetReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -24949,7 +24949,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -26240,7 +26240,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HealthCheck} params.resource Request body data
+     * @param {().HealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -26514,7 +26514,7 @@ export namespace compute_beta {
      * @param {string} params.healthCheck Name of the HealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HealthCheck} params.resource Request body data
+     * @param {().HealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -26647,7 +26647,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -26786,7 +26786,7 @@ export namespace compute_beta {
      * @param {string} params.healthCheck Name of the HealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HealthCheck} params.resource Request body data
+     * @param {().HealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -27364,7 +27364,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HttpHealthCheck} params.resource Request body data
+     * @param {().HttpHealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -27640,7 +27640,7 @@ export namespace compute_beta {
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HttpHealthCheck} params.resource Request body data
+     * @param {().HttpHealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -27773,7 +27773,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -27912,7 +27912,7 @@ export namespace compute_beta {
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HttpHealthCheck} params.resource Request body data
+     * @param {().HttpHealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -28463,7 +28463,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HttpsHealthCheck} params.resource Request body data
+     * @param {().HttpsHealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -28741,7 +28741,7 @@ export namespace compute_beta {
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HttpsHealthCheck} params.resource Request body data
+     * @param {().HttpsHealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -28874,7 +28874,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -29013,7 +29013,7 @@ export namespace compute_beta {
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HttpsHealthCheck} params.resource Request body data
+     * @param {().HttpsHealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -29438,7 +29438,7 @@ export namespace compute_beta {
      * @param {string} params.image Image name.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().DeprecationStatus} params.resource Request body data
+     * @param {().DeprecationStatus} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -29892,7 +29892,7 @@ export namespace compute_beta {
      * @param {boolean=} params.forceCreate Force image creation if true.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Image} params.resource Request body data
+     * @param {().Image} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -30105,7 +30105,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {().GlobalSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -30236,7 +30236,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {().GlobalSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -30368,7 +30368,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -30725,7 +30725,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {().InstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersAbandonInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -30952,7 +30952,7 @@ export namespace compute_beta {
      * @param {string} params.instanceGroupManager The name of the managed instance group, should conform to RFC1035.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located. Should conform to RFC1035.
-     * @param {().InstanceGroupManagersApplyUpdatesRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersApplyUpdatesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -31032,7 +31032,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located. It should conform to RFC1035.
-     * @param {().InstanceGroupManagersCreateInstancesRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersCreateInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -31303,7 +31303,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {().InstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersDeleteInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -31571,7 +31571,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
-     * @param {().InstanceGroupManager} params.resource Request body data
+     * @param {().InstanceGroupManager} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -32030,7 +32030,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
-     * @param {().InstanceGroupManager} params.resource Request body data
+     * @param {().InstanceGroupManager} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -32168,7 +32168,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {().InstanceGroupManagersRecreateInstancesRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersRecreateInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -32445,7 +32445,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {().InstanceGroupManagersResizeAdvancedRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersResizeAdvancedRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -32583,7 +32583,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {().InstanceGroupManagersSetAutoHealingRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersSetAutoHealingRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -32723,7 +32723,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {().InstanceGroupManagersSetInstanceTemplateRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersSetInstanceTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -32861,7 +32861,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {().InstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
+     * @param {().InstanceGroupManagersSetTargetPoolsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -32998,7 +32998,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -33141,7 +33141,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
-     * @param {().InstanceGroupManager} params.resource Request body data
+     * @param {().InstanceGroupManager} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -33820,7 +33820,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the instance group is located.
-     * @param {().InstanceGroupsAddInstancesRequest} params.resource Request body data
+     * @param {().InstanceGroupsAddInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -34367,7 +34367,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where you want to create the instance group.
-     * @param {().InstanceGroup} params.resource Request body data
+     * @param {().InstanceGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -34666,7 +34666,7 @@ export namespace compute_beta {
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
-     * @param {().InstanceGroupsListInstancesRequest} params.resource Request body data
+     * @param {().InstanceGroupsListInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -34811,7 +34811,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the instance group is located.
-     * @param {().InstanceGroupsRemoveInstancesRequest} params.resource Request body data
+     * @param {().InstanceGroupsRemoveInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -34949,7 +34949,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the instance group is located.
-     * @param {().InstanceGroupsSetNamedPortsRequest} params.resource Request body data
+     * @param {().InstanceGroupsSetNamedPortsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -35086,7 +35086,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -35522,7 +35522,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().AccessConfig} params.resource Request body data
+     * @param {().AccessConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -35805,7 +35805,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().AttachedDisk} params.resource Request body data
+     * @param {().AttachedDisk} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -36934,7 +36934,7 @@ export namespace compute_beta {
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string=} params.sourceInstanceTemplate Specifies instance template to create the instance.  This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:   - https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate  - projects/project/global/instanceTemplates/instanceTemplate  - global/instanceTemplates/instanceTemplate
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().Instance} params.resource Request body data
+     * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -37441,7 +37441,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().InstancesResumeRequest} params.resource Request body data
+     * @param {().InstancesResumeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -37800,7 +37800,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {().ZoneSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -37936,7 +37936,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().InstancesSetLabelsRequest} params.resource Request body data
+     * @param {().InstancesSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38074,7 +38074,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().InstancesSetMachineResourcesRequest} params.resource Request body data
+     * @param {().InstancesSetMachineResourcesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38212,7 +38212,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().InstancesSetMachineTypeRequest} params.resource Request body data
+     * @param {().InstancesSetMachineTypeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38350,7 +38350,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().Metadata} params.resource Request body data
+     * @param {().Metadata} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38488,7 +38488,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().InstancesSetMinCpuPlatformRequest} params.resource Request body data
+     * @param {().InstancesSetMinCpuPlatformRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38626,7 +38626,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().Scheduling} params.resource Request body data
+     * @param {().Scheduling} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38764,7 +38764,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().InstancesSetServiceAccountRequest} params.resource Request body data
+     * @param {().InstancesSetServiceAccountRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38842,7 +38842,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ShieldedInstanceIntegrityPolicy} params.resource Request body data
+     * @param {().ShieldedInstanceIntegrityPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -38922,7 +38922,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ShieldedVmIntegrityPolicy} params.resource Request body data
+     * @param {().ShieldedVmIntegrityPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -39062,7 +39062,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().Tags} params.resource Request body data
+     * @param {().Tags} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -39410,7 +39410,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().InstancesStartWithEncryptionKeyRequest} params.resource Request body data
+     * @param {().InstancesStartWithEncryptionKeyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -39759,7 +39759,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -39905,7 +39905,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().AccessConfig} params.resource Request body data
+     * @param {().AccessConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -39983,7 +39983,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().DisplayDevice} params.resource Request body data
+     * @param {().DisplayDevice} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -40126,7 +40126,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().NetworkInterface} params.resource Request body data
+     * @param {().NetworkInterface} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -40206,7 +40206,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ShieldedInstanceConfig} params.resource Request body data
+     * @param {().ShieldedInstanceConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -40286,7 +40286,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ShieldedVmConfig} params.resource Request body data
+     * @param {().ShieldedVmConfig} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -41895,7 +41895,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().InstanceTemplate} params.resource Request body data
+     * @param {().InstanceTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -42114,7 +42114,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {().GlobalSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -42245,7 +42245,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -42963,7 +42963,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().InterconnectAttachment} params.resource Request body data
+     * @param {().InterconnectAttachment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -43193,7 +43193,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().InterconnectAttachment} params.resource Request body data
+     * @param {().InterconnectAttachment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -43271,7 +43271,7 @@ export namespace compute_beta {
      * @param {string} params.region The region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {().RegionSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -43408,7 +43408,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -44430,7 +44430,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Interconnect} params.resource Request body data
+     * @param {().Interconnect} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -44704,7 +44704,7 @@ export namespace compute_beta {
      * @param {string} params.interconnect Name of the interconnect to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Interconnect} params.resource Request body data
+     * @param {().Interconnect} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -44780,7 +44780,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {().GlobalSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -44913,7 +44913,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -45540,7 +45540,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().License} params.resource Request body data
+     * @param {().License} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -45692,7 +45692,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {().GlobalSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -46496,7 +46496,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
-     * @param {().NetworkEndpointGroupsAttachEndpointsRequest} params.resource Request body data
+     * @param {().NetworkEndpointGroupsAttachEndpointsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -46653,7 +46653,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
-     * @param {().NetworkEndpointGroupsDetachEndpointsRequest} params.resource Request body data
+     * @param {().NetworkEndpointGroupsDetachEndpointsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -46810,7 +46810,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone where you want to create the network endpoint group. It should comply with RFC1035.
-     * @param {().NetworkEndpointGroup} params.resource Request body data
+     * @param {().NetworkEndpointGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -46972,7 +46972,7 @@ export namespace compute_beta {
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the network endpoint group is located. It should comply with RFC1035.
-     * @param {().NetworkEndpointGroupsListEndpointsRequest} params.resource Request body data
+     * @param {().NetworkEndpointGroupsListEndpointsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -47072,7 +47072,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -47471,7 +47471,7 @@ export namespace compute_beta {
      * @param {string} params.network Name of the network resource to add peering to.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().NetworksAddPeeringRequest} params.resource Request body data
+     * @param {().NetworksAddPeeringRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -47854,7 +47854,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Network} params.resource Request body data
+     * @param {().Network} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -48215,7 +48215,7 @@ export namespace compute_beta {
      * @param {string} params.network Name of the network to update.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Network} params.resource Request body data
+     * @param {().Network} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -48348,7 +48348,7 @@ export namespace compute_beta {
      * @param {string} params.network Name of the network resource to remove peering from.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().NetworksRemovePeeringRequest} params.resource Request body data
+     * @param {().NetworksRemovePeeringRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -48610,7 +48610,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -48691,7 +48691,7 @@ export namespace compute_beta {
      * @param {string} params.network Name of the network resource which the updated peering is belonging to.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().NetworksUpdatePeeringRequest} params.resource Request body data
+     * @param {().NetworksUpdatePeeringRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -49042,7 +49042,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().NodeGroupsAddNodesRequest} params.resource Request body data
+     * @param {().NodeGroupsAddNodesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -49278,7 +49278,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().NodeGroupsDeleteNodesRequest} params.resource Request body data
+     * @param {().NodeGroupsDeleteNodesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -49506,7 +49506,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().NodeGroup} params.resource Request body data
+     * @param {().NodeGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -49741,7 +49741,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {().ZoneSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -49817,7 +49817,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().NodeGroupsSetNodeTemplateRequest} params.resource Request body data
+     * @param {().NodeGroupsSetNodeTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -49894,7 +49894,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -50624,7 +50624,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().NodeTemplate} params.resource Request body data
+     * @param {().NodeTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -50780,7 +50780,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetPolicyRequest} params.resource Request body data
+     * @param {().RegionSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -50855,7 +50855,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -51705,7 +51705,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().PacketMirroring} params.resource Request body data
+     * @param {().PacketMirroring} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -51862,7 +51862,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().PacketMirroring} params.resource Request body data
+     * @param {().PacketMirroring} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -51939,7 +51939,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -52388,7 +52388,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ProjectsDisableXpnResourceRequest} params.resource Request body data
+     * @param {().ProjectsDisableXpnResourceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -52641,7 +52641,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ProjectsEnableXpnResourceRequest} params.resource Request body data
+     * @param {().ProjectsEnableXpnResourceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -53172,7 +53172,7 @@ export namespace compute_beta {
      * @param {string=} params.order_by Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
-     * @param {().ProjectsListXpnHostsRequest} params.resource Request body data
+     * @param {().ProjectsListXpnHostsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -53301,7 +53301,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().DiskMoveRequest} params.resource Request body data
+     * @param {().DiskMoveRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -53430,7 +53430,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().InstanceMoveRequest} params.resource Request body data
+     * @param {().InstanceMoveRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -53559,7 +53559,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Metadata} params.resource Request body data
+     * @param {().Metadata} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -53637,7 +53637,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ProjectsSetDefaultNetworkTierRequest} params.resource Request body data
+     * @param {().ProjectsSetDefaultNetworkTierRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -53768,7 +53768,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().UsageExportLocation} params.resource Request body data
+     * @param {().UsageExportLocation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -54439,7 +54439,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Autoscaler} params.resource Request body data
+     * @param {().Autoscaler} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -54722,7 +54722,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Autoscaler} params.resource Request body data
+     * @param {().Autoscaler} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -54859,7 +54859,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -54999,7 +54999,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Autoscaler} params.resource Request body data
+     * @param {().Autoscaler} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -55592,7 +55592,7 @@ export namespace compute_beta {
      * @param {string} params.backendService Name of the BackendService resource for which to get health.
      * @param {string} params.project
      * @param {string} params.region Name of the region scoping this request.
-     * @param {().ResourceGroupReference} params.resource Request body data
+     * @param {().ResourceGroupReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -55733,7 +55733,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendService} params.resource Request body data
+     * @param {().BackendService} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -56017,7 +56017,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendService} params.resource Request body data
+     * @param {().BackendService} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -56154,7 +56154,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -56297,7 +56297,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().BackendService} params.resource Request body data
+     * @param {().BackendService} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -56925,7 +56925,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Commitment} params.resource Request body data
+     * @param {().Commitment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -57148,7 +57148,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionCommitmentsUpdateReservationsRequest} params.resource Request body data
+     * @param {().RegionCommitmentsUpdateReservationsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -57368,7 +57368,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionDisksAddResourcePoliciesRequest} params.resource Request body data
+     * @param {().RegionDisksAddResourcePoliciesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -57446,7 +57446,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Snapshot} params.resource Request body data
+     * @param {().Snapshot} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -57749,7 +57749,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
-     * @param {().Disk} params.resource Request body data
+     * @param {().Disk} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -57903,7 +57903,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionDisksRemoveResourcePoliciesRequest} params.resource Request body data
+     * @param {().RegionDisksRemoveResourcePoliciesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -57983,7 +57983,7 @@ export namespace compute_beta {
      * @param {string} params.project The project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionDisksResizeRequest} params.resource Request body data
+     * @param {().RegionDisksResizeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -58060,7 +58060,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetPolicyRequest} params.resource Request body data
+     * @param {().RegionSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -58136,7 +58136,7 @@ export namespace compute_beta {
      * @param {string} params.region The region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {().RegionSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -58213,7 +58213,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -58990,7 +58990,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HealthCheck} params.resource Request body data
+     * @param {().HealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -59147,7 +59147,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HealthCheck} params.resource Request body data
+     * @param {().HealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -59225,7 +59225,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().HealthCheck} params.resource Request body data
+     * @param {().HealthCheck} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -59530,7 +59530,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionInstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupManagersAbandonInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -59607,7 +59607,7 @@ export namespace compute_beta {
      * @param {string} params.instanceGroupManager The name of the managed instance group, should conform to RFC1035.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request, should conform to RFC1035.
-     * @param {().RegionInstanceGroupManagersApplyUpdatesRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupManagersApplyUpdatesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -59687,7 +59687,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region where the managed instance group is located. It should conform to RFC1035.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionInstanceGroupManagersCreateInstancesRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupManagersCreateInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -59958,7 +59958,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionInstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupManagersDeleteInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -60226,7 +60226,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().InstanceGroupManager} params.resource Request body data
+     * @param {().InstanceGroupManager} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -60692,7 +60692,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().InstanceGroupManager} params.resource Request body data
+     * @param {().InstanceGroupManager} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -60830,7 +60830,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionInstanceGroupManagersRecreateRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupManagersRecreateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -61105,7 +61105,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionInstanceGroupManagersSetAutoHealingRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupManagersSetAutoHealingRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -61245,7 +61245,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionInstanceGroupManagersSetTemplateRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupManagersSetTemplateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -61383,7 +61383,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionInstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupManagersSetTargetPoolsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -61520,7 +61520,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -61663,7 +61663,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().InstanceGroupManager} params.resource Request body data
+     * @param {().InstanceGroupManager} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -62580,7 +62580,7 @@ export namespace compute_beta {
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
-     * @param {().RegionInstanceGroupsListInstancesRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupsListInstancesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -62727,7 +62727,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().RegionInstanceGroupsSetNamedPortsRequest} params.resource Request body data
+     * @param {().RegionInstanceGroupsSetNamedPortsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -62864,7 +62864,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -64051,7 +64051,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().SslCertificate} params.resource Request body data
+     * @param {().SslCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -64469,7 +64469,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetHttpProxy} params.resource Request body data
+     * @param {().TargetHttpProxy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -64626,7 +64626,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
-     * @param {().UrlMapReference} params.resource Request body data
+     * @param {().UrlMapReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -64994,7 +64994,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetHttpsProxy} params.resource Request body data
+     * @param {().TargetHttpsProxy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -65153,7 +65153,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
-     * @param {().RegionTargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {().RegionTargetHttpsProxiesSetSslCertificatesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -65231,7 +65231,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy to set a URL map for.
-     * @param {().UrlMapReference} params.resource Request body data
+     * @param {().UrlMapReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -65626,7 +65626,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
-     * @param {().UrlMap} params.resource Request body data
+     * @param {().UrlMap} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -65704,7 +65704,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      * @param {string} params.urlMap Name of the UrlMap scoping this request.
-     * @param {().CacheInvalidationRule} params.resource Request body data
+     * @param {().CacheInvalidationRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -65861,7 +65861,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      * @param {string} params.urlMap Name of the UrlMap resource to patch.
-     * @param {().UrlMap} params.resource Request body data
+     * @param {().UrlMap} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -65939,7 +65939,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      * @param {string} params.urlMap Name of the UrlMap resource to update.
-     * @param {().UrlMap} params.resource Request body data
+     * @param {().UrlMap} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -66016,7 +66016,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.urlMap Name of the UrlMap resource to be validated as.
-     * @param {().RegionUrlMapsValidateRequest} params.resource Request body data
+     * @param {().RegionUrlMapsValidateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -66630,7 +66630,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone for this request.
-     * @param {().Reservation} params.resource Request body data
+     * @param {().Reservation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -66787,7 +66787,7 @@ export namespace compute_beta {
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.reservation Name of the reservation to update.
      * @param {string} params.zone Name of the zone for this request.
-     * @param {().ReservationsResizeRequest} params.resource Request body data
+     * @param {().ReservationsResizeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -66864,7 +66864,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().ZoneSetPolicyRequest} params.resource Request body data
+     * @param {().ZoneSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -66939,7 +66939,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -67574,7 +67574,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().ResourcePolicy} params.resource Request body data
+     * @param {().ResourcePolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -67730,7 +67730,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetPolicyRequest} params.resource Request body data
+     * @param {().RegionSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -67805,7 +67805,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -68783,7 +68783,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Router} params.resource Request body data
+     * @param {().Router} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -69065,7 +69065,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.router Name of the Router resource to patch.
-     * @param {().Router} params.resource Request body data
+     * @param {().Router} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -69201,7 +69201,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to query.
-     * @param {().Router} params.resource Request body data
+     * @param {().Router} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -69341,7 +69341,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -69484,7 +69484,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.router Name of the Router resource to update.
-     * @param {().Router} params.resource Request body data
+     * @param {().Router} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -70162,7 +70162,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Route} params.resource Request body data
+     * @param {().Route} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -70432,7 +70432,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -70623,7 +70623,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.securityPolicy Name of the security policy to update.
      * @param {boolean=} params.validateOnly If true, the request will not be committed.
-     * @param {().SecurityPolicyRule} params.resource Request body data
+     * @param {().SecurityPolicyRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -71087,7 +71087,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {boolean=} params.validateOnly If true, the request will not be committed.
-     * @param {().SecurityPolicy} params.resource Request body data
+     * @param {().SecurityPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -71467,7 +71467,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.securityPolicy Name of the security policy to update.
-     * @param {().SecurityPolicy} params.resource Request body data
+     * @param {().SecurityPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -71545,7 +71545,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.securityPolicy Name of the security policy to update.
      * @param {boolean=} params.validateOnly If true, the request will not be committed.
-     * @param {().SecurityPolicyRule} params.resource Request body data
+     * @param {().SecurityPolicyRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -71697,7 +71697,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {().GlobalSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -71830,7 +71830,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -72662,7 +72662,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetPolicyRequest} params.resource Request body data
+     * @param {().GlobalSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -72793,7 +72793,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetLabelsRequest} params.resource Request body data
+     * @param {().GlobalSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -72926,7 +72926,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -73556,7 +73556,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().SslCertificate} params.resource Request body data
+     * @param {().SslCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -73830,7 +73830,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -74202,7 +74202,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().SslPolicy} params.resource Request body data
+     * @param {().SslPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -74449,7 +74449,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
-     * @param {().SslPolicy} params.resource Request body data
+     * @param {().SslPolicy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -74525,7 +74525,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -75110,7 +75110,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.subnetwork Name of the Subnetwork resource to update.
-     * @param {().SubnetworksExpandIpCidrRangeRequest} params.resource Request body data
+     * @param {().SubnetworksExpandIpCidrRangeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -75506,7 +75506,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().Subnetwork} params.resource Request body data
+     * @param {().Subnetwork} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -75877,7 +75877,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.subnetwork Name of the Subnetwork resource to patch.
-     * @param {().Subnetwork} params.resource Request body data
+     * @param {().Subnetwork} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -76014,7 +76014,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetPolicyRequest} params.resource Request body data
+     * @param {().RegionSetPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -76150,7 +76150,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.subnetwork Name of the Subnetwork resource.
-     * @param {().SubnetworksSetPrivateIpGoogleAccessRequest} params.resource Request body data
+     * @param {().SubnetworksSetPrivateIpGoogleAccessRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -76289,7 +76289,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -77095,7 +77095,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetHttpProxy} params.resource Request body data
+     * @param {().TargetHttpProxy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -77370,7 +77370,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
-     * @param {().UrlMapReference} params.resource Request body data
+     * @param {().UrlMapReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -77503,7 +77503,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -78148,7 +78148,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetHttpsProxy} params.resource Request body data
+     * @param {().TargetHttpsProxy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -78368,7 +78368,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set the QUIC override policy for. The name should conform to RFC1035.
-     * @param {().TargetHttpsProxiesSetQuicOverrideRequest} params.resource Request body data
+     * @param {().TargetHttpsProxiesSetQuicOverrideRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -78502,7 +78502,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
-     * @param {().TargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {().TargetHttpsProxiesSetSslCertificatesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -78579,7 +78579,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
-     * @param {().SslPolicyReference} params.resource Request body data
+     * @param {().SslPolicyReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -78713,7 +78713,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose URL map is to be set.
-     * @param {().UrlMapReference} params.resource Request body data
+     * @param {().UrlMapReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -78846,7 +78846,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -79641,7 +79641,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.zone Name of the zone scoping this request.
-     * @param {().TargetInstance} params.resource Request body data
+     * @param {().TargetInstance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -79923,7 +79923,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -80227,7 +80227,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the target pool to add a health check to.
-     * @param {().TargetPoolsAddHealthCheckRequest} params.resource Request body data
+     * @param {().TargetPoolsAddHealthCheckRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -80365,7 +80365,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the TargetPool resource to add instances to.
-     * @param {().TargetPoolsAddInstanceRequest} params.resource Request body data
+     * @param {().TargetPoolsAddInstanceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -80911,7 +80911,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to which the queried instance belongs.
-     * @param {().InstanceReference} params.resource Request body data
+     * @param {().InstanceReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -81049,7 +81049,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetPool} params.resource Request body data
+     * @param {().TargetPool} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -81331,7 +81331,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the target pool to remove health checks from.
-     * @param {().TargetPoolsRemoveHealthCheckRequest} params.resource Request body data
+     * @param {().TargetPoolsRemoveHealthCheckRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -81469,7 +81469,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the TargetPool resource to remove instances from.
-     * @param {().TargetPoolsRemoveInstanceRequest} params.resource Request body data
+     * @param {().TargetPoolsRemoveInstanceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -81608,7 +81608,7 @@ export namespace compute_beta {
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetPool Name of the TargetPool resource to set a backup pool for.
-     * @param {().TargetReference} params.resource Request body data
+     * @param {().TargetReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -81745,7 +81745,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -82470,7 +82470,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetSslProxy} params.resource Request body data
+     * @param {().TargetSslProxy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -82745,7 +82745,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose BackendService resource is to be set.
-     * @param {().TargetSslProxiesSetBackendServiceRequest} params.resource Request body data
+     * @param {().TargetSslProxiesSetBackendServiceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -82879,7 +82879,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose ProxyHeader is to be set.
-     * @param {().TargetSslProxiesSetProxyHeaderRequest} params.resource Request body data
+     * @param {().TargetSslProxiesSetProxyHeaderRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -83013,7 +83013,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
-     * @param {().TargetSslProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {().TargetSslProxiesSetSslCertificatesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -83090,7 +83090,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
-     * @param {().SslPolicyReference} params.resource Request body data
+     * @param {().SslPolicyReference} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -83223,7 +83223,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -83828,7 +83828,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetTcpProxy} params.resource Request body data
+     * @param {().TargetTcpProxy} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -84103,7 +84103,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource whose BackendService resource is to be set.
-     * @param {().TargetTcpProxiesSetBackendServiceRequest} params.resource Request body data
+     * @param {().TargetTcpProxiesSetBackendServiceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -84237,7 +84237,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource whose ProxyHeader is to be set.
-     * @param {().TargetTcpProxiesSetProxyHeaderRequest} params.resource Request body data
+     * @param {().TargetTcpProxiesSetProxyHeaderRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -84929,7 +84929,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().TargetVpnGateway} params.resource Request body data
+     * @param {().TargetVpnGateway} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -85154,7 +85154,7 @@ export namespace compute_beta {
      * @param {string} params.region The region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {().RegionSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -85291,7 +85291,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -85950,7 +85950,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().UrlMap} params.resource Request body data
+     * @param {().UrlMap} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -86082,7 +86082,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.urlMap Name of the UrlMap scoping this request.
-     * @param {().CacheInvalidationRule} params.resource Request body data
+     * @param {().CacheInvalidationRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -86356,7 +86356,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.urlMap Name of the UrlMap resource to patch.
-     * @param {().UrlMap} params.resource Request body data
+     * @param {().UrlMap} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -86488,7 +86488,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -86627,7 +86627,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.urlMap Name of the UrlMap resource to update.
-     * @param {().UrlMap} params.resource Request body data
+     * @param {().UrlMap} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -86759,7 +86759,7 @@ export namespace compute_beta {
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to be validated as.
-     * @param {().UrlMapsValidateRequest} params.resource Request body data
+     * @param {().UrlMapsValidateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -87389,7 +87389,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().VpnGateway} params.resource Request body data
+     * @param {().VpnGateway} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -87545,7 +87545,7 @@ export namespace compute_beta {
      * @param {string} params.region The region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {().RegionSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -88271,7 +88271,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {().VpnTunnel} params.resource Request body data
+     * @param {().VpnTunnel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -88493,7 +88493,7 @@ export namespace compute_beta {
      * @param {string} params.region The region for this request.
      * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().RegionSetLabelsRequest} params.resource Request body data
+     * @param {().RegionSetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -88630,7 +88630,7 @@ export namespace compute_beta {
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.resource Request body data
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

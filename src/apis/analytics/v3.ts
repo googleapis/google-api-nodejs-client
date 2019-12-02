@@ -3260,7 +3260,7 @@ export namespace analytics_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create the user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3412,7 +3412,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to update the account-user link for.
      * @param {string} params.linkId Link ID to update the account-user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3568,7 +3568,7 @@ export namespace analytics_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().HashClientIdRequest} params.resource Request body data
+     * @param {().HashClientIdRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3852,7 +3852,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID for the custom dimension to create.
      * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-     * @param {().CustomDimension} params.resource Request body data
+     * @param {().CustomDimension} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4007,7 +4007,7 @@ export namespace analytics_v3 {
      * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
      * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
      * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-     * @param {().CustomDimension} params.resource Request body data
+     * @param {().CustomDimension} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4085,7 +4085,7 @@ export namespace analytics_v3 {
      * @param {string} params.customDimensionId Custom dimension ID for the custom dimension to update.
      * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
      * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
-     * @param {().CustomDimension} params.resource Request body data
+     * @param {().CustomDimension} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4368,7 +4368,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID for the custom metric to create.
      * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
-     * @param {().CustomMetric} params.resource Request body data
+     * @param {().CustomMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4523,7 +4523,7 @@ export namespace analytics_v3 {
      * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
      * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
      * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-     * @param {().CustomMetric} params.resource Request body data
+     * @param {().CustomMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4601,7 +4601,7 @@ export namespace analytics_v3 {
      * @param {string} params.customMetricId Custom metric ID for the custom metric to update.
      * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
      * @param {string} params.webPropertyId Web property ID for the custom metric to update.
-     * @param {().CustomMetric} params.resource Request body data
+     * @param {().CustomMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4971,7 +4971,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create the experiment for.
      * @param {string} params.profileId View (Profile) ID to create the experiment for.
      * @param {string} params.webPropertyId Web property ID to create the experiment for.
-     * @param {().Experiment} params.resource Request body data
+     * @param {().Experiment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5127,7 +5127,7 @@ export namespace analytics_v3 {
      * @param {string} params.experimentId Experiment ID of the experiment to update.
      * @param {string} params.profileId View (Profile) ID of the experiment to update.
      * @param {string} params.webPropertyId Web property ID of the experiment to update.
-     * @param {().Experiment} params.resource Request body data
+     * @param {().Experiment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5210,7 +5210,7 @@ export namespace analytics_v3 {
      * @param {string} params.experimentId Experiment ID of the experiment to update.
      * @param {string} params.profileId View (Profile) ID of the experiment to update.
      * @param {string} params.webPropertyId Web property ID of the experiment to update.
-     * @param {().Experiment} params.resource Request body data
+     * @param {().Experiment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5603,7 +5603,7 @@ export namespace analytics_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create filter for.
-     * @param {().Filter} params.resource Request body data
+     * @param {().Filter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5749,7 +5749,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to which the filter belongs.
      * @param {string} params.filterId ID of the filter to be updated.
-     * @param {().Filter} params.resource Request body data
+     * @param {().Filter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5823,7 +5823,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to which the filter belongs.
      * @param {string} params.filterId ID of the filter to be updated.
-     * @param {().Filter} params.resource Request body data
+     * @param {().Filter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6092,7 +6092,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create the goal for.
      * @param {string} params.profileId View (Profile) ID to create the goal for.
      * @param {string} params.webPropertyId Web property ID to create the goal for.
-     * @param {().Goal} params.resource Request body data
+     * @param {().Goal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6244,7 +6244,7 @@ export namespace analytics_v3 {
      * @param {string} params.goalId Index of the goal to be updated.
      * @param {string} params.profileId View (Profile) ID to update the goal.
      * @param {string} params.webPropertyId Web property ID to update the goal.
-     * @param {().Goal} params.resource Request body data
+     * @param {().Goal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6320,7 +6320,7 @@ export namespace analytics_v3 {
      * @param {string} params.goalId Index of the goal to be updated.
      * @param {string} params.profileId View (Profile) ID to update the goal.
      * @param {string} params.webPropertyId Web property ID to update the goal.
-     * @param {().Goal} params.resource Request body data
+     * @param {().Goal} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6690,7 +6690,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create profile filter link for.
      * @param {string} params.profileId Profile ID to create filter link for.
      * @param {string} params.webPropertyId Web property Id to create profile filter link for.
-     * @param {().ProfileFilterLink} params.resource Request body data
+     * @param {().ProfileFilterLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6846,7 +6846,7 @@ export namespace analytics_v3 {
      * @param {string} params.linkId ID of the profile filter link to be updated.
      * @param {string} params.profileId Profile ID to which filter link belongs
      * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-     * @param {().ProfileFilterLink} params.resource Request body data
+     * @param {().ProfileFilterLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6924,7 +6924,7 @@ export namespace analytics_v3 {
      * @param {string} params.linkId ID of the profile filter link to be updated.
      * @param {string} params.profileId Profile ID to which filter link belongs
      * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
-     * @param {().ProfileFilterLink} params.resource Request body data
+     * @param {().ProfileFilterLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7315,7 +7315,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create the view (profile) for.
      * @param {string} params.webPropertyId Web property ID to create the view (profile) for.
-     * @param {().Profile} params.resource Request body data
+     * @param {().Profile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7465,7 +7465,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to which the view (profile) belongs
      * @param {string} params.profileId ID of the view (profile) to be updated.
      * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-     * @param {().Profile} params.resource Request body data
+     * @param {().Profile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7540,7 +7540,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to which the view (profile) belongs
      * @param {string} params.profileId ID of the view (profile) to be updated.
      * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
-     * @param {().Profile} params.resource Request body data
+     * @param {().Profile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7833,7 +7833,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create the user link for.
      * @param {string} params.profileId View (Profile) ID to create the user link for.
      * @param {string} params.webPropertyId Web Property ID to create the user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7989,7 +7989,7 @@ export namespace analytics_v3 {
      * @param {string} params.linkId Link ID to update the user link for.
      * @param {string} params.profileId View (Profile ID) to update the user link for.
      * @param {string} params.webPropertyId Web Property ID to update the user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8329,7 +8329,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account ID for which to create the remarketing audience.
      * @param {string} params.webPropertyId Web property ID for which to create the remarketing audience.
-     * @param {().RemarketingAudience} params.resource Request body data
+     * @param {().RemarketingAudience} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8486,7 +8486,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId The account ID of the remarketing audience to update.
      * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
      * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
-     * @param {().RemarketingAudience} params.resource Request body data
+     * @param {().RemarketingAudience} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8563,7 +8563,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId The account ID of the remarketing audience to update.
      * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
      * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
-     * @param {().RemarketingAudience} params.resource Request body data
+     * @param {().RemarketingAudience} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9056,7 +9056,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to create the unsampled report for.
      * @param {string} params.profileId View (Profile) ID to create the unsampled report for.
      * @param {string} params.webPropertyId Web property ID to create the unsampled report for.
-     * @param {().UnsampledReport} params.resource Request body data
+     * @param {().UnsampledReport} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9320,7 +9320,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account Id for the uploads to be deleted.
      * @param {string} params.customDataSourceId Custom data source Id for the uploads to be deleted.
      * @param {string} params.webPropertyId Web property Id for the uploads to be deleted.
-     * @param {().AnalyticsDataimportDeleteUploadDataRequest} params.resource Request body data
+     * @param {().AnalyticsDataimportDeleteUploadDataRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9830,7 +9830,7 @@ export namespace analytics_v3 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create the web property for.
-     * @param {().Webproperty} params.resource Request body data
+     * @param {().Webproperty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9982,7 +9982,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to which the web property belongs
      * @param {string} params.webPropertyId Web property ID
-     * @param {().Webproperty} params.resource Request body data
+     * @param {().Webproperty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10058,7 +10058,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to which the web property belongs
      * @param {string} params.webPropertyId Web property ID
-     * @param {().Webproperty} params.resource Request body data
+     * @param {().Webproperty} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10395,7 +10395,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId ID of the Google Analytics account to create the link for.
      * @param {string} params.webPropertyId Web property ID to create the link for.
-     * @param {().EntityAdWordsLink} params.resource Request body data
+     * @param {().EntityAdWordsLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10549,7 +10549,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId ID of the account which the given web property belongs to.
      * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
      * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
-     * @param {().EntityAdWordsLink} params.resource Request body data
+     * @param {().EntityAdWordsLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10630,7 +10630,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId ID of the account which the given web property belongs to.
      * @param {string} params.webPropertyAdWordsLinkId Web property-Google Ads link ID.
      * @param {string} params.webPropertyId Web property ID to retrieve the Google Ads link for.
-     * @param {().EntityAdWordsLink} params.resource Request body data
+     * @param {().EntityAdWordsLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10927,7 +10927,7 @@ export namespace analytics_v3 {
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account ID to create the user link for.
      * @param {string} params.webPropertyId Web Property ID to create the user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11081,7 +11081,7 @@ export namespace analytics_v3 {
      * @param {string} params.accountId Account ID to update the account-user link for.
      * @param {string} params.linkId Link ID to update the account-user link for.
      * @param {string} params.webPropertyId Web property ID to update the account-user link for.
-     * @param {().EntityUserLink} params.resource Request body data
+     * @param {().EntityUserLink} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11353,7 +11353,7 @@ export namespace analytics_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AccountTicket} params.resource Request body data
+     * @param {().AccountTicket} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11428,7 +11428,7 @@ export namespace analytics_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AccountTreeRequest} params.resource Request body data
+     * @param {().AccountTreeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11546,7 +11546,7 @@ export namespace analytics_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().UserDeletionRequest} params.resource Request body data
+     * @param {().UserDeletionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -14,21 +14,23 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {sqladmin_v1beta4} from './v1beta4';
+import {billingbudgets_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  v1beta4: sqladmin_v1beta4.Sqladmin,
+  v1beta1: billingbudgets_v1beta1.Billingbudgets,
 };
 
-export function sqladmin(version: 'v1beta4'): sqladmin_v1beta4.Sqladmin;
-export function sqladmin(
-  options: sqladmin_v1beta4.Options
-): sqladmin_v1beta4.Sqladmin;
-export function sqladmin<T = sqladmin_v1beta4.Sqladmin>(
+export function billingbudgets(
+  version: 'v1beta1'
+): billingbudgets_v1beta1.Billingbudgets;
+export function billingbudgets(
+  options: billingbudgets_v1beta1.Options
+): billingbudgets_v1beta1.Billingbudgets;
+export function billingbudgets<T = billingbudgets_v1beta1.Billingbudgets>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta4' | sqladmin_v1beta4.Options
+  versionOrOptions: 'v1beta1' | billingbudgets_v1beta1.Options
 ) {
-  return getAPI<T>('sqladmin', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('billingbudgets', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

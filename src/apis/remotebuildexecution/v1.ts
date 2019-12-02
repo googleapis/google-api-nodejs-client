@@ -747,6 +747,23 @@ export namespace remotebuildexecution_v1 {
     workerPools?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
   }
   /**
+   * The request used for `UpdateInstance`.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest {
+    /**
+     * Whether to enable Stackdriver logging for this instance.
+     */
+    loggingEnabled?: boolean | null;
+    /**
+     * Name of the instance to update. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     */
+    name?: string | null;
+    /**
+     * The fields to update.
+     */
+    updateMask?: string | null;
+  }
+  /**
    * The request used for UpdateWorkerPool.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest {
@@ -1207,7 +1224,7 @@ export namespace remotebuildexecution_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName Name of the media that is being downloaded.  See ReadRequest.resource_name.
-     * @param  {object} params.resource Media resource metadata
+     * @param  {object} params.requestBody Media resource metadata
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -1341,7 +1358,7 @@ export namespace remotebuildexecution_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().GoogleLongrunningCancelOperationRequest} params.resource Request body data
+     * @param {().GoogleLongrunningCancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

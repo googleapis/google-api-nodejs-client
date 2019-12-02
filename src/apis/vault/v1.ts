@@ -859,7 +859,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().AddMatterPermissionsRequest} params.resource Request body data
+     * @param {().AddMatterPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -936,7 +936,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().CloseMatterRequest} params.resource Request body data
+     * @param {().CloseMatterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1009,7 +1009,7 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Matter} params.resource Request body data
+     * @param {().Matter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1294,7 +1294,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().RemoveMatterPermissionsRequest} params.resource Request body data
+     * @param {().RemoveMatterPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1367,7 +1367,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().ReopenMatterRequest} params.resource Request body data
+     * @param {().ReopenMatterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1443,7 +1443,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().UndeleteMatterRequest} params.resource Request body data
+     * @param {().UndeleteMatterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1515,7 +1515,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().Matter} params.resource Request body data
+     * @param {().Matter} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1753,7 +1753,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().Export} params.resource Request body data
+     * @param {().Export} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2126,7 +2126,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {().AddHeldAccountsRequest} params.resource Request body data
+     * @param {().AddHeldAccountsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2204,7 +2204,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter ID.
-     * @param {().Hold} params.resource Request body data
+     * @param {().Hold} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2502,7 +2502,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {().RemoveHeldAccountsRequest} params.resource Request body data
+     * @param {().RemoveHeldAccountsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2585,7 +2585,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.holdId The ID of the hold.
      * @param {string} params.matterId The matter ID.
-     * @param {().Hold} params.resource Request body data
+     * @param {().Hold} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2807,7 +2807,7 @@ export namespace vault_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.holdId The hold ID.
      * @param {string} params.matterId The matter ID.
-     * @param {().HeldAccount} params.resource Request body data
+     * @param {().HeldAccount} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3096,7 +3096,7 @@ export namespace vault_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be created.
-     * @param {().SavedQuery} params.resource Request body data
+     * @param {().SavedQuery} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

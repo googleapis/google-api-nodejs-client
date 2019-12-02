@@ -1327,7 +1327,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().CreateContactGroupRequest} params.resource Request body data
+     * @param {().CreateContactGroupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1627,7 +1627,7 @@ export namespace people_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`<var>contact_group_id</var>.
-     * @param {().UpdateContactGroupRequest} params.resource Request body data
+     * @param {().UpdateContactGroupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1807,7 +1807,7 @@ export namespace people_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName Required. The resource name of the contact group to modify.
-     * @param {().ModifyContactGroupMembersRequest} params.resource Request body data
+     * @param {().ModifyContactGroupMembersRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1917,7 +1917,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Person} params.resource Request body data
+     * @param {().Person} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2294,7 +2294,7 @@ export namespace people_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.resourceName The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`<var>person_id</var>.
      * @param {string=} params.updatePersonFields Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
-     * @param {().Person} params.resource Request body data
+     * @param {().Person} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2367,7 +2367,7 @@ export namespace people_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName Required. Person resource name
-     * @param {().UpdateContactPhotoRequest} params.resource Request body data
+     * @param {().UpdateContactPhotoRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

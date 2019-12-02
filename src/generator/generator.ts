@@ -244,7 +244,7 @@ export class Generator {
             'Attempting first generateAPI call...'
           );
           try {
-            const results = await this.generateAPI(api.discoveryRestUrl);
+            await this.generateAPI(api.discoveryRestUrl);
             this.logResult(api.discoveryRestUrl, `GenerateAPI call success!`);
           } catch (e) {
             this.logResult(

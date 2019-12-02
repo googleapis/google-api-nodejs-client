@@ -919,7 +919,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`.
-     * @param {().Configuration} params.resource Request body data
+     * @param {().Configuration} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1222,7 +1222,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The API resource name in the format `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by the server.
      * @param {string=} params.updateMask Required. The field mask applied to the target `Configuration` before updating the fields. To learn more about using field masks, read [FieldMask](/protocol-buffers/docs/reference/google.protobuf#fieldmask) in the Protocol Buffers documentation.
-     * @param {().Configuration} params.resource Request body data
+     * @param {().Configuration} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1377,7 +1377,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
-     * @param {().CustomerApplyConfigurationRequest} params.resource Request body data
+     * @param {().CustomerApplyConfigurationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1605,7 +1605,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The customer managing the device in the format `customers/[CUSTOMER_ID]`.
-     * @param {().CustomerRemoveConfigurationRequest} params.resource Request body data
+     * @param {().CustomerRemoveConfigurationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1678,7 +1678,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
-     * @param {().CustomerUnclaimDeviceRequest} params.resource Request body data
+     * @param {().CustomerUnclaimDeviceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2040,7 +2040,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The parent resource ID in the format `partners/[PARTNER_ID]` that identifies the reseller.
-     * @param {().CreateCustomerRequest} params.resource Request body data
+     * @param {().CreateCustomerRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2238,7 +2238,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().ClaimDeviceRequest} params.resource Request body data
+     * @param {().ClaimDeviceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2314,7 +2314,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().ClaimDevicesRequest} params.resource Request body data
+     * @param {().ClaimDevicesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2389,7 +2389,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().FindDevicesByDeviceIdentifierRequest} params.resource Request body data
+     * @param {().FindDevicesByDeviceIdentifierRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2481,7 +2481,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().FindDevicesByOwnerRequest} params.resource Request body data
+     * @param {().FindDevicesByOwnerRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2634,7 +2634,7 @@ export namespace androiddeviceprovisioning_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.deviceId Required. The ID of the device.
      * @param {string} params.metadataOwnerId Required. The owner of the newly set metadata. Set this to the partner ID.
-     * @param {().UpdateDeviceMetadataRequest} params.resource Request body data
+     * @param {().UpdateDeviceMetadataRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2710,7 +2710,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The ID of the reseller partner.
-     * @param {().UnclaimDeviceRequest} params.resource Request body data
+     * @param {().UnclaimDeviceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2783,7 +2783,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The reseller partner ID.
-     * @param {().UnclaimDevicesRequest} params.resource Request body data
+     * @param {().UnclaimDevicesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2858,7 +2858,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.partnerId Required. The reseller partner ID.
-     * @param {().UpdateDeviceMetadataInBatchRequest} params.resource Request body data
+     * @param {().UpdateDeviceMetadataInBatchRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

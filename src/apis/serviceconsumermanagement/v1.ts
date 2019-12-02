@@ -1139,7 +1139,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     http?: Schema$Http;
     /**
-     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. If empty, the server may choose to generate one instead. Must be no longer than 60 characters.
+     * A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. Must be no longer than 63 characters and only lower case letters, digits, &#39;.&#39;, &#39;_&#39; and &#39;-&#39; are allowed. If empty, the server may choose to generate one instead.
      */
     id?: string | null;
     /**
@@ -1602,7 +1602,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2078,7 +2078,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().AddTenantProjectRequest} params.resource Request body data
+     * @param {().AddTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2154,7 +2154,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().ApplyTenantProjectConfigRequest} params.resource Request body data
+     * @param {().ApplyTenantProjectConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2230,7 +2230,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit that the project will be attached to. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().AttachTenantProjectRequest} params.resource Request body data
+     * @param {().AttachTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2306,7 +2306,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent services/{service}/{collection id}/{resource id} {collection id} is the cloud resource collection type representing the service consumer, for example 'projects', or 'organizations'. {resource id} is the consumer numeric id, such as project number: '123456'. {service} the name of a managed service, such as 'service.googleapis.com'. Enables service binding using the new tenancy unit.
-     * @param {().CreateTenancyUnitRequest} params.resource Request body data
+     * @param {().CreateTenancyUnitRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2454,7 +2454,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().DeleteTenantProjectRequest} params.resource Request body data
+     * @param {().DeleteTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2610,7 +2610,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().RemoveTenantProjectRequest} params.resource Request body data
+     * @param {().RemoveTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2686,7 +2686,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the tenancy unit. Such as 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
-     * @param {().UndeleteTenantProjectRequest} params.resource Request body data
+     * @param {().UndeleteTenantProjectRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

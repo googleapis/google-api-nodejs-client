@@ -415,7 +415,7 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * The ID of the default GCP resource location. It must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations).
+     * The ID of the GCP resource location. It will be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations#types).
      */
     locationId?: string | null;
   }
@@ -866,7 +866,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.project The resource name of the GCP `Project` to which Firebase resources will be added, in the format: <br><code>projects/<var>projectId</var></code> After calling `AddFirebase`, the [`projectId`](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project.FIELDS.project_id) of the GCP `Project` is also the `projectId` of the FirebaseProject.
-     * @param {().AddFirebaseRequest} params.resource Request body data
+     * @param {().AddFirebaseRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -941,7 +941,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent `FirebaseProject` to link to an existing Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().AddGoogleAnalyticsRequest} params.resource Request body data
+     * @param {().AddGoogleAnalyticsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1313,7 +1313,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the Project, in the format: <br><code>projects/<var>projectId</var></code>
      * @param {string=} params.updateMask Specifies which fields to update. <br> <br>If this list is empty, then no state will be updated. <br>Note that the fields `name`, `project_id`, and `project_number` are all immutable.
-     * @param {().FirebaseProject} params.resource Request body data
+     * @param {().FirebaseProject} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1384,7 +1384,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent `FirebaseProject` to unlink from its Google Analytics account, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().RemoveAnalyticsRequest} params.resource Request body data
+     * @param {().RemoveAnalyticsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1691,7 +1691,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().AndroidApp} params.resource Request body data
+     * @param {().AndroidApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1987,7 +1987,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code>
      * @param {string=} params.updateMask Specifies which fields to update. <br>Note that the fields `name`, `appId`, `projectId`, and `packageName` are all immutable.
-     * @param {().AndroidApp} params.resource Request body data
+     * @param {().AndroidApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2149,7 +2149,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent App to which a SHA certificate will be added, in the format: <br><code>projects/<var>projectId</var>/androidApps/<var>appId</var></code> <br>As an <var>appId</var> is a unique identifier, the Unique Resource from Sub-Collection access pattern may be used here, in the format: <br><code>projects/-/androidApps/<var>appId</var></code>
-     * @param {().ShaCertificate} params.resource Request body data
+     * @param {().ShaCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2417,7 +2417,7 @@ export namespace firebase_v1beta1 {
 
     /**
      * firebase.projects.availableLocations.list
-     * @desc Returns a list of valid Google Cloud Platform (GCP) resource locations for the specified Project (including a FirebaseProject). <br> <br>The default GCP resource location of a project defines the geographical location where project resources, such as Cloud Firestore, will be provisioned by default. <br> <br>The returned list are the available [GCP resource locations](https://firebase.google.com/docs/projects/locations). <br> <br>This call checks for any location restrictions for the specified Project and, thus, might return a subset of all possible GCP resource locations. To list all GCP resource locations (regardless of any restrictions), call the endpoint without specifying a `projectId` (that is, `/v1beta1/{parent=projects/-}/listAvailableLocations`). <br> <br>To call `ListAvailableLocations` with a specified project, a member must be at minimum a Viewer of the project. Calls without a specified project do not require any specific project permissions.
+     * @desc Returns a list of valid Google Cloud Platform (GCP) resource locations for the specified Project (including a FirebaseProject). <br> <br>One of these locations can be selected as the Project's [_default_ GCP resource location](https://firebase.google.com/docs/projects/locations), which is the geographical location where project resources, such as Cloud Firestore, will be provisioned by default. However, if the default GCP resource location has already been set for the Project, then this setting cannot be changed. <br> <br>This call checks for any location restrictions for the specified Project and, thus, might return a subset of all possible GCP resource locations. To list all GCP resource locations (regardless of any restrictions), call the endpoint without specifying a `projectId` (that is, `/v1beta1/{parent=projects/-}/listAvailableLocations`). <br> <br>To call `ListAvailableLocations` with a specified project, a member must be at minimum a Viewer of the project. Calls without a specified project do not require any specific project permissions.
      * @alias firebase.projects.availableLocations.list
      * @memberOf! ()
      *
@@ -2536,7 +2536,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The resource name of the Project for which the default GCP resource location will be set, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().FinalizeDefaultLocationRequest} params.resource Request body data
+     * @param {().FinalizeDefaultLocationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2635,7 +2635,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().IosApp} params.resource Request body data
+     * @param {().IosApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2927,7 +2927,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the App, in the format: <br><code>projects/<var>projectId</var>/iosApps/<var>appId</var></code>
      * @param {string=} params.updateMask Specifies which fields to update. <br>Note that the fields `name`, `appId`, `projectId`, and `bundleId` are all immutable.
-     * @param {().IosApp} params.resource Request body data
+     * @param {().IosApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3087,7 +3087,7 @@ export namespace firebase_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
-     * @param {().WebApp} params.resource Request body data
+     * @param {().WebApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3379,7 +3379,7 @@ export namespace firebase_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The fully qualified resource name of the App, for example: <br><code>projects/<var>projectId</var>/webApps/<var>appId</var></code>
      * @param {string=} params.updateMask Specifies which fields to update. <br>Note that the fields `name`, `appId`, and `projectId` are all immutable.
-     * @param {().WebApp} params.resource Request body data
+     * @param {().WebApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

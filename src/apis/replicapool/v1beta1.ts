@@ -544,7 +544,7 @@ export namespace replicapool_v1beta1 {
      * @param {string} params.poolName The name of the replica pool for this request.
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
-     * @param {().PoolsDeleteRequest} params.resource Request body data
+     * @param {().PoolsDeleteRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -690,7 +690,7 @@ export namespace replicapool_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
-     * @param {().Pool} params.resource Request body data
+     * @param {().Pool} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -914,7 +914,7 @@ export namespace replicapool_v1beta1 {
      * @param {string} params.poolName The name of the replica pool for this request.
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
-     * @param {().Template} params.resource Request body data
+     * @param {().Template} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1132,7 +1132,7 @@ export namespace replicapool_v1beta1 {
      * @param {string} params.projectName The project ID for this request.
      * @param {string} params.replicaName The name of the replica for this request.
      * @param {string} params.zone The zone where the replica lives.
-     * @param {().ReplicasDeleteRequest} params.resource Request body data
+     * @param {().ReplicasDeleteRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

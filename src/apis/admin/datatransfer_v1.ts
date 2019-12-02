@@ -510,7 +510,7 @@ export namespace admin_datatransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().DataTransfer} params.resource Request body data
+     * @param {().DataTransfer} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

@@ -258,7 +258,7 @@ export namespace securitycenter_v1beta1 {
      */
     parent?: string | null;
     /**
-     * The full resource name of the Google Cloud Platform (GCP) resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name This field is immutable after creation time.
+     * For findings on Google Cloud Platform (GCP) resources, the full resource name of the GCP resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-GCP resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
     resourceName?: string | null;
     /**
@@ -555,11 +555,11 @@ export namespace securitycenter_v1beta1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if the incoming policy version does not meet the requirements for modifying the stored policy.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a binding (conditional or unconditional) from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, version compliance checks against the stored policy is skipped.
      */
     version?: number | null;
   }
@@ -597,7 +597,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$SecurityMarks {
     /**
-     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:   - Keys and values are treated as case insensitive   - Keys must be between 1 - 256 characters (inclusive)   - Keys must be letters, numbers, underscores, or dashes   - Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
+     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:    * Keys and values are treated as case insensitive   * Keys must be between 1 - 256 characters (inclusive)   * Keys must be letters, numbers, underscores, or dashes   * Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
      */
     marks?: {[key: string]: string} | null;
     /**
@@ -640,7 +640,7 @@ export namespace securitycenter_v1beta1 {
      */
     description?: string | null;
     /**
-     * The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources with the same parent can&#39;t share the same display name. The display name must have a length between 1 and 64 characters (inclusive).
+     * The source&#39;s display name. A source&#39;s display name must be unique amongst its siblings, for example, two sources with the same parent can&#39;t share the same display name. The display name must have a length between 1 and 64 characters (inclusive).
      */
     displayName?: string | null;
     /**
@@ -781,7 +781,7 @@ export namespace securitycenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/organizationSettings".
      * @param {string=} params.updateMask The FieldMask to use when updating the settings resource.
-     * @param {().OrganizationSettings} params.resource Request body data
+     * @param {().OrganizationSettings} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -899,7 +899,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Name of the organization to groupBy. Its format is "organizations/[organization_id]".
-     * @param {().GroupAssetsRequest} params.resource Request body data
+     * @param {().GroupAssetsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1057,7 +1057,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
-     * @param {().RunAssetDiscoveryRequest} params.resource Request body data
+     * @param {().RunAssetDiscoveryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1135,7 +1135,7 @@ export namespace securitycenter_v1beta1 {
      * @param {string} params.name The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      * @param {string=} params.startTime The time at which the updated SecurityMarks take effect.
      * @param {string=} params.updateMask The FieldMask to use when updating the security marks resource.
-     * @param {().SecurityMarks} params.resource Request body data
+     * @param {().SecurityMarks} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1317,7 +1317,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1685,7 +1685,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
-     * @param {().Source} params.resource Request body data
+     * @param {().Source} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1829,7 +1829,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {().GetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1981,7 +1981,7 @@ export namespace securitycenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}"
      * @param {string=} params.updateMask The FieldMask to use when updating the source resource.
-     * @param {().Source} params.resource Request body data
+     * @param {().Source} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2052,7 +2052,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2126,7 +2126,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2339,7 +2339,7 @@ export namespace securitycenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.findingId Required. Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
      * @param {string} params.parent Required. Resource name of the new finding's parent. Its format should be "organizations/[organization_id]/sources/[source_id]".
-     * @param {().Finding} params.resource Request body data
+     * @param {().Finding} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2413,7 +2413,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id}/sources/-
-     * @param {().GroupFindingsRequest} params.resource Request body data
+     * @param {().GroupFindingsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2575,7 +2575,7 @@ export namespace securitycenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
      * @param {string=} params.updateMask The FieldMask to use when updating the finding resource. This field should not be specified when creating a finding.
-     * @param {().Finding} params.resource Request body data
+     * @param {().Finding} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2646,7 +2646,7 @@ export namespace securitycenter_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
-     * @param {().SetFindingStateRequest} params.resource Request body data
+     * @param {().SetFindingStateRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2722,7 +2722,7 @@ export namespace securitycenter_v1beta1 {
      * @param {string} params.name The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      * @param {string=} params.startTime The time at which the updated SecurityMarks take effect.
      * @param {string=} params.updateMask The FieldMask to use when updating the security marks resource.
-     * @param {().SecurityMarks} params.resource Request body data
+     * @param {().SecurityMarks} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

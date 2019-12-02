@@ -480,7 +480,7 @@ export namespace healthcare_v1beta1 {
      */
     action?: string | null;
     /**
-     * List of paths to FHIR fields to be redacted. Each path is a period-separated list where each component is either a field name or FHIR type name, for example: Patient, HumanName. For &quot;choice&quot; types (those defined in the FHIR spec with the form: field[x]) we use two separate components. For example, &quot;deceasedAge.unit&quot; is matched by &quot;Deceased.Age.unit&quot;. Supported types are: AdministrativeGenderCode, Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, MimeTypeCode, Oid, String, Uri, Uuid, Xhtml.
+     * List of paths to FHIR fields to be redacted. Each path is a period-separated list where each component is either a field name or FHIR type name, for example: Patient, HumanName. For &quot;choice&quot; types (those defined in the FHIR spec with the form: field[x]) we use two separate components. For example, &quot;deceasedAge.unit&quot; is matched by &quot;Deceased.Age.unit&quot;. Supported types are: AdministrativeGenderCode, Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml.
      */
     paths?: string[] | null;
   }
@@ -1027,11 +1027,11 @@ export namespace healthcare_v1beta1 {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if the incoming policy version does not meet the requirements for modifying the stored policy.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a binding (conditional or unconditional) from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, version compliance checks against the stored policy is skipped.
      */
     version?: number | null;
   }
@@ -1562,7 +1562,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.datasetId The ID of the dataset that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      * @param {string} params.parent The name of the project where the server creates the dataset. For example, `projects/{project_id}/locations/{location_id}`.
-     * @param {().Dataset} params.resource Request body data
+     * @param {().Dataset} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1688,7 +1688,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.sourceDataset Source dataset resource name. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
-     * @param {().DeidentifyDatasetRequest} params.resource Request body data
+     * @param {().DeidentifyDatasetRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2303,7 +2303,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. Resource name of the dataset, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`.
      * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     * @param {().Dataset} params.resource Request body data
+     * @param {().Dataset} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2424,7 +2424,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2548,7 +2548,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2846,7 +2846,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.dicomStoreId The ID of the DICOM store that is being created. Any string value up to 256 characters in length.
      * @param {string} params.parent The name of the dataset this DICOM store belongs to.
-     * @param {().DicomStore} params.resource Request body data
+     * @param {().DicomStore} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2921,7 +2921,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.sourceStore Source DICOM store resource name. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
-     * @param {().DeidentifyDicomStoreRequest} params.resource Request body data
+     * @param {().DeidentifyDicomStoreRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3159,7 +3159,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The DICOM store resource name from which to export the data. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
-     * @param {().ExportDicomDataRequest} params.resource Request body data
+     * @param {().ExportDicomDataRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3522,7 +3522,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the DICOM store resource into which the data is imported. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
-     * @param {().ImportDicomDataRequest} params.resource Request body data
+     * @param {().ImportDicomDataRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3788,7 +3788,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. Resource name of the DICOM store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
      * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     * @param {().DicomStore} params.resource Request body data
+     * @param {().DicomStore} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4280,7 +4280,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4409,7 +4409,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.dicomWebPath The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid}]`. Note that the `study_uid` is optional.
      * @param {string} params.parent The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
-     * @param {().HttpBody} params.resource Request body data
+     * @param {().HttpBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4532,7 +4532,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5554,7 +5554,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.dicomWebPath The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid}]`. Note that the `study_uid` is optional.
      * @param {string} params.parent The name of the DICOM store that is being accessed. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`.
-     * @param {().HttpBody} params.resource Request body data
+     * @param {().HttpBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7207,7 +7207,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.fhirStoreId The ID of the FHIR store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      * @param {string} params.parent The name of the dataset this FHIR store belongs to.
-     * @param {().FhirStore} params.resource Request body data
+     * @param {().FhirStore} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7282,7 +7282,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.sourceStore Source FHIR store resource name. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
-     * @param {().DeidentifyFhirStoreRequest} params.resource Request body data
+     * @param {().DeidentifyFhirStoreRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7521,7 +7521,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the FHIR store to export resource from. The name should be in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
-     * @param {().ExportResourcesRequest} params.resource Request body data
+     * @param {().ExportResourcesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7885,7 +7885,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the FHIR store to import FHIR resources to. The name should be in the format of `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
-     * @param {().ImportResourcesRequest} params.resource Request body data
+     * @param {().ImportResourcesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8151,7 +8151,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. Resource name of the FHIR store, of the form `projects/{project_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.
      * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     * @param {().FhirStore} params.resource Request body data
+     * @param {().FhirStore} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8274,7 +8274,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8398,7 +8398,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8975,7 +8975,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the FHIR store this resource belongs to.
      * @param {string} params.type The FHIR resource type to update, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html).
-     * @param {().HttpBody} params.resource Request body data
+     * @param {().HttpBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9106,7 +9106,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the FHIR store this resource belongs to.
      * @param {string} params.type The FHIR resource type to update, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html). Must match the resource type in the provided content.
-     * @param {().HttpBody} params.resource Request body data
+     * @param {().HttpBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9236,7 +9236,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the FHIR store this resource belongs to.
      * @param {string} params.type The FHIR resource type to create, such as Patient or Observation. For a complete list, see the [FHIR Resource Index](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html). Must match the resource type in the provided content.
-     * @param {().HttpBody} params.resource Request body data
+     * @param {().HttpBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9474,7 +9474,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Name of the FHIR store in which this bundle will be executed.
-     * @param {().HttpBody} params.resource Request body data
+     * @param {().HttpBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9838,7 +9838,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the resource to update.
-     * @param {().HttpBody} params.resource Request body data
+     * @param {().HttpBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10310,7 +10310,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Name of the FHIR store to retrieve resources from.
-     * @param {().SearchResourcesRequest} params.resource Request body data
+     * @param {().SearchResourcesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10434,7 +10434,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the resource to update.
-     * @param {().HttpBody} params.resource Request body data
+     * @param {().HttpBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10961,7 +10961,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.hl7V2StoreId The ID of the HL7v2 store that is being created. The string must match the following regex: `[\p{L}\p{N}_\-\.]{1,256}`.
      * @param {string} params.parent The name of the dataset this HL7v2 store belongs to.
-     * @param {().Hl7V2Store} params.resource Request body data
+     * @param {().Hl7V2Store} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11576,7 +11576,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. Resource name of the HL7v2 store, of the form `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7v2_store_id}`.
      * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     * @param {().Hl7V2Store} params.resource Request body data
+     * @param {().Hl7V2Store} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11699,7 +11699,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {().SetIamPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11823,7 +11823,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12103,7 +12103,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the dataset this message belongs to.
-     * @param {().CreateMessageRequest} params.resource Request body data
+     * @param {().CreateMessageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12454,7 +12454,7 @@ export namespace healthcare_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The name of the HL7v2 store this message belongs to.
-     * @param {().IngestMessageRequest} params.resource Request body data
+     * @param {().IngestMessageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12724,7 +12724,7 @@ export namespace healthcare_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Resource name of the Message, of the form `projects/{project_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.
      * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask Only the `labels` field is allowed to be updated. The labels in the request are merged with the existing set of labels. Existing labels with the same keys are updated.
-     * @param {().Message} params.resource Request body data
+     * @param {().Message} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

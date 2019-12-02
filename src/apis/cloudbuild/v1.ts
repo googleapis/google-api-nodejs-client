@@ -393,7 +393,7 @@ export namespace cloudbuild_v1 {
      */
     filename?: string | null;
     /**
-     * GitHubEventsConfig describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+     * GitHubEventsConfig describes the configuration of a trigger that creates a build whenever a GitHub event is received.  Mutually exclusive with `trigger_template`.
      */
     github?: Schema$GitHubEventsConfig;
     /**
@@ -421,7 +421,7 @@ export namespace cloudbuild_v1 {
      */
     tags?: string[] | null;
     /**
-     * Template describing the types of source changes to trigger a build.  Branch and tag names in trigger templates are interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.
+     * Template describing the types of source changes to trigger a build.  Branch and tag names in trigger templates are interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.  Mutually exclusive with `github`.
      */
     triggerTemplate?: Schema$RepoSource;
   }
@@ -612,9 +612,13 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string | null;
     /**
-     * Name of the Cloud Source Repository. If omitted, the name &quot;default&quot; is assumed.
+     * Required. Name of the Cloud Source Repository.
      */
     repoName?: string | null;
+    /**
+     * Substitutions to use in a triggered build. Should only be used with RunBuildTrigger
+     */
+    substitutions?: {[key: string]: string} | null;
     /**
      * Regex matching tags to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
@@ -771,7 +775,7 @@ export namespace cloudbuild_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.resource Request body data
+     * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1055,9 +1059,9 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id ID of the build.
-     * @param {string} params.projectId ID of the project.
-     * @param {().CancelBuildRequest} params.resource Request body data
+     * @param {string} params.id Required. ID of the build.
+     * @param {string} params.projectId Required. ID of the project.
+     * @param {().CancelBuildRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1128,8 +1132,8 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project.
-     * @param {().Build} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the project.
+     * @param {().Build} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1203,8 +1207,8 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id ID of the build.
-     * @param {string} params.projectId ID of the project.
+     * @param {string} params.id Required. ID of the build.
+     * @param {string} params.projectId Required. ID of the project.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1279,7 +1283,7 @@ export namespace cloudbuild_v1 {
      * @param {string=} params.filter The raw filter text to constrain the results.
      * @param {integer=} params.pageSize Number of results to return in the list.
      * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.projectId ID of the project.
+     * @param {string} params.projectId Required. ID of the project.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1353,9 +1357,9 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.id Build ID of the original build.
-     * @param {string} params.projectId ID of the project.
-     * @param {().RetryBuildRequest} params.resource Request body data
+     * @param {string} params.id Required. Build ID of the original build.
+     * @param {string} params.projectId Required. ID of the project.
+     * @param {().RetryBuildRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1430,11 +1434,11 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the build.
+     * Required. ID of the build.
      */
     id?: string;
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
 
@@ -1451,7 +1455,7 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
 
@@ -1468,11 +1472,11 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the build.
+     * Required. ID of the build.
      */
     id?: string;
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
   }
@@ -1496,7 +1500,7 @@ export namespace cloudbuild_v1 {
      */
     pageToken?: string;
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
   }
@@ -1508,11 +1512,11 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Build ID of the original build.
+     * Required. Build ID of the original build.
      */
     id?: string;
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
 
@@ -1535,8 +1539,8 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project for which to configure automatic builds.
-     * @param {().BuildTrigger} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the project for which to configure automatic builds.
+     * @param {().BuildTrigger} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1610,8 +1614,8 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project that owns the trigger.
-     * @param {string} params.triggerId ID of the `BuildTrigger` to delete.
+     * @param {string} params.projectId Required. ID of the project that owns the trigger.
+     * @param {string} params.triggerId Required. ID of the `BuildTrigger` to delete.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1682,8 +1686,8 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project that owns the trigger.
-     * @param {string} params.triggerId ID of the `BuildTrigger` to get.
+     * @param {string} params.projectId Required. ID of the project that owns the trigger.
+     * @param {string} params.triggerId Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1758,7 +1762,7 @@ export namespace cloudbuild_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Number of results to return in the list.
      * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-     * @param {string} params.projectId ID of the project for which to list BuildTriggers.
+     * @param {string} params.projectId Required. ID of the project for which to list BuildTriggers.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1839,9 +1843,9 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project that owns the trigger.
-     * @param {string} params.triggerId ID of the `BuildTrigger` to update.
-     * @param {().BuildTrigger} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the project that owns the trigger.
+     * @param {string} params.triggerId Required. ID of the `BuildTrigger` to update.
+     * @param {().BuildTrigger} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1914,9 +1918,9 @@ export namespace cloudbuild_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId ID of the project.
-     * @param {string} params.triggerId ID of the trigger.
-     * @param {().RepoSource} params.resource Request body data
+     * @param {string} params.projectId Required. ID of the project.
+     * @param {string} params.triggerId Required. ID of the trigger.
+     * @param {().RepoSource} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1991,7 +1995,7 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the project for which to configure automatic builds.
+     * Required. ID of the project for which to configure automatic builds.
      */
     projectId?: string;
 
@@ -2008,11 +2012,11 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the project that owns the trigger.
+     * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
     /**
-     * ID of the `BuildTrigger` to delete.
+     * Required. ID of the `BuildTrigger` to delete.
      */
     triggerId?: string;
   }
@@ -2024,11 +2028,11 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the project that owns the trigger.
+     * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
     /**
-     * ID of the `BuildTrigger` to get.
+     * Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
      */
     triggerId?: string;
   }
@@ -2048,7 +2052,7 @@ export namespace cloudbuild_v1 {
      */
     pageToken?: string;
     /**
-     * ID of the project for which to list BuildTriggers.
+     * Required. ID of the project for which to list BuildTriggers.
      */
     projectId?: string;
   }
@@ -2060,11 +2064,11 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the project that owns the trigger.
+     * Required. ID of the project that owns the trigger.
      */
     projectId?: string;
     /**
-     * ID of the `BuildTrigger` to update.
+     * Required. ID of the `BuildTrigger` to update.
      */
     triggerId?: string;
 
@@ -2081,11 +2085,11 @@ export namespace cloudbuild_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * ID of the project.
+     * Required. ID of the project.
      */
     projectId?: string;
     /**
-     * ID of the trigger.
+     * Required. ID of the trigger.
      */
     triggerId?: string;
 

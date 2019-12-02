@@ -553,7 +553,7 @@ export namespace language_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeEntitiesRequest} params.resource Request body data
+     * @param {().AnalyzeEntitiesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -631,7 +631,7 @@ export namespace language_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeEntitySentimentRequest} params.resource Request body data
+     * @param {().AnalyzeEntitySentimentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -713,7 +713,7 @@ export namespace language_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeSentimentRequest} params.resource Request body data
+     * @param {().AnalyzeSentimentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -791,7 +791,7 @@ export namespace language_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnalyzeSyntaxRequest} params.resource Request body data
+     * @param {().AnalyzeSyntaxRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -869,7 +869,7 @@ export namespace language_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().AnnotateTextRequest} params.resource Request body data
+     * @param {().AnnotateTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -947,7 +947,7 @@ export namespace language_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().ClassifyTextRequest} params.resource Request body data
+     * @param {().ClassifyTextRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

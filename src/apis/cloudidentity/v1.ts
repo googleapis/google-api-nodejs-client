@@ -302,7 +302,7 @@ export namespace cloudidentity_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Group} params.resource Request body data
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -665,7 +665,7 @@ export namespace cloudidentity_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group in the format: `groups/{group_id}`, where group_id is the unique ID assigned to the Group.  Must be left blank while creating a Group.
      * @param {string=} params.updateMask Editable fields: `display_name`, `description`
-     * @param {().Group} params.resource Request body data
+     * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -935,7 +935,7 @@ export namespace cloudidentity_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent [Resource name](https://cloud.google.com/apis/design/resource_names) of the Group to create Membership within. Format: `groups/{group_id}`, where `group_id` is the unique ID assigned to the Group.
-     * @param {().Membership} params.resource Request body data
+     * @param {().Membership} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object

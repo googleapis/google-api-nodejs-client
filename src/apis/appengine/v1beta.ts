@@ -1666,7 +1666,7 @@ export namespace appengine_v1beta {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {().Application} params.resource Request body data
+     * @param {().Application} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1811,7 +1811,7 @@ export namespace appengine_v1beta {
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `name`. Name of the Application resource to update. Example: apps/myapp.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().Application} params.resource Request body data
+     * @param {().Application} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1885,7 +1885,7 @@ export namespace appengine_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `name`. Name of the application to repair. Example: apps/myapp
-     * @param {().RepairApplicationRequest} params.resource Request body data
+     * @param {().RepairApplicationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2025,7 +2025,7 @@ export namespace appengine_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {().AuthorizedCertificate} params.resource Request body data
+     * @param {().AuthorizedCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2339,7 +2339,7 @@ export namespace appengine_v1beta {
      * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
-     * @param {().AuthorizedCertificate} params.resource Request body data
+     * @param {().AuthorizedCertificate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2640,7 +2640,7 @@ export namespace appengine_v1beta {
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      * @param {string=} params.overrideStrategy Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
-     * @param {().DomainMapping} params.resource Request body data
+     * @param {().DomainMapping} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2950,7 +2950,7 @@ export namespace appengine_v1beta {
      * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
      * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().DomainMapping} params.resource Request body data
+     * @param {().DomainMapping} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3140,7 +3140,7 @@ export namespace appengine_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `name`. Name of the Firewall collection to set. Example: apps/myapp/firewall/ingressRules.
-     * @param {().BatchUpdateIngressRulesRequest} params.resource Request body data
+     * @param {().BatchUpdateIngressRulesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3224,7 +3224,7 @@ export namespace appengine_v1beta {
      *
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
-     * @param {().FirewallRule} params.resource Request body data
+     * @param {().FirewallRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3526,7 +3526,7 @@ export namespace appengine_v1beta {
      * @param {string} params.appsId Part of `name`. Name of the Firewall resource to update. Example: apps/myapp/firewall/ingressRules/100.
      * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().FirewallRule} params.resource Request body data
+     * @param {().FirewallRule} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4353,7 +4353,7 @@ export namespace appengine_v1beta {
      * @param {boolean=} params.migrateTraffic Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#InboundServiceType) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#AutomaticScaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services#ShardBy) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
      * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().Service} params.resource Request body data
+     * @param {().Service} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4521,7 +4521,7 @@ export namespace appengine_v1beta {
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `parent`. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
      * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
-     * @param {().Version} params.resource Request body data
+     * @param {().Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4828,7 +4828,7 @@ export namespace appengine_v1beta {
      * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
      * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-     * @param {().Version} params.resource Request body data
+     * @param {().Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5036,7 +5036,7 @@ export namespace appengine_v1beta {
      * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
      * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
      * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-     * @param {().DebugInstanceRequest} params.resource Request body data
+     * @param {().DebugInstanceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
