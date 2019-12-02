@@ -228,9 +228,7 @@ To learn more about API keys, please see the [documentation][usingkeys].
 
 Rather than manually creating an OAuth2 client, JWT client, or Compute client, the auth library can create the correct credential type for you, depending upon the environment your code is running under.
 
-For example, a JWT auth client will be created when your code is running on your local developer machine, and a Compute client will be created when the same code is running on a configured instance of Google Compute Engine.
-
-The code below shows how to retrieve a default credential type, depending upon the runtime environment. The createScopedRequired must be called to determine when you need to pass in the scopes manually, and when they have been set for you automatically based on the configured runtime environment.
+For example, a JWT auth client will be created when your code is running on your local developer machine, and a Compute client will be created when the same code is running on a configured instance of Google Compute Engine. The code below shows how to retrieve a default credential type, depending upon the runtime environment. 
 
 ```js
 const {google} = require('googleapis');
