@@ -67,7 +67,7 @@ const blogger = google.blogger({
 });
 
 const params = {
-  blogId: 3213900
+  blogId: '3213900'
 };
 
 // get the blog details
@@ -211,7 +211,7 @@ const blogger = google.blogger_v3({
 });
 
 const params = {
-  blogId: 3213900
+  blogId: '3213900'
 };
 
 async function main(params) {
@@ -416,7 +416,7 @@ const blogger = google.blogger({
   // All requests made with this service client will contain the
   // blogId query parameter unless overridden in individual API calls.
   params: {
-    blogId: 3213900
+    blogId: '3213900'
   }
 });
 
