@@ -27,7 +27,7 @@ nconf
 blogger.blogs.get(
   {
     key: nconf.get('api_key'),
-    blogId: 3213900,
+    blogId: '3213900',
   },
   (err, res) => {
     if (err) {
