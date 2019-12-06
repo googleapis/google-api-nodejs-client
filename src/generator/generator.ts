@@ -29,7 +29,7 @@ import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
 // there is a typings issue with p-queue and TypeScript 3.6.4.
-const Q = require('p-queue');
+const {default: Q} = require('p-queue');
 
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
