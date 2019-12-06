@@ -15,9 +15,10 @@
 import * as execa from 'execa';
 import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
-import Q from 'p-queue';
 import * as path from 'path';
 import {promisify} from 'util';
+// there is a typings issue with p-queue and TypeScript 3.6.4.
+const {default: Q} = require('p-queue');
 
 const readdir = promisify(fs.readdir);
 const writeFile = promisify(fs.writeFile);

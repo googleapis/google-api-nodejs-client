@@ -14,5 +14,6 @@
       "extends": "packages:linters",
       "groupName": "linters"
     }
-  ]
+  ],
+  "ignoreDeps": ["typescript"]
 }

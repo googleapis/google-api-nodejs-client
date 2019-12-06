@@ -25,10 +25,11 @@ import {
 } from 'googleapis-common';
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
-import Q from 'p-queue';
 import * as path from 'path';
 import * as url from 'url';
 import * as util from 'util';
+// there is a typings issue with p-queue and TypeScript 3.6.4.
+const {default: Q} = require('p-queue');
 
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
@@ -236,7 +237,7 @@ export class Generator {
     const queue = new Q({concurrency: 10});
     console.log(`Generating ${apis.length} APIs...`);
     queue.addAll(
-      apis.map(api => {
+      apis.map((api: {[key: string]: string}) => {
         return async () => {
           this.log('Generating API for %s...', api.id);
           this.logResult(
@@ -365,7 +366,7 @@ export class Generator {
                 fragment = fragment.replace(/`\*/gi, '`<');
                 fragment = fragment.replace(/\*`/gi, '>`');
                 const lines = fragment.split('\n');
-                lines.forEach((line, i) => {
+                lines.forEach((line: string, i: number) => {
                   lines[i] = '*' + (line ? ' ' + lines[i] : '');
                 });
                 fragment = lines.join('\n');
