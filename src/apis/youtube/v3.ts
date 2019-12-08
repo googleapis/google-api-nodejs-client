@@ -34,6 +34,9 @@ import {GaxiosPromise} from 'gaxios';
 // tslint:disable: jsdoc-format
 // tslint:disable: no-namespace
 
+
+
+
 export namespace youtube_v3 {
   export interface Options extends GlobalOptions {
     version: 'v3';
