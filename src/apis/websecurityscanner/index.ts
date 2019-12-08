@@ -18,6 +18,9 @@ import {websecurityscanner_v1} from './v1';
 import {websecurityscanner_v1alpha} from './v1alpha';
 import {websecurityscanner_v1beta} from './v1beta';
 
+
+
+
 export const VERSIONS = {
   v1: websecurityscanner_v1.Websecurityscanner,
   v1alpha: websecurityscanner_v1alpha.Websecurityscanner,
