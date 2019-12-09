@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "googleapis": "^45.0.0",
+    "googleapis": "^46.0.0",
     "nconf": "^0.10.0",
     "open": "^7.0.0",
     "server-destroy": "^1.0.1",
