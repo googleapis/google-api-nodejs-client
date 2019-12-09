@@ -4,6 +4,25 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [46.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v45.0.0...v46.0.0) (2019-12-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* run the generator (#1892)
+
+### Features
+
+* run the generator ([#1892](https://www.github.com/googleapis/google-api-nodejs-client/issues/1892)) ([e3e3714](https://www.github.com/googleapis/google-api-nodejs-client/commit/e3e3714d206bc341e2fda5ec323cdabd3f678450))
+
+
+### Bug Fixes
+
+* **deps:** pin TypeScript below 3.7.0 ([#1897](https://www.github.com/googleapis/google-api-nodejs-client/issues/1897)) ([5cdc823](https://www.github.com/googleapis/google-api-nodejs-client/commit/5cdc823b52ea5b2fae52dbc0ec0040e42d054fc9))
+* **docs:** add jsdoc-region-tag plugin ([#1879](https://www.github.com/googleapis/google-api-nodejs-client/issues/1879)) ([36635c7](https://www.github.com/googleapis/google-api-nodejs-client/commit/36635c752fae99161d02a0dc8631c57ff0814151))
+* **docs:** bloggerId should be a string ([#1896](https://www.github.com/googleapis/google-api-nodejs-client/issues/1896)) ([a3e9285](https://www.github.com/googleapis/google-api-nodejs-client/commit/a3e9285f5a1b76fcd330d194dc22adbd42adff71))
+* **docs:** change JSDoc from `.resource` to `.requestBody` ([#1864](https://www.github.com/googleapis/google-api-nodejs-client/issues/1864)) ([8803e77](https://www.github.com/googleapis/google-api-nodejs-client/commit/8803e7700a0799c484defc776afd04ef26d50e91))
+
 ## [45.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v44.0.0...v45.0.0) (2019-11-06)
 
 
