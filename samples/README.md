@@ -24,6 +24,12 @@
 Before running the samples, make sure you've followed the steps outlined in
 [Using the client library](https://github.com/googleapis/google-api-nodejs-client#using-the-client-library).
 
+`cd samples`
+
+`npm install`
+
+`cd ..`
+
 ## Samples
 
 
@@ -37,7 +43,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node defaultauth.js`
+`node samples/defaultauth.js`
 
 
 -----
@@ -54,7 +60,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node jwt.js`
+`node samples/jwt.js`
 
 
 -----
@@ -71,7 +77,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node mediaupload.js`
+`node samples/mediaupload.js`
 
 
 -----
@@ -88,7 +94,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node multiple.js`
+`node samples/multiple.js`
 
 
 -----
@@ -105,7 +111,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node oauth2.js`
+`node samples/oauth2.js`
 
 
 -----
@@ -122,7 +128,7 @@ View the [source code](https://github.com/googleapis/google-api-nodejs-client/bl
 __Usage:__
 
 
-`node sampleclient.js`
+`node samples/sampleclient.js`
 
 
 
