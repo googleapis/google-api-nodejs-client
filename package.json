@@ -61,7 +61,7 @@
     "@types/tmp": "^0.1.0",
     "@types/url-template": "^2.0.28",
     "assert-rejects": "^1.0.0",
-    "c8": "^6.0.0",
+    "c8": "^7.0.0",
     "chai": "^4.2.0",
     "codecov": "^3.4.0",
     "eslint": "^6.0.0",
