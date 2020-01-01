@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,18 +11,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
-import * as nock from 'nock';
-import {Utils} from './../utils';
+'use strict';
+
+const assert = require('assert');
+const nock = require('nock');
+const {describe, it, afterEach} = require('mocha');
 
 nock.disableNetConnect();
 
-// tslint:disable: no-any
-const samples: any = {
-  list: require('../../../samples/gmail/list'),
-  labels: require('../../../samples/gmail/labels'),
-  watch: require('../../../samples/gmail/watch'),
-  send: require('../../../samples/gmail/send'),
+const samples = {
+  list: require('../gmail/list'),
+  labels: require('../gmail/labels'),
+  watch: require('../gmail/watch'),
+  send: require('../gmail/send'),
 };
 
 for (const p in samples) {
@@ -31,13 +32,15 @@ for (const p in samples) {
   }
 }
 
+const baseUrl = 'https://www.googleapis.com';
+
 describe('gmail samples', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
   it('should list emails', async () => {
-    const scope = nock(Utils.baseUrl)
+    const scope = nock(baseUrl)
       .get(`/gmail/v1/users/me/messages`)
       .reply(200, {});
     const data = await samples.list.runSample();
@@ -48,7 +51,7 @@ describe('gmail samples', () => {
   it('should add a label', async () => {
     const messageId = '12345';
     const labelId = 'abcde';
-    const scope = nock(Utils.baseUrl)
+    const scope = nock(baseUrl)
       .post(`/gmail/v1/users/me/messages/${messageId}/modify`)
       .reply(200, {});
     const data = await samples.labels.runSample('add', messageId, labelId);
@@ -57,7 +60,7 @@ describe('gmail samples', () => {
   });
 
   it('should add a user watch', async () => {
-    const scope = nock(Utils.baseUrl)
+    const scope = nock(baseUrl)
       .post(`/gmail/v1/users/me/watch`)
       .reply(200, {
         data: true,
@@ -68,7 +71,7 @@ describe('gmail samples', () => {
   });
 
   it('should send an email', async () => {
-    const scope = nock(Utils.baseUrl)
+    const scope = nock(baseUrl)
       .post('/gmail/v1/users/me/messages/send')
       .reply(200, {});
     const data = await samples.send.runSample();

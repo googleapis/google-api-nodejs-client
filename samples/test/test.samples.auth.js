@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,17 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
-import * as fs from 'fs';
-import * as nock from 'nock';
-import * as path from 'path';
+'use strict';
 
-import {Utils} from './../utils';
+const assert = require('assert');
+const fs = require('fs');
+const nock = require('nock');
+const path = require('path');
+const {describe, it, afterEach} = require('mocha');
 
 nock.disableNetConnect();
 
 const samples = {
-  jwt: require('../../../samples/jwt'),
+  jwt: require('../jwt'),
 };
 
 describe('Auth samples', () => {
@@ -30,16 +31,13 @@ describe('Auth samples', () => {
   });
 
   it('should support JWT', async () => {
-    const scope = nock(Utils.baseUrl)
+    const scope = nock('https://www.googleapis.com')
       .get('/drive/v2/files')
       .reply(200, {})
       .post('/oauth2/v4/token')
       .reply(200, {access_token: 'not-a-token'});
-    const fakePath = path.join(
-      __dirname,
-      '../../../test/fixtures/service.json'
-    );
-    const realPath = path.join(__dirname, '../../../samples/jwt.keys.json');
+    const fakePath = path.resolve('../test/fixtures/service.json');
+    const realPath = path.resolve('jwt.keys.json');
     const exists = fs.existsSync(realPath);
     if (!exists) {
       fs.symlinkSync(fakePath, realPath);

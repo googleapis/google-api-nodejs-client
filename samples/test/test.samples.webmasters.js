@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,15 +11,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
-import * as nock from 'nock';
-import {Utils} from './../utils';
+'use strict';
+
+const assert = require('assert');
+const nock = require('nock');
+const {describe, it, afterEach} = require('mocha');
 
 nock.disableNetConnect();
 
-// tslint:disable: no-any
-const samples: any = {
-  query: require('../../../samples/webmasters/query'),
+const samples = {
+  query: require('..//webmasters/query'),
 };
 
 for (const p in samples) {
@@ -38,7 +39,7 @@ describe('webmaster samples', () => {
     const path = `/webmasters/v3/sites/${encodeURIComponent(
       siteUrl
     )}/searchAnalytics/query`;
-    const scope = nock(Utils.baseUrl)
+    const scope = nock('https://www.googleapis.com')
       .post(path)
       .reply(200, {});
     const data = await samples.query.runSample();

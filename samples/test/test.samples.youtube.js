@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,15 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
-import * as nock from 'nock';
-import {Utils} from '../utils';
+'use strict';
+
+const assert = require('assert');
+const {describe, it, afterEach} = require('mocha');
+const nock = require('nock');
+const path = require('path');
 
 nock.disableNetConnect();
 
-// tslint:disable: no-any
-const samples: any = {
-  post: require('../../../samples/blogger/insert'),
+const samples = {
+  upload: require('../youtube/upload'),
 };
 
 for (const p in samples) {
@@ -28,17 +30,22 @@ for (const p in samples) {
   }
 }
 
-describe('blogger samples', () => {
+const someFile = path.join(__dirname, '../../test/fixtures/public.pem');
+
+describe('YouTube samples', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('should insert a blog post', async () => {
-    const scope = nock(Utils.baseUrl)
-      .post(`/blogger/v3/blogs/4340475495955554224/posts`)
-      .reply(200, {});
-    const data = await samples.post.runSample();
+  it('should upload a video', async () => {
+    const scope = nock('https://www.googleapis.com')
+      .post(
+        `/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart`
+      )
+      .reply(200, {kind: 'youtube#video'});
+    const data = await samples.upload.runSample(someFile);
     assert(data);
+    assert.strictEqual(data.kind, 'youtube#video');
     scope.done();
   });
 });

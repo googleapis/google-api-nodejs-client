@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,22 +11,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
-import * as fs from 'fs';
-import * as nock from 'nock';
-import * as os from 'os';
-import * as path from 'path';
+'use strict';
 
-import {Utils} from './../utils';
+const assert = require('assert');
+const fs = require('fs');
+const nock = require('nock');
+const os = require('os');
+const path = require('path');
+const {describe, it, afterEach} = require('mocha');
 
 nock.disableNetConnect();
 
-// tslint:disable: no-any
-const samples: any = {
-  download: require('../../../samples/drive/download'),
-  export: require('../../../samples/drive/export'),
-  list: require('../../../samples/drive/list'),
-  upload: require('../../../samples/drive/upload'),
+const samples = {
+  download: require('../drive/download'),
+  export: require('../drive/export'),
+  list: require('../drive/list'),
+  upload: require('../drive/upload'),
 };
 
 for (const p in samples) {
@@ -35,7 +35,8 @@ for (const p in samples) {
   }
 }
 
-const someFile = path.join(__dirname, '../../../test/fixtures/public.pem');
+const someFile = path.join(__dirname, '../../test/fixtures/public.pem');
+const baseUrl = 'https://www.googleapis.com';
 
 describe('Drive samples', () => {
   afterEach(() => {
@@ -44,7 +45,7 @@ describe('Drive samples', () => {
 
   it('should download the file', async () => {
     const fileId = '0B7l5uajXUzaFa0x6cjJfZEkzZVE';
-    const scope = nock(Utils.baseUrl)
+    const scope = nock(baseUrl)
       .get(`/drive/v3/files/${fileId}?alt=media`)
       .replyWithFile(200, someFile);
     const filePath = await samples.download.runSample(fileId);
@@ -54,7 +55,7 @@ describe('Drive samples', () => {
 
   it('should download the doc', async () => {
     const fileId = '1EkgdLY3T-_9hWml0VssdDWQZLEc8qqpMB77Nvsx6khA';
-    const scope = nock(Utils.baseUrl)
+    const scope = nock(baseUrl)
       .get(`/drive/v3/files/${fileId}/export?mimeType=application%2Fpdf`)
       .replyWithFile(200, someFile);
     await samples.export.runSample();
@@ -63,7 +64,7 @@ describe('Drive samples', () => {
   });
 
   it('should list all the docs', async () => {
-    const scope = nock(Utils.baseUrl)
+    const scope = nock(baseUrl)
       .get(`/drive/v3/files?pageSize=3`)
       .reply(200, {});
     const data = await samples.list.runSample();
@@ -72,7 +73,7 @@ describe('Drive samples', () => {
   });
 
   it('should upload a file', async () => {
-    const scope = nock(Utils.baseUrl)
+    const scope = nock(baseUrl)
       .post(`/upload/drive/v3/files?uploadType=multipart`)
       .reply(200, {});
     const data = await samples.upload.runSample(someFile);
