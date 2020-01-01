@@ -11,12 +11,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {assert} from 'chai';
-import * as execa from 'execa';
+'use strict';
+
+const {assert} = require('chai');
+const execa = require('execa');
+const {describe, it} = require('mocha');
 
 describe('Compute samples', () => {
   it('should list all the VMs', async () => {
-    const res = execa.sync('node ../samples/compute/listVMs', {shell: true});
+    const res = execa.sync('node compute/listVMs.js', {shell: true});
     assert.match(res.stdout, /VMs:/);
   });
 });

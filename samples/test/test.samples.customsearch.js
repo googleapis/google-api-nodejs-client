@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,39 +11,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
-import * as nock from 'nock';
+'use strict';
 
-const baseUrl = 'https://sheets.googleapis.com';
+const assert = require('assert');
+const nock = require('nock');
+const {describe, it, afterEach} = require('mocha');
 
 nock.disableNetConnect();
 
-// tslint:disable: no-any
-const samples: any = {
-  append: require('../../../samples/sheets/append'),
+const samples = {
+  list: require('../customsearch/customsearch'),
 };
 
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
-}
+const baseUrl = 'https://www.googleapis.com';
 
-describe('sheets samples', () => {
+describe('customsearch samples', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('should append values', async () => {
-    const range = 'A1:A10';
+  it('should search', async () => {
     const scope = nock(baseUrl)
-      .post(
-        `/v4/spreadsheets/aSheetId/values/${encodeURIComponent(
-          range
-        )}:append?valueInputOption=USER_ENTERED`
-      )
+      .get(`/customsearch/v1?cx=cx&q=q`)
       .reply(200, {});
-    const data = await samples.append.runSample('aSheetId', 'A1:A10');
+    const options = {cx: 'cx', q: 'q', auth: 'key'};
+    const data = await samples.list.runSample(options);
     assert(data);
     scope.done();
   });

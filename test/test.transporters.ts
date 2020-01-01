@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import {describe, it} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {AuthPlus} from '../src/googleapis';

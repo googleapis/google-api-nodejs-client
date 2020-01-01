@@ -1,4 +1,4 @@
-// Copyright 2018, Google, LLC.
+// Copyright 2018 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,15 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as assert from 'assert';
-import * as nock from 'nock';
+'use strict';
+
+const assert = require('assert');
+const nock = require('nock');
+const {describe, it, afterEach} = require('mocha');
+
+const baseUrl = 'https://sheets.googleapis.com';
 
 nock.disableNetConnect();
 
-// tslint:disable: no-any
-const samples: any = {
-  create: require('../../../samples/docs/create'),
-  get: require('../../../samples/docs/get'),
+const samples = {
+  append: require('../sheets/append'),
 };
 
 for (const p in samples) {
@@ -28,32 +31,21 @@ for (const p in samples) {
   }
 }
 
-const baseUrl = 'https://docs.googleapis.com';
-
-describe('docs samples', () => {
+describe('sheets samples', () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
-  it('should create a doc', async () => {
+  it('should append values', async () => {
+    const range = 'A1:A10';
     const scope = nock(baseUrl)
-      .post('/v1/documents')
-      .reply(200, {
-        documentId: 'toast',
-      })
-      .post('/v1/documents/toast:batchUpdate')
+      .post(
+        `/v4/spreadsheets/aSheetId/values/${encodeURIComponent(
+          range
+        )}:append?valueInputOption=USER_ENTERED`
+      )
       .reply(200, {});
-    const data = await samples.create.runSample();
-    assert(data);
-    scope.done();
-  });
-
-  it('should get a doc', async () => {
-    const documentId = '1XPbMENiP5bWP_cbqc0bEWbq78vmUf-rWQ6aB6FVZJyc';
-    const scope = nock(baseUrl)
-      .get(`/v1/documents/${documentId}`)
-      .reply(200, {});
-    const data = await samples.get.runSample();
+    const data = await samples.append.runSample('aSheetId', 'A1:A10');
     assert(data);
     scope.done();
   });
