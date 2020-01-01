@@ -6,8 +6,12 @@
   "engines": {
     "node": ">=8"
   },
+  "files": [
+    "**/*.js",
+    "!test/"
+  ],
   "scripts": {
-    "test": "mocha ../build/test/samples"
+    "test": "mocha"
   },
   "dependencies": {
     "express": "^4.16.4",
@@ -18,6 +22,9 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "mocha": "^6.1.4"
+    "chai": "^4.2.0",
+    "execa": "^4.0.0",
+    "mocha": "^6.2.2",
+    "nock": "^11.7.0"
   }
 }
