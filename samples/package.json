@@ -24,7 +24,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "execa": "^4.0.0",
-    "mocha": "^6.2.2",
+    "mocha": "^7.0.0",
     "nock": "^11.7.0"
   }
 }
