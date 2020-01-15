@@ -2074,7 +2074,7 @@ export namespace content_v2 {
      */
     fullName?: string | null;
     /**
-     * Email address for receiving merchant issued value-added tax or invoice documentation of this order.
+     * Email address for the merchant to send value-added tax or invoice documentation of the order. This documentation is made available to the customer.
      */
     invoiceReceivingEmail?: string | null;
     /**
@@ -3198,7 +3198,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  Acceptable values for US are:   - &quot;gsx&quot;  - &quot;ups&quot;  - &quot;usps&quot;  - &quot;fedex&quot;  - &quot;dhl&quot;  - &quot;ecourier&quot;  - &quot;cxt&quot;  - &quot;google&quot;  - &quot;ontrac&quot;  - &quot;emsy&quot;  - &quot;ont&quot;  - &quot;deliv&quot;  - &quot;dynamex&quot;  - &quot;lasership&quot;  - &quot;mpx&quot;  - &quot;uds&quot;  - &quot;efw&quot;  - &quot;yunexpress&quot;  - &quot;china post&quot;  - &quot;china ems&quot;  - &quot;singapore post&quot;  - &quot;pos malaysia&quot;  - &quot;postnl&quot;  - &quot;ptt&quot;  - &quot;eub&quot;  - &quot;chukou1&quot;    Acceptable values for FR are:   - &quot;colissimo&quot;  - &quot;chronopost&quot;  - &quot;gls&quot;  - &quot;dpd&quot;  - &quot;bpost&quot;  - &quot;colis prive&quot;  - &quot;boxtal&quot;  - &quot;geodis&quot;  - &quot;tnt&quot;  - &quot;la poste&quot;  - &quot;ups&quot;
+     * The carrier handling the shipment.  For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. Note: You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates.  Supported carriers for US are:   - &quot;ups&quot; (United Parcel Service) automatic status updates  - &quot;usps&quot; (United States Postal Service) automatic status updates  - &quot;fedex&quot; (FedEx) automatic status updates   - &quot;dhl&quot; (DHL eCommerce) automatic status updates (US only)  - &quot;ontrac&quot; (OnTrac) automatic status updates   - &quot;dhl express&quot; (DHL Express) - &quot;deliv&quot; (Deliv)  - &quot;dynamex&quot; (TForce)  - &quot;lasership&quot; (LaserShip)  - &quot;mpx&quot; (Military Parcel Xpress)  - &quot;uds&quot; (United Delivery Service)  - &quot;efw&quot; (Estes Forwarding Worldwide)  - &quot;jd logistics&quot; (JD Logistics)  - &quot;yunexpress&quot; (YunExpress)  - &quot;china post&quot; (China Post)  - &quot;china ems&quot; (China Post Express Mail Service)  - &quot;singapore post&quot; (Singapore Post)  - &quot;pos malaysia&quot; (Pos Malaysia)  - &quot;postnl&quot; (PostNL)  - &quot;ptt&quot; (PTT Turkish Post)  - &quot;eub&quot; (ePacket)  - &quot;chukou1&quot; (Chukou1 Logistics)   Supported carriers for FR are:   - &quot;la poste&quot; (La Poste) automatic status updates   - &quot;colissimo&quot; (Colissimo by La Poste) automatic status updates  - &quot;ups&quot; (United Parcel Service) automatic status updates   - &quot;chronopost&quot; (Chronopost by La Poste)  - &quot;gls&quot; (General Logistics Systems France)  - &quot;dpd&quot; (DPD Group by GeoPost)  - &quot;bpost&quot; (Belgian Post Group)  - &quot;colis prive&quot; (Colis Privé)  - &quot;boxtal&quot; (Boxtal)  - &quot;geodis&quot; (GEODIS)  - &quot;tnt&quot; (TNT)
      */
     carrier?: string | null;
     /**
@@ -4062,7 +4062,7 @@ export namespace content_v2 {
      */
     costOfGoodsSold?: Schema$Price;
     /**
-     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;value&quot;: &quot;regular&quot; }). This is useful for submitting attributes not explicitly exposed by the API.
+     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., { &quot;name&quot;: &quot;size type&quot;, &quot;value&quot;: &quot;regular&quot; }). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Shopping Actions.
      */
     customAttributes?: Schema$CustomAttribute[];
     /**

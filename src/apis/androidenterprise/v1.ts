@@ -148,9 +148,6 @@ export namespace androidenterprise_v1 {
    * A token authorizing an admin to access an iframe.
    */
   export interface Schema$AdministratorWebToken {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#administratorWebToken&quot;.
-     */
     kind?: string | null;
     /**
      * An opaque token to be passed to the Play front-end to generate an iframe.
@@ -161,9 +158,6 @@ export namespace androidenterprise_v1 {
    * Specification for a token used to generate iframes. The token specifies what data the admin is allowed to modify and the URI the iframe is allowed to communiate with.
    */
   export interface Schema$AdministratorWebTokenSpec {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#administratorWebTokenSpec&quot;.
-     */
     kind?: string | null;
     /**
      * Options for displaying the Managed Configuration page.
@@ -232,9 +226,6 @@ export namespace androidenterprise_v1 {
    * Represents the list of app restrictions available to be pre-configured for the product.
    */
   export interface Schema$AppRestrictionsSchema {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#appRestrictionsSchema&quot;.
-     */
     kind?: string | null;
     /**
      * The set of restrictions that make up this schema.
@@ -320,9 +311,6 @@ export namespace androidenterprise_v1 {
      * A URL that displays a product&#39;s permissions and that can also be used to approve the product with the Products.approve call.
      */
     approvalUrl?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#approvalUrlInfo&quot;.
-     */
     kind?: string | null;
   }
   /**
@@ -376,9 +364,6 @@ export namespace androidenterprise_v1 {
    * An AuthenticationToken is used by the EMM&#39;s device policy client on a device to provision the given EMM-managed user on that device.
    */
   export interface Schema$AuthenticationToken {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#authenticationToken&quot;.
-     */
     kind?: string | null;
     /**
      * The authentication token to be passed to the device policy client on the device where it can be used to provision the account for which this token was generated.
@@ -416,7 +401,7 @@ export namespace androidenterprise_v1 {
      */
     autoInstallPriority?: number | null;
     /**
-     * The minimum version of the app. If a lower version of the app is installed, then the app will be auto-updated according to the auto-install constraints, instead of waiting for the regular auto-update.
+     * The minimum version of the app. If a lower version of the app is installed, then the app will be auto-updated according to the auto-install constraints, instead of waiting for the regular auto-update. You can set a minimum version code for at most 20 apps per device.
      */
     minimumVersionCode?: number | null;
   }
@@ -424,9 +409,6 @@ export namespace androidenterprise_v1 {
    * A configuration variables resource contains the managed configuration settings ID to be applied to a single user, as well as the variable set that is attributed to the user. The variable set will be used to replace placeholders in the managed configuration settings.
    */
   export interface Schema$ConfigurationVariables {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#configurationVariables&quot;.
-     */
     kind?: string | null;
     /**
      * The ID of the managed configurations settings.
@@ -445,9 +427,6 @@ export namespace androidenterprise_v1 {
      * The Google Play Services Android ID for the device encoded as a lowercase hex string. For example, &quot;123456789abcdef0&quot;.
      */
     androidId?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#device&quot;.
-     */
     kind?: string | null;
     /**
      * Identifies the extent to which the device is controlled by a managed Google Play EMM in various deployment configurations.  Possible values include:  - &quot;managedDevice&quot;, a device that has the EMM&#39;s device policy controller (DPC) as the device owner.  - &quot;managedProfile&quot;, a device that has a profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC.  - &quot;containerApp&quot;, no longer used (deprecated).  - &quot;unmanagedProfile&quot;, a device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use managed Google Play, but the profile is itself not owned by a DPC.
@@ -513,9 +492,6 @@ export namespace androidenterprise_v1 {
      * The state of the Google account on the device. &quot;enabled&quot; indicates that the Google account on the device can be used to access Google services (including Google Play), while &quot;disabled&quot; means that it cannot. A new device is initially in the &quot;disabled&quot; state.
      */
     accountState?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#deviceState&quot;.
-     */
     kind?: string | null;
   }
   /**
@@ -530,9 +506,6 @@ export namespace androidenterprise_v1 {
      * The unique ID for the enterprise.
      */
     id?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#enterprise&quot;.
-     */
     kind?: string | null;
     /**
      * The name of the enterprise, for example, &quot;Example, Inc&quot;.
@@ -551,9 +524,6 @@ export namespace androidenterprise_v1 {
      * The email address of the service account.
      */
     accountEmail?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#enterpriseAccount&quot;.
-     */
     kind?: string | null;
   }
   /**
@@ -583,9 +553,6 @@ export namespace androidenterprise_v1 {
    * The presence of an Entitlements resource indicates that a user has the right to use a particular app. Entitlements are user specific, not device specific. This allows a user with an entitlement to an app to install the app on all their devices. It&#39;s also possible for a user to hold an entitlement to an app without installing the app on any device.  The API can be used to create an entitlement. As an option, you can also use the API to trigger the installation of an app on all a user&#39;s managed devices at the same time the entitlement is created.  If the app is free, creating the entitlement also creates a group license for that app. For paid apps, creating the entitlement consumes one license, and that license remains consumed until the entitlement is removed. If the enterprise hasn&#39;t purchased enough licenses, then no entitlement is created and the installation fails. An entitlement is also not created for an app if the app requires permissions that the enterprise hasn&#39;t accepted.  If an entitlement is deleted, the app may be uninstalled from a user&#39;s device. As a best practice, uninstall the app by calling  Installs.delete() before deleting the entitlement.  Entitlements for apps that a user pays for on an unmanaged profile have &quot;userPurchase&quot; as the entitlement reason. These entitlements cannot be removed via the API.
    */
   export interface Schema$Entitlement {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#entitlement&quot;.
-     */
     kind?: string | null;
     /**
      * The ID of the product that the entitlement is for. For example, &quot;app:com.google.android.gm&quot;.
@@ -621,9 +588,6 @@ export namespace androidenterprise_v1 {
      * Whether the product to which this group license relates is currently approved by the enterprise. Products are approved when a group license is first created, but this approval may be revoked by an enterprise admin via Google Play. Unapproved products will not be visible to end users in collections, and new entitlements to them should not normally be created.
      */
     approval?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicense&quot;.
-     */
     kind?: string | null;
     /**
      * The total number of provisioned licenses for this product. Returned by read operations, but ignored in write operations.
@@ -676,9 +640,6 @@ export namespace androidenterprise_v1 {
      * Install state. The state &quot;installPending&quot; means that an install request has recently been made and download to the device is in progress. The state &quot;installed&quot; means that the app has been installed. This field is read-only.
      */
     installState?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#install&quot;.
-     */
     kind?: string | null;
     /**
      * The ID of the product that the install is for. For example, &quot;app:com.google.android.gm&quot;.
@@ -786,9 +747,6 @@ export namespace androidenterprise_v1 {
      * Contains the ID of the managed configuration profile and the set of configuration variables (if any) defined for the user.
      */
     configurationVariables?: Schema$ConfigurationVariables;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfiguration&quot;.
-     */
     kind?: string | null;
     /**
      * The set of managed properties for this configuration.
@@ -829,9 +787,6 @@ export namespace androidenterprise_v1 {
    * A managed configurations settings resource contains the set of managed properties that have been configured for an Android app to be applied to a set of users. The app&#39;s developer would have defined configurable properties in the managed configurations schema.
    */
   export interface Schema$ManagedConfigurationsSettings {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#managedConfigurationsSettings&quot;.
-     */
     kind?: string | null;
     /**
      * The last updated time of the managed configuration settings in milliseconds since 1970-01-01T00:00:00Z.
@@ -992,9 +947,6 @@ export namespace androidenterprise_v1 {
    * A resource returned by the PullNotificationSet API, which contains a collection of notifications for enterprises associated with the service account authenticated for the request.
    */
   export interface Schema$NotificationSet {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#notificationSet&quot;.
-     */
     kind?: string | null;
     /**
      * The notifications received, or empty if no notifications are present.
@@ -1018,9 +970,6 @@ export namespace androidenterprise_v1 {
      * A longer description of the Permissions resource, giving more details of what it affects.
      */
     description?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#permission&quot;.
-     */
     kind?: string | null;
     /**
      * The name of the permission.
@@ -1104,9 +1053,6 @@ export namespace androidenterprise_v1 {
      * A link to an image that can be used as an icon for the product. This image is suitable for use at up to 512px x 512px.
      */
     iconUrl?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#product&quot;.
-     */
     kind?: string | null;
     /**
      * The approximate time (within 7 days) the app was last published, expressed in milliseconds since epoch.
@@ -1200,9 +1146,6 @@ export namespace androidenterprise_v1 {
    * Information about the permissions required by a specific app and whether they have been accepted by the enterprise.
    */
   export interface Schema$ProductPermissions {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productPermissions&quot;.
-     */
     kind?: string | null;
     /**
      * The permissions required by the app.
@@ -1252,9 +1195,6 @@ export namespace androidenterprise_v1 {
    * A set of products.
    */
   export interface Schema$ProductSet {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productSet&quot;.
-     */
     kind?: string | null;
     /**
      * The list of product IDs making up the set of products.
@@ -1331,9 +1271,6 @@ export namespace androidenterprise_v1 {
      * Credentials that can be used to authenticate as this ServiceAccount.
      */
     key?: Schema$ServiceAccountKey;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#serviceAccount&quot;.
-     */
     kind?: string | null;
     /**
      * The account name of the service account, in the form of an email address. Assigned by the server.
@@ -1352,9 +1289,6 @@ export namespace androidenterprise_v1 {
      * An opaque, unique identifier for this ServiceAccountKey. Assigned by the server.
      */
     id?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#serviceAccountKey&quot;.
-     */
     kind?: string | null;
     /**
      * Public key data for the credentials file. This is an X.509 cert. If you are using the googleCredentials key type, this is identical to the cert that can be retrieved by using the X.509 cert url inside of the credentials file.
@@ -1379,9 +1313,6 @@ export namespace androidenterprise_v1 {
      * An opaque token that will be required, along with the Enterprise Token, for obtaining the enterprise resource from CompleteSignup.
      */
     completionToken?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#signupInfo&quot;.
-     */
     kind?: string | null;
     /**
      * A URL under which the Admin can sign up for an enterprise. The page pointed to cannot be rendered in an iframe.
@@ -1396,9 +1327,6 @@ export namespace androidenterprise_v1 {
      * Unique ID of this cluster. Assigned by the server. Immutable once assigned.
      */
     id?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeCluster&quot;.
-     */
     kind?: string | null;
     /**
      * Ordered list of localized strings giving the name of this page. The text displayed is the one that best matches the user locale, or the first entry if there is no good match. There needs to be at least one entry.
@@ -1421,9 +1349,6 @@ export namespace androidenterprise_v1 {
      * The ID of the store page to be used as the homepage. The homepage is the first page shown in the managed Google Play Store.  Not specifying a homepage is equivalent to setting the store layout type to &quot;basic&quot;.
      */
     homepageId?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayout&quot;.
-     */
     kind?: string | null;
     /**
      * The store layout type. By default, this value is set to &quot;basic&quot; if the homepageId field is not set, and to &quot;custom&quot; otherwise. If set to &quot;basic&quot;, the layout will consist of all approved apps that have been whitelisted for the user.
@@ -1464,9 +1389,6 @@ export namespace androidenterprise_v1 {
      * Unique ID of this page. Assigned by the server. Immutable once assigned.
      */
     id?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storePage&quot;.
-     */
     kind?: string | null;
     /**
      * Ordered list of pages a user should be able to reach from this page. The list can&#39;t include this page. It is recommended that the basic pages are created first, before adding the links between pages.  The API doesn&#39;t verify that the pages exist or the pages are reachable.
@@ -1514,9 +1436,6 @@ export namespace androidenterprise_v1 {
      * The unique ID for the user.
      */
     id?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#user&quot;.
-     */
     kind?: string | null;
     /**
      * The entity that manages the user. With googleManaged users, the source of truth is Google so EMMs have to make sure a Google Account exists for the user. With emmManaged users, the EMM is in charge.
@@ -1544,9 +1463,6 @@ export namespace androidenterprise_v1 {
    * A UserToken is used by a user when setting up a managed device or profile with their managed Google Play account on a device. When the user enters their email address and token (activation code) the appropriate EMM app can be automatically downloaded.
    */
   export interface Schema$UserToken {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#userToken&quot;.
-     */
     kind?: string | null;
     /**
      * The token (activation code) to be entered by the user. This consists of a sequence of decimal digits. Note that the leading digit may be 0.
@@ -1561,9 +1477,6 @@ export namespace androidenterprise_v1 {
    * A variable set is a key-value pair of EMM-provided placeholders and its corresponding value, which is attributed to a user. For example, $FIRSTNAME could be a placeholder, and its value could be Alice. Placeholders should start with a &#39;$&#39; sign and should be alphanumeric only.
    */
   export interface Schema$VariableSet {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#variableSet&quot;.
-     */
     kind?: string | null;
     /**
      * The placeholder string; defined by EMM.

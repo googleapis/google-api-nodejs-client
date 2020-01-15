@@ -93,6 +93,7 @@ export namespace androidpublisher_v3 {
     orders: Resource$Orders;
     purchases: Resource$Purchases;
     reviews: Resource$Reviews;
+    systemapks: Resource$Systemapks;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -108,6 +109,7 @@ export namespace androidpublisher_v3 {
       this.orders = new Resource$Orders(this.context);
       this.purchases = new Resource$Purchases(this.context);
       this.reviews = new Resource$Reviews(this.context);
+      this.systemapks = new Resource$Systemapks(this.context);
     }
   }
 
@@ -290,6 +292,11 @@ export namespace androidpublisher_v3 {
      * Screen width in pixels
      */
     screenWidthPx?: number | null;
+  }
+  export interface Schema$DeviceSpec {
+    screenDensity?: number | null;
+    supportedAbis?: string[] | null;
+    supportedLocales?: string[] | null;
   }
   export interface Schema$ExpansionFile {
     /**
@@ -546,11 +553,6 @@ export namespace androidpublisher_v3 {
      */
     text?: string | null;
   }
-  export interface Schema$MendelSampling {
-    modRanges?: Schema$ModRange[];
-    modulus?: string | null;
-    salt?: number | null;
-  }
   export interface Schema$ModRange {
     end?: string | null;
     start?: string | null;
@@ -624,6 +626,10 @@ export namespace androidpublisher_v3 {
      * The type of purchase of the inapp product. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)  - Rewarded (i.e. from watching a video ad instead of paying)
      */
     purchaseType?: number | null;
+    /**
+     * The quantity associated with the purchase of the inapp product.
+     */
+    quantity?: number | null;
   }
   export interface Schema$ProductPurchasesAcknowledgeRequest {
     /**
@@ -678,6 +684,11 @@ export namespace androidpublisher_v3 {
   }
   export interface Schema$ReviewsReplyResponse {
     result?: Schema$ReviewReplyResult;
+  }
+  export interface Schema$Sampling {
+    modRanges?: Schema$ModRange[];
+    modulus?: string | null;
+    salt?: number | null;
   }
   export interface Schema$Season {
     /**
@@ -851,6 +862,12 @@ export namespace androidpublisher_v3 {
      */
     newExpiryTimeMillis?: string | null;
   }
+  export interface Schema$SystemApkVariantsCreateRequest {
+    deviceSpec?: Schema$DeviceSpec;
+  }
+  export interface Schema$SystemApkVariantsListResponse {
+    variants?: Schema$Variant[];
+  }
   export interface Schema$Testers {
     /**
      * A list of all Google Groups, as email addresses, that define testers for this track.
@@ -886,7 +903,7 @@ export namespace androidpublisher_v3 {
      * The description of what is new in the app in this release.
      */
     releaseNotes?: Schema$LocalizedText[];
-    sampling?: Schema$MendelSampling;
+    sampling?: Schema$Sampling;
     /**
      * The desired status of this release.
      */
@@ -956,6 +973,13 @@ export namespace androidpublisher_v3 {
      * Number of users who have given this review a thumbs up
      */
     thumbsUpCount?: number | null;
+  }
+  /**
+   * Represents the variant of a generated system APK from an uploaded App Bundle.
+   */
+  export interface Schema$Variant {
+    deviceSpec?: Schema$DeviceSpec;
+    variantId?: number | null;
   }
   /**
    * A VoidedPurchase resource indicates a purchase that was either canceled/refunded/charged-back.
@@ -6829,5 +6853,405 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$ReviewsReplyRequest;
+  }
+
+  export class Resource$Systemapks {
+    context: APIRequestContext;
+    variants: Resource$Systemapks$Variants;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.variants = new Resource$Systemapks$Variants(this.context);
+    }
+  }
+
+  export class Resource$Systemapks$Variants {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * androidpublisher.systemapks.variants.create
+     * @desc Creates a new variant of APK which is suitable for inclusion in a system image.
+     * @alias androidpublisher.systemapks.variants.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {string} params.versionCode The version code of the App Bundle.
+     * @param {().SystemApkVariantsCreateRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Systemapks$Variants$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Variant>;
+    create(
+      params: Params$Resource$Systemapks$Variants$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Variant>,
+      callback: BodyResponseCallback<Schema$Variant>
+    ): void;
+    create(
+      params: Params$Resource$Systemapks$Variants$Create,
+      callback: BodyResponseCallback<Schema$Variant>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Variant>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Systemapks$Variants$Create
+        | BodyResponseCallback<Schema$Variant>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variant>,
+      callback?: BodyResponseCallback<Schema$Variant>
+    ): void | GaxiosPromise<Schema$Variant> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Systemapks$Variants$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Systemapks$Variants$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'versionCode'],
+        pathParams: ['packageName', 'versionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Variant>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Variant>(parameters);
+      }
+    }
+
+    /**
+     * androidpublisher.systemapks.variants.download
+     * @desc Download a previously created APK which is suitable for inclusion in a system image.
+     * @alias androidpublisher.systemapks.variants.download
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {integer} params.variantId
+     * @param {string} params.versionCode The version code of the App Bundle.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    download(
+      params?: Params$Resource$Systemapks$Variants$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    download(
+      params: Params$Resource$Systemapks$Variants$Download,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    download(
+      params: Params$Resource$Systemapks$Variants$Download,
+      callback: BodyResponseCallback<void>
+    ): void;
+    download(callback: BodyResponseCallback<void>): void;
+    download(
+      paramsOrCallback?:
+        | Params$Resource$Systemapks$Variants$Download
+        | BodyResponseCallback<void>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>
+    ): void | GaxiosPromise<void> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Systemapks$Variants$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Systemapks$Variants$Download;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}:download'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'versionCode', 'variantId'],
+        pathParams: ['packageName', 'variantId', 'versionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(parameters, callback);
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * androidpublisher.systemapks.variants.get
+     * @desc Returns a previously created system APK variant.
+     * @alias androidpublisher.systemapks.variants.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {integer} params.variantId Unique identifier for this variant.
+     * @param {string} params.versionCode The version code of the App Bundle.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Systemapks$Variants$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Variant>;
+    get(
+      params: Params$Resource$Systemapks$Variants$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Variant>,
+      callback: BodyResponseCallback<Schema$Variant>
+    ): void;
+    get(
+      params: Params$Resource$Systemapks$Variants$Get,
+      callback: BodyResponseCallback<Schema$Variant>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Variant>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Systemapks$Variants$Get
+        | BodyResponseCallback<Schema$Variant>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Variant>,
+      callback?: BodyResponseCallback<Schema$Variant>
+    ): void | GaxiosPromise<Schema$Variant> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Systemapks$Variants$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Systemapks$Variants$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants/{variantId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'versionCode', 'variantId'],
+        pathParams: ['packageName', 'variantId', 'versionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Variant>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Variant>(parameters);
+      }
+    }
+
+    /**
+     * androidpublisher.systemapks.variants.list
+     * @desc Returns the list of previously created system APK variants.
+     * @alias androidpublisher.systemapks.variants.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
+     * @param {string} params.versionCode The version code of the App Bundle.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Systemapks$Variants$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SystemApkVariantsListResponse>;
+    list(
+      params: Params$Resource$Systemapks$Variants$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>,
+      callback: BodyResponseCallback<Schema$SystemApkVariantsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Systemapks$Variants$List,
+      callback: BodyResponseCallback<Schema$SystemApkVariantsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SystemApkVariantsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Systemapks$Variants$List
+        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SystemApkVariantsListResponse>,
+      callback?: BodyResponseCallback<Schema$SystemApkVariantsListResponse>
+    ): void | GaxiosPromise<Schema$SystemApkVariantsListResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Systemapks$Variants$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Systemapks$Variants$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/systemApks/{versionCode}/variants'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'versionCode'],
+        pathParams: ['packageName', 'versionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SystemApkVariantsListResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$SystemApkVariantsListResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Systemapks$Variants$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Unique identifier for the Android app; for example, "com.spiffygame".
+     */
+    packageName?: string;
+    /**
+     * The version code of the App Bundle.
+     */
+    versionCode?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SystemApkVariantsCreateRequest;
+  }
+  export interface Params$Resource$Systemapks$Variants$Download
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Unique identifier for the Android app; for example, "com.spiffygame".
+     */
+    packageName?: string;
+    /**
+     *
+     */
+    variantId?: number;
+    /**
+     * The version code of the App Bundle.
+     */
+    versionCode?: string;
+  }
+  export interface Params$Resource$Systemapks$Variants$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Unique identifier for the Android app; for example, "com.spiffygame".
+     */
+    packageName?: string;
+    /**
+     * Unique identifier for this variant.
+     */
+    variantId?: number;
+    /**
+     * The version code of the App Bundle.
+     */
+    versionCode?: string;
+  }
+  export interface Params$Resource$Systemapks$Variants$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Unique identifier for the Android app; for example, "com.spiffygame".
+     */
+    packageName?: string;
+    /**
+     * The version code of the App Bundle.
+     */
+    versionCode?: string;
   }
 }

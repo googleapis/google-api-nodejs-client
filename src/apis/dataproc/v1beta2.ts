@@ -124,7 +124,7 @@ export namespace dataproc_v1beta2 {
      */
     acceleratorCount?: number | null;
     /**
-     * Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypesExamples * https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 * projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 * nvidia-tesla-k80Auto Zone Exception: If you are using the Cloud Dataproc Auto Zone Placement feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-k80.
+     * Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypesExamples * https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 * projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 * nvidia-tesla-k80Auto Zone Exception: If you are using the Dataproc Auto Zone Placement feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-k80.
      */
     acceleratorTypeUri?: string | null;
   }
@@ -133,7 +133,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$AutoscalingConfig {
     /**
-     * Optional. The autoscaling policy used by the cluster.Only resource names including projectid and location (region) are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id] projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]Note that the policy must be in the same project and Cloud Dataproc region.
+     * Optional. The autoscaling policy used by the cluster.Only resource names including projectid and location (region) are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id] projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]Note that the policy must be in the same project and Dataproc region.
      */
     policyUri?: string | null;
   }
@@ -206,7 +206,7 @@ export namespace dataproc_v1beta2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is  on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone  who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google  account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service  account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group.  For example, admins@example.com. domain:{domain}: The G Suite domain (primary) that represents all the  users of that domain. For example, google.com or example.com.
+     * Specifies the identities requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is  on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone  who is authenticated with a Google account or a service account. user:{emailid}: An email address that represents a specific Google  account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a service  account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group.  For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique  identifier) representing a user that has been recently deleted. For  example, alice@example.com?uid=123456789012345678901. If the user is  recovered, this value reverts to user:{emailid} and the recovered user  retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus  unique identifier) representing a service account that has been recently  deleted. For example,  my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901.  If the service account is undeleted, this value reverts to  serviceAccount:{emailid} and the undeleted service account retains the  role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique  identifier) representing a Google group that has been recently  deleted. For example, admins@example.com?uid=123456789012345678901. If  the group is recovered, this value reverts to group:{emailid} and the  recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the  users of that domain. For example, google.com or example.com.
      */
     members?: string[] | null;
     /**
@@ -227,11 +227,11 @@ export namespace dataproc_v1beta2 {
      */
     clusterName?: string | null;
     /**
-     * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
+     * Output only. A cluster UUID (Unique Universal Identifier). Dataproc generates this value when it creates the cluster.
      */
     clusterUuid?: string | null;
     /**
-     * Required. The cluster config. Note that Cloud Dataproc may set default values, and values may change when clusters are updated.
+     * Required. The cluster config. Note that Dataproc may set default values, and values may change when clusters are updated.
      */
     config?: Schema$ClusterConfig;
     /**
@@ -264,7 +264,7 @@ export namespace dataproc_v1beta2 {
      */
     autoscalingConfig?: Schema$AutoscalingConfig;
     /**
-     * Optional. A Google Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s staging bucket according to the Google Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Cloud Dataproc staging bucket).
+     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster&#39;s staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging bucket).
      */
     configBucket?: string | null;
     /**
@@ -422,7 +422,7 @@ export namespace dataproc_v1beta2 {
      */
     state?: string | null;
     /**
-     * Output only. Time when this state was entered.
+     * Output only. Time when this state was entered (see JSON representation of Timestamp (https://developers.google.com/protocol-buffers/docs/proto3#json)).
      */
     stateStartTime?: string | null;
     /**
@@ -528,7 +528,7 @@ export namespace dataproc_v1beta2 {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * Optional. The service account of the instances. Defaults to the default Compute Engine service account. Custom service accounts need permissions equivalent to the following IAM roles: roles/logging.logWriter roles/storage.objectAdmin(see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts for more information). Example: [account_id]@[project_id].iam.gserviceaccount.com
+     * Optional. The Dataproc service account (also see VM Data Plane identity) used by Dataproc cluster VM instances to access Google Cloud Platform services.If not specified, the Compute Engine default service account is used.
      */
     serviceAccount?: string | null;
     /**
@@ -544,7 +544,7 @@ export namespace dataproc_v1beta2 {
      */
     tags?: string[] | null;
     /**
-     * Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the &quot;global&quot; region. If omitted in a non-global Cloud Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f
+     * Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the &quot;global&quot; region. If omitted in a non-global Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f
      */
     zoneUri?: string | null;
   }
@@ -567,7 +567,7 @@ export namespace dataproc_v1beta2 {
     requestedPolicyVersion?: number | null;
   }
   /**
-   * A Cloud Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
+   * A Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
    */
   export interface Schema$HadoopJob {
     /**
@@ -599,12 +599,12 @@ export namespace dataproc_v1beta2 {
      */
     mainJarFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure Hadoop. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site and classes in user code.
+     * Optional. A mapping of property names to values, used to configure Hadoop. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site and classes in user code.
      */
     properties?: {[key: string]: string} | null;
   }
   /**
-   * A Cloud Dataproc job for running Apache Hive (https://hive.apache.org/) queries on YARN.
+   * A Dataproc job for running Apache Hive (https://hive.apache.org/) queries on YARN.
    */
   export interface Schema$HiveJob {
     /**
@@ -616,7 +616,7 @@ export namespace dataproc_v1beta2 {
      */
     jarFileUris?: string[] | null;
     /**
-     * Optional. A mapping of property names and values, used to configure Hive. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml, /etc/hive/conf/hive-site.xml, and classes in user code.
+     * Optional. A mapping of property names and values, used to configure Hive. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml, /etc/hive/conf/hive-site.xml, and classes in user code.
      */
     properties?: {[key: string]: string} | null;
     /**
@@ -666,7 +666,7 @@ export namespace dataproc_v1beta2 {
      */
     imageUri?: string | null;
     /**
-     * Output only. The list of instance names. Cloud Dataproc derives the names from cluster_name, num_instances, and the instance group.
+     * Output only. The list of instance names. Dataproc derives the names from cluster_name, num_instances, and the instance group.
      */
     instanceNames?: string[] | null;
     /**
@@ -674,7 +674,7 @@ export namespace dataproc_v1beta2 {
      */
     isPreemptible?: boolean | null;
     /**
-     * Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2Auto Zone Exception: If you are using the Cloud Dataproc Auto Zone Placement feature, you must use the short name of the machine type resource, for example, n1-standard-2.
+     * Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2Auto Zone Exception: If you are using the Dataproc Auto Zone Placement feature, you must use the short name of the machine type resource, for example, n1-standard-2.
      */
     machineTypeUri?: string | null;
     /**
@@ -682,7 +682,7 @@ export namespace dataproc_v1beta2 {
      */
     managedGroupConfig?: Schema$ManagedGroupConfig;
     /**
-     * Specifies the minimum cpu platform for the Instance Group. See Cloud Dataproc&amp;rarr;Minimum CPU Platform.
+     * Specifies the minimum cpu platform for the Instance Group. See Dataproc&amp;rarr;Minimum CPU Platform.
      */
     minCpuPlatform?: string | null;
     /**
@@ -712,7 +712,7 @@ export namespace dataproc_v1beta2 {
     version?: number | null;
   }
   /**
-   * A Cloud Dataproc job resource.
+   * A Dataproc job resource.
    */
   export interface Schema$Job {
     /**
@@ -723,13 +723,7 @@ export namespace dataproc_v1beta2 {
      * Output only. A URI pointing to the location of the stdout of the job&#39;s driver program.
      */
     driverOutputResourceUri?: string | null;
-    /**
-     * Job is a Hadoop job.
-     */
     hadoopJob?: Schema$HadoopJob;
-    /**
-     * Job is a Hive job.
-     */
     hiveJob?: Schema$HiveJob;
     /**
      * Output only. A UUID that uniquely identifies a job within the project over time. This is in contrast to a user-settable reference.job_id that may be reused over time.
@@ -739,21 +733,12 @@ export namespace dataproc_v1beta2 {
      * Optional. The labels to associate with this job. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
      */
     labels?: {[key: string]: string} | null;
-    /**
-     * Job is a Pig job.
-     */
     pigJob?: Schema$PigJob;
     /**
      * Required. Job information, including how, when, and where to run the job.
      */
     placement?: Schema$JobPlacement;
-    /**
-     * Job is a Presto job
-     */
     prestoJob?: Schema$PrestoJob;
-    /**
-     * Job is a Pyspark job.
-     */
     pysparkJob?: Schema$PySparkJob;
     /**
      * Optional. The fully qualified reference to the job, which can be used to obtain the equivalent REST path of the job resource. If this property is not specified when a job is created, the server generates a &lt;code&gt;job_id&lt;/code&gt;.
@@ -763,17 +748,8 @@ export namespace dataproc_v1beta2 {
      * Optional. Job scheduling configuration.
      */
     scheduling?: Schema$JobScheduling;
-    /**
-     * Job is a Spark job.
-     */
     sparkJob?: Schema$SparkJob;
-    /**
-     * Job is a SparkR job.
-     */
     sparkRJob?: Schema$SparkRJob;
-    /**
-     * Job is a SparkSql job.
-     */
     sparkSqlJob?: Schema$SparkSqlJob;
     /**
      * Output only. The job status. Additional application-specific status information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and &lt;code&gt;yarn_applications&lt;/code&gt; fields.
@@ -793,7 +769,7 @@ export namespace dataproc_v1beta2 {
     yarnApplications?: Schema$YarnApplication[];
   }
   /**
-   * Cloud Dataproc job config.
+   * Dataproc job config.
    */
   export interface Schema$JobPlacement {
     /**
@@ -801,7 +777,7 @@ export namespace dataproc_v1beta2 {
      */
     clusterName?: string | null;
     /**
-     * Output only. A cluster UUID generated by the Cloud Dataproc service when the job is submitted.
+     * Output only. A cluster UUID generated by the Dataproc service when the job is submitted.
      */
     clusterUuid?: string | null;
   }
@@ -810,7 +786,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$JobReference {
     /**
-     * Optional. The job ID, which must be unique within the project.The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or hyphens (-). The maximum length is 100 characters.If not specified by the caller, the job ID will be provided by the server.
+     * Optional. The job ID, which must be unique within the project. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or hyphens (-). The maximum length is 100 characters.If not specified by the caller, the job ID will be provided by the server.
      */
     jobId?: string | null;
     /**
@@ -828,11 +804,11 @@ export namespace dataproc_v1beta2 {
     maxFailuresPerHour?: number | null;
   }
   /**
-   * Cloud Dataproc job status.
+   * Dataproc job status.
    */
   export interface Schema$JobStatus {
     /**
-     * Output only. Optional job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
+     * Output only. Optional Job state details, such as an error description if the state is &lt;code&gt;ERROR&lt;/code&gt;.
      */
     details?: string | null;
     /**
@@ -918,19 +894,19 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$LifecycleConfig {
     /**
-     * Optional. The time when cluster will be auto-deleted.
+     * Optional. The time when cluster will be auto-deleted. (see JSON representation of Timestamp (https://developers.google.com/protocol-buffers/docs/proto3#json)).
      */
     autoDeleteTime?: string | null;
     /**
-     * Optional. The lifetime duration of cluster. The cluster will be auto-deleted at the end of this period. Valid range: 10m, 14d.Example: &quot;1d&quot;, to delete the cluster 1 day after its creation..
+     * Optional. The lifetime duration of cluster. The cluster will be auto-deleted at the end of this period. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).
      */
     autoDeleteTtl?: string | null;
     /**
-     * Optional. The duration to keep the cluster alive while idling. Passing this threshold will cause the cluster to be deleted. Valid range: 10m, 14d.Example: &quot;10m&quot;, the minimum value, to delete the cluster when it has had no jobs running for 10 minutes.
+     * Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json).
      */
     idleDeleteTtl?: string | null;
     /**
-     * Output only. The time when cluster became idle (most recent job finished) and became eligible for deletion due to idleness.
+     * Output only. The time when cluster became idle (most recent job finished) and became eligible for deletion due to idleness (see JSON representation of Timestamp (https://developers.google.com/protocol-buffers/docs/proto3#json)).
      */
     idleStartTime?: string | null;
   }
@@ -1047,7 +1023,7 @@ export namespace dataproc_v1beta2 {
      */
     executableFile?: string | null;
     /**
-     * Optional. Amount of time executable has to complete. Default is 10 minutes. Cluster creation fails with an explanatory error message (the name of the executable that caused the error and the exceeded timeout period) if the executable is not completed at end of the timeout period.
+     * Optional. Amount of time executable has to complete. Default is 10 minutes (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Cluster creation fails with an explanatory error message (the name of the executable that caused the error and the exceeded timeout period) if the executable is not completed at end of the timeout period.
      */
     executionTimeout?: string | null;
   }
@@ -1080,41 +1056,23 @@ export namespace dataproc_v1beta2 {
    * A job executed by the workflow.
    */
   export interface Schema$OrderedJob {
-    /**
-     * Job is a Hadoop job.
-     */
     hadoopJob?: Schema$HadoopJob;
-    /**
-     * Job is a Hive job.
-     */
     hiveJob?: Schema$HiveJob;
     /**
      * Optional. The labels to associate with this job.Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62}Label values must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a given job.
      */
     labels?: {[key: string]: string} | null;
-    /**
-     * Job is a Pig job.
-     */
     pigJob?: Schema$PigJob;
     /**
      * Optional. The optional list of prerequisite job step_ids. If not specified, the job will start at the beginning of workflow.
      */
     prerequisiteStepIds?: string[] | null;
-    /**
-     * Job is a Pyspark job.
-     */
     pysparkJob?: Schema$PySparkJob;
     /**
      * Optional. Job scheduling configuration.
      */
     scheduling?: Schema$JobScheduling;
-    /**
-     * Job is a Spark job.
-     */
     sparkJob?: Schema$SparkJob;
-    /**
-     * Job is a SparkSql job.
-     */
     sparkSqlJob?: Schema$SparkSqlJob;
     /**
      * Required. The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job goog-dataproc-workflow-step-id label, and in prerequisiteStepIds field from other steps.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
@@ -1135,7 +1093,7 @@ export namespace dataproc_v1beta2 {
     values?: Schema$ValueValidation;
   }
   /**
-   * A Cloud Dataproc job for running Apache Pig (https://pig.apache.org/) queries on YARN.
+   * A Dataproc job for running Apache Pig (https://pig.apache.org/) queries on YARN.
    */
   export interface Schema$PigJob {
     /**
@@ -1151,7 +1109,7 @@ export namespace dataproc_v1beta2 {
      */
     loggingConfig?: Schema$LoggingConfig;
     /**
-     * Optional. A mapping of property names to values, used to configure Pig. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml, /etc/pig/conf/pig.properties, and classes in user code.
+     * Optional. A mapping of property names to values, used to configure Pig. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml, /etc/pig/conf/pig.properties, and classes in user code.
      */
     properties?: {[key: string]: string} | null;
     /**
@@ -1168,24 +1126,24 @@ export namespace dataproc_v1beta2 {
     scriptVariables?: {[key: string]: string} | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions (defined by IAM or configured by users). A binding can optionally specify a condition, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.JSON Example {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,       &quot;members&quot;: [&quot;user:eve@example.com&quot;],       &quot;condition&quot;: {         &quot;title&quot;: &quot;expirable access&quot;,         &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,         &quot;expression&quot;: &quot;request.time &lt;         timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,       }     }   ] } YAML Example bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-project-id@appspot.gserviceaccount.com   role: roles/resourcemanager.organizationAdmin - members:   - user:eve@example.com   role: roles/resourcemanager.organizationViewer   condition:     title: expirable access     description: Does not grant access after Sep 2020     expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) For a description of IAM and its features, see the IAM developer&#39;s guide (https://cloud.google.com/iam/docs).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.Optionally, a binding can specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both.JSON example: {   &quot;bindings&quot;: [     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,       &quot;members&quot;: [         &quot;user:mike@example.com&quot;,         &quot;group:admins@example.com&quot;,         &quot;domain:google.com&quot;,         &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;       ]     },     {       &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,       &quot;members&quot;: [&quot;user:eve@example.com&quot;],       &quot;condition&quot;: {         &quot;title&quot;: &quot;expirable access&quot;,         &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,         &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,       }     }   ],   &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,   &quot;version&quot;: 3 } YAML example: bindings: - members:   - user:mike@example.com   - group:admins@example.com   - domain:google.com   - serviceAccount:my-project-id@appspot.gserviceaccount.com   role: roles/resourcemanager.organizationAdmin - members:   - user:eve@example.com   role: roles/resourcemanager.organizationViewer   condition:     title: expirable access     description: Does not grant access after Sep 2020     expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of members to a role. Optionally may specify a condition that determines when binding is in effect. bindings with no members will result in an error.
+     * Associates a list of members to a role. Optionally, may specify a condition that determines how and when the bindings are applied. Each of the bindings must contain at least one member.
      */
     bindings?: Schema$Binding[];
     /**
-     * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.If no etag is provided in the call to setIamPolicy, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to getIamPolicy, and systems are expected to put that etag in the request to setIamPolicy to ensure that their change will be applied to the same version of the policy.Important: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.If no etag is provided in the call to setIamPolicy, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations: Getting a policy that includes a conditional role binding Adding a conditional role binding to a policy Changing a conditional role binding in a policy Removing any role binding, with or without a condition, from a policy  that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
      */
     version?: number | null;
   }
   /**
-   * A Cloud Dataproc job for running Presto (https://prestosql.io/) queries
+   * A Dataproc job for running Presto (https://prestosql.io/) queries
    */
   export interface Schema$PrestoJob {
     /**
@@ -1218,7 +1176,7 @@ export namespace dataproc_v1beta2 {
     queryList?: Schema$QueryList;
   }
   /**
-   * A Cloud Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.
+   * A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.
    */
   export interface Schema$PySparkJob {
     /**
@@ -1246,7 +1204,7 @@ export namespace dataproc_v1beta2 {
      */
     mainPythonFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
+     * Optional. A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
     /**
@@ -1312,7 +1270,7 @@ export namespace dataproc_v1beta2 {
    */
   export interface Schema$SoftwareConfig {
     /**
-     * Optional. The version of software inside the cluster. It must be one of the supported Cloud Dataproc Versions, such as &quot;1.2&quot; (including a subminor version, such as &quot;1.2.29&quot;), or the &quot;preview&quot; version. If unspecified, it defaults to the latest Debian version.
+     * Optional. The version of software inside the cluster. It must be one of the supported Dataproc Versions, such as &quot;1.2&quot; (including a subminor version, such as &quot;1.2.29&quot;), or the &quot;preview&quot; version. If unspecified, it defaults to the latest Debian version.
      */
     imageVersion?: string | null;
     /**
@@ -1325,7 +1283,7 @@ export namespace dataproc_v1beta2 {
     properties?: {[key: string]: string} | null;
   }
   /**
-   * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/) applications on YARN. The specification of the main method to call to drive the job. Specify either the jar file that contains the main class or the main class name. To pass both a main jar and a main class in that jar, add the jar to CommonJob.jar_file_uris, and then specify the main class name in main_class.
+   * A Dataproc job for running Apache Spark (http://spark.apache.org/) applications on YARN. The specification of the main method to call to drive the job. Specify either the jar file that contains the main class or the main class name. To pass both a main jar and a main class in that jar, add the jar to CommonJob.jar_file_uris, and then specify the main class name in main_class.
    */
   export interface Schema$SparkJob {
     /**
@@ -1357,12 +1315,12 @@ export namespace dataproc_v1beta2 {
      */
     mainJarFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure Spark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
+     * Optional. A mapping of property names to values, used to configure Spark. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
   }
   /**
-   * A Cloud Dataproc job for running Apache SparkR (https://spark.apache.org/docs/latest/sparkr.html) applications on YARN.
+   * A Dataproc job for running Apache SparkR (https://spark.apache.org/docs/latest/sparkr.html) applications on YARN.
    */
   export interface Schema$SparkRJob {
     /**
@@ -1386,12 +1344,12 @@ export namespace dataproc_v1beta2 {
      */
     mainRFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure SparkR. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
+     * Optional. A mapping of property names to values, used to configure SparkR. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
   }
   /**
-   * A Cloud Dataproc job for running Apache Spark SQL (http://spark.apache.org/sql/) queries.
+   * A Dataproc job for running Apache Spark SQL (http://spark.apache.org/sql/) queries.
    */
   export interface Schema$SparkSqlJob {
     /**
@@ -1403,7 +1361,7 @@ export namespace dataproc_v1beta2 {
      */
     loggingConfig?: Schema$LoggingConfig;
     /**
-     * Optional. A mapping of property names to values, used to configure Spark SQL&#39;s SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+     * Optional. A mapping of property names to values, used to configure Spark SQL&#39;s SparkConf. Properties that conflict with values set by the Dataproc API may be overwritten.
      */
     properties?: {[key: string]: string} | null;
     /**
@@ -1507,7 +1465,7 @@ export namespace dataproc_v1beta2 {
     nodes?: Schema$WorkflowNode[];
   }
   /**
-   * A Cloud Dataproc workflow template resource.
+   * A Dataproc workflow template resource.
    */
   export interface Schema$WorkflowMetadata {
     /**
@@ -1581,7 +1539,7 @@ export namespace dataproc_v1beta2 {
     stepId?: string | null;
   }
   /**
-   * A Cloud Dataproc workflow template resource.
+   * A Dataproc workflow template resource.
    */
   export interface Schema$WorkflowTemplate {
     /**
@@ -1651,7 +1609,7 @@ export namespace dataproc_v1beta2 {
      */
     state?: string | null;
     /**
-     * Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.
+     * Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.
      */
     trackingUrl?: string | null;
   }
@@ -4128,7 +4086,7 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {().Cluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4207,7 +4165,7 @@ export namespace dataproc_v1beta2 {
      * @param {string} params.clusterName Required. The cluster name.
      * @param {string=} params.clusterUuid Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two DeleteClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4284,7 +4242,7 @@ export namespace dataproc_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {().DiagnoseClusterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4361,7 +4319,7 @@ export namespace dataproc_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4510,7 +4468,7 @@ export namespace dataproc_v1beta2 {
      * @param {integer=} params.pageSize Optional. The standard List page size.
      * @param {string=} params.pageToken Optional. The standard List page token.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4587,9 +4545,9 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.clusterName Required. The cluster name.
-     * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.Only supported on Dataproc image versions 1.2 and higher.
+     * @param {string=} params.gracefulDecommissionTimeout Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {string=} params.requestId Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      * @param {string=} params.updateMask Required. Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as config.worker_config.num_instances, and the PATCH request body would specify the new value, as follows: {   "config":{     "workerConfig":{       "numInstances":"5"     }   } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the PATCH request body would be set as follows: {   "config":{     "secondaryWorkerConfig":{       "numInstances":"5"     }   } } <strong>Note:</strong> currently only the following fields can be updated: <table> <tr> <td><strong>Mask</strong></td><td><strong>Purpose</strong></td> </tr> <tr> <td>labels</td><td>Updates labels</td> </tr> <tr> <td>config.worker_config.num_instances</td><td>Resize primary worker group</td> </tr> <tr> <td>config.secondary_worker_config.num_instances</td><td>Resize secondary worker group</td> </tr> <tr> <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL duration</td> </tr> <tr> <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL deletion timestamp</td> </tr> <tr> <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL duration</td> </tr> <tr> <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or change autoscaling policies</td> </tr> </table>
      * @param {().Cluster} params.requestBody Request body data
@@ -4827,7 +4785,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
     /**
@@ -4860,7 +4818,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
     /**
@@ -4884,7 +4842,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
 
@@ -4909,7 +4867,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
   }
@@ -4953,7 +4911,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
   }
@@ -4969,7 +4927,7 @@ export namespace dataproc_v1beta2 {
      */
     clusterName?: string;
     /**
-     * Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day.Only supported on Dataproc image versions 1.2 and higher.
+     * Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.
      */
     gracefulDecommissionTimeout?: string;
     /**
@@ -4977,7 +4935,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
     /**
@@ -5044,7 +5002,7 @@ export namespace dataproc_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {().CancelJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5119,7 +5077,7 @@ export namespace dataproc_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5193,7 +5151,7 @@ export namespace dataproc_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5344,7 +5302,7 @@ export namespace dataproc_v1beta2 {
      * @param {integer=} params.pageSize Optional. The number of results to return in each response.
      * @param {string=} params.pageToken Optional. The page token, returned by a previous call, to request the next page of results.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5419,7 +5377,7 @@ export namespace dataproc_v1beta2 {
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The job ID.
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {string=} params.updateMask Required. Specifies the path, relative to <code>Job</code>, of the field to update. For example, to update the labels of a Job the <code>update_mask</code> parameter would be specified as <code>labels</code>, and the PATCH request body would specify the new value. <strong>Note:</strong> Currently, <code>labels</code> is the only field that can be updated.
      * @param {().Job} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5567,7 +5525,7 @@ export namespace dataproc_v1beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
-     * @param {string} params.region Required. The Cloud Dataproc region in which to handle the request.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
      * @param {().SubmitJobRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5732,7 +5690,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
 
@@ -5757,7 +5715,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
   }
@@ -5777,7 +5735,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
   }
@@ -5829,7 +5787,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
   }
@@ -5849,7 +5807,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
     /**
@@ -5891,7 +5849,7 @@ export namespace dataproc_v1beta2 {
      */
     projectId?: string;
     /**
-     * Required. The Cloud Dataproc region in which to handle the request.
+     * Required. The Dataproc region in which to handle the request.
      */
     region?: string;
 

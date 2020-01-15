@@ -311,6 +311,10 @@ export namespace dns_v1 {
      */
     nameServerSet?: string | null;
     /**
+     * The presence of this field indicates that DNS Peering is enabled for this zone. The value of this field contains the network to peer with.
+     */
+    peeringConfig?: Schema$ManagedZonePeeringConfig;
+    /**
      * For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
      */
     privateVisibilityConfig?: Schema$ManagedZonePrivateVisibilityConfig;
@@ -371,6 +375,30 @@ export namespace dns_v1 {
      * The operation resources.
      */
     operations?: Schema$Operation[];
+  }
+  export interface Schema$ManagedZonePeeringConfig {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePeeringConfig&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The network with which to peer.
+     */
+    targetNetwork?: Schema$ManagedZonePeeringConfigTargetNetwork;
+  }
+  export interface Schema$ManagedZonePeeringConfigTargetNetwork {
+    /**
+     * The time at which the zone was deactivated, in RFC 3339 date-time format. An empty string indicates that the peering connection is active. The producer network can deactivate a zone. The zone is automatically deactivated if the producer network that the zone targeted is deleted. Output only.
+     */
+    deactivateTime?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZonePeeringConfigTargetNetwork&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The fully qualified URL of the VPC network to forward queries to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     */
+    networkUrl?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfig {
     /**

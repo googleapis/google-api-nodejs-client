@@ -127,6 +127,10 @@ export namespace websecurityscanner_v1 {
      * Authentication using a Google account.
      */
     googleAccount?: Schema$GoogleAccount;
+    /**
+     * Authentication using Identity-Aware-Proxy (IAP).
+     */
+    iapCredential?: Schema$IapCredential;
   }
   /**
    * A CrawledUrl resource represents a URL that was crawled during a ScanRun. Web Security Scanner Service crawls the web applications, following all links within the scope of sites, to find the URLs to test against.
@@ -288,6 +292,24 @@ export namespace websecurityscanner_v1 {
     value?: string | null;
   }
   /**
+   * Describes authentication configuration for Identity-Aware-Proxy (IAP).
+   */
+  export interface Schema$IapCredential {
+    /**
+     * Authentication configuration when Web-Security-Scanner service account is added in Identity-Aware-Proxy (IAP) access policies.
+     */
+    iapTestServiceAccountInfo?: Schema$IapTestServiceAccountInfo;
+  }
+  /**
+   * Describes authentication configuration when Web-Security-Scanner service account is added in Identity-Aware-Proxy (IAP) access policies.
+   */
+  export interface Schema$IapTestServiceAccountInfo {
+    /**
+     * Required. Describes OAuth2 client id of resources protected by Identity-Aware-Proxy (IAP).
+     */
+    targetAudienceClientId?: string | null;
+  }
+  /**
    * Response for the `ListCrawledUrls` method.
    */
   export interface Schema$ListCrawledUrlsResponse {
@@ -386,6 +408,10 @@ export namespace websecurityscanner_v1 {
      */
     exportToSecurityCommandCenter?: string | null;
     /**
+     * Whether the scan config is managed by Cloud Web Security Scanner, output only.
+     */
+    managedScan?: boolean | null;
+    /**
      * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. If the field is unspecified or its value is set 0, server will default to 15. Other values outside of [5, 20] range will be rejected with INVALID_ARGUMENT error.
      */
     maxQps?: number | null;
@@ -405,6 +431,10 @@ export namespace websecurityscanner_v1 {
      * Required. The starting URLs from which the scanner finds site pages.
      */
     startingUrls?: string[] | null;
+    /**
+     * Whether the scan configuration has enabled static IP address scan feature. If enabled, the scanner will access applications from static IP addresses.
+     */
+    staticIpScan?: boolean | null;
     /**
      * The user agent used during scanning.
      */

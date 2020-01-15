@@ -238,6 +238,10 @@ export namespace bigqueryreservation_v1alpha2 {
      * Resource name of the reservation. E.g., projects/myproject/locations/eu/reservations/my_reservation. This reservation must be in the same location as the grant. This reservation should belong to the same parent project.
      */
     reservation?: string | null;
+    /**
+     * Output only. State of the ReservationGrant.
+     */
+    state?: string | null;
   }
   /**
    * The response for ReservationService.SearchReservationGrants.

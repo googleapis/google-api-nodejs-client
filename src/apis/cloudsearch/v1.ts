@@ -230,7 +230,7 @@ export namespace cloudsearch_v1 {
      */
     indexingServiceAccounts?: string[] | null;
     /**
-     * This field restricts visibility to items at the datasource level. Items within the datasource are restricted to the union of users and groups included in this field. Note that, this does not ensure access to a specific item, as users need to have ACL permissions on the contained items. This ensures a high level access on the entire datasource, and that the individual items are not shared outside this visibility.
+     * This field restricts visibility to items at the datasource level. Items within the datasource are restricted to the union of users and groups included in this field. Note that, this does not ensure access to a specific item, as users need to have ACL permissions on the contained items. This ensures a high level access on the entire datasource, and that the individual items are not shared outside this visibility. This should not be set if anonymous search is enabled for the data source.
      */
     itemsVisibility?: Schema$GSuitePrincipal[];
     /**
@@ -1343,7 +1343,7 @@ export namespace cloudsearch_v1 {
   export interface Schema$QueryInterpretation {
     interpretationType?: string | null;
     /**
-     * The interpretation of the query used in search. For example, queries with natural language intent like &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;. This field will not be filled when the reason is NO_RESULTS_FOUND_FOR_USER_QUERY.
+     * The interpretation of the query used in search. For example, queries with natural language intent like &quot;email from john&quot; will be interpreted as &quot;from:john source:mail&quot;. This field will not be filled when the reason is NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY.
      */
     interpretedQuery?: string | null;
     /**
@@ -1413,6 +1413,10 @@ export namespace cloudsearch_v1 {
      * Indicates the operator name that can be used to  isolate the property using the less-than operator.
      */
     lessThanOperatorName?: string | null;
+    /**
+     * Name of the object corresponding to the operator. This field is only filled for schema-specific operators, and is unset for common operators.
+     */
+    objectType?: string | null;
     /**
      * The name of the operator.
      */
@@ -2121,7 +2125,7 @@ export namespace cloudsearch_v1 {
      */
     schema?: Schema$Schema;
     /**
-     * If true, the request will be validated without side effects.
+     * If true, the schema will be checked for validity, but will not be registered with the data source, even if valid.
      */
     validateOnly?: boolean | null;
   }

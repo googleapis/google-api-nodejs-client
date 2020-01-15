@@ -215,7 +215,7 @@ export namespace ml_v1 {
     httpBody?: Schema$GoogleApi__HttpBody;
   }
   /**
-   * Message holding configuration options for explaining model predictions. Currently, the only supported mechanism to explain a model&#39;s prediction is through attributing its output back to its inputs which is essentially a credit assignment task. We support multiple attribution methods, some specific to particular frameworks like Tensorflow and XGBoost. Next idx: 7.
+   * Message holding configuration options for explaining model predictions. There are two feature attribution methods supported for TensorFlow models: integrated gradients and sampled Shapley. &lt;a href=&quot;/ml-engine/docs/ai-explanations/overview&quot;&gt;Learn more about feature attributions&lt;/a&gt;.
    */
   export interface Schema$GoogleCloudMlV1__ExplanationConfig {
     integratedGradientsAttribution?: Schema$GoogleCloudMlV1__IntegratedGradientsAttribution;
@@ -449,7 +449,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__Model {
     /**
-     * Output only. The default version of the model. This version will be used to handle prediction requests that do not specify a version.  You can change the default version by calling [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
+     * Output only. The default version of the model. This version will be used to handle prediction requests that do not specify a version.  You can change the default version by calling projects.models.versions.setDefault.
      */
     defaultVersion?: Schema$GoogleCloudMlV1__Version;
     /**
@@ -634,7 +634,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__PredictRequest {
     /**
-     *  Required. The prediction request body.
+     *  Required. The prediction request body. Refer to the [request body details section](#request-body-details) for more information on how to structure your request.
      */
     httpBody?: Schema$GoogleApi__HttpBody;
   }
@@ -673,7 +673,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__SampledShapleyAttribution {
     /**
-     * The number of feature permutations to consider when approximating the shapley values.
+     * The number of feature permutations to consider when approximating the Shapley values.
      */
     numPaths?: number | null;
   }
@@ -726,7 +726,7 @@ export namespace ml_v1 {
      */
     pythonModule?: string | null;
     /**
-     * Optional. The version of Python used in training. If not set, the default version is &#39;2.7&#39;. Python &#39;3.5&#39; is available when `runtime_version` is set to &#39;1.4&#39; and above. Python &#39;2.7&#39; works with all supported &lt;a href=&quot;/ml-engine/docs/runtime-version-list&quot;&gt;runtime versions&lt;/a&gt;.
+     * Optional. The version of Python used in training. If not set, the default version is &#39;2.7&#39;. Starting [January 13, 2020](/ml-engine/docs/release-notes#december_10_2019), this field is required.  The following Python versions are available:  * Python &#39;3.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   later. * Python &#39;3.5&#39; is available when `runtime_version` is set to a version   from &#39;1.4&#39; to &#39;1.14&#39;. * Python &#39;2.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   earlier. (Runtime versions released [after January 1,   2020](/ml-engine/docs/release-notes#december_10_2019) do not support   Python 2.7.)  Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).
      */
     pythonVersion?: string | null;
     /**
@@ -734,7 +734,7 @@ export namespace ml_v1 {
      */
     region?: string | null;
     /**
-     * Optional. The AI Platform runtime version to use for training. If not set, AI Platform uses the default stable version, 1.0. For more information, see the &lt;a href=&quot;/ml-engine/docs/runtime-version-list&quot;&gt;runtime version list&lt;/a&gt; and &lt;a href=&quot;/ml-engine/docs/versioning&quot;&gt;how to manage runtime versions&lt;/a&gt;.
+     * Optional. The AI Platform runtime version to use for training. If not set, AI Platform uses the default stable version, 1.0. Starting [January 13, 2020](/ml-engine/docs/release-notes#december_10_2019), this field is required.  For more information, see the &lt;a href=&quot;/ml-engine/docs/runtime-version-list&quot;&gt;runtime version list&lt;/a&gt; and &lt;a href=&quot;/ml-engine/docs/versioning&quot;&gt;how to manage runtime versions&lt;/a&gt;.
      */
     runtimeVersion?: string | null;
     /**
@@ -792,7 +792,7 @@ export namespace ml_v1 {
     trials?: Schema$GoogleCloudMlV1__HyperparameterOutput[];
   }
   /**
-   * Represents a version of the model.  Each version is a trained model deployed in the cloud, ready to handle prediction requests. A model can have multiple versions. You can get information about all of the versions of a given model by calling [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
+   * Represents a version of the model.  Each version is a trained model deployed in the cloud, ready to handle prediction requests. A model can have multiple versions. You can get information about all of the versions of a given model by calling projects.models.versions.list.
    */
   export interface Schema$GoogleCloudMlV1__Version {
     /**
@@ -808,7 +808,7 @@ export namespace ml_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. The Cloud Storage location of the trained model used to create the version. See the [guide to model deployment](/ml-engine/docs/tensorflow/deploying-models) for more information.  When passing Version to [projects.models.versions.create](/ml-engine/reference/rest/v1/projects.models.versions/create) the model service uses the specified location as the source of the model. Once deployed, the model version is hosted by the prediction service, so this location is useful only as a historical record. The total number of model files can&#39;t exceed 1000.
+     * Required. The Cloud Storage location of the trained model used to create the version. See the [guide to model deployment](/ml-engine/docs/tensorflow/deploying-models) for more information.  When passing Version to projects.models.versions.create the model service uses the specified location as the source of the model. Once deployed, the model version is hosted by the prediction service, so this location is useful only as a historical record. The total number of model files can&#39;t exceed 1000.
      */
     deploymentUri?: string | null;
     /**
@@ -832,7 +832,7 @@ export namespace ml_v1 {
      */
     framework?: string | null;
     /**
-     * Output only. If true, this version will be used to handle prediction requests that do not specify a version.  You can change the default version by calling [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
+     * Output only. If true, this version will be used to handle prediction requests that do not specify a version.  You can change the default version by calling projects.methods.versions.setDefault.
      */
     isDefault?: boolean | null;
     /**
@@ -864,15 +864,15 @@ export namespace ml_v1 {
      */
     predictionClass?: string | null;
     /**
-     * Optional. The version of Python used in prediction. If not set, the default version is &#39;2.7&#39;. Python &#39;3.5&#39; is available when `runtime_version` is set to &#39;1.4&#39; and above. Python &#39;2.7&#39; works with all supported runtime versions.
+     * Optional. The version of Python used in prediction. If not set, the default version is &#39;2.7&#39;. Starting [January 13, 2020](/ml-engine/docs/release-notes#december_10_2019), this field is required.  The following Python versions are available:  * Python &#39;3.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   later. * Python &#39;3.5&#39; is available when `runtime_version` is set to a version   from &#39;1.4&#39; to &#39;1.14&#39;. * Python &#39;2.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   earlier. (Runtime versions released [after January 1,   2020](/ml-engine/docs/release-notes#december_10_2019) do not support   Python 2.7.)  Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).
      */
     pythonVersion?: string | null;
     /**
-     * Optional. Configures the request-response pair logging on predictions from this Version.
+     * Optional. *Only* specify this field in a projects.models.versions.patch request. Specifying it in a projects.models.versions.create request has no effect.  Configures the request-response pair logging on predictions from this Version.
      */
     requestLoggingConfig?: Schema$GoogleCloudMlV1__RequestLoggingConfig;
     /**
-     * Optional. The AI Platform runtime version to use for this deployment. If not set, AI Platform uses the default stable version, 1.0. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).
+     * Optional. The AI Platform runtime version to use for this deployment. If not set, AI Platform uses the default stable version, 1.0. Starting [January 13, 2020](/ml-engine/docs/release-notes#december_10_2019), this field is required.  For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).
      */
     runtimeVersion?: string | null;
     /**
@@ -919,7 +919,7 @@ export namespace ml_v1 {
      */
     condition?: Schema$GoogleType__Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -928,7 +928,7 @@ export namespace ml_v1 {
     role?: string | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt;             timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  Optionally, a `binding` can specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both.  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$GoogleIamV1__Policy {
     /**
@@ -936,15 +936,15 @@ export namespace ml_v1 {
      */
     auditConfigs?: Schema$GoogleIamV1__AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      */
     bindings?: Schema$GoogleIamV1__Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if the incoming policy version does not meet the requirements for modifying the stored policy.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a binding (conditional or unconditional) from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, version compliance checks against the stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
      */
     version?: number | null;
   }
@@ -1076,7 +1076,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.explain
-     * @desc Performs explanation on the data in the request. AI Platform implements a custom `explain` verb on top of an HTTP POST method. <p>For details of the request and response format, see the **guide to the [explain request format](/ml-engine/docs/v1/explain-request)**.
+     * @desc Performs explanation on the data in the request. AI Platform implements a custom `explain` verb on top of an HTTP POST method.
      * @alias ml.projects.explain
      * @memberOf! ()
      *
@@ -1233,7 +1233,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.predict
-     * @desc Performs prediction on the data in the request. AI Platform implements a custom `predict` verb on top of an HTTP POST method. <p>For details of the request and response format, see the **guide to the [predict request format](/ml-engine/docs/v1/predict-request)**.
+     * @desc Performs online prediction on the data in the request.  <div>{% dynamic include "/ai-platform/includes/___predict-request" %}</div>
      * @alias ml.projects.predict
      * @memberOf! ()
      *
@@ -2344,7 +2344,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.models.create
-     * @desc Creates a model which will later contain one or more versions.  You must add at least one version before you can request predictions from the model. Add versions by calling [projects.models.versions.create](/ml-engine/reference/rest/v1/projects.models.versions/create).
+     * @desc Creates a model which will later contain one or more versions.  You must add at least one version before you can request predictions from the model. Add versions by calling projects.models.versions.create.
      * @alias ml.projects.models.create
      * @memberOf! ()
      *
@@ -2421,7 +2421,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.models.delete
-     * @desc Deletes a model.  You can only delete a model if there are no versions in it. You can delete versions by calling [projects.models.versions.delete](/ml-engine/reference/rest/v1/projects.models.versions/delete).
+     * @desc Deletes a model.  You can only delete a model if there are no versions in it. You can delete versions by calling projects.models.versions.delete.
      * @alias ml.projects.models.delete
      * @memberOf! ()
      *
@@ -3134,7 +3134,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.models.versions.create
-     * @desc Creates a new version of a model from a trained TensorFlow model.  If the version created in the cloud by this call is the first deployed version of the specified model, it will be made the default version of the model. When you add a version to a model that already has one or more versions, the default version does not automatically change. If you want a new version to be the default, you must call [projects.models.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
+     * @desc Creates a new version of a model from a trained TensorFlow model.  If the version created in the cloud by this call is the first deployed version of the specified model, it will be made the default version of the model. When you add a version to a model that already has one or more versions, the default version does not automatically change. If you want a new version to be the default, you must call projects.models.versions.setDefault.
      * @alias ml.projects.models.versions.create
      * @memberOf! ()
      *
@@ -3223,7 +3223,7 @@ export namespace ml_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the version. You can get the names of all the versions of a model by calling [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
+     * @param {string} params.name Required. The name of the version. You can get the names of all the versions of a model by calling projects.models.versions.list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3298,7 +3298,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.models.versions.get
-     * @desc Gets information about a model version.  Models can have multiple versions. You can call [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list) to get the same information that this method returns for all of the versions of a model.
+     * @desc Gets information about a model version.  Models can have multiple versions. You can call projects.models.versions.list to get the same information that this method returns for all of the versions of a model.
      * @alias ml.projects.models.versions.get
      * @memberOf! ()
      *
@@ -3465,13 +3465,13 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.models.versions.patch
-     * @desc Updates the specified Version resource.  Currently the only update-able fields are `description` and `autoScaling.minNodes`.
+     * @desc Updates the specified Version resource.  Currently the only update-able fields are `description`, `requestLoggingConfig`, `autoScaling.minNodes`, and `manualScaling.nodes`.
      * @alias ml.projects.models.versions.patch
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The name of the model.
-     * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:  ``` {   "description": "foo" } ```  Currently the only supported update mask fields are `description`, `autoScaling.minNodes`, and `manualScaling.nodes`. However, you can only update `manualScaling.nodes` if the version uses a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction).
+     * @param {string=} params.updateMask Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:  ``` {   "description": "foo" } ```  Currently the only supported update mask fields are `description`, `requestLoggingConfig`, `autoScaling.minNodes`, and `manualScaling.nodes`. However, you can only update `manualScaling.nodes` if the version uses a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction).
      * @param {().GoogleCloudMlV1__Version} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3552,7 +3552,7 @@ export namespace ml_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the version to make the default for the model. You can get the names of all the versions of a model by calling [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
+     * @param {string} params.name Required. The name of the version to make the default for the model. You can get the names of all the versions of a model by calling projects.models.versions.list.
      * @param {().GoogleCloudMlV1__SetDefaultVersionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3650,7 +3650,7 @@ export namespace ml_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the version. You can get the names of all the versions of a model by calling [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
+     * Required. The name of the version. You can get the names of all the versions of a model by calling projects.models.versions.list.
      */
     name?: string;
   }
@@ -3702,7 +3702,7 @@ export namespace ml_v1 {
      */
     name?: string;
     /**
-     * Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:  ``` {   "description": "foo" } ```  Currently the only supported update mask fields are `description`, `autoScaling.minNodes`, and `manualScaling.nodes`. However, you can only update `manualScaling.nodes` if the version uses a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction).
+     * Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty.  For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows:  ``` {   "description": "foo" } ```  Currently the only supported update mask fields are `description`, `requestLoggingConfig`, `autoScaling.minNodes`, and `manualScaling.nodes`. However, you can only update `manualScaling.nodes` if the version uses a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction).
      */
     updateMask?: string;
 
@@ -3719,7 +3719,7 @@ export namespace ml_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the version to make the default for the model. You can get the names of all the versions of a model by calling [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
+     * Required. The name of the version to make the default for the model. You can get the names of all the versions of a model by calling projects.models.versions.list.
      */
     name?: string;
 

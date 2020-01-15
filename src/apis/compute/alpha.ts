@@ -137,6 +137,7 @@ export namespace compute_alpha {
     regionHealthCheckServices: Resource$Regionhealthcheckservices;
     regionInstanceGroupManagers: Resource$Regioninstancegroupmanagers;
     regionInstanceGroups: Resource$Regioninstancegroups;
+    regionNetworkEndpointGroups: Resource$Regionnetworkendpointgroups;
     regionNotificationEndpoints: Resource$Regionnotificationendpoints;
     regionOperations: Resource$Regionoperations;
     regions: Resource$Regions;
@@ -250,6 +251,9 @@ export namespace compute_alpha {
         this.context
       );
       this.regionInstanceGroups = new Resource$Regioninstancegroups(
+        this.context
+      );
+      this.regionNetworkEndpointGroups = new Resource$Regionnetworkendpointgroups(
         this.context
       );
       this.regionNotificationEndpoints = new Resource$Regionnotificationendpoints(
@@ -772,7 +776,7 @@ export namespace compute_alpha {
      */
     diskName?: string | null;
     /**
-     * Specifies the size of the disk in base-2 GB. If not specified, the disk will be the same size as the image (usually 10GB). If specified, the size must be equal to or larger than 10GB.
+     * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      */
     diskSizeGb?: string | null;
     /**
@@ -928,7 +932,7 @@ export namespace compute_alpha {
      */
     selfLinkWithId?: string | null;
     /**
-     * [Output Only] The status of the autoscaler configuration. Current set of possible values: PENDING: Autoscaler backend hasn&#39;t read new/updated configuration DELETING: Configuration is being deleted ACTIVE: Configuration is acknowledged to be effective. Some warnings might or might not be present in the status_details field. ERROR: Configuration has errors. Actionable for users. Details are present in the status_details field. New values might be added in the future.
+     * [Output Only] The status of the autoscaler configuration. Current set of possible values:   - PENDING: Autoscaler backend hasn&#39;t read new/updated configuration.  - DELETING: Configuration is being deleted.  - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.  - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
      */
     status?: string | null;
     /**
@@ -1027,7 +1031,7 @@ export namespace compute_alpha {
      */
     message?: string | null;
     /**
-     * The type of error, warning or notice returned. Current set of possible values: ALL_INSTANCES_UNHEALTHY (WARNING): All instances in the instance group are unhealthy (not in RUNNING state). BACKEND_SERVICE_DOES_NOT_EXIST (ERROR): There is no backend service attached to the instance group. CAPPED_AT_MAX_NUM_REPLICAS (WARNING): Autoscaler recommends size bigger than maxNumReplicas. CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE (WARNING): The custom metric samples are not exported often enough to be a credible base for autoscaling. CUSTOM_METRIC_INVALID (ERROR): The custom metric that was specified does not exist or does not have the necessary labels. MIN_EQUALS_MAX (WARNING): The minNumReplicas is equal to maxNumReplicas. This means the autoscaler cannot add or remove instances from the instance group. MISSING_CUSTOM_METRIC_DATA_POINTS (WARNING): The autoscaler did not receive any data from the custom metric configured for autoscaling. MISSING_LOAD_BALANCING_DATA_POINTS (WARNING): The autoscaler is configured to scale based on a load balancing signal but the instance group has not received any requests from the load balancer. MODE_OFF (WARNING): Autoscaling is turned off. The number of instances in the group won&#39;t change automatically. The autoscaling configuration is preserved. MODE_ONLY_UP (WARNING): Autoscaling is in the &quot;Autoscale only up&quot; mode. Instances in the group will be only added. MORE_THAN_ONE_BACKEND_SERVICE (ERROR): The instance group cannot be autoscaled because it has more than one backend service attached to it. NOT_ENOUGH_QUOTA_AVAILABLE (ERROR): Exceeded quota for necessary resources, such as CPU, number of instances and so on. REGION_RESOURCE_STOCKOUT (ERROR): Showed only for regional autoscalers: there is a resource stockout in the chosen region. SCALING_TARGET_DOES_NOT_EXIST (ERROR): The target to be scaled does not exist. UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION (ERROR): Autoscaling does not work with an HTTP/S load balancer that has been configured for maxRate. ZONE_RESOURCE_STOCKOUT (ERROR): For zonal autoscalers: there is a resource stockout in the chosen zone. For regional autoscalers: in at least one of the zones you&#39;re using there is a resource stockout. New values might be added in the future. Some of the values might not be available in all API versions.
+     * The type of error, warning, or notice returned. Current set of possible values:   - ALL_INSTANCES_UNHEALTHY (WARNING): All instances in the instance group are unhealthy (not in RUNNING state).  - BACKEND_SERVICE_DOES_NOT_EXIST (ERROR): There is no backend service attached to the instance group.  - CAPPED_AT_MAX_NUM_REPLICAS (WARNING): Autoscaler recommends a size greater than maxNumReplicas.  - CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE (WARNING): The custom metric samples are not exported often enough to be a credible base for autoscaling.  - CUSTOM_METRIC_INVALID (ERROR): The custom metric that was specified does not exist or does not have the necessary labels.  - MIN_EQUALS_MAX (WARNING): The minNumReplicas is equal to maxNumReplicas. This means the autoscaler cannot add or remove instances from the instance group.  - MISSING_CUSTOM_METRIC_DATA_POINTS (WARNING): The autoscaler did not receive any data from the custom metric configured for autoscaling.  - MISSING_LOAD_BALANCING_DATA_POINTS (WARNING): The autoscaler is configured to scale based on a load balancing signal but the instance group has not received any requests from the load balancer.  - MODE_OFF (WARNING): Autoscaling is turned off. The number of instances in the group won&#39;t change automatically. The autoscaling configuration is preserved.  - MODE_ONLY_UP (WARNING): Autoscaling is in the &quot;Autoscale only up&quot; mode. The autoscaler can add instances but not remove any.  - MORE_THAN_ONE_BACKEND_SERVICE (ERROR): The instance group cannot be autoscaled because it has more than one backend service attached to it.  - NOT_ENOUGH_QUOTA_AVAILABLE (ERROR): There is insufficient quota for the necessary resources, such as CPU or number of instances.  - REGION_RESOURCE_STOCKOUT (ERROR): Shown only for regional autoscalers: there is a resource stockout in the chosen region.  - SCALING_TARGET_DOES_NOT_EXIST (ERROR): The target to be scaled does not exist.  - UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION (ERROR): Autoscaling does not work with an HTTP/S load balancer that has been configured for maxRate.  - ZONE_RESOURCE_STOCKOUT (ERROR): For zonal autoscalers: there is a resource stockout in the chosen zone. For regional autoscalers: in at least one of the zones you&#39;re using there is a resource stockout.  New values might be added in the future. Some of the values might not be available in all API versions.
      */
     type?: string | null;
   }
@@ -1366,7 +1370,7 @@ export namespace compute_alpha {
      */
     loadBalancingScheme?: string | null;
     /**
-     * The load balancing algorithm used within the scope of the locality. The possible values are:   - ROUND_ROBIN: This is a simple policy in which each healthy backend is selected in round robin order. This is the default.  - LEAST_REQUEST: An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests.  - RING_HASH: The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests.  - RANDOM: The load balancer selects a random healthy host.  - ORIGINAL_DESTINATION: Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer.  - MAGLEV: used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, refer to https://ai.google/research/pubs/pub44824   This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
+     * The load balancing algorithm used within the scope of the locality. The possible values are:   - ROUND_ROBIN: This is a simple policy in which each healthy backend is selected in round robin order. This is the default.  - LEAST_REQUEST: An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests.  - RING_HASH: The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests.  - RANDOM: The load balancer selects a random healthy host.  - ORIGINAL_DESTINATION: Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer.  - MAGLEV: used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, refer to https://ai.google/research/pubs/pub44824   This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.    If sessionAffinity is not NONE, and this field is not set to &gt;MAGLEV or RING_HASH, session affinity settings will not take effect.
      */
     localityLbPolicy?: string | null;
     /**
@@ -1418,7 +1422,7 @@ export namespace compute_alpha {
      */
     selfLinkWithId?: string | null;
     /**
-     * Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.  When the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. You can use GENERATED_COOKIE if the protocol is HTTP or HTTPS.  When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the loadBalancingScheme is INTERNAL_SELF_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
+     * Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.  When the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. You can use GENERATED_COOKIE if the protocol is HTTP or HTTPS.  When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.  When the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
      */
     sessionAffinity?: string | null;
     /**
@@ -1751,7 +1755,7 @@ export namespace compute_alpha {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example,`alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -2144,7 +2148,7 @@ export namespace compute_alpha {
      */
     kmsKeyName?: string | null;
     /**
-     * The service account being used for the encryption request for the given KMS key. If absent, default GCE compute robot account will be used
+     * The service account being used for the encryption request for the given KMS key. If absent, the Compute Engine default service account is used.
      */
     kmsKeyServiceAccount?: string | null;
     /**
@@ -2323,6 +2327,10 @@ export namespace compute_alpha {
      * [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      */
     sourceSnapshotId?: string | null;
+    /**
+     * The full Google Cloud Storage URI where the disk image is stored. This file must be a gzip-compressed tarball whose name ends in .tar.gz or virtual machine disk whose name ends in vmdk. Valid URIs may start with gs:// or https://storage.googleapis.com/.
+     */
+    sourceStorageObject?: string | null;
     /**
      * [Output Only] The status of disk creation. CREATING: Disk is provisioning. RESTORING: Source data is being copied into the disk. FAILED: Disk creation failed. READY: Disk is ready for use. DELETING: Disk is deleting.
      */
@@ -2610,6 +2618,10 @@ export namespace compute_alpha {
     enableDisplay?: boolean | null;
   }
   export interface Schema$DistributionPolicy {
+    /**
+     * The shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType). The possible values are EVEN and ANY. For EVEN the group attempts to preserve a balanced number of instances across zones. For ANY the group creates new instances where resources are available to fulfill the request; as a result, instances may be distributed unevenly across zones in this mode. The default value is EVEN.
+     */
+    targetShape?: string | null;
     /**
      * Zones where the regional managed instance group will create and manage instances.
      */
@@ -2995,7 +3007,7 @@ export namespace compute_alpha {
      */
     IPAddress?: string | null;
     /**
-     * The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.  For Internal TCP/UDP Load Balancing, the load balancing scheme is INTERNAL, and one of TCP or UDP are valid. For Traffic Director, the load balancing scheme is INTERNAL_SELF_MANAGED, and only TCPis valid. For Internal HTTP(S) Load Balancing, the load balancing scheme is INTERNAL_MANAGED, and only TCP is valid. For HTTP(S), SSL Proxy, and TCP Proxy Load Balancing, the load balancing scheme is EXTERNAL and only TCP is valid. For Network TCP/UDP Load Balancing, the load balancing scheme is EXTERNAL, and one of TCP or UDP is valid.
+     * The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP or ICMP.  For Internal TCP/UDP Load Balancing, the load balancing scheme is INTERNAL, and one of TCP or UDP are valid. For Traffic Director, the load balancing scheme is INTERNAL_SELF_MANAGED, and only TCPis valid. For Internal HTTP(S) Load Balancing, the load balancing scheme is INTERNAL_MANAGED, and only TCP is valid. For HTTP(S), SSL Proxy, and TCP Proxy Load Balancing, the load balancing scheme is EXTERNAL and only TCP is valid. For Network TCP/UDP Load Balancing, the load balancing scheme is EXTERNAL, and one of TCP or UDP is valid.
      */
     IPProtocol?: string | null;
     /**
@@ -3023,7 +3035,7 @@ export namespace compute_alpha {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified here can be overridden by those specified in the UrlMap that this ForwardingRule references. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set of xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant configuration is made available to those proxies. Otherwise, all the resources (e.g. TargetHttpProxy, UrlMap) referenced by the ForwardingRule will not be visible to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata. metadataFilters specified here will be applifed before those specified in the UrlMap that this ForwardingRule references. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      */
     metadataFilters?: Schema$MetadataFilter[];
     /**
@@ -3039,11 +3051,11 @@ export namespace compute_alpha {
      */
     networkTier?: string | null;
     /**
-     * This field is deprecated. See the port field.
+     * When the load balancing scheme is EXTERNAL, INTERNAL_SELF_MANAGED and INTERNAL_MANAGED, you can specify a port_range. Use with a forwarding rule that points to a target proxy or a target pool. Do not use with a forwarding rule that points to a backend service. This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.  Some types of forwarding target have constraints on the acceptable ports:   - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetVpnGateway: 500, 4500
      */
     portRange?: string | null;
     /**
-     * List of comma-separated ports. The forwarding rule forwards packets with matching destination ports. If the forwarding rule&#39;s loadBalancingScheme is EXTERNAL, and the forwarding rule references a target pool, specifying ports is optional. You can specify an unlimited number of ports, but they must be contiguous. If you omit ports, GCP forwards traffic on any port of the forwarding rule&#39;s protocol.  If the forwarding rule&#39;s loadBalancingScheme is EXTERNAL, and the forwarding rule references a target HTTP proxy, target HTTPS proxy, target TCP proxy, target SSL proxy, or target VPN gateway, you must specify ports using the following constraints:    - TargetHttpProxy: 80, 8080  - TargetHttpsProxy: 443  - TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222  - TargetVpnGateway: 500, 4500    If the forwarding rule&#39;s loadBalancingScheme is INTERNAL, you must specify ports in one of the following ways:  * A list of up to five ports, which can be non-contiguous * Keyword ALL, which causes the forwarding rule to forward traffic on any port of the forwarding rule&#39;s protocol.  The ports field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.  Applicable only when IPProtocol is TCP, UDP, or SCTP. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
+     * This field is used along with the backend_service field for internal load balancing.  When the load balancing scheme is INTERNAL, a list of ports can be configured, for example, [&#39;80&#39;], [&#39;8000&#39;,&#39;9000&#39;]. Only packets addressed to these ports are forwarded to the backends configured with the forwarding rule.  If the forwarding rule&#39;s loadBalancingScheme is INTERNAL, you can specify ports in one of the following ways:  * A list of up to five ports, which can be non-contiguous * Keyword ALL, which causes the forwarding rule to forward traffic on any port of the forwarding rule&#39;s protocol.
      */
     ports?: string[] | null;
     /**
@@ -3217,7 +3229,7 @@ export namespace compute_alpha {
      */
     kind?: string | null;
     /**
-     * The path to be queried. This can be the default namespace (&#39;/&#39;) or a nested namespace (&#39;//&#39;) or a specified key (&#39;//&#39;)
+     * The path to be queried. This can be the default namespace (&#39;/&#39;) or a nested namespace (&#39;/\/&#39;) or a specified key (&#39;/\/\&#39;)
      */
     queryPath?: string | null;
     /**
@@ -3693,7 +3705,7 @@ export namespace compute_alpha {
      */
     prefixMatch?: string | null;
     /**
-     * A header with the contents of headerName must exist. The match takes place whether or not the request&#39;s header has a value or not. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * A header with the contents of headerName must exist. The match takes place whether or not the request&#39;s header has a value. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      */
     presentMatch?: boolean | null;
     /**
@@ -3855,7 +3867,7 @@ export namespace compute_alpha {
    */
   export interface Schema$HttpQueryParameterMatch {
     /**
-     * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch must be set.
+     * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch. Only one of presentMatch, exactMatch or regexMatch must be set.
      */
     exactMatch?: string | null;
     /**
@@ -3863,11 +3875,11 @@ export namespace compute_alpha {
      */
     name?: string | null;
     /**
-     * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch and regexMatch must be set.
+     * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch or regexMatch must be set.
      */
     presentMatch?: boolean | null;
     /**
-     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch, exactMatch and regexMatch must be set.
+     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch, exactMatch or regexMatch must be set.
      */
     regexMatch?: string | null;
   }
@@ -3939,7 +3951,7 @@ export namespace compute_alpha {
      */
     timeout?: Schema$Duration;
     /**
-     * The spec to modify the URL of the request, prior to forwarding the request to the matched service
+     * The spec to modify the URL of the request, prior to forwarding the request to the matched service.
      */
     urlRewrite?: Schema$UrlRewrite;
     /**
@@ -3965,7 +3977,7 @@ export namespace compute_alpha {
      */
     priority?: number | null;
     /**
-     * In response to a matching matchRule, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If  routeAction specifies any  weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any  weightedBackendServices. Only one of routeAction or urlRedirect must be set.
+     * In response to a matching matchRule, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If  routeAction specifies any  weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any  weightedBackendServices. Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
      */
     routeAction?: Schema$HttpRouteAction;
     /**
@@ -3982,7 +3994,7 @@ export namespace compute_alpha {
    */
   export interface Schema$HttpRouteRuleMatch {
     /**
-     * For satifying the matchRule condition, the path of the request must exactly match the value specified in fullPathMatch after removing any query parameters and anchor that may be part of the original URL. FullPathMatch must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     * For satisfying the matchRule condition, the path of the request must exactly match the value specified in fullPathMatch after removing any query parameters and anchor that may be part of the original URL. fullPathMatch must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      */
     fullPathMatch?: string | null;
     /**
@@ -3990,15 +4002,15 @@ export namespace compute_alpha {
      */
     headerMatches?: Schema$HttpHeaderMatch[];
     /**
-     * Specifies that prefixMatch and fullPathMatch matches are case sensitive. The default value is false. caseSensitive must not be used with regexMatch.
+     * Specifies that prefixMatch and fullPathMatch matches are case sensitive. The default value is false. ignoreCase must not be used with regexMatch.
      */
     ignoreCase?: boolean | null;
     /**
-     * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified here can be overrides those specified in ForwardingRule that refers to this UrlMap. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set of xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata. metadataFilters specified here will be applied after those specified in ForwardingRule that refers to the UrlMap this HttpRouteRuleMatch belongs to. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      */
     metadataFilters?: Schema$MetadataFilter[];
     /**
-     * For satifying the matchRule condition, the request&#39;s path must begin with the specified prefixMatch. prefixMatch must begin with a /. The value must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     * For satisfying the matchRule condition, the request&#39;s path must begin with the specified prefixMatch. prefixMatch must begin with a /. The value must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      */
     prefixMatch?: string | null;
     /**
@@ -4006,7 +4018,7 @@ export namespace compute_alpha {
      */
     queryParameterMatches?: Schema$HttpQueryParameterMatch[];
     /**
-     * For satifying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      */
     regexMatch?: string | null;
   }
@@ -4506,7 +4518,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents an unmanaged Instance Group resource.  Use unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. For more information, read  Instance groups.  For zonal unmanaged Instance Group, use instanceGroups resource.  For regional unmanaged Instance Group, use regionInstanceGroups resource. (== resource_for beta.instanceGroups ==) (== resource_for v1.instanceGroups ==) (== resource_for beta.regionInstanceGroups ==) (== resource_for v1.regionInstanceGroups ==)
+   * Represents an Instance Group resource.  Instance Groups can be used to configure a target for load balancing.  Instance groups can either be managed or unmanaged.  To create  managed instance groups, use the instanceGroupManager or regionInstanceGroupManager resource instead.  Use zonal unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. You cannot create regional unmanaged instance groups.  For more information, read Instance groups.  (== resource_for beta.instanceGroups ==) (== resource_for v1.instanceGroups ==) (== resource_for beta.regionInstanceGroups ==) (== resource_for v1.regionInstanceGroups ==)
    */
   export interface Schema$InstanceGroup {
     /**
@@ -5344,6 +5356,10 @@ export namespace compute_alpha {
      * Specifies the reservations that this instance can consume from.
      */
     reservationAffinity?: Schema$ReservationAffinity;
+    /**
+     * Resource policies (names, not ULRs) applied to instances created from this templae.
+     */
+    resourcePolicies?: string[] | null;
     /**
      * Specifies the scheduling options for the instances that are created from this template.
      */
@@ -6489,11 +6505,11 @@ export namespace compute_alpha {
     /**
      * Specifies the number of such disks.
      */
-    diskCount?: string | null;
+    diskCount?: number | null;
     /**
      * Specifies the size of the disk in base-2 GB.
      */
-    diskSizeGb?: string | null;
+    diskSizeGb?: number | null;
     /**
      * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
      */
@@ -6637,7 +6653,6 @@ export namespace compute_alpha {
    * A list of machine images.
    */
   export interface Schema$MachineImageList {
-    etag?: string | null;
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      */
@@ -6917,7 +6932,7 @@ export namespace compute_alpha {
     structConfig?: string | null;
   }
   /**
-   * Opaque filter criteria used by loadbalancers to restrict routing configuration to a limited set of loadbalancing proxies. Proxies and sidecars involved in loadbalancing would typically present metadata to the loadbalancers which need to match criteria specified here. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. An example for using metadataFilters would be: if loadbalancing involves  Envoys, they will only receive routing configuration when values in metadataFilters match values supplied in &lt;a href=&quot;https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/core/base.proto#envoy-api-msg-core-node&quot; Node metadata of their XDS requests to loadbalancers.
+   * Opaque filter criteria used by loadbalancers to restrict routing configuration to a limited set of loadbalancing proxies. Proxies and sidecars involved in loadbalancing would typically present metadata to the loadbalancers which need to match criteria specified here. If a match takes place, the relevant configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata. An example for using metadataFilters would be: if loadbalancing involves  Envoys, they will only receive routing configuration when values in metadataFilters match values supplied in &lt;a href=&quot;https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/core/base.proto#envoy-api-msg-core-node&quot; Node metadata of their XDS requests to loadbalancers.
    */
   export interface Schema$MetadataFilter {
     /**
@@ -7005,7 +7020,7 @@ export namespace compute_alpha {
      */
     loadBalancerVmEncryption?: string | null;
     /**
-     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1600 bytes.
+     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes.
      */
     mtu?: number | null;
     /**
@@ -7013,7 +7028,7 @@ export namespace compute_alpha {
      */
     multicastMode?: string | null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      */
     name?: string | null;
     /**
@@ -7038,7 +7053,7 @@ export namespace compute_alpha {
     subnetworks?: string[] | null;
   }
   /**
-   * The network endpoint.
+   * The network endpoint. Next ID: 7
    */
   export interface Schema$NetworkEndpoint {
     /**
@@ -7063,7 +7078,7 @@ export namespace compute_alpha {
     port?: number | null;
   }
   /**
-   * Represents a collection of network endpoints.  For more information read Setting up network endpoint groups in load balancing. (== resource_for v1.networkEndpointGroups ==) (== resource_for beta.networkEndpointGroups ==)
+   * Represents a collection of network endpoints.  For more information read Setting up network endpoint groups in load balancing. (== resource_for v1.networkEndpointGroups ==) (== resource_for beta.networkEndpointGroups ==) Next ID: 21
    */
   export interface Schema$NetworkEndpointGroup {
     /**
@@ -7545,9 +7560,12 @@ export namespace compute_alpha {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==) NextID: 16
+   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==)
    */
   export interface Schema$NodeGroup {
+    /**
+     * Specifies how autoscaling should behave.
+     */
     autoscalingPolicy?: Schema$NodeGroupAutoscalingPolicy;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
@@ -7557,6 +7575,7 @@ export namespace compute_alpha {
      * An optional description of this resource. Provide this property when you create the resource.
      */
     description?: string | null;
+    fingerprint?: string | null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      */
@@ -7565,6 +7584,9 @@ export namespace compute_alpha {
      * [Output Only] The type of the resource. Always compute#nodeGroup for node group.
      */
     kind?: string | null;
+    /**
+     * Specifies how to handle instances when a node in the group undergoes maintenance.
+     */
     maintenancePolicy?: string | null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -7623,8 +7645,17 @@ export namespace compute_alpha {
     } | null;
   }
   export interface Schema$NodeGroupAutoscalingPolicy {
-    maxSize?: number | null;
-    minSize?: number | null;
+    /**
+     * The maximum number of nodes that the group should have.
+     */
+    maxNodes?: number | null;
+    /**
+     * The minimum number of nodes that the group should have.
+     */
+    minNodes?: number | null;
+    /**
+     * The autoscaling mode.
+     */
     mode?: string | null;
   }
   /**
@@ -7753,7 +7784,7 @@ export namespace compute_alpha {
     nodeTemplate?: string | null;
   }
   /**
-   * Represent a sole-tenant Node Template resource.  You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==) (== NextID: 16 ==)
+   * Represent a sole-tenant Node Template resource.  You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==)
    */
   export interface Schema$NodeTemplate {
     /**
@@ -8351,7 +8382,7 @@ export namespace compute_alpha {
      */
     enforcingSuccessRate?: number | null;
     /**
-     * Time interval between ejection sweep analysis. This can result in both new ejections as well as hosts being returned to service. Defaults to 1 seconds.
+     * Time interval between ejection analysis sweeps. This can result in both new ejections as well as hosts being returned to service. Defaults to 1 second.
      */
     interval?: Schema$Duration;
     /**
@@ -8409,10 +8440,6 @@ export namespace compute_alpha {
      */
     collectorIlb?: Schema$PacketMirroringForwardingRuleInfo;
     /**
-     * PacketMirroring collectorInfos. Each collectorInfo specifies a set of collector VM instances, preferably in the same zone as the mirrored VM(s)
-     */
-    collectors?: Schema$PacketMirroringCollectorInfo;
-    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string | null;
@@ -8448,10 +8475,6 @@ export namespace compute_alpha {
      * Specifies the mirrored VPC network. Only packets in this network will be mirrored. All mirrored VMs should have a NIC in the given network. All mirrored subnetworks should belong to the given network.
      */
     network?: Schema$PacketMirroringNetworkInfo;
-    /**
-     * PacketMirroring packetMatchers. Each packetMatcher specifies a CIRD filter that will apply to the source or destination IP in the IP header for the mirrored VM traffic.
-     */
-    packetMatchers?: Schema$PacketMirroringPacketMatcher[];
     /**
      * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.  Default value is 1000. Valid range is 0 through 65535.
      */
@@ -8501,18 +8524,6 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
-  }
-  export interface Schema$PacketMirroringCollectorInfo {
-    /**
-     * A set of virtual machines configured as destination of the mirrored traffic. They must live in zones contained in the same region as this packetMirroring.
-     */
-    instances?: Schema$PacketMirroringCollectorInfoInstanceInfo[];
-  }
-  export interface Schema$PacketMirroringCollectorInfoInstanceInfo {
-    /**
-     * Resource URL to the virtual machine instance configured as destination of the mirrored traffic.
-     */
-    url?: string | null;
   }
   export interface Schema$PacketMirroringFilter {
     /**
@@ -8611,12 +8622,6 @@ export namespace compute_alpha {
      */
     url?: string | null;
   }
-  export interface Schema$PacketMirroringPacketMatcher {
-    /**
-     * IP CIDR range that applies as filter on the source or destination IP in the IP header. Only IPv4 is supported.
-     */
-    cidrRange?: string | null;
-  }
   export interface Schema$PacketMirroringsScopedList {
     /**
      * A list of packetMirrorings contained in this scope.
@@ -8644,7 +8649,7 @@ export namespace compute_alpha {
      */
     defaultService?: string | null;
     /**
-     * When when none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
+     * When none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
      */
     defaultUrlRedirect?: Schema$HttpRedirectAction;
     /**
@@ -8664,7 +8669,7 @@ export namespace compute_alpha {
      */
     pathRules?: Schema$PathRule[];
     /**
-     * The list of ordered HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. The order of specifying routeRules matters: the first rule that matches will cause its specified routing action to take effect. Within a given pathMatcher, only one of pathRules or routeRules must be set. routeRules are not supported in UrlMaps intended for External Load balancers.
+     * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number. Within a given pathMatcher, only one of pathRules or routeRules must be set. routeRules are not supported in UrlMaps intended for External Load balancers.
      */
     routeRules?: Schema$HttpRouteRule[];
   }
@@ -8767,7 +8772,7 @@ export namespace compute_alpha {
     values?: string[] | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.    A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**  { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [&quot;user:eve@example.com&quot;], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ] }  **YAML Example**  bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.    A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  Optionally, a `binding` can specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both.  **JSON example:**  { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [&quot;user:eve@example.com&quot;], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 }  **YAML example:**  bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -8775,11 +8780,11 @@ export namespace compute_alpha {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     iamOwned?: boolean | null;
@@ -8788,7 +8793,7 @@ export namespace compute_alpha {
      */
     rules?: Schema$Rule[];
     /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
      */
     version?: number | null;
   }
@@ -10051,9 +10056,9 @@ export namespace compute_alpha {
      */
     availabilityDomainCount?: number | null;
     /**
-     * Distribution specifies how the instances are placed at host level. If set to SPREAD, no two instances will be put on the same host
+     * Specifies network collocation
      */
-    distribution?: string | null;
+    collocation?: string | null;
     /**
      * Specifies network locality
      */
@@ -10862,6 +10867,10 @@ export namespace compute_alpha {
      */
     diskSizeGb?: string | null;
     /**
+     * [Output Only] URL of the disk type resource. For example: projects/project/zones/zone/diskTypes/pd-standard or pd-ssd
+     */
+    diskType?: string | null;
+    /**
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
      */
     guestOsFeatures?: Schema$GuestOsFeature[];
@@ -11398,7 +11407,7 @@ export namespace compute_alpha {
    */
   export interface Schema$Snapshot {
     /**
-     * [Output Only] Set to true if snapshots are automatically by applying resource policy on the target disk.
+     * [Output Only] Set to true if snapshots are automatically created by applying resource policy on the target disk.
      */
     autoCreated?: boolean | null;
     /**
@@ -11413,6 +11422,10 @@ export namespace compute_alpha {
      * [Output Only] Size of the source disk, specified in GB.
      */
     diskSizeGb?: string | null;
+    /**
+     * [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
+     */
+    downloadBytes?: string | null;
     /**
      * [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
      */
@@ -11593,7 +11606,7 @@ export namespace compute_alpha {
     tags?: Schema$Tags;
   }
   /**
-   * Represents an SSL Certificate resource.  This SSL certificate resource also contains a private key. You can use SSL keys and certificates to secure connections to a load balancer. For more information, read  Creating and Using SSL Certificates. (== resource_for beta.sslCertificates ==) (== resource_for v1.sslCertificates ==)
+   * Represents an SSL Certificate resource.  This SSL certificate resource also contains a private key. You can use SSL keys and certificates to secure connections to a load balancer. For more information, read  Creating and Using SSL Certificates. (== resource_for beta.sslCertificates ==) (== resource_for v1.sslCertificates ==) (== resource_for beta.regionSslCertificates ==) (== resource_for v1.regionSslCertificates ==) Next ID: 17
    */
   export interface Schema$SslCertificate {
     /**
@@ -12195,7 +12208,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Target HTTP Proxy resource.  A target HTTP proxy is a component of certain types of load balancers. Global forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies. (== resource_for beta.targetHttpProxies ==) (== resource_for v1.targetHttpProxies ==)
+   * Represents a Target HTTP Proxy resource.  A target HTTP proxy is a component of GCP HTTP load balancers. Forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for beta.targetHttpProxies ==) (== resource_for v1.targetHttpProxies ==) (== resource_for beta.regionTargetHttpProxies ==) (== resource_for v1.regionTargetHttpProxies ==)
    */
   export interface Schema$TargetHttpProxy {
     /**
@@ -12329,7 +12342,7 @@ export namespace compute_alpha {
     sslCertificates?: string[] | null;
   }
   /**
-   * Represents a Target HTTPS Proxy resource.  A target HTTPS proxy is a component of certain types of load balancers. Global forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies. (== resource_for beta.targetHttpsProxies ==) (== resource_for v1.targetHttpsProxies ==)
+   * Represents a Target HTTPS Proxy resource.  A target HTTPS proxy is a component of GCP HTTPS load balancers. Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for beta.targetHttpsProxies ==) (== resource_for v1.targetHttpsProxies ==) (== resource_for beta.regionTargetHttpsProxies ==) (== resource_for v1.regionTargetHttpsProxies ==)
    */
   export interface Schema$TargetHttpsProxy {
     /**
@@ -13533,7 +13546,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a VPN gateway resource.
+   * Represents a VPN gateway resource. Next ID: 13
    */
   export interface Schema$VpnGateway {
     /**
@@ -14100,12 +14113,13 @@ export namespace compute_alpha {
 
     /**
      * compute.acceleratorTypes.aggregatedList
-     * @desc Retrieves an aggregated list of accelerator types. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of accelerator types.
      * @alias compute.acceleratorTypes.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -14187,7 +14201,7 @@ export namespace compute_alpha {
 
     /**
      * compute.acceleratorTypes.get
-     * @desc Returns the specified accelerator type. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified accelerator type.
      * @alias compute.acceleratorTypes.get
      * @memberOf! ()
      *
@@ -14263,7 +14277,7 @@ export namespace compute_alpha {
 
     /**
      * compute.acceleratorTypes.list
-     * @desc Retrieves a list of accelerator types available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of accelerator types available to the specified project.
      * @alias compute.acceleratorTypes.list
      * @memberOf! ()
      *
@@ -14353,6 +14367,10 @@ export namespace compute_alpha {
      */
     filter?: string;
     /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
@@ -14430,12 +14448,13 @@ export namespace compute_alpha {
 
     /**
      * compute.addresses.aggregatedList
-     * @desc Retrieves an aggregated list of addresses. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of addresses.
      * @alias compute.addresses.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -14511,7 +14530,7 @@ export namespace compute_alpha {
 
     /**
      * compute.addresses.delete
-     * @desc Deletes the specified address resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified address resource.
      * @alias compute.addresses.delete
      * @memberOf! ()
      *
@@ -14587,7 +14606,7 @@ export namespace compute_alpha {
 
     /**
      * compute.addresses.get
-     * @desc Returns the specified address resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified address resource.
      * @alias compute.addresses.get
      * @memberOf! ()
      *
@@ -14660,7 +14679,7 @@ export namespace compute_alpha {
 
     /**
      * compute.addresses.insert
-     * @desc Creates an address resource in the specified project by using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an address resource in the specified project by using the data included in the request.
      * @alias compute.addresses.insert
      * @memberOf! ()
      *
@@ -14736,7 +14755,7 @@ export namespace compute_alpha {
 
     /**
      * compute.addresses.list
-     * @desc Retrieves a list of addresses contained within the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of addresses contained within the specified region.
      * @alias compute.addresses.list
      * @memberOf! ()
      *
@@ -14814,7 +14833,7 @@ export namespace compute_alpha {
 
     /**
      * compute.addresses.setLabels
-     * @desc Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.addresses.setLabels
      * @memberOf! ()
      *
@@ -14892,7 +14911,7 @@ export namespace compute_alpha {
 
     /**
      * compute.addresses.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.addresses.testIamPermissions
      * @memberOf! ()
      *
@@ -14983,6 +15002,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -15160,12 +15183,13 @@ export namespace compute_alpha {
 
     /**
      * compute.autoscalers.aggregatedList
-     * @desc Retrieves an aggregated list of autoscalers. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of autoscalers.
      * @alias compute.autoscalers.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -15242,7 +15266,7 @@ export namespace compute_alpha {
 
     /**
      * compute.autoscalers.delete
-     * @desc Deletes the specified autoscaler. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified autoscaler.
      * @alias compute.autoscalers.delete
      * @memberOf! ()
      *
@@ -15319,7 +15343,7 @@ export namespace compute_alpha {
 
     /**
      * compute.autoscalers.get
-     * @desc Returns the specified autoscaler resource. Gets a list of available autoscalers by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified autoscaler resource. Gets a list of available autoscalers by making a list() request.
      * @alias compute.autoscalers.get
      * @memberOf! ()
      *
@@ -15394,7 +15418,7 @@ export namespace compute_alpha {
 
     /**
      * compute.autoscalers.insert
-     * @desc Creates an autoscaler in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an autoscaler in the specified project using the data included in the request.
      * @alias compute.autoscalers.insert
      * @memberOf! ()
      *
@@ -15471,7 +15495,7 @@ export namespace compute_alpha {
 
     /**
      * compute.autoscalers.list
-     * @desc Retrieves a list of autoscalers contained within the specified zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of autoscalers contained within the specified zone.
      * @alias compute.autoscalers.list
      * @memberOf! ()
      *
@@ -15549,7 +15573,7 @@ export namespace compute_alpha {
 
     /**
      * compute.autoscalers.patch
-     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.autoscalers.patch
      * @memberOf! ()
      *
@@ -15627,7 +15651,7 @@ export namespace compute_alpha {
 
     /**
      * compute.autoscalers.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.autoscalers.testIamPermissions
      * @memberOf! ()
      *
@@ -15708,7 +15732,7 @@ export namespace compute_alpha {
 
     /**
      * compute.autoscalers.update
-     * @desc Updates an autoscaler in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates an autoscaler in the specified project using the data included in the request.
      * @alias compute.autoscalers.update
      * @memberOf! ()
      *
@@ -15796,6 +15820,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -16004,7 +16032,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.addSignedUrlKey
-     * @desc Adds a key for validating requests with signed URLs for this backend bucket. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds a key for validating requests with signed URLs for this backend bucket.
      * @alias compute.backendBuckets.addSignedUrlKey
      * @memberOf! ()
      *
@@ -16081,7 +16109,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.delete
-     * @desc Deletes the specified BackendBucket resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified BackendBucket resource.
      * @alias compute.backendBuckets.delete
      * @memberOf! ()
      *
@@ -16157,7 +16185,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.deleteSignedUrlKey
-     * @desc Deletes a key for validating requests with signed URLs for this backend bucket. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes a key for validating requests with signed URLs for this backend bucket.
      * @alias compute.backendBuckets.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -16234,7 +16262,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.get
-     * @desc Returns the specified BackendBucket resource. Gets a list of available backend buckets by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified BackendBucket resource. Gets a list of available backend buckets by making a list() request.
      * @alias compute.backendBuckets.get
      * @memberOf! ()
      *
@@ -16309,7 +16337,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.backendBuckets.getIamPolicy
      * @memberOf! ()
      *
@@ -16383,7 +16411,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.insert
-     * @desc Creates a BackendBucket resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a BackendBucket resource in the specified project using the data included in the request.
      * @alias compute.backendBuckets.insert
      * @memberOf! ()
      *
@@ -16459,7 +16487,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.list
-     * @desc Retrieves the list of BackendBucket resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of BackendBucket resources available to the specified project.
      * @alias compute.backendBuckets.list
      * @memberOf! ()
      *
@@ -16537,7 +16565,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.patch
-     * @desc Updates the specified BackendBucket resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified BackendBucket resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.backendBuckets.patch
      * @memberOf! ()
      *
@@ -16614,7 +16642,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.backendBuckets.setIamPolicy
      * @memberOf! ()
      *
@@ -16688,7 +16716,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.backendBuckets.testIamPermissions
      * @memberOf! ()
      *
@@ -16768,7 +16796,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendBuckets.update
-     * @desc Updates the specified BackendBucket resource with the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified BackendBucket resource with the data included in the request.
      * @alias compute.backendBuckets.update
      * @memberOf! ()
      *
@@ -17099,7 +17127,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.addSignedUrlKey
-     * @desc Adds a key for validating requests with signed URLs for this backend service. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds a key for validating requests with signed URLs for this backend service.
      * @alias compute.backendServices.addSignedUrlKey
      * @memberOf! ()
      *
@@ -17176,12 +17204,13 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.aggregatedList
-     * @desc Retrieves the list of all BackendService resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of all BackendService resources, regional and global, available to the specified project.
      * @alias compute.backendServices.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -17263,7 +17292,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.delete
-     * @desc Deletes the specified BackendService resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified BackendService resource.
      * @alias compute.backendServices.delete
      * @memberOf! ()
      *
@@ -17339,7 +17368,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.deleteSignedUrlKey
-     * @desc Deletes a key for validating requests with signed URLs for this backend service. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes a key for validating requests with signed URLs for this backend service.
      * @alias compute.backendServices.deleteSignedUrlKey
      * @memberOf! ()
      *
@@ -17416,7 +17445,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.get
-     * @desc Returns the specified BackendService resource. Gets a list of available backend services. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified BackendService resource. Gets a list of available backend services.
      * @alias compute.backendServices.get
      * @memberOf! ()
      *
@@ -17491,7 +17520,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.getHealth
-     * @desc Gets the most recent health check results for this BackendService. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the most recent health check results for this BackendService.
      * @alias compute.backendServices.getHealth
      * @memberOf! ()
      *
@@ -17574,7 +17603,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.insert
-     * @desc Creates a BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a backend service. Read  Restrictions and Guidelines for more information. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a backend service. Read  Restrictions and Guidelines for more information.
      * @alias compute.backendServices.insert
      * @memberOf! ()
      *
@@ -17650,7 +17679,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.list
-     * @desc Retrieves the list of BackendService resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of BackendService resources available to the specified project.
      * @alias compute.backendServices.list
      * @memberOf! ()
      *
@@ -17728,7 +17757,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.patch
-     * @desc Patches the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.backendServices.patch
      * @memberOf! ()
      *
@@ -17805,7 +17834,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.setSecurityPolicy
-     * @desc Sets the security policy for the specified backend service. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the security policy for the specified backend service.
      * @alias compute.backendServices.setSecurityPolicy
      * @memberOf! ()
      *
@@ -17882,7 +17911,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.backendServices.testIamPermissions
      * @memberOf! ()
      *
@@ -17962,7 +17991,7 @@ export namespace compute_alpha {
 
     /**
      * compute.backendServices.update
-     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
      * @alias compute.backendServices.update
      * @memberOf! ()
      *
@@ -18074,6 +18103,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -18326,7 +18359,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.addResourcePolicies
-     * @desc Adds existing resource policies to a disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds existing resource policies to a disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation.
      * @alias compute.disks.addResourcePolicies
      * @memberOf! ()
      *
@@ -18404,12 +18437,13 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.aggregatedList
-     * @desc Retrieves an aggregated list of persistent disks. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of persistent disks.
      * @alias compute.disks.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -18483,7 +18517,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.createSnapshot
-     * @desc Creates a snapshot of a specified persistent disk. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a snapshot of a specified persistent disk.
      * @alias compute.disks.createSnapshot
      * @memberOf! ()
      *
@@ -18562,7 +18596,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.delete
-     * @desc Deletes the specified persistent disk. Deleting a disk removes its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified persistent disk. Deleting a disk removes its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
      * @alias compute.disks.delete
      * @memberOf! ()
      *
@@ -18638,7 +18672,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.get
-     * @desc Returns a specified persistent disk. Gets a list of available persistent disks by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns a specified persistent disk. Gets a list of available persistent disks by making a list() request.
      * @alias compute.disks.get
      * @memberOf! ()
      *
@@ -18711,7 +18745,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.disks.getIamPolicy
      * @memberOf! ()
      *
@@ -18786,7 +18820,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.insert
-     * @desc Creates a persistent disk in the specified project using the data in the request. You can create a disk with a sourceImage, a sourceSnapshot, or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a persistent disk in the specified project using the data in the request. You can create a disk with a sourceImage, a sourceSnapshot, or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
      * @alias compute.disks.insert
      * @memberOf! ()
      *
@@ -18862,7 +18896,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.list
-     * @desc Retrieves a list of persistent disks contained within the specified zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of persistent disks contained within the specified zone.
      * @alias compute.disks.list
      * @memberOf! ()
      *
@@ -18937,7 +18971,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.removeResourcePolicies
-     * @desc Removes resource policies from a disk. (== suppress_warning http-rest-shadowed ==)
+     * @desc Removes resource policies from a disk.
      * @alias compute.disks.removeResourcePolicies
      * @memberOf! ()
      *
@@ -19017,7 +19051,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.resize
-     * @desc Resizes the specified persistent disk. You can only increase the size of the disk. (== suppress_warning http-rest-shadowed ==)
+     * @desc Resizes the specified persistent disk. You can only increase the size of the disk.
      * @alias compute.disks.resize
      * @memberOf! ()
      *
@@ -19094,7 +19128,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.disks.setIamPolicy
      * @memberOf! ()
      *
@@ -19169,7 +19203,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.setLabels
-     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.disks.setLabels
      * @memberOf! ()
      *
@@ -19246,7 +19280,7 @@ export namespace compute_alpha {
 
     /**
      * compute.disks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.disks.testIamPermissions
      * @memberOf! ()
      *
@@ -19366,6 +19400,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -19685,12 +19723,13 @@ export namespace compute_alpha {
 
     /**
      * compute.diskTypes.aggregatedList
-     * @desc Retrieves an aggregated list of disk types. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of disk types.
      * @alias compute.diskTypes.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -19766,7 +19805,7 @@ export namespace compute_alpha {
 
     /**
      * compute.diskTypes.get
-     * @desc Returns the specified disk type. Gets a list of available disk types by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified disk type. Gets a list of available disk types by making a list() request.
      * @alias compute.diskTypes.get
      * @memberOf! ()
      *
@@ -19839,7 +19878,7 @@ export namespace compute_alpha {
 
     /**
      * compute.diskTypes.list
-     * @desc Retrieves a list of disk types available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of disk types available to the specified project.
      * @alias compute.diskTypes.list
      * @memberOf! ()
      *
@@ -19928,6 +19967,10 @@ export namespace compute_alpha {
      */
     filter?: string;
     /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
@@ -20003,7 +20046,7 @@ export namespace compute_alpha {
 
     /**
      * compute.externalVpnGateways.delete
-     * @desc Deletes the specified externalVpnGateway. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified externalVpnGateway.
      * @alias compute.externalVpnGateways.delete
      * @memberOf! ()
      *
@@ -20079,7 +20122,7 @@ export namespace compute_alpha {
 
     /**
      * compute.externalVpnGateways.get
-     * @desc Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
      * @alias compute.externalVpnGateways.get
      * @memberOf! ()
      *
@@ -20154,7 +20197,7 @@ export namespace compute_alpha {
 
     /**
      * compute.externalVpnGateways.insert
-     * @desc Creates a ExternalVpnGateway in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a ExternalVpnGateway in the specified project using the data included in the request.
      * @alias compute.externalVpnGateways.insert
      * @memberOf! ()
      *
@@ -20230,7 +20273,7 @@ export namespace compute_alpha {
 
     /**
      * compute.externalVpnGateways.list
-     * @desc Retrieves the list of ExternalVpnGateway available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of ExternalVpnGateway available to the specified project.
      * @alias compute.externalVpnGateways.list
      * @memberOf! ()
      *
@@ -20310,7 +20353,7 @@ export namespace compute_alpha {
 
     /**
      * compute.externalVpnGateways.setLabels
-     * @desc Sets the labels on an ExternalVpnGateway. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on an ExternalVpnGateway. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.externalVpnGateways.setLabels
      * @memberOf! ()
      *
@@ -20386,7 +20429,7 @@ export namespace compute_alpha {
 
     /**
      * compute.externalVpnGateways.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.externalVpnGateways.testIamPermissions
      * @memberOf! ()
      *
@@ -20601,7 +20644,7 @@ export namespace compute_alpha {
 
     /**
      * compute.firewalls.delete
-     * @desc Deletes the specified firewall. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified firewall.
      * @alias compute.firewalls.delete
      * @memberOf! ()
      *
@@ -20676,7 +20719,7 @@ export namespace compute_alpha {
 
     /**
      * compute.firewalls.get
-     * @desc Returns the specified firewall. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified firewall.
      * @alias compute.firewalls.get
      * @memberOf! ()
      *
@@ -20748,7 +20791,7 @@ export namespace compute_alpha {
 
     /**
      * compute.firewalls.insert
-     * @desc Creates a firewall rule in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a firewall rule in the specified project using the data included in the request.
      * @alias compute.firewalls.insert
      * @memberOf! ()
      *
@@ -20822,7 +20865,7 @@ export namespace compute_alpha {
 
     /**
      * compute.firewalls.list
-     * @desc Retrieves the list of firewall rules available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of firewall rules available to the specified project.
      * @alias compute.firewalls.list
      * @memberOf! ()
      *
@@ -20898,7 +20941,7 @@ export namespace compute_alpha {
 
     /**
      * compute.firewalls.patch
-     * @desc Updates the specified firewall rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified firewall rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.firewalls.patch
      * @memberOf! ()
      *
@@ -20974,7 +21017,7 @@ export namespace compute_alpha {
 
     /**
      * compute.firewalls.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.firewalls.testIamPermissions
      * @memberOf! ()
      *
@@ -21054,7 +21097,7 @@ export namespace compute_alpha {
 
     /**
      * compute.firewalls.update
-     * @desc Updates the specified firewall rule with the data included in the request. Note that all fields will be updated if using PUT, even fields that are not specified. To update individual fields, please use PATCH instead. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified firewall rule with the data included in the request. Note that all fields will be updated if using PUT, even fields that are not specified. To update individual fields, please use PATCH instead.
      * @alias compute.firewalls.update
      * @memberOf! ()
      *
@@ -21288,12 +21331,13 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.aggregatedList
-     * @desc Retrieves an aggregated list of forwarding rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of forwarding rules.
      * @alias compute.forwardingRules.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -21375,7 +21419,7 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.delete
-     * @desc Deletes the specified ForwardingRule resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified ForwardingRule resource.
      * @alias compute.forwardingRules.delete
      * @memberOf! ()
      *
@@ -21452,7 +21496,7 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.get
-     * @desc Returns the specified ForwardingRule resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified ForwardingRule resource.
      * @alias compute.forwardingRules.get
      * @memberOf! ()
      *
@@ -21528,7 +21572,7 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.insert
-     * @desc Creates a ForwardingRule resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a ForwardingRule resource in the specified project and region using the data included in the request.
      * @alias compute.forwardingRules.insert
      * @memberOf! ()
      *
@@ -21605,7 +21649,7 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.list
-     * @desc Retrieves a list of ForwardingRule resources available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of ForwardingRule resources available to the specified project and region.
      * @alias compute.forwardingRules.list
      * @memberOf! ()
      *
@@ -21684,7 +21728,7 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.patch
-     * @desc Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
      * @alias compute.forwardingRules.patch
      * @memberOf! ()
      *
@@ -21762,7 +21806,7 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.setLabels
-     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.forwardingRules.setLabels
      * @memberOf! ()
      *
@@ -21840,7 +21884,7 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.setTarget
-     * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      * @alias compute.forwardingRules.setTarget
      * @memberOf! ()
      *
@@ -21918,7 +21962,7 @@ export namespace compute_alpha {
 
     /**
      * compute.forwardingRules.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.forwardingRules.testIamPermissions
      * @memberOf! ()
      *
@@ -22009,6 +22053,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -22248,7 +22296,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalAddresses.delete
-     * @desc Deletes the specified address resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified address resource.
      * @alias compute.globalAddresses.delete
      * @memberOf! ()
      *
@@ -22324,7 +22372,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalAddresses.get
-     * @desc Returns the specified address resource. Gets a list of available addresses by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified address resource. Gets a list of available addresses by making a list() request.
      * @alias compute.globalAddresses.get
      * @memberOf! ()
      *
@@ -22397,7 +22445,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalAddresses.insert
-     * @desc Creates an address resource in the specified project by using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an address resource in the specified project by using the data included in the request.
      * @alias compute.globalAddresses.insert
      * @memberOf! ()
      *
@@ -22472,7 +22520,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalAddresses.list
-     * @desc Retrieves a list of global addresses. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of global addresses.
      * @alias compute.globalAddresses.list
      * @memberOf! ()
      *
@@ -22549,7 +22597,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalAddresses.setLabels
-     * @desc Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.globalAddresses.setLabels
      * @memberOf! ()
      *
@@ -22625,7 +22673,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalAddresses.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.globalAddresses.testIamPermissions
      * @memberOf! ()
      *
@@ -22840,7 +22888,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalForwardingRules.delete
-     * @desc Deletes the specified GlobalForwardingRule resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified GlobalForwardingRule resource.
      * @alias compute.globalForwardingRules.delete
      * @memberOf! ()
      *
@@ -22916,7 +22964,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalForwardingRules.get
-     * @desc Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request.
      * @alias compute.globalForwardingRules.get
      * @memberOf! ()
      *
@@ -22991,7 +23039,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalForwardingRules.insert
-     * @desc Creates a GlobalForwardingRule resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a GlobalForwardingRule resource in the specified project using the data included in the request.
      * @alias compute.globalForwardingRules.insert
      * @memberOf! ()
      *
@@ -23067,7 +23115,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalForwardingRules.list
-     * @desc Retrieves a list of GlobalForwardingRule resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of GlobalForwardingRule resources available to the specified project.
      * @alias compute.globalForwardingRules.list
      * @memberOf! ()
      *
@@ -23145,7 +23193,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalForwardingRules.patch
-     * @desc Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
      * @alias compute.globalForwardingRules.patch
      * @memberOf! ()
      *
@@ -23222,7 +23270,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalForwardingRules.setLabels
-     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.globalForwardingRules.setLabels
      * @memberOf! ()
      *
@@ -23298,7 +23346,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalForwardingRules.setTarget
-     * @desc Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
      * @alias compute.globalForwardingRules.setTarget
      * @memberOf! ()
      *
@@ -23375,7 +23423,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalForwardingRules.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.globalForwardingRules.testIamPermissions
      * @memberOf! ()
      *
@@ -23640,7 +23688,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalNetworkEndpointGroups.attachNetworkEndpoints
-     * @desc Attach a network endpoint to the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Attach a network endpoint to the specified network endpoint group.
      * @alias compute.globalNetworkEndpointGroups.attachNetworkEndpoints
      * @memberOf! ()
      *
@@ -23719,7 +23767,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalNetworkEndpointGroups.delete
-     * @desc Deletes the specified network endpoint group.Note that the NEG cannot be deleted if there are backend services referencing it. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified network endpoint group.Note that the NEG cannot be deleted if there are backend services referencing it.
      * @alias compute.globalNetworkEndpointGroups.delete
      * @memberOf! ()
      *
@@ -23795,7 +23843,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalNetworkEndpointGroups.detachNetworkEndpoints
-     * @desc Detach the network endpoint from the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Detach the network endpoint from the specified network endpoint group.
      * @alias compute.globalNetworkEndpointGroups.detachNetworkEndpoints
      * @memberOf! ()
      *
@@ -23874,7 +23922,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalNetworkEndpointGroups.get
-     * @desc Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request.
      * @alias compute.globalNetworkEndpointGroups.get
      * @memberOf! ()
      *
@@ -23951,7 +23999,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalNetworkEndpointGroups.insert
-     * @desc Creates a network endpoint group in the specified project using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a network endpoint group in the specified project using the parameters that are included in the request.
      * @alias compute.globalNetworkEndpointGroups.insert
      * @memberOf! ()
      *
@@ -24027,7 +24075,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalNetworkEndpointGroups.list
-     * @desc Retrieves the list of network endpoint groups that are located in the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of network endpoint groups that are located in the specified project.
      * @alias compute.globalNetworkEndpointGroups.list
      * @memberOf! ()
      *
@@ -24107,7 +24155,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalNetworkEndpointGroups.listNetworkEndpoints
-     * @desc Lists the network endpoints in the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the network endpoints in the specified network endpoint group.
      * @alias compute.globalNetworkEndpointGroups.listNetworkEndpoints
      * @memberOf! ()
      *
@@ -24384,12 +24432,13 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOperations.aggregatedList
-     * @desc Retrieves an aggregated list of all operations. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of all operations.
      * @alias compute.globalOperations.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -24466,7 +24515,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOperations.delete
-     * @desc Deletes the specified Operations resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified Operations resource.
      * @alias compute.globalOperations.delete
      * @memberOf! ()
      *
@@ -24539,7 +24588,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOperations.get
-     * @desc Retrieves the specified Operations resource. Gets a list of operations by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the specified Operations resource. Gets a list of operations by making a list() request.
      * @alias compute.globalOperations.get
      * @memberOf! ()
      *
@@ -24614,7 +24663,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOperations.list
-     * @desc Retrieves a list of Operation resources contained within the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of Operation resources contained within the specified project.
      * @alias compute.globalOperations.list
      * @memberOf! ()
      *
@@ -24691,7 +24740,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOperations.wait
-     * @desc Waits for the specified Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE. (== suppress_warning http-rest-shadowed ==)
+     * @desc Waits for the specified Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
      * @alias compute.globalOperations.wait
      * @memberOf! ()
      *
@@ -24776,6 +24825,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -24878,7 +24931,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOrganizationOperations.delete
-     * @desc Deletes the specified Operations resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified Operations resource.
      * @alias compute.globalOrganizationOperations.delete
      * @memberOf! ()
      *
@@ -24951,7 +25004,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOrganizationOperations.get
-     * @desc Retrieves the specified Operations resource. Gets a list of operations by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the specified Operations resource. Gets a list of operations by making a list() request.
      * @alias compute.globalOrganizationOperations.get
      * @memberOf! ()
      *
@@ -25026,7 +25079,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOrganizationOperations.list
-     * @desc Retrieves a list of Operation resources contained within the specified organization. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of Operation resources contained within the specified organization.
      * @alias compute.globalOrganizationOperations.list
      * @memberOf! ()
      *
@@ -25103,7 +25156,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOrganizationOperations.wait
-     * @desc Waits for the specified Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE. (== suppress_warning http-rest-shadowed ==)
+     * @desc Waits for the specified Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
      * @alias compute.globalOrganizationOperations.wait
      * @memberOf! ()
      *
@@ -25262,7 +25315,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalPublicDelegatedPrefixes.delete
-     * @desc Deletes the specified global PublicDelegatedPrefix. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified global PublicDelegatedPrefix.
      * @alias compute.globalPublicDelegatedPrefixes.delete
      * @memberOf! ()
      *
@@ -25338,7 +25391,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalPublicDelegatedPrefixes.get
-     * @desc Returns the specified global PublicDelegatedPrefix resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified global PublicDelegatedPrefix resource.
      * @alias compute.globalPublicDelegatedPrefixes.get
      * @memberOf! ()
      *
@@ -25415,7 +25468,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalPublicDelegatedPrefixes.insert
-     * @desc Creates a global PublicDelegatedPrefix in the specified project using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a global PublicDelegatedPrefix in the specified project using the parameters that are included in the request.
      * @alias compute.globalPublicDelegatedPrefixes.insert
      * @memberOf! ()
      *
@@ -25491,7 +25544,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalPublicDelegatedPrefixes.list
-     * @desc Lists the global PublicDelegatedPrefixes for a project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the global PublicDelegatedPrefixes for a project.
      * @alias compute.globalPublicDelegatedPrefixes.list
      * @memberOf! ()
      *
@@ -25576,7 +25629,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalPublicDelegatedPrefixes.patch
-     * @desc Patches the specified global PublicDelegatedPrefix resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified global PublicDelegatedPrefix resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      * @alias compute.globalPublicDelegatedPrefixes.patch
      * @memberOf! ()
      *
@@ -25771,12 +25824,13 @@ export namespace compute_alpha {
 
     /**
      * compute.healthChecks.aggregatedList
-     * @desc Retrieves the list of all HealthCheck resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of all HealthCheck resources, regional and global, available to the specified project.
      * @alias compute.healthChecks.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -25856,7 +25910,7 @@ export namespace compute_alpha {
 
     /**
      * compute.healthChecks.delete
-     * @desc Deletes the specified HealthCheck resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified HealthCheck resource.
      * @alias compute.healthChecks.delete
      * @memberOf! ()
      *
@@ -25932,7 +25986,7 @@ export namespace compute_alpha {
 
     /**
      * compute.healthChecks.get
-     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request.
      * @alias compute.healthChecks.get
      * @memberOf! ()
      *
@@ -26006,7 +26060,7 @@ export namespace compute_alpha {
 
     /**
      * compute.healthChecks.insert
-     * @desc Creates a HealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a HealthCheck resource in the specified project using the data included in the request.
      * @alias compute.healthChecks.insert
      * @memberOf! ()
      *
@@ -26081,7 +26135,7 @@ export namespace compute_alpha {
 
     /**
      * compute.healthChecks.list
-     * @desc Retrieves the list of HealthCheck resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of HealthCheck resources available to the specified project.
      * @alias compute.healthChecks.list
      * @memberOf! ()
      *
@@ -26158,7 +26212,7 @@ export namespace compute_alpha {
 
     /**
      * compute.healthChecks.patch
-     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.healthChecks.patch
      * @memberOf! ()
      *
@@ -26235,7 +26289,7 @@ export namespace compute_alpha {
 
     /**
      * compute.healthChecks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.healthChecks.testIamPermissions
      * @memberOf! ()
      *
@@ -26315,7 +26369,7 @@ export namespace compute_alpha {
 
     /**
      * compute.healthChecks.update
-     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request.
      * @alias compute.healthChecks.update
      * @memberOf! ()
      *
@@ -26402,6 +26456,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -26583,7 +26641,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpHealthChecks.delete
-     * @desc Deletes the specified HttpHealthCheck resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified HttpHealthCheck resource.
      * @alias compute.httpHealthChecks.delete
      * @memberOf! ()
      *
@@ -26659,7 +26717,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpHealthChecks.get
-     * @desc Returns the specified HttpHealthCheck resource. Gets a list of available HTTP health checks by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified HttpHealthCheck resource. Gets a list of available HTTP health checks by making a list() request.
      * @alias compute.httpHealthChecks.get
      * @memberOf! ()
      *
@@ -26734,7 +26792,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpHealthChecks.insert
-     * @desc Creates a HttpHealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a HttpHealthCheck resource in the specified project using the data included in the request.
      * @alias compute.httpHealthChecks.insert
      * @memberOf! ()
      *
@@ -26810,7 +26868,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpHealthChecks.list
-     * @desc Retrieves the list of HttpHealthCheck resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of HttpHealthCheck resources available to the specified project.
      * @alias compute.httpHealthChecks.list
      * @memberOf! ()
      *
@@ -26888,7 +26946,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpHealthChecks.patch
-     * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.httpHealthChecks.patch
      * @memberOf! ()
      *
@@ -26965,7 +27023,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpHealthChecks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.httpHealthChecks.testIamPermissions
      * @memberOf! ()
      *
@@ -27045,7 +27103,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpHealthChecks.update
-     * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a HttpHealthCheck resource in the specified project using the data included in the request.
      * @alias compute.httpHealthChecks.update
      * @memberOf! ()
      *
@@ -27286,7 +27344,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpsHealthChecks.delete
-     * @desc Deletes the specified HttpsHealthCheck resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified HttpsHealthCheck resource.
      * @alias compute.httpsHealthChecks.delete
      * @memberOf! ()
      *
@@ -27362,7 +27420,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpsHealthChecks.get
-     * @desc Returns the specified HttpsHealthCheck resource. Gets a list of available HTTPS health checks by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified HttpsHealthCheck resource. Gets a list of available HTTPS health checks by making a list() request.
      * @alias compute.httpsHealthChecks.get
      * @memberOf! ()
      *
@@ -27437,7 +27495,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpsHealthChecks.insert
-     * @desc Creates a HttpsHealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a HttpsHealthCheck resource in the specified project using the data included in the request.
      * @alias compute.httpsHealthChecks.insert
      * @memberOf! ()
      *
@@ -27513,7 +27571,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpsHealthChecks.list
-     * @desc Retrieves the list of HttpsHealthCheck resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of HttpsHealthCheck resources available to the specified project.
      * @alias compute.httpsHealthChecks.list
      * @memberOf! ()
      *
@@ -27593,7 +27651,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpsHealthChecks.patch
-     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.httpsHealthChecks.patch
      * @memberOf! ()
      *
@@ -27670,7 +27728,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpsHealthChecks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.httpsHealthChecks.testIamPermissions
      * @memberOf! ()
      *
@@ -27750,7 +27808,7 @@ export namespace compute_alpha {
 
     /**
      * compute.httpsHealthChecks.update
-     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a HttpsHealthCheck resource in the specified project using the data included in the request.
      * @alias compute.httpsHealthChecks.update
      * @memberOf! ()
      *
@@ -27991,7 +28049,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.delete
-     * @desc Deletes the specified image. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified image.
      * @alias compute.images.delete
      * @memberOf! ()
      *
@@ -28066,7 +28124,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.deprecate
-     * @desc Sets the deprecation status of an image.  If an empty request body is given, clears the deprecation status instead. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the deprecation status of an image.  If an empty request body is given, clears the deprecation status instead.
      * @alias compute.images.deprecate
      * @memberOf! ()
      *
@@ -28142,7 +28200,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.get
-     * @desc Returns the specified image. Gets a list of available images by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified image. Gets a list of available images by making a list() request.
      * @alias compute.images.get
      * @memberOf! ()
      *
@@ -28214,7 +28272,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.getFromFamily
-     * @desc Returns the latest image that is part of an image family and is not deprecated. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the latest image that is part of an image family and is not deprecated.
      * @alias compute.images.getFromFamily
      * @memberOf! ()
      *
@@ -28287,7 +28345,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.images.getIamPolicy
      * @memberOf! ()
      *
@@ -28361,7 +28419,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.insert
-     * @desc Creates an image in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an image in the specified project using the data included in the request.
      * @alias compute.images.insert
      * @memberOf! ()
      *
@@ -28436,7 +28494,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.list
-     * @desc Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of custom images available to the specified project. Custom images are images you create that belong to your project. This method does not get any images that belong to other projects, including publicly-available images, like Debian 8. If you want to get a list of publicly-available images, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      * @alias compute.images.list
      * @memberOf! ()
      *
@@ -28512,7 +28570,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.images.setIamPolicy
      * @memberOf! ()
      *
@@ -28586,7 +28644,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.setLabels
-     * @desc Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.images.setLabels
      * @memberOf! ()
      *
@@ -28661,7 +28719,7 @@ export namespace compute_alpha {
 
     /**
      * compute.images.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.images.testIamPermissions
      * @memberOf! ()
      *
@@ -28956,7 +29014,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.abandonInstances
-     * @desc Flags the specified instances to be removed from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Flags the specified instances to be removed from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
      * @alias compute.instanceGroupManagers.abandonInstances
      * @memberOf! ()
      *
@@ -29034,12 +29092,13 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.aggregatedList
-     * @desc Retrieves the list of managed instance groups and groups them by zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of managed instance groups and groups them by zone.
      * @alias compute.instanceGroupManagers.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -29121,7 +29180,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.applyUpdatesToInstances
-     * @desc Apply changes to selected instances on the managed instance group. This method can be used to apply new overrides and/or new versions. (== suppress_warning http-rest-shadowed ==)
+     * @desc Apply changes to selected instances on the managed instance group. This method can be used to apply new overrides and/or new versions.
      * @alias compute.instanceGroupManagers.applyUpdatesToInstances
      * @memberOf! ()
      *
@@ -29200,7 +29259,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.createInstances
-     * @desc Creates instances with per-instance configs in this managed instance group. Instances are created using the current instance template. The create instances operation is marked DONE if the createInstances request is successful. The underlying actions take additional time. You must separately verify the status of the creating or actions with the listmanagedinstances method. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates instances with per-instance configs in this managed instance group. Instances are created using the current instance template. The create instances operation is marked DONE if the createInstances request is successful. The underlying actions take additional time. You must separately verify the status of the creating or actions with the listmanagedinstances method.
      * @alias compute.instanceGroupManagers.createInstances
      * @memberOf! ()
      *
@@ -29278,7 +29337,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.delete
-     * @desc Deletes the specified managed instance group and all of the instances in that group. Note that the instance group must not belong to a backend service. Read  Deleting an instance group for more information. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified managed instance group and all of the instances in that group. Note that the instance group must not belong to a backend service. Read  Deleting an instance group for more information.
      * @alias compute.instanceGroupManagers.delete
      * @memberOf! ()
      *
@@ -29355,7 +29414,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.deleteInstances
-     * @desc Flags the specified instances in the managed instance group for immediate deletion. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Flags the specified instances in the managed instance group for immediate deletion. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
      * @alias compute.instanceGroupManagers.deleteInstances
      * @memberOf! ()
      *
@@ -29433,7 +29492,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.deletePerInstanceConfigs
-     * @desc Deletes selected per-instance configs for the managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes selected per-instance configs for the managed instance group.
      * @alias compute.instanceGroupManagers.deletePerInstanceConfigs
      * @memberOf! ()
      *
@@ -29512,7 +29571,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.get
-     * @desc Returns all of the details about the specified managed instance group. Gets a list of available managed instance groups by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns all of the details about the specified managed instance group. Gets a list of available managed instance groups by making a list() request.
      * @alias compute.instanceGroupManagers.get
      * @memberOf! ()
      *
@@ -29590,7 +29649,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.insert
-     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A managed instance group can have up to 1000 VM instances per group. Please contact Cloud Support if you need an increase in this limit. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A managed instance group can have up to 1000 VM instances per group. Please contact Cloud Support if you need an increase in this limit.
      * @alias compute.instanceGroupManagers.insert
      * @memberOf! ()
      *
@@ -29667,7 +29726,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.list
-     * @desc Retrieves a list of managed instance groups that are contained within the specified project and zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of managed instance groups that are contained within the specified project and zone.
      * @alias compute.instanceGroupManagers.list
      * @memberOf! ()
      *
@@ -29748,7 +29807,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.listErrors
-     * @desc Lists all errors thrown by actions on instances for a given managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all errors thrown by actions on instances for a given managed instance group.
      * @alias compute.instanceGroupManagers.listErrors
      * @memberOf! ()
      *
@@ -29845,7 +29904,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.listManagedInstances
-     * @desc Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action.
      * @alias compute.instanceGroupManagers.listManagedInstances
      * @memberOf! ()
      *
@@ -29949,7 +30008,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.listPerInstanceConfigs
-     * @desc Lists all of the per-instance configs defined for the managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all of the per-instance configs defined for the managed instance group.
      * @alias compute.instanceGroupManagers.listPerInstanceConfigs
      * @memberOf! ()
      *
@@ -30053,7 +30112,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.patch
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listManagedInstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listManagedInstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instanceGroupManagers.patch
      * @memberOf! ()
      *
@@ -30131,7 +30190,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.patchPerInstanceConfigs
-     * @desc Insert or patch (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch. (== suppress_warning http-rest-shadowed ==)
+     * @desc Insert or patch (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch.
      * @alias compute.instanceGroupManagers.patchPerInstanceConfigs
      * @memberOf! ()
      *
@@ -30211,7 +30270,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.recreateInstances
-     * @desc Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
      * @alias compute.instanceGroupManagers.recreateInstances
      * @memberOf! ()
      *
@@ -30289,7 +30348,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.resize
-     * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.  When resizing down, the instance group arbitrarily chooses the order in which VMs are deleted. The group takes into account some VM attributes when making the selection including:  + The status of the VM instance. + The health of the VM instance. + The instance template version the VM is based on. + For regional managed instance groups, the location of the VM instance.  This list is subject to change.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted. (== suppress_warning http-rest-shadowed ==)
+     * @desc Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.  When resizing down, the instance group arbitrarily chooses the order in which VMs are deleted. The group takes into account some VM attributes when making the selection including:  + The status of the VM instance. + The health of the VM instance. + The instance template version the VM is based on. + For regional managed instance groups, the location of the VM instance.  This list is subject to change.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
      * @alias compute.instanceGroupManagers.resize
      * @memberOf! ()
      *
@@ -30367,7 +30426,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.resizeAdvanced
-     * @desc Resizes the managed instance group with advanced configuration options like disabling creation retries. This is an extended version of the resize method.  If you increase the size of the instance group, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating, creatingWithoutRetries, or deleting actions with the get or listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted. (== suppress_warning http-rest-shadowed ==)
+     * @desc Resizes the managed instance group with advanced configuration options like disabling creation retries. This is an extended version of the resize method.  If you increase the size of the instance group, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating, creatingWithoutRetries, or deleting actions with the get or listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
      * @alias compute.instanceGroupManagers.resizeAdvanced
      * @memberOf! ()
      *
@@ -30445,7 +30504,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.setAutoHealingPolicies
-     * @desc Modifies the autohealing policies. [Deprecated] This method is deprecated. Please use Patch instead. (== suppress_warning http-rest-shadowed ==)
+     * @desc Modifies the autohealing policies. [Deprecated] This method is deprecated. Please use Patch instead.
      * @alias compute.instanceGroupManagers.setAutoHealingPolicies
      * @memberOf! ()
      *
@@ -30525,7 +30584,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.setInstanceTemplate
-     * @desc Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you recreate them. (== suppress_warning http-rest-shadowed ==)
+     * @desc Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you recreate them.
      * @alias compute.instanceGroupManagers.setInstanceTemplate
      * @memberOf! ()
      *
@@ -30603,7 +30662,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.setTargetPools
-     * @desc Modifies the target pools to which all instances in this managed instance group are assigned. The target pools automatically apply to all of the instances in the managed instance group. This operation is marked DONE when you make the request even if the instances have not yet been added to their target pools. The change might take some time to apply to all of the instances in the group depending on the size of the group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Modifies the target pools to which all instances in this managed instance group are assigned. The target pools automatically apply to all of the instances in the managed instance group. This operation is marked DONE when you make the request even if the instances have not yet been added to their target pools. The change might take some time to apply to all of the instances in the group depending on the size of the group.
      * @alias compute.instanceGroupManagers.setTargetPools
      * @memberOf! ()
      *
@@ -30681,7 +30740,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.instanceGroupManagers.testIamPermissions
      * @memberOf! ()
      *
@@ -30762,7 +30821,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.update
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listManagedInstances method. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listManagedInstances method.
      * @alias compute.instanceGroupManagers.update
      * @memberOf! ()
      *
@@ -30840,7 +30899,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroupManagers.updatePerInstanceConfigs
-     * @desc Insert or update (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch. (== suppress_warning http-rest-shadowed ==)
+     * @desc Insert or update (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch.
      * @alias compute.instanceGroupManagers.updatePerInstanceConfigs
      * @memberOf! ()
      *
@@ -30959,6 +31018,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -31616,7 +31679,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.addInstances
-     * @desc Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork. Read  Adding instances for more information. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds a list of instances to the specified instance group. All of the instances in the instance group must be in the same network/subnetwork. Read  Adding instances for more information.
      * @alias compute.instanceGroups.addInstances
      * @memberOf! ()
      *
@@ -31694,12 +31757,13 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.aggregatedList
-     * @desc Retrieves the list of instance groups and sorts them by zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of instance groups and sorts them by zone.
      * @alias compute.instanceGroups.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -31779,7 +31843,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.delete
-     * @desc Deletes the specified instance group. The instances in the group are not deleted. Note that instance group must not belong to a backend service. Read  Deleting an instance group for more information. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified instance group. The instances in the group are not deleted. Note that instance group must not belong to a backend service. Read  Deleting an instance group for more information.
      * @alias compute.instanceGroups.delete
      * @memberOf! ()
      *
@@ -31856,7 +31920,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.get
-     * @desc Returns the specified instance group. Gets a list of available instance groups by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified instance group. Gets a list of available instance groups by making a list() request.
      * @alias compute.instanceGroups.get
      * @memberOf! ()
      *
@@ -31932,7 +31996,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.insert
-     * @desc Creates an instance group in the specified project using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an instance group in the specified project using the parameters that are included in the request.
      * @alias compute.instanceGroups.insert
      * @memberOf! ()
      *
@@ -32009,7 +32073,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.list
-     * @desc Retrieves the list of instance groups that are located in the specified project and zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of instance groups that are located in the specified project and zone.
      * @alias compute.instanceGroups.list
      * @memberOf! ()
      *
@@ -32088,7 +32152,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.listInstances
-     * @desc Lists the instances in the specified instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the instances in the specified instance group.
      * @alias compute.instanceGroups.listInstances
      * @memberOf! ()
      *
@@ -32176,7 +32240,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.removeInstances
-     * @desc Removes one or more instances from the specified instance group, but does not delete those instances.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration before the VM instance is removed or deleted. (== suppress_warning http-rest-shadowed ==)
+     * @desc Removes one or more instances from the specified instance group, but does not delete those instances.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration before the VM instance is removed or deleted.
      * @alias compute.instanceGroups.removeInstances
      * @memberOf! ()
      *
@@ -32254,7 +32318,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.setNamedPorts
-     * @desc Sets the named ports for the specified instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the named ports for the specified instance group.
      * @alias compute.instanceGroups.setNamedPorts
      * @memberOf! ()
      *
@@ -32332,7 +32396,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceGroups.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.instanceGroups.testIamPermissions
      * @memberOf! ()
      *
@@ -32452,6 +32516,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -32703,7 +32771,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.addAccessConfig
-     * @desc Adds an access config to an instance's network interface. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds an access config to an instance's network interface.
      * @alias compute.instances.addAccessConfig
      * @memberOf! ()
      *
@@ -32782,7 +32850,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.addResourcePolicies
-     * @desc Adds existing resource policies to an instance. You can only add one policy right now which will be applied to this instance for scheduling live migrations. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds existing resource policies to an instance. You can only add one policy right now which will be applied to this instance for scheduling live migrations.
      * @alias compute.instances.addResourcePolicies
      * @memberOf! ()
      *
@@ -32860,12 +32928,13 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.aggregatedList
-     * @desc Retrieves aggregated list of all of the instances in your project across all regions and zones. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves aggregated list of all of the instances in your project across all regions and zones.
      * @alias compute.instances.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -32941,7 +33010,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.attachDisk
-     * @desc Attaches an existing Disk resource to an instance. You must first create the disk before you can attach it. It is not possible to create and attach a disk at the same time. For more information, read Adding a persistent disk to your instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Attaches an existing Disk resource to an instance. You must first create the disk before you can attach it. It is not possible to create and attach a disk at the same time. For more information, read Adding a persistent disk to your instance.
      * @alias compute.instances.attachDisk
      * @memberOf! ()
      *
@@ -33020,7 +33089,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.delete
-     * @desc Deletes the specified Instance resource. For more information, see Stopping or Deleting an Instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified Instance resource. For more information, see Stopping or Deleting an Instance.
      * @alias compute.instances.delete
      * @memberOf! ()
      *
@@ -33096,7 +33165,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.deleteAccessConfig
-     * @desc Deletes an access config from an instance's network interface. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes an access config from an instance's network interface.
      * @alias compute.instances.deleteAccessConfig
      * @memberOf! ()
      *
@@ -33181,7 +33250,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.detachDisk
-     * @desc Detaches a disk from an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Detaches a disk from an instance.
      * @alias compute.instances.detachDisk
      * @memberOf! ()
      *
@@ -33259,7 +33328,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.get
-     * @desc Returns the specified Instance resource. Gets a list of available instances by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified Instance resource. Gets a list of available instances by making a list() request.
      * @alias compute.instances.get
      * @memberOf! ()
      *
@@ -33332,7 +33401,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.getEffectiveFirewalls
-     * @desc Returns effective firewalls applied to an interface of the instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns effective firewalls applied to an interface of the instance.
      * @alias compute.instances.getEffectiveFirewalls
      * @memberOf! ()
      *
@@ -33426,7 +33495,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.getGuestAttributes
-     * @desc Returns the specified guest attributes entry. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified guest attributes entry.
      * @alias compute.instances.getGuestAttributes
      * @memberOf! ()
      *
@@ -33506,7 +33575,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.instances.getIamPolicy
      * @memberOf! ()
      *
@@ -33581,7 +33650,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.getSerialPortOutput
-     * @desc Returns the last 1 MB of serial port output from the specified instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the last 1 MB of serial port output from the specified instance.
      * @alias compute.instances.getSerialPortOutput
      * @memberOf! ()
      *
@@ -33661,7 +33730,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.getShieldedInstanceIdentity
-     * @desc Returns the Shielded Instance Identity of an instance (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the Shielded Instance Identity of an instance
      * @alias compute.instances.getShieldedInstanceIdentity
      * @memberOf! ()
      *
@@ -33741,7 +33810,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.getShieldedVmIdentity
-     * @desc Returns the Shielded VM Identity of an instance (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the Shielded VM Identity of an instance
      * @alias compute.instances.getShieldedVmIdentity
      * @memberOf! ()
      *
@@ -33819,7 +33888,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.insert
-     * @desc Creates an instance resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an instance resource in the specified project using the data included in the request.
      * @alias compute.instances.insert
      * @memberOf! ()
      *
@@ -33897,7 +33966,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.list
-     * @desc Retrieves the list of instances contained within the specified zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of instances contained within the specified zone.
      * @alias compute.instances.list
      * @memberOf! ()
      *
@@ -33975,7 +34044,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.listReferrers
-     * @desc Retrieves the list of referrers to instances contained within the specified zone. For more information, read Viewing Referrers to VM Instances. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of referrers to instances contained within the specified zone. For more information, read Viewing Referrers to VM Instances.
      * @alias compute.instances.listReferrers
      * @memberOf! ()
      *
@@ -34059,7 +34128,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.removeResourcePolicies
-     * @desc Removes resource policies from an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Removes resource policies from an instance.
      * @alias compute.instances.removeResourcePolicies
      * @memberOf! ()
      *
@@ -34139,7 +34208,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.reset
-     * @desc Performs a reset on the instance. This is a hard reset the VM does not do a graceful shutdown. For more information, see Resetting an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Performs a reset on the instance. This is a hard reset the VM does not do a graceful shutdown. For more information, see Resetting an instance.
      * @alias compute.instances.reset
      * @memberOf! ()
      *
@@ -34215,7 +34284,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.resume
-     * @desc Resumes an instance that was suspended using the instances().suspend method. (== suppress_warning http-rest-shadowed ==)
+     * @desc Resumes an instance that was suspended using the instances().suspend method.
      * @alias compute.instances.resume
      * @memberOf! ()
      *
@@ -34292,7 +34361,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setDeletionProtection
-     * @desc Sets deletion protection on the instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets deletion protection on the instance.
      * @alias compute.instances.setDeletionProtection
      * @memberOf! ()
      *
@@ -34372,7 +34441,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setDiskAutoDelete
-     * @desc Sets the auto-delete flag for a disk attached to an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the auto-delete flag for a disk attached to an instance.
      * @alias compute.instances.setDiskAutoDelete
      * @memberOf! ()
      *
@@ -34457,7 +34526,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.instances.setIamPolicy
      * @memberOf! ()
      *
@@ -34532,7 +34601,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setLabels
-     * @desc Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.instances.setLabels
      * @memberOf! ()
      *
@@ -34610,7 +34679,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setMachineResources
-     * @desc Changes the number and/or type of accelerator for a stopped instance to the values specified in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the number and/or type of accelerator for a stopped instance to the values specified in the request.
      * @alias compute.instances.setMachineResources
      * @memberOf! ()
      *
@@ -34688,7 +34757,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setMachineType
-     * @desc Changes the machine type for a stopped instance to the machine type specified in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the machine type for a stopped instance to the machine type specified in the request.
      * @alias compute.instances.setMachineType
      * @memberOf! ()
      *
@@ -34766,7 +34835,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setMetadata
-     * @desc Sets metadata for the specified instance to the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets metadata for the specified instance to the data included in the request.
      * @alias compute.instances.setMetadata
      * @memberOf! ()
      *
@@ -34844,7 +34913,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setMinCpuPlatform
-     * @desc Changes the minimum CPU platform that this instance should use. This method can only be called on a stopped instance. For more information, read Specifying a Minimum CPU Platform. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the minimum CPU platform that this instance should use. This method can only be called on a stopped instance. For more information, read Specifying a Minimum CPU Platform.
      * @alias compute.instances.setMinCpuPlatform
      * @memberOf! ()
      *
@@ -34922,7 +34991,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setName
-     * @desc Sets name of an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets name of an instance.
      * @alias compute.instances.setName
      * @memberOf! ()
      *
@@ -35000,7 +35069,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setScheduling
-     * @desc Sets an instance's scheduling options. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets an instance's scheduling options.
      * @alias compute.instances.setScheduling
      * @memberOf! ()
      *
@@ -35078,7 +35147,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setServiceAccount
-     * @desc Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance.
      * @alias compute.instances.setServiceAccount
      * @memberOf! ()
      *
@@ -35156,7 +35225,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setShieldedInstanceIntegrityPolicy
-     * @desc Sets the Shielded Instance integrity policy for an instance. You can only use this method on a running instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the Shielded Instance integrity policy for an instance. You can only use this method on a running instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instances.setShieldedInstanceIntegrityPolicy
      * @memberOf! ()
      *
@@ -35236,7 +35305,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setShieldedVmIntegrityPolicy
-     * @desc Sets the Shielded VM integrity policy for a VM instance. You can only use this method on a running VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the Shielded VM integrity policy for a VM instance. You can only use this method on a running VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instances.setShieldedVmIntegrityPolicy
      * @memberOf! ()
      *
@@ -35316,7 +35385,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.setTags
-     * @desc Sets network tags for the specified instance to the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets network tags for the specified instance to the data included in the request.
      * @alias compute.instances.setTags
      * @memberOf! ()
      *
@@ -35394,7 +35463,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.simulateMaintenanceEvent
-     * @desc Simulates a maintenance event on the instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Simulates a maintenance event on the instance.
      * @alias compute.instances.simulateMaintenanceEvent
      * @memberOf! ()
      *
@@ -35472,7 +35541,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.start
-     * @desc Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
      * @alias compute.instances.start
      * @memberOf! ()
      *
@@ -35548,7 +35617,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.startWithEncryptionKey
-     * @desc Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
      * @alias compute.instances.startWithEncryptionKey
      * @memberOf! ()
      *
@@ -35628,7 +35697,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.stop
-     * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
      * @alias compute.instances.stop
      * @memberOf! ()
      *
@@ -35705,7 +35774,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.suspend
-     * @desc This method suspends a running instance, saving its state to persistent storage, and allows you to resume the instance at a later time. Suspended instances incur reduced per-minute, virtual machine usage charges while they are suspended. Any resources the virtual machine is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. (== suppress_warning http-rest-shadowed ==)
+     * @desc This method suspends a running instance, saving its state to persistent storage, and allows you to resume the instance at a later time. Suspended instances incur reduced per-minute, virtual machine usage charges while they are suspended. Any resources the virtual machine is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted.
      * @alias compute.instances.suspend
      * @memberOf! ()
      *
@@ -35783,7 +35852,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.instances.testIamPermissions
      * @memberOf! ()
      *
@@ -35863,8 +35932,87 @@ export namespace compute_alpha {
     }
 
     /**
+     * compute.instances.update
+     * @desc Updates an instance.
+     * @alias compute.instances.update
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to update.
+     * @param {string=} params.minimalAction If specified, this action or higher level action is performed on the instance irrespective of what action is required for the update to take effect. If not specified, then Compute Engine acts based on the minimum action required.
+     * @param {string=} params.mostDisruptiveAllowedAction If specified, Compute Engine returns an error if the update requires a higher action to be applied to the instance. If not specified, the default will be REFRESH.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().Instance} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update(
+      params?: Params$Resource$Instances$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    update(
+      params: Params$Resource$Instances$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Instances$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Update
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Instances$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * compute.instances.updateAccessConfig
-     * @desc Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instances.updateAccessConfig
      * @memberOf! ()
      *
@@ -35943,7 +36091,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.updateDisplayDevice
-     * @desc Updates the Display config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the Display config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instances.updateDisplayDevice
      * @memberOf! ()
      *
@@ -36021,7 +36169,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.updateNetworkInterface
-     * @desc Updates an instance's network interface. This method follows PATCH semantics. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates an instance's network interface. This method follows PATCH semantics.
      * @alias compute.instances.updateNetworkInterface
      * @memberOf! ()
      *
@@ -36102,7 +36250,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.updateShieldedInstanceConfig
-     * @desc Updates the Shielded Instance config for an instance. You can only use this method on a stopped instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the Shielded Instance config for an instance. You can only use this method on a stopped instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instances.updateShieldedInstanceConfig
      * @memberOf! ()
      *
@@ -36182,7 +36330,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instances.updateShieldedVmConfig
-     * @desc Updates the Shielded VM config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the Shielded VM config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.instances.updateShieldedVmConfig
      * @memberOf! ()
      *
@@ -36334,6 +36482,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -37365,6 +37517,42 @@ export namespace compute_alpha {
      */
     requestBody?: Schema$TestPermissionsRequest;
   }
+  export interface Params$Resource$Instances$Update extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the instance resource to update.
+     */
+    instance?: string;
+    /**
+     * If specified, this action or higher level action is performed on the instance irrespective of what action is required for the update to take effect. If not specified, then Compute Engine acts based on the minimum action required.
+     */
+    minimalAction?: string;
+    /**
+     * If specified, Compute Engine returns an error if the update requires a higher action to be applied to the instance. If not specified, the default will be REFRESH.
+     */
+    mostDisruptiveAllowedAction?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Instance;
+  }
   export interface Params$Resource$Instances$Updateaccessconfig
     extends StandardParameters {
     /**
@@ -37527,7 +37715,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceTemplates.delete
-     * @desc Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone. It is not possible to delete templates that are already in use by a managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone. It is not possible to delete templates that are already in use by a managed instance group.
      * @alias compute.instanceTemplates.delete
      * @memberOf! ()
      *
@@ -37603,7 +37791,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceTemplates.get
-     * @desc Returns the specified instance template. Gets a list of available instance templates by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified instance template. Gets a list of available instance templates by making a list() request.
      * @alias compute.instanceTemplates.get
      * @memberOf! ()
      *
@@ -37678,7 +37866,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceTemplates.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.instanceTemplates.getIamPolicy
      * @memberOf! ()
      *
@@ -37752,7 +37940,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceTemplates.insert
-     * @desc Creates an instance template in the specified project using the data that is included in the request. If you are creating a new template to update an existing instance group, your new instance template must use the same network or, if applicable, the same subnetwork as the original template. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an instance template in the specified project using the data that is included in the request. If you are creating a new template to update an existing instance group, your new instance template must use the same network or, if applicable, the same subnetwork as the original template.
      * @alias compute.instanceTemplates.insert
      * @memberOf! ()
      *
@@ -37828,7 +38016,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceTemplates.list
-     * @desc Retrieves a list of instance templates that are contained within the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of instance templates that are contained within the specified project.
      * @alias compute.instanceTemplates.list
      * @memberOf! ()
      *
@@ -37908,7 +38096,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceTemplates.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.instanceTemplates.setIamPolicy
      * @memberOf! ()
      *
@@ -37982,7 +38170,7 @@ export namespace compute_alpha {
 
     /**
      * compute.instanceTemplates.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.instanceTemplates.testIamPermissions
      * @memberOf! ()
      *
@@ -38217,12 +38405,13 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.aggregatedList
-     * @desc Retrieves an aggregated list of interconnect attachments. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of interconnect attachments.
      * @alias compute.interconnectAttachments.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -38312,7 +38501,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.delete
-     * @desc Deletes the specified interconnect attachment. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified interconnect attachment.
      * @alias compute.interconnectAttachments.delete
      * @memberOf! ()
      *
@@ -38389,7 +38578,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.get
-     * @desc Returns the specified interconnect attachment. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified interconnect attachment.
      * @alias compute.interconnectAttachments.get
      * @memberOf! ()
      *
@@ -38467,7 +38656,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.interconnectAttachments.getIamPolicy
      * @memberOf! ()
      *
@@ -38542,7 +38731,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.insert
-     * @desc Creates an InterconnectAttachment in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an InterconnectAttachment in the specified project using the data included in the request.
      * @alias compute.interconnectAttachments.insert
      * @memberOf! ()
      *
@@ -38620,7 +38809,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.list
-     * @desc Retrieves the list of interconnect attachments contained within the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of interconnect attachments contained within the specified region.
      * @alias compute.interconnectAttachments.list
      * @memberOf! ()
      *
@@ -38706,7 +38895,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.patch
-     * @desc Updates the specified interconnect attachment with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified interconnect attachment with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.interconnectAttachments.patch
      * @memberOf! ()
      *
@@ -38784,7 +38973,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.interconnectAttachments.setIamPolicy
      * @memberOf! ()
      *
@@ -38859,7 +39048,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.setLabels
-     * @desc Sets the labels on an InterconnectAttachment. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on an InterconnectAttachment. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.interconnectAttachments.setLabels
      * @memberOf! ()
      *
@@ -38937,7 +39126,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectAttachments.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.interconnectAttachments.testIamPermissions
      * @memberOf! ()
      *
@@ -39028,6 +39217,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -39291,7 +39484,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectLocations.get
-     * @desc Returns the details for the specified interconnect location. Gets a list of available interconnect locations by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the details for the specified interconnect location. Gets a list of available interconnect locations by making a list() request.
      * @alias compute.interconnectLocations.get
      * @memberOf! ()
      *
@@ -39368,7 +39561,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectLocations.list
-     * @desc Retrieves the list of interconnect locations available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of interconnect locations available to the specified project.
      * @alias compute.interconnectLocations.list
      * @memberOf! ()
      *
@@ -39448,7 +39641,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnectLocations.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.interconnectLocations.testIamPermissions
      * @memberOf! ()
      *
@@ -39601,7 +39794,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.delete
-     * @desc Deletes the specified interconnect. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified interconnect.
      * @alias compute.interconnects.delete
      * @memberOf! ()
      *
@@ -39677,7 +39870,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.get
-     * @desc Returns the specified interconnect. Get a list of available interconnects by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified interconnect. Get a list of available interconnects by making a list() request.
      * @alias compute.interconnects.get
      * @memberOf! ()
      *
@@ -39752,7 +39945,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.getDiagnostics
-     * @desc Returns the interconnectDiagnostics for the specified interconnect. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the interconnectDiagnostics for the specified interconnect.
      * @alias compute.interconnects.getDiagnostics
      * @memberOf! ()
      *
@@ -39838,7 +40031,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.interconnects.getIamPolicy
      * @memberOf! ()
      *
@@ -39912,7 +40105,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.insert
-     * @desc Creates a Interconnect in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a Interconnect in the specified project using the data included in the request.
      * @alias compute.interconnects.insert
      * @memberOf! ()
      *
@@ -39987,7 +40180,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.list
-     * @desc Retrieves the list of interconnect available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of interconnect available to the specified project.
      * @alias compute.interconnects.list
      * @memberOf! ()
      *
@@ -40064,7 +40257,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.patch
-     * @desc Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.interconnects.patch
      * @memberOf! ()
      *
@@ -40141,7 +40334,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.interconnects.setIamPolicy
      * @memberOf! ()
      *
@@ -40215,7 +40408,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.setLabels
-     * @desc Sets the labels on an Interconnect. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on an Interconnect. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.interconnects.setLabels
      * @memberOf! ()
      *
@@ -40291,7 +40484,7 @@ export namespace compute_alpha {
 
     /**
      * compute.interconnects.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.interconnects.testIamPermissions
      * @memberOf! ()
      *
@@ -40588,7 +40781,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenseCodes.get
-     * @desc Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code. (== suppress_warning http-rest-shadowed ==)
+     * @desc Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code.
      * @alias compute.licenseCodes.get
      * @memberOf! ()
      *
@@ -40662,7 +40855,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenseCodes.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.licenseCodes.getIamPolicy
      * @memberOf! ()
      *
@@ -40736,7 +40929,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenseCodes.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.licenseCodes.setIamPolicy
      * @memberOf! ()
      *
@@ -40810,7 +41003,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenseCodes.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.licenseCodes.testIamPermissions
      * @memberOf! ()
      *
@@ -40975,7 +41168,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenses.delete
-     * @desc Deletes the specified license. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified license.
      * @alias compute.licenses.delete
      * @memberOf! ()
      *
@@ -41050,7 +41243,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenses.get
-     * @desc Returns the specified License resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified License resource.
      * @alias compute.licenses.get
      * @memberOf! ()
      *
@@ -41122,7 +41315,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenses.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.licenses.getIamPolicy
      * @memberOf! ()
      *
@@ -41196,7 +41389,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenses.insert
-     * @desc Create a License resource in the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Create a License resource in the specified project.
      * @alias compute.licenses.insert
      * @memberOf! ()
      *
@@ -41270,7 +41463,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenses.list
-     * @desc Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 9. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 9. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
      * @alias compute.licenses.list
      * @memberOf! ()
      *
@@ -41348,7 +41541,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenses.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.licenses.setIamPolicy
      * @memberOf! ()
      *
@@ -41422,7 +41615,7 @@ export namespace compute_alpha {
 
     /**
      * compute.licenses.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.licenses.testIamPermissions
      * @memberOf! ()
      *
@@ -41653,7 +41846,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.delete
-     * @desc Deletes the specified machine image. Deleting a machine image is permanent and cannot be undone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified machine image. Deleting a machine image is permanent and cannot be undone.
      * @alias compute.machineImages.delete
      * @memberOf! ()
      *
@@ -41729,7 +41922,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.get
-     * @desc Returns the specified machine image. Gets a list of available machine images by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified machine image. Gets a list of available machine images by making a list() request.
      * @alias compute.machineImages.get
      * @memberOf! ()
      *
@@ -41804,7 +41997,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.machineImages.getIamPolicy
      * @memberOf! ()
      *
@@ -41878,7 +42071,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.insert
-     * @desc Creates a machine image in the specified project using the data that is included in the request. If you are creating a new machine image to update an existing instance, your new machine image should use the same network or, if applicable, the same subnetwork as the original instance. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a machine image in the specified project using the data that is included in the request. If you are creating a new machine image to update an existing instance, your new machine image should use the same network or, if applicable, the same subnetwork as the original instance.
      * @alias compute.machineImages.insert
      * @memberOf! ()
      *
@@ -41954,7 +42147,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.list
-     * @desc Retrieves a list of machine images that are contained within the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of machine images that are contained within the specified project.
      * @alias compute.machineImages.list
      * @memberOf! ()
      *
@@ -42031,7 +42224,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.machineImages.setIamPolicy
      * @memberOf! ()
      *
@@ -42105,7 +42298,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineImages.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.machineImages.testIamPermissions
      * @memberOf! ()
      *
@@ -42344,12 +42537,13 @@ export namespace compute_alpha {
 
     /**
      * compute.machineTypes.aggregatedList
-     * @desc Retrieves an aggregated list of machine types. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of machine types.
      * @alias compute.machineTypes.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -42429,7 +42623,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineTypes.get
-     * @desc Returns the specified machine type. Gets a list of available machine types by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified machine type. Gets a list of available machine types by making a list() request.
      * @alias compute.machineTypes.get
      * @memberOf! ()
      *
@@ -42504,7 +42698,7 @@ export namespace compute_alpha {
 
     /**
      * compute.machineTypes.list
-     * @desc Retrieves a list of machine types available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of machine types available to the specified project.
      * @alias compute.machineTypes.list
      * @memberOf! ()
      *
@@ -42594,6 +42788,10 @@ export namespace compute_alpha {
      */
     filter?: string;
     /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
@@ -42670,12 +42868,13 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.aggregatedList
-     * @desc Retrieves the list of network endpoint groups and sorts them by zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of network endpoint groups and sorts them by zone.
      * @alias compute.networkEndpointGroups.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -42757,7 +42956,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.attachNetworkEndpoints
-     * @desc Attach a list of network endpoints to the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Attach a list of network endpoints to the specified network endpoint group.
      * @alias compute.networkEndpointGroups.attachNetworkEndpoints
      * @memberOf! ()
      *
@@ -42837,7 +43036,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.delete
-     * @desc Deletes the specified network endpoint group. The network endpoints in the NEG and the VM instances they belong to are not terminated when the NEG is deleted. Note that the NEG cannot be deleted if there are backend services referencing it. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified network endpoint group. The network endpoints in the NEG and the VM instances they belong to are not terminated when the NEG is deleted. Note that the NEG cannot be deleted if there are backend services referencing it.
      * @alias compute.networkEndpointGroups.delete
      * @memberOf! ()
      *
@@ -42914,7 +43113,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.detachNetworkEndpoints
-     * @desc Detach a list of network endpoints from the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Detach a list of network endpoints from the specified network endpoint group.
      * @alias compute.networkEndpointGroups.detachNetworkEndpoints
      * @memberOf! ()
      *
@@ -42994,7 +43193,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.get
-     * @desc Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request.
      * @alias compute.networkEndpointGroups.get
      * @memberOf! ()
      *
@@ -43072,7 +43271,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.insert
-     * @desc Creates a network endpoint group in the specified project using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a network endpoint group in the specified project using the parameters that are included in the request.
      * @alias compute.networkEndpointGroups.insert
      * @memberOf! ()
      *
@@ -43149,7 +43348,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.list
-     * @desc Retrieves the list of network endpoint groups that are located in the specified project and zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of network endpoint groups that are located in the specified project and zone.
      * @alias compute.networkEndpointGroups.list
      * @memberOf! ()
      *
@@ -43230,7 +43429,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.listNetworkEndpoints
-     * @desc Lists the network endpoints in the specified network endpoint group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the network endpoints in the specified network endpoint group.
      * @alias compute.networkEndpointGroups.listNetworkEndpoints
      * @memberOf! ()
      *
@@ -43334,7 +43533,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networkEndpointGroups.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.networkEndpointGroups.testIamPermissions
      * @memberOf! ()
      *
@@ -43425,6 +43624,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -43676,7 +43879,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.addPeering
-     * @desc Adds a peering to the specified network. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds a peering to the specified network.
      * @alias compute.networks.addPeering
      * @memberOf! ()
      *
@@ -43753,7 +43956,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.delete
-     * @desc Deletes the specified network. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified network.
      * @alias compute.networks.delete
      * @memberOf! ()
      *
@@ -43828,7 +44031,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.get
-     * @desc Returns the specified network. Gets a list of available networks by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified network. Gets a list of available networks by making a list() request.
      * @alias compute.networks.get
      * @memberOf! ()
      *
@@ -43900,7 +44103,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.getEffectiveFirewalls
-     * @desc Returns the effective firewalls on a given network. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the effective firewalls on a given network.
      * @alias compute.networks.getEffectiveFirewalls
      * @memberOf! ()
      *
@@ -43992,7 +44195,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.insert
-     * @desc Creates a network in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a network in the specified project using the data included in the request.
      * @alias compute.networks.insert
      * @memberOf! ()
      *
@@ -44066,7 +44269,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.list
-     * @desc Retrieves the list of networks available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of networks available to the specified project.
      * @alias compute.networks.list
      * @memberOf! ()
      *
@@ -44142,7 +44345,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.listIpAddresses
-     * @desc Lists the internal IP addresses in the specified network. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the internal IP addresses in the specified network.
      * @alias compute.networks.listIpAddresses
      * @memberOf! ()
      *
@@ -44224,7 +44427,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.listIpOwners
-     * @desc Lists the internal IP owners in the specified network. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the internal IP owners in the specified network.
      * @alias compute.networks.listIpOwners
      * @memberOf! ()
      *
@@ -44308,7 +44511,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.listPeeringRoutes
-     * @desc Lists the peering routes exchanged over peering connection. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the peering routes exchanged over peering connection.
      * @alias compute.networks.listPeeringRoutes
      * @memberOf! ()
      *
@@ -44397,7 +44600,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.patch
-     * @desc Patches the specified network with the data included in the request. Only the following fields can be modified: routingConfig.routingMode. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified network with the data included in the request. Only the following fields can be modified: routingConfig.routingMode.
      * @alias compute.networks.patch
      * @memberOf! ()
      *
@@ -44473,7 +44676,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.removePeering
-     * @desc Removes a peering from the specified network. (== suppress_warning http-rest-shadowed ==)
+     * @desc Removes a peering from the specified network.
      * @alias compute.networks.removePeering
      * @memberOf! ()
      *
@@ -44550,7 +44753,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.switchToCustomMode
-     * @desc Switches the network mode from auto subnet mode to custom subnet mode. (== suppress_warning http-rest-shadowed ==)
+     * @desc Switches the network mode from auto subnet mode to custom subnet mode.
      * @alias compute.networks.switchToCustomMode
      * @memberOf! ()
      *
@@ -44626,7 +44829,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.networks.testIamPermissions
      * @memberOf! ()
      *
@@ -44706,7 +44909,7 @@ export namespace compute_alpha {
 
     /**
      * compute.networks.updatePeering
-     * @desc Updates the specified network peering with the data included in the request Only the following fields can be modified: NetworkPeering.export_custom_routes, and NetworkPeering.import_custom_routes (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified network peering with the data included in the request Only the following fields can be modified: NetworkPeering.export_custom_routes, and NetworkPeering.import_custom_routes
      * @alias compute.networks.updatePeering
      * @memberOf! ()
      *
@@ -45160,7 +45363,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.addNodes
-     * @desc Adds specified number of nodes to the node group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds specified number of nodes to the node group.
      * @alias compute.nodeGroups.addNodes
      * @memberOf! ()
      *
@@ -45238,12 +45441,13 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.aggregatedList
-     * @desc Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group.
      * @alias compute.nodeGroups.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -45320,7 +45524,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.delete
-     * @desc Deletes the specified NodeGroup resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified NodeGroup resource.
      * @alias compute.nodeGroups.delete
      * @memberOf! ()
      *
@@ -45397,7 +45601,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.deleteNodes
-     * @desc Deletes specified nodes from the node group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes specified nodes from the node group.
      * @alias compute.nodeGroups.deleteNodes
      * @memberOf! ()
      *
@@ -45475,7 +45679,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.get
-     * @desc Returns the specified NodeGroup. Get a list of available NodeGroups by making a list() request. Note: the "nodes" field should not be used. Use nodeGroups.listNodes instead. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified NodeGroup. Get a list of available NodeGroups by making a list() request. Note: the "nodes" field should not be used. Use nodeGroups.listNodes instead.
      * @alias compute.nodeGroups.get
      * @memberOf! ()
      *
@@ -45550,7 +45754,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.nodeGroups.getIamPolicy
      * @memberOf! ()
      *
@@ -45625,7 +45829,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.insert
-     * @desc Creates a NodeGroup resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a NodeGroup resource in the specified project using the data included in the request.
      * @alias compute.nodeGroups.insert
      * @memberOf! ()
      *
@@ -45703,7 +45907,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.list
-     * @desc Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group.
      * @alias compute.nodeGroups.list
      * @memberOf! ()
      *
@@ -45781,7 +45985,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.listNodes
-     * @desc Lists nodes in the node group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists nodes in the node group.
      * @alias compute.nodeGroups.listNodes
      * @memberOf! ()
      *
@@ -45860,8 +46064,85 @@ export namespace compute_alpha {
     }
 
     /**
+     * compute.nodeGroups.patch
+     * @desc Patch the node group.
+     * @alias compute.nodeGroups.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.nodeGroup Name of the NodeGroup resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {().NodeGroup} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Nodegroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Nodegroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Nodegroups$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Nodegroups$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Nodegroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodegroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'nodeGroup'],
+        pathParams: ['nodeGroup', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * compute.nodeGroups.setAutoscalingPolicy
-     * @desc Sets the autoscaling policy of the node group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the autoscaling policy of the node group.
      * @alias compute.nodeGroups.setAutoscalingPolicy
      * @memberOf! ()
      *
@@ -45941,7 +46222,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.nodeGroups.setIamPolicy
      * @memberOf! ()
      *
@@ -46016,7 +46297,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.setNodeTemplate
-     * @desc Updates the node template of the node group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the node template of the node group.
      * @alias compute.nodeGroups.setNodeTemplate
      * @memberOf! ()
      *
@@ -46094,7 +46375,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeGroups.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.nodeGroups.testIamPermissions
      * @memberOf! ()
      *
@@ -46214,6 +46495,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -46423,6 +46708,34 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
+  export interface Params$Resource$Nodegroups$Patch extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the NodeGroup resource to update.
+     */
+    nodeGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NodeGroup;
+  }
   export interface Params$Resource$Nodegroups$Setautoscalingpolicy
     extends StandardParameters {
     /**
@@ -46540,12 +46853,13 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTemplates.aggregatedList
-     * @desc Retrieves an aggregated list of node templates. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of node templates.
      * @alias compute.nodeTemplates.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -46625,7 +46939,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTemplates.delete
-     * @desc Deletes the specified NodeTemplate resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified NodeTemplate resource.
      * @alias compute.nodeTemplates.delete
      * @memberOf! ()
      *
@@ -46702,7 +47016,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTemplates.get
-     * @desc Returns the specified node template. Gets a list of available node templates by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified node template. Gets a list of available node templates by making a list() request.
      * @alias compute.nodeTemplates.get
      * @memberOf! ()
      *
@@ -46778,7 +47092,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTemplates.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.nodeTemplates.getIamPolicy
      * @memberOf! ()
      *
@@ -46853,7 +47167,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTemplates.insert
-     * @desc Creates a NodeTemplate resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a NodeTemplate resource in the specified project using the data included in the request.
      * @alias compute.nodeTemplates.insert
      * @memberOf! ()
      *
@@ -46930,7 +47244,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTemplates.list
-     * @desc Retrieves a list of node templates available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of node templates available to the specified project.
      * @alias compute.nodeTemplates.list
      * @memberOf! ()
      *
@@ -47009,7 +47323,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTemplates.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.nodeTemplates.setIamPolicy
      * @memberOf! ()
      *
@@ -47084,7 +47398,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTemplates.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.nodeTemplates.testIamPermissions
      * @memberOf! ()
      *
@@ -47175,6 +47489,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -47376,12 +47694,13 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTypes.aggregatedList
-     * @desc Retrieves an aggregated list of node types. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of node types.
      * @alias compute.nodeTypes.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -47457,7 +47776,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTypes.get
-     * @desc Returns the specified node type. Gets a list of available node types by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified node type. Gets a list of available node types by making a list() request.
      * @alias compute.nodeTypes.get
      * @memberOf! ()
      *
@@ -47530,7 +47849,7 @@ export namespace compute_alpha {
 
     /**
      * compute.nodeTypes.list
-     * @desc Retrieves a list of node types available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of node types available to the specified project.
      * @alias compute.nodeTypes.list
      * @memberOf! ()
      *
@@ -47619,6 +47938,10 @@ export namespace compute_alpha {
      */
     filter?: string;
     /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
     maxResults?: number;
@@ -47694,7 +48017,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.addAssociation
-     * @desc Inserts an association for the specified security policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Inserts an association for the specified security policy.
      * @alias compute.organizationSecurityPolicies.addAssociation
      * @memberOf! ()
      *
@@ -47771,7 +48094,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.addRule
-     * @desc Inserts a rule into a security policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Inserts a rule into a security policy.
      * @alias compute.organizationSecurityPolicies.addRule
      * @memberOf! ()
      *
@@ -47847,7 +48170,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.copyRules
-     * @desc Copies rules to the specified security policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Copies rules to the specified security policy.
      * @alias compute.organizationSecurityPolicies.copyRules
      * @memberOf! ()
      *
@@ -47923,7 +48246,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.delete
-     * @desc Deletes the specified policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified policy.
      * @alias compute.organizationSecurityPolicies.delete
      * @memberOf! ()
      *
@@ -47998,7 +48321,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.get
-     * @desc List all of the ordered rules present in a single specified policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc List all of the ordered rules present in a single specified policy.
      * @alias compute.organizationSecurityPolicies.get
      * @memberOf! ()
      *
@@ -48072,7 +48395,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.getAssociation
-     * @desc Gets an association with the specified name. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets an association with the specified name.
      * @alias compute.organizationSecurityPolicies.getAssociation
      * @memberOf! ()
      *
@@ -48154,7 +48477,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.getRule
-     * @desc Gets a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets a rule at the specified priority.
      * @alias compute.organizationSecurityPolicies.getRule
      * @memberOf! ()
      *
@@ -48229,7 +48552,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.insert
-     * @desc Creates a new policy in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a new policy in the specified project using the data included in the request.
      * @alias compute.organizationSecurityPolicies.insert
      * @memberOf! ()
      *
@@ -48305,7 +48628,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.list
-     * @desc List all the policies that have been configured for the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc List all the policies that have been configured for the specified project.
      * @alias compute.organizationSecurityPolicies.list
      * @memberOf! ()
      *
@@ -48383,7 +48706,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.listAssociations
-     * @desc Lists associations of a specified target, i.e., organization or folder. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists associations of a specified target, i.e., organization or folder.
      * @alias compute.organizationSecurityPolicies.listAssociations
      * @memberOf! ()
      *
@@ -48483,7 +48806,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.move
-     * @desc Moves the specified security policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Moves the specified security policy.
      * @alias compute.organizationSecurityPolicies.move
      * @memberOf! ()
      *
@@ -48559,7 +48882,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.patch
-     * @desc Patches the specified policy with the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified policy with the data included in the request.
      * @alias compute.organizationSecurityPolicies.patch
      * @memberOf! ()
      *
@@ -48635,7 +48958,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.patchRule
-     * @desc Patches a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches a rule at the specified priority.
      * @alias compute.organizationSecurityPolicies.patchRule
      * @memberOf! ()
      *
@@ -48712,7 +49035,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.removeAssociation
-     * @desc Removes an association for the specified security policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Removes an association for the specified security policy.
      * @alias compute.organizationSecurityPolicies.removeAssociation
      * @memberOf! ()
      *
@@ -48788,7 +49111,7 @@ export namespace compute_alpha {
 
     /**
      * compute.organizationSecurityPolicies.removeRule
-     * @desc Deletes a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes a rule at the specified priority.
      * @alias compute.organizationSecurityPolicies.removeRule
      * @memberOf! ()
      *
@@ -49165,12 +49488,13 @@ export namespace compute_alpha {
 
     /**
      * compute.packetMirrorings.aggregatedList
-     * @desc Retrieves an aggregated list of packetMirrorings. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of packetMirrorings.
      * @alias compute.packetMirrorings.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -49252,7 +49576,7 @@ export namespace compute_alpha {
 
     /**
      * compute.packetMirrorings.delete
-     * @desc Deletes the specified PacketMirroring resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified PacketMirroring resource.
      * @alias compute.packetMirrorings.delete
      * @memberOf! ()
      *
@@ -49329,7 +49653,7 @@ export namespace compute_alpha {
 
     /**
      * compute.packetMirrorings.get
-     * @desc Returns the specified PacketMirroring resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified PacketMirroring resource.
      * @alias compute.packetMirrorings.get
      * @memberOf! ()
      *
@@ -49405,7 +49729,7 @@ export namespace compute_alpha {
 
     /**
      * compute.packetMirrorings.insert
-     * @desc Creates a PacketMirroring resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a PacketMirroring resource in the specified project and region using the data included in the request.
      * @alias compute.packetMirrorings.insert
      * @memberOf! ()
      *
@@ -49482,7 +49806,7 @@ export namespace compute_alpha {
 
     /**
      * compute.packetMirrorings.list
-     * @desc Retrieves a list of PacketMirroring resources available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of PacketMirroring resources available to the specified project and region.
      * @alias compute.packetMirrorings.list
      * @memberOf! ()
      *
@@ -49561,7 +49885,7 @@ export namespace compute_alpha {
 
     /**
      * compute.packetMirrorings.patch
-     * @desc Patches the specified PacketMirroring resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified PacketMirroring resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      * @alias compute.packetMirrorings.patch
      * @memberOf! ()
      *
@@ -49639,7 +49963,7 @@ export namespace compute_alpha {
 
     /**
      * compute.packetMirrorings.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.packetMirrorings.testIamPermissions
      * @memberOf! ()
      *
@@ -49730,6 +50054,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -49911,7 +50239,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.disableXpnHost
-     * @desc Disable this project as a shared VPC host project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Disable this project as a shared VPC host project.
      * @alias compute.projects.disableXpnHost
      * @memberOf! ()
      *
@@ -49985,7 +50313,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.disableXpnResource
-     * @desc Disable a service resource (also known as service project) associated with this host project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Disable a service resource (also known as service project) associated with this host project.
      * @alias compute.projects.disableXpnResource
      * @memberOf! ()
      *
@@ -50060,7 +50388,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.enableXpnHost
-     * @desc Enable this project as a shared VPC host project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Enable this project as a shared VPC host project.
      * @alias compute.projects.enableXpnHost
      * @memberOf! ()
      *
@@ -50134,7 +50462,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.enableXpnResource
-     * @desc Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project.
      * @alias compute.projects.enableXpnResource
      * @memberOf! ()
      *
@@ -50209,7 +50537,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.get
-     * @desc Returns the specified Project resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified Project resource.
      * @alias compute.projects.get
      * @memberOf! ()
      *
@@ -50280,7 +50608,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.getXpnHost
-     * @desc Gets the shared VPC host project that this project links to. May be empty if no link exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the shared VPC host project that this project links to. May be empty if no link exists.
      * @alias compute.projects.getXpnHost
      * @memberOf! ()
      *
@@ -50351,7 +50679,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.getXpnResources
-     * @desc Gets service resources (a.k.a service project) associated with this host project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets service resources (a.k.a service project) associated with this host project.
      * @alias compute.projects.getXpnResources
      * @memberOf! ()
      *
@@ -50432,7 +50760,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.listXpnHosts
-     * @desc Lists all shared VPC host projects visible to the user in an organization. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all shared VPC host projects visible to the user in an organization.
      * @alias compute.projects.listXpnHosts
      * @memberOf! ()
      *
@@ -50510,7 +50838,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.moveDisk
-     * @desc Moves a persistent disk from one zone to another. (== suppress_warning http-rest-shadowed ==)
+     * @desc Moves a persistent disk from one zone to another.
      * @alias compute.projects.moveDisk
      * @memberOf! ()
      *
@@ -50585,7 +50913,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.moveInstance
-     * @desc Moves an instance and its attached persistent disks from one zone to another. (== suppress_warning http-rest-shadowed ==)
+     * @desc Moves an instance and its attached persistent disks from one zone to another.
      * @alias compute.projects.moveInstance
      * @memberOf! ()
      *
@@ -50660,7 +50988,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.setCommonInstanceMetadata
-     * @desc Sets metadata common to all instances within the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets metadata common to all instances within the specified project using the data included in the request.
      * @alias compute.projects.setCommonInstanceMetadata
      * @memberOf! ()
      *
@@ -50738,7 +51066,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.setDefaultNetworkTier
-     * @desc Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the default network tier of the project. The default network tier is used when an address/forwardingRule/instance is created without specifying the network tier field.
      * @alias compute.projects.setDefaultNetworkTier
      * @memberOf! ()
      *
@@ -50816,7 +51144,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.setDefaultServiceAccount
-     * @desc Sets the default service account of the project. The default service account is used when a VM instance is created with the service account email address set to "default". (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the default service account of the project. The default service account is used when a VM instance is created with the service account email address set to "default".
      * @alias compute.projects.setDefaultServiceAccount
      * @memberOf! ()
      *
@@ -50894,7 +51222,7 @@ export namespace compute_alpha {
 
     /**
      * compute.projects.setUsageExportBucket
-     * @desc Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled. (== suppress_warning http-rest-shadowed ==)
+     * @desc Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled.
      * @alias compute.projects.setUsageExportBucket
      * @memberOf! ()
      *
@@ -51263,7 +51591,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicAdvertisedPrefixes.delete
-     * @desc Deletes the specified PublicAdvertisedPrefix (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified PublicAdvertisedPrefix
      * @alias compute.publicAdvertisedPrefixes.delete
      * @memberOf! ()
      *
@@ -51339,7 +51667,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicAdvertisedPrefixes.get
-     * @desc Returns the specified PublicAdvertisedPrefix resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified PublicAdvertisedPrefix resource.
      * @alias compute.publicAdvertisedPrefixes.get
      * @memberOf! ()
      *
@@ -51416,7 +51744,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicAdvertisedPrefixes.insert
-     * @desc Creates a PublicAdvertisedPrefix in the specified project using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a PublicAdvertisedPrefix in the specified project using the parameters that are included in the request.
      * @alias compute.publicAdvertisedPrefixes.insert
      * @memberOf! ()
      *
@@ -51492,7 +51820,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicAdvertisedPrefixes.list
-     * @desc Lists the PublicAdvertisedPrefixes for a project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the PublicAdvertisedPrefixes for a project.
      * @alias compute.publicAdvertisedPrefixes.list
      * @memberOf! ()
      *
@@ -51577,7 +51905,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicAdvertisedPrefixes.patch
-     * @desc Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      * @alias compute.publicAdvertisedPrefixes.patch
      * @memberOf! ()
      *
@@ -51772,12 +52100,13 @@ export namespace compute_alpha {
 
     /**
      * compute.publicDelegatedPrefixes.aggregatedList
-     * @desc Lists all PublicDelegatedPrefix resources owned by the specific project across all scopes. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all PublicDelegatedPrefix resources owned by the specific project across all scopes.
      * @alias compute.publicDelegatedPrefixes.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -51861,7 +52190,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicDelegatedPrefixes.delete
-     * @desc Deletes the specified PublicDelegatedPrefix in the given region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified PublicDelegatedPrefix in the given region.
      * @alias compute.publicDelegatedPrefixes.delete
      * @memberOf! ()
      *
@@ -51938,7 +52267,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicDelegatedPrefixes.get
-     * @desc Returns the specified PublicDelegatedPrefix resource in the given region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified PublicDelegatedPrefix resource in the given region.
      * @alias compute.publicDelegatedPrefixes.get
      * @memberOf! ()
      *
@@ -52016,7 +52345,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicDelegatedPrefixes.insert
-     * @desc Creates a PublicDelegatedPrefix in the specified project in the given region using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a PublicDelegatedPrefix in the specified project in the given region using the parameters that are included in the request.
      * @alias compute.publicDelegatedPrefixes.insert
      * @memberOf! ()
      *
@@ -52093,7 +52422,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicDelegatedPrefixes.list
-     * @desc Lists the PublicDelegatedPrefixes for a project in the given region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the PublicDelegatedPrefixes for a project in the given region.
      * @alias compute.publicDelegatedPrefixes.list
      * @memberOf! ()
      *
@@ -52179,7 +52508,7 @@ export namespace compute_alpha {
 
     /**
      * compute.publicDelegatedPrefixes.patch
-     * @desc Patches the specified PublicDelegatedPrefix resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified PublicDelegatedPrefix resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      * @alias compute.publicDelegatedPrefixes.patch
      * @memberOf! ()
      *
@@ -52267,6 +52596,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -52423,7 +52756,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionAutoscalers.delete
-     * @desc Deletes the specified autoscaler. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified autoscaler.
      * @alias compute.regionAutoscalers.delete
      * @memberOf! ()
      *
@@ -52500,7 +52833,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionAutoscalers.get
-     * @desc Returns the specified autoscaler. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified autoscaler.
      * @alias compute.regionAutoscalers.get
      * @memberOf! ()
      *
@@ -52576,7 +52909,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionAutoscalers.insert
-     * @desc Creates an autoscaler in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates an autoscaler in the specified project using the data included in the request.
      * @alias compute.regionAutoscalers.insert
      * @memberOf! ()
      *
@@ -52653,7 +52986,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionAutoscalers.list
-     * @desc Retrieves a list of autoscalers contained within the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of autoscalers contained within the specified region.
      * @alias compute.regionAutoscalers.list
      * @memberOf! ()
      *
@@ -52734,7 +53067,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionAutoscalers.patch
-     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.regionAutoscalers.patch
      * @memberOf! ()
      *
@@ -52812,7 +53145,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionAutoscalers.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionAutoscalers.testIamPermissions
      * @memberOf! ()
      *
@@ -52893,7 +53226,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionAutoscalers.update
-     * @desc Updates an autoscaler in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates an autoscaler in the specified project using the data included in the request.
      * @alias compute.regionAutoscalers.update
      * @memberOf! ()
      *
@@ -53163,7 +53496,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionBackendServices.delete
-     * @desc Deletes the specified regional BackendService resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified regional BackendService resource.
      * @alias compute.regionBackendServices.delete
      * @memberOf! ()
      *
@@ -53240,7 +53573,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionBackendServices.get
-     * @desc Returns the specified regional BackendService resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified regional BackendService resource.
      * @alias compute.regionBackendServices.get
      * @memberOf! ()
      *
@@ -53316,7 +53649,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionBackendServices.getHealth
-     * @desc Gets the most recent health check results for this regional BackendService. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the most recent health check results for this regional BackendService.
      * @alias compute.regionBackendServices.getHealth
      * @memberOf! ()
      *
@@ -53400,7 +53733,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionBackendServices.insert
-     * @desc Creates a regional BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a regional backend service. Read  Restrictions and Guidelines for more information. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a regional BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a regional backend service. Read  Restrictions and Guidelines for more information.
      * @alias compute.regionBackendServices.insert
      * @memberOf! ()
      *
@@ -53477,7 +53810,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionBackendServices.list
-     * @desc Retrieves the list of regional BackendService resources available to the specified project in the given region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of regional BackendService resources available to the specified project in the given region.
      * @alias compute.regionBackendServices.list
      * @memberOf! ()
      *
@@ -53556,7 +53889,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionBackendServices.patch
-     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.regionBackendServices.patch
      * @memberOf! ()
      *
@@ -53634,7 +53967,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionBackendServices.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionBackendServices.testIamPermissions
      * @memberOf! ()
      *
@@ -53715,7 +54048,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionBackendServices.update
-     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
      * @alias compute.regionBackendServices.update
      * @memberOf! ()
      *
@@ -54010,12 +54343,13 @@ export namespace compute_alpha {
 
     /**
      * compute.regionCommitments.aggregatedList
-     * @desc Retrieves an aggregated list of commitments. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of commitments.
      * @alias compute.regionCommitments.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -54092,7 +54426,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionCommitments.get
-     * @desc Returns the specified commitment resource. Gets a list of available commitments by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified commitment resource. Gets a list of available commitments by making a list() request.
      * @alias compute.regionCommitments.get
      * @memberOf! ()
      *
@@ -54168,7 +54502,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionCommitments.insert
-     * @desc Creates a commitment in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a commitment in the specified project using the data included in the request.
      * @alias compute.regionCommitments.insert
      * @memberOf! ()
      *
@@ -54245,7 +54579,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionCommitments.list
-     * @desc Retrieves a list of commitments contained within the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of commitments contained within the specified region.
      * @alias compute.regionCommitments.list
      * @memberOf! ()
      *
@@ -54324,7 +54658,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionCommitments.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionCommitments.testIamPermissions
      * @memberOf! ()
      *
@@ -54405,7 +54739,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionCommitments.updateReservations
-     * @desc Update the shape of reservations for GPUS/Local SSDs of reservations within the commitments. (== suppress_warning http-rest-shadowed ==)
+     * @desc Update the shape of reservations for GPUS/Local SSDs of reservations within the commitments.
      * @alias compute.regionCommitments.updateReservations
      * @memberOf! ()
      *
@@ -54493,6 +54827,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -54650,7 +54988,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.addResourcePolicies
-     * @desc Adds existing resource policies to a regional disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds existing resource policies to a regional disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation.
      * @alias compute.regionDisks.addResourcePolicies
      * @memberOf! ()
      *
@@ -54728,7 +55066,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.createSnapshot
-     * @desc Creates a snapshot of this regional disk. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a snapshot of this regional disk.
      * @alias compute.regionDisks.createSnapshot
      * @memberOf! ()
      *
@@ -54807,7 +55145,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.delete
-     * @desc Deletes the specified regional persistent disk. Deleting a regional disk removes all the replicas of its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified regional persistent disk. Deleting a regional disk removes all the replicas of its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
      * @alias compute.regionDisks.delete
      * @memberOf! ()
      *
@@ -54884,7 +55222,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.get
-     * @desc Returns a specified regional persistent disk. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns a specified regional persistent disk.
      * @alias compute.regionDisks.get
      * @memberOf! ()
      *
@@ -54957,7 +55295,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.regionDisks.getIamPolicy
      * @memberOf! ()
      *
@@ -55032,7 +55370,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.insert
-     * @desc Creates a persistent regional disk in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a persistent regional disk in the specified project using the data included in the request.
      * @alias compute.regionDisks.insert
      * @memberOf! ()
      *
@@ -55110,7 +55448,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.list
-     * @desc Retrieves the list of persistent disks contained within the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of persistent disks contained within the specified region.
      * @alias compute.regionDisks.list
      * @memberOf! ()
      *
@@ -55186,7 +55524,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.removeResourcePolicies
-     * @desc Removes resource policies from a regional disk. (== suppress_warning http-rest-shadowed ==)
+     * @desc Removes resource policies from a regional disk.
      * @alias compute.regionDisks.removeResourcePolicies
      * @memberOf! ()
      *
@@ -55266,7 +55604,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.resize
-     * @desc Resizes the specified regional persistent disk. (== suppress_warning http-rest-shadowed ==)
+     * @desc Resizes the specified regional persistent disk.
      * @alias compute.regionDisks.resize
      * @memberOf! ()
      *
@@ -55344,7 +55682,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.regionDisks.setIamPolicy
      * @memberOf! ()
      *
@@ -55419,7 +55757,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.setLabels
-     * @desc Sets the labels on the target regional disk. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on the target regional disk.
      * @alias compute.regionDisks.setLabels
      * @memberOf! ()
      *
@@ -55497,7 +55835,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDisks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionDisks.testIamPermissions
      * @memberOf! ()
      *
@@ -55912,7 +56250,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDiskTypes.get
-     * @desc Returns the specified regional disk type. Gets a list of available disk types by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified regional disk type. Gets a list of available disk types by making a list() request.
      * @alias compute.regionDiskTypes.get
      * @memberOf! ()
      *
@@ -55986,7 +56324,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionDiskTypes.list
-     * @desc Retrieves a list of regional disk types available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of regional disk types available to the specified project.
      * @alias compute.regionDiskTypes.list
      * @memberOf! ()
      *
@@ -56125,7 +56463,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthChecks.delete
-     * @desc Deletes the specified HealthCheck resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified HealthCheck resource.
      * @alias compute.regionHealthChecks.delete
      * @memberOf! ()
      *
@@ -56202,7 +56540,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthChecks.get
-     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified HealthCheck resource. Gets a list of available health checks by making a list() request.
      * @alias compute.regionHealthChecks.get
      * @memberOf! ()
      *
@@ -56278,7 +56616,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthChecks.insert
-     * @desc Creates a HealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a HealthCheck resource in the specified project using the data included in the request.
      * @alias compute.regionHealthChecks.insert
      * @memberOf! ()
      *
@@ -56355,7 +56693,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthChecks.list
-     * @desc Retrieves the list of HealthCheck resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of HealthCheck resources available to the specified project.
      * @alias compute.regionHealthChecks.list
      * @memberOf! ()
      *
@@ -56434,7 +56772,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthChecks.patch
-     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.regionHealthChecks.patch
      * @memberOf! ()
      *
@@ -56512,7 +56850,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthChecks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionHealthChecks.testIamPermissions
      * @memberOf! ()
      *
@@ -56593,7 +56931,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthChecks.update
-     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request.
      * @alias compute.regionHealthChecks.update
      * @memberOf! ()
      *
@@ -56863,7 +57201,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthCheckServices.delete
-     * @desc Deletes the specified regional HealthCheckService. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified regional HealthCheckService.
      * @alias compute.regionHealthCheckServices.delete
      * @memberOf! ()
      *
@@ -56940,7 +57278,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthCheckServices.get
-     * @desc Returns the specified regional HealthCheckService resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified regional HealthCheckService resource.
      * @alias compute.regionHealthCheckServices.get
      * @memberOf! ()
      *
@@ -57016,7 +57354,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthCheckServices.insert
-     * @desc Creates a regional HealthCheckService resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a regional HealthCheckService resource in the specified project and region using the data included in the request.
      * @alias compute.regionHealthCheckServices.insert
      * @memberOf! ()
      *
@@ -57093,7 +57431,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthCheckServices.list
-     * @desc Lists all the HealthCheckService resources that have been configured for the specified project in the given region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all the HealthCheckService resources that have been configured for the specified project in the given region.
      * @alias compute.regionHealthCheckServices.list
      * @memberOf! ()
      *
@@ -57174,7 +57512,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionHealthCheckServices.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionHealthCheckServices.testIamPermissions
      * @memberOf! ()
      *
@@ -57389,7 +57727,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.abandonInstances
-     * @desc Flags the specified instances to be immediately removed from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Flags the specified instances to be immediately removed from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
      * @alias compute.regionInstanceGroupManagers.abandonInstances
      * @memberOf! ()
      *
@@ -57467,7 +57805,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.applyUpdatesToInstances
-     * @desc Apply updates to selected instances the managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Apply updates to selected instances the managed instance group.
      * @alias compute.regionInstanceGroupManagers.applyUpdatesToInstances
      * @memberOf! ()
      *
@@ -57546,7 +57884,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.createInstances
-     * @desc Creates instances with per-instance configs in this regional managed instance group. Instances are created using the current instance template. The create instances operation is marked DONE if the createInstances request is successful. The underlying actions take additional time. You must separately verify the status of the creating or actions with the listmanagedinstances method. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates instances with per-instance configs in this regional managed instance group. Instances are created using the current instance template. The create instances operation is marked DONE if the createInstances request is successful. The underlying actions take additional time. You must separately verify the status of the creating or actions with the listmanagedinstances method.
      * @alias compute.regionInstanceGroupManagers.createInstances
      * @memberOf! ()
      *
@@ -57624,7 +57962,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.delete
-     * @desc Deletes the specified managed instance group and all of the instances in that group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified managed instance group and all of the instances in that group.
      * @alias compute.regionInstanceGroupManagers.delete
      * @memberOf! ()
      *
@@ -57701,7 +58039,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.deleteInstances
-     * @desc Flags the specified instances in the managed instance group to be immediately deleted. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. The deleteInstances operation is marked DONE if the deleteInstances request is successful. The underlying actions take additional time. You must separately verify the status of the deleting action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Flags the specified instances in the managed instance group to be immediately deleted. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. The deleteInstances operation is marked DONE if the deleteInstances request is successful. The underlying actions take additional time. You must separately verify the status of the deleting action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
      * @alias compute.regionInstanceGroupManagers.deleteInstances
      * @memberOf! ()
      *
@@ -57779,7 +58117,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.deletePerInstanceConfigs
-     * @desc Deletes selected per-instance configs for the managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes selected per-instance configs for the managed instance group.
      * @alias compute.regionInstanceGroupManagers.deletePerInstanceConfigs
      * @memberOf! ()
      *
@@ -57858,7 +58196,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.get
-     * @desc Returns all of the details about the specified managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns all of the details about the specified managed instance group.
      * @alias compute.regionInstanceGroupManagers.get
      * @memberOf! ()
      *
@@ -57936,7 +58274,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.insert
-     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A regional managed instance group can contain up to 2000 instances. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, instances in the group are created using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A regional managed instance group can contain up to 2000 instances.
      * @alias compute.regionInstanceGroupManagers.insert
      * @memberOf! ()
      *
@@ -58013,7 +58351,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.list
-     * @desc Retrieves the list of managed instance groups that are contained within the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of managed instance groups that are contained within the specified region.
      * @alias compute.regionInstanceGroupManagers.list
      * @memberOf! ()
      *
@@ -58101,7 +58439,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.listErrors
-     * @desc Lists all errors thrown by actions on instances for a given regional managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all errors thrown by actions on instances for a given regional managed instance group.
      * @alias compute.regionInstanceGroupManagers.listErrors
      * @memberOf! ()
      *
@@ -58206,7 +58544,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.listManagedInstances
-     * @desc Lists the instances in the managed instance group and instances that are scheduled to be created. The list includes any current actions that the group has scheduled for its instances. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the instances in the managed instance group and instances that are scheduled to be created. The list includes any current actions that the group has scheduled for its instances.
      * @alias compute.regionInstanceGroupManagers.listManagedInstances
      * @memberOf! ()
      *
@@ -58310,7 +58648,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.listPerInstanceConfigs
-     * @desc Lists all of the per-instance configs defined for the managed instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all of the per-instance configs defined for the managed instance group.
      * @alias compute.regionInstanceGroupManagers.listPerInstanceConfigs
      * @memberOf! ()
      *
@@ -58414,7 +58752,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.patch
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.regionInstanceGroupManagers.patch
      * @memberOf! ()
      *
@@ -58492,7 +58830,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.patchPerInstanceConfigs
-     * @desc Insert or patch (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch. (== suppress_warning http-rest-shadowed ==)
+     * @desc Insert or patch (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch.
      * @alias compute.regionInstanceGroupManagers.patchPerInstanceConfigs
      * @memberOf! ()
      *
@@ -58572,7 +58910,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.recreateInstances
-     * @desc Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.  You can specify a maximum of 1000 instances with this method per request.
      * @alias compute.regionInstanceGroupManagers.recreateInstances
      * @memberOf! ()
      *
@@ -58650,7 +58988,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.resize
-     * @desc Changes the intended size of the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances.  The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the intended size of the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances.  The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.  If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
      * @alias compute.regionInstanceGroupManagers.resize
      * @memberOf! ()
      *
@@ -58728,7 +59066,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.setAutoHealingPolicies
-     * @desc Modifies the autohealing policy for the instances in this managed instance group. [Deprecated] This method is deprecated. Please use Patch instead. (== suppress_warning http-rest-shadowed ==)
+     * @desc Modifies the autohealing policy for the instances in this managed instance group. [Deprecated] This method is deprecated. Please use Patch instead.
      * @alias compute.regionInstanceGroupManagers.setAutoHealingPolicies
      * @memberOf! ()
      *
@@ -58808,7 +59146,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.setInstanceTemplate
-     * @desc Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
      * @alias compute.regionInstanceGroupManagers.setInstanceTemplate
      * @memberOf! ()
      *
@@ -58886,7 +59224,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.setTargetPools
-     * @desc Modifies the target pools to which all new instances in this group are assigned. Existing instances in the group are not affected. (== suppress_warning http-rest-shadowed ==)
+     * @desc Modifies the target pools to which all new instances in this group are assigned. Existing instances in the group are not affected.
      * @alias compute.regionInstanceGroupManagers.setTargetPools
      * @memberOf! ()
      *
@@ -58964,7 +59302,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionInstanceGroupManagers.testIamPermissions
      * @memberOf! ()
      *
@@ -59045,7 +59383,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.update
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method.
      * @alias compute.regionInstanceGroupManagers.update
      * @memberOf! ()
      *
@@ -59123,7 +59461,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroupManagers.updatePerInstanceConfigs
-     * @desc Insert or update (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch. (== suppress_warning http-rest-shadowed ==)
+     * @desc Insert or update (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch.
      * @alias compute.regionInstanceGroupManagers.updatePerInstanceConfigs
      * @memberOf! ()
      *
@@ -59842,7 +60180,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroups.get
-     * @desc Returns the specified instance group resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified instance group resource.
      * @alias compute.regionInstanceGroups.get
      * @memberOf! ()
      *
@@ -59918,7 +60256,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroups.list
-     * @desc Retrieves the list of instance group resources contained within the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of instance group resources contained within the specified region.
      * @alias compute.regionInstanceGroups.list
      * @memberOf! ()
      *
@@ -59999,7 +60337,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroups.listInstances
-     * @desc Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running.
      * @alias compute.regionInstanceGroups.listInstances
      * @memberOf! ()
      *
@@ -60089,7 +60427,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroups.setNamedPorts
-     * @desc Sets the named ports for the specified regional instance group. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the named ports for the specified regional instance group.
      * @alias compute.regionInstanceGroups.setNamedPorts
      * @memberOf! ()
      *
@@ -60167,7 +60505,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionInstanceGroups.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionInstanceGroups.testIamPermissions
      * @memberOf! ()
      *
@@ -60395,6 +60733,428 @@ export namespace compute_alpha {
     requestBody?: Schema$TestPermissionsRequest;
   }
 
+  export class Resource$Regionnetworkendpointgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.regionNetworkEndpointGroups.delete
+     * @desc Deletes the specified network endpoint group. Note that the NEG cannot be deleted if it is configured as a backend of a backend service.
+     * @alias compute.regionNetworkEndpointGroups.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Regionnetworkendpointgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Regionnetworkendpointgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regionnetworkendpointgroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regionnetworkendpointgroups$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionnetworkendpointgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionnetworkendpointgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionNetworkEndpointGroups.get
+     * @desc Returns the specified network endpoint group. Gets a list of available network endpoint groups by making a list() request.
+     * @alias compute.regionNetworkEndpointGroups.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Regionnetworkendpointgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NetworkEndpointGroup>;
+    get(
+      params: Params$Resource$Regionnetworkendpointgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NetworkEndpointGroup>,
+      callback: BodyResponseCallback<Schema$NetworkEndpointGroup>
+    ): void;
+    get(
+      params: Params$Resource$Regionnetworkendpointgroups$Get,
+      callback: BodyResponseCallback<Schema$NetworkEndpointGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NetworkEndpointGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regionnetworkendpointgroups$Get
+        | BodyResponseCallback<Schema$NetworkEndpointGroup>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NetworkEndpointGroup>,
+      callback?: BodyResponseCallback<Schema$NetworkEndpointGroup>
+    ): void | GaxiosPromise<Schema$NetworkEndpointGroup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionnetworkendpointgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionnetworkendpointgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/networkEndpointGroups/{networkEndpointGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'networkEndpointGroup'],
+        pathParams: ['networkEndpointGroup', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroup>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NetworkEndpointGroup>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionNetworkEndpointGroups.insert
+     * @desc Creates a network endpoint group in the specified project using the parameters that are included in the request.
+     * @alias compute.regionNetworkEndpointGroups.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region where you want to create the network endpoint group. It should comply with RFC1035.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().NetworkEndpointGroup} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Regionnetworkendpointgroups$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Regionnetworkendpointgroups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regionnetworkendpointgroups$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regionnetworkendpointgroups$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionnetworkendpointgroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionnetworkendpointgroups$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/networkEndpointGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.regionNetworkEndpointGroups.list
+     * @desc Retrieves the list of regional network endpoint groups available to the specified project in the given region.
+     * @alias compute.regionNetworkEndpointGroups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Regionnetworkendpointgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NetworkEndpointGroupList>;
+    list(
+      params: Params$Resource$Regionnetworkendpointgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+      callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>
+    ): void;
+    list(
+      params: Params$Resource$Regionnetworkendpointgroups$List,
+      callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$NetworkEndpointGroupList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regionnetworkendpointgroups$List
+        | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NetworkEndpointGroupList>,
+      callback?: BodyResponseCallback<Schema$NetworkEndpointGroupList>
+    ): void | GaxiosPromise<Schema$NetworkEndpointGroupList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionnetworkendpointgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionnetworkendpointgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/networkEndpointGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkEndpointGroupList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NetworkEndpointGroupList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionnetworkendpointgroups$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group to delete. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Regionnetworkendpointgroups$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the network endpoint group. It should comply with RFC1035.
+     */
+    networkEndpointGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionnetworkendpointgroups$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region where you want to create the network endpoint group. It should comply with RFC1035.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkEndpointGroup;
+  }
+  export interface Params$Resource$Regionnetworkendpointgroups$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     */
+    region?: string;
+  }
+
   export class Resource$Regionnotificationendpoints {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -60403,7 +61163,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionNotificationEndpoints.delete
-     * @desc Deletes the specified NotificationEndpoint in the given region (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified NotificationEndpoint in the given region
      * @alias compute.regionNotificationEndpoints.delete
      * @memberOf! ()
      *
@@ -60480,7 +61240,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionNotificationEndpoints.get
-     * @desc Returns the specified NotificationEndpoint resource in the given region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified NotificationEndpoint resource in the given region.
      * @alias compute.regionNotificationEndpoints.get
      * @memberOf! ()
      *
@@ -60558,7 +61318,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionNotificationEndpoints.insert
-     * @desc Create a NotificationEndpoint in the specified project in the given region using the parameters that are included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Create a NotificationEndpoint in the specified project in the given region using the parameters that are included in the request.
      * @alias compute.regionNotificationEndpoints.insert
      * @memberOf! ()
      *
@@ -60635,7 +61395,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionNotificationEndpoints.list
-     * @desc Lists the NotificationEndpoints for a project in the given region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists the NotificationEndpoints for a project in the given region.
      * @alias compute.regionNotificationEndpoints.list
      * @memberOf! ()
      *
@@ -60716,7 +61476,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionNotificationEndpoints.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionNotificationEndpoints.testIamPermissions
      * @memberOf! ()
      *
@@ -60931,7 +61691,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionOperations.delete
-     * @desc Deletes the specified region-specific Operations resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified region-specific Operations resource.
      * @alias compute.regionOperations.delete
      * @memberOf! ()
      *
@@ -61005,7 +61765,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionOperations.get
-     * @desc Retrieves the specified region-specific Operations resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the specified region-specific Operations resource.
      * @alias compute.regionOperations.get
      * @memberOf! ()
      *
@@ -61081,7 +61841,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionOperations.list
-     * @desc Retrieves a list of Operation resources contained within the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of Operation resources contained within the specified region.
      * @alias compute.regionOperations.list
      * @memberOf! ()
      *
@@ -61160,7 +61920,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionOperations.wait
-     * @desc Waits for the specified region-specific Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE. (== suppress_warning http-rest-shadowed ==)
+     * @desc Waits for the specified region-specific Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
      * @alias compute.regionOperations.wait
      * @memberOf! ()
      *
@@ -61336,7 +62096,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regions.get
-     * @desc Returns the specified Region resource. Gets a list of available regions by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified Region resource. Gets a list of available regions by making a list() request.
      * @alias compute.regions.get
      * @memberOf! ()
      *
@@ -61407,7 +62167,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regions.list
-     * @desc Retrieves the list of region resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of region resources available to the specified project.
      * @alias compute.regions.list
      * @memberOf! ()
      *
@@ -61533,7 +62293,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionSslCertificates.delete
-     * @desc Deletes the specified SslCertificate resource in the region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified SslCertificate resource in the region.
      * @alias compute.regionSslCertificates.delete
      * @memberOf! ()
      *
@@ -61610,7 +62370,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionSslCertificates.get
-     * @desc Returns the specified SslCertificate resource in the specified region. Get a list of available SSL certificates by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified SslCertificate resource in the specified region. Get a list of available SSL certificates by making a list() request.
      * @alias compute.regionSslCertificates.get
      * @memberOf! ()
      *
@@ -61686,7 +62446,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionSslCertificates.insert
-     * @desc Creates a SslCertificate resource in the specified project and region using the data included in the request (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a SslCertificate resource in the specified project and region using the data included in the request
      * @alias compute.regionSslCertificates.insert
      * @memberOf! ()
      *
@@ -61763,7 +62523,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionSslCertificates.list
-     * @desc Retrieves the list of SslCertificate resources available to the specified project in the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of SslCertificate resources available to the specified project in the specified region.
      * @alias compute.regionSslCertificates.list
      * @memberOf! ()
      *
@@ -61842,7 +62602,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionSslCertificates.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource and region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource and region.
      * @alias compute.regionSslCertificates.testIamPermissions
      * @memberOf! ()
      *
@@ -62057,7 +62817,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpProxies.delete
-     * @desc Deletes the specified TargetHttpProxy resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified TargetHttpProxy resource.
      * @alias compute.regionTargetHttpProxies.delete
      * @memberOf! ()
      *
@@ -62134,7 +62894,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpProxies.get
-     * @desc Returns the specified TargetHttpProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified TargetHttpProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request.
      * @alias compute.regionTargetHttpProxies.get
      * @memberOf! ()
      *
@@ -62210,7 +62970,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpProxies.insert
-     * @desc Creates a TargetHttpProxy resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a TargetHttpProxy resource in the specified project and region using the data included in the request.
      * @alias compute.regionTargetHttpProxies.insert
      * @memberOf! ()
      *
@@ -62287,7 +63047,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpProxies.list
-     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project in the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project in the specified region.
      * @alias compute.regionTargetHttpProxies.list
      * @memberOf! ()
      *
@@ -62366,7 +63126,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpProxies.setUrlMap
-     * @desc Changes the URL map for TargetHttpProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the URL map for TargetHttpProxy.
      * @alias compute.regionTargetHttpProxies.setUrlMap
      * @memberOf! ()
      *
@@ -62444,7 +63204,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpProxies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionTargetHttpProxies.testIamPermissions
      * @memberOf! ()
      *
@@ -62688,7 +63448,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpsProxies.delete
-     * @desc Deletes the specified TargetHttpsProxy resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified TargetHttpsProxy resource.
      * @alias compute.regionTargetHttpsProxies.delete
      * @memberOf! ()
      *
@@ -62765,7 +63525,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpsProxies.get
-     * @desc Returns the specified TargetHttpsProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified TargetHttpsProxy resource in the specified region. Gets a list of available target HTTP proxies by making a list() request.
      * @alias compute.regionTargetHttpsProxies.get
      * @memberOf! ()
      *
@@ -62841,7 +63601,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpsProxies.insert
-     * @desc Creates a TargetHttpsProxy resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a TargetHttpsProxy resource in the specified project and region using the data included in the request.
      * @alias compute.regionTargetHttpsProxies.insert
      * @memberOf! ()
      *
@@ -62918,7 +63678,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpsProxies.list
-     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project in the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project in the specified region.
      * @alias compute.regionTargetHttpsProxies.list
      * @memberOf! ()
      *
@@ -62999,7 +63759,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpsProxies.setSslCertificates
-     * @desc Replaces SslCertificates for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Replaces SslCertificates for TargetHttpsProxy.
      * @alias compute.regionTargetHttpsProxies.setSslCertificates
      * @memberOf! ()
      *
@@ -63077,7 +63837,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpsProxies.setUrlMap
-     * @desc Changes the URL map for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the URL map for TargetHttpsProxy.
      * @alias compute.regionTargetHttpsProxies.setUrlMap
      * @memberOf! ()
      *
@@ -63155,7 +63915,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionTargetHttpsProxies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionTargetHttpsProxies.testIamPermissions
      * @memberOf! ()
      *
@@ -63428,7 +64188,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.delete
-     * @desc Deletes the specified UrlMap resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified UrlMap resource.
      * @alias compute.regionUrlMaps.delete
      * @memberOf! ()
      *
@@ -63505,7 +64265,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.get
-     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request.
      * @alias compute.regionUrlMaps.get
      * @memberOf! ()
      *
@@ -63579,7 +64339,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.insert
-     * @desc Creates a UrlMap resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a UrlMap resource in the specified project using the data included in the request.
      * @alias compute.regionUrlMaps.insert
      * @memberOf! ()
      *
@@ -63656,7 +64416,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.invalidateCache
-     * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. (== suppress_warning http-rest-shadowed ==)
+     * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap.
      * @alias compute.regionUrlMaps.invalidateCache
      * @memberOf! ()
      *
@@ -63734,7 +64494,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.list
-     * @desc Retrieves the list of UrlMap resources available to the specified project in the specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of UrlMap resources available to the specified project in the specified region.
      * @alias compute.regionUrlMaps.list
      * @memberOf! ()
      *
@@ -63813,7 +64573,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.patch
-     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      * @alias compute.regionUrlMaps.patch
      * @memberOf! ()
      *
@@ -63891,7 +64651,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionUrlMaps.testIamPermissions
      * @memberOf! ()
      *
@@ -63972,7 +64732,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.update
-     * @desc Updates the specified UrlMap resource with the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified UrlMap resource with the data included in the request.
      * @alias compute.regionUrlMaps.update
      * @memberOf! ()
      *
@@ -64050,7 +64810,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionUrlMaps.validate
-     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap. (== suppress_warning http-rest-shadowed ==)
+     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
      * @alias compute.regionUrlMaps.validate
      * @memberOf! ()
      *
@@ -64377,12 +65137,13 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.aggregatedList
-     * @desc Retrieves an aggregated list of reservations. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of reservations.
      * @alias compute.reservations.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -64462,7 +65223,7 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.delete
-     * @desc Deletes the specified reservation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified reservation.
      * @alias compute.reservations.delete
      * @memberOf! ()
      *
@@ -64539,7 +65300,7 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.get
-     * @desc Retrieves information about the specified reservation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves information about the specified reservation.
      * @alias compute.reservations.get
      * @memberOf! ()
      *
@@ -64614,7 +65375,7 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.reservations.getIamPolicy
      * @memberOf! ()
      *
@@ -64689,7 +65450,7 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.insert
-     * @desc Creates a new reservation. For more information, read Reserving zonal resources. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a new reservation. For more information, read Reserving zonal resources.
      * @alias compute.reservations.insert
      * @memberOf! ()
      *
@@ -64766,7 +65527,7 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.list
-     * @desc A list of all the reservations that have been configured for the specified project in specified zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc A list of all the reservations that have been configured for the specified project in specified zone.
      * @alias compute.reservations.list
      * @memberOf! ()
      *
@@ -64845,7 +65606,7 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.resize
-     * @desc Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations. (== suppress_warning http-rest-shadowed ==)
+     * @desc Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations.
      * @alias compute.reservations.resize
      * @memberOf! ()
      *
@@ -64923,7 +65684,7 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.reservations.setIamPolicy
      * @memberOf! ()
      *
@@ -64998,7 +65759,7 @@ export namespace compute_alpha {
 
     /**
      * compute.reservations.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.reservations.testIamPermissions
      * @memberOf! ()
      *
@@ -65089,6 +65850,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -65318,12 +66083,13 @@ export namespace compute_alpha {
 
     /**
      * compute.resourcePolicies.aggregatedList
-     * @desc Retrieves an aggregated list of resource policies. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of resource policies.
      * @alias compute.resourcePolicies.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -65405,7 +66171,7 @@ export namespace compute_alpha {
 
     /**
      * compute.resourcePolicies.delete
-     * @desc Deletes the specified resource policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified resource policy.
      * @alias compute.resourcePolicies.delete
      * @memberOf! ()
      *
@@ -65482,7 +66248,7 @@ export namespace compute_alpha {
 
     /**
      * compute.resourcePolicies.get
-     * @desc Retrieves all information of the specified resource policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves all information of the specified resource policy.
      * @alias compute.resourcePolicies.get
      * @memberOf! ()
      *
@@ -65558,7 +66324,7 @@ export namespace compute_alpha {
 
     /**
      * compute.resourcePolicies.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.resourcePolicies.getIamPolicy
      * @memberOf! ()
      *
@@ -65633,7 +66399,7 @@ export namespace compute_alpha {
 
     /**
      * compute.resourcePolicies.insert
-     * @desc Creates a new resource policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a new resource policy.
      * @alias compute.resourcePolicies.insert
      * @memberOf! ()
      *
@@ -65710,7 +66476,7 @@ export namespace compute_alpha {
 
     /**
      * compute.resourcePolicies.list
-     * @desc A list all the resource policies that have been configured for the specified project in specified region. (== suppress_warning http-rest-shadowed ==)
+     * @desc A list all the resource policies that have been configured for the specified project in specified region.
      * @alias compute.resourcePolicies.list
      * @memberOf! ()
      *
@@ -65789,7 +66555,7 @@ export namespace compute_alpha {
 
     /**
      * compute.resourcePolicies.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.resourcePolicies.setIamPolicy
      * @memberOf! ()
      *
@@ -65864,7 +66630,7 @@ export namespace compute_alpha {
 
     /**
      * compute.resourcePolicies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.resourcePolicies.testIamPermissions
      * @memberOf! ()
      *
@@ -65955,6 +66721,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -66156,12 +66926,13 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.aggregatedList
-     * @desc Retrieves an aggregated list of routers. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of routers.
      * @alias compute.routers.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -66237,7 +67008,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.delete
-     * @desc Deletes the specified Router resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified Router resource.
      * @alias compute.routers.delete
      * @memberOf! ()
      *
@@ -66313,7 +67084,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.get
-     * @desc Returns the specified Router resource. Gets a list of available routers by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified Router resource. Gets a list of available routers by making a list() request.
      * @alias compute.routers.get
      * @memberOf! ()
      *
@@ -66386,7 +67157,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.getNatMappingInfo
-     * @desc Retrieves runtime Nat mapping information of VM endpoints. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves runtime Nat mapping information of VM endpoints.
      * @alias compute.routers.getNatMappingInfo
      * @memberOf! ()
      *
@@ -66474,7 +67245,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.getRouterStatus
-     * @desc Retrieves runtime information of the specified router. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves runtime information of the specified router.
      * @alias compute.routers.getRouterStatus
      * @memberOf! ()
      *
@@ -66554,7 +67325,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.insert
-     * @desc Creates a Router resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a Router resource in the specified project and region using the data included in the request.
      * @alias compute.routers.insert
      * @memberOf! ()
      *
@@ -66630,7 +67401,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.list
-     * @desc Retrieves a list of Router resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of Router resources available to the specified project.
      * @alias compute.routers.list
      * @memberOf! ()
      *
@@ -66708,7 +67479,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.patch
-     * @desc Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      * @alias compute.routers.patch
      * @memberOf! ()
      *
@@ -66785,7 +67556,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.preview
-     * @desc Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router. (== suppress_warning http-rest-shadowed ==)
+     * @desc Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
      * @alias compute.routers.preview
      * @memberOf! ()
      *
@@ -66865,7 +67636,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.routers.testIamPermissions
      * @memberOf! ()
      *
@@ -66946,7 +67717,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routers.update
-     * @desc Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload.
      * @alias compute.routers.update
      * @memberOf! ()
      *
@@ -67033,6 +67804,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -67321,7 +68096,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routes.delete
-     * @desc Deletes the specified Route resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified Route resource.
      * @alias compute.routes.delete
      * @memberOf! ()
      *
@@ -67396,7 +68171,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routes.get
-     * @desc Returns the specified Route resource. Gets a list of available routes by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified Route resource. Gets a list of available routes by making a list() request.
      * @alias compute.routes.get
      * @memberOf! ()
      *
@@ -67468,7 +68243,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routes.insert
-     * @desc Creates a Route resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a Route resource in the specified project using the data included in the request.
      * @alias compute.routes.insert
      * @memberOf! ()
      *
@@ -67542,7 +68317,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routes.list
-     * @desc Retrieves the list of Route resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of Route resources available to the specified project.
      * @alias compute.routes.list
      * @memberOf! ()
      *
@@ -67618,7 +68393,7 @@ export namespace compute_alpha {
 
     /**
      * compute.routes.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.routes.testIamPermissions
      * @memberOf! ()
      *
@@ -67808,7 +68583,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.addRule
-     * @desc Inserts a rule into a security policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Inserts a rule into a security policy.
      * @alias compute.securityPolicies.addRule
      * @memberOf! ()
      *
@@ -67885,7 +68660,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.delete
-     * @desc Deletes the specified policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified policy.
      * @alias compute.securityPolicies.delete
      * @memberOf! ()
      *
@@ -67961,7 +68736,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.get
-     * @desc List all of the ordered rules present in a single specified policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc List all of the ordered rules present in a single specified policy.
      * @alias compute.securityPolicies.get
      * @memberOf! ()
      *
@@ -68036,7 +68811,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.getRule
-     * @desc Gets a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets a rule at the specified priority.
      * @alias compute.securityPolicies.getRule
      * @memberOf! ()
      *
@@ -68112,7 +68887,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.insert
-     * @desc Creates a new policy in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a new policy in the specified project using the data included in the request.
      * @alias compute.securityPolicies.insert
      * @memberOf! ()
      *
@@ -68189,7 +68964,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.list
-     * @desc List all the policies that have been configured for the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc List all the policies that have been configured for the specified project.
      * @alias compute.securityPolicies.list
      * @memberOf! ()
      *
@@ -68267,7 +69042,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.listPreconfiguredExpressionSets
-     * @desc Gets the current list of preconfigured Web Application Firewall (WAF) expressions. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the current list of preconfigured Web Application Firewall (WAF) expressions.
      * @alias compute.securityPolicies.listPreconfiguredExpressionSets
      * @memberOf! ()
      *
@@ -68371,7 +69146,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.patch
-     * @desc Patches the specified policy with the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified policy with the data included in the request.
      * @alias compute.securityPolicies.patch
      * @memberOf! ()
      *
@@ -68448,7 +69223,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.patchRule
-     * @desc Patches a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches a rule at the specified priority.
      * @alias compute.securityPolicies.patchRule
      * @memberOf! ()
      *
@@ -68526,7 +69301,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.removeRule
-     * @desc Deletes a rule at the specified priority. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes a rule at the specified priority.
      * @alias compute.securityPolicies.removeRule
      * @memberOf! ()
      *
@@ -68602,7 +69377,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.setLabels
-     * @desc Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.securityPolicies.setLabels
      * @memberOf! ()
      *
@@ -68678,7 +69453,7 @@ export namespace compute_alpha {
 
     /**
      * compute.securityPolicies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.securityPolicies.testIamPermissions
      * @memberOf! ()
      *
@@ -69044,7 +69819,7 @@ export namespace compute_alpha {
 
     /**
      * compute.snapshots.delete
-     * @desc Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot.  For more information, see Deleting snapshots. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot.  For more information, see Deleting snapshots.
      * @alias compute.snapshots.delete
      * @memberOf! ()
      *
@@ -69119,7 +69894,7 @@ export namespace compute_alpha {
 
     /**
      * compute.snapshots.get
-     * @desc Returns the specified Snapshot resource. Gets a list of available snapshots by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified Snapshot resource. Gets a list of available snapshots by making a list() request.
      * @alias compute.snapshots.get
      * @memberOf! ()
      *
@@ -69191,7 +69966,7 @@ export namespace compute_alpha {
 
     /**
      * compute.snapshots.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.snapshots.getIamPolicy
      * @memberOf! ()
      *
@@ -69265,7 +70040,7 @@ export namespace compute_alpha {
 
     /**
      * compute.snapshots.list
-     * @desc Retrieves the list of Snapshot resources contained within the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of Snapshot resources contained within the specified project.
      * @alias compute.snapshots.list
      * @memberOf! ()
      *
@@ -69341,7 +70116,7 @@ export namespace compute_alpha {
 
     /**
      * compute.snapshots.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.snapshots.setIamPolicy
      * @memberOf! ()
      *
@@ -69415,7 +70190,7 @@ export namespace compute_alpha {
 
     /**
      * compute.snapshots.setLabels
-     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.snapshots.setLabels
      * @memberOf! ()
      *
@@ -69491,7 +70266,7 @@ export namespace compute_alpha {
 
     /**
      * compute.snapshots.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.snapshots.testIamPermissions
      * @memberOf! ()
      *
@@ -69723,12 +70498,13 @@ export namespace compute_alpha {
 
     /**
      * compute.sslCertificates.aggregatedList
-     * @desc Retrieves the list of all SslCertificate resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of all SslCertificate resources, regional and global, available to the specified project.
      * @alias compute.sslCertificates.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -69810,7 +70586,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslCertificates.delete
-     * @desc Deletes the specified SslCertificate resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified SslCertificate resource.
      * @alias compute.sslCertificates.delete
      * @memberOf! ()
      *
@@ -69886,7 +70662,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslCertificates.get
-     * @desc Returns the specified SslCertificate resource. Gets a list of available SSL certificates by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified SslCertificate resource. Gets a list of available SSL certificates by making a list() request.
      * @alias compute.sslCertificates.get
      * @memberOf! ()
      *
@@ -69961,7 +70737,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslCertificates.insert
-     * @desc Creates a SslCertificate resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a SslCertificate resource in the specified project using the data included in the request.
      * @alias compute.sslCertificates.insert
      * @memberOf! ()
      *
@@ -70037,7 +70813,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslCertificates.list
-     * @desc Retrieves the list of SslCertificate resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of SslCertificate resources available to the specified project.
      * @alias compute.sslCertificates.list
      * @memberOf! ()
      *
@@ -70115,7 +70891,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslCertificates.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.sslCertificates.testIamPermissions
      * @memberOf! ()
      *
@@ -70205,6 +70981,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -70337,7 +71117,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslPolicies.delete
-     * @desc Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
      * @alias compute.sslPolicies.delete
      * @memberOf! ()
      *
@@ -70413,7 +71193,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslPolicies.get
-     * @desc Lists all of the ordered rules present in a single specified policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all of the ordered rules present in a single specified policy.
      * @alias compute.sslPolicies.get
      * @memberOf! ()
      *
@@ -70487,7 +71267,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslPolicies.insert
-     * @desc Returns the specified SSL policy resource. Gets a list of available SSL policies by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified SSL policy resource. Gets a list of available SSL policies by making a list() request.
      * @alias compute.sslPolicies.insert
      * @memberOf! ()
      *
@@ -70562,7 +71342,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslPolicies.list
-     * @desc Lists all the SSL policies that have been configured for the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all the SSL policies that have been configured for the specified project.
      * @alias compute.sslPolicies.list
      * @memberOf! ()
      *
@@ -70638,7 +71418,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslPolicies.listAvailableFeatures
-     * @desc Lists all features that can be specified in the SSL policy when using custom profile. (== suppress_warning http-rest-shadowed ==)
+     * @desc Lists all features that can be specified in the SSL policy when using custom profile.
      * @alias compute.sslPolicies.listAvailableFeatures
      * @memberOf! ()
      *
@@ -70733,7 +71513,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslPolicies.patch
-     * @desc Patches the specified SSL policy with the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified SSL policy with the data included in the request.
      * @alias compute.sslPolicies.patch
      * @memberOf! ()
      *
@@ -70810,7 +71590,7 @@ export namespace compute_alpha {
 
     /**
      * compute.sslPolicies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.sslPolicies.testIamPermissions
      * @memberOf! ()
      *
@@ -71055,12 +71835,13 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.aggregatedList
-     * @desc Retrieves an aggregated list of subnetworks. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of subnetworks.
      * @alias compute.subnetworks.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -71137,7 +71918,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.delete
-     * @desc Deletes the specified subnetwork. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified subnetwork.
      * @alias compute.subnetworks.delete
      * @memberOf! ()
      *
@@ -71214,7 +71995,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.expandIpCidrRange
-     * @desc Expands the IP CIDR range of the subnetwork to a specified value. (== suppress_warning http-rest-shadowed ==)
+     * @desc Expands the IP CIDR range of the subnetwork to a specified value.
      * @alias compute.subnetworks.expandIpCidrRange
      * @memberOf! ()
      *
@@ -71292,7 +72073,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.get
-     * @desc Returns the specified subnetwork. Gets a list of available subnetworks list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified subnetwork. Gets a list of available subnetworks list() request.
      * @alias compute.subnetworks.get
      * @memberOf! ()
      *
@@ -71367,7 +72148,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @alias compute.subnetworks.getIamPolicy
      * @memberOf! ()
      *
@@ -71442,7 +72223,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.insert
-     * @desc Creates a subnetwork in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a subnetwork in the specified project using the data included in the request.
      * @alias compute.subnetworks.insert
      * @memberOf! ()
      *
@@ -71519,7 +72300,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.list
-     * @desc Retrieves a list of subnetworks available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of subnetworks available to the specified project.
      * @alias compute.subnetworks.list
      * @memberOf! ()
      *
@@ -71597,7 +72378,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.listUsable
-     * @desc Retrieves an aggregated list of all usable subnetworks in the project. The list contains all of the subnetworks in the project and the subnetworks that were shared by a Shared VPC host project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of all usable subnetworks in the project. The list contains all of the subnetworks in the project and the subnetworks that were shared by a Shared VPC host project.
      * @alias compute.subnetworks.listUsable
      * @memberOf! ()
      *
@@ -71684,7 +72465,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.patch
-     * @desc Patches the specified subnetwork with the data included in the request. Only certain fields can up updated with a patch request as indicated in the field descriptions. You must specify the current fingeprint of the subnetwork resource being patched. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified subnetwork with the data included in the request. Only certain fields can up updated with a patch request as indicated in the field descriptions. You must specify the current fingeprint of the subnetwork resource being patched.
      * @alias compute.subnetworks.patch
      * @memberOf! ()
      *
@@ -71763,7 +72544,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.subnetworks.setIamPolicy
      * @memberOf! ()
      *
@@ -71838,7 +72619,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.setPrivateIpGoogleAccess
-     * @desc Set whether VMs in this subnet can access Google services without assigning external IP addresses through Private Google Access. (== suppress_warning http-rest-shadowed ==)
+     * @desc Set whether VMs in this subnet can access Google services without assigning external IP addresses through Private Google Access.
      * @alias compute.subnetworks.setPrivateIpGoogleAccess
      * @memberOf! ()
      *
@@ -71918,7 +72699,7 @@ export namespace compute_alpha {
 
     /**
      * compute.subnetworks.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.subnetworks.testIamPermissions
      * @memberOf! ()
      *
@@ -72009,6 +72790,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -72327,12 +73112,13 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpProxies.aggregatedList
-     * @desc Retrieves the list of all TargetHttpProxy resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of all TargetHttpProxy resources, regional and global, available to the specified project.
      * @alias compute.targetHttpProxies.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -72414,7 +73200,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpProxies.delete
-     * @desc Deletes the specified TargetHttpProxy resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified TargetHttpProxy resource.
      * @alias compute.targetHttpProxies.delete
      * @memberOf! ()
      *
@@ -72490,7 +73276,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpProxies.get
-     * @desc Returns the specified TargetHttpProxy resource. Gets a list of available target HTTP proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified TargetHttpProxy resource. Gets a list of available target HTTP proxies by making a list() request.
      * @alias compute.targetHttpProxies.get
      * @memberOf! ()
      *
@@ -72565,7 +73351,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpProxies.insert
-     * @desc Creates a TargetHttpProxy resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a TargetHttpProxy resource in the specified project using the data included in the request.
      * @alias compute.targetHttpProxies.insert
      * @memberOf! ()
      *
@@ -72641,7 +73427,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpProxies.list
-     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of TargetHttpProxy resources available to the specified project.
      * @alias compute.targetHttpProxies.list
      * @memberOf! ()
      *
@@ -72719,7 +73505,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpProxies.setUrlMap
-     * @desc Changes the URL map for TargetHttpProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the URL map for TargetHttpProxy.
      * @alias compute.targetHttpProxies.setUrlMap
      * @memberOf! ()
      *
@@ -72796,7 +73582,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpProxies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.targetHttpProxies.testIamPermissions
      * @memberOf! ()
      *
@@ -72886,6 +73672,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -73043,12 +73833,13 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.aggregatedList
-     * @desc Retrieves the list of all TargetHttpsProxy resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of all TargetHttpsProxy resources, regional and global, available to the specified project.
      * @alias compute.targetHttpsProxies.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -73130,7 +73921,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.delete
-     * @desc Deletes the specified TargetHttpsProxy resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified TargetHttpsProxy resource.
      * @alias compute.targetHttpsProxies.delete
      * @memberOf! ()
      *
@@ -73206,7 +73997,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.get
-     * @desc Returns the specified TargetHttpsProxy resource. Gets a list of available target HTTPS proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified TargetHttpsProxy resource. Gets a list of available target HTTPS proxies by making a list() request.
      * @alias compute.targetHttpsProxies.get
      * @memberOf! ()
      *
@@ -73281,7 +74072,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.insert
-     * @desc Creates a TargetHttpsProxy resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a TargetHttpsProxy resource in the specified project using the data included in the request.
      * @alias compute.targetHttpsProxies.insert
      * @memberOf! ()
      *
@@ -73357,7 +74148,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.list
-     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of TargetHttpsProxy resources available to the specified project.
      * @alias compute.targetHttpsProxies.list
      * @memberOf! ()
      *
@@ -73437,7 +74228,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.setQuicOverride
-     * @desc Sets the QUIC override policy for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the QUIC override policy for TargetHttpsProxy.
      * @alias compute.targetHttpsProxies.setQuicOverride
      * @memberOf! ()
      *
@@ -73514,7 +74305,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.setSslCertificates
-     * @desc Replaces SslCertificates for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Replaces SslCertificates for TargetHttpsProxy.
      * @alias compute.targetHttpsProxies.setSslCertificates
      * @memberOf! ()
      *
@@ -73591,7 +74382,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.setSslPolicy
-     * @desc Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the HTTPS proxy load balancer. They do not affect the connection between the load balancer and the backends. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the HTTPS proxy load balancer. They do not affect the connection between the load balancer and the backends.
      * @alias compute.targetHttpsProxies.setSslPolicy
      * @memberOf! ()
      *
@@ -73668,7 +74459,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.setUrlMap
-     * @desc Changes the URL map for TargetHttpsProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the URL map for TargetHttpsProxy.
      * @alias compute.targetHttpsProxies.setUrlMap
      * @memberOf! ()
      *
@@ -73745,7 +74536,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetHttpsProxies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.targetHttpsProxies.testIamPermissions
      * @memberOf! ()
      *
@@ -73835,6 +74626,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -74067,12 +74862,13 @@ export namespace compute_alpha {
 
     /**
      * compute.targetInstances.aggregatedList
-     * @desc Retrieves an aggregated list of target instances. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of target instances.
      * @alias compute.targetInstances.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -74154,7 +74950,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetInstances.delete
-     * @desc Deletes the specified TargetInstance resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified TargetInstance resource.
      * @alias compute.targetInstances.delete
      * @memberOf! ()
      *
@@ -74231,7 +75027,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetInstances.get
-     * @desc Returns the specified TargetInstance resource. Gets a list of available target instances by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified TargetInstance resource. Gets a list of available target instances by making a list() request.
      * @alias compute.targetInstances.get
      * @memberOf! ()
      *
@@ -74307,7 +75103,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetInstances.insert
-     * @desc Creates a TargetInstance resource in the specified project and zone using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a TargetInstance resource in the specified project and zone using the data included in the request.
      * @alias compute.targetInstances.insert
      * @memberOf! ()
      *
@@ -74384,7 +75180,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetInstances.list
-     * @desc Retrieves a list of TargetInstance resources available to the specified project and zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of TargetInstance resources available to the specified project and zone.
      * @alias compute.targetInstances.list
      * @memberOf! ()
      *
@@ -74463,7 +75259,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetInstances.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.targetInstances.testIamPermissions
      * @memberOf! ()
      *
@@ -74554,6 +75350,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -74706,7 +75506,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.addHealthCheck
-     * @desc Adds health check URLs to a target pool. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds health check URLs to a target pool.
      * @alias compute.targetPools.addHealthCheck
      * @memberOf! ()
      *
@@ -74784,7 +75584,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.addInstance
-     * @desc Adds an instance to a target pool. (== suppress_warning http-rest-shadowed ==)
+     * @desc Adds an instance to a target pool.
      * @alias compute.targetPools.addInstance
      * @memberOf! ()
      *
@@ -74862,12 +75662,13 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.aggregatedList
-     * @desc Retrieves an aggregated list of target pools. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of target pools.
      * @alias compute.targetPools.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -74944,7 +75745,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.delete
-     * @desc Deletes the specified target pool. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified target pool.
      * @alias compute.targetPools.delete
      * @memberOf! ()
      *
@@ -75021,7 +75822,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.get
-     * @desc Returns the specified target pool. Gets a list of available target pools by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified target pool. Gets a list of available target pools by making a list() request.
      * @alias compute.targetPools.get
      * @memberOf! ()
      *
@@ -75096,7 +75897,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.getHealth
-     * @desc Gets the most recent health check results for each IP for the instance that is referenced by the given target pool. (== suppress_warning http-rest-shadowed ==)
+     * @desc Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
      * @alias compute.targetPools.getHealth
      * @memberOf! ()
      *
@@ -75177,7 +75978,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.insert
-     * @desc Creates a target pool in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a target pool in the specified project and region using the data included in the request.
      * @alias compute.targetPools.insert
      * @memberOf! ()
      *
@@ -75254,7 +76055,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.list
-     * @desc Retrieves a list of target pools available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of target pools available to the specified project and region.
      * @alias compute.targetPools.list
      * @memberOf! ()
      *
@@ -75332,7 +76133,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.removeHealthCheck
-     * @desc Removes health check URL from a target pool. (== suppress_warning http-rest-shadowed ==)
+     * @desc Removes health check URL from a target pool.
      * @alias compute.targetPools.removeHealthCheck
      * @memberOf! ()
      *
@@ -75410,7 +76211,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.removeInstance
-     * @desc Removes instance URL from a target pool. (== suppress_warning http-rest-shadowed ==)
+     * @desc Removes instance URL from a target pool.
      * @alias compute.targetPools.removeInstance
      * @memberOf! ()
      *
@@ -75488,7 +76289,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.setBackup
-     * @desc Changes a backup target pool's configurations. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes a backup target pool's configurations.
      * @alias compute.targetPools.setBackup
      * @memberOf! ()
      *
@@ -75567,7 +76368,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetPools.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.targetPools.testIamPermissions
      * @memberOf! ()
      *
@@ -75716,6 +76517,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -75982,7 +76787,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.delete
-     * @desc Deletes the specified TargetSslProxy resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified TargetSslProxy resource.
      * @alias compute.targetSslProxies.delete
      * @memberOf! ()
      *
@@ -76058,7 +76863,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.get
-     * @desc Returns the specified TargetSslProxy resource. Gets a list of available target SSL proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified TargetSslProxy resource. Gets a list of available target SSL proxies by making a list() request.
      * @alias compute.targetSslProxies.get
      * @memberOf! ()
      *
@@ -76133,7 +76938,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.insert
-     * @desc Creates a TargetSslProxy resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a TargetSslProxy resource in the specified project using the data included in the request.
      * @alias compute.targetSslProxies.insert
      * @memberOf! ()
      *
@@ -76209,7 +77014,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.list
-     * @desc Retrieves the list of TargetSslProxy resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of TargetSslProxy resources available to the specified project.
      * @alias compute.targetSslProxies.list
      * @memberOf! ()
      *
@@ -76287,7 +77092,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.setBackendService
-     * @desc Changes the BackendService for TargetSslProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the BackendService for TargetSslProxy.
      * @alias compute.targetSslProxies.setBackendService
      * @memberOf! ()
      *
@@ -76364,7 +77169,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.setProxyHeader
-     * @desc Changes the ProxyHeaderType for TargetSslProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the ProxyHeaderType for TargetSslProxy.
      * @alias compute.targetSslProxies.setProxyHeader
      * @memberOf! ()
      *
@@ -76441,7 +77246,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.setSslCertificates
-     * @desc Changes SslCertificates for TargetSslProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes SslCertificates for TargetSslProxy.
      * @alias compute.targetSslProxies.setSslCertificates
      * @memberOf! ()
      *
@@ -76518,7 +77323,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.setSslPolicy
-     * @desc Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the SSL proxy load balancer. They do not affect the connection between the load balancer and the backends. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the SSL proxy load balancer. They do not affect the connection between the load balancer and the backends.
      * @alias compute.targetSslProxies.setSslPolicy
      * @memberOf! ()
      *
@@ -76595,7 +77400,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetSslProxies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.targetSslProxies.testIamPermissions
      * @memberOf! ()
      *
@@ -76889,7 +77694,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetTcpProxies.delete
-     * @desc Deletes the specified TargetTcpProxy resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified TargetTcpProxy resource.
      * @alias compute.targetTcpProxies.delete
      * @memberOf! ()
      *
@@ -76965,7 +77770,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetTcpProxies.get
-     * @desc Returns the specified TargetTcpProxy resource. Gets a list of available target TCP proxies by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified TargetTcpProxy resource. Gets a list of available target TCP proxies by making a list() request.
      * @alias compute.targetTcpProxies.get
      * @memberOf! ()
      *
@@ -77040,7 +77845,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetTcpProxies.insert
-     * @desc Creates a TargetTcpProxy resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a TargetTcpProxy resource in the specified project using the data included in the request.
      * @alias compute.targetTcpProxies.insert
      * @memberOf! ()
      *
@@ -77116,7 +77921,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetTcpProxies.list
-     * @desc Retrieves the list of TargetTcpProxy resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of TargetTcpProxy resources available to the specified project.
      * @alias compute.targetTcpProxies.list
      * @memberOf! ()
      *
@@ -77194,7 +77999,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetTcpProxies.setBackendService
-     * @desc Changes the BackendService for TargetTcpProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the BackendService for TargetTcpProxy.
      * @alias compute.targetTcpProxies.setBackendService
      * @memberOf! ()
      *
@@ -77271,7 +78076,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetTcpProxies.setProxyHeader
-     * @desc Changes the ProxyHeaderType for TargetTcpProxy. (== suppress_warning http-rest-shadowed ==)
+     * @desc Changes the ProxyHeaderType for TargetTcpProxy.
      * @alias compute.targetTcpProxies.setProxyHeader
      * @memberOf! ()
      *
@@ -77348,7 +78153,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetTcpProxies.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.targetTcpProxies.testIamPermissions
      * @memberOf! ()
      *
@@ -77592,12 +78397,13 @@ export namespace compute_alpha {
 
     /**
      * compute.targetVpnGateways.aggregatedList
-     * @desc Retrieves an aggregated list of target VPN gateways. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of target VPN gateways.
      * @alias compute.targetVpnGateways.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -77679,7 +78485,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetVpnGateways.delete
-     * @desc Deletes the specified target VPN gateway. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified target VPN gateway.
      * @alias compute.targetVpnGateways.delete
      * @memberOf! ()
      *
@@ -77756,7 +78562,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetVpnGateways.get
-     * @desc Returns the specified target VPN gateway. Gets a list of available target VPN gateways by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified target VPN gateway. Gets a list of available target VPN gateways by making a list() request.
      * @alias compute.targetVpnGateways.get
      * @memberOf! ()
      *
@@ -77832,7 +78638,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetVpnGateways.insert
-     * @desc Creates a target VPN gateway in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a target VPN gateway in the specified project and region using the data included in the request.
      * @alias compute.targetVpnGateways.insert
      * @memberOf! ()
      *
@@ -77909,7 +78715,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetVpnGateways.list
-     * @desc Retrieves a list of target VPN gateways available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of target VPN gateways available to the specified project and region.
      * @alias compute.targetVpnGateways.list
      * @memberOf! ()
      *
@@ -77990,7 +78796,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetVpnGateways.setLabels
-     * @desc Sets the labels on a TargetVpnGateway. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on a TargetVpnGateway. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.targetVpnGateways.setLabels
      * @memberOf! ()
      *
@@ -78068,7 +78874,7 @@ export namespace compute_alpha {
 
     /**
      * compute.targetVpnGateways.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.targetVpnGateways.testIamPermissions
      * @memberOf! ()
      *
@@ -78159,6 +78965,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -78340,12 +79150,13 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.aggregatedList
-     * @desc Retrieves the list of all UrlMap resources, regional and global, available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of all UrlMap resources, regional and global, available to the specified project.
      * @alias compute.urlMaps.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -78421,7 +79232,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.delete
-     * @desc Deletes the specified UrlMap resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified UrlMap resource.
      * @alias compute.urlMaps.delete
      * @memberOf! ()
      *
@@ -78496,7 +79307,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.get
-     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified UrlMap resource. Gets a list of available URL maps by making a list() request.
      * @alias compute.urlMaps.get
      * @memberOf! ()
      *
@@ -78568,7 +79379,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.insert
-     * @desc Creates a UrlMap resource in the specified project using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a UrlMap resource in the specified project using the data included in the request.
      * @alias compute.urlMaps.insert
      * @memberOf! ()
      *
@@ -78642,7 +79453,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.invalidateCache
-     * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. (== suppress_warning http-rest-shadowed ==)
+     * @desc Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap.
      * @alias compute.urlMaps.invalidateCache
      * @memberOf! ()
      *
@@ -78719,7 +79530,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.list
-     * @desc Retrieves the list of UrlMap resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of UrlMap resources available to the specified project.
      * @alias compute.urlMaps.list
      * @memberOf! ()
      *
@@ -78795,7 +79606,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.patch
-     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)
+     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      * @alias compute.urlMaps.patch
      * @memberOf! ()
      *
@@ -78871,7 +79682,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.urlMaps.testIamPermissions
      * @memberOf! ()
      *
@@ -78951,7 +79762,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.update
-     * @desc Updates the specified UrlMap resource with the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Updates the specified UrlMap resource with the data included in the request.
      * @alias compute.urlMaps.update
      * @memberOf! ()
      *
@@ -79027,7 +79838,7 @@ export namespace compute_alpha {
 
     /**
      * compute.urlMaps.validate
-     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap. (== suppress_warning http-rest-shadowed ==)
+     * @desc Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
      * @alias compute.urlMaps.validate
      * @memberOf! ()
      *
@@ -79116,6 +79927,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -79337,12 +80152,13 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnGateways.aggregatedList
-     * @desc Retrieves an aggregated list of VPN gateways. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of VPN gateways.
      * @alias compute.vpnGateways.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -79419,7 +80235,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnGateways.delete
-     * @desc Deletes the specified VPN gateway. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified VPN gateway.
      * @alias compute.vpnGateways.delete
      * @memberOf! ()
      *
@@ -79496,7 +80312,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnGateways.get
-     * @desc Returns the specified VPN gateway. Gets a list of available VPN gateways by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified VPN gateway. Gets a list of available VPN gateways by making a list() request.
      * @alias compute.vpnGateways.get
      * @memberOf! ()
      *
@@ -79571,7 +80387,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnGateways.getStatus
-     * @desc Returns the status for the specified VPN gateway. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the status for the specified VPN gateway.
      * @alias compute.vpnGateways.getStatus
      * @memberOf! ()
      *
@@ -79656,7 +80472,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnGateways.insert
-     * @desc Creates a VPN gateway in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a VPN gateway in the specified project and region using the data included in the request.
      * @alias compute.vpnGateways.insert
      * @memberOf! ()
      *
@@ -79733,7 +80549,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnGateways.list
-     * @desc Retrieves a list of VPN gateways available to the specified project and region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of VPN gateways available to the specified project and region.
      * @alias compute.vpnGateways.list
      * @memberOf! ()
      *
@@ -79811,7 +80627,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnGateways.setLabels
-     * @desc Sets the labels on a VpnGateway. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on a VpnGateway. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.vpnGateways.setLabels
      * @memberOf! ()
      *
@@ -79889,7 +80705,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnGateways.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.vpnGateways.testIamPermissions
      * @memberOf! ()
      *
@@ -79980,6 +80796,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -80179,12 +80999,13 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnTunnels.aggregatedList
-     * @desc Retrieves an aggregated list of VPN tunnels. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves an aggregated list of VPN tunnels.
      * @alias compute.vpnTunnels.aggregatedList
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {boolean=} params.includeAllScopes Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
@@ -80261,7 +81082,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnTunnels.delete
-     * @desc Deletes the specified VpnTunnel resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified VpnTunnel resource.
      * @alias compute.vpnTunnels.delete
      * @memberOf! ()
      *
@@ -80338,7 +81159,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnTunnels.get
-     * @desc Returns the specified VpnTunnel resource. Gets a list of available VPN tunnels by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified VpnTunnel resource. Gets a list of available VPN tunnels by making a list() request.
      * @alias compute.vpnTunnels.get
      * @memberOf! ()
      *
@@ -80413,7 +81234,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnTunnels.insert
-     * @desc Creates a VpnTunnel resource in the specified project and region using the data included in the request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Creates a VpnTunnel resource in the specified project and region using the data included in the request.
      * @alias compute.vpnTunnels.insert
      * @memberOf! ()
      *
@@ -80490,7 +81311,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnTunnels.list
-     * @desc Retrieves a list of VpnTunnel resources contained in the specified project and region. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of VpnTunnel resources contained in the specified project and region.
      * @alias compute.vpnTunnels.list
      * @memberOf! ()
      *
@@ -80568,7 +81389,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnTunnels.setLabels
-     * @desc Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation. (== suppress_warning http-rest-shadowed ==)
+     * @desc Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation.
      * @alias compute.vpnTunnels.setLabels
      * @memberOf! ()
      *
@@ -80646,7 +81467,7 @@ export namespace compute_alpha {
 
     /**
      * compute.vpnTunnels.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.vpnTunnels.testIamPermissions
      * @memberOf! ()
      *
@@ -80737,6 +81558,10 @@ export namespace compute_alpha {
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
      */
     filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
+     */
+    includeAllScopes?: boolean;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      */
@@ -80916,7 +81741,7 @@ export namespace compute_alpha {
 
     /**
      * compute.zoneOperations.delete
-     * @desc Deletes the specified zone-specific Operations resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Deletes the specified zone-specific Operations resource.
      * @alias compute.zoneOperations.delete
      * @memberOf! ()
      *
@@ -80990,7 +81815,7 @@ export namespace compute_alpha {
 
     /**
      * compute.zoneOperations.get
-     * @desc Retrieves the specified zone-specific Operations resource. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the specified zone-specific Operations resource.
      * @alias compute.zoneOperations.get
      * @memberOf! ()
      *
@@ -81066,7 +81891,7 @@ export namespace compute_alpha {
 
     /**
      * compute.zoneOperations.list
-     * @desc Retrieves a list of Operation resources contained within the specified zone. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves a list of Operation resources contained within the specified zone.
      * @alias compute.zoneOperations.list
      * @memberOf! ()
      *
@@ -81145,7 +81970,7 @@ export namespace compute_alpha {
 
     /**
      * compute.zoneOperations.wait
-     * @desc Waits for the specified zone-specific Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE. (== suppress_warning http-rest-shadowed ==)
+     * @desc Waits for the specified zone-specific Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
      * @alias compute.zoneOperations.wait
      * @memberOf! ()
      *
@@ -81321,7 +82146,7 @@ export namespace compute_alpha {
 
     /**
      * compute.zones.get
-     * @desc Returns the specified Zone resource. Gets a list of available zones by making a list() request. (== suppress_warning http-rest-shadowed ==)
+     * @desc Returns the specified Zone resource. Gets a list of available zones by making a list() request.
      * @alias compute.zones.get
      * @memberOf! ()
      *
@@ -81392,7 +82217,7 @@ export namespace compute_alpha {
 
     /**
      * compute.zones.list
-     * @desc Retrieves the list of Zone resources available to the specified project. (== suppress_warning http-rest-shadowed ==)
+     * @desc Retrieves the list of Zone resources available to the specified project.
      * @alias compute.zones.list
      * @memberOf! ()
      *

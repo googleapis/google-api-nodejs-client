@@ -1230,6 +1230,19 @@ export namespace sheets_v4 {
     red?: number | null;
   }
   /**
+   * A color value.
+   */
+  export interface Schema$ColorStyle {
+    /**
+     * RGB color.
+     */
+    rgbColor?: Schema$Color;
+    /**
+     * Theme color.
+     */
+    themeColor?: string | null;
+  }
+  /**
    * A rule describing a conditional format.
    */
   export interface Schema$ConditionalFormatRule {
@@ -3302,6 +3315,10 @@ export namespace sheets_v4 {
      */
     locale?: string | null;
     /**
+     * Theme applied to the spreadsheet.
+     */
+    spreadsheetTheme?: Schema$SpreadsheetTheme;
+    /**
      * The time zone of the spreadsheet, in CLDR format such as `America/New_York`. If the time zone isn&#39;t recognized, this may be a custom time zone such as `GMT-07:00`.
      */
     timeZone?: string | null;
@@ -3309,6 +3326,19 @@ export namespace sheets_v4 {
      * The title of the spreadsheet.
      */
     title?: string | null;
+  }
+  /**
+   * Represents spreadsheet theme
+   */
+  export interface Schema$SpreadsheetTheme {
+    /**
+     * / Name of the primary font family.
+     */
+    primaryFontFamily?: string | null;
+    /**
+     * The spreadsheet theme color pairs. For update users need to give all pairs of theme colors.
+     */
+    themeColors?: Schema$ThemeColorPair[];
   }
   /**
    * The format of a run of text in a cell. Absent values indicate that the field isn&#39;t specified.
@@ -3394,6 +3424,19 @@ export namespace sheets_v4 {
      * The source data range.  This must span exactly one column.
      */
     source?: Schema$GridRange;
+  }
+  /**
+   * A pair mapping a spreadsheet theme color type to the concrete color it represents.
+   */
+  export interface Schema$ThemeColorPair {
+    /**
+     * The concrete color corresponding to the theme color type.
+     */
+    color?: Schema$ColorStyle;
+    /**
+     * The type of the spreadsheet theme color.
+     */
+    colorType?: string | null;
   }
   /**
    * A color scale for a treemap chart.
@@ -3753,7 +3796,7 @@ export namespace sheets_v4 {
     properties?: Schema$SheetProperties;
   }
   /**
-   * Updates a slicer’s specifications. (This does not move or resize a slicer. To move or resize a slicer use UpdateEmbeddedObjectPositionRequest.
+   * Updates a slicer&#39;s specifications. (This does not move or resize a slicer. To move or resize a slicer use UpdateEmbeddedObjectPositionRequest.
    */
   export interface Schema$UpdateSlicerSpecRequest {
     /**

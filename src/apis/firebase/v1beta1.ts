@@ -415,9 +415,17 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$Location {
     /**
+     * Products and services that are available in the GCP resource location.
+     */
+    features?: string[] | null;
+    /**
      * The ID of the GCP resource location. It will be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations#types).
      */
     locationId?: string | null;
+    /**
+     * Indicates whether the GCP resource location is a [regional or multi-regional location](https://firebase.google.com/docs/projects/locations#types) for data replication.
+     */
+    type?: string | null;
   }
   /**
    * This is proto2&#39;s version of MessageSet.
