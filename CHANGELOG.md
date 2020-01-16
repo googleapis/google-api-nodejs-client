@@ -4,6 +4,17 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [47.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v46.0.0...v47.0.0) (2020-01-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* run the generator (#1935)
+
+### Features
+
+* run the generator ([#1935](https://www.github.com/googleapis/google-api-nodejs-client/issues/1935)) ([e5d8c08](https://www.github.com/googleapis/google-api-nodejs-client/commit/e5d8c083365892a35d6e620e15b90999e117deea))
+
 ## [46.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v45.0.0...v46.0.0) (2019-12-09)
 
 
