@@ -252,11 +252,11 @@ export namespace cloudtrace_v2 {
      */
     childSpanCount?: number | null;
     /**
-     * A description of the span&#39;s operation (up to 128 bytes). Stackdriver Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
+     * Required. A description of the span&#39;s operation (up to 128 bytes). Stackdriver Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
      */
     displayName?: Schema$TruncatableString;
     /**
-     * The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running.
+     * Required. The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running.
      */
     endTime?: string | null;
     /**
@@ -276,7 +276,7 @@ export namespace cloudtrace_v2 {
      */
     sameProcessAsParentSpan?: boolean | null;
     /**
-     * The [SPAN_ID] portion of the span&#39;s resource name.
+     * Required. The [SPAN_ID] portion of the span&#39;s resource name.
      */
     spanId?: string | null;
     /**
@@ -288,7 +288,7 @@ export namespace cloudtrace_v2 {
      */
     stackTrace?: Schema$StackTrace;
     /**
-     * The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server&#39;s application handler starts running.
+     * Required. The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server&#39;s application handler starts running.
      */
     startTime?: string | null;
     /**

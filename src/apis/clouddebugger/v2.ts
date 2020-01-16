@@ -460,7 +460,7 @@ export namespace clouddebugger_v2 {
    */
   export interface Schema$SetBreakpointResponse {
     /**
-     * Breakpoint resource. The field `id` is guaranteed to be set (in addition to the echoed fileds).
+     * Breakpoint resource. The field `id` is guaranteed to be set (in addition to the echoed fields).
      */
     breakpoint?: Schema$Breakpoint;
   }

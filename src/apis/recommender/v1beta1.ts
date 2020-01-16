@@ -159,11 +159,11 @@ export namespace recommender_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest {
     /**
-     * Fingerprint of the Recommendation. Provides optimistic locking.
+     * Required. Fingerprint of the Recommendation. Provides optimistic locking.
      */
     etag?: string | null;
     /**
-     * State properties to include with this state. Overwrites any existing `state_metadata`.
+     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
      */
     stateMetadata?: {[key: string]: string} | null;
   }
@@ -172,11 +172,11 @@ export namespace recommender_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest {
     /**
-     * Fingerprint of the Recommendation. Provides optimistic locking.
+     * Required. Fingerprint of the Recommendation. Provides optimistic locking.
      */
     etag?: string | null;
     /**
-     * State properties to include with this state. Overwrites any existing `state_metadata`.
+     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
      */
     stateMetadata?: {[key: string]: string} | null;
   }
@@ -185,11 +185,11 @@ export namespace recommender_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest {
     /**
-     * Fingerprint of the Recommendation. Provides optimistic locking.
+     * Required. Fingerprint of the Recommendation. Provides optimistic locking.
      */
     etag?: string | null;
     /**
-     * State properties to include with this state. Overwrites any existing `state_metadata`.
+     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
      */
     stateMetadata?: {[key: string]: string} | null;
   }
@@ -274,7 +274,7 @@ export namespace recommender_v1beta1 {
      */
     lastRefreshTime?: string | null;
     /**
-     * Name of recommendation.  A project recommendation is represented as   projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/recommendations/[RECOMMENDATION_ID]
+     * Name of recommendation.
      */
     name?: string | null;
     /**
@@ -383,7 +383,7 @@ export namespace recommender_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the recommendation.
+     * @param {string} params.name Required. Name of the recommendation.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -480,7 +480,7 @@ export namespace recommender_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request.  Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      * @param {string=} params.pageToken Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
      * @param {string} params.parent Required. The container resource on which to execute the request. Acceptable formats:  1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",  LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -582,7 +582,7 @@ export namespace recommender_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the recommendation.
+     * @param {string} params.name Required. Name of the recommendation.
      * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -682,7 +682,7 @@ export namespace recommender_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the recommendation.
+     * @param {string} params.name Required. Name of the recommendation.
      * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -782,7 +782,7 @@ export namespace recommender_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the recommendation.
+     * @param {string} params.name Required. Name of the recommendation.
      * @param {().GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -884,7 +884,7 @@ export namespace recommender_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      */
     name?: string;
   }
@@ -900,7 +900,7 @@ export namespace recommender_v1beta1 {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     * Optional. The maximum number of results to return from this request.  Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      */
     pageSize?: number;
     /**
@@ -920,7 +920,7 @@ export namespace recommender_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      */
     name?: string;
 
@@ -937,7 +937,7 @@ export namespace recommender_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      */
     name?: string;
 
@@ -954,7 +954,7 @@ export namespace recommender_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      */
     name?: string;
 

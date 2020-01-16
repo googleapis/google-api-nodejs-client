@@ -133,6 +133,23 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Describes where in a file an expression is found and what it was evaluated to over the course of its use.
+   */
+  export interface Schema$ExpressionReport {
+    /**
+     * Subexpressions
+     */
+    children?: Schema$ExpressionReport[];
+    /**
+     * Position of expression in original rules source.
+     */
+    sourcePosition?: Schema$SourcePosition;
+    /**
+     * Values that this expression evaluated to when encountered.
+     */
+    values?: Schema$ValueCount[];
+  }
+  /**
    * `File` containing source content.
    */
   export interface Schema$File {
@@ -350,6 +367,10 @@ export namespace firebaserules_v1 {
      */
     expectation?: string | null;
     /**
+     * Specifies what should be included in the response.
+     */
+    expressionReportLevel?: string | null;
+    /**
      * Optional function mocks for service-defined functions. If not set, any service defined function is expected to return an error, which may or may not influence the test outcome.
      */
     functionMocks?: Schema$FunctionMock[];
@@ -378,6 +399,10 @@ export namespace firebaserules_v1 {
      * Position in the `Source` or `Ruleset` where the principle runtime error occurs.  Evaluation of an expression may result in an error. Rules are deny by default, so a `DENY` expectation when an error is generated is valid. When there is a `DENY` with an error, the `SourcePosition` is returned.  E.g. `error_position { line: 19 column: 37 }`
      */
     errorPosition?: Schema$SourcePosition;
+    /**
+     * The mapping from expression in the ruleset AST to the values they were evaluated to. Partially-nested to mirror AST structure. Note that this field is actually tracking expressions and not permission statements in contrast to the &quot;visited_expressions&quot; field above. Literal expressions are omitted.
+     */
+    expressionReports?: Schema$ExpressionReport[];
     /**
      * The set of function calls made to service-defined methods.  Function calls are included in the order in which they are encountered during evaluation, are provided for both mocked and unmocked functions, and included on the response regardless of the test `state`.
      */
@@ -438,6 +463,19 @@ export namespace firebaserules_v1 {
      * Specifies which fields to update.
      */
     updateMask?: string | null;
+  }
+  /**
+   * Tuple for how many times an Expression was evaluated to a particular ExpressionValue.
+   */
+  export interface Schema$ValueCount {
+    /**
+     * The amount of times that expression returned.
+     */
+    count?: number | null;
+    /**
+     * The return value of the expression
+     */
+    value?: any | null;
   }
   /**
    * Store the position and access outcome for an expression visited in rules.

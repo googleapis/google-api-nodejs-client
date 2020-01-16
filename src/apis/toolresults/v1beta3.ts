@@ -258,6 +258,59 @@ export namespace toolresults_v1beta3 {
     seconds?: string | null;
   }
   /**
+   * An Environment represents the set of test runs (Steps) from the parent Execution that are configured with the same set of dimensions (Model, Version, Locale, and Orientation). Multiple such runs occur particularly because of features like sharding (splitting up a test suite to run in parallel across devices) and reruns (running a test multiple times to check for different outcomes).
+   */
+  export interface Schema$Environment {
+    /**
+     * Output only. The time when the Environment status was set to complete.  This value will be set automatically when state transitions to COMPLETE.
+     */
+    completionTime?: Schema$Timestamp;
+    /**
+     * Output only. The time when the Environment was created.
+     */
+    creationTime?: Schema$Timestamp;
+    /**
+     * Dimension values describing the environment. Dimension values always consist of &quot;Model&quot;, &quot;Version&quot;, &quot;Locale&quot;, and &quot;Orientation&quot;.  - In response: always set - In create request: always set - In update request: never set
+     */
+    dimensionValue?: Schema$EnvironmentDimensionValueEntry[];
+    /**
+     * A short human-readable name to display in the UI. Maximum of 100 characters. For example: Nexus 5, API 27.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. An Environment id.
+     */
+    environmentId?: string | null;
+    /**
+     * Merged result of the environment.
+     */
+    environmentResult?: Schema$MergedResult;
+    /**
+     * Output only. An Execution id.
+     */
+    executionId?: string | null;
+    /**
+     * Output only. A History id.
+     */
+    historyId?: string | null;
+    /**
+     * Output only. A Project id.
+     */
+    projectId?: string | null;
+    /**
+     * The location where output files are stored in the user bucket.
+     */
+    resultsStorage?: Schema$ResultsStorage;
+    /**
+     * Output only. Summaries of shards.  Only one shard will present unless sharding feature is enabled in TestExecutionService.
+     */
+    shardSummaries?: Schema$ShardSummary[];
+  }
+  export interface Schema$EnvironmentDimensionValueEntry {
+    key?: string | null;
+    value?: string | null;
+  }
+  /**
    * An Execution represents a collection of Steps. For instance, it could represent: - a mobile test executed across a range of device configurations - a jenkins job with a build step followed by a test step  The maximum size of an execution message is 1 MiB.  An Execution can be updated until its state is set to COMPLETE at which point it becomes immutable.
    */
   export interface Schema$Execution {
@@ -457,6 +510,31 @@ export namespace toolresults_v1beta3 {
     runDuration?: Schema$Duration;
     stepId?: string | null;
   }
+  /**
+   * Response message for EnvironmentService.ListEnvironments.
+   */
+  export interface Schema$ListEnvironmentsResponse {
+    /**
+     * Environments.  Always set.
+     */
+    environments?: Schema$Environment[];
+    /**
+     * A Execution id  Always set.
+     */
+    executionId?: string | null;
+    /**
+     * A History id.  Always set.
+     */
+    historyId?: string | null;
+    /**
+     * A continuation token to resume the query at the next item.  Will only be set if there are more Environments to fetch.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A Project id.  Always set.
+     */
+    projectId?: string | null;
+  }
   export interface Schema$ListExecutionsResponse {
     /**
      * Executions.  Always set.
@@ -544,6 +622,23 @@ export namespace toolresults_v1beta3 {
      * Total memory available on the device in KiB
      */
     memoryTotalInKibibyte?: string | null;
+  }
+  /**
+   * Merged test result for environment.  If the environment has only one step (no reruns or shards), then the merged result is the same as the step result. If the environment has multiple shards and/or reruns, then the results of shards and reruns that belong to the same environment are merged into one environment result.
+   */
+  export interface Schema$MergedResult {
+    /**
+     * Outcome of the resource
+     */
+    outcome?: Schema$Outcome;
+    /**
+     * State of the resource
+     */
+    state?: string | null;
+    /**
+     * The combined and rolled-up result of each test suite that was run as part of this environment.  Combining: When the test cases from a suite are run in different steps (sharding), the results are added back together in one overview. (e.g., if shard1 has 2 failures and shard2 has 1 failure than the overview failure_count = 3).  Rollup: When test cases from the same suite are run multiple times (flaky), the results are combined (e.g., if testcase1.run1 fails, testcase1.run2 passes, and both testcase2.run1 and testcase2.run2 fail then the overview flaky_count = 1 and failure_count = 1).
+     */
+    testSuiteOverviews?: Schema$TestSuiteOverview[];
   }
   /**
    * Details when multiple steps are run with the same configuration as a group.
@@ -711,6 +806,19 @@ export namespace toolresults_v1beta3 {
      */
     xunitXmlFiles?: Schema$FileReference[];
   }
+  /**
+   * The storage for test results.
+   */
+  export interface Schema$ResultsStorage {
+    /**
+     * The root directory for test results.
+     */
+    resultsStoragePath?: Schema$FileReference;
+    /**
+     * The path to the Xunit XML file.
+     */
+    xunitXmlFile?: Schema$FileReference;
+  }
   export interface Schema$Screen {
     /**
      * File reference of the png file. Required.
@@ -746,6 +854,15 @@ export namespace toolresults_v1beta3 {
      * Full list of screens.
      */
     screens?: Schema$Screen[];
+  }
+  /**
+   * Result summary for a shard in an environment.
+   */
+  export interface Schema$ShardSummary {
+    /**
+     * Merged result of the shard.
+     */
+    shardResult?: Schema$MergedResult;
   }
   /**
    * Details for an outcome with a SKIPPED outcome summary.
@@ -873,7 +990,7 @@ export namespace toolresults_v1beta3 {
     value?: string | null;
   }
   /**
-   * Details for an outcome with a SUCCESS outcome summary.
+   * Details for an outcome with a SUCCESS outcome summary. LINT.IfChange
    */
   export interface Schema$SuccessDetail {
     /**
@@ -1002,6 +1119,10 @@ export namespace toolresults_v1beta3 {
      * Number of failed test cases, typically set by the service by parsing the xml_source. May also be set by the user.  - In create/response: always set - In update request: never
      */
     failureCount?: number | null;
+    /**
+     * Number of flaky test cases, set by the service by rolling up flaky test attempts.  Present only for rollup test suite overview at environment level. A step cannot have flaky test cases.
+     */
+    flakyCount?: number | null;
     /**
      * The name of the test suite.  - In create/response: always set - In update request: never
      */
@@ -1602,10 +1723,14 @@ export namespace toolresults_v1beta3 {
   export class Resource$Projects$Histories$Executions {
     context: APIRequestContext;
     clusters: Resource$Projects$Histories$Executions$Clusters;
+    environments: Resource$Projects$Histories$Executions$Environments;
     steps: Resource$Projects$Histories$Executions$Steps;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.clusters = new Resource$Projects$Histories$Executions$Clusters(
+        this.context
+      );
+      this.environments = new Resource$Projects$Histories$Executions$Environments(
         this.context
       );
       this.steps = new Resource$Projects$Histories$Executions$Steps(
@@ -2233,6 +2358,228 @@ export namespace toolresults_v1beta3 {
     historyId?: string;
     /**
      * A Project id.  Required.
+     */
+    projectId?: string;
+  }
+
+  export class Resource$Projects$Histories$Executions$Environments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * toolresults.projects.histories.executions.environments.get
+     * @desc Gets an Environment.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Environment does not exist
+     * @alias toolresults.projects.histories.executions.environments.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.environmentId Required. An Environment id.
+     * @param {string} params.executionId Required. An Execution id.
+     * @param {string} params.historyId Required. A History id.
+     * @param {string} params.projectId Required. A Project id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Histories$Executions$Environments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Environment>;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Environments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Environment>,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Histories$Executions$Environments$Get,
+      callback: BodyResponseCallback<Schema$Environment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Environment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Environments$Get
+        | BodyResponseCallback<Schema$Environment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>
+    ): void | GaxiosPromise<Schema$Environment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Environments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Environments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments/{environmentId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectId',
+          'historyId',
+          'executionId',
+          'environmentId',
+        ],
+        pathParams: ['environmentId', 'executionId', 'historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Environment>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Environment>(parameters);
+      }
+    }
+
+    /**
+     * toolresults.projects.histories.executions.environments.list
+     * @desc Lists Environments for a given Execution.  The Environments are sorted by display name.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Execution does not exist
+     * @alias toolresults.projects.histories.executions.environments.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.executionId Required. An Execution id.
+     * @param {string} params.historyId Required. A History id.
+     * @param {integer=} params.pageSize The maximum number of Environments to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.
+     * @param {string=} params.pageToken A continuation token to resume the query at the next item.
+     * @param {string} params.projectId Required. A Project id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Histories$Executions$Environments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEnvironmentsResponse>;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Environments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Histories$Executions$Environments$List,
+      callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Environments$List
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>
+    ): void | GaxiosPromise<Schema$ListEnvironmentsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Environments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Environments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/environments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'historyId', 'executionId'],
+        pathParams: ['executionId', 'historyId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Histories$Executions$Environments$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. An Environment id.
+     */
+    environmentId?: string;
+    /**
+     * Required. An Execution id.
+     */
+    executionId?: string;
+    /**
+     * Required. A History id.
+     */
+    historyId?: string;
+    /**
+     * Required. A Project id.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Histories$Executions$Environments$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. An Execution id.
+     */
+    executionId?: string;
+    /**
+     * Required. A History id.
+     */
+    historyId?: string;
+    /**
+     * The maximum number of Environments to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.
+     */
+    pageSize?: number;
+    /**
+     * A continuation token to resume the query at the next item.
+     */
+    pageToken?: string;
+    /**
+     * Required. A Project id.
      */
     projectId?: string;
   }

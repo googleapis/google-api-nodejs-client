@@ -307,7 +307,7 @@ export namespace cloudbuild_v1 {
      */
     volumes?: Schema$Volume[];
     /**
-     * Option to specify a `WorkerPool` for the build. User specifies the pool with the format &quot;[WORKERPOOL_PROJECT_ID]/[WORKERPOOL_NAME]&quot;. This is an experimental field.
+     * Option to specify a `WorkerPool` for the build. Format: projects/{project}/workerPools/{workerPool}  This field is experimental.
      */
     workerPool?: string | null;
   }
@@ -409,7 +409,7 @@ export namespace cloudbuild_v1 {
      */
     includedFiles?: string[] | null;
     /**
-     * User assigned name of the trigger. Must be unique within the project.
+     * User-assigned name of the trigger. Must be unique within the project. Trigger names must meet the following requirements:  + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character.
      */
     name?: string | null;
     /**
@@ -574,7 +574,7 @@ export namespace cloudbuild_v1 {
      */
     branch?: string | null;
     /**
-     * Whether to block builds on a &quot;/gcbrun&quot; comment from a repository owner or collaborator.
+     * Whether to block builds on a &quot;/gcbrun&quot; comment from a repository admin or collaborator.
      */
     commentControl?: string | null;
   }

@@ -1085,10 +1085,12 @@ export namespace youtube_v3 {
      * The long uploads status of this channel. See
      */
     longUploadsStatus?: string | null;
+    madeForKids?: boolean | null;
     /**
      * Privacy status of the channel.
      */
     privacyStatus?: string | null;
+    selfDeclaredMadeForKids?: boolean | null;
   }
   /**
    * Freebase topic information related to the channel.
@@ -2151,6 +2153,7 @@ export namespace youtube_v3 {
      * Priority of the live broadcast event (internal state).
      */
     liveBroadcastPriority?: string | null;
+    madeForKids?: boolean | null;
     /**
      * The broadcast&#39;s privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource.
      */
@@ -2159,6 +2162,7 @@ export namespace youtube_v3 {
      * The broadcast&#39;s recording status.
      */
     recordingStatus?: string | null;
+    selfDeclaredMadeForKids?: boolean | null;
   }
   /**
    * A liveChatBan resource represents a ban for a YouTube live chat.
@@ -2681,10 +2685,6 @@ export namespace youtube_v3 {
      */
     etag?: string | null;
     /**
-     * The ID that YouTube assigns to uniquely identify the member.
-     */
-    id?: string | null;
-    /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;youtube#member&quot;.
      */
     kind?: string | null;
@@ -2723,9 +2723,17 @@ export namespace youtube_v3 {
   }
   export interface Schema$MembershipsDetails {
     /**
-     * All levels that the user has access to. This includes the purchased level and all other levels that are included because of a higher purchase.
+     * All levels that the user has access to. This includes the currently active level and all other levels that are included because of a higher purchase.
      */
     accessibleLevels?: string[] | null;
+    /**
+     * The highest level that the user has access to at the moment.
+     */
+    highestAccessibleLevel?: string | null;
+    /**
+     * Display name for the highest level that the user has access to at the moment.
+     */
+    highestAccessibleLevelDisplayName?: string | null;
     /**
      * The date and time when the user became a continuous member across all levels.
      */
@@ -2743,7 +2751,7 @@ export namespace youtube_v3 {
      */
     memberTotalDurationCurrentLevel?: number | null;
     /**
-     * The highest level the user has access to at the moment.
+     * The highest level that the user has access to at the moment. DEPRECATED - highest_accessible_level should be used instead. This will be removed after we make sure there are no 3rd parties relying on it.
      */
     purchasedLevel?: string | null;
   }
@@ -4370,6 +4378,7 @@ export namespace youtube_v3 {
      * The video&#39;s license.
      */
     license?: string | null;
+    madeForKids?: boolean | null;
     /**
      * The video&#39;s privacy status.
      */
@@ -4386,6 +4395,10 @@ export namespace youtube_v3 {
      * This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected.
      */
     rejectionReason?: string | null;
+    /**
+     * Allows clients to set the Crosswalk self_declared state for a Video. This maps to VAPI.Video.creator_flags.is_crosswalk_self_declared() and VAPI.Video.creator_flags.is_not_crosswalk_self_declared().
+     */
+    selfDeclaredMadeForKids?: boolean | null;
     /**
      * The status of the uploaded video.
      */
@@ -9209,11 +9222,12 @@ export namespace youtube_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filterByMemberChannelId The filterByMemberChannelId parameter represents a comma separated list of channel IDs. Only data about members that are part of this list will be included in the response. It can be used to efficiently check whether specific users are entitled to perks offered via third parties.
      * @param {string=} params.hasAccessToLevel The hasAccessToLevel parameter specifies, when set, the ID of a pricing level that members from the results set should have access to. When not set, all members will be considered, regardless of their active pricing level.
      * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
      * @param {string=} params.mode The mode parameter specifies which channel members to return.
      * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     * @param {string} params.part The part parameter specifies the member resource parts that the API response will include. Supported values are id and snippet.
+     * @param {string} params.part The part parameter specifies the member resource parts that the API response will include. Set the parameter value to snippet.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -9287,6 +9301,10 @@ export namespace youtube_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * The filterByMemberChannelId parameter represents a comma separated list of channel IDs. Only data about members that are part of this list will be included in the response. It can be used to efficiently check whether specific users are entitled to perks offered via third parties.
+     */
+    filterByMemberChannelId?: string;
+    /**
      * The hasAccessToLevel parameter specifies, when set, the ID of a pricing level that members from the results set should have access to. When not set, all members will be considered, regardless of their active pricing level.
      */
     hasAccessToLevel?: string;
@@ -9303,7 +9321,7 @@ export namespace youtube_v3 {
      */
     pageToken?: string;
     /**
-     * The part parameter specifies the member resource parts that the API response will include. Supported values are id and snippet.
+     * The part parameter specifies the member resource parts that the API response will include. Set the parameter value to snippet.
      */
     part?: string;
   }

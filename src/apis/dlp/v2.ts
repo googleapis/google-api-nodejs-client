@@ -126,7 +126,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Action {
     /**
-     * Enable email notification to project owners and editors on job&#39;s completion/failure.
+     * Enable email notification for project owners and editors on job&#39;s completion/failure.
      */
     jobNotificationEmails?: Schema$GooglePrivacyDlpV2JobNotificationEmails;
     /**
@@ -158,11 +158,29 @@ export namespace dlp_v2 {
    * Result of a risk analysis operation request.
    */
   export interface Schema$GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails {
+    /**
+     * Categorical stats result
+     */
     categoricalStatsResult?: Schema$GooglePrivacyDlpV2CategoricalStatsResult;
+    /**
+     * Delta-presence result
+     */
     deltaPresenceEstimationResult?: Schema$GooglePrivacyDlpV2DeltaPresenceEstimationResult;
+    /**
+     * K-anonymity result
+     */
     kAnonymityResult?: Schema$GooglePrivacyDlpV2KAnonymityResult;
+    /**
+     * K-map result
+     */
     kMapEstimationResult?: Schema$GooglePrivacyDlpV2KMapEstimationResult;
+    /**
+     * L-divesity result
+     */
     lDiversityResult?: Schema$GooglePrivacyDlpV2LDiversityResult;
+    /**
+     * Numerical stats result
+     */
     numericalStatsResult?: Schema$GooglePrivacyDlpV2NumericalStatsResult;
     /**
      * Privacy metric to compute.
@@ -178,15 +196,15 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2AuxiliaryTable {
     /**
-     * Quasi-identifier columns. [required]
+     * Required. Quasi-identifier columns.
      */
     quasiIds?: Schema$GooglePrivacyDlpV2QuasiIdField[];
     /**
-     * The relative frequency column must contain a floating-point number between 0 and 1 (inclusive). Null values are assumed to be zero. [required]
+     * Required. The relative frequency column must contain a floating-point number between 0 and 1 (inclusive). Null values are assumed to be zero.
      */
     relativeFrequency?: Schema$GooglePrivacyDlpV2FieldId;
     /**
-     * Auxiliary table location. [required]
+     * Required. Auxiliary table location.
      */
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
@@ -332,6 +350,9 @@ export namespace dlp_v2 {
      */
     field?: Schema$GooglePrivacyDlpV2FieldId;
   }
+  /**
+   * Histogram of value frequencies in the column.
+   */
   export interface Schema$GooglePrivacyDlpV2CategoricalStatsHistogramBucket {
     /**
      * Total number of values in this bucket.
@@ -388,7 +409,13 @@ export namespace dlp_v2 {
    * Characters to skip when doing deidentification of a value. These will be left alone and skipped.
    */
   export interface Schema$GooglePrivacyDlpV2CharsToIgnore {
+    /**
+     * Characters to not transform when masking.
+     */
     charactersToSkip?: string | null;
+    /**
+     * Common characters to not transform when masking. Useful to avoid removing punctuation.
+     */
     commonCharactersToIgnore?: string | null;
   }
   /**
@@ -474,15 +501,15 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Condition {
     /**
-     * Field within the record this condition is evaluated against. [required]
+     * Required. Field within the record this condition is evaluated against.
      */
     field?: Schema$GooglePrivacyDlpV2FieldId;
     /**
-     * Operator used to compare the field or infoType to the value. [required]
+     * Required. Operator used to compare the field or infoType to the value.
      */
     operator?: string | null;
     /**
-     * Value to compare against. [Required, except for `EXISTS` tests.]
+     * Value to compare against. [Mandatory, except for `EXISTS` tests.]
      */
     value?: Schema$GooglePrivacyDlpV2Value;
   }
@@ -490,6 +517,9 @@ export namespace dlp_v2 {
    * A collection of conditions.
    */
   export interface Schema$GooglePrivacyDlpV2Conditions {
+    /**
+     * A collection of conditions.
+     */
     conditions?: Schema$GooglePrivacyDlpV2Condition[];
   }
   /**
@@ -514,7 +544,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ContentLocation {
     /**
-     * Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows:  * BigQuery tables:  `&lt;project_id&gt;:&lt;dataset_id&gt;.&lt;table_id&gt;` * Cloud Storage files: `gs://&lt;bucket&gt;/&lt;path&gt;` * Datastore namespace: &lt;namespace&gt;  Nested names could be absent if the embedded object has no string identifier (for an example an image contained within a document).
+     * Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows:  * BigQuery tables:  `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files: `gs://{bucket}/{path}` * Datastore namespace: {namespace}  Nested names could be absent if the embedded object has no string identifier (for an example an image contained within a document).
      */
     containerName?: string | null;
     /**
@@ -543,7 +573,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CreateDeidentifyTemplateRequest {
     /**
-     * The DeidentifyTemplate to create.
+     * Required. The DeidentifyTemplate to create.
      */
     deidentifyTemplate?: Schema$GooglePrivacyDlpV2DeidentifyTemplate;
     /**
@@ -559,6 +589,9 @@ export namespace dlp_v2 {
    * Request message for CreateDlpJobRequest. Used to initiate long running jobs such as calculating risk metrics or inspecting Google Cloud Storage.
    */
   export interface Schema$GooglePrivacyDlpV2CreateDlpJobRequest {
+    /**
+     * Set to control what and how to inspect.
+     */
     inspectJob?: Schema$GooglePrivacyDlpV2InspectJobConfig;
     /**
      * The job id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. Can be empty to allow the system to generate one.
@@ -568,6 +601,9 @@ export namespace dlp_v2 {
      * The geographic location to store and process the job. Reserved for future extensions.
      */
     locationId?: string | null;
+    /**
+     * Set to choose what metric to calculate.
+     */
     riskJob?: Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig;
   }
   /**
@@ -575,7 +611,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CreateInspectTemplateRequest {
     /**
-     * The InspectTemplate to create.
+     * Required. The InspectTemplate to create.
      */
     inspectTemplate?: Schema$GooglePrivacyDlpV2InspectTemplate;
     /**
@@ -592,7 +628,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CreateJobTriggerRequest {
     /**
-     * The JobTrigger to create.
+     * Required. The JobTrigger to create.
      */
     jobTrigger?: Schema$GooglePrivacyDlpV2JobTrigger;
     /**
@@ -609,7 +645,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CreateStoredInfoTypeRequest {
     /**
-     * Configuration of the storedInfoType to create.
+     * Required. Configuration of the storedInfoType to create.
      */
     config?: Schema$GooglePrivacyDlpV2StoredInfoTypeConfig;
     /**
@@ -626,7 +662,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CryptoDeterministicConfig {
     /**
-     * Optional. A context may be used for higher security and maintaining referential integrity such that the same identifier in two different contexts will be given a distinct surrogate. The context is appended to plaintext value being encrypted. On decryption the provided context is validated against the value used during encryption. If a context was provided during encryption, same context must be provided during decryption as well.  If the context is not set, plaintext would be used as is for encryption. If the context is set but:  1. there is no record present when transforming a given value or 2. the field is not present when transforming a given value,  plaintext would be used as is for encryption.  Note that case (1) is expected when an `InfoTypeTransformation` is applied to both structured and non-structured `ContentItem`s.
+     * A context may be used for higher security and maintaining referential integrity such that the same identifier in two different contexts will be given a distinct surrogate. The context is appended to plaintext value being encrypted. On decryption the provided context is validated against the value used during encryption. If a context was provided during encryption, same context must be provided during decryption as well.  If the context is not set, plaintext would be used as is for encryption. If the context is set but:  1. there is no record present when transforming a given value or 2. the field is not present when transforming a given value,  plaintext would be used as is for encryption.  Note that case (1) is expected when an `InfoTypeTransformation` is applied to both structured and non-structured `ContentItem`s.
      */
     context?: Schema$GooglePrivacyDlpV2FieldId;
     /**
@@ -634,7 +670,7 @@ export namespace dlp_v2 {
      */
     cryptoKey?: Schema$GooglePrivacyDlpV2CryptoKey;
     /**
-     * The custom info type to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom info type followed by the number of characters comprising the surrogate. The following scheme defines the format: &lt;info type name&gt;(&lt;surrogate character count&gt;):&lt;surrogate&gt;  For example, if the name of custom info type is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom info type &#39;Surrogate&#39;. This facilitates reversal of the surrogate when it occurs in free text.  Note: For record transformations where the entire cell in a table is being transformed, surrogates are optional to use. Surrogates are used to denote the location of the token and are necessary for re-identification in free form text.  In order for inspection to work properly, the name of this info type must not occur naturally anywhere in your data; otherwise, inspection may either  - reverse a surrogate that does not correspond to an actual identifier - be unable to parse the surrogate and result in an error  Therefore, choose your custom info type name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE.
+     * The custom info type to annotate the surrogate with. This annotation will be applied to the surrogate by prefixing it with the name of the custom info type followed by the number of characters comprising the surrogate. The following scheme defines the format: {info type name}({surrogate character count}):{surrogate}  For example, if the name of custom info type is &#39;MY_TOKEN_INFO_TYPE&#39; and the surrogate is &#39;abc&#39;, the full replacement value will be: &#39;MY_TOKEN_INFO_TYPE(3):abc&#39;  This annotation identifies the surrogate when inspecting content using the custom info type &#39;Surrogate&#39;. This facilitates reversal of the surrogate when it occurs in free text.  Note: For record transformations where the entire cell in a table is being transformed, surrogates are not mandatory. Surrogates are used to denote the location of the token and are necessary for re-identification in free form text.  In order for inspection to work properly, the name of this info type must not occur naturally anywhere in your data; otherwise, inspection may either  - reverse a surrogate that does not correspond to an actual identifier - be unable to parse the surrogate and result in an error  Therefore, choose your custom info type name carefully after considering what your data looks like. One way to select a name that has a high chance of yielding reliable detection is to include one or more unicode characters that are highly improbable to exist in your data. For example, assuming your data is entered from a regular ASCII keyboard, the symbol with the hex code point 29DD might be used like so: ⧝MY_TOKEN_TYPE.
      */
     surrogateInfoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
@@ -651,21 +687,33 @@ export namespace dlp_v2 {
    * This is a data encryption key (DEK) (as opposed to a key encryption key (KEK) stored by KMS). When using KMS to wrap/unwrap DEKs, be sure to set an appropriate IAM policy on the KMS CryptoKey (KEK) to ensure an attacker cannot unwrap the data crypto key.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoKey {
+    /**
+     * Kms wrapped key
+     */
     kmsWrapped?: Schema$GooglePrivacyDlpV2KmsWrappedCryptoKey;
+    /**
+     * Transient crypto key
+     */
     transient?: Schema$GooglePrivacyDlpV2TransientCryptoKey;
+    /**
+     * Unwrapped crypto key
+     */
     unwrapped?: Schema$GooglePrivacyDlpV2UnwrappedCryptoKey;
   }
   /**
    * Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/dlp/docs/pseudonymization to learn more.  Note: We recommend using  CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig {
+    /**
+     * Common alphabets.
+     */
     commonAlphabet?: string | null;
     /**
      * The &#39;tweak&#39;, a context may be used for higher security since the same identifier in two different contexts won&#39;t be given the same surrogate. If the context is not set, a default tweak will be used.  If the context is set but:  1. there is no record present when transforming a given value or 1. the field is not present when transforming a given value,  a default tweak will be used.  Note that case (1) is expected when an `InfoTypeTransformation` is applied to both structured and non-structured `ContentItem`s. Currently, the referenced field may be of value type integer or string.  The tweak is constructed as a sequence of bytes in big endian byte order such that:  - a 64 bit integer is encoded followed by a single byte of value 1 - a string is encoded in UTF-8 format followed by a single byte of value 2
      */
     context?: Schema$GooglePrivacyDlpV2FieldId;
     /**
-     * The key used by the encryption algorithm. [required]
+     * Required. The key used by the encryption algorithm.
      */
     cryptoKey?: Schema$GooglePrivacyDlpV2CryptoKey;
     /**
@@ -753,11 +801,11 @@ export namespace dlp_v2 {
      */
     cryptoKey?: Schema$GooglePrivacyDlpV2CryptoKey;
     /**
-     * For example, -5 means shift date to at most 5 days back in the past. [Required]
+     * Required. For example, -5 means shift date to at most 5 days back in the past.
      */
     lowerBoundDays?: number | null;
     /**
-     * Range of shift in days. Actual shift will be selected at random within this range (inclusive ends). Negative means shift to earlier in time. Must not be more than 365250 days (1000 years) each direction.  For example, 3 means shift date to at most 3 days into the future. [Required]
+     * Required. Range of shift in days. Actual shift will be selected at random within this range (inclusive ends). Negative means shift to earlier in time. Must not be more than 365250 days (1000 years) each direction.  For example, 3 means shift date to at most 3 days into the future.
      */
     upperBoundDays?: number | null;
   }
@@ -766,11 +814,20 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DateTime {
     /**
-     * One or more of the following must be set. All fields are optional, but when set must be valid date or time values.
+     * One or more of the following must be set. Must be a valid date or time value.
      */
     date?: Schema$GoogleTypeDate;
+    /**
+     * Day of week
+     */
     dayOfWeek?: string | null;
+    /**
+     * Time of day
+     */
     time?: Schema$GoogleTypeTimeOfDay;
+    /**
+     * Time zone
+     */
     timeZone?: Schema$GooglePrivacyDlpV2TimeZone;
   }
   /**
@@ -785,6 +842,10 @@ export namespace dlp_v2 {
      * Treat the dataset as structured. Transformations can be applied to specific locations within structured datasets, such as transforming a column within a table.
      */
     recordTransformations?: Schema$GooglePrivacyDlpV2RecordTransformations;
+    /**
+     * Mode for handling transformation errors. If left unspecified, the default mode is `TransformationErrorHandling.ThrowError`.
+     */
+    transformationErrorHandling?: Schema$GooglePrivacyDlpV2TransformationErrorHandling;
   }
   /**
    * Request to de-identify a list of items.
@@ -795,7 +856,7 @@ export namespace dlp_v2 {
      */
     deidentifyConfig?: Schema$GooglePrivacyDlpV2DeidentifyConfig;
     /**
-     * Optional template to use. Any configuration directly specified in deidentify_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
+     * Template to use. Any configuration directly specified in deidentify_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
     deidentifyTemplateName?: string | null;
     /**
@@ -803,7 +864,7 @@ export namespace dlp_v2 {
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
     /**
-     * Optional template to use. Any configuration directly specified in inspect_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
+     * Template to use. Any configuration directly specified in inspect_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
     inspectTemplateName?: string | null;
     /**
@@ -833,7 +894,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DeidentifyTemplate {
     /**
-     * The creation timestamp of an inspectTemplate, output only field.
+     * Output only. The creation timestamp of an inspectTemplate.
      */
     createTime?: string | null;
     /**
@@ -849,11 +910,11 @@ export namespace dlp_v2 {
      */
     displayName?: string | null;
     /**
-     * The template name. Output only.  The template will have one of the following formats: `projects/PROJECT_ID/deidentifyTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/deidentifyTemplates/TEMPLATE_ID`
+     * Output only. The template name.  The template will have one of the following formats: `projects/PROJECT_ID/deidentifyTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/deidentifyTemplates/TEMPLATE_ID`
      */
     name?: string | null;
     /**
-     * The last update timestamp of an inspectTemplate, output only field.
+     * Output only. The last update timestamp of an inspectTemplate.
      */
     updateTime?: string | null;
   }
@@ -866,11 +927,11 @@ export namespace dlp_v2 {
      */
     auxiliaryTables?: Schema$GooglePrivacyDlpV2StatisticalTable[];
     /**
-     * Fields considered to be quasi-identifiers. No two fields can have the same tag. [required]
+     * Required. Fields considered to be quasi-identifiers. No two fields can have the same tag.
      */
     quasiIds?: Schema$GooglePrivacyDlpV2QuasiId[];
     /**
-     * ISO 3166-1 alpha-2 region code to use in the statistical modeling. Required if no column is tagged with a region-specific InfoType (like US_ZIP_5) or a region code.
+     * ISO 3166-1 alpha-2 region code to use in the statistical modeling. Set if no column is tagged with a region-specific InfoType (like US_ZIP_5) or a region code.
      */
     regionCode?: string | null;
   }
@@ -1007,9 +1068,12 @@ export namespace dlp_v2 {
     field?: Schema$GooglePrivacyDlpV2FieldId;
   }
   /**
-   * Details information about an error encountered during job execution or the results of an unsuccessful activation of the JobTrigger. Output only field.
+   * Details information about an error encountered during job execution or the results of an unsuccessful activation of the JobTrigger.
    */
   export interface Schema$GooglePrivacyDlpV2Error {
+    /**
+     * Detailed error codes and messages.
+     */
     details?: Schema$GoogleRpcStatus;
     /**
      * The times the error occurred.
@@ -1050,6 +1114,9 @@ export namespace dlp_v2 {
    * An expression, consisting or an operator and conditions.
    */
   export interface Schema$GooglePrivacyDlpV2Expressions {
+    /**
+     * Conditions to apply to the expression.
+     */
     conditions?: Schema$GooglePrivacyDlpV2Conditions;
     /**
      * The operator to apply to the result of conditions. Default and currently only supported value is `AND`.
@@ -1070,11 +1137,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2FieldTransformation {
     /**
-     * Only apply the transformation if the condition evaluates to true for the given `RecordCondition`. The conditions are allowed to reference fields that are not used in the actual transformation. [optional]  Example Use Cases:  - Apply a different bucket transformation to an age column if the zip code column for the same record is within a specific range. - Redact a field if the date of birth field is greater than 85.
+     * Only apply the transformation if the condition evaluates to true for the given `RecordCondition`. The conditions are allowed to reference fields that are not used in the actual transformation.  Example Use Cases:  - Apply a different bucket transformation to an age column if the zip code column for the same record is within a specific range. - Redact a field if the date of birth field is greater than 85.
      */
     condition?: Schema$GooglePrivacyDlpV2RecordCondition;
     /**
-     * Input field(s) to apply the transformation to. [required]
+     * Required. Input field(s) to apply the transformation to.
      */
     fields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
@@ -1128,6 +1195,9 @@ export namespace dlp_v2 {
      */
     quoteInfo?: Schema$GooglePrivacyDlpV2QuoteInfo;
   }
+  /**
+   * Configuration to control the number of findings returned.
+   */
   export interface Schema$GooglePrivacyDlpV2FindingLimits {
     /**
      * Configuration of findings limit given for specified infoTypes.
@@ -1143,19 +1213,19 @@ export namespace dlp_v2 {
     maxFindingsPerRequest?: number | null;
   }
   /**
-   * Buckets values based on fixed size ranges. The Bucketing transformation can provide all of this functionality, but requires more configuration. This message is provided as a convenience to the user for simple bucketing strategies.  The transformed value will be a hyphenated string of &lt;lower_bound&gt;-&lt;upper_bound&gt;, i.e if lower_bound = 10 and upper_bound = 20 all values that are within this bucket will be replaced with &quot;10-20&quot;.  This can be used on data of type: double, long.  If the bound Value type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing.  See https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
+   * Buckets values based on fixed size ranges. The Bucketing transformation can provide all of this functionality, but requires more configuration. This message is provided as a convenience to the user for simple bucketing strategies.  The transformed value will be a hyphenated string of {lower_bound}-{upper_bound}, i.e if lower_bound = 10 and upper_bound = 20 all values that are within this bucket will be replaced with &quot;10-20&quot;.  This can be used on data of type: double, long.  If the bound Value type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing.  See https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2FixedSizeBucketingConfig {
     /**
-     * Size of each bucket (except for minimum and maximum buckets). So if `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60, 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works. [Required].
+     * Required. Size of each bucket (except for minimum and maximum buckets). So if `lower_bound` = 10, `upper_bound` = 89, and `bucket_size` = 10, then the following buckets would be used: -10, 10-20, 20-30, 30-40, 40-50, 50-60, 60-70, 70-80, 80-89, 89+. Precision up to 2 decimals works.
      */
     bucketSize?: number | null;
     /**
-     * Lower bound value of buckets. All values less than `lower_bound` are grouped together into a single bucket; for example if `lower_bound` = 10, then all values less than 10 are replaced with the value “-10”. [Required].
+     * Required. Lower bound value of buckets. All values less than `lower_bound` are grouped together into a single bucket; for example if `lower_bound` = 10, then all values less than 10 are replaced with the value “-10”.
      */
     lowerBound?: Schema$GooglePrivacyDlpV2Value;
     /**
-     * Upper bound value of buckets. All values greater than upper_bound are grouped together into a single bucket; for example if `upper_bound` = 89, then all values greater than 89 are replaced with the value “89+”. [Required].
+     * Required. Upper bound value of buckets. All values greater than upper_bound are grouped together into a single bucket; for example if `upper_bound` = 89, then all values greater than 89 are replaced with the value “89+”.
      */
     upperBound?: Schema$GooglePrivacyDlpV2Value;
   }
@@ -1267,7 +1337,7 @@ export namespace dlp_v2 {
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
-     * Primitive transformation to apply to the infoType. [required]
+     * Required. Primitive transformation to apply to the infoType.
      */
     primitiveTransformation?: Schema$GooglePrivacyDlpV2PrimitiveTransformation;
   }
@@ -1276,7 +1346,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeTransformations {
     /**
-     * Transformation for each infoType. Cannot specify more than one for a given infoType. [required]
+     * Required. Transformation for each infoType. Cannot specify more than one for a given infoType.
      */
     transformations?: Schema$GooglePrivacyDlpV2InfoTypeTransformation[];
   }
@@ -1304,6 +1374,9 @@ export namespace dlp_v2 {
      * Restricts what info_types to look for. The values must correspond to InfoType values returned by ListInfoTypes or listed at https://cloud.google.com/dlp/docs/infotypes-reference.  When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.  If you need precise control and predictability as to what detectors are run you should specify specific InfoTypes listed in the reference, otherwise a default list will be used, which may change over time.
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+    /**
+     * Configuration to control the number of findings returned.
+     */
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
     /**
      * Only returns findings equal or above this threshold. The default is POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.
@@ -1323,7 +1396,7 @@ export namespace dlp_v2 {
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
     /**
-     * Optional template to use. Any configuration directly specified in inspect_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
+     * Template to use. Any configuration directly specified in inspect_config will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
     inspectTemplateName?: string | null;
     /**
@@ -1383,6 +1456,9 @@ export namespace dlp_v2 {
      */
     rules?: Schema$GooglePrivacyDlpV2InspectionRule[];
   }
+  /**
+   * Controls what and how to inspect for findings.
+   */
   export interface Schema$GooglePrivacyDlpV2InspectJobConfig {
     /**
      * Actions to execute at the completion of the job.
@@ -1419,7 +1495,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InspectTemplate {
     /**
-     * The creation timestamp of an inspectTemplate, output only field.
+     * Output only. The creation timestamp of an inspectTemplate.
      */
     createTime?: string | null;
     /**
@@ -1435,11 +1511,11 @@ export namespace dlp_v2 {
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
     /**
-     * The template name. Output only.  The template will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
+     * Output only. The template name.  The template will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`;
      */
     name?: string | null;
     /**
-     * The last update timestamp of an inspectTemplate, output only field.
+     * Output only. The last update timestamp of an inspectTemplate.
      */
     updateTime?: string | null;
   }
@@ -1452,7 +1528,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2JobTrigger {
     /**
-     * The creation timestamp of a triggeredJob, output only field.
+     * Output only. The creation timestamp of a triggeredJob.
      */
     createTime?: string | null;
     /**
@@ -1464,12 +1540,15 @@ export namespace dlp_v2 {
      */
     displayName?: string | null;
     /**
-     * A stream of errors encountered when the trigger was activated. Repeated errors may result in the JobTrigger automatically being paused. Will return the last 100 errors. Whenever the JobTrigger is modified this list will be cleared. Output only field.
+     * Output only. A stream of errors encountered when the trigger was activated. Repeated errors may result in the JobTrigger automatically being paused. Will return the last 100 errors. Whenever the JobTrigger is modified this list will be cleared.
      */
     errors?: Schema$GooglePrivacyDlpV2Error[];
+    /**
+     * For inspect jobs, a snapshot of the configuration.
+     */
     inspectJob?: Schema$GooglePrivacyDlpV2InspectJobConfig;
     /**
-     * The timestamp of the last time this trigger executed, output only field.
+     * Output only. The timestamp of the last time this trigger executed.
      */
     lastRunTime?: string | null;
     /**
@@ -1477,7 +1556,7 @@ export namespace dlp_v2 {
      */
     name?: string | null;
     /**
-     * A status for this trigger. [required]
+     * Required. A status for this trigger.
      */
     status?: string | null;
     /**
@@ -1485,7 +1564,7 @@ export namespace dlp_v2 {
      */
     triggers?: Schema$GooglePrivacyDlpV2Trigger[];
     /**
-     * The last update timestamp of a triggeredJob, output only field.
+     * Output only. The last update timestamp of a triggeredJob.
      */
     updateTime?: string | null;
   }
@@ -1494,7 +1573,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2KAnonymityConfig {
     /**
-     * Optional message indicating that multiple rows might be associated to a single individual. If the same entity_id is associated to multiple quasi-identifier tuples over distinct rows, we consider the entire collection of tuples as the composite quasi-identifier. This collection is a multiset: the order in which the different tuples appear in the dataset is ignored, but their frequency is taken into account.  Important note: a maximum of 1000 rows can be associated to a single entity ID. If more rows are associated with the same entity ID, some might be ignored.
+     * Message indicating that multiple rows might be associated to a single individual. If the same entity_id is associated to multiple quasi-identifier tuples over distinct rows, we consider the entire collection of tuples as the composite quasi-identifier. This collection is a multiset: the order in which the different tuples appear in the dataset is ignored, but their frequency is taken into account.  Important note: a maximum of 1000 rows can be associated to a single entity ID. If more rows are associated with the same entity ID, some might be ignored.
      */
     entityId?: Schema$GooglePrivacyDlpV2EntityId;
     /**
@@ -1515,6 +1594,9 @@ export namespace dlp_v2 {
      */
     quasiIdsValues?: Schema$GooglePrivacyDlpV2Value[];
   }
+  /**
+   * Histogram of k-anonymity equivalence classes.
+   */
   export interface Schema$GooglePrivacyDlpV2KAnonymityHistogramBucket {
     /**
      * Total number of equivalence classes in this bucket.
@@ -1569,7 +1651,7 @@ export namespace dlp_v2 {
     name?: string | null;
   }
   /**
-   * Reidentifiability metric. This corresponds to a risk model similar to what is called &quot;journalist risk&quot; in the literature, except the attack dataset is statistically modeled instead of being perfectly known. This can be done using publicly available data (like the US Census), or using a custom statistical model (indicated as one or several BigQuery tables), or by extrapolating from the distribution of values in the input dataset. A column with a semantic tag attached.
+   * Reidentifiability metric. This corresponds to a risk model similar to what is called &quot;journalist risk&quot; in the literature, except the attack dataset is statistically modeled instead of being perfectly known. This can be done using publicly available data (like the US Census), or using a custom statistical model (indicated as one or several BigQuery tables), or by extrapolating from the distribution of values in the input dataset.
    */
   export interface Schema$GooglePrivacyDlpV2KMapEstimationConfig {
     /**
@@ -1577,11 +1659,11 @@ export namespace dlp_v2 {
      */
     auxiliaryTables?: Schema$GooglePrivacyDlpV2AuxiliaryTable[];
     /**
-     * Fields considered to be quasi-identifiers. No two columns can have the same tag. [required]
+     * Required. Fields considered to be quasi-identifiers. No two columns can have the same tag.
      */
     quasiIds?: Schema$GooglePrivacyDlpV2TaggedField[];
     /**
-     * ISO 3166-1 alpha-2 region code to use in the statistical modeling. Required if no column is tagged with a region-specific InfoType (like US_ZIP_5) or a region code.
+     * ISO 3166-1 alpha-2 region code to use in the statistical modeling. Set if no column is tagged with a region-specific InfoType (like US_ZIP_5) or a region code.
      */
     regionCode?: string | null;
   }
@@ -1637,11 +1719,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2KmsWrappedCryptoKey {
     /**
-     * The resource name of the KMS CryptoKey to use for unwrapping. [required]
+     * Required. The resource name of the KMS CryptoKey to use for unwrapping.
      */
     cryptoKeyName?: string | null;
     /**
-     * The wrapped data crypto key. [required]
+     * Required. The wrapped data crypto key.
      */
     wrappedKey?: string | null;
   }
@@ -1705,6 +1787,9 @@ export namespace dlp_v2 {
      */
     topSensitiveValues?: Schema$GooglePrivacyDlpV2ValueFrequency[];
   }
+  /**
+   * Histogram of l-diversity equivalence class sensitive value frequencies.
+   */
   export interface Schema$GooglePrivacyDlpV2LDiversityHistogramBucket {
     /**
      * Total number of equivalence classes in this bucket.
@@ -1736,6 +1821,10 @@ export namespace dlp_v2 {
      */
     sensitiveValueFrequencyHistogramBuckets?: Schema$GooglePrivacyDlpV2LDiversityHistogramBucket[];
   }
+  /**
+   * Skips the data without modifying it if the requested transformation would cause an error. For example, if a `DateShift` transformation were applied an an IP address, this mode would leave the IP address unchanged in the response.
+   */
+  export interface Schema$GooglePrivacyDlpV2LeaveUntransformed {}
   /**
    * Message for specifying an adjustment to the likelihood of a finding as part of a detection rule.
    */
@@ -1913,27 +2002,78 @@ export namespace dlp_v2 {
    * A rule for transforming a value.
    */
   export interface Schema$GooglePrivacyDlpV2PrimitiveTransformation {
+    /**
+     * Bucketing
+     */
     bucketingConfig?: Schema$GooglePrivacyDlpV2BucketingConfig;
+    /**
+     * Mask
+     */
     characterMaskConfig?: Schema$GooglePrivacyDlpV2CharacterMaskConfig;
+    /**
+     * Deterministic Crypto
+     */
     cryptoDeterministicConfig?: Schema$GooglePrivacyDlpV2CryptoDeterministicConfig;
+    /**
+     * Crypto
+     */
     cryptoHashConfig?: Schema$GooglePrivacyDlpV2CryptoHashConfig;
+    /**
+     * Ffx-Fpe
+     */
     cryptoReplaceFfxFpeConfig?: Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig;
+    /**
+     * Date Shift
+     */
     dateShiftConfig?: Schema$GooglePrivacyDlpV2DateShiftConfig;
+    /**
+     * Fixed size bucketing
+     */
     fixedSizeBucketingConfig?: Schema$GooglePrivacyDlpV2FixedSizeBucketingConfig;
+    /**
+     * Redact
+     */
     redactConfig?: Schema$GooglePrivacyDlpV2RedactConfig;
+    /**
+     * Replace
+     */
     replaceConfig?: Schema$GooglePrivacyDlpV2ReplaceValueConfig;
+    /**
+     * Replace with infotype
+     */
     replaceWithInfoTypeConfig?: Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig;
+    /**
+     * Time extraction
+     */
     timePartConfig?: Schema$GooglePrivacyDlpV2TimePartConfig;
   }
   /**
    * Privacy metric to compute for reidentification risk analysis.
    */
   export interface Schema$GooglePrivacyDlpV2PrivacyMetric {
+    /**
+     * Categorical stats
+     */
     categoricalStatsConfig?: Schema$GooglePrivacyDlpV2CategoricalStatsConfig;
+    /**
+     * delta-presence
+     */
     deltaPresenceEstimationConfig?: Schema$GooglePrivacyDlpV2DeltaPresenceEstimationConfig;
+    /**
+     * K-anonymity
+     */
     kAnonymityConfig?: Schema$GooglePrivacyDlpV2KAnonymityConfig;
+    /**
+     * k-map
+     */
     kMapEstimationConfig?: Schema$GooglePrivacyDlpV2KMapEstimationConfig;
+    /**
+     * l-diversity
+     */
     lDiversityConfig?: Schema$GooglePrivacyDlpV2LDiversityConfig;
+    /**
+     * Numerical stats
+     */
     numericalStatsConfig?: Schema$GooglePrivacyDlpV2NumericalStatsConfig;
   }
   /**
@@ -1979,7 +2119,7 @@ export namespace dlp_v2 {
      */
     customTag?: string | null;
     /**
-     * Identifies the column. [required]
+     * Required. Identifies the column.
      */
     field?: Schema$GooglePrivacyDlpV2FieldId;
     /**
@@ -1995,14 +2135,26 @@ export namespace dlp_v2 {
    * A quasi-identifier column has a custom_tag, used to know which column in the data corresponds to which column in the statistical model.
    */
   export interface Schema$GooglePrivacyDlpV2QuasiIdentifierField {
+    /**
+     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
+     */
     customTag?: string | null;
+    /**
+     * Identifies the column.
+     */
     field?: Schema$GooglePrivacyDlpV2FieldId;
   }
   /**
    * A quasi-identifier column has a custom_tag, used to know which column in the data corresponds to which column in the statistical model.
    */
   export interface Schema$GooglePrivacyDlpV2QuasiIdField {
+    /**
+     * A auxiliary field.
+     */
     customTag?: string | null;
+    /**
+     * Identifies the column.
+     */
     field?: Schema$GooglePrivacyDlpV2FieldId;
   }
   /**
@@ -2082,7 +2234,7 @@ export namespace dlp_v2 {
      */
     fieldTransformations?: Schema$GooglePrivacyDlpV2FieldTransformation[];
     /**
-     * Configuration defining which records get suppressed entirely. Records that match any suppression rule are omitted from the output [optional].
+     * Configuration defining which records get suppressed entirely. Records that match any suppression rule are omitted from the output.
      */
     recordSuppressions?: Schema$GooglePrivacyDlpV2RecordSuppression[];
   }
@@ -2154,7 +2306,7 @@ export namespace dlp_v2 {
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
     /**
-     * Optional template to use. Any configuration directly specified in `inspect_config` will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
+     * Template to use. Any configuration directly specified in `inspect_config` will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
     inspectTemplateName?: string | null;
     /**
@@ -2170,7 +2322,7 @@ export namespace dlp_v2 {
      */
     reidentifyConfig?: Schema$GooglePrivacyDlpV2DeidentifyConfig;
     /**
-     * Optional template to use. References an instance of `DeidentifyTemplate`. Any configuration directly specified in `reidentify_config` or `inspect_config` will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
+     * Template to use. References an instance of `DeidentifyTemplate`. Any configuration directly specified in `reidentify_config` or `inspect_config` will override those set in the template. Singular fields that are set in this request will replace their corresponding fields in the template. Repeated fields are appended. Singular sub-messages and groups are recursively merged.
      */
     reidentifyTemplateName?: string | null;
   }
@@ -2200,7 +2352,13 @@ export namespace dlp_v2 {
    * Replace each matching finding with the name of the info_type.
    */
   export interface Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig {}
+  /**
+   * Snapshot of the inspection configuration.
+   */
   export interface Schema$GooglePrivacyDlpV2RequestedOptions {
+    /**
+     * Inspect config.
+     */
     jobConfig?: Schema$GooglePrivacyDlpV2InspectJobConfig;
     /**
      * If run with an InspectTemplate, a snapshot of its state at the time of this run.
@@ -2241,13 +2399,22 @@ export namespace dlp_v2 {
      */
     sourceTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
+  /**
+   * Values of the row.
+   */
   export interface Schema$GooglePrivacyDlpV2Row {
+    /**
+     * Individual cells.
+     */
     values?: Schema$GooglePrivacyDlpV2Value[];
   }
   /**
    * If set, the detailed findings will be persisted to the specified OutputStorageConfig. Only a single instance of this action can be specified. Compatible with: Inspect, Risk
    */
   export interface Schema$GooglePrivacyDlpV2SaveFindings {
+    /**
+     * Location to store findings outside of DLP.
+     */
     outputConfig?: Schema$GooglePrivacyDlpV2OutputStorageConfig;
   }
   /**
@@ -2264,15 +2431,15 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2StatisticalTable {
     /**
-     * Quasi-identifier columns. [required]
+     * Required. Quasi-identifier columns.
      */
     quasiIds?: Schema$GooglePrivacyDlpV2QuasiIdentifierField[];
     /**
-     * The relative frequency column must contain a floating-point number between 0 and 1 (inclusive). Null values are assumed to be zero. [required]
+     * Required. The relative frequency column must contain a floating-point number between 0 and 1 (inclusive). Null values are assumed to be zero.
      */
     relativeFrequency?: Schema$GooglePrivacyDlpV2FieldId;
     /**
-     * Auxiliary table location. [required]
+     * Required. Auxiliary table location.
      */
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
@@ -2312,7 +2479,7 @@ export namespace dlp_v2 {
     pendingVersions?: Schema$GooglePrivacyDlpV2StoredInfoTypeVersion[];
   }
   /**
-   * Configuration for stored infoT types. All fields and subfield are provided by the user. For more information, see https://cloud.google.com/dlp/docs/creating-custom-infotypes.
+   * Configuration for stored infoTypes. All fields and subfield are provided by the user. For more information, see https://cloud.google.com/dlp/docs/creating-custom-infotypes.
    */
   export interface Schema$GooglePrivacyDlpV2StoredInfoTypeConfig {
     /**
@@ -2350,7 +2517,7 @@ export namespace dlp_v2 {
      */
     createTime?: string | null;
     /**
-     * Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first. &lt;p&gt;For example, some of the data for stored custom dictionaries is put in the user&#39;s Google Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid. &lt;p&gt;If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.
+     * Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first.  For example, some of the data for stored custom dictionaries is put in the user&#39;s Google Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid.  If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.
      */
     errors?: Schema$GooglePrivacyDlpV2Error[];
     /**
@@ -2379,7 +2546,13 @@ export namespace dlp_v2 {
    * A collection that informs the user the number of times a particular `TransformationResultCode` and error details occurred.
    */
   export interface Schema$GooglePrivacyDlpV2SummaryResult {
+    /**
+     * Outcome of the transformation.
+     */
     code?: string | null;
+    /**
+     * Number of transformations counted by this result.
+     */
     count?: string | null;
     /**
      * A place for warnings or errors to show up if a transformation didn&#39;t work as expected.
@@ -2394,7 +2567,13 @@ export namespace dlp_v2 {
    * Structured content to inspect. Up to 50,000 `Value`s per request allowed. See https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2Table {
+    /**
+     * Headers of the table.
+     */
     headers?: Schema$GooglePrivacyDlpV2FieldId[];
+    /**
+     * Rows of the table.
+     */
     rows?: Schema$GooglePrivacyDlpV2Row[];
   }
   /**
@@ -2406,13 +2585,16 @@ export namespace dlp_v2 {
      */
     rowIndex?: string | null;
   }
+  /**
+   * A column with a semantic tag attached.
+   */
   export interface Schema$GooglePrivacyDlpV2TaggedField {
     /**
      * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
      */
     customTag?: string | null;
     /**
-     * Identifies the column. [required]
+     * Required. Identifies the column.
      */
     field?: Schema$GooglePrivacyDlpV2FieldId;
     /**
@@ -2425,9 +2607,16 @@ export namespace dlp_v2 {
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
   /**
+   * Throw an error and fail the request when a transformation error occurs.
+   */
+  export interface Schema$GooglePrivacyDlpV2ThrowError {}
+  /**
    * For use with `Date`, `Timestamp`, and `TimeOfDay`, extract or preserve a portion of the value.
    */
   export interface Schema$GooglePrivacyDlpV2TimePartConfig {
+    /**
+     * The part of the time to keep.
+     */
     partToExtract?: string | null;
   }
   /**
@@ -2451,11 +2640,27 @@ export namespace dlp_v2 {
      */
     timestampField?: Schema$GooglePrivacyDlpV2FieldId;
   }
+  /**
+   * Time zone of the date time object.
+   */
   export interface Schema$GooglePrivacyDlpV2TimeZone {
     /**
      * Set only if the offset can be determined. Positive for time ahead of UTC. E.g. For &quot;UTC-9&quot;, this value is -540.
      */
     offsetMinutes?: number | null;
+  }
+  /**
+   * How to handle transformation errors during de-identification. A transformation error occurs when the requested transformation is incompatible with the data. For example, trying to de-identify an IP address using a `DateShift` transformation would result in a transformation error, since date info cannot be extracted from an IP address. Information about any incompatible transformations, and how they were handled, is returned in the response as part of the `TransformationOverviews`.
+   */
+  export interface Schema$GooglePrivacyDlpV2TransformationErrorHandling {
+    /**
+     * Ignore errors
+     */
+    leaveUntransformed?: Schema$GooglePrivacyDlpV2LeaveUntransformed;
+    /**
+     * Throw an error
+     */
+    throwError?: Schema$GooglePrivacyDlpV2ThrowError;
   }
   /**
    * Overview of the modifications that occurred.
@@ -2490,6 +2695,9 @@ export namespace dlp_v2 {
      * The specific suppression option these stats apply to.
      */
     recordSuppress?: Schema$GooglePrivacyDlpV2RecordSuppression;
+    /**
+     * Collection of all transformations that took place or had an error.
+     */
     results?: Schema$GooglePrivacyDlpV2SummaryResult[];
     /**
      * The specific transformation these stats apply to.
@@ -2505,7 +2713,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TransientCryptoKey {
     /**
-     * Name of the key. [required] This is an arbitrary string used to differentiate different keys. A unique key is generated per name: two separate `TransientCryptoKey` protos share the same generated key if their names are the same. When the data crypto key is generated, this name is not used in any way (repeating the api call will result in a different key being generated).
+     * Required. Name of the key. This is an arbitrary string used to differentiate different keys. A unique key is generated per name: two separate `TransientCryptoKey` protos share the same generated key if their names are the same. When the data crypto key is generated, this name is not used in any way (repeating the api call will result in a different key being generated).
      */
     name?: string | null;
   }
@@ -2523,7 +2731,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2UnwrappedCryptoKey {
     /**
-     * A 128/192/256 bit key. [required]
+     * Required. A 128/192/256 bit key.
      */
     key?: string | null;
   }
@@ -2583,13 +2791,37 @@ export namespace dlp_v2 {
    * Set of primitive values supported by the system. Note that for the purposes of inspection or transformation, the number of bytes considered to comprise a &#39;Value&#39; is based on its representation as a UTF-8 encoded string. For example, if &#39;integer_value&#39; is set to 123456789, the number of bytes would be counted as 9, even though an int64 only holds up to 8 bytes of data.
    */
   export interface Schema$GooglePrivacyDlpV2Value {
+    /**
+     * boolean
+     */
     booleanValue?: boolean | null;
+    /**
+     * date
+     */
     dateValue?: Schema$GoogleTypeDate;
+    /**
+     * day of week
+     */
     dayOfWeekValue?: string | null;
+    /**
+     * float
+     */
     floatValue?: number | null;
+    /**
+     * integer
+     */
     integerValue?: string | null;
+    /**
+     * string
+     */
     stringValue?: string | null;
+    /**
+     * timestamp
+     */
     timestampValue?: string | null;
+    /**
+     * time of day
+     */
     timeValue?: Schema$GoogleTypeTimeOfDay;
   }
   /**
@@ -2687,8 +2919,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
-     * @param {string=} params.languageCode Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     * @param {string=} params.filter filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     * @param {string=} params.languageCode BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      * @param {string=} params.locationId The geographic location to list info types. Reserved for future extensions.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2777,11 +3009,11 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     * filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      */
     filter?: string;
     /**
-     * Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     * BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      */
     languageCode?: string;
     /**
@@ -2812,8 +3044,8 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
-     * @param {string=} params.languageCode Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     * @param {string=} params.filter filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     * @param {string=} params.languageCode BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      * @param {string} params.locationId The geographic location to list info types. Reserved for future extensions.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2907,11 +3139,11 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
+     * filter to only return infoTypes supported by certain parts of the API. Defaults to supported_by=INSPECT.
      */
     filter?: string;
     /**
-     * Optional BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+     * BCP-47 language code for localized infoType friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
      */
     languageCode?: string;
     /**
@@ -3206,9 +3438,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3443,15 +3675,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      */
     pageToken?: string;
     /**
@@ -3726,9 +3958,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3956,15 +4188,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      */
     pageToken?: string;
     /**
@@ -4275,9 +4507,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.locationId The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4516,15 +4748,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      */
     pageToken?: string;
     /**
@@ -4799,9 +5031,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.locationId The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5032,15 +5264,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      */
     pageToken?: string;
     /**
@@ -5315,9 +5547,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.locationId The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5548,15 +5780,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      */
     pageToken?: string;
     /**
@@ -5831,9 +6063,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6061,15 +6293,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      */
     pageToken?: string;
     /**
@@ -6740,9 +6972,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6977,15 +7209,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      */
     pageToken?: string;
     /**
@@ -7319,9 +7551,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      * @param {string=} params.locationId The geographic location where jobs will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
@@ -7476,7 +7708,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -7484,7 +7716,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      */
     orderBy?: string;
     /**
@@ -7871,9 +8103,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8101,15 +8333,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      */
     pageToken?: string;
     /**
@@ -8462,11 +8694,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      * @param {string=} params.locationId The geographic location where job triggers will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by a server.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * @param {integer=} params.pageSize Size of the page, can be limited by a server.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      * @param {string} params.parent Required. The parent resource name, for example `projects/my-project-id`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8705,7 +8937,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -8713,15 +8945,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by a server.
+     * Size of the page, can be limited by a server.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      */
     pageToken?: string;
     /**
@@ -9407,9 +9639,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.locationId The geographic location where deidentifications templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9648,15 +9880,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
+     * Page token to continue retrieval. Comes from previous call to `ListDeidentifyTemplates`.
      */
     pageToken?: string;
     /**
@@ -9990,9 +10222,9 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      * @param {string} params.locationId The geographic location where jobs will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id.
@@ -10150,7 +10382,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - `trigger_name` - The resource name of the trigger that created job.     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs:     - `state` - RUNNING|CANCELED|FINISHED|FAILED     - 'end_time` - Corresponds to time the job finished.     - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`.  Examples:  * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -10158,7 +10390,7 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, end_time asc, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
      */
     orderBy?: string;
     /**
@@ -10549,9 +10781,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.locationId The geographic location where inspection templates will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10782,15 +11014,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the template was created. - `update_time`: corresponds to time the template was last updated. - `name`: corresponds to template's name. - `display_name`: corresponds to template's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
+     * Page token to continue retrieval. Comes from previous call to `ListInspectTemplates`.
      */
     pageToken?: string;
     /**
@@ -11143,11 +11375,11 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      * @param {string} params.locationId The geographic location where job triggers will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by a server.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * @param {string=} params.orderBy Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * @param {integer=} params.pageSize Size of the page, can be limited by a server.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      * @param {string} params.parent Required. The parent resource name, for example `projects/my-project-id`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11389,7 +11621,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Optional. Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `<field> <operator> <value>`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
+     * Allows filtering.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values for inspect jobs:     - `status` - HEALTHY|PAUSED|CANCELLED     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by     quotation marks. Nanoseconds are ignored.     - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage.  Examples:  * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time > \"2017-12-12T00:00:00+00:00\"  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -11397,15 +11629,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
+     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc,update_time, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by a server.
+     * Size of the page, can be limited by a server.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
+     * Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
      */
     pageToken?: string;
     /**
@@ -11680,9 +11912,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.locationId The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11913,15 +12145,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      */
     pageToken?: string;
     /**
@@ -12196,9 +12428,9 @@ export namespace dlp_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.locationId The geographic location where stored infoTypes will be retrieved from. Use `-` for all locations. Reserved for future extensions.
-     * @param {string=} params.orderBy Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
-     * @param {integer=} params.pageSize Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
-     * @param {string=} params.pageToken Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * @param {string=} params.orderBy Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * @param {integer=} params.pageSize Size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * @param {string=} params.pageToken Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      * @param {string} params.parent Required. The parent resource name, for example projects/my-project-id or organizations/my-org-id.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -12426,15 +12658,15 @@ export namespace dlp_v2 {
      */
     locationId?: string;
     /**
-     * Optional comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
+     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant.  Example: `name asc, display_name, create_time desc`  Supported fields are:  - `create_time`: corresponds to time the most recent version of the resource was created. - `state`: corresponds to the state of the resource. - `name`: corresponds to resource name. - `display_name`: corresponds to info type's display name.
      */
     orderBy?: string;
     /**
-     * Optional size of the page, can be limited by server. If zero server returns a page of max size 100.
+     * Size of the page, can be limited by server. If zero server returns a page of max size 100.
      */
     pageSize?: number;
     /**
-     * Optional page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
+     * Page token to continue retrieval. Comes from previous call to `ListStoredInfoTypes`.
      */
     pageToken?: string;
     /**

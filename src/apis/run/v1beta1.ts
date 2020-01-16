@@ -159,7 +159,7 @@ export namespace run_v1beta1 {
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, one example is &quot;Storage&quot;.
+     * The kind of resource, in this case always &quot;CustomResourceDefinition&quot;.
      */
     kind?: string | null;
     /**

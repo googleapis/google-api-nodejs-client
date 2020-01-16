@@ -1178,7 +1178,7 @@ export namespace chat_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Resource name, in the form "spaces/x/messages/x".  Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {string=} params.updateMask Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
+     * @param {string=} params.updateMask Required. The field paths to be updated, comma separated if there are multiple.  Currently supported field paths: * text * cards
      * @param {().Message} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1299,7 +1299,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to be updated.  Currently supported field paths: "text", "cards".
+     * Required. The field paths to be updated, comma separated if there are multiple.  Currently supported field paths: * text * cards
      */
     updateMask?: string;
 

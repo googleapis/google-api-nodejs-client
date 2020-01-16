@@ -181,6 +181,10 @@ export namespace file_v1 {
       [key: string]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1RolloutMetadata;
     } | null;
     /**
+     * Link to the SLM instance template. Only populated when updating SLM instances via SSA&#39;s Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn&#39;t need to populate this field. Instead they should use software_versions.
+     */
+    slmInstanceTemplate?: string | null;
+    /**
      * Output only. SLO metadata for instance classification in the Standardized dataplane SLO platform. See go/cloud-ssa-standard-slo for feature description.
      */
     sloMetadata?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata;
@@ -291,17 +295,26 @@ export namespace file_v1 {
     rolloutName?: string | null;
   }
   /**
-   * SloExclusion represents an excusion in SLI calculation applies to all SLOs.
+   * SloEligibility is a tuple containing eligibility value: true if an instance is eligible for SLO calculation or false if it should be excluded from all SLO-related calculations along with a user-defined reason.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility {
+    /**
+     * Whether an instance is eligible or ineligible.
+     */
+    eligible?: boolean | null;
+    /**
+     * User-defined reason for the current value of instance eligibility. Usually, this can be directly mapped to the internal state. An empty reason is allowed.
+     */
+    reason?: string | null;
+  }
+  /**
+   * SloExclusion represents an exclusion in SLI calculation applies to all SLOs.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
     /**
      * Exclusion duration. No restrictions on the possible values.  When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
      */
-    exclusionDuration?: string | null;
-    /**
-     * Start time of the exclusion. No alignment (e.g. to a full minute) needed.
-     */
-    exclusionStartTime?: string | null;
+    duration?: string | null;
     /**
      * Human-readable reason for the exclusion. This should be a static string (e.g. &quot;Disruptive update in progress&quot;) and should not contain dynamically generated data (e.g. instance name). Can be left empty.
      */
@@ -310,13 +323,21 @@ export namespace file_v1 {
      * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.
      */
     sliName?: string | null;
+    /**
+     * Start time of the exclusion. No alignment (e.g. to a full minute) needed.
+     */
+    startTime?: string | null;
   }
   /**
    * SloMetadata contains resources required for proper SLO classification of the instance.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata {
     /**
-     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published.  It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state).  This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, a dedicated tier name can be used that does not have targets specified in the service SLO configuration.
+     * Optional: user-defined instance eligibility.
+     */
+    eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
+    /**
+     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published.  It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state).  This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -636,6 +657,7 @@ export namespace file_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The standard list filter.
+     * @param {boolean=} params.includeUnrevealedLocations If true, the returned list will include locations which are not yet revealed.
      * @param {string} params.name The resource that owns the locations collection, if applicable.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
@@ -731,6 +753,10 @@ export namespace file_v1 {
      * The standard list filter.
      */
     filter?: string;
+    /**
+     * If true, the returned list will include locations which are not yet revealed.
+     */
+    includeUnrevealedLocations?: boolean;
     /**
      * The resource that owns the locations collection, if applicable.
      */
@@ -1055,7 +1081,7 @@ export namespace file_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
-     * @param {string=} params.updateMask Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields: "description" "file_shares" "labels"
+     * @param {string=} params.updateMask Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields:  * "description" * "file_shares" * "labels"
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1206,7 +1232,7 @@ export namespace file_v1 {
      */
     name?: string;
     /**
-     * Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields: "description" "file_shares" "labels"
+     * Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields:  * "description" * "file_shares" * "labels"
      */
     updateMask?: string;
 

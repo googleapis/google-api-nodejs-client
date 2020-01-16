@@ -14,12 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {policytroubleshooter_v1} from './v1';
 import {policytroubleshooter_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: policytroubleshooter_v1.Policytroubleshooter,
   v1beta: policytroubleshooter_v1beta.Policytroubleshooter,
 };
 
+export function policytroubleshooter(
+  version: 'v1'
+): policytroubleshooter_v1.Policytroubleshooter;
+export function policytroubleshooter(
+  options: policytroubleshooter_v1.Options
+): policytroubleshooter_v1.Policytroubleshooter;
 export function policytroubleshooter(
   version: 'v1beta'
 ): policytroubleshooter_v1beta.Policytroubleshooter;
@@ -27,10 +35,16 @@ export function policytroubleshooter(
   options: policytroubleshooter_v1beta.Options
 ): policytroubleshooter_v1beta.Policytroubleshooter;
 export function policytroubleshooter<
-  T = policytroubleshooter_v1beta.Policytroubleshooter
+  T =
+    | policytroubleshooter_v1.Policytroubleshooter
+    | policytroubleshooter_v1beta.Policytroubleshooter
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta' | policytroubleshooter_v1beta.Options
+  versionOrOptions:
+    | 'v1'
+    | policytroubleshooter_v1.Options
+    | 'v1beta'
+    | policytroubleshooter_v1beta.Options
 ) {
   return getAPI<T>('policytroubleshooter', versionOrOptions, VERSIONS, this);
 }

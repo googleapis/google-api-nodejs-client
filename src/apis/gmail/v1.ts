@@ -395,7 +395,7 @@ export namespace gmail_v1 {
   }
   export interface Schema$ListDraftsResponse {
     /**
-     * List of drafts.
+     * List of drafts. Note that the Message property in each Draft resource only contains an id and a threadId. The messages.get method can fetch additional message details.
      */
     drafts?: Schema$Draft[];
     /**
@@ -441,7 +441,7 @@ export namespace gmail_v1 {
   }
   export interface Schema$ListLabelsResponse {
     /**
-     * List of labels.
+     * List of labels. Note that each label resource only contains an id, name, messageListVisibility, labelListVisibility, and type. The labels.get method can fetch additional label details.
      */
     labels?: Schema$Label[];
   }
@@ -4548,7 +4548,7 @@ export namespace gmail_v1 {
 
     /**
      * gmail.users.settings.delegates.create
-     * @desc Adds a delegate with its verification status set directly to accepted, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user.  Gmail imposes limtations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use.  This method is only available to service account clients that have been delegated domain-wide authority.
+     * @desc Adds a delegate with its verification status set directly to accepted, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user.  Gmail imposes limitations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators.  Note that a delegate user must be referred to by their primary email address, and not an email alias.  Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use.  This method is only available to service account clients that have been delegated domain-wide authority.
      * @alias gmail.users.settings.delegates.create
      * @memberOf! ()
      *

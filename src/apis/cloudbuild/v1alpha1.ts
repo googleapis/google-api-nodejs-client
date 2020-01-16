@@ -305,7 +305,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     volumes?: Schema$Volume[];
     /**
-     * Option to specify a `WorkerPool` for the build. User specifies the pool with the format &quot;[WORKERPOOL_PROJECT_ID]/[WORKERPOOL_NAME]&quot;. This is an experimental field.
+     * Option to specify a `WorkerPool` for the build. Format: projects/{project}/workerPools/{workerPool}  This field is experimental.
      */
     workerPool?: string | null;
   }
@@ -964,7 +964,6 @@ export namespace cloudbuild_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The field will contain name of the resource requested, for example: "projects/project-1/workerPools/workerpool-name"
-     * @param {string=} params.updateMask A mask specifying which fields in `WorkerPool` should be updated.
      * @param {().WorkerPool} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1094,10 +1093,6 @@ export namespace cloudbuild_v1alpha1 {
      * The field will contain name of the resource requested, for example: "projects/project-1/workerPools/workerpool-name"
      */
     name?: string;
-    /**
-     * A mask specifying which fields in `WorkerPool` should be updated.
-     */
-    updateMask?: string;
 
     /**
      * Request body metadata

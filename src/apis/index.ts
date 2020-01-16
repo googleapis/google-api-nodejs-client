@@ -97,7 +97,6 @@ import * as firebasehosting from './firebasehosting';
 import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
 import * as fitness from './fitness';
-import * as fusiontables from './fusiontables';
 import * as games from './games';
 import * as gamesConfiguration from './gamesConfiguration';
 import * as gamesManagement from './gamesManagement';
@@ -132,6 +131,7 @@ import * as plus from './plus';
 import * as plusDomains from './plusDomains';
 import * as policytroubleshooter from './policytroubleshooter';
 import * as poly from './poly';
+import * as prod_tt_sasportal from './prod_tt_sasportal';
 import * as proximitybeacon from './proximitybeacon';
 import * as pubsub from './pubsub';
 import * as recommender from './recommender';
@@ -142,8 +142,9 @@ import * as reseller from './reseller';
 import * as run from './run';
 import * as runtimeconfig from './runtimeconfig';
 import * as safebrowsing from './safebrowsing';
+import * as sasportal from './sasportal';
 import * as script from './script';
-import * as searchconsole from './searchconsole';
+import * as secretmanager from './secretmanager';
 import * as securitycenter from './securitycenter';
 import * as servicebroker from './servicebroker';
 import * as serviceconsumermanagement from './serviceconsumermanagement';
@@ -161,7 +162,6 @@ import * as sql from './sql';
 import * as storage from './storage';
 import * as storagetransfer from './storagetransfer';
 import * as streetviewpublish from './streetviewpublish';
-import * as surveys from './surveys';
 import * as tagmanager from './tagmanager';
 import * as tasks from './tasks';
 import * as testing from './testing';
@@ -270,7 +270,6 @@ export const APIS: APIList = {
   firebaserules: firebaserules.VERSIONS,
   firestore: firestore.VERSIONS,
   fitness: fitness.VERSIONS,
-  fusiontables: fusiontables.VERSIONS,
   games: games.VERSIONS,
   gamesConfiguration: gamesConfiguration.VERSIONS,
   gamesManagement: gamesManagement.VERSIONS,
@@ -305,6 +304,7 @@ export const APIS: APIList = {
   plusDomains: plusDomains.VERSIONS,
   policytroubleshooter: policytroubleshooter.VERSIONS,
   poly: poly.VERSIONS,
+  prod_tt_sasportal: prod_tt_sasportal.VERSIONS,
   proximitybeacon: proximitybeacon.VERSIONS,
   pubsub: pubsub.VERSIONS,
   recommender: recommender.VERSIONS,
@@ -315,8 +315,9 @@ export const APIS: APIList = {
   run: run.VERSIONS,
   runtimeconfig: runtimeconfig.VERSIONS,
   safebrowsing: safebrowsing.VERSIONS,
+  sasportal: sasportal.VERSIONS,
   script: script.VERSIONS,
-  searchconsole: searchconsole.VERSIONS,
+  secretmanager: secretmanager.VERSIONS,
   securitycenter: securitycenter.VERSIONS,
   servicebroker: servicebroker.VERSIONS,
   serviceconsumermanagement: serviceconsumermanagement.VERSIONS,
@@ -334,7 +335,6 @@ export const APIS: APIList = {
   storage: storage.VERSIONS,
   storagetransfer: storagetransfer.VERSIONS,
   streetviewpublish: streetviewpublish.VERSIONS,
-  surveys: surveys.VERSIONS,
   tagmanager: tagmanager.VERSIONS,
   tasks: tasks.VERSIONS,
   testing: testing.VERSIONS,
@@ -441,7 +441,6 @@ export class GeneratedAPIs {
   firebaserules = firebaserules.firebaserules;
   firestore = firestore.firestore;
   fitness = fitness.fitness;
-  fusiontables = fusiontables.fusiontables;
   games = games.games;
   gamesConfiguration = gamesConfiguration.gamesConfiguration;
   gamesManagement = gamesManagement.gamesManagement;
@@ -476,6 +475,7 @@ export class GeneratedAPIs {
   plusDomains = plusDomains.plusDomains;
   policytroubleshooter = policytroubleshooter.policytroubleshooter;
   poly = poly.poly;
+  prod_tt_sasportal = prod_tt_sasportal.prod_tt_sasportal;
   proximitybeacon = proximitybeacon.proximitybeacon;
   pubsub = pubsub.pubsub;
   recommender = recommender.recommender;
@@ -486,8 +486,9 @@ export class GeneratedAPIs {
   run = run.run;
   runtimeconfig = runtimeconfig.runtimeconfig;
   safebrowsing = safebrowsing.safebrowsing;
+  sasportal = sasportal.sasportal;
   script = script.script;
-  searchconsole = searchconsole.searchconsole;
+  secretmanager = secretmanager.secretmanager;
   securitycenter = securitycenter.securitycenter;
   servicebroker = servicebroker.servicebroker;
   serviceconsumermanagement =
@@ -506,7 +507,6 @@ export class GeneratedAPIs {
   storage = storage.storage;
   storagetransfer = storagetransfer.storagetransfer;
   streetviewpublish = streetviewpublish.streetviewpublish;
-  surveys = surveys.surveys;
   tagmanager = tagmanager.tagmanager;
   tasks = tasks.tasks;
   testing = testing.testing;

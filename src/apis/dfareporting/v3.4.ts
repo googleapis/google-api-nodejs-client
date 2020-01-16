@@ -915,19 +915,6 @@ export namespace dfareporting_v3_4 {
     nextPageToken?: string | null;
   }
   /**
-   * Annotate a click event.
-   */
-  export interface Schema$AnnotateClickEvent {
-    /**
-     * The Google click ID. Use this field to annotate the click associated with the gclid.
-     */
-    gclid?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#annotateClickEvent&quot;.
-     */
-    kind?: string | null;
-  }
-  /**
    * Audience Segment.
    */
   export interface Schema$AudienceSegment {
@@ -2622,11 +2609,11 @@ export namespace dfareporting_v3_4 {
     /**
      * Annotate a click event.
      */
-    annotateClickEvent?: Schema$AnnotateClickEvent;
+    annotateClickEvent?: Schema$CustomEventClickAnnotation;
     /**
      * Custom variables associated with the event.
      */
-    customVariables?: Schema$CustomVariables[];
+    customVariables?: Schema$CustomVariable[];
     /**
      * The type of event. If INSERT, the fields in insertEvent need to be populated. If ANNOTATE_CLICK, the fields in annotateClickEvent need to be populated. A custom event cannot have both insertEvent and annotateClickEvent populated.
      */
@@ -2638,7 +2625,7 @@ export namespace dfareporting_v3_4 {
     /**
      * Insert custom event.
      */
-    insertEvent?: Schema$InsertEvent;
+    insertEvent?: Schema$CustomEventInsert;
     /**
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEvent&quot;.
      */
@@ -2651,6 +2638,19 @@ export namespace dfareporting_v3_4 {
      * The timestamp of this custom event, in Unix epoch micros. This is a required field.
      */
     timestampMicros?: string | null;
+  }
+  /**
+   * Annotate a click event.
+   */
+  export interface Schema$CustomEventClickAnnotation {
+    /**
+     * The Google click ID. Use this field to annotate the click associated with the gclid.
+     */
+    gclid?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventClickAnnotation&quot;.
+     */
+    kind?: string | null;
   }
   /**
    * The error code and description for a custom event that failed to insert.
@@ -2668,6 +2668,35 @@ export namespace dfareporting_v3_4 {
      * A description of the error.
      */
     message?: string | null;
+  }
+  /**
+   * Custom event to be inserted.
+   */
+  export interface Schema$CustomEventInsert {
+    /**
+     * Campaign Manager dimensions associated with the event.
+     */
+    cmDimensions?: Schema$CampaignManagerIds;
+    /**
+     * DV360 dimensions associated with the event.
+     */
+    dv3Dimensions?: Schema$DV3Ids;
+    /**
+     * The type of event to insert.
+     */
+    insertEventType?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventInsert&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with mobileDeviceId, and at least one of the two fields is required.
+     */
+    matchId?: string | null;
+    /**
+     * The mobile device ID. This field is mutually exclusive with matchId, and at least one of the two fields is required.
+     */
+    mobileDeviceId?: string | null;
   }
   /**
    * Insert Custom Events Request.
@@ -2747,15 +2776,15 @@ export namespace dfareporting_v3_4 {
     kind?: string | null;
   }
   /**
-   * A custom variable.
+   * Custom variable.
    */
-  export interface Schema$CustomVariables {
+  export interface Schema$CustomVariable {
     /**
      * The index of the custom variable.
      */
     index?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customVariables&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customVariable&quot;.
      */
     kind?: string | null;
     /**
@@ -3825,35 +3854,6 @@ export namespace dfareporting_v3_4 {
      * Regions to be targeted. For each region only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a region, do not target or exclude the country of the region.
      */
     regions?: Schema$Region[];
-  }
-  /**
-   * Insert custom event.
-   */
-  export interface Schema$InsertEvent {
-    /**
-     * Campaign Manager dimensions associated with the event.
-     */
-    cmDimensions?: Schema$CampaignManagerIds;
-    /**
-     * DV360 dimensions associated with the event.
-     */
-    dv3Dimensions?: Schema$DV3Ids;
-    /**
-     * The type of insert event.
-     */
-    insertEventType?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#insertEvent&quot;.
-     */
-    kind?: string | null;
-    /**
-     * The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with mobileDeviceId, and at least one of the two fields is required.
-     */
-    matchId?: string | null;
-    /**
-     * The mobile device ID. This field is mutually exclusive with matchId, and at least one of the two fields is required.
-     */
-    mobileDeviceId?: string | null;
   }
   /**
    * Represents a buy from the Planning inventory store.
