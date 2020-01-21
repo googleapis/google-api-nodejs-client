@@ -17,14 +17,12 @@
 cd /d %~dp0
 cd ..
 
-@rem The image we're currently running has a broken version of Node.js enabled
-@rem by nvm (v10.15.3), which has no npm bin. This hack uses the functional
-@rem Node v8.9.1 to install npm@latest, it then uses this version of npm to
-@rem install npm for v10.15.3.
-call nvm use v8.9.1 || goto :error
-call node C:\Users\kbuilder\AppData\Roaming\nvm-ps\versions\v8.9.1\node_modules\npm-bootstrap\bin\npm-cli.js i npm -g || goto :error
-call nvm use v10.15.3 || goto :error
-call node C:\Users\kbuilder\AppData\Roaming\nvm-ps\versions\v8.9.1\node_modules\npm\bin\npm-cli.js i npm -g || goto :error
+@rem npm path is not currently set in our image, we should fix this next time
+@rem we upgrade Node.js in the image:
+SET PATH=%PATH%;/cygdrive/c/Program Files/nodejs/npm
+
+call nvm use v12.14.1
+call which node
 
 call npm install || goto :error
 call npm run test || goto :error
