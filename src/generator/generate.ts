@@ -15,13 +15,9 @@
 import * as minimist from 'minimist';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
-import {install} from 'source-map-support';
 import * as util from 'util';
 
 import {Generator} from './generator';
-
-// enable source map support
-install();
 
 const argv = minimist(process.argv.slice(2));
 const DEFAULT_DISCOVERY_URL = 'https://www.googleapis.com/discovery/v1/apis/';

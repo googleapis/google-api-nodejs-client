@@ -57,7 +57,6 @@
     "@types/nunjucks": "^3.1.1",
     "@types/qs": "^6.5.3",
     "@types/rimraf": "^2.0.2",
-    "@types/source-map-support": "^0.5.0",
     "@types/tmp": "^0.1.0",
     "@types/url-template": "^2.0.28",
     "assert-rejects": "^1.0.0",
@@ -70,8 +69,6 @@
     "eslint-plugin-prettier": "^3.1.0",
     "execa": "^4.0.0",
     "gts": "^1.1.0",
-    "hard-rejection": "^2.1.0",
-    "intelli-espower-loader": "^1.0.1",
     "js-green-licenses": "^1.0.0",
     "linkinator": "^1.5.0",
     "minimist": "^1.2.0",
@@ -86,7 +83,6 @@
     "prettier": "^1.17.1",
     "rimraf": "^3.0.0",
     "server-destroy": "^1.0.1",
-    "source-map-support": "^0.5.12",
     "tmp": "^0.1.0",
     "typescript": "3.6.4"
   }
