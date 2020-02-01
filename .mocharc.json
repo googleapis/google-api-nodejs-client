@@ -1,0 +1,5 @@
+{
+  "enable-source-maps": true,
+  "throw-deprecation": true,
+  "timeout": 10000
+}
