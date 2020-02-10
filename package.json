@@ -70,7 +70,7 @@
     "execa": "^4.0.0",
     "gts": "^1.1.0",
     "js-green-licenses": "^1.0.0",
-    "linkinator": "^1.5.0",
+    "linkinator": "^2.0.0",
     "minimist": "^1.2.0",
     "mkdirp": "^1.0.0",
     "mocha": "^7.0.0",
