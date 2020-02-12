@@ -28,7 +28,8 @@
     "generate": "node build/src/generator/generate.js",
     "postgenerate": "npm run fix",
     "docs-test": "linkinator docs",
-    "predocs-test": "npm run docs"
+    "predocs-test": "npm run docs",
+    "prelint": "cd samples; npm link ../"
   },
   "author": "Google Inc.",
   "keywords": [
