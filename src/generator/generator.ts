@@ -439,7 +439,7 @@ export class Generator {
     await Promise.all(tasks.map(t => t()));
     this.logResult(apiDiscoveryUrl, `Step 2...`);
     const contents = this.env.render(API_TEMPLATE, {api: schema});
-    await util.promisify(mkdirp)(path.dirname(exportFilename));
+    await mkdirp(path.dirname(exportFilename));
     this.logResult(apiDiscoveryUrl, `Step 3...`);
     await writeFile(exportFilename, contents, {encoding: 'utf8'});
     this.logResult(apiDiscoveryUrl, `Template generation complete.`);
