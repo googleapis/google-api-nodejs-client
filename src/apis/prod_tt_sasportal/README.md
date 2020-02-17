@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# fusiontables
+# prod_tt_sasportal
 
-> API for working with Fusion Tables data.
+> 
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/fusiontables
+$ cd src/apis/prod_tt_sasportal
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/fusiontables.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/prod_tt_sasportal.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/fusiontables.min.js"></script>
+<script src="/path/to/prod_tt_sasportal.min.js"></script>
 <script>
-const { fusiontables, auth } = Fusiontables;
+const { prod_tt_sasportal, auth } = Prod_tt_sasportal;
 </script>
 ```
 

@@ -905,7 +905,7 @@ export namespace gamesManagement_v1management {
 
     /**
      * gamesManagement.events.reset
-     * @desc Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application. All quests for this player that use the event will also be reset.
+     * @desc Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.events.reset
      * @memberOf! ()
      *
@@ -975,7 +975,7 @@ export namespace gamesManagement_v1management {
 
     /**
      * gamesManagement.events.resetAll
-     * @desc Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application. All quests for this player will also be reset.
+     * @desc Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @alias gamesManagement.events.resetAll
      * @memberOf! ()
      *
@@ -1045,7 +1045,7 @@ export namespace gamesManagement_v1management {
 
     /**
      * gamesManagement.events.resetAllForAllPlayers
-     * @desc Resets all draft events for all players. This method is only available to user accounts for your developer console. All quests that use any of these events will also be reset.
+     * @desc Resets all draft events for all players. This method is only available to user accounts for your developer console.
      * @alias gamesManagement.events.resetAllForAllPlayers
      * @memberOf! ()
      *
@@ -1115,7 +1115,7 @@ export namespace gamesManagement_v1management {
 
     /**
      * gamesManagement.events.resetForAllPlayers
-     * @desc Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset. All quests that use the event will also be reset.
+     * @desc Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset.
      * @alias gamesManagement.events.resetForAllPlayers
      * @memberOf! ()
      *
@@ -1187,7 +1187,7 @@ export namespace gamesManagement_v1management {
 
     /**
      * gamesManagement.events.resetMultipleForAllPlayers
-     * @desc Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset. All quests that use any of the events will also be reset.
+     * @desc Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset.
      * @alias gamesManagement.events.resetMultipleForAllPlayers
      * @memberOf! ()
      *

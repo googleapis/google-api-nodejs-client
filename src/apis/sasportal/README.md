@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# surveys
+# sasportal
 
-> Creates and conducts surveys, lists the surveys that an authenticated user owns, and retrieves survey results and information about specified surveys.
+> 
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/surveys
+$ cd src/apis/sasportal
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/surveys.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/sasportal.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/surveys.min.js"></script>
+<script src="/path/to/sasportal.min.js"></script>
 <script>
-const { surveys, auth } = Surveys;
+const { sasportal, auth } = Sasportal;
 </script>
 ```
 

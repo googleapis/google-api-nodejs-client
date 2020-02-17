@@ -131,6 +131,10 @@ export namespace bigqueryreservation_v1beta1 {
      * Output only. Name of the resource. E.g.: projects/myproject/locations/US/reservations/team1-prod/assignments/123.
      */
     name?: string | null;
+    /**
+     * Output only. State of the assignment.
+     */
+    state?: string | null;
   }
   /**
    * Represents a BI Reservation.
@@ -841,6 +845,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.enforceSingleAdminProjectPerOrg If true, fail the request if another project in the organization has a capacity commitment.
      * @param {string} params.parent Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
      * @param {().CapacityCommitment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1146,6 +1151,10 @@ export namespace bigqueryreservation_v1beta1 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * If true, fail the request if another project in the organization has a capacity commitment.
+     */
+    enforceSingleAdminProjectPerOrg?: boolean;
     /**
      * Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
      */

@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Surveys',
-    filename: 'surveys.min.js',
+    library: 'Prod_tt_sasportal',
+    filename: 'prod_tt_sasportal.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

@@ -291,10 +291,6 @@ export namespace speech_v1 {
      */
     microphoneDistance?: string | null;
     /**
-     * Obfuscated (privacy-protected) ID of the user, to identify number of unique users using the service.
-     */
-    obfuscatedId?: string | null;
-    /**
      * The original media the speech was recorded on.
      */
     originalMediaType?: string | null;
@@ -349,6 +345,10 @@ export namespace speech_v1 {
      * Minimum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 2.
      */
     minSpeakerCount?: number | null;
+    /**
+     * Output only. Unused.
+     */
+    speakerTag?: number | null;
   }
   /**
    * Provides &quot;hints&quot; to the speech recognizer to favor specific words and phrases in the results.
@@ -415,7 +415,7 @@ export namespace speech_v1 {
      */
     endTime?: string | null;
     /**
-     * A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from &#39;1&#39; to diarization_speaker_count. speaker_tag is set if enable_speaker_diarization = &#39;true&#39; and only in the top alternative.
+     * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from &#39;1&#39; to diarization_speaker_count. speaker_tag is set if enable_speaker_diarization = &#39;true&#39; and only in the top alternative.
      */
     speakerTag?: number | null;
     /**

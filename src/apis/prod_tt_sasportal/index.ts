@@ -14,19 +14,25 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {surveys_v2} from './v2';
+import {prod_tt_sasportal_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
-  v2: surveys_v2.Surveys,
+  v1alpha1: prod_tt_sasportal_v1alpha1.Prod_tt_sasportal,
 };
 
-export function surveys(version: 'v2'): surveys_v2.Surveys;
-export function surveys(options: surveys_v2.Options): surveys_v2.Surveys;
-export function surveys<T = surveys_v2.Surveys>(
+export function prod_tt_sasportal(
+  version: 'v1alpha1'
+): prod_tt_sasportal_v1alpha1.Prod_tt_sasportal;
+export function prod_tt_sasportal(
+  options: prod_tt_sasportal_v1alpha1.Options
+): prod_tt_sasportal_v1alpha1.Prod_tt_sasportal;
+export function prod_tt_sasportal<
+  T = prod_tt_sasportal_v1alpha1.Prod_tt_sasportal
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v2' | surveys_v2.Options
+  versionOrOptions: 'v1alpha1' | prod_tt_sasportal_v1alpha1.Options
 ) {
-  return getAPI<T>('surveys', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('prod_tt_sasportal', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

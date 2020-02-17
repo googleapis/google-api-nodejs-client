@@ -1,7 +1,7 @@
 {
-  "name": "@google/surveys",
+  "name": "@google/secretmanager",
   "version": "0.1.0",
-  "description": "surveys",
+  "description": "secretmanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

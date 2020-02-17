@@ -844,7 +844,7 @@ export namespace testing_v1 {
    */
   export interface Schema$ManualSharding {
     /**
-     * Required. Group of packages, classes, and/or test methods to be run for each shard. The number of shard_test_targets must be &gt; 1, and &lt;= 50.
+     * Required. Group of packages, classes, and/or test methods to be run for each shard. The number of shard_test_targets must be &gt;= 1 and &lt;= 50.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
   }
@@ -1315,7 +1315,7 @@ export namespace testing_v1 {
    */
   export interface Schema$UniformSharding {
     /**
-     * Required. Total number of shards. The number must be &gt; 1, and &lt;= 50.
+     * Required. Total number of shards. The number must be &gt;= 1 and &lt;= 50.
      */
     numShards?: number | null;
   }

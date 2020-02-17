@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Searchconsole',
-    filename: 'searchconsole.min.js',
+    library: 'Secretmanager',
+    filename: 'secretmanager.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

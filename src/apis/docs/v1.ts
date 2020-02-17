@@ -266,7 +266,7 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * Creates a Footer. The new footer will be applied to the DocumentStyle.  If a footer of the specified type already exists then a 400 bad request error will be returned.
+   * Creates a Footer. The new footer is applied to the DocumentStyle.  If a footer of the specified type already exists, a 400 bad request error is returned.
    */
   export interface Schema$CreateFooterRequest {
     /**
@@ -284,7 +284,29 @@ export namespace docs_v1 {
     footerId?: string | null;
   }
   /**
-   * Creates a Header. The new header will be applied to the DocumentStyle.  If a header of the specified type already exists then a 400 bad request error will be returned.
+   * Creates a Footnote segment and inserts a new FootnoteReference to it at the given location.  The new Footnote segment will contain a space followed by a newline character.
+   */
+  export interface Schema$CreateFootnoteRequest {
+    /**
+     * Inserts the footnote reference at the end of the document body.  Footnote references cannot be inserted inside a header, footer or footnote. Since footnote references can only be inserted in the body, the segment ID field must be empty.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * Inserts the footnote reference at a specific index in the document.  The footnote reference must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph).  Footnote references cannot be inserted inside an equation, header, footer or footnote. Since footnote references can only be inserted in the body, the segment ID field must be empty.
+     */
+    location?: Schema$Location;
+  }
+  /**
+   * The result of creating a footnote.
+   */
+  export interface Schema$CreateFootnoteResponse {
+    /**
+     * The ID of the created footnote.
+     */
+    footnoteId?: string | null;
+  }
+  /**
+   * Creates a Header. The new header is applied to the DocumentStyle.  If a header of the specified type already exists, a 400 bad request error is returned.
    */
   export interface Schema$CreateHeaderRequest {
     /**
@@ -567,6 +589,14 @@ export namespace docs_v1 {
      */
     marginBottom?: Schema$Dimension;
     /**
+     * The amount of space between the bottom of the page and the contents of the footer.
+     */
+    marginFooter?: Schema$Dimension;
+    /**
+     * The amount of space between the top of the page and the contents of the header.
+     */
+    marginHeader?: Schema$Dimension;
+    /**
      * The left page margin.  Updating the left page margin on the document style clears the left page margin on all section styles. It may also cause columns to resize in all sections.
      */
     marginLeft?: Schema$Dimension;
@@ -586,6 +616,10 @@ export namespace docs_v1 {
      * The size of a page in the document.
      */
     pageSize?: Schema$Size;
+    /**
+     * Indicates whether DocumentStyle margin_header, SectionStyle margin_header and DocumentStyle margin_footer, SectionStyle margin_footer are respected. When false, the default values in the Docs editor for header and footer margin are used.  This property is read-only.
+     */
+    useCustomHeaderFooterMargins?: boolean | null;
     /**
      * Indicates whether to use the even page header / footer IDs for the even pages.  This property is read-only.
      */
@@ -1112,6 +1146,23 @@ export namespace docs_v1 {
      * Inserts the page break at a specific index in the document.  The page break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph).  Page breaks cannot be inserted inside a table, equation, footnote, header or footer. Since page breaks can only be inserted inside the body, the segment ID field must be empty.
      */
     location?: Schema$Location;
+  }
+  /**
+   * Inserts a section break at the given location.  A newline character will be inserted before the section break.
+   */
+  export interface Schema$InsertSectionBreakRequest {
+    /**
+     * Inserts a newline and a section break at the end of the document body.  Section breaks cannot be inserted inside a footnote, header or footer. Because section breaks can only be inserted inside the body, the segment ID field must be empty.
+     */
+    endOfSegmentLocation?: Schema$EndOfSegmentLocation;
+    /**
+     * Inserts a newline and a section break at a specific index in the document.  The section break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph).  Section breaks cannot be inserted inside a table, equation, footnote, header, or footer. Since section breaks can only be inserted inside the body, the segment ID field must be empty.
+     */
+    location?: Schema$Location;
+    /**
+     * The type of section to insert.
+     */
+    sectionType?: string | null;
   }
   /**
    * Inserts an empty column into a table.
@@ -1918,6 +1969,10 @@ export namespace docs_v1 {
      */
     createFooter?: Schema$CreateFooterRequest;
     /**
+     * Creates a footnote.
+     */
+    createFootnote?: Schema$CreateFootnoteRequest;
+    /**
      * Creates a header.
      */
     createHeader?: Schema$CreateHeaderRequest;
@@ -1961,6 +2016,10 @@ export namespace docs_v1 {
      * Inserts a page break at the specified location.
      */
     insertPageBreak?: Schema$InsertPageBreakRequest;
+    /**
+     * Inserts a section break at the specified location.
+     */
+    insertSectionBreak?: Schema$InsertSectionBreakRequest;
     /**
      * Inserts a table at the specified location.
      */
@@ -2006,6 +2065,10 @@ export namespace docs_v1 {
      */
     updateParagraphStyle?: Schema$UpdateParagraphStyleRequest;
     /**
+     * Updates the section style of the specified range.
+     */
+    updateSectionStyle?: Schema$UpdateSectionStyleRequest;
+    /**
      * Updates the style of table cells.
      */
     updateTableCellStyle?: Schema$UpdateTableCellStyleRequest;
@@ -2030,6 +2093,10 @@ export namespace docs_v1 {
      * The result of creating a footer.
      */
     createFooter?: Schema$CreateFooterResponse;
+    /**
+     * The result of creating a footnote.
+     */
+    createFootnote?: Schema$CreateFootnoteResponse;
     /**
      * The result of creating a header.
      */
@@ -2114,6 +2181,34 @@ export namespace docs_v1 {
      * The content direction of this section. If unset, the value defaults to LEFT_TO_RIGHT.
      */
     contentDirection?: string | null;
+    /**
+     * The bottom page margin of the section. If unset, uses margin_bottom from DocumentStyle.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginBottom?: Schema$Dimension;
+    /**
+     * The footer margin of the section. If unset, uses margin_footer from DocumentStyle. If updated, use_custom_header_footer_margins is set to true on DocumentStyle. The value of use_custom_header_footer_margins on DocumentStyle indicates if a footer margin is being respected for this section  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginFooter?: Schema$Dimension;
+    /**
+     * The header margin of the section. If unset, uses margin_header from DocumentStyle. If updated, use_custom_header_footer_margins is set to true on DocumentStyle. The value of use_custom_header_footer_margins on DocumentStyle indicates if a header margin is being respected for this section.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginHeader?: Schema$Dimension;
+    /**
+     * The left page margin of the section. If unset, uses margin_left from DocumentStyle. Updating left margin causes columns in this section to resize. Since the margin affects column width, it is applied before column properties.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginLeft?: Schema$Dimension;
+    /**
+     * The right page margin of the section. If unset, uses margin_right from DocumentStyle. Updating right margin causes columns in this section to resize. Since the margin affects column width, it is applied before column properties.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginRight?: Schema$Dimension;
+    /**
+     * The top page margin of the section. If unset, uses margin_top from DocumentStyle.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    marginTop?: Schema$Dimension;
+    /**
+     * Output only. The type of section.
+     */
+    sectionType?: string | null;
   }
   /**
    * The shading of a paragraph.
@@ -2846,6 +2941,23 @@ export namespace docs_v1 {
      * The range overlapping the paragraphs to style.
      */
     range?: Schema$Range;
+  }
+  /**
+   * Updates the SectionStyle.
+   */
+  export interface Schema$UpdateSectionStyleRequest {
+    /**
+     * The fields that should be updated.  At least one field must be specified. The root `section_style` is implied and must not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field.  For example to update the left margin, set `fields` to `&quot;margin_left&quot;`.
+     */
+    fields?: string | null;
+    /**
+     * The range overlapping the sections to style.  Because section breaks can only be inserted inside the body, the segment ID field must be empty.
+     */
+    range?: Schema$Range;
+    /**
+     * The styles to  be set on the section.  Certain section style changes may cause other changes in order to mirror the behavior of the Docs editor. See the documentation of SectionStyle for more information.
+     */
+    sectionStyle?: Schema$SectionStyle;
   }
   /**
    * Updates the style of a range of table cells.

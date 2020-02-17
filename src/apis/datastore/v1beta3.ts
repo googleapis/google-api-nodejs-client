@@ -120,7 +120,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$AllocateIdsRequest {
     /**
-     * A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.
+     * Required. A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.
      */
     keys?: Schema$Key[];
   }
@@ -557,7 +557,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$LookupRequest {
     /**
-     * Keys of entities to look up.
+     * Required. Keys of entities to look up.
      */
     keys?: Schema$Key[];
     /**
@@ -811,7 +811,7 @@ export namespace datastore_v1beta3 {
      */
     databaseId?: string | null;
     /**
-     * A list of keys with complete key paths whose numeric IDs should not be auto-allocated.
+     * Required. A list of keys with complete key paths whose numeric IDs should not be auto-allocated.
      */
     keys?: Schema$Key[];
   }
@@ -824,7 +824,7 @@ export namespace datastore_v1beta3 {
    */
   export interface Schema$RollbackRequest {
     /**
-     * The transaction identifier, returned by a call to Datastore.BeginTransaction.
+     * Required. The transaction identifier, returned by a call to Datastore.BeginTransaction.
      */
     transaction?: string | null;
   }
@@ -950,7 +950,7 @@ export namespace datastore_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
      * @param {().AllocateIdsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1026,7 +1026,7 @@ export namespace datastore_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
      * @param {().BeginTransactionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1104,7 +1104,7 @@ export namespace datastore_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
      * @param {().CommitRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1178,7 +1178,7 @@ export namespace datastore_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
      * @param {().LookupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1247,12 +1247,12 @@ export namespace datastore_v1beta3 {
 
     /**
      * datastore.projects.reserveIds
-     * @desc Prevents the supplied keys' IDs from being auto-allocated by Cloud Datastore. Used for imports only; other workloads are not supported.
+     * @desc Prevents the supplied keys' IDs from being auto-allocated by Cloud Datastore.
      * @alias datastore.projects.reserveIds
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
      * @param {().ReserveIdsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1327,7 +1327,7 @@ export namespace datastore_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
      * @param {().RollbackRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1402,7 +1402,7 @@ export namespace datastore_v1beta3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId The ID of the project against which to make the request.
+     * @param {string} params.projectId Required. The ID of the project against which to make the request.
      * @param {().RunQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1479,7 +1479,7 @@ export namespace datastore_v1beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1496,7 +1496,7 @@ export namespace datastore_v1beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1512,7 +1512,7 @@ export namespace datastore_v1beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1528,7 +1528,7 @@ export namespace datastore_v1beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1545,7 +1545,7 @@ export namespace datastore_v1beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1562,7 +1562,7 @@ export namespace datastore_v1beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 
@@ -1579,7 +1579,7 @@ export namespace datastore_v1beta3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the project against which to make the request.
+     * Required. The ID of the project against which to make the request.
      */
     projectId?: string;
 

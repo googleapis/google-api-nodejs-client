@@ -867,9 +867,17 @@ export namespace dataflow_v1b3 {
      */
     metadata?: Schema$TemplateMetadata;
     /**
+     * Describes the runtime metadata with SDKInfo and available parameters.
+     */
+    runtimeMetadata?: Schema$RuntimeMetadata;
+    /**
      * The status of the get template request. Any problems with the request will be indicated in the error_details.
      */
     status?: Schema$Status;
+    /**
+     * Template Type.
+     */
+    templateType?: string | null;
   }
   /**
    * Histogram of value counts for a distribution.  Buckets have an inclusive lower bound and exclusive upper bound and use &quot;1,2,5 bucketing&quot;: The first bucket range is from [0,1) and all subsequent bucket boundaries are powers of ten multiplied by 1, 2, or 5. Thus, bucket boundaries are 0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ... Negative values are not supported.
@@ -1539,6 +1547,10 @@ export namespace dataflow_v1b3 {
      */
     name?: string | null;
     /**
+     * Optional. The type of the parameter. Used for selecting input picker.
+     */
+    paramType?: string | null;
+    /**
      * Optional. Regexes that the parameter must match.
      */
     regexes?: string[] | null;
@@ -1826,6 +1838,32 @@ export namespace dataflow_v1b3 {
      * The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence.
      */
     zone?: string | null;
+  }
+  /**
+   * RuntimeMetadata describing a runtime environment.
+   */
+  export interface Schema$RuntimeMetadata {
+    /**
+     * The parameters for the template.
+     */
+    parameters?: Schema$ParameterMetadata[];
+    /**
+     * SDK Info for the template.
+     */
+    sdkInfo?: Schema$SDKInfo;
+  }
+  /**
+   * SDK Information.
+   */
+  export interface Schema$SDKInfo {
+    /**
+     * Required. The SDK Language.
+     */
+    language?: string | null;
+    /**
+     * Optional. The SDK version.
+     */
+    version?: string | null;
   }
   /**
    * The version of the SDK used to run the job.

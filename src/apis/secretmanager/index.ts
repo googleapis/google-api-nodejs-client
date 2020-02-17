@@ -14,21 +14,23 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {searchconsole_v1} from './v1';
+import {secretmanager_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  v1: searchconsole_v1.Searchconsole,
+  v1beta1: secretmanager_v1beta1.Secretmanager,
 };
 
-export function searchconsole(version: 'v1'): searchconsole_v1.Searchconsole;
-export function searchconsole(
-  options: searchconsole_v1.Options
-): searchconsole_v1.Searchconsole;
-export function searchconsole<T = searchconsole_v1.Searchconsole>(
+export function secretmanager(
+  version: 'v1beta1'
+): secretmanager_v1beta1.Secretmanager;
+export function secretmanager(
+  options: secretmanager_v1beta1.Options
+): secretmanager_v1beta1.Secretmanager;
+export function secretmanager<T = secretmanager_v1beta1.Secretmanager>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | searchconsole_v1.Options
+  versionOrOptions: 'v1beta1' | secretmanager_v1beta1.Options
 ) {
-  return getAPI<T>('searchconsole', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('secretmanager', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

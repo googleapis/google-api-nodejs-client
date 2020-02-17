@@ -322,6 +322,10 @@ export namespace language_v1beta2 {
    */
   export interface Schema$Document {
     /**
+     * Indicates how detected boilerplate(e.g. advertisements, copyright declarations, banners) should be handled for this document. If not specified, boilerplate will be treated the same as content.
+     */
+    boilerplateHandling?: string | null;
+    /**
      * The content of the input in string format. Cloud audit logging exempt since it is based on user data.
      */
     content?: string | null;
@@ -333,6 +337,10 @@ export namespace language_v1beta2 {
      * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted.&lt;br&gt; [Language Support](/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
      */
     language?: string | null;
+    /**
+     * The web URI where the document comes from. This URI is not used for fetching the content, but as a hint for analyzing the document.
+     */
+    referenceWebUri?: string | null;
     /**
      * Required. If the type is not set or is `TYPE_UNSPECIFIED`, returns an `INVALID_ARGUMENT` error.
      */

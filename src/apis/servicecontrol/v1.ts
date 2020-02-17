@@ -695,7 +695,7 @@ export namespace servicecontrol_v1 {
      */
     int64Value?: string | null;
     /**
-     * The labels describing the metric value. See comments on google.api.servicecontrol.v1.Operation.labels for the overriding relationship.
+     * The labels describing the metric value. See comments on google.api.servicecontrol.v1.Operation.labels for the overriding relationship. Note that this map must not contain monitored resource labels.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -922,7 +922,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$ReportRequest {
     /**
-     * Operations to be reported.  Typically the service should report one operation per request. Putting multiple operations into a single request is allowed, but should be used only when multiple operations are natually available at the time of the report.  If multiple operations are in a single request, the total request size should be no larger than 1MB. See ReportResponse.report_errors for partial failure behavior.
+     * Operations to be reported.  Typically the service should report one operation per request. Putting multiple operations into a single request is allowed, but should be used only when multiple operations are natually available at the time of the report.  There is no limit on the number of operations in the same ReportRequest, however the ReportRequest size should be no larger than 1MB. See ReportResponse.report_errors for partial failure behavior.
      */
     operations?: Schema$Operation[];
     /**
@@ -984,7 +984,7 @@ export namespace servicecontrol_v1 {
      */
     protocol?: string | null;
     /**
-     * The HTTP URL query in the format of `name1=value`&amp;name2=value2`, as it appears in the first line of the HTTP request. No decoding is performed.
+     * The HTTP URL query in the format of `name1=value1&amp;name2=value2`, as it appears in the first line of the HTTP request. No decoding is performed.
      */
     query?: string | null;
     /**
@@ -1092,6 +1092,15 @@ export namespace servicecontrol_v1 {
      * Third party identity as the real authority.
      */
     thirdPartyPrincipal?: Schema$ThirdPartyPrincipal;
+  }
+  /**
+   * The context of a span, attached to google.api.Distribution.Exemplars in google.api.Distribution values during aggregation.  It contains the name of a span with format:     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
+   */
+  export interface Schema$SpanContext {
+    /**
+     * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     */
+    spanName?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1283,7 +1292,7 @@ export namespace servicecontrol_v1 {
 
     /**
      * servicecontrol.services.report
-     * @desc Reports operation results to Google Service Control, such as logs and metrics. It should be called after an operation is completed.  If feasible, the client should aggregate reporting data for up to 5 seconds to reduce API traffic. Limiting aggregation to 5 seconds is to reduce data loss during client crashes. Clients should carefully choose the aggregation time window to avoid data loss risk more than 0.01% for business and compliance reasons.  NOTE: the ReportRequest has the size limit of 1MB.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
+     * @desc Reports operation results to Google Service Control, such as logs and metrics. It should be called after an operation is completed.  If feasible, the client should aggregate reporting data for up to 5 seconds to reduce API traffic. Limiting aggregation to 5 seconds is to reduce data loss during client crashes. Clients should carefully choose the aggregation time window to avoid data loss risk more than 0.01% for business and compliance reasons.  NOTE: the ReportRequest has the size limit (wire-format byte size) of 1MB.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
      * @alias servicecontrol.services.report
      * @memberOf! ()
      *

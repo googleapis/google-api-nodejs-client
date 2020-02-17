@@ -623,6 +623,10 @@ export namespace alertcenter_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * The actor who triggered a gmail phishing alert.
+     */
+    entity?: Schema$User;
+    /**
      * The sender email address.
      */
     fromHeader?: string | null;
@@ -771,6 +775,19 @@ export namespace alertcenter_v1beta1 {
      * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string | null;
+  }
+  /**
+   * A user.
+   */
+  export interface Schema$User {
+    /**
+     * Display name of the user.
+     */
+    displayName?: string | null;
+    /**
+     * Email address of the user.
+     */
+    emailAddress?: string | null;
   }
 
   export class Resource$Alerts {

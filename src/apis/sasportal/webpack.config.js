@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Fusiontables',
-    filename: 'fusiontables.min.js',
+    library: 'Sasportal',
+    filename: 'sasportal.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

@@ -108,6 +108,7 @@ export namespace sql_v1beta4 {
     flags: Resource$Flags;
     instances: Resource$Instances;
     operations: Resource$Operations;
+    projects: Resource$Projects;
     sslCerts: Resource$Sslcerts;
     tiers: Resource$Tiers;
     users: Resource$Users;
@@ -123,6 +124,7 @@ export namespace sql_v1beta4 {
       this.flags = new Resource$Flags(this.context);
       this.instances = new Resource$Instances(this.context);
       this.operations = new Resource$Operations(this.context);
+      this.projects = new Resource$Projects(this.context);
       this.sslCerts = new Resource$Sslcerts(this.context);
       this.tiers = new Resource$Tiers(this.context);
       this.users = new Resource$Users(this.context);
@@ -142,7 +144,7 @@ export namespace sql_v1beta4 {
      */
     kind?: string | null;
     /**
-     * An optional label to identify this entry.
+     * Optional. A label to identify this entry.
      */
     name?: string | null;
     /**
@@ -364,7 +366,7 @@ export namespace sql_v1beta4 {
     value?: string | null;
   }
   /**
-   * A Cloud SQL instance resource. If you change this, also change SqlDatabaseInstance
+   * A Cloud SQL instance resource.
    */
   export interface Schema$DatabaseInstance {
     /**
@@ -610,9 +612,9 @@ export namespace sql_v1beta4 {
      * Options for exporting data as SQL statements.
      */
     sqlExportOptions?: {
-      schemaOnly?: boolean;
       mysqlExportOptions?: {masterData?: number};
       tables?: string[];
+      schemaOnly?: boolean;
     } | null;
     /**
      * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form &lt;code&gt;gs: //bucketName/fileName&lt;/code&gt;. If the file already exists, the requests // succeeds, but the operation fails. If &lt;code&gt;fileType&lt;/code&gt; is // &lt;code&gt;SQL&lt;/code&gt; and the filename ends with .gz, the contents are // compressed.
@@ -703,7 +705,7 @@ export namespace sql_v1beta4 {
     /**
      * Options for importing data as CSV.
      */
-    csvImportOptions?: {table?: string; columns?: string[]} | null;
+    csvImportOptions?: {columns?: string[]; table?: string} | null;
     /**
      * The target database for the import. If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;SQL&lt;/code&gt;, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;CSV&lt;/code&gt;, one database must be specified.
      */
@@ -962,6 +964,18 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$OnPremisesConfiguration {
     /**
+     * PEM representation of the trusted CA&#39;s x509 certificate.
+     */
+    caCertificate?: string | null;
+    /**
+     * PEM representation of the slave&#39;s x509 certificate.
+     */
+    clientCertificate?: string | null;
+    /**
+     * PEM representation of the slave&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
+     */
+    clientKey?: string | null;
+    /**
      * The host and port of the on-premises instance in host:port format
      */
     hostPort?: string | null;
@@ -1015,7 +1029,7 @@ export namespace sql_v1beta4 {
      */
     startTime?: string | null;
     /**
-     * The status of an operation. Valid values are &lt;code&gt;PENDING&lt;/code&gt;, &lt;code&gt;RUNNING&lt;/code&gt;, &lt;code&gt;DONE&lt;/code&gt;, &lt;code&gt;UNKNOWN&lt;/code&gt;.
+     * The status of an operation. Valid values are &lt;code&gt;PENDING&lt;/code&gt;, &lt;code&gt;RUNNING&lt;/code&gt;, &lt;code&gt;DONE&lt;/code&gt;, &lt;code&gt;SQL_OPERATION_STATUS_UNSPECIFIED&lt;/code&gt;.
      */
     status?: string | null;
     /**
@@ -1095,6 +1109,16 @@ export namespace sql_v1beta4 {
      * MySQL specific configuration when replicating from a MySQL on-premises master. Replication configuration information such as the username, password, certificates, and keys are not stored in the instance metadata. The configuration information is used only to set up the replication connection and is stored by MySQL in a file named &lt;code&gt;master.info&lt;/code&gt; in the data directory.
      */
     mysqlReplicaConfiguration?: Schema$MySqlReplicaConfiguration;
+  }
+  export interface Schema$Reschedule {
+    /**
+     * Required. The type of the reschedule.
+     */
+    rescheduleType?: string | null;
+    /**
+     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME.
+     */
+    scheduleTime?: string | null;
   }
   /**
    * Database instance restore from backup context. Backup context contains source instance id and project id.
@@ -1216,13 +1240,23 @@ export namespace sql_v1beta4 {
     userLabels?: {[key: string]: string} | null;
   }
   /**
+   * Reschedule options for maintenance windows.
+   */
+  export interface Schema$SqlInstancesRescheduleMaintenanceRequestBody {
+    /**
+     * Required. The type of the reschedule the user wants.
+     */
+    reschedule?: Schema$Reschedule;
+  }
+  /**
    * Any scheduled maintenancce for this instance.
    */
   export interface Schema$SqlScheduledMaintenance {
-    /**
-     * If the scheduled maintenance can be deferred.
-     */
     canDefer?: boolean | null;
+    /**
+     * If the scheduled maintenance can be rescheduled.
+     */
+    canReschedule?: boolean | null;
     /**
      * The start time of any upcoming scheduled maintenance for this instance.
      */
@@ -3252,7 +3286,7 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.instances.list
-     * @desc Lists instances under a given project in the alphabetical order of the instance name.
+     * @desc Lists instances under a given project.
      * @alias sql.instances.list
      * @memberOf! ()
      *
@@ -4656,6 +4690,7 @@ export namespace sql_v1beta4 {
      * @param {object} params Parameters for request
      * @param {string} params.operation Instance operation ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the operation for Cloud SQL to get. Format: projects/{project}/locations/{location}/operations/{operation}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4813,6 +4848,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the operation for Cloud SQL to get. Format: projects/{project}/locations/{location}/operations/{operation}
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
     /**
@@ -4840,6 +4879,249 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    instances: Resource$Projects$Instances;
+    locations: Resource$Projects$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.instances = new Resource$Projects$Instances(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Instances {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * sql.projects.instances.rescheduleMaintenance
+     * @desc Reschedules the maintenance on the given instance.
+     * @alias sql.projects.instances.rescheduleMaintenance
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL reshedule this database instance's maintenance. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string} params.project ID of the project that contains the instance.
+     * @param {().SqlInstancesRescheduleMaintenanceRequestBody} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    rescheduleMaintenance(
+      params?: Params$Resource$Projects$Instances$Reschedulemaintenance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Instances$Reschedulemaintenance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Instances$Reschedulemaintenance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Reschedulemaintenance
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Reschedulemaintenance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Reschedulemaintenance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/rescheduleMaintenance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Instances$Reschedulemaintenance
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL reshedule this database instance's maintenance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SqlInstancesRescheduleMaintenanceRequestBody;
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    instances: Resource$Projects$Locations$Instances;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.instances = new Resource$Projects$Locations$Instances(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Instances {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * sql.projects.locations.instances.rescheduleMaintenance
+     * @desc Reschedules the maintenance on the given instance.
+     * @alias sql.projects.locations.instances.rescheduleMaintenance
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.parent The parent resource where Cloud SQL reshedule this database instance's maintenance. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string=} params.project ID of the project that contains the instance.
+     * @param {().SqlInstancesRescheduleMaintenanceRequestBody} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    rescheduleMaintenance(
+      params?: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Reschedulemaintenance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Reschedulemaintenance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/{+parent}/rescheduleMaintenance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL reshedule this database instance's maintenance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SqlInstancesRescheduleMaintenanceRequestBody;
   }
 
   export class Resource$Sslcerts {
@@ -5677,7 +5959,7 @@ export namespace sql_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.host Host of the user in the instance. For a MySQL instance, it's required; For a PostgreSQL instance, it's optional.
+     * @param {string=} params.host Optional. Host of the user in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string=} params.name Name of the user in the instance.
      * @param {string} params.project Project ID of the project that contains the instance.
@@ -5826,7 +6108,7 @@ export namespace sql_v1beta4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Host of the user in the instance. For a MySQL instance, it's required; For a PostgreSQL instance, it's optional.
+     * Optional. Host of the user in the instance.
      */
     host?: string;
     /**

@@ -14,33 +14,21 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {fusiontables_v1} from './v1';
-import {fusiontables_v2} from './v2';
+import {sasportal_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
-  v1: fusiontables_v1.Fusiontables,
-  v2: fusiontables_v2.Fusiontables,
+  v1alpha1: sasportal_v1alpha1.Sasportal,
 };
 
-export function fusiontables(version: 'v1'): fusiontables_v1.Fusiontables;
-export function fusiontables(
-  options: fusiontables_v1.Options
-): fusiontables_v1.Fusiontables;
-export function fusiontables(version: 'v2'): fusiontables_v2.Fusiontables;
-export function fusiontables(
-  options: fusiontables_v2.Options
-): fusiontables_v2.Fusiontables;
-export function fusiontables<
-  T = fusiontables_v1.Fusiontables | fusiontables_v2.Fusiontables
->(
+export function sasportal(version: 'v1alpha1'): sasportal_v1alpha1.Sasportal;
+export function sasportal(
+  options: sasportal_v1alpha1.Options
+): sasportal_v1alpha1.Sasportal;
+export function sasportal<T = sasportal_v1alpha1.Sasportal>(
   this: GoogleConfigurable,
-  versionOrOptions:
-    | 'v1'
-    | fusiontables_v1.Options
-    | 'v2'
-    | fusiontables_v2.Options
+  versionOrOptions: 'v1alpha1' | sasportal_v1alpha1.Options
 ) {
-  return getAPI<T>('fusiontables', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('sasportal', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

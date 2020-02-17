@@ -1,7 +1,7 @@
 {
-  "name": "@google/searchconsole",
+  "name": "@google/sasportal",
   "version": "0.1.0",
-  "description": "searchconsole",
+  "description": "sasportal",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

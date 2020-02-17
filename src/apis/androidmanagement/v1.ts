@@ -118,6 +118,15 @@ export namespace androidmanagement_v1 {
   }
 
   /**
+   * Security policies set to the most secure values by default. To maintain the security posture of a device, we don&#39;t recommend overriding any of the default values.
+   */
+  export interface Schema$AdvancedSecurityOverrides {
+    /**
+     * The policy for untrusted apps (apps from unknown sources) enforced on the device. Replaces install_unknown_sources_allowed (deprecated).
+     */
+    untrustedAppsPolicy?: string | null;
+  }
+  /**
    * Configuration for an always-on VPN connection.
    */
   export interface Schema$AlwaysOnVpnPackage {
@@ -393,6 +402,23 @@ export namespace androidmanagement_v1 {
      * If set, the rule includes a mitigating action to disable apps specified in the list, but app data is preserved.
      */
     packageNamesToDisable?: string[] | null;
+  }
+  /**
+   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: A full date, with non-zero year, month and day values A month and day value, with a zero year, e.g. an anniversary A year on its own, with zero month and day values A year and month value, with a zero day, e.g. a credit card expiration dateRelated types are google.type.TimeOfDay and google.protobuf.Timestamp.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     */
+    day?: number | null;
+    /**
+     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     */
+    year?: number | null;
   }
   /**
    * A device owned by an enterprise. Unless otherwise noted, all fields are read-only and can&#39;t be modified by enterprises.devices.patch.
@@ -671,7 +697,7 @@ export namespace androidmanagement_v1 {
      */
     pubsubTopic?: string | null;
     /**
-     * Sign-in details of the enterprise. Maximum of 1 SigninDetail is supported.
+     * Sign-in details of the enterprise.
      */
     signinDetails?: Schema$SigninDetail[];
     /**
@@ -691,6 +717,19 @@ export namespace androidmanagement_v1 {
      * The absolute URL to the data, which must use either the http or https scheme. Android Device Policy doesn&#39;t provide any credentials in the GET request, so the URL must be publicly accessible. Including a long, random component in the URL may be used to prevent attackers from discovering the URL.
      */
     url?: string | null;
+  }
+  /**
+   * A system freeze period. When a device’s clock is within the freeze period, all incoming system updates (including security patches) are blocked and won’t be installed. When a device is outside the freeze period, normal update behavior applies. Leap years are ignored in freeze period calculations, in particular: * If Feb. 29th is set as the start or end date of a freeze period, the freeze period will start or end on Feb. 28th instead. * When a device’s system clock reads Feb. 29th, it’s treated as Feb. 28th. * When calculating the number of days in a freeze period or the time between two freeze periods, Feb. 29th is ignored and not counted as a day.
+   */
+  export interface Schema$FreezePeriod {
+    /**
+     * The end date (inclusive) of the freeze period. Must be no later than 90 days from the start date. If the end date is earlier than the start date, the freeze period is considered wrapping year-end. Note: year must not be set. For example, {&quot;month&quot;: 1,&quot;date&quot;: 30}.
+     */
+    endDate?: Schema$Date;
+    /**
+     * The start date (inclusive) of the freeze period. Note: year must not be set. For example, {&quot;month&quot;: 1,&quot;date&quot;: 30}.
+     */
+    startDate?: Schema$Date;
   }
   /**
    * Information about device hardware. The fields related to temperature thresholds are only available if hardwareStatusEnabled is true in the device&#39;s policy.
@@ -814,6 +853,27 @@ export namespace androidmanagement_v1 {
      * The severity of the app state.
      */
     severity?: string | null;
+  }
+  /**
+   * Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK.
+   */
+  export interface Schema$KioskCustomization {
+    /**
+     * Sets the behavior of a device in kiosk mode when a user presses and holds (long-presses) the Power button.
+     */
+    powerButtonActions?: string | null;
+    /**
+     * Specifies whether system info and notifications are disabled in kiosk mode.
+     */
+    statusBar?: string | null;
+    /**
+     * Specifies whether system error dialogs for crashed or unresponsive apps are blocked in kiosk mode. When blocked, the system will force-stop the app as if the user chooses the &quot;close app&quot; option on the UI.
+     */
+    systemErrorWarnings?: string | null;
+    /**
+     * Specifies which navigation features are enabled (e.g. Home, Overview buttons) in kiosk mode.
+     */
+    systemNavigation?: string | null;
   }
   /**
    * An action to launch an app.
@@ -1118,6 +1178,10 @@ export namespace androidmanagement_v1 {
      * The scope that the password requirement applies to.
      */
     passwordScope?: string | null;
+    /**
+     * The length of time after a device or work profile is unlocked using a strong form of authentication (password, PIN, pattern) that it can be unlocked using any other authentication method (e.g. fingerprint, trust agents, face). After the specified time period elapses, only strong forms of authentication can be used to unlock the device or work profile.
+     */
+    requirePasswordUnlock?: string | null;
   }
   /**
    * Configuration for an Android permission and its grant state.
@@ -1165,6 +1229,10 @@ export namespace androidmanagement_v1 {
      * Whether adjusting the master volume is disabled.
      */
     adjustVolumeDisabled?: boolean | null;
+    /**
+     * Security policies set to the most secure values by default. To maintain the security posture of a device, we don&#39;t recommend overriding any of the default values.
+     */
+    advancedSecurityOverrides?: Schema$AdvancedSecurityOverrides;
     /**
      * Configuration for an always-on VPN connection. Use with vpn_config_disabled to prevent modification of this setting.
      */
@@ -1277,6 +1345,10 @@ export namespace androidmanagement_v1 {
      * Disabled keyguard customizations, such as widgets.
      */
     keyguardDisabledFeatures?: string[] | null;
+    /**
+     * Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK.
+     */
+    kioskCustomization?: Schema$KioskCustomization;
     /**
      * Whether the kiosk custom launcher is enabled. This replaces the home screen with a launcher that locks down the device to the apps installed via the applications setting. Apps appear on a single page in alphabetical order. The status bar is disabled when this is set.
      */
@@ -1402,7 +1474,7 @@ export namespace androidmanagement_v1 {
      */
     shareLocationDisabled?: boolean | null;
     /**
-     * A message displayed to the user in the settings screen wherever functionality has been disabled by the admin.
+     * A message displayed to the user in the settings screen wherever functionality has been disabled by the admin. If the message is longer than 200 characters it may be truncated.
      */
     shortSupportMessage?: Schema$UserFacingMessage;
     /**
@@ -1673,11 +1745,11 @@ export namespace androidmanagement_v1 {
      */
     deviceSettingsEnabled?: boolean | null;
     /**
-     * Whether displays reporting is enabled.
+     * Whether displays reporting is enabled. Report data is not available for personally owned devices with work profiles.
      */
     displayInfoEnabled?: boolean | null;
     /**
-     * Whether hardware status reporting is enabled.
+     * Whether hardware status reporting is enabled. Report data is not available for personally owned devices with work profiles.
      */
     hardwareStatusEnabled?: boolean | null;
     /**
@@ -1689,7 +1761,7 @@ export namespace androidmanagement_v1 {
      */
     networkInfoEnabled?: boolean | null;
     /**
-     * Whether power management event reporting is enabled.
+     * Whether power management event reporting is enabled. Report data is not available for personally owned devices with work profiles.
      */
     powerManagementEventsEnabled?: boolean | null;
     /**
@@ -1709,6 +1781,10 @@ export namespace androidmanagement_v1 {
      * If the type is WINDOWED, the end of the maintenance window, measured as the number of minutes after midnight in device&#39;s local time. This value must be between 0 and 1439, inclusive. If this value is less than start_minutes, then the maintenance window spans midnight. If the maintenance window specified is smaller than 30 minutes, the actual window is extended to 30 minutes beyond the start time.
      */
     endMinutes?: number | null;
+    /**
+     * An annually repeating time period in which over-the-air (OTA) system updates are postponed to freeze the OS version running on a device. To prevent freezing the device indefinitely, each freeze period must be separated by at least 60 days.
+     */
+    freezePeriods?: Schema$FreezePeriod[];
     /**
      * If the type is WINDOWED, the start of the maintenance window, measured as the number of minutes after midnight in the device&#39;s local time. This value must be between 0 and 1439, inclusive.
      */
@@ -2245,6 +2321,7 @@ export namespace androidmanagement_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      * @param {string=} params.wipeDataFlags Optional flags that control the device wiping behavior.
+     * @param {string=} params.wipeReasonMessage Optional short message displayed to the user before wiping the work profile on personal devices. This has no effect on company owned devices. The maximum message length is 200 characters.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2618,6 +2695,10 @@ export namespace androidmanagement_v1 {
      * Optional flags that control the device wiping behavior.
      */
     wipeDataFlags?: string[];
+    /**
+     * Optional short message displayed to the user before wiping the work profile on personal devices. This has no effect on company owned devices. The maximum message length is 200 characters.
+     */
+    wipeReasonMessage?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Get
     extends StandardParameters {

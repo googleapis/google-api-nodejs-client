@@ -416,15 +416,15 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Training options used by this training run. These options are mutable for subsequent training runs. Default values are explicitly stored for options not specified in the input query of the first training run. For subsequent training runs, any option not explicitly specified in the input query will be copied from the previous training run.
      */
     trainingOptions?: {
-      l2Reg?: number;
-      warmStart?: boolean;
-      learnRateStrategy?: string;
       lineSearchInitLearnRate?: number;
       earlyStop?: boolean;
       l1Reg?: number;
       maxIteration?: string;
       learnRate?: number;
       minRelProgress?: number;
+      l2Reg?: number;
+      learnRateStrategy?: string;
+      warmStart?: boolean;
     } | null;
   }
   /**
@@ -550,13 +550,13 @@ export namespace bigquery_v2 {
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
+      domain?: string;
+      userByEmail?: string;
+      iamMember?: string;
+      specialGroup?: string;
       role?: string;
       view?: Schema$TableReference;
       groupByEmail?: string;
-      userByEmail?: string;
-      domain?: string;
-      iamMember?: string;
-      specialGroup?: string;
     }> | null;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds since the epoch.
@@ -805,6 +805,10 @@ export namespace bigquery_v2 {
      * Total number of bytes written to shuffle and spilled to disk.
      */
     shuffleOutputBytesSpilled?: string | null;
+    /**
+     * Slot-milliseconds used by the stage.
+     */
+    slotMs?: string | null;
     /**
      * Stage start time represented as milliseconds since epoch.
      */
@@ -1397,8 +1401,8 @@ export namespace bigquery_v2 {
      */
     jobs?: Array<{
       user_email?: string;
-      kind?: string;
       errorResult?: Schema$ErrorProto;
+      kind?: string;
       jobReference?: Schema$JobReference;
       status?: Schema$JobStatus;
       state?: string;
@@ -1547,7 +1551,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
+    reservationUsage?: Array<{slotMs?: string; name?: string}> | null;
     /**
      * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
@@ -1693,7 +1697,7 @@ export namespace bigquery_v2 {
      */
     description?: string | null;
     /**
-     * Custom encryption configuration (e.g., Cloud KMS keys). This shows the encryption configuration of the model data while stored in BigQuery storage.
+     * Custom encryption configuration (e.g., Cloud KMS keys). This shows the encryption configuration of the model data while stored in BigQuery storage. This field can be used with PatchModel to update encryption key for an already encrypted model.
      */
     encryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
@@ -1988,7 +1992,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {interval?: string; start?: string; end?: string} | null;
+    range?: {start?: string; end?: string; interval?: string} | null;
   }
   /**
    * Evaluation metrics for regression and explicit feedback type matrix factorization models.
@@ -2389,18 +2393,18 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
-      id?: string;
-      tableReference?: Schema$TableReference;
-      friendlyName?: string;
-      timePartitioning?: Schema$TimePartitioning;
-      labels?: {[key: string]: string};
-      clustering?: Schema$Clustering;
       type?: string;
+      clustering?: Schema$Clustering;
       expirationTime?: string;
       kind?: string;
       view?: {useLegacySql?: boolean};
       creationTime?: string;
       rangePartitioning?: Schema$RangePartitioning;
+      id?: string;
+      tableReference?: Schema$TableReference;
+      friendlyName?: string;
+      timePartitioning?: Schema$TimePartitioning;
+      labels?: {[key: string]: string};
     }> | null;
     /**
      * The total number of tables in the dataset.
@@ -5501,6 +5505,7 @@ export namespace bigquery_v2 {
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Required. Dataset ID of the requested routine
      * @param {string} params.projectId Required. Project ID of the requested routine
+     * @param {string=} params.readMask If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.
      * @param {string} params.routineId Required. Routine ID of the requested routine
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5761,9 +5766,11 @@ export namespace bigquery_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Required. Dataset ID of the routines to list
+     * @param {string=} params.filter If set, then only the Routines matching this filter are returned. The current supported form is either "routine_type:<RoutineType>" or "routineType:<RoutineType>", where <RoutineType> is a RoutineType enum. Example: "routineType:SCALAR_FUNCTION".
      * @param {integer=} params.maxResults The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId Required. Project ID of the routines to list
+     * @param {string=} params.readMask If set, then only the Routine fields in the field mask, as well as project_id, dataset_id and routine_id, are returned in the response. If unset, then the following Routine fields are returned: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5997,6 +6004,10 @@ export namespace bigquery_v2 {
      */
     projectId?: string;
     /**
+     * If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.
+     */
+    readMask?: string;
+    /**
      * Required. Routine ID of the requested routine
      */
     routineId?: string;
@@ -6032,6 +6043,10 @@ export namespace bigquery_v2 {
      */
     datasetId?: string;
     /**
+     * If set, then only the Routines matching this filter are returned. The current supported form is either "routine_type:<RoutineType>" or "routineType:<RoutineType>", where <RoutineType> is a RoutineType enum. Example: "routineType:SCALAR_FUNCTION".
+     */
+    filter?: string;
+    /**
      * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      */
     maxResults?: number;
@@ -6043,6 +6058,10 @@ export namespace bigquery_v2 {
      * Required. Project ID of the routines to list
      */
     projectId?: string;
+    /**
+     * If set, then only the Routine fields in the field mask, as well as project_id, dataset_id and routine_id, are returned in the response. If unset, then the following Routine fields are returned: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.
+     */
+    readMask?: string;
   }
   export interface Params$Resource$Routines$Update extends StandardParameters {
     /**

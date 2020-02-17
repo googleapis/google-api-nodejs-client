@@ -1,7 +1,7 @@
 {
-  "name": "@google/fusiontables",
+  "name": "@google/prod_tt_sasportal",
   "version": "0.1.0",
-  "description": "fusiontables",
+  "description": "prod_tt_sasportal",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

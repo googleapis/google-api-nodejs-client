@@ -1096,7 +1096,7 @@ export namespace storagetransfer_v1 {
 
     /**
      * storagetransfer.transferJobs.patch
-     * @desc Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating the scheduling of a job is not allowed.
+     * @desc Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating a job's schedule is not allowed.  Note: The job's `status` field can be modified using this RPC (for example, to set a job's status to `DELETED`, `DISABLED`, or `ENABLED`).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

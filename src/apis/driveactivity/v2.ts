@@ -240,6 +240,10 @@ export namespace driveactivity_v2 {
    */
   export interface Schema$Assignment {
     /**
+     * The user to whom the comment was assigned.
+     */
+    assignedUser?: Schema$User;
+    /**
      * The sub-type of this event.
      */
     subtype?: string | null;
