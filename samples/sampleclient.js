@@ -17,6 +17,7 @@
  * This is used by several samples to easily provide an oauth2 workflow.
  */
 
+// [START auth_oauth2_workflow]
 const {google} = require('googleapis');
 const http = require('http');
 const url = require('url');
@@ -107,5 +108,5 @@ class SampleClient {
     });
   }
 }
-
+// [END auth_oauth2_workflow]
 module.exports = new SampleClient();
