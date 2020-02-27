@@ -31,7 +31,8 @@ module.exports = {
   source: {
     excludePattern: '(^|\\/|\\\\)[._]',
     include: [
-      'src'
+      'src',
+      'protos'
     ],
     includePattern: '\\.js$'
   },
@@ -42,7 +43,7 @@ module.exports = {
     systemName: 'googleapis',
     theme: 'lumen',
     default: {
-      "outputSourceFiles": false
+      outputSourceFiles: false
     }
   },
   markdown: {
