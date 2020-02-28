@@ -3062,10 +3062,6 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$DirectorySite {
     /**
-     * Whether this directory site is active.
-     */
-    active?: boolean | null;
-    /**
      * ID of this directory site. This is a read-only, auto-generated field.
      */
     id?: string | null;

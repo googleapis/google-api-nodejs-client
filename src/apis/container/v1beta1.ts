@@ -141,6 +141,10 @@ export namespace container_v1beta1 {
      */
     dnsCacheConfig?: Schema$DnsCacheConfig;
     /**
+     * Configuration for the GCE PD CSI driver. This option can only be enabled at cluster creation time.
+     */
+    gcePersistentDiskCsiDriverConfig?: Schema$GcePersistentDiskCsiDriverConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -186,6 +190,10 @@ export namespace container_v1beta1 {
      * Specifies the node management options for NAP created node-pools.
      */
     management?: Schema$NodeManagement;
+    /**
+     * Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as &lt;code&gt;minCpuPlatform: &amp;quot;Intel Haswell&amp;quot;&lt;/code&gt; or &lt;code&gt;minCpuPlatform: &amp;quot;Intel Sandy Bridge&amp;quot;&lt;/code&gt;. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass &quot;automatic&quot; as field value.
+     */
+    minCpuPlatform?: string | null;
     /**
      * Scopes that are used by NAP when creating node pools. If oauth_scopes are specified, service_account should be empty.
      */
@@ -780,6 +788,15 @@ export namespace container_v1beta1 {
     tier?: string | null;
   }
   /**
+   * Configuration for the GCE PD CSI driver. This option can only be enabled at cluster creation time.
+   */
+  export interface Schema$GcePersistentDiskCsiDriverConfig {
+    /**
+     * Whether the GCE PD CSI driver is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517
    */
   export interface Schema$GetJSONWebKeysResponse {
@@ -834,7 +851,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$HorizontalPodAutoscaling {
     /**
-     * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster. When enabled, it ensures that a Heapster pod is running in the cluster, which is also used by the Cloud Monitoring service.
+     * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster. When enabled, it ensures that metrics are collected into Stackdriver Monitoring.
      */
     disabled?: boolean | null;
   }
@@ -1236,6 +1253,10 @@ export namespace container_v1beta1 {
      */
     accelerators?: Schema$AcceleratorConfig[];
     /**
+     *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     */
+    bootDiskKmsKey?: string | null;
+    /**
      * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB.  If unspecified, the default disk size is 100GB.
      */
     diskSizeGb?: number | null;
@@ -1264,7 +1285,7 @@ export namespace container_v1beta1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as &lt;code&gt;minCpuPlatform: &amp;quot;Intel Haswell&amp;quot;&lt;/code&gt; or &lt;code&gt;minCpuPlatform: &amp;quot;Intel Sandy Bridge&amp;quot;&lt;/code&gt;. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass &quot;automatic&quot; as field value.
+     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as &lt;code&gt;minCpuPlatform: &amp;quot;Intel Haswell&amp;quot;&lt;/code&gt; or &lt;code&gt;minCpuPlatform: &amp;quot;Intel Sandy Bridge&amp;quot;&lt;/code&gt;. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      */
     minCpuPlatform?: string | null;
     /**
@@ -1284,7 +1305,7 @@ export namespace container_v1beta1 {
      */
     sandboxConfig?: Schema$SandboxConfig;
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. If no Service Account is specified, the &quot;default&quot; service account is used.
+     * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the &quot;default&quot; service account is used.
      */
     serviceAccount?: string | null;
     /**
@@ -1684,6 +1705,10 @@ export namespace container_v1beta1 {
      * Type of the sandbox to use for the node (e.g. &#39;gvisor&#39;)
      */
     sandboxType?: string | null;
+    /**
+     * Type of the sandbox to use for the node.
+     */
+    type?: string | null;
   }
   /**
    * Kubernetes Engine service configuration.
@@ -3268,7 +3293,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.setLocations
-     * @desc Sets the locations for a specific cluster.
+     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.update) instead.
      * @alias container.projects.locations.clusters.setLocations
      * @memberOf! ()
      *
@@ -6245,7 +6270,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.locations
-     * @desc Sets the locations for a specific cluster.
+     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.update) instead.
      * @alias container.projects.zones.clusters.locations
      * @memberOf! ()
      *

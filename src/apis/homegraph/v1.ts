@@ -321,7 +321,7 @@ export namespace homegraph_v1 {
      */
     followUpToken?: string | null;
     /**
-     * State of devices to update and notification metadata for devices. For example, if a user turns a light on manually, a state update should be sent so that the information is always the current status of the device. Notifications are independent from the state and its piece of the payload should contain everything necessary to notify the user. Although it may be related to a state change, it does not need to be. For example, if a device can turn on/off and change temperature, the states reported would include both &quot;on&quot; and &quot;70 degrees&quot; but the 3p may choose not to send any notification for that, or to only say that the &quot;the room is heating up&quot;, keeping state and notification independent.
+     * Required. State of devices to update and notification metadata for devices. For example, if a user turns a light on manually, a state update should be sent so that the information is always the current status of the device. Notifications are independent from the state and its piece of the payload should contain everything necessary to notify the user. Although it may be related to a state change, it does not need to be. For example, if a device can turn on/off and change temperature, the states reported would include both &quot;on&quot; and &quot;70 degrees&quot; but the 3p may choose not to send any notification for that, or to only say that the &quot;the room is heating up&quot;, keeping state and notification independent.
      */
     payload?: Schema$StateAndNotificationPayload;
     /**

@@ -859,6 +859,10 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$KioskCustomization {
     /**
+     * Specifies whether the Settings app is allowed in kiosk mode.
+     */
+    deviceSettings?: string | null;
+    /**
      * Sets the behavior of a device in kiosk mode when a user presses and holds (long-presses) the Power button.
      */
     powerButtonActions?: string | null;
@@ -1350,7 +1354,7 @@ export namespace androidmanagement_v1 {
      */
     kioskCustomization?: Schema$KioskCustomization;
     /**
-     * Whether the kiosk custom launcher is enabled. This replaces the home screen with a launcher that locks down the device to the apps installed via the applications setting. Apps appear on a single page in alphabetical order. The status bar is disabled when this is set.
+     * Whether the kiosk custom launcher is enabled. This replaces the home screen with a launcher that locks down the device to the apps installed via the applications setting. Apps appear on a single page in alphabetical order. Use kioskCustomization to further configure the kiosk device behavior.
      */
     kioskCustomLauncherEnabled?: boolean | null;
     /**

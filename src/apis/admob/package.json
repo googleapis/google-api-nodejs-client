@@ -1,7 +1,7 @@
 {
-  "name": "@google/gamesConfiguration",
+  "name": "@google/admob",
   "version": "0.1.0",
-  "description": "gamesConfiguration",
+  "description": "admob",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

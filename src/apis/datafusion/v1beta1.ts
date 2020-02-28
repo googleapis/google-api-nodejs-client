@@ -123,7 +123,6 @@ export namespace datafusion_v1beta1 {
      * The configuration for logging of each type of permission.
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
-    exemptedMembers?: string[] | null;
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
@@ -137,20 +136,10 @@ export namespace datafusion_v1beta1 {
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[] | null;
-    ignoreChildExemptions?: boolean | null;
     /**
      * The log type that this config enables.
      */
     logType?: string | null;
-  }
-  /**
-   * Authorization-related information used by Cloud Audit Logging.
-   */
-  export interface Schema$AuthorizationLoggingOptions {
-    /**
-     * The type of the permission that was checked.
-     */
-    permissionType?: string | null;
   }
   /**
    * Associates `members` with a `role`.
@@ -161,7 +150,7 @@ export namespace datafusion_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is    on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone    who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google    account. For example, `alice@example.com` .   * `serviceAccount:{emailid}`: An email address that represents a service    account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group.    For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a user that has been recently deleted. For    example, `alice@example.com?uid=123456789012345678901`. If the user is    recovered, this value reverts to `user:{emailid}` and the recovered user    retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus    unique identifier) representing a service account that has been recently    deleted. For example,    `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`.    If the service account is undeleted, this value reverts to    `serviceAccount:{emailid}` and the undeleted service account retains the    role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique    identifier) representing a Google group that has been recently    deleted. For example, `admins@example.com?uid=123456789012345678901`. If    the group is recovered, this value reverts to `group:{emailid}` and the    recovered group retains the role in the binding.   * `domain:{domain}`: The G Suite domain (primary) that represents all the    users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -174,104 +163,27 @@ export namespace datafusion_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Write a Cloud Audit log
-   */
-  export interface Schema$CloudAuditOptions {
-    /**
-     * Information used by the Cloud Audit Logging pipeline.
-     */
-    authorizationLoggingOptions?: Schema$AuthorizationLoggingOptions;
-    /**
-     * The log_name to populate in the Cloud Audit Record.
-     */
-    logName?: string | null;
-  }
-  /**
-   * A condition to be met.
-   */
-  export interface Schema$Condition {
-    /**
-     * Trusted attributes supplied by the IAM system.
-     */
-    iam?: string | null;
-    /**
-     * An operator to apply the subject with.
-     */
-    op?: string | null;
-    /**
-     * Trusted attributes discharged by the service.
-     */
-    svc?: string | null;
-    /**
-     * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
-     */
-    sys?: string | null;
-    /**
-     * The objects of the condition.
-     */
-    values?: string[] | null;
-  }
-  /**
-   * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names:    - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present,      otherwise the value of IAMContext.authority_selector if present, and      otherwise a representation of IAMContext.principal; or    - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a      token or authority selector is present; or    - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples:   counter { metric: &quot;/debug_access_count&quot;  field: &quot;iam_principal&quot; }   ==&gt; increment counter /iam/policy/debug_access_count                         {iam_principal=[value of IAMContext.principal]}
-   */
-  export interface Schema$CounterOptions {
-    /**
-     * Custom fields.
-     */
-    customFields?: Schema$CustomField[];
-    /**
-     * The field value to attribute.
-     */
-    field?: string | null;
-    /**
-     * The metric to update.
-     */
-    metric?: string | null;
-  }
-  /**
-   * Custom fields. These can be used to create a counter with arbitrary field/value pairs. See: go/rpcsp-custom-fields.
-   */
-  export interface Schema$CustomField {
-    /**
-     * Name is the field name.
-     */
-    name?: string | null;
-    /**
-     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
-     */
-    value?: string | null;
-  }
-  /**
-   * Write a Data Access (Gin) log
-   */
-  export interface Schema$DataAccessOptions {
-    /**
-     * Whether Gin logging should happen in a fail-closed manner at the caller. This is relevant only in the LocalIAM implementation, for now.
-     */
-    logMode?: string | null;
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
@@ -308,7 +220,11 @@ export namespace datafusion_v1beta1 {
      */
     enableStackdriverMonitoring?: boolean | null;
     /**
-     * The resource labels for instance to use to annotate any related underlying resources such as GCE VMs. The character &#39;=&#39; is not allowed to be used within the labels.
+     * Output only. Cloud Storage bucket generated by Data Fusion in the customer project.
+     */
+    gcsBucket?: string | null;
+    /**
+     * The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character &#39;=&#39; is not allowed to be used within the labels.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -352,7 +268,7 @@ export namespace datafusion_v1beta1 {
      */
     updateTime?: string | null;
     /**
-     * Current version of the Data Fusion. Only specifiable in Update.
+     * Current version of Data Fusion.
      */
     version?: string | null;
     /**
@@ -429,23 +345,6 @@ export namespace datafusion_v1beta1 {
     name?: string | null;
   }
   /**
-   * Specifies what kind of log the caller must write
-   */
-  export interface Schema$LogConfig {
-    /**
-     * Cloud audit options.
-     */
-    cloudAudit?: Schema$CloudAuditOptions;
-    /**
-     * Counter options.
-     */
-    counter?: Schema$CounterOptions;
-    /**
-     * Data access options.
-     */
-    dataAccess?: Schema$DataAccessOptions;
-  }
-  /**
    * Network configuration for a Data Fusion instance. These configurations are used for peering with the customer network. Configurations are optional when a public Data Fusion instance is to be created. However, providing these configurations allows several benefits, such as reduced network latency while accessing the customer resources from managed Data Fusion instance nodes, as well as access to the customer on-prem resources.
    */
   export interface Schema$NetworkConfig {
@@ -517,7 +416,7 @@ export namespace datafusion_v1beta1 {
     verb?: string | null;
   }
   /**
-   * Defines an Identity and Access Management (IAM) policy. It is used to specify access control policies for Cloud Platform resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions (defined by IAM or configured by users). A `binding` can optionally specify a `condition`, which is a logic expression that further constrains the role binding based on attributes about the request and/or target resource.  **JSON Example**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt;             timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ]     }  **YAML Example**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)  For a description of IAM and its features, see the [IAM developer&#39;s guide](https://cloud.google.com/iam/docs).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.   A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  Optionally, a `binding` can specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both.  **JSON example:**      {       &quot;bindings&quot;: [         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;,           &quot;members&quot;: [             &quot;user:mike@example.com&quot;,             &quot;group:admins@example.com&quot;,             &quot;domain:google.com&quot;,             &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot;           ]         },         {           &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;,           &quot;members&quot;: [&quot;user:eve@example.com&quot;],           &quot;condition&quot;: {             &quot;title&quot;: &quot;expirable access&quot;,             &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;,             &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;,           }         }       ],       &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;,       &quot;version&quot;: 3     }  **YAML example:**      bindings:     - members:       - user:mike@example.com       - group:admins@example.com       - domain:google.com       - serviceAccount:my-project-id@appspot.gserviceaccount.com       role: roles/resourcemanager.organizationAdmin     - members:       - user:eve@example.com       role: roles/resourcemanager.organizationViewer       condition:         title: expirable access         description: Does not grant access after Sep 2020         expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)     - etag: BwWWja0YfJA=     - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -525,20 +424,15 @@ export namespace datafusion_v1beta1 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. Optionally may specify a `condition` that determines when binding is in effect. `bindings` with no members will result in an error.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten. Due to blind-set semantics of an etag-less policy, &#39;setIamPolicy&#39; will not fail even if either of incoming or stored policy does not meet the version requirements.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
-    iamOwned?: boolean | null;
     /**
-     * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied.   Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is   granted.   Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
-     */
-    rules?: Schema$Rule[];
-    /**
-     * Specifies the format of the policy.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Operations affecting conditional bindings must specify version 3. This can be either setting a conditional policy, modifying a conditional binding, or removing a conditional binding from the stored conditional policy. Operations on non-conditional policies may specify any valid value or leave the field unset.  If no etag is provided in the call to `setIamPolicy`, any version compliance checks on the incoming and/or stored policy is skipped.
+     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy   that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
      */
     version?: number | null;
   }
@@ -546,39 +440,6 @@ export namespace datafusion_v1beta1 {
    * Request message for restarting a Data Fusion instance.
    */
   export interface Schema$RestartInstanceRequest {}
-  /**
-   * A rule to be applied in a Policy.
-   */
-  export interface Schema$Rule {
-    /**
-     * Required
-     */
-    action?: string | null;
-    /**
-     * Additional restrictions that must be met. All conditions must pass for the rule to match.
-     */
-    conditions?: Schema$Condition[];
-    /**
-     * Human-readable description of the rule.
-     */
-    description?: string | null;
-    /**
-     * If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-     */
-    in?: string[] | null;
-    /**
-     * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
-     */
-    logConfig?: Schema$LogConfig[];
-    /**
-     * If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries. The format for in and not_in entries can be found at in the Local IAM documentation (see go/local-iam#features).
-     */
-    notIn?: string[] | null;
-    /**
-     * A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
-     */
-    permissions?: string[] | null;
-  }
   /**
    * Request message for `SetIamPolicy` method.
    */
@@ -739,6 +600,7 @@ export namespace datafusion_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The standard list filter.
+     * @param {boolean=} params.includeUnrevealedLocations If true, the returned list will include locations which are not yet revealed.
      * @param {string} params.name The resource that owns the locations collection, if applicable.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
@@ -834,6 +696,10 @@ export namespace datafusion_v1beta1 {
      * The standard list filter.
      */
     filter?: string;
+    /**
+     * If true, the returned list will include locations which are not yet revealed.
+     */
+    includeUnrevealedLocations?: boolean;
     /**
      * The resource that owns the locations collection, if applicable.
      */

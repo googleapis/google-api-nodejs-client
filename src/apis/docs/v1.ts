@@ -266,9 +266,13 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * Creates a Footer. The new footer is applied to the DocumentStyle.  If a footer of the specified type already exists, a 400 bad request error is returned.
+   * Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specificed, otherwise it is applied to the DocumentStyle.  If a footer of the specified type already exists, a 400 bad request error is returned.
    */
   export interface Schema$CreateFooterRequest {
+    /**
+     * The location of the SectionBreak immediately preceding the section whose SectionStyle this footer should belong to. If this is unset or refers to the first section break in the document, the footer applies to the document style.
+     */
+    sectionBreakLocation?: Schema$Location;
     /**
      * The type of footer to create.
      */
@@ -306,9 +310,13 @@ export namespace docs_v1 {
     footnoteId?: string | null;
   }
   /**
-   * Creates a Header. The new header is applied to the DocumentStyle.  If a header of the specified type already exists, a 400 bad request error is returned.
+   * Creates a Header. The new header is applied to the SectionStyle at the location of the SectionBreak if specificed, otherwise it is applied to the DocumentStyle.  If a header of the specified type already exists, a 400 bad request error is returned.
    */
   export interface Schema$CreateHeaderRequest {
+    /**
+     * The location of the SectionBreak which begins the section this header should belong to. If `section_break_location&#39; is unset or if it refers to the first section break in the document body, the header applies to the DocumentStyle
+     */
+    sectionBreakLocation?: Schema$Location;
     /**
      * The type of header to create.
      */
@@ -416,6 +424,24 @@ export namespace docs_v1 {
      * The range of content to delete.  Deleting text that crosses a paragraph boundary may result in changes to paragraph styles, lists, positioned objects and bookmarks as the two paragraphs are merged.  Attempting to delete certain ranges can result in an invalid document structure in which case a 400 bad request error is returned.  Some examples of invalid delete requests include:  * Deleting one code unit of a surrogate pair. * Deleting the last newline character of a Body, Header,   Footer, Footnote, TableCell or TableOfContents. * Deleting the start or end of a Table,   TableOfContents or Equation without deleting the entire element. * Deleting the newline character before a   Table,   TableOfContents or   SectionBreak without deleting the   element. * Deleting individual rows or cells of a table. Deleting the content within   a table cell is allowed.
      */
     range?: Schema$Range;
+  }
+  /**
+   * Deletes a Footer from the document.
+   */
+  export interface Schema$DeleteFooterRequest {
+    /**
+     * The id of the footer to delete. If this footer is defined on DocumentStyle, the reference to this footer is removed, resulting in no footer of that type for the first section of the document. If this footer is defined on a SectionStyle, the reference to this footer is removed and the footer of that type is now continued from the previous section.
+     */
+    footerId?: string | null;
+  }
+  /**
+   * Deletes a Header from the document.
+   */
+  export interface Schema$DeleteHeaderRequest {
+    /**
+     * The id of the header to delete. If this header is defined on DocumentStyle, the reference to this header is removed, resulting in no header of that type for the first section of the document. If this header is defined on a SectionStyle, the reference to this header is removed and the header of that type is now continued from the previous section.
+     */
+    headerId?: string | null;
   }
   /**
    * Deletes a NamedRange.
@@ -621,11 +647,11 @@ export namespace docs_v1 {
      */
     useCustomHeaderFooterMargins?: boolean | null;
     /**
-     * Indicates whether to use the even page header / footer IDs for the even pages.  This property is read-only.
+     * Indicates whether to use the even page header / footer IDs for the even pages.
      */
     useEvenPageHeaderFooter?: boolean | null;
     /**
-     * Indicates whether to use the first page header / footer IDs for the first page.  This property is read-only.
+     * Indicates whether to use the first page header / footer IDs for the first page.
      */
     useFirstPageHeaderFooter?: boolean | null;
   }
@@ -666,6 +692,14 @@ export namespace docs_v1 {
      */
     marginBottomSuggested?: boolean | null;
     /**
+     * Indicates if there was a suggested change to margin_footer.
+     */
+    marginFooterSuggested?: boolean | null;
+    /**
+     * Indicates if there was a suggested change to margin_header.
+     */
+    marginHeaderSuggested?: boolean | null;
+    /**
      * Indicates if there was a suggested change to margin_left.
      */
     marginLeftSuggested?: boolean | null;
@@ -685,6 +719,10 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields in size have been changed in this suggestion.
      */
     pageSizeSuggestionState?: Schema$SizeSuggestionState;
+    /**
+     * Indicates if there was a suggested change to use_custom_header_footer_margins.
+     */
+    useCustomHeaderFooterMarginsSuggested?: boolean | null;
     /**
      * Indicates if there was a suggested change to use_even_page_header_footer.
      */
@@ -1989,6 +2027,14 @@ export namespace docs_v1 {
      */
     deleteContentRange?: Schema$DeleteContentRangeRequest;
     /**
+     * Deletes a footer from the document.
+     */
+    deleteFooter?: Schema$DeleteFooterRequest;
+    /**
+     * Deletes a header from the document.
+     */
+    deleteHeader?: Schema$DeleteHeaderRequest;
+    /**
      * Deletes a named range.
      */
     deleteNamedRange?: Schema$DeleteNamedRangeRequest;
@@ -2161,7 +2207,7 @@ export namespace docs_v1 {
      */
     paddingEnd?: Schema$Dimension;
     /**
-     * The width of the column.
+     * Output only. The width of the column.
      */
     width?: Schema$Dimension;
   }
@@ -2170,17 +2216,41 @@ export namespace docs_v1 {
    */
   export interface Schema$SectionStyle {
     /**
-     * The section&#39;s columns properties.  If empty, the section contains one column with the default properties in the Docs editor.
+     * The section&#39;s columns properties.  If empty, the section contains one column with the default properties in the Docs editor. A section can be updated to have no more than three columns.  When updating this property, setting a concrete value is required. Unsetting this property will result in a 400 bad request error.
      */
     columnProperties?: Schema$SectionColumnProperties[];
     /**
-     * The style of column separators.  This style can be set even when there is one column in the section.
+     * The style of column separators.  This style can be set even when there is one column in the section.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
      */
     columnSeparatorStyle?: string | null;
     /**
-     * The content direction of this section. If unset, the value defaults to LEFT_TO_RIGHT.
+     * The content direction of this section. If unset, the value defaults to LEFT_TO_RIGHT.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
      */
     contentDirection?: string | null;
+    /**
+     * The ID of the default footer. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s default_footer_id.  This property is read-only.
+     */
+    defaultFooterId?: string | null;
+    /**
+     * The ID of the default header. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s default_header_id.  This property is read-only.
+     */
+    defaultHeaderId?: string | null;
+    /**
+     * The ID of the footer used only for even pages. If the value of DocumentStyle&#39;s use_even_page_header_footer is true, this value is used for the footers on even pages in the section. If it is false, the footers on even pages uses the default_footer_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s even_page_footer_id.  This property is read-only.
+     */
+    evenPageFooterId?: string | null;
+    /**
+     * The ID of the header used only for even pages. If the value of DocumentStyle&#39;s use_even_page_header_footer is true, this value is used for the headers on even pages in the section. If it is false, the headers on even pages uses the default_header_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s even_page_header_id.  This property is read-only.
+     */
+    evenPageHeaderId?: string | null;
+    /**
+     * The ID of the footer used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the footer on the first page of the section. If it is false, the footer on the first page of the section uses the default_footer_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s first_page_footer_id.  This property is read-only.
+     */
+    firstPageFooterId?: string | null;
+    /**
+     * The ID of the header used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the header on the first page of the section. If it is false, the header on the first page of the section uses the default_header_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s first_page_header_id.  This property is read-only.
+     */
+    firstPageHeaderId?: string | null;
     /**
      * The bottom page margin of the section. If unset, uses margin_bottom from DocumentStyle.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
      */
@@ -2206,9 +2276,17 @@ export namespace docs_v1 {
      */
     marginTop?: Schema$Dimension;
     /**
+     * The page number from which to start counting the number of pages for this section. If unset, page numbering continues from the previous section. If the value is unset in the first SectionBreak, refer to DocumentStyle&#39;s page_number_start.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    pageNumberStart?: number | null;
+    /**
      * Output only. The type of section.
      */
     sectionType?: string | null;
+    /**
+     * Indicates whether to use the first page header / footer IDs for the first page of the section. If unset, it inherits from DocumentStyle&#39;s use_first_page_header_footer for the first section. If the value is unset for subsequent sectors, it should be interpreted as false.  When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     */
+    useFirstPageHeaderFooter?: boolean | null;
   }
   /**
    * The shading of a paragraph.

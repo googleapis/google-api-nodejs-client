@@ -16,10 +16,12 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {cloudbuild_v1} from './v1';
 import {cloudbuild_v1alpha1} from './v1alpha1';
+import {cloudbuild_v1alpha2} from './v1alpha2';
 
 export const VERSIONS = {
   v1: cloudbuild_v1.Cloudbuild,
   v1alpha1: cloudbuild_v1alpha1.Cloudbuild,
+  v1alpha2: cloudbuild_v1alpha2.Cloudbuild,
 };
 
 export function cloudbuild(version: 'v1'): cloudbuild_v1.Cloudbuild;
@@ -30,8 +32,15 @@ export function cloudbuild(version: 'v1alpha1'): cloudbuild_v1alpha1.Cloudbuild;
 export function cloudbuild(
   options: cloudbuild_v1alpha1.Options
 ): cloudbuild_v1alpha1.Cloudbuild;
+export function cloudbuild(version: 'v1alpha2'): cloudbuild_v1alpha2.Cloudbuild;
+export function cloudbuild(
+  options: cloudbuild_v1alpha2.Options
+): cloudbuild_v1alpha2.Cloudbuild;
 export function cloudbuild<
-  T = cloudbuild_v1.Cloudbuild | cloudbuild_v1alpha1.Cloudbuild
+  T =
+    | cloudbuild_v1.Cloudbuild
+    | cloudbuild_v1alpha1.Cloudbuild
+    | cloudbuild_v1alpha2.Cloudbuild
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -39,6 +48,8 @@ export function cloudbuild<
     | cloudbuild_v1.Options
     | 'v1alpha1'
     | cloudbuild_v1alpha1.Options
+    | 'v1alpha2'
+    | cloudbuild_v1alpha2.Options
 ) {
   return getAPI<T>('cloudbuild', versionOrOptions, VERSIONS, this);
 }

@@ -107,11 +107,13 @@ export namespace logging_v2 {
     entries: Resource$Entries;
     exclusions: Resource$Exclusions;
     folders: Resource$Folders;
+    locations: Resource$Locations;
     logs: Resource$Logs;
     monitoredResourceDescriptors: Resource$Monitoredresourcedescriptors;
     organizations: Resource$Organizations;
     projects: Resource$Projects;
     sinks: Resource$Sinks;
+    v2: Resource$V2;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -123,6 +125,7 @@ export namespace logging_v2 {
       this.entries = new Resource$Entries(this.context);
       this.exclusions = new Resource$Exclusions(this.context);
       this.folders = new Resource$Folders(this.context);
+      this.locations = new Resource$Locations(this.context);
       this.logs = new Resource$Logs(this.context);
       this.monitoredResourceDescriptors = new Resource$Monitoredresourcedescriptors(
         this.context
@@ -130,6 +133,7 @@ export namespace logging_v2 {
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.sinks = new Resource$Sinks(this.context);
+      this.v2 = new Resource$V2(this.context);
     }
   }
 
@@ -141,6 +145,10 @@ export namespace logging_v2 {
      * Optional. Whether to use BigQuery&#39;s partition tables. By default, Logging creates dated tables based on the log entries&#39; timestamps, e.g. syslog_20170523. With partitioned tables the date suffix is no longer present and special query syntax has to be used instead. In both cases, tables are sharded based on UTC timezone.
      */
     usePartitionedTables?: boolean | null;
+    /**
+     * Output only. True if new timestamp column based partitioning is in use, false if legacy ingestion-time partitioning is in use. All new sinks will have this field set true and will use timestamp column based partitioning. If use_partitioned_tables is false, this value has no meaning and will be false. Legacy sinks using partitioned tables will have this field set to false.
+     */
+    usesTimestampColumnPartitioning?: boolean | null;
   }
   /**
    * BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i &gt; 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
@@ -158,6 +166,23 @@ export namespace logging_v2 {
      * The linear bucket.
      */
     linearBuckets?: Schema$Linear;
+  }
+  /**
+   * Describes the customer-managed encryption key (CMEK) settings associated with a project, folder, organization, billing account, or flexible resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router for more information.
+   */
+  export interface Schema$CmekSettings {
+    /**
+     * The resource name for the configured Cloud KMS key.KMS key name format:  &quot;projects/PROJECT_ID/locations/LOCATION/keyRings/KEYRING/cryptoKeys/KEY&quot;For example:  &quot;projects/my-project-id/locations/my-region/keyRings/key-ring-name/cryptoKeys/key-name&quot;To enable CMEK for the Logs Router, set this field to a valid kms_key_name for which the associated service account has the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key.The Cloud KMS key used by the Log Router can be updated by changing the kms_key_name to a new valid key name. Encryption operations that are in progress will be completed with the key that was in use when they started. Decryption operations will be completed using the key that was used at the time of encryption unless access to that key has been revoked.To disable CMEK for the Logs Router, set this field to an empty string.See Enabling CMEK for Logs Router for more information.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output Only. The resource name of the CMEK settings.
+     */
+    name?: string | null;
+    /**
+     * Output Only. The service account that will be used by the Logs Router to access your Cloud KMS key.Before enabling CMEK for Logs Router, you must first assign the role roles/cloudkms.cryptoKeyEncrypterDecrypter to the service account that the Logs Router will use to access your Cloud KMS key. Use GetCmekSettings to obtain the service account ID.See Enabling CMEK for Logs Router for more information.
+     */
+    serviceAccountId?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo {   rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
@@ -289,6 +314,19 @@ export namespace logging_v2 {
     width?: number | null;
   }
   /**
+   * The response from ListBuckets (Beta).
+   */
+  export interface Schema$ListBucketsResponse {
+    /**
+     * A list of buckets.
+     */
+    buckets?: Schema$LogBucket[];
+    /**
+     * If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Result returned from ListExclusions.
    */
   export interface Schema$ListExclusionsResponse {
@@ -396,6 +434,35 @@ export namespace logging_v2 {
     sinks?: Schema$LogSink[];
   }
   /**
+   * Describes a repository of logs (Beta).
+   */
+  export interface Schema$LogBucket {
+    /**
+     * Output only. The creation timestamp of the bucket. This is not set for any of the default buckets.
+     */
+    createTime?: string | null;
+    /**
+     * Describes this bucket.
+     */
+    description?: string | null;
+    /**
+     * The bucket lifecycle state.Output only.
+     */
+    lifecycleState?: string | null;
+    /**
+     * The resource name of the bucket. For example: &quot;projects/my-project-id/locations/my-location/buckets/my-bucket-id The supported locations are:  &quot;global&quot;  &quot;us-central1&quot;For the location of global it is unspecified where logs are actually stored. Once a bucket has been created, the location can not be changed.
+     */
+    name?: string | null;
+    /**
+     * Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
+     */
+    retentionDays?: number | null;
+    /**
+     * Output only. The last update timestamp of the bucket.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * An individual entry in a log.
    */
   export interface Schema$LogEntry {
@@ -404,7 +471,7 @@ export namespace logging_v2 {
      */
     httpRequest?: Schema$HttpRequest;
     /**
-     * Optional. A unique identifier for the log entry. If you provide a value, then Logging considers other log entries in the same project, with the same timestamp, and with the same insert_id to be duplicates which can be removed. If omitted in new log entries, then Logging assigns its own unique identifier. The insert_id is also used to order log entries that have the same timestamp value.
+     * Optional. A unique identifier for the log entry. If you provide a value, then Logging considers other log entries in the same project, with the same timestamp, and with the same insert_id to be duplicates which are removed in a single query result. However, there are no guarantees of de-duplication in the export of logs.If the insert_id is omitted when writing a log entry, the Logging API  assigns its own unique identifier in this field.In queries, the insert_id is also used to order log entries that have the same log_name and timestamp values.
      */
     insertId?: string | null;
     /**
@@ -699,7 +766,7 @@ export namespace logging_v2 {
      */
     type?: string | null;
     /**
-     * Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples,  kBy/{email} or MiBy/10ms (although you should almost never  have /s in a metric unit; rates should always be computed at  query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For  examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation  is used alone, then the unit is equivalent to 1. For examples,  {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing { or }. 1 represents a unitary dimensionless  unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such  as in 1/s. It is typically used when none of the basic units are  appropriate. For example, &quot;new users per day&quot; can be represented as  1/d or {new-users}/d (and a metric value 5 would mean &quot;5 new  users). Alternatively, &quot;thousands of page views per day&quot; would be  represented as 1000/d or k1/d or k{page_views}/d (and a metric  value of 5.3 would mean &quot;5300 page views per day&quot;). % represents dimensionless value of 1/100, and annotates values giving  a percentage (so the metric values are typically in the range of 0..100,  and a metric value 3 means &quot;3 percent&quot;). 10^2.% indicates a metric contains a ratio, typically in the range  0..1, that will be multiplied by 100 and displayed as a percentage  (so a metric value 0.03 means &quot;3 percent&quot;).
+     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d dayPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples,  kBy/{email} or MiBy/10ms (although you should almost never  have /s in a metric unit; rates should always be computed at  query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For  examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ;  Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]           | Annotation           | &quot;1&quot;           ;  Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation  is used alone, then the unit is equivalent to 1. For examples,  {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not  containing { or }. 1 represents a unitary dimensionless  unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such  as in 1/s. It is typically used when none of the basic units are  appropriate. For example, &quot;new users per day&quot; can be represented as  1/d or {new-users}/d (and a metric value 5 would mean &quot;5 new  users). Alternatively, &quot;thousands of page views per day&quot; would be  represented as 1000/d or k1/d or k{page_views}/d (and a metric  value of 5.3 would mean &quot;5300 page views per day&quot;). % represents dimensionless value of 1/100, and annotates values giving  a percentage (so the metric values are typically in the range of 0..100,  and a metric value 3 means &quot;3 percent&quot;). 10^2.% indicates a metric contains a ratio, typically in the range  0..1, that will be multiplied by 100 and displayed as a percentage  (so a metric value 0.03 means &quot;3 percent&quot;).
      */
     unit?: string | null;
     /**
@@ -982,15 +1049,110 @@ export namespace logging_v2 {
 
   export class Resource$Billingaccounts {
     context: APIRequestContext;
+    buckets: Resource$Billingaccounts$Buckets;
     exclusions: Resource$Billingaccounts$Exclusions;
+    locations: Resource$Billingaccounts$Locations;
     logs: Resource$Billingaccounts$Logs;
     sinks: Resource$Billingaccounts$Sinks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.buckets = new Resource$Billingaccounts$Buckets(this.context);
       this.exclusions = new Resource$Billingaccounts$Exclusions(this.context);
+      this.locations = new Resource$Billingaccounts$Locations(this.context);
       this.logs = new Resource$Billingaccounts$Logs(this.context);
       this.sinks = new Resource$Billingaccounts$Sinks(this.context);
     }
+  }
+
+  export class Resource$Billingaccounts$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.billingAccounts.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @alias logging.billingAccounts.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Billingaccounts$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Billingaccounts$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
   }
 
   export class Resource$Billingaccounts$Exclusions {
@@ -1447,6 +1609,215 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogExclusion;
+  }
+
+  export class Resource$Billingaccounts$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Billingaccounts$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Billingaccounts$Locations$Buckets(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Billingaccounts$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.billingAccounts.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @alias logging.billingAccounts.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.billingAccounts.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @alias logging.billingAccounts.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Billingaccounts$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Billingaccounts$Logs {
@@ -2813,11 +3184,13 @@ export namespace logging_v2 {
   export class Resource$Folders {
     context: APIRequestContext;
     exclusions: Resource$Folders$Exclusions;
+    locations: Resource$Folders$Locations;
     logs: Resource$Folders$Logs;
     sinks: Resource$Folders$Sinks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.exclusions = new Resource$Folders$Exclusions(this.context);
+      this.locations = new Resource$Folders$Locations(this.context);
       this.logs = new Resource$Folders$Logs(this.context);
       this.sinks = new Resource$Folders$Sinks(this.context);
     }
@@ -3277,6 +3650,296 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogExclusion;
+  }
+
+  export class Resource$Folders$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Folders$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Folders$Locations$Buckets(this.context);
+    }
+  }
+
+  export class Resource$Folders$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.folders.locations.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @alias logging.folders.locations.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Folders$Locations$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Folders$Locations$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.folders.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @alias logging.folders.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Folders$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.folders.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @alias logging.folders.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Folders$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Folders$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Folders$Logs {
@@ -4016,6 +4679,296 @@ export namespace logging_v2 {
     requestBody?: Schema$LogSink;
   }
 
+  export class Resource$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Locations$Buckets(this.context);
+    }
+  }
+
+  export class Resource$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.locations.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @alias logging.locations.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Locations$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Locations$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @alias logging.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @alias logging.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
+  }
+
   export class Resource$Logs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4313,14 +5266,202 @@ export namespace logging_v2 {
   export class Resource$Organizations {
     context: APIRequestContext;
     exclusions: Resource$Organizations$Exclusions;
+    locations: Resource$Organizations$Locations;
     logs: Resource$Organizations$Logs;
     sinks: Resource$Organizations$Sinks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.exclusions = new Resource$Organizations$Exclusions(this.context);
+      this.locations = new Resource$Organizations$Locations(this.context);
       this.logs = new Resource$Organizations$Logs(this.context);
       this.sinks = new Resource$Organizations$Sinks(this.context);
     }
+
+    /**
+     * logging.organizations.getCmekSettings
+     * @desc Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router for more information.
+     * @alias logging.organizations.getCmekSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getCmekSettings(
+      params?: Params$Resource$Organizations$Getcmeksettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekSettings>;
+    getCmekSettings(
+      params: Params$Resource$Organizations$Getcmeksettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    getCmekSettings(
+      params: Params$Resource$Organizations$Getcmeksettings,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    getCmekSettings(callback: BodyResponseCallback<Schema$CmekSettings>): void;
+    getCmekSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getcmeksettings
+        | BodyResponseCallback<Schema$CmekSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>,
+      callback?: BodyResponseCallback<Schema$CmekSettings>
+    ): void | GaxiosPromise<Schema$CmekSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getcmeksettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Getcmeksettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/cmekSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekSettings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CmekSettings>(parameters);
+      }
+    }
+
+    /**
+     * logging.organizations.updateCmekSettings
+     * @desc Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router for more information.
+     * @alias logging.organizations.updateCmekSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * @param {string=} params.updateMask Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     * @param {().CmekSettings} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateCmekSettings(
+      params?: Params$Resource$Organizations$Updatecmeksettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekSettings>;
+    updateCmekSettings(
+      params: Params$Resource$Organizations$Updatecmeksettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      params: Params$Resource$Organizations$Updatecmeksettings,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Updatecmeksettings
+        | BodyResponseCallback<Schema$CmekSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>,
+      callback?: BodyResponseCallback<Schema$CmekSettings>
+    ): void | GaxiosPromise<Schema$CmekSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Updatecmeksettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Updatecmeksettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/cmekSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekSettings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CmekSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Getcmeksettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Updatecmeksettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     */
+    name?: string;
+    /**
+     * Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CmekSettings;
   }
 
   export class Resource$Organizations$Exclusions {
@@ -4777,6 +5918,296 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogExclusion;
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Organizations$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Organizations$Locations$Buckets(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.organizations.locations.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @alias logging.organizations.locations.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Organizations$Locations$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Organizations$Locations$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.organizations.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @alias logging.organizations.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Organizations$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.organizations.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @alias logging.organizations.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Organizations$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Organizations$Logs {
@@ -5519,12 +6950,14 @@ export namespace logging_v2 {
   export class Resource$Projects {
     context: APIRequestContext;
     exclusions: Resource$Projects$Exclusions;
+    locations: Resource$Projects$Locations;
     logs: Resource$Projects$Logs;
     metrics: Resource$Projects$Metrics;
     sinks: Resource$Projects$Sinks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.exclusions = new Resource$Projects$Exclusions(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
       this.logs = new Resource$Projects$Logs(this.context);
       this.metrics = new Resource$Projects$Metrics(this.context);
       this.sinks = new Resource$Projects$Sinks(this.context);
@@ -5985,6 +7418,296 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogExclusion;
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    buckets: Resource$Projects$Locations$Buckets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.buckets = new Resource$Projects$Locations$Buckets(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Buckets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.projects.locations.buckets.get
+     * @desc Gets a bucket (Beta).
+     * @alias logging.projects.locations.buckets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Buckets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    get(
+      params: Params$Resource$Projects$Locations$Buckets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Buckets$Get,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Get
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+
+    /**
+     * logging.projects.locations.buckets.list
+     * @desc Lists buckets (Beta).
+     * @alias logging.projects.locations.buckets.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Buckets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBucketsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Buckets$List,
+      callback: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBucketsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$List
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBucketsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBucketsResponse>
+    ): void | GaxiosPromise<Schema$ListBucketsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/buckets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListBucketsResponse>(parameters);
+      }
+    }
+
+    /**
+     * logging.projects.locations.buckets.patch
+     * @desc Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * @alias logging.projects.locations.buckets.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     * @param {string=} params.updateMask Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     * @param {().LogBucket} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Projects$Locations$Buckets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogBucket>;
+    patch(
+      params: Params$Resource$Projects$Locations$Buckets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogBucket>,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Buckets$Patch,
+      callback: BodyResponseCallback<Schema$LogBucket>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogBucket>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Buckets$Patch
+        | BodyResponseCallback<Schema$LogBucket>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LogBucket>,
+      callback?: BodyResponseCallback<Schema$LogBucket>
+    ): void | GaxiosPromise<Schema$LogBucket> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Buckets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogBucket>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LogBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Buckets$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Buckets$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Buckets$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
+     */
+    name?: string;
+    /**
+     * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogBucket;
   }
 
   export class Resource$Projects$Logs {
@@ -7621,5 +9344,198 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$LogSink;
+  }
+
+  export class Resource$V2 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * logging.getCmekSettings
+     * @desc Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router for more information.
+     * @alias logging.getCmekSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getCmekSettings(
+      params?: Params$Resource$V2$Getcmeksettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekSettings>;
+    getCmekSettings(
+      params: Params$Resource$V2$Getcmeksettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    getCmekSettings(
+      params: Params$Resource$V2$Getcmeksettings,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    getCmekSettings(callback: BodyResponseCallback<Schema$CmekSettings>): void;
+    getCmekSettings(
+      paramsOrCallback?:
+        | Params$Resource$V2$Getcmeksettings
+        | BodyResponseCallback<Schema$CmekSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>,
+      callback?: BodyResponseCallback<Schema$CmekSettings>
+    ): void | GaxiosPromise<Schema$CmekSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V2$Getcmeksettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V2$Getcmeksettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/cmekSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekSettings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CmekSettings>(parameters);
+      }
+    }
+
+    /**
+     * logging.updateCmekSettings
+     * @desc Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router for more information.
+     * @alias logging.updateCmekSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * @param {string=} params.updateMask Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     * @param {().CmekSettings} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateCmekSettings(
+      params?: Params$Resource$V2$Updatecmeksettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekSettings>;
+    updateCmekSettings(
+      params: Params$Resource$V2$Updatecmeksettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekSettings>,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      params: Params$Resource$V2$Updatecmeksettings,
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      callback: BodyResponseCallback<Schema$CmekSettings>
+    ): void;
+    updateCmekSettings(
+      paramsOrCallback?:
+        | Params$Resource$V2$Updatecmeksettings
+        | BodyResponseCallback<Schema$CmekSettings>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CmekSettings>,
+      callback?: BodyResponseCallback<Schema$CmekSettings>
+    ): void | GaxiosPromise<Schema$CmekSettings> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V2$Updatecmeksettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V2$Updatecmeksettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}/cmekSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekSettings>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CmekSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V2$Getcmeksettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$V2$Updatecmeksettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     */
+    name?: string;
+    /**
+     * Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CmekSettings;
   }
 }

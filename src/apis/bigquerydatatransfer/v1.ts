@@ -275,6 +275,15 @@ export namespace bigquerydatatransfer_v1 {
     validationRegex?: string | null;
   }
   /**
+   * Represents preferences for sending email notifications for transfer run events.
+   */
+  export interface Schema$EmailPreferences {
+    /**
+     * If true, email notifications will be sent on transfer run failures.
+     */
+    enableFailureEmail?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
@@ -488,6 +497,10 @@ export namespace bigquerydatatransfer_v1 {
      */
     displayName?: string | null;
     /**
+     * Email notifications will be sent according to these preferences to the email address of the user who owns this transfer config.
+     */
+    emailPreferences?: Schema$EmailPreferences;
+    /**
      * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      */
     name?: string | null;
@@ -495,6 +508,10 @@ export namespace bigquerydatatransfer_v1 {
      * Output only. Next time when data transfer will run.
      */
     nextRunTime?: string | null;
+    /**
+     * Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish.
+     */
+    notificationPubsubTopic?: string | null;
     /**
      * Data transfer specific parameters.
      */
@@ -550,6 +567,10 @@ export namespace bigquerydatatransfer_v1 {
      */
     destinationDatasetId?: string | null;
     /**
+     * Output only. Email notifications will be sent according to these preferences to the email address of the user who owns the transfer config this run was derived from.
+     */
+    emailPreferences?: Schema$EmailPreferences;
+    /**
      * Output only. Time when transfer run ended. Parameter ignored by server for input requests.
      */
     endTime?: string | null;
@@ -561,6 +582,10 @@ export namespace bigquerydatatransfer_v1 {
      * The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`. The name is ignored when creating a transfer run.
      */
     name?: string | null;
+    /**
+     * Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes
+     */
+    notificationPubsubTopic?: string | null;
     /**
      * Output only. Data transfer specific parameters.
      */

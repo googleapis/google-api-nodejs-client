@@ -213,19 +213,6 @@ export namespace bigqueryreservation_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * The response message for Locations.ListLocations.
-   */
-  export interface Schema$ListLocationsResponse {
-    /**
-     * A list of locations that matches the specified filter in the request.
-     */
-    locations?: Schema$Location[];
-    /**
-     * The standard List next-page token.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * The response for ReservationService.ListReservations.
    */
   export interface Schema$ListReservationsResponse {
@@ -237,40 +224,6 @@ export namespace bigqueryreservation_v1beta1 {
      * List of reservations visible to the user.
      */
     reservations?: Schema$Reservation[];
-  }
-  /**
-   * A resource that represents Google Cloud Platform location.
-   */
-  export interface Schema$Location {
-    /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
-     */
-    displayName?: string | null;
-    /**
-     * Cross-service attributes for the location. For example      {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
-     */
-    locationId?: string | null;
-    /**
-     * Service-specific metadata. For example the available capacity at the given location.
-     */
-    metadata?: {[key: string]: any} | null;
-    /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
-     */
-    name?: string | null;
-  }
-  /**
-   * BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.
-   */
-  export interface Schema$LocationMetadata {
-    /**
-     * The legacy BigQuery location ID, e.g. “EU” for the “europe” location. This is for any API consumers that need the legacy “US” and “EU” locations.
-     */
-    legacyLocationId?: string | null;
   }
   /**
    * The request for ReservationService.MoveAssignment. Note: &quot;bigquery.reservationAssignments.create&quot; permission is required on the destination_id. Note: &quot;bigquery.reservationAssignments.create&quot; and &quot;bigquery.reservationAssignments.delete&quot; permission is required on the related assignee.
@@ -286,7 +239,7 @@ export namespace bigqueryreservation_v1beta1 {
    */
   export interface Schema$Reservation {
     /**
-     * If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the maximum slot capacity as specified above.
+     * If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the slot capacity specified above at most.
      */
     ignoreIdleSlots?: boolean | null;
     /**
@@ -294,7 +247,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     name?: string | null;
     /**
-     * Maximum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. In a scan of a multi-partitioned table, a single slot operates on a single partition of the table. If the new reservation&#39;s slot capacity exceed the parent&#39;s slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent&#39;s slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
+     * Minimum slots available to this reservation. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. Queries using this reservation might use more slots during runtime if ignore_idle_slots is set to false. If the new reservation&#39;s slot capacity exceed the parent&#39;s slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent&#39;s slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
      */
     slotCapacity?: string | null;
   }
@@ -353,83 +306,13 @@ export namespace bigqueryreservation_v1beta1 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.get
-     * @desc Gets information about a location.
-     * @alias bigqueryreservation.projects.locations.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Projects$Locations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
-    get(
-      params: Params$Resource$Projects$Locations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback: BodyResponseCallback<Schema$Location>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Get,
-      callback: BodyResponseCallback<Schema$Location>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Location>(parameters);
-      }
-    }
-
-    /**
      * bigqueryreservation.projects.locations.getBiReservation
      * @desc Retrieves a BI reservation.
      * @alias bigqueryreservation.projects.locations.getBiReservation
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the requested reservation, for example: `projects/{project_id}/locations/{location_id}/bireservation`
+     * @param {string} params.name Required. Name of the requested reservation, for example: `projects/{project_id}/locations/{location_id}/bireservation`
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -497,86 +380,6 @@ export namespace bigqueryreservation_v1beta1 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
-     * @alias bigqueryreservation.projects.locations.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-      params?: Params$Resource$Projects$Locations$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListLocationsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$List,
-      callback: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$List
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
-      callback?: BodyResponseCallback<Schema$ListLocationsResponse>
-    ): void | GaxiosPromise<Schema$ListLocationsResponse> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ListLocationsResponse>(parameters);
-      }
-    }
-
-    /**
      * bigqueryreservation.projects.locations.searchAssignments
      * @desc Looks up assignments for a specified resource for a particular region. If the request is about a project:   1) Assignments created on the project will be returned if they exist.   2) Otherwise assignments created on the closest ancestor will be   returned. 3) Assignments for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then assignments created on the organization will be returned (organization doesn't have ancestors). Comparing to ListAssignments, there are some behavior differences:   1) permission on the assignee will be verified in this API.   2) Hierarchy lookup (project->folder->organization) happens in this API.   3) Parent here is projects/x/locations/x, instead of   projects/x/locations/xreservations/x. Note "-" cannot be used for projects nor locations.
      * @alias bigqueryreservation.projects.locations.searchAssignments
@@ -585,7 +388,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The resource name of the admin project(containing project and location), e.g.:   "projects/myproject/locations/US".
+     * @param {string} params.parent Required. The resource name of the admin project(containing project and location), e.g.:   "projects/myproject/locations/US".
      * @param {string=} params.query Please specify resource name as assignee in the query. e.g., "assignee=projects/myproject"       "assignee=folders/123"       "assignee=organizations/456"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -738,18 +541,6 @@ export namespace bigqueryreservation_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Resource name for the location.
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$Getbireservation
     extends StandardParameters {
     /**
@@ -758,33 +549,9 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the requested reservation, for example: `projects/{project_id}/locations/{location_id}/bireservation`
+     * Required. Name of the requested reservation, for example: `projects/{project_id}/locations/{location_id}/bireservation`
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The resource that owns the locations collection, if applicable.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Searchassignments
     extends StandardParameters {
@@ -802,7 +569,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The resource name of the admin project(containing project and location), e.g.:   "projects/myproject/locations/US".
+     * Required. The resource name of the admin project(containing project and location), e.g.:   "projects/myproject/locations/US".
      */
     parent?: string;
     /**
@@ -846,7 +613,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.enforceSingleAdminProjectPerOrg If true, fail the request if another project in the organization has a capacity commitment.
-     * @param {string} params.parent Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * @param {string} params.parent Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
      * @param {().CapacityCommitment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -922,7 +689,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the capacity commitment to delete. E.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * @param {string} params.name Required. Resource name of the capacity commitment to delete. E.g.,    projects/myproject/locations/US/capacityCommitments/123
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -992,7 +759,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the capacity commitment to retrieve. E.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * @param {string} params.name Required. Resource name of the capacity commitment to retrieve. E.g.,    projects/myproject/locations/US/capacityCommitments/123
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1066,7 +833,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * @param {string} params.parent Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1156,7 +923,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     enforceSingleAdminProjectPerOrg?: boolean;
     /**
-     * Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
      */
     parent?: string;
 
@@ -1173,7 +940,7 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name of the capacity commitment to delete. E.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * Required. Resource name of the capacity commitment to delete. E.g.,    projects/myproject/locations/US/capacityCommitments/123
      */
     name?: string;
   }
@@ -1185,7 +952,7 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name of the capacity commitment to retrieve. E.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * Required. Resource name of the capacity commitment to retrieve. E.g.,    projects/myproject/locations/US/capacityCommitments/123
      */
     name?: string;
   }
@@ -1205,7 +972,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
+     * Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
      */
     parent?: string;
   }
@@ -1227,8 +994,8 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Project, location. E.g.,    projects/myproject/locations/US
-     * @param {string=} params.reservationId The reservation ID. This field must only contain lower case alphanumeric characters or dash.
+     * @param {string} params.parent Required. Project, location. E.g.,    projects/myproject/locations/US
+     * @param {string=} params.reservationId The reservation ID. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
      * @param {().Reservation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1304,7 +1071,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/US/reservations/team1-prod
+     * @param {string} params.name Required. Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/US/reservations/team1-prod
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1374,7 +1141,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/US/reservations/team1-prod
+     * @param {string} params.name Required. Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/US/reservations/team1-prod
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1449,7 +1216,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {string=} params.filter Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity > 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name containing project and location, e.g.:   "projects/myproject/locations/US"
+     * @param {string} params.parent Required. The parent resource name containing project and location, e.g.:   "projects/myproject/locations/US"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1602,11 +1369,11 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Project, location. E.g.,    projects/myproject/locations/US
+     * Required. Project, location. E.g.,    projects/myproject/locations/US
      */
     parent?: string;
     /**
-     * The reservation ID. This field must only contain lower case alphanumeric characters or dash.
+     * The reservation ID. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
      */
     reservationId?: string;
 
@@ -1623,7 +1390,7 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/US/reservations/team1-prod
+     * Required. Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/US/reservations/team1-prod
      */
     name?: string;
   }
@@ -1635,7 +1402,7 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/US/reservations/team1-prod
+     * Required. Resource name of the reservation to retrieve. E.g.,    projects/myproject/locations/US/reservations/team1-prod
      */
     name?: string;
   }
@@ -1659,7 +1426,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name containing project and location, e.g.:   "projects/myproject/locations/US"
+     * Required. The parent resource name containing project and location, e.g.:   "projects/myproject/locations/US"
      */
     parent?: string;
   }
@@ -1698,7 +1465,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name of the assignment E.g.: projects/myproject/locations/US/reservations/team1-prod
+     * @param {string} params.parent Required. The parent resource name of the assignment E.g.: projects/myproject/locations/US/reservations/team1-prod
      * @param {().Assignment} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1774,7 +1541,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Name of the resource, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
+     * @param {string} params.name Required. Name of the resource, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1846,7 +1613,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name e.g.: projects/myproject/locations/US/reservations/team1-prod Or: projects/myproject/locations/US/reservations/-
+     * @param {string} params.parent Required. The parent resource name e.g.: projects/myproject/locations/US/reservations/team1-prod Or: projects/myproject/locations/US/reservations/-
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1923,7 +1690,7 @@ export namespace bigqueryreservation_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the assignment, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
+     * @param {string} params.name Required. The resource name of the assignment, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
      * @param {().MoveAssignmentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2001,7 +1768,7 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent resource name of the assignment E.g.: projects/myproject/locations/US/reservations/team1-prod
+     * Required. The parent resource name of the assignment E.g.: projects/myproject/locations/US/reservations/team1-prod
      */
     parent?: string;
 
@@ -2018,7 +1785,7 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the resource, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
+     * Required. Name of the resource, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
      */
     name?: string;
   }
@@ -2038,7 +1805,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name e.g.: projects/myproject/locations/US/reservations/team1-prod Or: projects/myproject/locations/US/reservations/-
+     * Required. The parent resource name e.g.: projects/myproject/locations/US/reservations/team1-prod Or: projects/myproject/locations/US/reservations/-
      */
     parent?: string;
   }
@@ -2050,7 +1817,7 @@ export namespace bigqueryreservation_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the assignment, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
+     * Required. The resource name of the assignment, e.g.:   projects/myproject/locations/US/reservations/team1-prod/assignments/123
      */
     name?: string;
 

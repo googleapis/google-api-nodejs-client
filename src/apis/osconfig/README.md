@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# servicebroker
+# osconfig
 
-> The Google Cloud Platform Service Broker API provides Google hosted implementation of the Open Service Broker API (https://www.openservicebrokerapi.org/).
+> OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/servicebroker
+$ cd src/apis/osconfig
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/servicebroker.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/osconfig.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/servicebroker.min.js"></script>
+<script src="/path/to/osconfig.min.js"></script>
 <script>
-const { servicebroker, auth } = Servicebroker;
+const { osconfig, auth } = Osconfig;
 </script>
 ```
 

@@ -208,6 +208,10 @@ export namespace serviceusage_v1beta1 {
      * URL of the provider&#39;s public key set to validate signature of the JWT. See [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). Optional if the key set document:  - can be retrieved from    [OpenID    Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html of    the issuer.  - can be inferred from the email domain of the issuer (e.g. a Google  service account).  Example: https://www.googleapis.com/oauth2/v1/certs
      */
     jwksUri?: string | null;
+    /**
+     * Defines the locations to extract the JWT.  JWT locations can be either from HTTP headers or URL query parameters. The rule is that the first match wins. The checking order is: checking all headers first, then URL query parameters.  If not specified,  default to use following 3 locations:    1) Authorization: Bearer    2) x-goog-iap-jwt-assertion    3) access_token query parameter  Default locations can be specified as followings:    jwt_locations:    - header: Authorization      value_prefix: &quot;Bearer &quot;    - header: x-goog-iap-jwt-assertion    - query: access_token
+     */
+    jwtLocations?: Schema$JwtLocation[];
   }
   /**
    * User-defined authentication requirements, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
@@ -236,15 +240,15 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$BackendRule {
     /**
-     * The address of the API backend.
+     * The address of the API backend.  The scheme is used to determine the backend protocol and security. The following schemes are accepted:     SCHEME        PROTOCOL    SECURITY    http://       HTTP        None    https://      HTTP        TLS    grpc://       gRPC        None    grpcs://      gRPC        TLS  It is recommended to explicitly include a scheme. Leaving out the scheme may cause constrasting behaviors across platforms.  If the port is unspecified, the default is: - 80 for schemes without TLS - 443 for schemes with TLS  For HTTP backends, use protocol to specify the protocol version.
      */
     address?: string | null;
     /**
-     * The number of seconds to wait for a response from a request.  The default deadline for gRPC is infinite (no deadline) and HTTP requests is 5 seconds.
+     * The number of seconds to wait for a response from a request. The default varies based on the request protocol and deployment environment.
      */
     deadline?: number | null;
     /**
-     * When disable_auth is false,  a JWT ID token will be generated with the value from BackendRule.address as jwt_audience, overrode to the HTTP &quot;Authorization&quot; request header and sent to the backend.  When disable_auth is true, a JWT ID token won&#39;t be generated and the original &quot;Authorization&quot; HTTP header will be preserved. If the header is used to carry the original token and is expected by the backend, this field must be set to true to preserve the header.
+     * When disable_auth is true, a JWT ID token won&#39;t be generated and the original &quot;Authorization&quot; HTTP header will be preserved. If the header is used to carry the original token and is expected by the backend, this field must be set to true to preserve the header.
      */
     disableAuth?: boolean | null;
     /**
@@ -260,6 +264,10 @@ export namespace serviceusage_v1beta1 {
      */
     operationDeadline?: number | null;
     pathTranslation?: string | null;
+    /**
+     * The protocol used for sending a request to the backend. The supported values are &quot;http/1.1&quot; and &quot;h2&quot;.  The default value is inferred from the scheme in the address field:     SCHEME        PROTOCOL    http://       http/1.1    https://      http/1.1    grpc://       h2    grpcs://      h2  For secure HTTP backends (https://) that support HTTP/2, set this field to &quot;h2&quot; for improved performance.  Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends.  See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
+     */
+    protocol?: string | null;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
@@ -737,6 +745,23 @@ export namespace serviceusage_v1beta1 {
     usage?: Schema$Usage;
   }
   /**
+   * The per-product per-project service identity for a service.   Use this field to configure per-product per-project service identity. Example of a service identity configuration.      usage:       service_identity:       - service_account_parent: &quot;projects/123456789&quot;         display_name: &quot;Cloud XXX Service Agent&quot;         description: &quot;Used as the identity of Cloud XXX to access resources&quot;
+   */
+  export interface Schema$GoogleApiServiceIdentity {
+    /**
+     * Optional. A user-specified opaque description of the service account. Must be less than or equal to 256 UTF-8 bytes.
+     */
+    description?: string | null;
+    /**
+     * Optional. A user-specified name for the service account. Must be less than or equal to 100 UTF-8 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * A service account project that hosts the service accounts.  An example name would be: `projects/123456789`
+     */
+    serviceAccountParent?: string | null;
+  }
+  /**
    * Response message for getting service identity.
    */
   export interface Schema$GoogleApiServiceusageV1beta1GetServiceIdentityResponse {
@@ -851,6 +876,10 @@ export namespace serviceusage_v1beta1 {
      */
     additionalBindings?: Schema$HttpRule[];
     /**
+     * When this flag is set to true, HTTP requests will be allowed to invoke a half-duplex streaming method.
+     */
+    allowHalfDuplex?: boolean | null;
+    /**
      * The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body.  NOTE: the referred field must be present at the top-level of the request message type.
      */
     body?: string | null;
@@ -886,6 +915,23 @@ export namespace serviceusage_v1beta1 {
      * Selects a method to which this rule applies.  Refer to selector for syntax details.
      */
     selector?: string | null;
+  }
+  /**
+   * Specifies a location to extract JWT from an API request.
+   */
+  export interface Schema$JwtLocation {
+    /**
+     * Specifies HTTP header name to extract JWT token.
+     */
+    header?: string | null;
+    /**
+     * Specifies URL query parameter name to extract JWT token.
+     */
+    query?: string | null;
+    /**
+     * The value prefix. The value format is &quot;value_prefix{token}&quot; Only applies to &quot;in&quot; header type. Must be empty for &quot;in&quot; query type. If not empty, the header value has to match (case sensitive) this prefix. If not matched, JWT will not be extracted. If matched, JWT will be extracted after the prefix is removed.  For example, for &quot;Authorization: Bearer {JWT}&quot;, value_prefix=&quot;Bearer &quot; with a space at the end.
+     */
+    valuePrefix?: string | null;
   }
   /**
    * A description of a label.
@@ -1495,6 +1541,10 @@ export namespace serviceusage_v1beta1 {
      * A list of usage rules that apply to individual API methods.  **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$UsageRule[];
+    /**
+     * The configuration of a per-product per-project service identity.
+     */
+    serviceIdentity?: Schema$GoogleApiServiceIdentity;
   }
   /**
    * Usage configuration rules for the service.  NOTE: Under development.   Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity. Use this rule to allow/disallow unregistered calls.  Example of an API that wants to allow unregistered calls for entire service.      usage:       rules:       - selector: &quot;*&quot;         allow_unregistered_calls: true  Example of a method that wants to allow unregistered calls.      usage:       rules:       - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot;         allow_unregistered_calls: true

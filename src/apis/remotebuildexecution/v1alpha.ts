@@ -800,6 +800,10 @@ export namespace remotebuildexecution_v1alpha {
      */
     machineType?: string | null;
     /**
+     * The maximum number of actions a worker can execute concurrently.
+     */
+    maxConcurrentActions?: string | null;
+    /**
      * Minimum CPU platform to use when creating the worker. See [CPU Platforms](https://cloud.google.com/compute/docs/cpu-platforms).
      */
     minCpuPlatform?: string | null;

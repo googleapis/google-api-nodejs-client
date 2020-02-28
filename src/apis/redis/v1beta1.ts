@@ -234,6 +234,10 @@ export namespace redis_v1beta1 {
      */
     authorizedNetwork?: string | null;
     /**
+     * Optional. The connect mode of Redis instance. If not provided, default one will be used. Current default: DIRECT_PEERING.
+     */
+    connectMode?: string | null;
+    /**
      * Output only. The time the instance was created.
      */
     createTime?: string | null;
@@ -416,6 +420,15 @@ export namespace redis_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Request for UpgradeInstance.
+   */
+  export interface Schema$UpgradeInstanceRequest {
+    /**
+     * Required. Specifies the target version of Redis software to upgrade to.
+     */
+    redisVersion?: string | null;
   }
 
   export class Resource$Projects {
@@ -1222,6 +1235,81 @@ export namespace redis_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * redis.projects.locations.instances.upgrade
+     * @desc Upgrades Redis instance to the newer Redis version specified in the request.
+     * @alias redis.projects.locations.instances.upgrade
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * @param {().UpgradeInstanceRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    upgrade(
+      params?: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgrade(callback: BodyResponseCallback<Schema$Operation>): void;
+    upgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Upgrade
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Upgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Upgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:upgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Create
@@ -1360,6 +1448,23 @@ export namespace redis_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Upgrade
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpgradeInstanceRequest;
   }
 
   export class Resource$Projects$Locations$Operations {

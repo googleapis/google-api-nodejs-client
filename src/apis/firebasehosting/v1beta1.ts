@@ -103,6 +103,7 @@ export namespace firebasehosting_v1beta1 {
    */
   export class Firebasehosting {
     context: APIRequestContext;
+    projects: Resource$Projects;
     sites: Resource$Sites;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -111,6 +112,7 @@ export namespace firebasehosting_v1beta1 {
         google,
       };
 
+      this.projects = new Resource$Projects(this.context);
       this.sites = new Resource$Sites(this.context);
     }
   }
@@ -153,6 +155,27 @@ export namespace firebasehosting_v1beta1 {
      * The token to serve at the specified URL path to satisfy the certificate challenge.
      */
     token?: string | null;
+  }
+  /**
+   * The request sent to CloneVersion.
+   */
+  export interface Schema$CloneVersionRequest {
+    /**
+     * If provided, only paths that do not match any of the regexes in this list will be included in the new version.
+     */
+    exclude?: Schema$PathFilter;
+    /**
+     * If true, immediately finalize the version after cloning is complete.
+     */
+    finalize?: boolean | null;
+    /**
+     * If provided, only paths that match one or more regexes in this list will be included in the new version.
+     */
+    include?: Schema$PathFilter;
+    /**
+     * Required. The name of the version to be cloned, in the format: `sites/{site}/versions/{version}`
+     */
+    sourceVersion?: string | null;
   }
   /**
    * A configured rewrite that directs requests to a Cloud Run service. If the Cloud Run service does not exist when setting or updating your Firebase Hosting configuration, then the request fails. Any errors from the Cloud Run service are passed to the end user (for example, if you delete a service, any requests directed to that service receive a `404` error).
@@ -307,6 +330,40 @@ export namespace firebasehosting_v1beta1 {
      */
     versions?: Schema$Version[];
   }
+  /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$Operation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$Status;
+    /**
+     * Service-specific metadata associated with the operation.  It typically contains progress information and common metadata such as create time. Some services might not provide such metadata.  Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     */
+    name?: string | null;
+    /**
+     * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
+  }
+  /**
+   * A representation of filter path.
+   */
+  export interface Schema$PathFilter {
+    /**
+     * An array of regexes to filter by.
+     */
+    regexes?: string[] | null;
+  }
   export interface Schema$PopulateVersionFilesRequest {
     /**
      * A set of file paths to the hashes corresponding to assets that should be added to the version. Note that a file path to an empty hash will remove the path from the version. Calculate a hash by Gzipping the file then taking the SHA256 hash of the newly compressed file.
@@ -454,6 +511,23 @@ export namespace firebasehosting_v1beta1 {
     maxVersions?: string | null;
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * A `Version` is the collection of configuration and [static files](sites.versions.files) that determine how a site is displayed.
    */
   export interface Schema$Version {
@@ -526,6 +600,107 @@ export namespace firebasehosting_v1beta1 {
      * Output only. The current status of a particular file in the specified version. &lt;br&gt;The value will be either `pending upload` or `uploaded`.
      */
     status?: string | null;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    operations: Resource$Projects$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Operations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * firebasehosting.projects.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @alias firebasehosting.projects.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Operations$Get
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Operations$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Sites {
@@ -1379,6 +1554,82 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
+     * firebasehosting.sites.versions.clone
+     * @desc Creates a new version on the target site using the content of the specified version.
+     * @alias firebasehosting.sites.versions.clone
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     * @param {().CloneVersionRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    clone(
+      params?: Params$Resource$Sites$Versions$Clone,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    clone(
+      params: Params$Resource$Sites$Versions$Clone,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    clone(
+      params: Params$Resource$Sites$Versions$Clone,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    clone(callback: BodyResponseCallback<Schema$Operation>): void;
+    clone(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Versions$Clone
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Versions$Clone;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Versions$Clone;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/versions:clone').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * firebasehosting.sites.versions.create
      * @desc Creates a new version for a site.
      * @alias firebasehosting.sites.versions.create
@@ -1762,6 +2013,23 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Sites$Versions$Clone
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CloneVersionRequest;
+  }
   export interface Params$Resource$Sites$Versions$Create
     extends StandardParameters {
     /**

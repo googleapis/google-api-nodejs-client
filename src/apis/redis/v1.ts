@@ -234,6 +234,10 @@ export namespace redis_v1 {
      */
     authorizedNetwork?: string | null;
     /**
+     * Optional. The connect mode of Redis instance. If not provided, default one will be used. Current default: DIRECT_PEERING.
+     */
+    connectMode?: string | null;
+    /**
      * Output only. The time the instance was created.
      */
     createTime?: string | null;

@@ -2,7 +2,7 @@
 
 # acceleratedmobilepageurl
 
-> This API contains a single method, batchGet. Call this method to retrieve the AMP URL (and equivalent AMP Cache URL) for given public URL(s).
+> Retrieves the list of AMP URLs (and equivalent AMP Cache URLs) for a given list of public URL(s).
 
 ## Installation
 

@@ -1,7 +1,7 @@
 {
-  "name": "@google/plusDomains",
+  "name": "@google/searchconsole",
   "version": "0.1.0",
-  "description": "plusDomains",
+  "description": "searchconsole",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

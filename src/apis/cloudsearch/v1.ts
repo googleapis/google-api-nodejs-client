@@ -230,7 +230,7 @@ export namespace cloudsearch_v1 {
      */
     indexingServiceAccounts?: string[] | null;
     /**
-     * This field restricts visibility to items at the datasource level. Items within the datasource are restricted to the union of users and groups included in this field. Note that, this does not ensure access to a specific item, as users need to have ACL permissions on the contained items. This ensures a high level access on the entire datasource, and that the individual items are not shared outside this visibility. This should not be set if anonymous search is enabled for the data source.
+     * This field restricts visibility to items at the datasource level. Items within the datasource are restricted to the union of users and groups included in this field. Note that, this does not ensure access to a specific item, as users need to have ACL permissions on the contained items. This ensures a high level access on the entire datasource, and that the individual items are not shared outside this visibility.
      */
     itemsVisibility?: Schema$GSuitePrincipal[];
     /**
@@ -1266,7 +1266,7 @@ export namespace cloudsearch_v1 {
      */
     isSuggestable?: boolean | null;
     /**
-     * Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.  Note: This is an alpha feature and is enabled for whitelisted users only.
+     * Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable.
      */
     isWildcardSearchable?: boolean | null;
     /**
@@ -4157,7 +4157,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.search
-     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query.  The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party.  **Note:** This API requires a standard end user account to execute.
+     * @desc The Cloud Search Query API provides the search method, which returns the most relevant results from a user query.  The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @alias cloudsearch.query.search
      * @memberOf! ()
      *
@@ -4227,7 +4227,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.suggest
-     * @desc Provides suggestions for autocompleting the query.  **Note:** This API requires a standard end user account to execute.
+     * @desc Provides suggestions for autocompleting the query.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @alias cloudsearch.query.suggest
      * @memberOf! ()
      *
@@ -4327,7 +4327,7 @@ export namespace cloudsearch_v1 {
 
     /**
      * cloudsearch.query.sources.list
-     * @desc Returns list of sources that user can use for Search and Suggest APIs.  **Note:** This API requires a standard end user account to execute.
+     * @desc Returns list of sources that user can use for Search and Suggest APIs.  **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
      * @alias cloudsearch.query.sources.list
      * @memberOf! ()
      *

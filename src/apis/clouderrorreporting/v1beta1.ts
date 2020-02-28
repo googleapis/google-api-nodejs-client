@@ -170,7 +170,7 @@ export namespace clouderrorreporting_v1beta1 {
      */
     groupId?: string | null;
     /**
-     * The group resource name. Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
+     * The group resource name. Example: &lt;code&gt;projects/my-project-123/groups/CNSgkpnppqKCUw&lt;/code&gt;
      */
     name?: string | null;
     /**
@@ -801,7 +801,7 @@ export namespace clouderrorreporting_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
+     * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
      * @param {().ErrorGroup} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -888,7 +888,7 @@ export namespace clouderrorreporting_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
+     * The group resource name. Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
      */
     name?: string;
 

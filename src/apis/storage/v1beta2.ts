@@ -588,7 +588,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -663,7 +663,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -738,7 +738,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -814,7 +814,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -890,7 +890,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -966,7 +966,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1150,7 +1150,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1224,7 +1224,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1297,7 +1297,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1368,7 +1368,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1440,7 +1440,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1515,7 +1515,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1735,7 +1735,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1827,7 +1827,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1901,7 +1901,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1975,7 +1975,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2052,7 +2052,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2127,7 +2127,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2202,7 +2202,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2395,7 +2395,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2471,7 +2471,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2547,7 +2547,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2624,7 +2624,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2701,7 +2701,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2778,7 +2778,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3011,7 +3011,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3096,7 +3096,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3183,7 +3183,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3261,7 +3261,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3342,7 +3342,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3423,7 +3423,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3502,7 +3502,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3581,7 +3581,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3659,7 +3659,7 @@ export namespace storage_v1beta2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

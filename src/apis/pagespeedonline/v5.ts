@@ -41,9 +41,21 @@ export namespace pagespeedonline_v5 {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -61,19 +73,23 @@ export namespace pagespeedonline_v5 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * PageSpeed Insights API
    *
-   * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
+   * The PageSpeed Insights API lets you analyze the performance of your website with a simple API.  It offers tailored suggestions for how you can optimize your site, and lets you easily integrate PageSpeed Insights analysis into your development tools and workflow.
    *
    * @example
    * const {google} = require('googleapis');
@@ -99,8 +115,128 @@ export namespace pagespeedonline_v5 {
     }
   }
 
-  export interface Schema$GoogleprotobufListValue {}
-  export interface Schema$GoogleprotobufValue {}
+  /**
+   * A light reference to an audit by id, used to group and weight audits in a given category.
+   */
+  export interface Schema$AuditRefs {
+    /**
+     * The category group that the audit belongs to (optional).
+     */
+    group?: string | null;
+    /**
+     * The audit ref id.
+     */
+    id?: string | null;
+    /**
+     * The weight this audit&#39;s score has on the overall category score.
+     */
+    weight?: number | null;
+  }
+  /**
+   * A proportion of data in the total distribution, bucketed by a min/max percentage. Each bucket&#39;s range is bounded by min &lt;= x &lt; max, In millisecond.
+   */
+  export interface Schema$Bucket {
+    /**
+     * Upper bound for a bucket&#39;s range.
+     */
+    max?: number | null;
+    /**
+     * Lower bound for a bucket&#39;s range.
+     */
+    min?: number | null;
+    /**
+     * The proportion of data in this bucket.
+     */
+    proportion?: number | null;
+  }
+  /**
+   * The categories in a Lighthouse run.
+   */
+  export interface Schema$Categories {
+    /**
+     * The accessibility category, containing all accessibility related audits.
+     */
+    accessibility?: Schema$LighthouseCategoryV5;
+    /**
+     * The best practices category, containing all best practices related audits.
+     */
+    'best-practices'?: Schema$LighthouseCategoryV5;
+    /**
+     * The performance category, containing all performance related audits.
+     */
+    performance?: Schema$LighthouseCategoryV5;
+    /**
+     * The Progressive-Web-App (PWA) category, containing all pwa related audits.
+     */
+    pwa?: Schema$LighthouseCategoryV5;
+    /**
+     * The Search-Engine-Optimization (SEO) category, containing all seo related audits.
+     */
+    seo?: Schema$LighthouseCategoryV5;
+  }
+  /**
+   * Message containing a category
+   */
+  export interface Schema$CategoryGroupV5 {
+    /**
+     * The description of what the category is grouping
+     */
+    description?: string | null;
+    /**
+     * The human readable title of the group
+     */
+    title?: string | null;
+  }
+  /**
+   * Message containing the configuration settings for the Lighthouse run.
+   */
+  export interface Schema$ConfigSettings {
+    /**
+     * How Lighthouse was run, e.g. from the Chrome extension or from the npm module.
+     */
+    channel?: string | null;
+    /**
+     * The form factor the emulation should use.
+     */
+    emulatedFormFactor?: string | null;
+    /**
+     * The locale setting.
+     */
+    locale?: string | null;
+    /**
+     * List of categories of audits the run should conduct.
+     */
+    onlyCategories?: any | null;
+  }
+  /**
+   * Message containing environment configuration for a Lighthouse run.
+   */
+  export interface Schema$Environment {
+    /**
+     * The benchmark index number that indicates rough device class.
+     */
+    benchmarkIndex?: number | null;
+    /**
+     * The user agent string of the version of Chrome used.
+     */
+    hostUserAgent?: string | null;
+    /**
+     * The user agent string that was sent over the network.
+     */
+    networkUserAgent?: string | null;
+  }
+  /**
+   * Message containing the i18n data for the LHR - Version 1.
+   */
+  export interface Schema$I18n {
+    /**
+     * Internationalized strings that are formatted to the locale in configSettings.
+     */
+    rendererFormattedStrings?: Schema$RendererFormattedStrings;
+  }
+  /**
+   * An audit&#39;s result object in a Lighthouse result.
+   */
   export interface Schema$LighthouseAuditResultV5 {
     /**
      * The description of the audit.
@@ -130,6 +266,9 @@ export namespace pagespeedonline_v5 {
      * A numeric value that has a meaning specific to the audit, e.g. the number of nodes in the DOM or the timestamp of a specific load event. More information can be found in the audit details, if present.
      */
     numericValue?: number | null;
+    /**
+     * The score of the audit, can be null.
+     */
     score?: any | null;
     /**
      * The enumerated score display mode.
@@ -139,13 +278,19 @@ export namespace pagespeedonline_v5 {
      * The human readable title.
      */
     title?: string | null;
+    /**
+     * Possible warnings that occurred in the audit, can be null.
+     */
     warnings?: any | null;
   }
+  /**
+   * A Lighthouse category.
+   */
   export interface Schema$LighthouseCategoryV5 {
     /**
      * An array of references to all the audit members of this category.
      */
-    auditRefs?: Array<{group?: string; id?: string; weight?: number}> | null;
+    auditRefs?: Schema$AuditRefs[];
     /**
      * A more detailed description of the category and its importance.
      */
@@ -158,12 +303,18 @@ export namespace pagespeedonline_v5 {
      * A description for the manual audits in the category.
      */
     manualDescription?: string | null;
+    /**
+     * The overall score of the category, the weighted average of all its audits. (The category&#39;s score, can be null.)
+     */
     score?: any | null;
     /**
      * The human-friendly name of the category.
      */
     title?: string | null;
   }
+  /**
+   * The Lighthouse result object.
+   */
   export interface Schema$LighthouseResultV5 {
     /**
      * Map of audits in the LHR.
@@ -172,35 +323,19 @@ export namespace pagespeedonline_v5 {
     /**
      * Map of categories in the LHR.
      */
-    categories?: {
-      accessibility?: Schema$LighthouseCategoryV5;
-      'best-practices'?: Schema$LighthouseCategoryV5;
-      performance?: Schema$LighthouseCategoryV5;
-      pwa?: Schema$LighthouseCategoryV5;
-      seo?: Schema$LighthouseCategoryV5;
-    } | null;
+    categories?: Schema$Categories;
     /**
      * Map of category groups in the LHR.
      */
-    categoryGroups?: {
-      [key: string]: {description?: string; title?: string};
-    } | null;
+    categoryGroups?: {[key: string]: Schema$CategoryGroupV5} | null;
     /**
      * The configuration settings for this LHR.
      */
-    configSettings?: {
-      emulatedFormFactor?: string;
-      locale?: string;
-      onlyCategories?: any;
-    } | null;
+    configSettings?: Schema$ConfigSettings;
     /**
      * Environment settings that were used when making this LHR.
      */
-    environment?: {
-      benchmarkIndex?: number;
-      hostUserAgent?: string;
-      networkUserAgent?: string;
-    } | null;
+    environment?: Schema$Environment;
     /**
      * The time that this run was fetched.
      */
@@ -212,26 +347,7 @@ export namespace pagespeedonline_v5 {
     /**
      * The internationalization strings that are required to render the LHR.
      */
-    i18n?: {
-      rendererFormattedStrings?: {
-        auditGroupExpandTooltip?: string;
-        crcInitialNavigation?: string;
-        crcLongestDurationLabel?: string;
-        errorLabel?: string;
-        errorMissingAuditInfo?: string;
-        labDataTitle?: string;
-        lsPerformanceCategoryDescription?: string;
-        manualAuditsGroupTitle?: string;
-        notApplicableAuditsGroupTitle?: string;
-        opportunityResourceColumnLabel?: string;
-        opportunitySavingsColumnLabel?: string;
-        passedAuditsGroupTitle?: string;
-        scorescaleLabel?: string;
-        toplevelWarningsMessage?: string;
-        varianceDisclaimer?: string;
-        warningHeader?: string;
-      };
-    } | null;
+    i18n?: Schema$I18n;
     /**
      * The lighthouse version that was used to generate this LHR.
      */
@@ -243,48 +359,48 @@ export namespace pagespeedonline_v5 {
     /**
      * A top-level error message that, if present, indicates a serious enough problem that this Lighthouse result may need to be discarded.
      */
-    runtimeError?: {code?: string; message?: string} | null;
+    runtimeError?: Schema$RuntimeError;
     /**
-     * List of all run warnings in the LHR. Will always output to at least `[]`.
+     * List of all run warnings in the LHR.  Will always output to at least `[]`.
      */
-    runWarnings?: Schema$GoogleprotobufListValue;
+    runWarnings?: any[] | null;
     /**
      * The Stack Pack advice strings.
      */
-    stackPacks?: Array<{
-      descriptions?: {[key: string]: string};
-      iconDataURL?: string;
-      id?: string;
-      title?: string;
-    }> | null;
+    stackPacks?: Schema$StackPack[];
     /**
      * Timing information for this LHR.
      */
-    timing?: {total?: number} | null;
+    timing?: Schema$Timing;
     /**
      * The user agent that was used to run this LHR.
      */
     userAgent?: string | null;
   }
+  /**
+   * The CrUX loading experience object that contains CrUX data breakdowns.
+   */
   export interface Schema$PagespeedApiLoadingExperienceV5 {
     /**
      * The url, pattern or origin which the metrics are on.
      */
     id?: string | null;
+    /**
+     * The requested URL, which may differ from the resolved &quot;id&quot;.
+     */
     initial_url?: string | null;
-    metrics?: {
-      [key: string]: {
-        category?: string;
-        distributions?: Array<{
-          max?: number;
-          min?: number;
-          proportion?: number;
-        }>;
-        percentile?: number;
-      };
-    } | null;
+    /**
+     * The map of &lt;metrics, data&gt;.
+     */
+    metrics?: {[key: string]: Schema$UserPageLoadMetricV5} | null;
+    /**
+     * The human readable speed &quot;category&quot; of the id.
+     */
     overall_category?: string | null;
   }
+  /**
+   * The Pagespeed API response object.
+   */
   export interface Schema$PagespeedApiPagespeedResponseV5 {
     /**
      * The UTC timestamp of this analysis.
@@ -317,7 +433,161 @@ export namespace pagespeedonline_v5 {
     /**
      * The version of PageSpeed used to generate these results.
      */
-    version?: {major?: number; minor?: number} | null;
+    version?: Schema$PagespeedVersion;
+  }
+  /**
+   * The Pagespeed Version object.
+   */
+  export interface Schema$PagespeedVersion {
+    /**
+     * The major version number of PageSpeed used to generate these results.
+     */
+    major?: string | null;
+    /**
+     * The minor version number of PageSpeed used to generate these results.
+     */
+    minor?: string | null;
+  }
+  /**
+   * Message holding the formatted strings used in the renderer.
+   */
+  export interface Schema$RendererFormattedStrings {
+    /**
+     * The tooltip text on an expandable chevron icon.
+     */
+    auditGroupExpandTooltip?: string | null;
+    /**
+     * The label for the initial request in a critical request chain.
+     */
+    crcInitialNavigation?: string | null;
+    /**
+     * The label for values shown in the summary of critical request chains.
+     */
+    crcLongestDurationLabel?: string | null;
+    /**
+     * The label shown next to an audit or metric that has had an error.
+     */
+    errorLabel?: string | null;
+    /**
+     * The error string shown next to an erroring audit.
+     */
+    errorMissingAuditInfo?: string | null;
+    /**
+     * The title of the lab data performance category.
+     */
+    labDataTitle?: string | null;
+    /**
+     * The disclaimer shown under performance explaning that the network can vary.
+     */
+    lsPerformanceCategoryDescription?: string | null;
+    /**
+     * The heading shown above a list of audits that were not computerd in the run.
+     */
+    manualAuditsGroupTitle?: string | null;
+    /**
+     * The heading shown above a list of audits that do not apply to a page.
+     */
+    notApplicableAuditsGroupTitle?: string | null;
+    /**
+     * The heading for the estimated page load savings opportunity of an audit.
+     */
+    opportunityResourceColumnLabel?: string | null;
+    /**
+     * The heading for the estimated page load savings of opportunity audits.
+     */
+    opportunitySavingsColumnLabel?: string | null;
+    /**
+     * The heading that is shown above a list of audits that are passing.
+     */
+    passedAuditsGroupTitle?: string | null;
+    /**
+     * The label that explains the score gauges scale (0-49, 50-89, 90-100).
+     */
+    scorescaleLabel?: string | null;
+    /**
+     * The label shown preceding important warnings that may have invalidated an entire report.
+     */
+    toplevelWarningsMessage?: string | null;
+    /**
+     * The disclaimer shown below a performance metric value.
+     */
+    varianceDisclaimer?: string | null;
+    /**
+     * The label shown above a bulleted list of warnings.
+     */
+    warningHeader?: string | null;
+  }
+  /**
+   * Message containing a runtime error config.
+   */
+  export interface Schema$RuntimeError {
+    /**
+     * The enumerated Lighthouse Error code.
+     */
+    code?: string | null;
+    /**
+     * A human readable message explaining the error code.
+     */
+    message?: string | null;
+  }
+  /**
+   * Message containing Stack Pack information.
+   */
+  export interface Schema$StackPack {
+    /**
+     * The stack pack advice strings.
+     */
+    descriptions?: {[key: string]: string} | null;
+    /**
+     * The stack pack icon data uri.
+     */
+    iconDataURL?: string | null;
+    /**
+     * The stack pack id.
+     */
+    id?: string | null;
+    /**
+     * The stack pack title.
+     */
+    title?: string | null;
+  }
+  /**
+   * Message containing the performance timing data for the Lighthouse run.
+   */
+  export interface Schema$Timing {
+    /**
+     * The total duration of Lighthouse&#39;s run.
+     */
+    total?: number | null;
+  }
+  /**
+   * A CrUX metric object for a single metric and form factor.
+   */
+  export interface Schema$UserPageLoadMetricV5 {
+    /**
+     * The category of the specific time metric.
+     */
+    category?: string | null;
+    /**
+     * Metric distributions. Proportions should sum up to 1.
+     */
+    distributions?: Schema$Bucket[];
+    /**
+     * Identifies the form factor of the metric being collected.
+     */
+    formFactor?: string | null;
+    /**
+     * The median number of the metric, in millisecond.
+     */
+    median?: number | null;
+    /**
+     * Identifies the type of the metric.
+     */
+    metricId?: string | null;
+    /**
+     * We use this field to store certain percentile value for this metric. For v4, this field contains pc50. For v5, this field contains pc90.
+     */
+    percentile?: number | null;
   }
 
   export class Resource$Pagespeedapi {
@@ -333,10 +603,11 @@ export namespace pagespeedonline_v5 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.captchaToken The captcha token passed when filling out a captcha.
      * @param {string=} params.category A Lighthouse category to run; if none are given, only Performance category will be run
      * @param {string=} params.locale The locale used to localize formatted results
      * @param {string=} params.strategy The analysis strategy (desktop or mobile) to use, and desktop is the default
-     * @param {string} params.url The URL to fetch and analyze
+     * @param {string=} params.url The URL to fetch and analyze
      * @param {string=} params.utm_campaign Campaign name for analytics.
      * @param {string=} params.utm_source Campaign source for analytics.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -385,7 +656,8 @@ export namespace pagespeedonline_v5 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://pagespeedonline.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -398,7 +670,7 @@ export namespace pagespeedonline_v5 {
           options
         ),
         params,
-        requiredParams: ['url'],
+        requiredParams: [],
         pathParams: [],
         context: this.context,
       };
@@ -422,6 +694,10 @@ export namespace pagespeedonline_v5 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The captcha token passed when filling out a captcha.
+     */
+    captchaToken?: string;
     /**
      * A Lighthouse category to run; if none are given, only Performance category will be run
      */

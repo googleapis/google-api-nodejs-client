@@ -1513,6 +1513,23 @@ export namespace videointelligence_v1p2beta1 {
     value?: string | null;
   }
   /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, i.e. left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_Entity {
@@ -1550,6 +1567,19 @@ export namespace videointelligence_v1p2beta1 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
+  }
+  /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation {
+    /**
+     * The thumbnail of a person&#39;s face.
+     */
+    thumbnail?: string | null;
+    /**
+     * The face tracks with attributes.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
   }
   /**
    * Label annotation.
@@ -1697,6 +1727,15 @@ export namespace videointelligence_v1p2beta1 {
     timeOffset?: string | null;
   }
   /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionAnnotation {
+    /**
+     * The trackes that a person is detected.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+  }
+  /**
    * The recognized celebrity with confidence score.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_RecognizedCelebrity {
@@ -1829,6 +1868,10 @@ export namespace videointelligence_v1p2beta1 {
      */
     attributes?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute[];
     /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedLandmark[];
+    /**
      * Normalized Bounding box in a frame, where the object is located.
      */
     normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox;
@@ -1904,6 +1947,10 @@ export namespace videointelligence_v1p2beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
@@ -1919,6 +1966,10 @@ export namespace videointelligence_v1p2beta1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */

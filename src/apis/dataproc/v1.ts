@@ -470,23 +470,23 @@ export namespace dataproc_v1 {
     gcePdKmsKeyName?: string | null;
   }
   /**
-   * Represents an expression text. Example: title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
@@ -633,7 +633,7 @@ export namespace dataproc_v1 {
     weight?: number | null;
   }
   /**
-   * Optional. The config settings for Compute Engine resources in an instance group, such as a master or worker group.
+   * The config settings for Compute Engine resources in an instance group, such as a master or worker group.
    */
   export interface Schema$InstanceGroupConfig {
     /**
@@ -702,7 +702,13 @@ export namespace dataproc_v1 {
      * Output only. A URI pointing to the location of the stdout of the job&#39;s driver program.
      */
     driverOutputResourceUri?: string | null;
+    /**
+     * Optional. Job is a Hadoop job.
+     */
     hadoopJob?: Schema$HadoopJob;
+    /**
+     * Optional. Job is a Hive job.
+     */
     hiveJob?: Schema$HiveJob;
     /**
      * Output only. A UUID that uniquely identifies a job within the project over time. This is in contrast to a user-settable reference.job_id that may be reused over time.
@@ -712,11 +718,21 @@ export namespace dataproc_v1 {
      * Optional. The labels to associate with this job. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Job is a Pig job.
+     */
     pigJob?: Schema$PigJob;
     /**
      * Required. Job information, including how, when, and where to run the job.
      */
     placement?: Schema$JobPlacement;
+    /**
+     * Optional. Job is a Presto job.
+     */
+    prestoJob?: Schema$PrestoJob;
+    /**
+     * Optional. Job is a PySpark job.
+     */
     pysparkJob?: Schema$PySparkJob;
     /**
      * Optional. The fully qualified reference to the job, which can be used to obtain the equivalent REST path of the job resource. If this property is not specified when a job is created, the server generates a &lt;code&gt;job_id&lt;/code&gt;.
@@ -726,8 +742,17 @@ export namespace dataproc_v1 {
      * Optional. Job scheduling configuration.
      */
     scheduling?: Schema$JobScheduling;
+    /**
+     * Optional. Job is a Spark job.
+     */
     sparkJob?: Schema$SparkJob;
+    /**
+     * Optional. Job is a SparkR job.
+     */
     sparkRJob?: Schema$SparkRJob;
+    /**
+     * Optional. Job is a SparkSql job.
+     */
     sparkSqlJob?: Schema$SparkSqlJob;
     /**
      * Output only. The job status. Additional application-specific status information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and &lt;code&gt;yarn_applications&lt;/code&gt; fields.
@@ -1115,6 +1140,39 @@ export namespace dataproc_v1 {
      * Specifies the format of the policy.Valid values are 0, 1, and 3. Requests that specify an invalid value are rejected.Any operation that affects conditional role bindings must specify version 3. This requirement applies to the following operations: Getting a policy that includes a conditional role binding Adding a conditional role binding to a policy Changing a conditional role binding in a policy Removing any role binding, with or without a condition, from a policy  that includes conditionsImportant: If you use IAM Conditions, you must include the etag field whenever you call setIamPolicy. If you omit this field, then IAM allows you to overwrite a version 3 policy with a version 1 policy, and all of the conditions in the version 3 policy are lost.If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
      */
     version?: number | null;
+  }
+  /**
+   * A Dataproc job for running Presto (https://prestosql.io/) queries
+   */
+  export interface Schema$PrestoJob {
+    /**
+     * Optional. Presto client tags to attach to this query
+     */
+    clientTags?: string[] | null;
+    /**
+     * Optional. Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries.
+     */
+    continueOnFailure?: boolean | null;
+    /**
+     * Optional. The runtime log config for job execution.
+     */
+    loggingConfig?: Schema$LoggingConfig;
+    /**
+     * Optional. The format in which query output will be displayed. See the Presto documentation for supported output formats
+     */
+    outputFormat?: string | null;
+    /**
+     * Optional. A mapping of property names to values. Used to set Presto session properties (https://prestodb.io/docs/current/sql/set-session.html) Equivalent to using the --session flag in the Presto CLI
+     */
+    properties?: {[key: string]: string} | null;
+    /**
+     * The HCFS URI of the script that contains SQL queries.
+     */
+    queryFileUri?: string | null;
+    /**
+     * A list of queries.
+     */
+    queryList?: Schema$QueryList;
   }
   /**
    * A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.

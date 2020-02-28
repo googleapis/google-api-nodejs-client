@@ -327,6 +327,23 @@ export namespace dataflow_v1b3 {
     position?: Schema$Position;
   }
   /**
+   * Container Spec.
+   */
+  export interface Schema$ContainerSpec {
+    /**
+     * Name of the docker container image. E.g., gcr.io/project/some-image
+     */
+    image?: string | null;
+    /**
+     * Metadata describing a template including description and validation rules.
+     */
+    metadata?: Schema$TemplateMetadata;
+    /**
+     * Required. SDK info of the Flex Template.
+     */
+    sdkInfo?: Schema$SDKInfo;
+  }
+  /**
    * CounterMetadata includes all static non-name non-value counter attributes.
    */
   export interface Schema$CounterMetadata {
@@ -1215,6 +1232,49 @@ export namespace dataflow_v1b3 {
     start?: string | null;
   }
   /**
+   * Launch FlexTemplate Parameter.
+   */
+  export interface Schema$LaunchFlexTemplateParameter {
+    /**
+     * Spec about the container image to launch.
+     */
+    containerSpec?: Schema$ContainerSpec;
+    /**
+     * Gcs path to a file with json serialized ContainerSpec as content.
+     */
+    containerSpecGcsPath?: string | null;
+    /**
+     * Required. The job name to use for the created job.
+     */
+    jobName?: string | null;
+    /**
+     * The parameters for FlexTemplate. Ex. {&quot;num_workers&quot;:&quot;5&quot;}
+     */
+    parameters?: {[key: string]: string} | null;
+  }
+  /**
+   * A request to launch a Cloud Dataflow job from a FlexTemplate.
+   */
+  export interface Schema$LaunchFlexTemplateRequest {
+    /**
+     * Required. Parameter to launch a job form Flex Template.
+     */
+    launchParameter?: Schema$LaunchFlexTemplateParameter;
+    /**
+     * If true, the request is validated but not actually executed. Defaults to false.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response to the request to launch a job from Flex Template.
+   */
+  export interface Schema$LaunchFlexTemplateResponse {
+    /**
+     * The job that was launched, if the request was not a dry run and the job was successfully launched.
+     */
+    job?: Schema$Job;
+  }
+  /**
    * Parameters to provide to the template being launched.
    */
   export interface Schema$LaunchTemplateParameters {
@@ -1312,7 +1372,7 @@ export namespace dataflow_v1b3 {
     nextPageToken?: string | null;
   }
   /**
-   * Response to a request to list Cloud Dataflow jobs.  This may be a partial response, depending on the page size in the ListJobsRequest.
+   * Response to a request to list Cloud Dataflow jobs in a project. This might be a partial response, depending on the page size in the ListJobsRequest. However, if the project does not have any jobs, an instance of ListJobsResponse is not returned and the requests&#39;s response body is empty {}.
    */
   export interface Schema$ListJobsResponse {
     /**
@@ -1851,6 +1911,19 @@ export namespace dataflow_v1b3 {
      * SDK Info for the template.
      */
     sdkInfo?: Schema$SDKInfo;
+  }
+  /**
+   * Defines a SDK harness container for executing Dataflow pipelines.
+   */
+  export interface Schema$SdkHarnessContainerImage {
+    /**
+     * A docker container image that resides in Google Container Registry.
+     */
+    containerImage?: string | null;
+    /**
+     * If true, recommends the Dataflow service to use only one core per SDK container instance with this image. If false (or unset) recommends using more than one core per SDK container instance with this image for efficiency. Note that Dataflow service may choose to override this property if needed.
+     */
+    useSingleCorePerContainer?: boolean | null;
   }
   /**
    * SDK Information.
@@ -2834,6 +2907,10 @@ export namespace dataflow_v1b3 {
      */
     poolArgs?: {[key: string]: any} | null;
     /**
+     * Set of SDK harness containers needed to execute this pipeline. This will only be set in the Fn API path. For non-cross-language pipelines this should have only one entry. Cross-language pipelines will have two or more entries.
+     */
+    sdkHarnessContainerImages?: Schema$SdkHarnessContainerImage[];
+    /**
      * Subnetwork to which VMs will be assigned, if desired.  Expected to be of the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
      */
     subnetwork?: string | null;
@@ -2846,7 +2923,7 @@ export namespace dataflow_v1b3 {
      */
     teardownPolicy?: string | null;
     /**
-     * Required. Docker container image that executes the Cloud Dataflow worker harness, residing in Google Container Registry.
+     * Required. Docker container image that executes the Cloud Dataflow worker harness, residing in Google Container Registry.  Deprecated for the Fn API path. Use sdk_harness_container_images instead.
      */
     workerHarnessContainerImage?: string | null;
     /**
@@ -4383,11 +4460,15 @@ export namespace dataflow_v1b3 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    flexTemplates: Resource$Projects$Locations$Flextemplates;
     jobs: Resource$Projects$Locations$Jobs;
     sql: Resource$Projects$Locations$Sql;
     templates: Resource$Projects$Locations$Templates;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.flexTemplates = new Resource$Projects$Locations$Flextemplates(
+        this.context
+      );
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
       this.sql = new Resource$Projects$Locations$Sql(this.context);
       this.templates = new Resource$Projects$Locations$Templates(this.context);
@@ -4497,6 +4578,118 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$SendWorkerMessagesRequest;
+  }
+
+  export class Resource$Projects$Locations$Flextemplates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dataflow.projects.locations.flexTemplates.launch
+     * @desc Launch a job with a FlexTemplate.
+     * @alias dataflow.projects.locations.flexTemplates.launch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.location Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. E.g., us-central1, us-west1.
+     * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+     * @param {().LaunchFlexTemplateRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    launch(
+      params?: Params$Resource$Projects$Locations$Flextemplates$Launch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LaunchFlexTemplateResponse>;
+    launch(
+      params: Params$Resource$Projects$Locations$Flextemplates$Launch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>,
+      callback: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+    ): void;
+    launch(
+      params: Params$Resource$Projects$Locations$Flextemplates$Launch,
+      callback: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+    ): void;
+    launch(
+      callback: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+    ): void;
+    launch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Flextemplates$Launch
+        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
+    ): void | GaxiosPromise<Schema$LaunchFlexTemplateResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Flextemplates$Launch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Flextemplates$Launch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/flexTemplates:launch'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location'],
+        pathParams: ['location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LaunchFlexTemplateResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$LaunchFlexTemplateResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Flextemplates$Launch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. E.g., us-central1, us-west1.
+     */
+    location?: string;
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LaunchFlexTemplateRequest;
   }
 
   export class Resource$Projects$Locations$Jobs {

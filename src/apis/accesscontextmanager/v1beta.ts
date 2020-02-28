@@ -118,7 +118,7 @@ export namespace accesscontextmanager_v1beta {
   }
 
   /**
-   * An `AccessLevel` is a label that can be applied to requests to GCP services, along with a list of requirements necessary for the label to be applied.
+   * An `AccessLevel` is a label that can be applied to requests to Google Cloud services, along with a list of requirements necessary for the label to be applied.
    */
   export interface Schema$AccessLevel {
     /**
@@ -129,6 +129,10 @@ export namespace accesscontextmanager_v1beta {
      * Output only. Time the `AccessLevel` was created in UTC.
      */
     createTime?: string | null;
+    /**
+     * A `CustomLevel` written in the Common Expression Language.
+     */
+    custom?: Schema$CustomLevel;
     /**
      * Description of the `AccessLevel` and its use. Does not affect behavior.
      */
@@ -147,7 +151,7 @@ export namespace accesscontextmanager_v1beta {
     updateTime?: string | null;
   }
   /**
-   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use GCP services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
+   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use Google Cloud services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
    */
   export interface Schema$AccessPolicy {
     /**
@@ -214,6 +218,15 @@ export namespace accesscontextmanager_v1beta {
     requiredAccessLevels?: string[] | null;
   }
   /**
+   * `CustomLevel` is an `AccessLevel` using the Cloud Common Expression Language to represent the necessary conditions for the level to apply to a request. See CEL spec at: https://github.com/google/cel-spec
+   */
+  export interface Schema$CustomLevel {
+    /**
+     * Required. A Cloud CEL expression evaluating to a boolean.
+     */
+    expr?: Schema$Expr;
+  }
+  /**
    * `DevicePolicy` specifies device specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels, it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is { os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED}, then the DevicePolicy will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
    */
   export interface Schema$DevicePolicy {
@@ -241,6 +254,27 @@ export namespace accesscontextmanager_v1beta {
      * Whether or not screenlock is required for the DevicePolicy to be true. Defaults to `false`.
      */
     requireScreenlock?: boolean | null;
+  }
+  /**
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   */
+  export interface Schema$Expr {
+    /**
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string | null;
+    /**
+     * Textual representation of an expression in Common Expression Language syntax.
+     */
+    expression?: string | null;
+    /**
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     */
+    location?: string | null;
+    /**
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     */
+    title?: string | null;
   }
   /**
    * A response to `ListAccessLevelsRequest`.
@@ -324,7 +358,7 @@ export namespace accesscontextmanager_v1beta {
     requireVerifiedChromeOs?: boolean | null;
   }
   /**
-   * `ServicePerimeter` describes a set of GCP resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single GCP project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only GCP projects as members, a single GCP project may belong to multiple Service Perimeter Bridges.
+   * `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.
    */
   export interface Schema$ServicePerimeter {
     /**
@@ -357,27 +391,31 @@ export namespace accesscontextmanager_v1beta {
     updateTime?: string | null;
   }
   /**
-   * `ServicePerimeterConfig` specifies a set of GCP resources that describe specific Service Perimeter configuration.
+   * `ServicePerimeterConfig` specifies a set of Google Cloud resources that describe specific Service Perimeter configuration.
    */
   export interface Schema$ServicePerimeterConfig {
     /**
-     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via GCP calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
+     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
      */
     accessLevels?: string[] | null;
     /**
-     * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
+     * A list of Google Cloud resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
      */
     resources?: string[] | null;
     /**
-     * GCP services that are subject to the Service Perimeter restrictions. Must contain a list of services. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
+     * Google Cloud services that are subject to the Service Perimeter restrictions. Must contain a list of services. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
      */
     restrictedServices?: string[] | null;
     /**
-     * GCP services that are not subject to the Service Perimeter restrictions. Deprecated. Must be set to a single wildcard &quot;*&quot;.  The wildcard means that unless explicitly specified by &quot;restricted_services&quot; list, any service is treated as unrestricted.
+     * Google Cloud services that are not subject to the Service Perimeter restrictions. Deprecated. Must be set to a single wildcard &quot;*&quot;.  The wildcard means that unless explicitly specified by &quot;restricted_services&quot; list, any service is treated as unrestricted.
      */
     unrestrictedServices?: string[] | null;
     /**
-     * Alpha. Configuration for within Perimeter allowed APIs.
+     * Beta. Configuration for within Perimeter allowed APIs.
+     */
+    vpcAccessibleServices?: Schema$VpcAccessibleServices;
+    /**
+     * Alpha. Configuration for within Perimeter allowed APIs. Deprecated. The field had been renamed to vpc_accessible_services
      */
     vpcServiceRestriction?: Schema$VpcServiceRestriction;
   }
@@ -399,7 +437,20 @@ export namespace accesscontextmanager_v1beta {
     message?: string | null;
   }
   /**
-   * Alpha. Specifies how APIs are allowed to communicate within the Service Perimeter.
+   * Specifies how APIs are allowed to communicate within the Service Perimeter.
+   */
+  export interface Schema$VpcAccessibleServices {
+    /**
+     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
+     */
+    allowedServices?: string[] | null;
+    /**
+     * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in &#39;allowed_services&#39;.
+     */
+    enableRestriction?: boolean | null;
+  }
+  /**
+   * Alpha. Specifies how APIs are allowed to communicate within the Service Perimeter. This message is DEPRECATED and had been renamed to VpcAccessibleServices
    */
   export interface Schema$VpcServiceRestriction {
     /**

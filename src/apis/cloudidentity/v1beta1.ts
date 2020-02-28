@@ -120,11 +120,11 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$EntityKey {
     /**
-     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of a group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source&#39;s requirements.  Must be unique within a `namespace`.
+     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source&#39;s requirements.  Must be unique within a `namespace`.
      */
     id?: string | null;
     /**
-     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group created through Admin Console. Must be of the form `identitysources/{identity_source_id}.
+     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console. Must be of the form `identitysources/{identity_source_id}.
      */
     namespace?: string | null;
   }
@@ -153,7 +153,7 @@ export namespace cloudidentity_v1beta1 {
      */
     groupKey?: Schema$EntityKey;
     /**
-     * Required. The labels that apply to the `Group`.  Must not contain more than one entry. Must contain the entry `&#39;system/groups/external&#39;: &#39;&#39;` if the `Group` is an external-identity-mapped group or `&#39;cloudidentity.googleapis.com/groups.discussion_forum&#39;: &#39;&#39;` if the `Group` is a Google Group.
+     * Required. The labels that apply to the `Group`.  Must not contain more than one entry. Must contain the entry `&#39;cloudidentity.googleapis.com/groups.discussion_forum&#39;: &#39;&#39;` if the `Group` is a Google Group or `&#39;system/groups/external&#39;: &#39;&#39;` if the `Group` is an external-identity-mapped group.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -168,6 +168,19 @@ export namespace cloudidentity_v1beta1 {
      * Output only. The time when the `Group` was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * The response message for GroupsService.ListGroups.
+   */
+  export interface Schema$ListGroupsResponse {
+    /**
+     * The `Group`s under the specified `parent`.
+     */
+    groups?: Schema$Group[];
+    /**
+     * A continuation token to retrieve the next page of results, or empty if there are no more results available.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for MembershipsService.ListMemberships.
@@ -187,7 +200,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$LookupGroupNameResponse {
     /**
-     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the looked-up `Group`.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the looked-up `Group`.
      */
     name?: string | null;
   }
@@ -217,6 +230,10 @@ export namespace cloudidentity_v1beta1 {
      */
     name?: string | null;
     /**
+     * Required. Immutable. The `EntityKey` of the member.  Either `member_key` or `preferred_member_key` must be set when calling MembershipsService.CreateMembership but not both; both shall be set when returned.
+     */
+    preferredMemberKey?: Schema$EntityKey;
+    /**
      * The `MembershipRole`s that apply to the `Membership`.  If unspecified, defaults to a single `MembershipRole` with `name` `MEMBER`.  Must not contain duplicate `MembershipRole`s with the same `name`.
      */
     roles?: Schema$MembershipRole[];
@@ -233,6 +250,32 @@ export namespace cloudidentity_v1beta1 {
      * The name of the `MembershipRole`.  Must be one of `OWNER`, `MANAGER`, `MEMBER`.
      */
     name?: string | null;
+  }
+  /**
+   * The request message for MembershipsService.ModifyMembershipRoles.
+   */
+  export interface Schema$ModifyMembershipRolesRequest {
+    /**
+     * The `MembershipRole`s to be added.  Adding or removing roles in the same request as updating roles is not supported.  Must not be set if `update_roles_params` is set.
+     */
+    addRoles?: Schema$MembershipRole[];
+    /**
+     * The `name`s of the `MembershipRole`s to be removed.  Adding or removing roles in the same request as updating roles is not supported.  It is not possible to remove the `MEMBER` `MembershipRole`. If you wish to delete a `Membership`, call MembershipsService.DeleteMembership instead.  Must not contain `MEMBER`. Must not be set if `update_roles_params` is set.
+     */
+    removeRoles?: string[] | null;
+    /**
+     * The `MembershipRole`s to be updated.  Updating roles in the same request as adding or removing roles is not supported.  Must not be set if either `add_roles` or `remove_roles` is set.
+     */
+    updateRolesParams?: Schema$UpdateMembershipRolesParams[];
+  }
+  /**
+   * The response message for MembershipsService.ModifyMembershipRoles.
+   */
+  export interface Schema$ModifyMembershipRolesResponse {
+    /**
+     * The `Membership` resource after modifying its `MembershipRole`s.
+     */
+    membership?: Schema$Membership;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -289,6 +332,19 @@ export namespace cloudidentity_v1beta1 {
      */
     message?: string | null;
   }
+  /**
+   * The details of an update to a `MembershipRole`.
+   */
+  export interface Schema$UpdateMembershipRolesParams {
+    /**
+     * The fully-qualified names of fields to update.  May only contain the field `expiry_detail`.
+     */
+    fieldMask?: string | null;
+    /**
+     * The `MembershipRole`s to be updated.  Only `MEMBER` `MembershipRoles` can currently be updated.  May only contain a `MembershipRole` with `name` `MEMBER`.
+     */
+    membershipRole?: Schema$MembershipRole;
+  }
 
   export class Resource$Groups {
     context: APIRequestContext;
@@ -305,6 +361,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.initialGroupConfig Required. The initial configuration option for the `Group`.
      * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -376,7 +433,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -447,7 +504,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -510,14 +567,88 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
+     * cloudidentity.groups.list
+     * @desc Lists the `Group`s under a customer or namespace.
+     * @alias cloudidentity.groups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `View.BASIC` and to 50 for `View.FULL`.  Must not be greater than 1000 for `View.BASIC` or 500 for `View.FULL`.
+     * @param {string=} params.pageToken The `next_page_token` value returned from a previous list request, if any.
+     * @param {string=} params.parent Required. The parent resource under which to list all `Group`s.  Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     * @param {string=} params.view The level of detail to be returned.  If unspecified, defaults to `View.BASIC`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Groups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGroupsResponse>;
+    list(
+      params: Params$Resource$Groups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Groups$List,
+      callback: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Groups$List
+        | BodyResponseCallback<Schema$ListGroupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupsResponse>
+    ): void | GaxiosPromise<Schema$ListGroupsResponse> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListGroupsResponse>(parameters);
+      }
+    }
+
+    /**
      * cloudidentity.groups.lookup
      * @desc Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Group` by its `EntityKey`.
      * @alias cloudidentity.groups.lookup
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.groupKey.id The ID of the entity.  For Google-managed entities, the `id` must be the email address of a group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
-     * @param {string=} params.groupKey.namespace The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group created through Admin Console. Must be of the form `identitysources/{identity_source_id}.
+     * @param {string=} params.groupKey.id The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
+     * @param {string=} params.groupKey.namespace The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console. Must be of the form `identitysources/{identity_source_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -596,7 +727,7 @@ export namespace cloudidentity_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`.  Shall be of the form `groups/{group_id}`.
-     * @param {string=} params.updateMask The fully-qualified names of fields to update.  May only contain the following fields: `display_name`, `description`.
+     * @param {string=} params.updateMask Required. The fully-qualified names of fields to update.  May only contain the following fields: `display_name`, `description`.
      * @param {().Group} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -670,7 +801,7 @@ export namespace cloudidentity_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`.  Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous search request, if any.
-     * @param {string=} params.query The search query.  Only queries on the parent and labels of `Group`s are supported.  Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent (e.g. `parent == 'customers/{customer_id}'`) and inclusion operators on labels (e.g., `'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     * @param {string=} params.query Required. The search query.  Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
      * @param {string=} params.view The level of detail to be returned.  If unspecified, defaults to `View.BASIC`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -748,6 +879,11 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * Required. The initial configuration option for the `Group`.
+     */
+    initialGroupConfig?: string;
+
+    /**
      * Request body metadata
      */
     requestBody?: Schema$Group;
@@ -759,7 +895,7 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
      */
     name?: string;
   }
@@ -770,9 +906,32 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve.  Must be of the form `groups/{group_id}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Groups$List extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `View.BASIC` and to 50 for `View.FULL`.  Must not be greater than 1000 for `View.BASIC` or 500 for `View.FULL`.
+     */
+    pageSize?: number;
+    /**
+     * The `next_page_token` value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource under which to list all `Group`s.  Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     */
+    parent?: string;
+    /**
+     * The level of detail to be returned.  If unspecified, defaults to `View.BASIC`.
+     */
+    view?: string;
   }
   export interface Params$Resource$Groups$Lookup extends StandardParameters {
     /**
@@ -781,11 +940,11 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of a group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
+     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
      */
     'groupKey.id'?: string;
     /**
-     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group created through Admin Console. Must be of the form `identitysources/{identity_source_id}.
+     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console. Must be of the form `identitysources/{identity_source_id}.
      */
     'groupKey.namespace'?: string;
   }
@@ -800,7 +959,7 @@ export namespace cloudidentity_v1beta1 {
      */
     name?: string;
     /**
-     * The fully-qualified names of fields to update.  May only contain the following fields: `display_name`, `description`.
+     * Required. The fully-qualified names of fields to update.  May only contain the following fields: `display_name`, `description`.
      */
     updateMask?: string;
 
@@ -824,7 +983,7 @@ export namespace cloudidentity_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The search query.  Only queries on the parent and labels of `Group`s are supported.  Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent (e.g. `parent == 'customers/{customer_id}'`) and inclusion operators on labels (e.g., `'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     * Required. The search query.  Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
      */
     query?: string;
     /**
@@ -846,7 +1005,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent `Group` resource under which to create the `Membership`.  Must be of the form `groups/{group_id}`.
+     * @param {string} params.parent Required. The parent `Group` resource under which to create the `Membership`.  Must be of the form `groups/{group_id}`.
      * @param {().Membership} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -922,7 +1081,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -994,7 +1153,7 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1068,7 +1227,7 @@ export namespace cloudidentity_v1beta1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of results to return.  Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`.  If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`.  Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous search request, if any.
-     * @param {string} params.parent The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
+     * @param {string} params.parent Required. The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
      * @param {string=} params.view The level of detail to be returned.  If unspecified, defaults to `MembershipView.BASIC`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1146,9 +1305,9 @@ export namespace cloudidentity_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.memberKey.id The ID of the entity.  For Google-managed entities, the `id` must be the email address of a group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
-     * @param {string=} params.memberKey.namespace The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group created through Admin Console. Must be of the form `identitysources/{identity_source_id}.
-     * @param {string} params.parent The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
+     * @param {string=} params.memberKey.id The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
+     * @param {string=} params.memberKey.namespace The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console. Must be of the form `identitysources/{identity_source_id}.
+     * @param {string} params.parent Required. The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1224,6 +1383,91 @@ export namespace cloudidentity_v1beta1 {
         );
       }
     }
+
+    /**
+     * cloudidentity.groups.memberships.modifyMembershipRoles
+     * @desc Modifies the `MembershipRole`s of a `Membership`.
+     * @alias cloudidentity.groups.memberships.modifyMembershipRoles
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * @param {().ModifyMembershipRolesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    modifyMembershipRoles(
+      params?: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModifyMembershipRolesResponse>;
+    modifyMembershipRoles(
+      params: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>,
+      callback: BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+    ): void;
+    modifyMembershipRoles(
+      params: Params$Resource$Groups$Memberships$Modifymembershiproles,
+      callback: BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+    ): void;
+    modifyMembershipRoles(
+      callback: BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+    ): void;
+    modifyMembershipRoles(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Memberships$Modifymembershiproles
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyMembershipRolesResponse>,
+      callback?: BodyResponseCallback<Schema$ModifyMembershipRolesResponse>
+    ): void | GaxiosPromise<Schema$ModifyMembershipRolesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Memberships$Modifymembershiproles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Memberships$Modifymembershiproles;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:modifyMembershipRoles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ModifyMembershipRolesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ModifyMembershipRolesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Groups$Memberships$Create
@@ -1234,7 +1478,7 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent `Group` resource under which to create the `Membership`.  Must be of the form `groups/{group_id}`.
+     * Required. The parent `Group` resource under which to create the `Membership`.  Must be of the form `groups/{group_id}`.
      */
     parent?: string;
 
@@ -1251,7 +1495,7 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      */
     name?: string;
   }
@@ -1263,7 +1507,7 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
      */
     name?: string;
   }
@@ -1283,7 +1527,7 @@ export namespace cloudidentity_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
+     * Required. The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
      */
     parent?: string;
     /**
@@ -1299,16 +1543,33 @@ export namespace cloudidentity_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of a group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
+     * The ID of the entity.  For Google-managed entities, the `id` must be the email address of an existing group or user.  For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements.  Must be unique within a `namespace`.
      */
     'memberKey.id'?: string;
     /**
-     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group created through Admin Console. Must be of the form `identitysources/{identity_source_id}.
+     * The namespace in which the entity exists.  If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group.  If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console. Must be of the form `identitysources/{identity_source_id}.
      */
     'memberKey.namespace'?: string;
     /**
-     * The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
+     * Required. The parent `Group` resource under which to lookup the `Membership` name.  Must be of the form `groups/{group_id}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Groups$Memberships$Modifymembershiproles
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified.  Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModifyMembershipRolesRequest;
   }
 }
