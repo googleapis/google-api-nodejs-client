@@ -14,23 +14,21 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {replicapool_v1beta1} from './v1beta1';
+import {osconfig_v1beta} from './v1beta';
 
 export const VERSIONS = {
-  v1beta1: replicapool_v1beta1.Replicapool,
+  v1beta: osconfig_v1beta.Osconfig,
 };
 
-export function replicapool(
-  version: 'v1beta1'
-): replicapool_v1beta1.Replicapool;
-export function replicapool(
-  options: replicapool_v1beta1.Options
-): replicapool_v1beta1.Replicapool;
-export function replicapool<T = replicapool_v1beta1.Replicapool>(
+export function osconfig(version: 'v1beta'): osconfig_v1beta.Osconfig;
+export function osconfig(
+  options: osconfig_v1beta.Options
+): osconfig_v1beta.Osconfig;
+export function osconfig<T = osconfig_v1beta.Osconfig>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | replicapool_v1beta1.Options
+  versionOrOptions: 'v1beta' | osconfig_v1beta.Options
 ) {
-  return getAPI<T>('replicapool', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('osconfig', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

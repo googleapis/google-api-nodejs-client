@@ -133,15 +133,6 @@ export namespace bigqueryreservation_v1 {
     operations?: Schema$Operation[];
   }
   /**
-   * BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.
-   */
-  export interface Schema$LocationMetadata {
-    /**
-     * The legacy BigQuery location ID, e.g. “EU” for the “europe” location. This is for any API consumers that need the legacy “US” and “EU” locations.
-     */
-    legacyLocationId?: string | null;
-  }
-  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {

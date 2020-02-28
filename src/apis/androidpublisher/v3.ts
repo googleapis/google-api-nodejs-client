@@ -118,6 +118,7 @@ export namespace androidpublisher_v3 {
      * Information about the binary payload of this APK.
      */
     binary?: Schema$ApkBinary;
+    testBinary?: Schema$ApkBinary;
     /**
      * The version code of the APK, as specified in the APK&#39;s manifest file.
      */
@@ -219,6 +220,7 @@ export namespace androidpublisher_v3 {
   }
   export interface Schema$Control {
     modRanges?: Schema$ModRange[];
+    stratifiedSamplings?: Schema$StratifiedSampling[];
     versionCodes?: string[] | null;
   }
   export interface Schema$CountryTargeting {
@@ -446,10 +448,6 @@ export namespace androidpublisher_v3 {
      */
     purchaseType?: string | null;
     /**
-     * Definition of a season for a seasonal subscription. Can be defined only for yearly subscriptions.
-     */
-    season?: Schema$Season;
-    /**
      * The stock-keeping-unit (SKU) of the product, unique within an app.
      */
     sku?: string | null;
@@ -557,16 +555,6 @@ export namespace androidpublisher_v3 {
     end?: string | null;
     start?: string | null;
   }
-  export interface Schema$MonthDay {
-    /**
-     * Day of a month, value in [1, 31] range. Valid range depends on the specified month.
-     */
-    day?: number | null;
-    /**
-     * Month of a year. e.g. 1 = JAN, 2 = FEB etc.
-     */
-    month?: number | null;
-  }
   export interface Schema$PageInfo {
     resultPerPage?: number | null;
     startIndex?: number | null;
@@ -637,16 +625,6 @@ export namespace androidpublisher_v3 {
      */
     developerPayload?: string | null;
   }
-  export interface Schema$Prorate {
-    /**
-     * Default price cannot be zero and must be less than the full subscription price. Default price is always in the developer&#39;s Checkout merchant currency. Targeted countries have their prices set automatically based on the default_price.
-     */
-    defaultPrice?: Schema$Price;
-    /**
-     * Defines the first day on which the price takes effect.
-     */
-    start?: Schema$MonthDay;
-  }
   export interface Schema$Review {
     /**
      * The name of the user who wrote the review.
@@ -689,20 +667,15 @@ export namespace androidpublisher_v3 {
     modRanges?: Schema$ModRange[];
     modulus?: string | null;
     salt?: number | null;
+    stratifiedSamplings?: Schema$StratifiedSampling[];
+    useAndroidId?: boolean | null;
   }
-  export interface Schema$Season {
-    /**
-     * Inclusive end date of the recurrence period.
-     */
-    end?: Schema$MonthDay;
-    /**
-     * Optionally present list of prorations for the season. Each proration is a one-off discounted entry into a subscription. Each proration contains the first date on which the discount is available and the new pricing information.
-     */
-    prorations?: Schema$Prorate[];
-    /**
-     * Inclusive start date of the recurrence period.
-     */
-    start?: Schema$MonthDay;
+  export interface Schema$StratifiedSampling {
+    modRanges?: Schema$ModRange[];
+    stratum?: Schema$Stratum;
+  }
+  export interface Schema$Stratum {
+    brand?: string | null;
   }
   /**
    * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
@@ -784,6 +757,10 @@ export namespace androidpublisher_v3 {
      */
     expiryTimeMillis?: string | null;
     /**
+     * User account identifier in the third-party service. Only present if account linking happened as part of the subscription purchase flow.
+     */
+    externalAccountId?: string | null;
+    /**
      * The family name of the user when the subscription was purchased. Only present for purchases made with &#39;Subscribe with Google&#39;.
      */
     familyName?: string | null;
@@ -832,7 +809,15 @@ export namespace androidpublisher_v3 {
      */
     profileName?: string | null;
     /**
-     * The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)
+     * The promotion code applied on this purchase. This field is only set if a vanity code promotion is applied when the subscription was purchased.
+     */
+    promotionCode?: string | null;
+    /**
+     * The type of promotion applied on this purchase. This field is only set if a promotion is applied when the subscription was purchased. Possible values are:   - One time code  - Vanity code
+     */
+    promotionType?: number | null;
+    /**
+     * The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)
      */
     purchaseType?: number | null;
     /**
@@ -869,6 +854,9 @@ export namespace androidpublisher_v3 {
     variants?: Schema$Variant[];
   }
   export interface Schema$Testers {
+    autoEnrolledAndroidGroups?: string[] | null;
+    autoEnrolledGoogleGroups?: string[] | null;
+    excludedGoogleGroups?: string[] | null;
     /**
      * A list of all Google Groups, as email addresses, that define testers for this track.
      */
@@ -896,13 +884,19 @@ export namespace androidpublisher_v3 {
     controls?: Schema$Control[];
     countryTargeting?: Schema$CountryTargeting;
     /**
+     * In-app update priority of the release. All newly added APKs in the release will be considered at this priority. in_app_update_priority can take values between [0, 5]. 5 is the highest priority. Default priority is 0. See https://developer.android.com/guide/playcore/in-app-updates.
+     */
+    inAppUpdatePriority?: number | null;
+    /**
      * The release name, used to identify this release in the Play Console UI. Not required to be unique. This is optional, if not set it will be generated from the version_name in the APKs.
      */
     name?: string | null;
+    pinnedVersions?: Schema$TrackReleasePin[];
     /**
      * The description of what is new in the app in this release.
      */
     releaseNotes?: Schema$LocalizedText[];
+    rollbackEnabled?: boolean | null;
     sampling?: Schema$Sampling;
     /**
      * The desired status of this release.
@@ -916,6 +910,21 @@ export namespace androidpublisher_v3 {
      * A list of all version codes of APKs that will be exposed to the users of this track when this release is rolled out. Note that this list should contain all versions you wish to be active, including those you wish to retain from previous releases.
      */
     versionCodes?: string[] | null;
+  }
+  export interface Schema$TrackReleasePin {
+    targetings?: Schema$TrackReleasePinPinTargeting[];
+    versionCodes?: string[] | null;
+  }
+  export interface Schema$TrackReleasePinPinTargeting {
+    countryCodes?: string[] | null;
+    devices?: Schema$TrackReleasePinPinTargetingDevicePin[];
+    phoneskyVersions?: string[] | null;
+    sdkVersions?: number[] | null;
+  }
+  export interface Schema$TrackReleasePinPinTargetingDevicePin {
+    brand?: string | null;
+    device?: string | null;
+    product?: string | null;
   }
   export interface Schema$TracksListResponse {
     /**

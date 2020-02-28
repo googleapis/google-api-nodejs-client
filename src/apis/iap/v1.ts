@@ -103,7 +103,7 @@ export namespace iap_v1 {
    */
   export class Iap {
     context: APIRequestContext;
-    oauth: Resource$Oauth;
+    projects: Resource$Projects;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -112,7 +112,7 @@ export namespace iap_v1 {
         google,
       };
 
-      this.oauth = new Resource$Oauth(this.context);
+      this.projects = new Resource$Projects(this.context);
       this.v1 = new Resource$V1(this.context);
     }
   }
@@ -204,23 +204,23 @@ export namespace iap_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
@@ -312,9 +312,13 @@ export namespace iap_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Configuration for OAuth login&amp;consent flow behavior.
+   * Configuration for OAuth login&amp;consent flow behavior as well as for OAuth Credentials.
    */
   export interface Schema$OAuthSettings {
+    /**
+     * OAuth 2.0 client ID used in the OAuth flow to generate an access token. If this field is set, you can skip obtaining the OAuth credentials in this step: https://developers.google.com/identity/protocols/OAuth2?hl=en_US#1.-obtain-oauth-2.0-credentials-from-the-google-api-console. However, this could allow for client sharing. The risks of client sharing are outlined here: https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
+     */
+    clientId?: string | null;
     /**
      * Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google&#39;s login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token&#39;s hd claim matches this value since access behavior is managed by IAM policies.
      */
@@ -369,38 +373,29 @@ export namespace iap_v1 {
     permissions?: string[] | null;
   }
 
-  export class Resource$Oauth {
+  export class Resource$Projects {
     context: APIRequestContext;
-    projects: Resource$Oauth$Projects;
+    brands: Resource$Projects$Brands;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.projects = new Resource$Oauth$Projects(this.context);
+      this.brands = new Resource$Projects$Brands(this.context);
     }
   }
 
-  export class Resource$Oauth$Projects {
+  export class Resource$Projects$Brands {
     context: APIRequestContext;
-    brands: Resource$Oauth$Projects$Brands;
+    identityAwareProxyClients: Resource$Projects$Brands$Identityawareproxyclients;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.brands = new Resource$Oauth$Projects$Brands(this.context);
-    }
-  }
-
-  export class Resource$Oauth$Projects$Brands {
-    context: APIRequestContext;
-    identityAwareProxyClients: Resource$Oauth$Projects$Brands$Identityawareproxyclients;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.identityAwareProxyClients = new Resource$Oauth$Projects$Brands$Identityawareproxyclients(
+      this.identityAwareProxyClients = new Resource$Projects$Brands$Identityawareproxyclients(
         this.context
       );
     }
 
     /**
-     * iap.oauth.projects.brands.create
+     * iap.projects.brands.create
      * @desc Constructs a new OAuth brand for the project if one does not exist. The created brand is "internal only", meaning that OAuth clients created under it only accept requests from users who belong to the same G Suite organization as the project. The brand is created in an un-reviewed status. NOTE: The "internal only" status can be manually changed in the Google Cloud console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller.
-     * @alias iap.oauth.projects.brands.create
+     * @alias iap.projects.brands.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -411,33 +406,33 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     create(
-      params?: Params$Resource$Oauth$Projects$Brands$Create,
+      params?: Params$Resource$Projects$Brands$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Brand>;
     create(
-      params: Params$Resource$Oauth$Projects$Brands$Create,
+      params: Params$Resource$Projects$Brands$Create,
       options: MethodOptions | BodyResponseCallback<Schema$Brand>,
       callback: BodyResponseCallback<Schema$Brand>
     ): void;
     create(
-      params: Params$Resource$Oauth$Projects$Brands$Create,
+      params: Params$Resource$Projects$Brands$Create,
       callback: BodyResponseCallback<Schema$Brand>
     ): void;
     create(callback: BodyResponseCallback<Schema$Brand>): void;
     create(
       paramsOrCallback?:
-        | Params$Resource$Oauth$Projects$Brands$Create
+        | Params$Resource$Projects$Brands$Create
         | BodyResponseCallback<Schema$Brand>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Brand>,
       callback?: BodyResponseCallback<Schema$Brand>
     ): void | GaxiosPromise<Schema$Brand> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Oauth$Projects$Brands$Create;
+        {}) as Params$Resource$Projects$Brands$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Projects$Brands$Create;
+        params = {} as Params$Resource$Projects$Brands$Create;
         options = {};
       }
 
@@ -450,7 +445,7 @@ export namespace iap_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/oauth/{+parent}/brands').replace(
+            url: (rootUrl + '/v1/{+parent}/brands').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -471,9 +466,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.oauth.projects.brands.get
+     * iap.projects.brands.get
      * @desc Retrieves the OAuth brand of the project.
-     * @alias iap.oauth.projects.brands.get
+     * @alias iap.projects.brands.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -483,33 +478,33 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     get(
-      params?: Params$Resource$Oauth$Projects$Brands$Get,
+      params?: Params$Resource$Projects$Brands$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Brand>;
     get(
-      params: Params$Resource$Oauth$Projects$Brands$Get,
+      params: Params$Resource$Projects$Brands$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Brand>,
       callback: BodyResponseCallback<Schema$Brand>
     ): void;
     get(
-      params: Params$Resource$Oauth$Projects$Brands$Get,
+      params: Params$Resource$Projects$Brands$Get,
       callback: BodyResponseCallback<Schema$Brand>
     ): void;
     get(callback: BodyResponseCallback<Schema$Brand>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Oauth$Projects$Brands$Get
+        | Params$Resource$Projects$Brands$Get
         | BodyResponseCallback<Schema$Brand>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Brand>,
       callback?: BodyResponseCallback<Schema$Brand>
     ): void | GaxiosPromise<Schema$Brand> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Oauth$Projects$Brands$Get;
+        {}) as Params$Resource$Projects$Brands$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Projects$Brands$Get;
+        params = {} as Params$Resource$Projects$Brands$Get;
         options = {};
       }
 
@@ -522,7 +517,7 @@ export namespace iap_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/oauth/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -540,9 +535,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.oauth.projects.brands.list
+     * iap.projects.brands.list
      * @desc Lists the existing brands for the project.
-     * @alias iap.oauth.projects.brands.list
+     * @alias iap.projects.brands.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -552,22 +547,22 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     list(
-      params?: Params$Resource$Oauth$Projects$Brands$List,
+      params?: Params$Resource$Projects$Brands$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListBrandsResponse>;
     list(
-      params: Params$Resource$Oauth$Projects$Brands$List,
+      params: Params$Resource$Projects$Brands$List,
       options: MethodOptions | BodyResponseCallback<Schema$ListBrandsResponse>,
       callback: BodyResponseCallback<Schema$ListBrandsResponse>
     ): void;
     list(
-      params: Params$Resource$Oauth$Projects$Brands$List,
+      params: Params$Resource$Projects$Brands$List,
       callback: BodyResponseCallback<Schema$ListBrandsResponse>
     ): void;
     list(callback: BodyResponseCallback<Schema$ListBrandsResponse>): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Oauth$Projects$Brands$List
+        | Params$Resource$Projects$Brands$List
         | BodyResponseCallback<Schema$ListBrandsResponse>,
       optionsOrCallback?:
         | MethodOptions
@@ -575,12 +570,12 @@ export namespace iap_v1 {
       callback?: BodyResponseCallback<Schema$ListBrandsResponse>
     ): void | GaxiosPromise<Schema$ListBrandsResponse> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Oauth$Projects$Brands$List;
+        {}) as Params$Resource$Projects$Brands$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Projects$Brands$List;
+        params = {} as Params$Resource$Projects$Brands$List;
         options = {};
       }
 
@@ -593,7 +588,7 @@ export namespace iap_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/oauth/{+parent}/brands').replace(
+            url: (rootUrl + '/v1/{+parent}/brands').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -614,7 +609,7 @@ export namespace iap_v1 {
     }
   }
 
-  export interface Params$Resource$Oauth$Projects$Brands$Create
+  export interface Params$Resource$Projects$Brands$Create
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -631,7 +626,7 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$Brand;
   }
-  export interface Params$Resource$Oauth$Projects$Brands$Get
+  export interface Params$Resource$Projects$Brands$Get
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -643,7 +638,7 @@ export namespace iap_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Oauth$Projects$Brands$List
+  export interface Params$Resource$Projects$Brands$List
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -656,16 +651,16 @@ export namespace iap_v1 {
     parent?: string;
   }
 
-  export class Resource$Oauth$Projects$Brands$Identityawareproxyclients {
+  export class Resource$Projects$Brands$Identityawareproxyclients {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * iap.oauth.projects.brands.identityAwareProxyClients.create
+     * iap.projects.brands.identityAwareProxyClients.create
      * @desc Creates an Identity Aware Proxy (IAP) OAuth client. The client is owned by IAP. Requires that the brand for the project exists and that it is set for internal-only use.
-     * @alias iap.oauth.projects.brands.identityAwareProxyClients.create
+     * @alias iap.projects.brands.identityAwareProxyClients.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -676,18 +671,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     create(
-      params?: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Create,
+      params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IdentityAwareProxyClient>;
     create(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Create,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     create(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Create,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     create(
@@ -695,7 +690,7 @@ export namespace iap_v1 {
     ): void;
     create(
       paramsOrCallback?:
-        | Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Create
+        | Params$Resource$Projects$Brands$Identityawareproxyclients$Create
         | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       optionsOrCallback?:
         | MethodOptions
@@ -703,12 +698,12 @@ export namespace iap_v1 {
       callback?: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void | GaxiosPromise<Schema$IdentityAwareProxyClient> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Create;
+        {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Create;
+        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Create;
         options = {};
       }
 
@@ -721,9 +716,10 @@ export namespace iap_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/oauth/{+parent}/identityAwareProxyClients'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/identityAwareProxyClients').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -741,9 +737,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.oauth.projects.brands.identityAwareProxyClients.delete
+     * iap.projects.brands.identityAwareProxyClients.delete
      * @desc Deletes an Identity Aware Proxy (IAP) OAuth client. Useful for removing obsolete clients, managing the number of clients in a given project, and cleaning up after tests. Requires that the client is owned by IAP.
-     * @alias iap.oauth.projects.brands.identityAwareProxyClients.delete
+     * @alias iap.projects.brands.identityAwareProxyClients.delete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -753,33 +749,33 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     delete(
-      params?: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Delete,
+      params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
     delete(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Delete,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
     delete(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Delete,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
       paramsOrCallback?:
-        | Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Delete
+        | Params$Resource$Projects$Brands$Identityawareproxyclients$Delete
         | BodyResponseCallback<Schema$Empty>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>
     ): void | GaxiosPromise<Schema$Empty> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Delete;
+        {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Delete;
+        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Delete;
         options = {};
       }
 
@@ -792,7 +788,7 @@ export namespace iap_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/oauth/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -810,9 +806,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.oauth.projects.brands.identityAwareProxyClients.get
+     * iap.projects.brands.identityAwareProxyClients.get
      * @desc Retrieves an Identity Aware Proxy (IAP) OAuth client. Requires that the client is owned by IAP.
-     * @alias iap.oauth.projects.brands.identityAwareProxyClients.get
+     * @alias iap.projects.brands.identityAwareProxyClients.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -822,24 +818,24 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     get(
-      params?: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Get,
+      params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IdentityAwareProxyClient>;
     get(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Get,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     get(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Get,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     get(callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Get
+        | Params$Resource$Projects$Brands$Identityawareproxyclients$Get
         | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       optionsOrCallback?:
         | MethodOptions
@@ -847,12 +843,12 @@ export namespace iap_v1 {
       callback?: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void | GaxiosPromise<Schema$IdentityAwareProxyClient> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Get;
+        {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Get;
+        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Get;
         options = {};
       }
 
@@ -865,7 +861,7 @@ export namespace iap_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/oauth/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -883,9 +879,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.oauth.projects.brands.identityAwareProxyClients.list
+     * iap.projects.brands.identityAwareProxyClients.list
      * @desc Lists the existing clients for the brand.
-     * @alias iap.oauth.projects.brands.identityAwareProxyClients.list
+     * @alias iap.projects.brands.identityAwareProxyClients.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -897,11 +893,11 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     list(
-      params?: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$List,
+      params?: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListIdentityAwareProxyClientsResponse>;
     list(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$List,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>,
@@ -910,7 +906,7 @@ export namespace iap_v1 {
       >
     ): void;
     list(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$List,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
       callback: BodyResponseCallback<
         Schema$ListIdentityAwareProxyClientsResponse
       >
@@ -922,7 +918,7 @@ export namespace iap_v1 {
     ): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$List
+        | Params$Resource$Projects$Brands$Identityawareproxyclients$List
         | BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>,
       optionsOrCallback?:
         | MethodOptions
@@ -932,12 +928,12 @@ export namespace iap_v1 {
       >
     ): void | GaxiosPromise<Schema$ListIdentityAwareProxyClientsResponse> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$List;
+        {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$List;
+        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$List;
         options = {};
       }
 
@@ -950,9 +946,10 @@ export namespace iap_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/oauth/{+parent}/identityAwareProxyClients'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/identityAwareProxyClients').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
@@ -975,9 +972,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.oauth.projects.brands.identityAwareProxyClients.resetSecret
+     * iap.projects.brands.identityAwareProxyClients.resetSecret
      * @desc Resets an Identity Aware Proxy (IAP) OAuth client secret. Useful if the secret was compromised. Requires that the client is owned by IAP.
-     * @alias iap.oauth.projects.brands.identityAwareProxyClients.resetSecret
+     * @alias iap.projects.brands.identityAwareProxyClients.resetSecret
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
@@ -988,18 +985,18 @@ export namespace iap_v1 {
      * @return {object} Request object
      */
     resetSecret(
-      params?: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Resetsecret,
+      params?: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       options?: MethodOptions
     ): GaxiosPromise<Schema$IdentityAwareProxyClient>;
     resetSecret(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Resetsecret,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     resetSecret(
-      params: Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Resetsecret,
+      params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
       callback: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void;
     resetSecret(
@@ -1007,7 +1004,7 @@ export namespace iap_v1 {
     ): void;
     resetSecret(
       paramsOrCallback?:
-        | Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Resetsecret
+        | Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret
         | BodyResponseCallback<Schema$IdentityAwareProxyClient>,
       optionsOrCallback?:
         | MethodOptions
@@ -1015,12 +1012,12 @@ export namespace iap_v1 {
       callback?: BodyResponseCallback<Schema$IdentityAwareProxyClient>
     ): void | GaxiosPromise<Schema$IdentityAwareProxyClient> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Resetsecret;
+        {}) as Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Resetsecret;
+        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret;
         options = {};
       }
 
@@ -1033,7 +1030,7 @@ export namespace iap_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/oauth/{+name}:resetSecret').replace(
+            url: (rootUrl + '/v1/{+name}:resetSecret').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1054,7 +1051,7 @@ export namespace iap_v1 {
     }
   }
 
-  export interface Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Create
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Create
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -1071,7 +1068,7 @@ export namespace iap_v1 {
      */
     requestBody?: Schema$IdentityAwareProxyClient;
   }
-  export interface Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Delete
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Delete
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -1083,7 +1080,7 @@ export namespace iap_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Get
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Get
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -1095,7 +1092,7 @@ export namespace iap_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$List
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$List
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -1115,7 +1112,7 @@ export namespace iap_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Oauth$Projects$Brands$Identityawareproxyclients$Resetsecret
+  export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret
     extends StandardParameters {
     /**
      * Auth client or API Key for the request

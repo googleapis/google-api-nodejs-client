@@ -1081,7 +1081,7 @@ export namespace firestore_v1beta1 {
      */
     delete?: string | null;
     /**
-     * Applies a transformation to a document. At most one `transform` per document is allowed in a given request. An `update` cannot follow a `transform` on the same document in a given request.
+     * Applies a transformation to a document.
      */
     transform?: Schema$DocumentTransform;
     /**

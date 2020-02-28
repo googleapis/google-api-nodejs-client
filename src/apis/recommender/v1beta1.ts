@@ -172,7 +172,7 @@ export namespace recommender_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest {
     /**
-     * Required. Fingerprint of the Recommendation. Provides optimistic locking.
+     * Fingerprint of the Recommendation. Provides optimistic locking.
      */
     etag?: string | null;
     /**

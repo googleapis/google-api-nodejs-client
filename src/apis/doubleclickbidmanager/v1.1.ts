@@ -152,7 +152,7 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     filterType?: string | null;
     /**
-     * SDF Version (column names, types, order) in which the entities will be returned. Default to 3.1.
+     * SDF Version (column names, types, order) in which the entities will be returned. Default to 5.
      */
     version?: string | null;
   }
@@ -230,6 +230,15 @@ export namespace doubleclickbidmanager_v1_1 {
     reports?: Schema$Report[];
   }
   /**
+   * Additional query options.
+   */
+  export interface Schema$Options {
+    /**
+     * Set to true and filter your report by `FILTER_INSERTION_ORDER` or `FILTER_LINE_ITEM` to include data for audience lists specifically targeted by those items.
+     */
+    includeOnlyTargetedUserLists?: boolean | null;
+  }
+  /**
    * Parameters of a query or report.
    */
   export interface Schema$Parameters {
@@ -249,6 +258,10 @@ export namespace doubleclickbidmanager_v1_1 {
      * Metrics to include as columns in your report.
      */
     metrics?: string[] | null;
+    /**
+     * Additional query options.
+     */
+    options?: Schema$Options;
     /**
      * Report type.
      */
@@ -360,6 +373,10 @@ export namespace doubleclickbidmanager_v1_1 {
      * Canonical timezone code for report generation time. Defaults to America/New_York.
      */
     nextRunTimezoneCode?: string | null;
+    /**
+     * When to start running the query. Not applicable to `ONE_TIME` frequency.
+     */
+    startTimeMs?: string | null;
   }
   /**
    * Represents a report.

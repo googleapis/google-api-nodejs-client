@@ -747,6 +747,9 @@ export namespace androidenterprise_v1 {
      * Contains the ID of the managed configuration profile and the set of configuration variables (if any) defined for the user.
      */
     configurationVariables?: Schema$ConfigurationVariables;
+    /**
+     * Deprecated.
+     */
     kind?: string | null;
     /**
      * The set of managed properties for this configuration.
@@ -1049,6 +1052,10 @@ export namespace androidenterprise_v1 {
      * How and to whom the package is made available. The value publicGoogleHosted means that the package is available through the Play store and not restricted to a specific enterprise. The value privateGoogleHosted means that the package is a private app (restricted to an enterprise) but hosted by Google. The value privateSelfHosted means that the package is a private app (restricted to an enterprise) and is privately hosted.
      */
     distributionChannel?: string | null;
+    /**
+     * Noteworthy features (if any) of this product.
+     */
+    features?: string[] | null;
     /**
      * A link to an image that can be used as an icon for the product. This image is suitable for use at up to 512px x 512px.
      */
@@ -1846,81 +1853,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.devices.patch
-     * @desc Updates the device policy. This method supports patch semantics.
-     * @alias androidenterprise.devices.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string=} params.updateMask Mask that identifies which fields to update. If not set, all modifiable fields will be modified.  When set in a query parameter, this field should be specified as updateMask=<field1>,<field2>,...
-     * @param {string} params.userId The ID of the user.
-     * @param {().Device} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Devices$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Device>;
-    patch(
-      params: Params$Resource$Devices$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Device>,
-      callback: BodyResponseCallback<Schema$Device>
-    ): void;
-    patch(
-      params: Params$Resource$Devices$Patch,
-      callback: BodyResponseCallback<Schema$Device>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Device>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Devices$Patch
-        | BodyResponseCallback<Schema$Device>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Device>,
-      callback?: BodyResponseCallback<Schema$Device>
-    ): void | GaxiosPromise<Schema$Device> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Devices$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Devices$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'userId', 'deviceId'],
-        pathParams: ['deviceId', 'enterpriseId', 'userId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Device>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Device>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.devices.setState
      * @desc Sets whether a device's access to Google services is enabled or disabled. The device state takes effect only if enforcing EMM policies on Android devices is enabled in the Google Admin Console. Otherwise, the device state is ignored and all devices are allowed access to Google services. This is only supported for Google-managed users.
      * @alias androidenterprise.devices.setState
@@ -2144,34 +2076,6 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
-  }
-  export interface Params$Resource$Devices$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the device.
-     */
-    deviceId?: string;
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * Mask that identifies which fields to update. If not set, all modifiable fields will be modified.  When set in a query parameter, this field should be specified as updateMask=<field1>,<field2>,...
-     */
-    updateMask?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Device;
   }
   export interface Params$Resource$Devices$Setstate extends StandardParameters {
     /**
@@ -3728,84 +3632,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.entitlements.patch
-     * @desc Adds or updates an entitlement to an app for a user. This method supports patch semantics.
-     * @alias androidenterprise.entitlements.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
-     * @param {string} params.userId The ID of the user.
-     * @param {().Entitlement} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Entitlements$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Entitlement>;
-    patch(
-      params: Params$Resource$Entitlements$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Entitlement>,
-      callback: BodyResponseCallback<Schema$Entitlement>
-    ): void;
-    patch(
-      params: Params$Resource$Entitlements$Patch,
-      callback: BodyResponseCallback<Schema$Entitlement>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Entitlement>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Entitlements$Patch
-        | BodyResponseCallback<Schema$Entitlement>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$Entitlement>,
-      callback?: BodyResponseCallback<Schema$Entitlement>
-    ): void | GaxiosPromise<Schema$Entitlement> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Entitlements$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Entitlements$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
-        pathParams: ['enterpriseId', 'entitlementId', 'userId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Entitlement>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Entitlement>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.entitlements.update
      * @desc Adds or updates an entitlement to an app for a user.
      * @alias androidenterprise.entitlements.update
@@ -3938,35 +3764,6 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
-  }
-  export interface Params$Resource$Entitlements$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
-     */
-    entitlementId?: string;
-    /**
-     * Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
-     */
-    install?: boolean;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Entitlement;
   }
   export interface Params$Resource$Entitlements$Update
     extends StandardParameters {
@@ -4530,81 +4327,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.installs.patch
-     * @desc Requests to install the latest version of an app to a device. If the app is already installed, then it is updated to the latest version if necessary. This method supports patch semantics.
-     * @alias androidenterprise.installs.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {().Install} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Installs$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Install>;
-    patch(
-      params: Params$Resource$Installs$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Install>,
-      callback: BodyResponseCallback<Schema$Install>
-    ): void;
-    patch(
-      params: Params$Resource$Installs$Patch,
-      callback: BodyResponseCallback<Schema$Install>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Install>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Installs$Patch
-        | BodyResponseCallback<Schema$Install>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Install>,
-      callback?: BodyResponseCallback<Schema$Install>
-    ): void | GaxiosPromise<Schema$Install> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Installs$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Installs$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
-        pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Install>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Install>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.installs.update
      * @desc Requests to install the latest version of an app to a device. If the app is already installed, then it is updated to the latest version if necessary.
      * @alias androidenterprise.installs.update
@@ -4744,34 +4466,6 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
-  }
-  export interface Params$Resource$Installs$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The Android ID of the device.
-     */
-    deviceId?: string;
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the product represented by the install, e.g. "app:com.google.android.gm".
-     */
-    installId?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Install;
   }
   export interface Params$Resource$Installs$Update extends StandardParameters {
     /**
@@ -5082,96 +4776,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.managedconfigurationsfordevice.patch
-     * @desc Adds or updates a per-device managed configuration for an app for the specified device. This method supports patch semantics.
-     * @alias androidenterprise.managedconfigurationsfordevice.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.deviceId The Android ID of the device.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {().ManagedConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Managedconfigurationsfordevice$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ManagedConfiguration>;
-    patch(
-      params: Params$Resource$Managedconfigurationsfordevice$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
-      callback: BodyResponseCallback<Schema$ManagedConfiguration>
-    ): void;
-    patch(
-      params: Params$Resource$Managedconfigurationsfordevice$Patch,
-      callback: BodyResponseCallback<Schema$ManagedConfiguration>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Managedconfigurationsfordevice$Patch
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
-      callback?: BodyResponseCallback<Schema$ManagedConfiguration>
-    ): void | GaxiosPromise<Schema$ManagedConfiguration> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Managedconfigurationsfordevice$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Managedconfigurationsfordevice$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: [
-          'enterpriseId',
-          'userId',
-          'deviceId',
-          'managedConfigurationForDeviceId',
-        ],
-        pathParams: [
-          'deviceId',
-          'enterpriseId',
-          'managedConfigurationForDeviceId',
-          'userId',
-        ],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ManagedConfiguration>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.managedconfigurationsfordevice.update
      * @desc Adds or updates a per-device managed configuration for an app for the specified device.
      * @alias androidenterprise.managedconfigurationsfordevice.update
@@ -5329,35 +4933,6 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
-  }
-  export interface Params$Resource$Managedconfigurationsfordevice$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The Android ID of the device.
-     */
-    deviceId?: string;
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     */
-    managedConfigurationForDeviceId?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ManagedConfiguration;
   }
   export interface Params$Resource$Managedconfigurationsfordevice$Update
     extends StandardParameters {
@@ -5648,89 +5223,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.managedconfigurationsforuser.patch
-     * @desc Adds or updates the managed configuration settings for an app for the specified user. If you support the Managed configurations iframe, you can apply managed configurations to a user by specifying an mcmId and its associated configuration variables (if any) in the request. Alternatively, all EMMs can apply managed configurations by passing a list of managed properties. This method supports patch semantics.
-     * @alias androidenterprise.managedconfigurationsforuser.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     * @param {string} params.userId The ID of the user.
-     * @param {().ManagedConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Managedconfigurationsforuser$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ManagedConfiguration>;
-    patch(
-      params: Params$Resource$Managedconfigurationsforuser$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
-      callback: BodyResponseCallback<Schema$ManagedConfiguration>
-    ): void;
-    patch(
-      params: Params$Resource$Managedconfigurationsforuser$Patch,
-      callback: BodyResponseCallback<Schema$ManagedConfiguration>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$ManagedConfiguration>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Managedconfigurationsforuser$Patch
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
-      callback?: BodyResponseCallback<Schema$ManagedConfiguration>
-    ): void | GaxiosPromise<Schema$ManagedConfiguration> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Managedconfigurationsforuser$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Managedconfigurationsforuser$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: [
-          'enterpriseId',
-          'userId',
-          'managedConfigurationForUserId',
-        ],
-        pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ManagedConfiguration>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$ManagedConfiguration>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.managedconfigurationsforuser.update
      * @desc Adds or updates the managed configuration settings for an app for the specified user. If you support the Managed configurations iframe, you can apply managed configurations to a user by specifying an mcmId and its associated configuration variables (if any) in the request. Alternatively, all EMMs can apply managed configurations by passing a list of managed properties.
      * @alias androidenterprise.managedconfigurationsforuser.update
@@ -5869,31 +5361,6 @@ export namespace androidenterprise_v1 {
      * The ID of the user.
      */
     userId?: string;
-  }
-  export interface Params$Resource$Managedconfigurationsforuser$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
-     */
-    managedConfigurationForUserId?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ManagedConfiguration;
   }
   export interface Params$Resource$Managedconfigurationsforuser$Update
     extends StandardParameters {
@@ -7433,83 +6900,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.storelayoutclusters.patch
-     * @desc Updates a cluster. This method supports patch semantics.
-     * @alias androidenterprise.storelayoutclusters.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId The ID of the cluster.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {().StoreCluster} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Storelayoutclusters$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$StoreCluster>;
-    patch(
-      params: Params$Resource$Storelayoutclusters$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$StoreCluster>,
-      callback: BodyResponseCallback<Schema$StoreCluster>
-    ): void;
-    patch(
-      params: Params$Resource$Storelayoutclusters$Patch,
-      callback: BodyResponseCallback<Schema$StoreCluster>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$StoreCluster>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Storelayoutclusters$Patch
-        | BodyResponseCallback<Schema$StoreCluster>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StoreCluster>,
-      callback?: BodyResponseCallback<Schema$StoreCluster>
-    ): void | GaxiosPromise<Schema$StoreCluster> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Storelayoutclusters$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Storelayoutclusters$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
-        pathParams: ['clusterId', 'enterpriseId', 'pageId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$StoreCluster>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$StoreCluster>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.storelayoutclusters.update
      * @desc Updates a cluster.
      * @alias androidenterprise.storelayoutclusters.update
@@ -7663,31 +7053,6 @@ export namespace androidenterprise_v1 {
      * The ID of the page.
      */
     pageId?: string;
-  }
-  export interface Params$Resource$Storelayoutclusters$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the cluster.
-     */
-    clusterId?: string;
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the page.
-     */
-    pageId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$StoreCluster;
   }
   export interface Params$Resource$Storelayoutclusters$Update
     extends StandardParameters {
@@ -8028,82 +7393,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.storelayoutpages.patch
-     * @desc Updates the content of a store page. This method supports patch semantics.
-     * @alias androidenterprise.storelayoutpages.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.pageId The ID of the page.
-     * @param {().StorePage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Storelayoutpages$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$StorePage>;
-    patch(
-      params: Params$Resource$Storelayoutpages$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$StorePage>,
-      callback: BodyResponseCallback<Schema$StorePage>
-    ): void;
-    patch(
-      params: Params$Resource$Storelayoutpages$Patch,
-      callback: BodyResponseCallback<Schema$StorePage>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$StorePage>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Storelayoutpages$Patch
-        | BodyResponseCallback<Schema$StorePage>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StorePage>,
-      callback?: BodyResponseCallback<Schema$StorePage>
-    ): void | GaxiosPromise<Schema$StorePage> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Storelayoutpages$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Storelayoutpages$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'pageId'],
-        pathParams: ['enterpriseId', 'pageId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$StorePage>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$StorePage>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.storelayoutpages.update
      * @desc Updates the content of a store page.
      * @alias androidenterprise.storelayoutpages.update
@@ -8240,27 +7529,6 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
-  }
-  export interface Params$Resource$Storelayoutpages$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the page.
-     */
-    pageId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$StorePage;
   }
   export interface Params$Resource$Storelayoutpages$Update
     extends StandardParameters {
@@ -8808,79 +8076,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.users.patch
-     * @desc Updates the details of an EMM-managed user.  Can be used with EMM-managed users only (not Google managed users). Pass the new details in the Users resource in the request body. Only the displayName field can be changed. Other fields must either be unset or have the currently active value. This method supports patch semantics.
-     * @alias androidenterprise.users.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {().User} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Users$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$User>;
-    patch(
-      params: Params$Resource$Users$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$User>,
-      callback: BodyResponseCallback<Schema$User>
-    ): void;
-    patch(
-      params: Params$Resource$Users$Patch,
-      callback: BodyResponseCallback<Schema$User>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$User>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Users$Patch
-        | BodyResponseCallback<Schema$User>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$User>,
-      callback?: BodyResponseCallback<Schema$User>
-    ): void | GaxiosPromise<Schema$User> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'userId'],
-        pathParams: ['enterpriseId', 'userId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$User>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$User>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.users.revokeDeviceAccess
      * @desc Revokes access to all devices currently provisioned to the user. The user will no longer be able to use the managed Play store on any of their managed devices.  This call only works with EMM-managed accounts.
      * @alias androidenterprise.users.revokeDeviceAccess
@@ -9287,26 +8482,6 @@ export namespace androidenterprise_v1 {
      */
     enterpriseId?: string;
   }
-  export interface Params$Resource$Users$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the user.
-     */
-    userId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$User;
-  }
   export interface Params$Resource$Users$Revokedeviceaccess
     extends StandardParameters {
     /**
@@ -9677,79 +8852,6 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * androidenterprise.webapps.patch
-     * @desc Updates an existing web app. This method supports patch semantics.
-     * @alias androidenterprise.webapps.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.webAppId The ID of the web app.
-     * @param {().WebApp} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Webapps$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$WebApp>;
-    patch(
-      params: Params$Resource$Webapps$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$WebApp>,
-      callback: BodyResponseCallback<Schema$WebApp>
-    ): void;
-    patch(
-      params: Params$Resource$Webapps$Patch,
-      callback: BodyResponseCallback<Schema$WebApp>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$WebApp>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Webapps$Patch
-        | BodyResponseCallback<Schema$WebApp>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$WebApp>,
-      callback?: BodyResponseCallback<Schema$WebApp>
-    ): void | GaxiosPromise<Schema$WebApp> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Webapps$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Webapps$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidenterprise/v1/enterprises/{enterpriseId}/webApps/{webAppId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['enterpriseId', 'webAppId'],
-        pathParams: ['enterpriseId', 'webAppId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$WebApp>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$WebApp>(parameters);
-      }
-    }
-
-    /**
      * androidenterprise.webapps.update
      * @desc Updates an existing web app.
      * @alias androidenterprise.webapps.update
@@ -9879,26 +8981,6 @@ export namespace androidenterprise_v1 {
      * The ID of the enterprise.
      */
     enterpriseId?: string;
-  }
-  export interface Params$Resource$Webapps$Patch extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the enterprise.
-     */
-    enterpriseId?: string;
-    /**
-     * The ID of the web app.
-     */
-    webAppId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$WebApp;
   }
   export interface Params$Resource$Webapps$Update extends StandardParameters {
     /**

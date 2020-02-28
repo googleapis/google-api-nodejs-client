@@ -171,6 +171,10 @@ export namespace container_v1 {
    */
   export interface Schema$AutoprovisioningNodePoolDefaults {
     /**
+     * Specifies the node management options for NAP created node-pools.
+     */
+    management?: Schema$NodeManagement;
+    /**
      * Scopes that are used by NAP when creating node pools. If oauth_scopes are specified, service_account should be empty.
      */
     oauthScopes?: string[] | null;
@@ -178,6 +182,10 @@ export namespace container_v1 {
      * The Google Cloud Platform Service Account to be used by the node VMs. If service_account is specified, scopes should be empty.
      */
     serviceAccount?: string | null;
+    /**
+     * Specifies the upgrade settings for NAP created node pools
+     */
+    upgradeSettings?: Schema$UpgradeSettings;
   }
   /**
    * AutoUpgradeOptions defines the set of options for the user to control how the Auto Upgrades will proceed.
@@ -435,6 +443,10 @@ export namespace container_v1 {
      */
     servicesIpv4Cidr?: string | null;
     /**
+     * Shielded Nodes configuration.
+     */
+    shieldedNodes?: Schema$ShieldedNodes;
+    /**
      * [Output only] The current status of this cluster.
      */
     status?: string | null;
@@ -544,6 +556,10 @@ export namespace container_v1 {
      * The desired configuration for exporting resource usage.
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
+    /**
+     * Configuration for Shielded Nodes.
+     */
+    desiredShieldedNodes?: Schema$ShieldedNodes;
     /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
@@ -710,7 +726,7 @@ export namespace container_v1 {
    */
   export interface Schema$HorizontalPodAutoscaling {
     /**
-     * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster. When enabled, it ensures that a Heapster pod is running in the cluster, which is also used by the Cloud Monitoring service.
+     * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster. When enabled, it ensures that metrics are collected into Stackdriver Monitoring.
      */
     disabled?: boolean | null;
   }
@@ -1082,7 +1098,11 @@ export namespace container_v1 {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. If no Service Account is specified, the &quot;default&quot; service account is used.
+     * Sandbox configuration for this node.
+     */
+    sandboxConfig?: Schema$SandboxConfig;
+    /**
+     * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the &quot;default&quot; service account is used.
      */
     serviceAccount?: string | null;
     /**
@@ -1140,6 +1160,10 @@ export namespace container_v1 {
      */
     instanceGroupUrls?: string[] | null;
     /**
+     * The list of Google Compute Engine [zones](/compute/docs/zones#available) in which the NodePool&#39;s nodes should be located.
+     */
+    locations?: string[] | null;
+    /**
      * NodeManagement configuration for this NodePool.
      */
     management?: Schema$NodeManagement;
@@ -1167,6 +1191,10 @@ export namespace container_v1 {
      * [Output only] Additional information about the current status of this node pool instance, if available.
      */
     statusMessage?: string | null;
+    /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     */
+    upgradeSettings?: Schema$UpgradeSettings;
     /**
      * The version of the Kubernetes of this node.
      */
@@ -1284,6 +1312,10 @@ export namespace container_v1 {
      */
     masterIpv4CidrBlock?: string | null;
     /**
+     * Output only. The peering name in the customer VPC used by this cluster.
+     */
+    peeringName?: string | null;
+    /**
      * Output only. The internal IP address of this cluster&#39;s master endpoint.
      */
     privateEndpoint?: string | null;
@@ -1380,6 +1412,15 @@ export namespace container_v1 {
      * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * SandboxConfig contains configurations of the sandbox to use for the node.
+   */
+  export interface Schema$SandboxConfig {
+    /**
+     * Type of the sandbox to use for the node.
+     */
+    type?: string | null;
   }
   /**
    * Kubernetes Engine service configuration.
@@ -1740,6 +1781,15 @@ export namespace container_v1 {
     enableSecureBoot?: boolean | null;
   }
   /**
+   * Configuration of Shielded Nodes feature.
+   */
+  export interface Schema$ShieldedNodes {
+    /**
+     * Whether Shielded Nodes features are enabled on all nodes in this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * StartIPRotationRequest creates a new IP for the cluster and then performs a node upgrade on each node pool to point to the new IP.
    */
   export interface Schema$StartIPRotationRequest {
@@ -1853,6 +1903,10 @@ export namespace container_v1 {
      */
     imageType?: string | null;
     /**
+     * The desired list of Google Compute Engine [zones](/compute/docs/zones#available) in which the node pool&#39;s nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
+     */
+    locations?: string[] | null;
+    /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format &#39;projects/x/locations/x/clusters/x/nodePools/*&#39;.
      */
     name?: string | null;
@@ -1869,9 +1923,26 @@ export namespace container_v1 {
      */
     projectId?: string | null;
     /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     */
+    upgradeSettings?: Schema$UpgradeSettings;
+    /**
      * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * These upgrade settings control the level of parallelism and the level of disruption caused by an upgrade.  maxUnavailable controls the number of nodes that can be simultaneously unavailable.  maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes.  (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time).  Note: upgrades inevitably introduce some disruption since workloads need to be moved from old nodes to new, upgraded ones. Even if maxUnavailable=0, this holds true. (Disruption stays within the limits of PodDisruptionBudget, if it is configured.)  Consider a hypothetical node pool with 5 nodes having maxSurge=2, maxUnavailable=1. This means the upgrade process upgrades 3 nodes simultaneously. It creates 2 additional (upgraded) nodes, then it brings down 3 old (not yet upgraded) nodes at the same time. This ensures that there are always at least 4 nodes available.
+   */
+  export interface Schema$UpgradeSettings {
+    /**
+     * The maximum number of nodes that can be created beyond the current size of the node pool during the upgrade process.
+     */
+    maxSurge?: number | null;
+    /**
+     * The maximum number of nodes that can be simultaneously unavailable during the upgrade process. A node is considered available if its status is Ready.
+     */
+    maxUnavailable?: number | null;
   }
   /**
    * UsableSubnetwork resource returns the subnetwork name, its associated network and the primary CIDR range.
@@ -3291,7 +3362,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.locations.clusters.setLocations
-     * @desc Sets the locations for a specific cluster.
+     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.update) instead.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -7889,7 +7960,7 @@ export namespace container_v1 {
 
     /**
      * container.projects.zones.clusters.locations
-     * @desc Sets the locations for a specific cluster.
+     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.update) instead.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

@@ -1,7 +1,7 @@
 {
-  "name": "@google/replicapool",
+  "name": "@google/osconfig",
   "version": "0.1.0",
-  "description": "replicapool",
+  "description": "osconfig",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

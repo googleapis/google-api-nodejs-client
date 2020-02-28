@@ -444,10 +444,6 @@ export namespace androidpublisher_v2 {
      */
     purchaseType?: string | null;
     /**
-     * Definition of a season for a seasonal subscription. Can be defined only for yearly subscriptions.
-     */
-    season?: Schema$Season;
-    /**
      * The stock-keeping-unit (SKU) of the product, unique within an app.
      */
     sku?: string | null;
@@ -503,16 +499,6 @@ export namespace androidpublisher_v2 {
     kind?: string | null;
     listings?: Schema$Listing[];
   }
-  export interface Schema$MonthDay {
-    /**
-     * Day of a month, value in [1, 31] range. Valid range depends on the specified month.
-     */
-    day?: number | null;
-    /**
-     * Month of a year. e.g. 1 = JAN, 2 = FEB etc.
-     */
-    month?: number | null;
-  }
   export interface Schema$PageInfo {
     resultPerPage?: number | null;
     startIndex?: number | null;
@@ -561,16 +547,6 @@ export namespace androidpublisher_v2 {
      */
     purchaseType?: number | null;
   }
-  export interface Schema$Prorate {
-    /**
-     * Default price cannot be zero and must be less than the full subscription price. Default price is always in the developer&#39;s Checkout merchant currency. Targeted countries have their prices set automatically based on the default_price.
-     */
-    defaultPrice?: Schema$Price;
-    /**
-     * Defines the first day on which the price takes effect.
-     */
-    start?: Schema$MonthDay;
-  }
   export interface Schema$Review {
     /**
      * The name of the user who wrote the review.
@@ -608,20 +584,6 @@ export namespace androidpublisher_v2 {
   }
   export interface Schema$ReviewsReplyResponse {
     result?: Schema$ReviewReplyResult;
-  }
-  export interface Schema$Season {
-    /**
-     * Inclusive end date of the recurrence period.
-     */
-    end?: Schema$MonthDay;
-    /**
-     * Optionally present list of prorations for the season. Each proration is a one-off discounted entry into a subscription. Each proration contains the first date on which the discount is available and the new pricing information.
-     */
-    prorations?: Schema$Prorate[];
-    /**
-     * Inclusive start date of the recurrence period.
-     */
-    start?: Schema$MonthDay;
   }
   /**
    * Information provided by the user when they complete the subscription cancellation flow (cancellation reason survey).
@@ -739,7 +701,7 @@ export namespace androidpublisher_v2 {
      */
     profileName?: string | null;
     /**
-     * The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)
+     * The type of purchase of the subscription. This field is only set if this purchase was not made using the standard in-app billing flow. Possible values are:   - Test (i.e. purchased from a license testing account)  - Promo (i.e. purchased using a promo code)
      */
     purchaseType?: number | null;
     /**

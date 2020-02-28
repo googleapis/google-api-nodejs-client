@@ -376,7 +376,7 @@ export namespace tasks_v1 {
 
     /**
      * tasks.tasklists.insert
-     * @desc Creates a new task list and adds it to the authenticated user's task lists.
+     * @desc Creates a new task list and adds it to the authenticated user's task lists. Fails with HTTP code 403 or 429 after reaching the storage limit of 2,000 lists.
      * @alias tasks.tasklists.insert
      * @memberOf! ()
      *
@@ -968,7 +968,7 @@ export namespace tasks_v1 {
 
     /**
      * tasks.tasks.insert
-     * @desc Creates a new task on the specified task list.
+     * @desc Creates a new task on the specified task list. Fails with HTTP code 403 or 429 after reaching the storage limit of 100,000 tasks per account.
      * @alias tasks.tasks.insert
      * @memberOf! ()
      *

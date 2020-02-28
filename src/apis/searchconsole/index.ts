@@ -14,21 +14,21 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {plusDomains_v1} from './v1';
+import {searchconsole_v1} from './v1';
 
 export const VERSIONS = {
-  v1: plusDomains_v1.Plusdomains,
+  v1: searchconsole_v1.Searchconsole,
 };
 
-export function plusDomains(version: 'v1'): plusDomains_v1.Plusdomains;
-export function plusDomains(
-  options: plusDomains_v1.Options
-): plusDomains_v1.Plusdomains;
-export function plusDomains<T = plusDomains_v1.Plusdomains>(
+export function searchconsole(version: 'v1'): searchconsole_v1.Searchconsole;
+export function searchconsole(
+  options: searchconsole_v1.Options
+): searchconsole_v1.Searchconsole;
+export function searchconsole<T = searchconsole_v1.Searchconsole>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | plusDomains_v1.Options
+  versionOrOptions: 'v1' | searchconsole_v1.Options
 ) {
-  return getAPI<T>('plusDomains', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('searchconsole', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

@@ -136,7 +136,7 @@ export namespace composer_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the environment, in the form: &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;
+     * The resource name of the environment, in the form: &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;  EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      */
     name?: string | null;
     /**

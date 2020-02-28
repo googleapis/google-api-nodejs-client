@@ -118,7 +118,7 @@ export namespace accesscontextmanager_v1 {
   }
 
   /**
-   * An `AccessLevel` is a label that can be applied to requests to GCP services, along with a list of requirements necessary for the label to be applied.
+   * An `AccessLevel` is a label that can be applied to requests to Google Cloud services, along with a list of requirements necessary for the label to be applied.
    */
   export interface Schema$AccessLevel {
     /**
@@ -129,6 +129,10 @@ export namespace accesscontextmanager_v1 {
      * Output only. Time the `AccessLevel` was created in UTC.
      */
     createTime?: string | null;
+    /**
+     * A `CustomLevel` written in the Common Expression Language.
+     */
+    custom?: Schema$CustomLevel;
     /**
      * Description of the `AccessLevel` and its use. Does not affect behavior.
      */
@@ -147,7 +151,7 @@ export namespace accesscontextmanager_v1 {
     updateTime?: string | null;
   }
   /**
-   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use GCP services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
+   * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use Google Cloud services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
    */
   export interface Schema$AccessPolicy {
     /**
@@ -189,6 +193,24 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * A request to commit dry-run specs in all Service Perimeters belonging to an Access Policy.
+   */
+  export interface Schema$CommitServicePerimetersRequest {
+    /**
+     * Optional. The etag for the version of the Access Policy that this commit operation is to be performed on. If, at the time of commit, the etag for the Access Policy stored in Access Context Manager is different from the specified etag, then the commit operation will not be performed and the call will fail. This field is not required. If etag is not provided, the operation will be performed as if a valid etag is provided.
+     */
+    etag?: string | null;
+  }
+  /**
+   * A response to CommitServicePerimetersRequest. This will be put inside of Operation.response field.
+   */
+  export interface Schema$CommitServicePerimetersResponse {
+    /**
+     * List of all the Service Perimeter instances in the Access Policy.
+     */
+    servicePerimeters?: Schema$ServicePerimeter[];
+  }
+  /**
    * A condition necessary for an `AccessLevel` to be granted. The Condition is an AND over its fields. So a Condition is true if: 1) the request IP is from one of the listed subnetworks AND 2) the originating device complies with the listed device policy AND 3) all listed access levels are granted AND 4) the request was sent at a time allowed by the DateTimeRestriction.
    */
   export interface Schema$Condition {
@@ -216,6 +238,15 @@ export namespace accesscontextmanager_v1 {
      * A list of other access levels defined in the same `Policy`, referenced by resource name. Referencing an `AccessLevel` which does not exist is an error. All access levels listed must be granted for the Condition to be true. Example: &quot;`accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME&quot;`
      */
     requiredAccessLevels?: string[] | null;
+  }
+  /**
+   * `CustomLevel` is an `AccessLevel` using the Cloud Common Expression Language to represent the necessary conditions for the level to apply to a request. See CEL spec at: https://github.com/google/cel-spec
+   */
+  export interface Schema$CustomLevel {
+    /**
+     * Required. A Cloud CEL expression evaluating to a boolean.
+     */
+    expr?: Schema$Expr;
   }
   /**
    * `DevicePolicy` specifies device specific restrictions necessary to acquire a given access level. A `DevicePolicy` specifies requirements for requests from devices to be granted access levels, it does not do any enforcement on the device. `DevicePolicy` acts as an AND over all specified fields, and each repeated field is an OR over its elements. Any unset fields are ignored. For example, if the proto is { os_type : DESKTOP_WINDOWS, os_type : DESKTOP_LINUX, encryption_status: ENCRYPTED}, then the DevicePolicy will be true for requests originating from encrypted Linux desktops and encrypted Windows desktops.
@@ -250,6 +281,27 @@ export namespace accesscontextmanager_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
+  /**
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   */
+  export interface Schema$Expr {
+    /**
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string | null;
+    /**
+     * Textual representation of an expression in Common Expression Language syntax.
+     */
+    expression?: string | null;
+    /**
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     */
+    location?: string | null;
+    /**
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     */
+    title?: string | null;
+  }
   /**
    * A response to `ListAccessLevelsRequest`.
    */
@@ -345,7 +397,51 @@ export namespace accesscontextmanager_v1 {
     requireVerifiedChromeOs?: boolean | null;
   }
   /**
-   * `ServicePerimeter` describes a set of GCP resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single GCP project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only GCP projects as members, a single GCP project may belong to multiple Service Perimeter Bridges.
+   * A request to replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically.
+   */
+  export interface Schema$ReplaceAccessLevelsRequest {
+    /**
+     * Required. The desired Access Levels that should replace all existing Access Levels in the Access Policy.
+     */
+    accessLevels?: Schema$AccessLevel[];
+    /**
+     * Optional. The etag for the version of the Access Policy that this replace operation is to be performed on. If, at the time of replace, the etag for the Access Policy stored in Access Context Manager is different from the specified etag, then the replace operation will not be performed and the call will fail. This field is not required. If etag is not provided, the operation will be performed as if a valid etag is provided.
+     */
+    etag?: string | null;
+  }
+  /**
+   * A response to ReplaceAccessLevelsRequest. This will be put inside of Operation.response field.
+   */
+  export interface Schema$ReplaceAccessLevelsResponse {
+    /**
+     * List of the Access Level instances.
+     */
+    accessLevels?: Schema$AccessLevel[];
+  }
+  /**
+   * A request to replace all existing Service Perimeters in an Access Policy with the Service Perimeters provided. This is done atomically.
+   */
+  export interface Schema$ReplaceServicePerimetersRequest {
+    /**
+     * Optional. The etag for the version of the Access Policy that this replace operation is to be performed on. If, at the time of replace, the etag for the Access Policy stored in Access Context Manager is different from the specified etag, then the replace operation will not be performed and the call will fail. This field is not required. If etag is not provided, the operation will be performed as if a valid etag is provided.
+     */
+    etag?: string | null;
+    /**
+     * Required. The desired Service Perimeters that should replace all existing Service Perimeters in the Access Policy.
+     */
+    servicePerimeters?: Schema$ServicePerimeter[];
+  }
+  /**
+   * A response to ReplaceServicePerimetersRequest. This will be put inside of Operation.response field.
+   */
+  export interface Schema$ReplaceServicePerimetersResponse {
+    /**
+     * List of the Service Perimeter instances.
+     */
+    servicePerimeters?: Schema$ServicePerimeter[];
+  }
+  /**
+   * `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.
    */
   export interface Schema$ServicePerimeter {
     /**
@@ -365,6 +461,10 @@ export namespace accesscontextmanager_v1 {
      */
     perimeterType?: string | null;
     /**
+     * Proposed (or dry run) ServicePerimeter configuration. This configuration allows to specify and test ServicePerimeter configuration without enforcing actual access restrictions. Only allowed to be set when the &quot;use_explicit_dry_run_spec&quot; flag is set.
+     */
+    spec?: Schema$ServicePerimeterConfig;
+    /**
      * Current ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine perimeter content and boundaries.
      */
     status?: Schema$ServicePerimeterConfig;
@@ -376,23 +476,31 @@ export namespace accesscontextmanager_v1 {
      * Output only. Time the `ServicePerimeter` was updated in UTC.
      */
     updateTime?: string | null;
+    /**
+     * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists  for all Service Perimeters, and that spec is identical to the status for those Service Perimeters. When this flag is set, it inhibits the generation of the implicit spec, thereby allowing the user to explicitly provide a configuration (&quot;spec&quot;) to use in a dry-run version of the Service Perimeter. This allows the user to test changes to the enforced config (&quot;status&quot;) without actually enforcing them. This testing is done through analyzing the differences between currently enforced and suggested restrictions. use_explicit_dry_run_spec must bet set to True if any of the fields in the spec are set to non-default values.
+     */
+    useExplicitDryRunSpec?: boolean | null;
   }
   /**
-   * `ServicePerimeterConfig` specifies a set of GCP resources that describe specific Service Perimeter configuration.
+   * `ServicePerimeterConfig` specifies a set of Google Cloud resources that describe specific Service Perimeter configuration.
    */
   export interface Schema$ServicePerimeterConfig {
     /**
-     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via GCP calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
+     * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `&quot;accessPolicies/MY_POLICY/accessLevels/MY_LEVEL&quot;`. For Service Perimeter Bridge, must be empty.
      */
     accessLevels?: string[] | null;
     /**
-     * A list of GCP resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
+     * A list of Google Cloud resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`
      */
     resources?: string[] | null;
     /**
-     * GCP services that are subject to the Service Perimeter restrictions. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
+     * Google Cloud services that are subject to the Service Perimeter restrictions. For example, if `storage.googleapis.com` is specified, access to the storage buckets inside the perimeter must meet the perimeter&#39;s access restrictions.
      */
     restrictedServices?: string[] | null;
+    /**
+     * Configuration for APIs allowed within Perimeter.
+     */
+    vpcAccessibleServices?: Schema$VpcAccessibleServices;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -410,6 +518,19 @@ export namespace accesscontextmanager_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Specifies how APIs are allowed to communicate within the Service Perimeter.
+   */
+  export interface Schema$VpcAccessibleServices {
+    /**
+     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
+     */
+    allowedServices?: string[] | null;
+    /**
+     * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in &#39;allowed_services&#39;.
+     */
+    enableRestriction?: boolean | null;
   }
 
   export class Resource$Accesspolicies {
@@ -1256,6 +1377,82 @@ export namespace accesscontextmanager_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * accesscontextmanager.accessPolicies.accessLevels.replaceAll
+     * @desc Replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically. The longrunning operation from this RPC will have a successful status once all replacements have propagated to long-lasting storage. Replacements containing errors will result in an error response for the first error encountered.  Replacement will be cancelled on error, existing Access Levels will not be affected. Operation.response field will contain ReplaceAccessLevelsResponse. Removing Access Levels contained in existing Service Perimeters will result in error.
+     * @alias accesscontextmanager.accessPolicies.accessLevels.replaceAll
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. Resource name for the access policy which owns these Access Levels.  Format: `accessPolicies/{policy_id}`
+     * @param {().ReplaceAccessLevelsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    replaceAll(
+      params?: Params$Resource$Accesspolicies$Accesslevels$Replaceall,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    replaceAll(
+      params: Params$Resource$Accesspolicies$Accesslevels$Replaceall,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    replaceAll(
+      params: Params$Resource$Accesspolicies$Accesslevels$Replaceall,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    replaceAll(callback: BodyResponseCallback<Schema$Operation>): void;
+    replaceAll(
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Accesslevels$Replaceall
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Accesslevels$Replaceall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accesspolicies$Accesslevels$Replaceall;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/accessLevels:replaceAll').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accesspolicies$Accesslevels$Create
@@ -1348,11 +1545,104 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$AccessLevel;
   }
+  export interface Params$Resource$Accesspolicies$Accesslevels$Replaceall
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Resource name for the access policy which owns these Access Levels.  Format: `accessPolicies/{policy_id}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReplaceAccessLevelsRequest;
+  }
 
   export class Resource$Accesspolicies$Serviceperimeters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * accesscontextmanager.accessPolicies.servicePerimeters.commit
+     * @desc Commit the dry-run spec for all the Service Perimeters in an Access Policy. A commit operation on a Service Perimeter involves copying its `spec` field to that Service Perimeter's `status` field. Only Service Perimeters with `use_explicit_dry_run_spec` field set to true are affected by a commit operation. The longrunning operation from this RPC will have a successful status once the dry-run specs for all the Service Perimeters have been committed. If a commit fails, it will cause the longrunning operation to return an error response and the entire commit operation will be cancelled. When successful, Operation.response field will contain CommitServicePerimetersResponse. The `dry_run` and the `spec` fields will be cleared after a successful commit operation.
+     * @alias accesscontextmanager.accessPolicies.servicePerimeters.commit
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation.  Format: `accessPolicies/{policy_id}`
+     * @param {().CommitServicePerimetersRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    commit(
+      params?: Params$Resource$Accesspolicies$Serviceperimeters$Commit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    commit(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Commit,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commit(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Commit,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commit(callback: BodyResponseCallback<Schema$Operation>): void;
+    commit(
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Serviceperimeters$Commit
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Serviceperimeters$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accesspolicies$Serviceperimeters$Commit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/servicePerimeters:commit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -1734,8 +2024,100 @@ export namespace accesscontextmanager_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * accesscontextmanager.accessPolicies.servicePerimeters.replaceAll
+     * @desc Replace all existing Service Perimeters in an Access Policy with the Service Perimeters provided. This is done atomically. The longrunning operation from this RPC will have a successful status once all replacements have propagated to long-lasting storage. Replacements containing errors will result in an error response for the first error encountered. Replacement will be cancelled on error, existing Service Perimeters will not be affected. Operation.response field will contain ReplaceServicePerimetersResponse.
+     * @alias accesscontextmanager.accessPolicies.servicePerimeters.replaceAll
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. Resource name for the access policy which owns these Service Perimeters.  Format: `accessPolicies/{policy_id}`
+     * @param {().ReplaceServicePerimetersRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    replaceAll(
+      params?: Params$Resource$Accesspolicies$Serviceperimeters$Replaceall,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    replaceAll(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Replaceall,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    replaceAll(
+      params: Params$Resource$Accesspolicies$Serviceperimeters$Replaceall,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    replaceAll(callback: BodyResponseCallback<Schema$Operation>): void;
+    replaceAll(
+      paramsOrCallback?:
+        | Params$Resource$Accesspolicies$Serviceperimeters$Replaceall
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accesspolicies$Serviceperimeters$Replaceall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accesspolicies$Serviceperimeters$Replaceall;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/servicePerimeters:replaceAll'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Commit
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation.  Format: `accessPolicies/{policy_id}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitServicePerimetersRequest;
+  }
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Create
     extends StandardParameters {
     /**
@@ -1817,6 +2199,23 @@ export namespace accesscontextmanager_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ServicePerimeter;
+  }
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Replaceall
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Resource name for the access policy which owns these Service Perimeters.  Format: `accessPolicies/{policy_id}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReplaceServicePerimetersRequest;
   }
 
   export class Resource$Operations {

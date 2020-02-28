@@ -1019,6 +1019,12 @@ export namespace testing_v1 {
      */
     uri?: string | null;
   }
+  export interface Schema$SystraceSetup {
+    /**
+     * Systrace duration in seconds. Should be between 1 and 30 seconds. 0 disables systrace.
+     */
+    durationSeconds?: number | null;
+  }
   /**
    * Additional details about the progress of the running test.
    */
@@ -1179,6 +1185,10 @@ export namespace testing_v1 {
      * The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog.
      */
     networkProfile?: string | null;
+    /**
+     * Systrace configuration for the run. If set a systrace will be taken, starting on test start and lasting for the configured duration. The systrace file thus obtained is put in the results bucket together with the other artifacts from the run.
+     */
+    systrace?: Schema$SystraceSetup;
   }
   /**
    * A description of how to run the test.

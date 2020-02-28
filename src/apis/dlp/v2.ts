@@ -226,7 +226,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryKey {
     /**
-     * Absolute number of the row from the beginning of the table at the time of scanning.
+     * Row number inferred at the time the table was scanned. This value is nondeterministic, cannot be queried, and may be null for inspection jobs. To locate findings within a table, specify `inspect_job.storage_config.big_query_options.identifying_fields` in `CreateDlpJobRequest`.
      */
     rowNumber?: string | null;
     /**
@@ -243,7 +243,7 @@ export namespace dlp_v2 {
      */
     excludedFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
-     * References to fields uniquely identifying rows within the table. Nested fields in the format, like `person.birthdate.year`, are allowed.
+     * Table fields that may uniquely identify a row within the table. When `actions.saveFindings.outputConfig.table` is specified, the values of columns specified here are available in the output table under `location.content_locations.record_location.record_key.id_values`. Nested fields such as `person.birthdate.year` are allowed.
      */
     identifyingFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
@@ -540,7 +540,7 @@ export namespace dlp_v2 {
     value?: string | null;
   }
   /**
-   * Findings container location data.
+   * Precise location of the finding within a document, record, image, or metadata container.
    */
   export interface Schema$GooglePrivacyDlpV2ContentLocation {
     /**
@@ -2195,7 +2195,7 @@ export namespace dlp_v2 {
     bigQueryKey?: Schema$GooglePrivacyDlpV2BigQueryKey;
     datastoreKey?: Schema$GooglePrivacyDlpV2DatastoreKey;
     /**
-     * Values of identifying columns in the given row. Order of values matches the order of field identifiers specified in the scanning request.
+     * Values of identifying columns in the given row. Order of values matches the order of `identifying_fields` specified in the scanning request.
      */
     idValues?: string[] | null;
   }
@@ -2448,15 +2448,15 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2StorageConfig {
     /**
-     * BigQuery options specification.
+     * BigQuery options.
      */
     bigQueryOptions?: Schema$GooglePrivacyDlpV2BigQueryOptions;
     /**
-     * Google Cloud Storage options specification.
+     * Google Cloud Storage options.
      */
     cloudStorageOptions?: Schema$GooglePrivacyDlpV2CloudStorageOptions;
     /**
-     * Google Cloud Datastore options specification.
+     * Google Cloud Datastore options.
      */
     datastoreOptions?: Schema$GooglePrivacyDlpV2DatastoreOptions;
     timespanConfig?: Schema$GooglePrivacyDlpV2TimespanConfig;

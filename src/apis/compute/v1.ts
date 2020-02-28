@@ -119,6 +119,7 @@ export namespace compute_v1 {
     nodeGroups: Resource$Nodegroups;
     nodeTemplates: Resource$Nodetemplates;
     nodeTypes: Resource$Nodetypes;
+    packetMirrorings: Resource$Packetmirrorings;
     projects: Resource$Projects;
     regionAutoscalers: Resource$Regionautoscalers;
     regionBackendServices: Resource$Regionbackendservices;
@@ -204,6 +205,7 @@ export namespace compute_v1 {
       this.nodeGroups = new Resource$Nodegroups(this.context);
       this.nodeTemplates = new Resource$Nodetemplates(this.context);
       this.nodeTypes = new Resource$Nodetypes(this.context);
+      this.packetMirrorings = new Resource$Packetmirrorings(this.context);
       this.projects = new Resource$Projects(this.context);
       this.regionAutoscalers = new Resource$Regionautoscalers(this.context);
       this.regionBackendServices = new Resource$Regionbackendservices(
@@ -269,7 +271,7 @@ export namespace compute_v1 {
     acceleratorType?: string | null;
   }
   /**
-   * Represents an Accelerator Type resource.  Google Cloud Platform provides graphics processing units (accelerators) that you can add to VM instances to improve or accelerate performance when working with intensive workloads. For more information, read GPUs on Compute Engine. (== resource_for beta.acceleratorTypes ==) (== resource_for v1.acceleratorTypes ==)
+   * Represents an Accelerator Type resource.  Google Cloud Platform provides graphics processing units (accelerators) that you can add to VM instances to improve or accelerate performance when working with intensive workloads. For more information, read GPUs on Compute Engine. (== resource_for {$api_version}.acceleratorTypes ==)
    */
   export interface Schema$AcceleratorType {
     /**
@@ -420,7 +422,7 @@ export namespace compute_v1 {
     type?: string | null;
   }
   /**
-   * Represents an IP Address resource.  An address resource represents a regional internal IP address. Regional internal IP addresses are RFC 1918 addresses that come from either a primary or secondary IP range of a subnet in a VPC network. Regional external IP addresses can be assigned to GCP VM instances, Cloud VPN gateways, regional external forwarding rules for network load balancers (in either Standard or Premium Tier), and regional external forwarding rules for HTTP(S), SSL Proxy, and TCP Proxy load balancers in Standard Tier. For more information, read IP addresses.  A globalAddresses resource represent a global external IP address. Global external IP addresses are IPv4 or IPv6 addresses. They can only be assigned to global forwarding rules for HTTP(S), SSL Proxy, or TCP Proxy load balancers in Premium Tier. For more information, read Global resources. (== resource_for beta.addresses ==) (== resource_for v1.addresses ==) (== resource_for beta.globalAddresses ==) (== resource_for v1.globalAddresses ==)
+   * Use global external addresses for GFE-based external HTTP(S) load balancers in Premium Tier.  Use global internal addresses for reserved peering network range.  Use regional external addresses for the following resources:  - External IP addresses for VM instances - Regional external forwarding rules - Cloud NAT external IP addresses - GFE based LBs in Standard Tier - Network LBs in Premium or Standard Tier - Cloud VPN gateways (both Classic and HA)  Use regional internal IP addresses for subnet IP ranges (primary and secondary). This includes:  - Internal IP addresses for VM instances - Alias IP ranges of VM instances (/32 only) - Regional internal forwarding rules - Internal TCP/UDP load balancer addresses - Internal HTTP(S) load balancer addresses - Cloud DNS inbound forwarding IP addresses  For more information, read reserved IP address.  (== resource_for {$api_version}.addresses ==) (== resource_for {$api_version}.globalAddresses ==)
    */
   export interface Schema$Address {
     /**
@@ -651,6 +653,10 @@ export namespace compute_v1 {
      */
     diskEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
+     * The size of the disk in GB.
+     */
+    diskSizeGb?: string | null;
+    /**
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
      */
     guestOsFeatures?: Schema$GuestOsFeature[];
@@ -770,7 +776,7 @@ export namespace compute_v1 {
     permissionType?: string | null;
   }
   /**
-   * Represents an Autoscaler resource.    Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.  For zonal managed instance groups resource, use the autoscaler resource.  For regional managed instance groups, use the regionAutoscalers resource. (== resource_for beta.autoscalers ==) (== resource_for v1.autoscalers ==) (== resource_for beta.regionAutoscalers ==) (== resource_for v1.regionAutoscalers ==)
+   * Represents an Autoscaler resource.  Google Compute Engine has two Autoscaler resources:  * [Global](/compute/docs/reference/rest/latest/autoscalers) * [Regional](/compute/docs/reference/rest/latest/regionAutoscalers)  Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.  For zonal managed instance groups resource, use the autoscaler resource.  For regional managed instance groups, use the regionAutoscalers resource. (== resource_for {$api_version}.autoscalers ==) (== resource_for {$api_version}.regionAutoscalers ==)
    */
   export interface Schema$Autoscaler {
     /**
@@ -1118,7 +1124,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents a Backend Service resource.  A backend service contains configuration values for Google Cloud Platform load balancing services.  For more information, read Backend Services.  (== resource_for v1.backendService ==) (== resource_for beta.backendService ==)
+   * Represents a Backend Service resource.  A backend service contains configuration values for Google Cloud Platform load balancing services.  Backend services in Google Compute Engine can be either regionally or globally scoped.  * [Global](/compute/docs/reference/rest/latest/backendServices) * [Regional](/compute/docs/reference/rest/latest/regionBackendServices)  For more information, read Backend Services.  (== resource_for {$api_version}.backendService ==)
    */
   export interface Schema$BackendService {
     /**
@@ -1163,7 +1169,7 @@ export namespace compute_v1 {
      */
     fingerprint?: string | null;
     /**
-     * The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required for Compute Engine backend services. A health check must not be specified for App Engine backend and Cloud Function backend.  For internal load balancing, a URL to a HealthCheck resource must be specified instead.
+     * The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified. Health check is optional for Compute Engine backend services if there is no backend. A health check must not be specified when adding Internet Network Endpoint Group or Serverless Network Endpoint Group as backends. In all other cases, a health check is required for Compute Engine backend services.  For internal load balancing, a URL to a HealthCheck resource must be specified instead.
      */
     healthChecks?: string[] | null;
     iap?: Schema$BackendServiceIAP;
@@ -1184,9 +1190,17 @@ export namespace compute_v1 {
      */
     localityLbPolicy?: string | null;
     /**
+     * This field denotes the logging options for the load balancer traffic served by this backend service. If logging is enabled, logs will be exported to Stackdriver.
+     */
+    logConfig?: Schema$BackendServiceLogConfig;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string | null;
+    /**
+     * The URL of the network to which this backend service belongs. This field can only be spcified when the load balancing scheme is set to INTERNAL.
+     */
+    network?: string | null;
     /**
      * Settings controlling the eviction of unhealthy hosts from the load balancing pool for the backend service. If not set, this feature is considered disabled.  This field is applicable to either:   - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED.  - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.
      */
@@ -1329,6 +1343,19 @@ export namespace compute_v1 {
       message?: string;
     } | null;
   }
+  /**
+   * The available logging options for the load balancer traffic served by this backend service.
+   */
+  export interface Schema$BackendServiceLogConfig {
+    /**
+     * This field denotes whether to enable logging for the load balancer traffic served by this backend service.
+     */
+    enable?: boolean | null;
+    /**
+     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     */
+    sampleRate?: number | null;
+  }
   export interface Schema$BackendServiceReference {
     backendService?: string | null;
   }
@@ -1355,7 +1382,7 @@ export namespace compute_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example,`alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -1421,7 +1448,7 @@ export namespace compute_v1 {
     maxRetries?: number | null;
   }
   /**
-   * Represents a regional Commitment resource.  Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for beta.regionCommitments ==) (== resource_for v1.regionCommitments ==)
+   * Represents a regional Commitment resource.  Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for {$api_version}.regionCommitments ==)
    */
   export interface Schema$Commitment {
     /**
@@ -1659,7 +1686,7 @@ export namespace compute_v1 {
      */
     exposeHeaders?: string[] | null;
     /**
-     * Specifies how long the results of a preflight request can be cached. This translates to the content for the Access-Control-Max-Age header.
+     * Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
      */
     maxAge?: number | null;
   }
@@ -1716,7 +1743,7 @@ export namespace compute_v1 {
     state?: string | null;
   }
   /**
-   * Represents a Persistent Disk resource.  Persistent disks are required for running your VM instances. Create both boot and non-boot (data) persistent disks. For more information, read Persistent Disks. For more storage options, read Storage options.  The disks resource represents a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDisks resource represents a regional persistent disk. For more information, read  Regional resources. (== resource_for beta.disks ==) (== resource_for v1.disks ==) (== resource_for v1.regionDisks ==) (== resource_for beta.regionDisks ==)
+   * Represents a Persistent Disk resource.  Google Compute Engine has two Disk resources:  * [Global](/compute/docs/reference/rest/latest/disks) * [Regional](/compute/docs/reference/rest/latest/regionDisks)  Persistent disks are required for running your VM instances. Create both boot and non-boot (data) persistent disks. For more information, read Persistent Disks. For more storage options, read Storage options.  The disks resource represents a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDisks resource represents a regional persistent disk. For more information, read  Regional resources. (== resource_for {$api_version}.disks ==) (== resource_for {$api_version}.regionDisks ==)
    */
   export interface Schema$Disk {
     /**
@@ -1967,7 +1994,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents a Disk Type resource.  You can choose from a variety of disk types based on your needs. For more information, read Storage options.  The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks. (== resource_for beta.diskTypes ==) (== resource_for v1.diskTypes ==) (== resource_for v1.regionDiskTypes ==) (== resource_for beta.regionDiskTypes ==)
+   * Represents a Disk Type resource.  Google Compute Engine has two Disk Type resources:  * [Global](/compute/docs/reference/rest/latest/diskTypes) * [Regional](/compute/docs/reference/rest/latest/regionDiskTypes)  You can choose from a variety of disk types based on your needs. For more information, read Storage options.  The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks. (== resource_for {$api_version}.diskTypes ==) (== resource_for {$api_version}.regionDiskTypes ==)
    */
   export interface Schema$DiskType {
     /**
@@ -2179,28 +2206,28 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents an expression text. Example:  title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):  title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):  title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):  title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):  title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
   /**
-   * External VPN gateway is the on-premises VPN gateway(s) or another cloud provider?s VPN gateway that connects to your Google Cloud VPN gateway. To create a highly available VPN from Google Cloud to your on-premises side or another Cloud provider&#39;s VPN gateway, you must create a external VPN gateway resource in GCP, which provides the information to GCP about your external VPN gateway.
+   * External VPN gateway is the on-premises VPN gateway(s) or another cloud provider&#39;s VPN gateway that connects to your Google Cloud VPN gateway. To create a highly available VPN from Google Cloud to your on-premises side or another Cloud provider&#39;s VPN gateway, you must create a external VPN gateway resource in GCP, which provides the information to GCP about your external VPN gateway.
    */
   export interface Schema$ExternalVpnGateway {
     /**
@@ -2253,7 +2280,7 @@ export namespace compute_v1 {
      */
     id?: number | null;
     /**
-     * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider?s VPN gateway, it cannot be an IP address from Google Compute Engine.
+     * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider&#39;s VPN gateway, it cannot be an IP address from Google Compute Engine.
      */
     ipAddress?: string | null;
   }
@@ -2432,9 +2459,13 @@ export namespace compute_v1 {
     percent?: number | null;
   }
   /**
-   * Represents a Forwarding Rule resource.  A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud Platform load balancer. Forwarding rules can also reference target instances and Cloud VPN Classic gateways (targetVpnGateway).  For more information, read Forwarding rule concepts and Using protocol forwarding.  (== resource_for beta.forwardingRules ==) (== resource_for v1.forwardingRules ==) (== resource_for beta.globalForwardingRules ==) (== resource_for v1.globalForwardingRules ==) (== resource_for beta.regionForwardingRules ==) (== resource_for v1.regionForwardingRules ==)
+   * Represents a Forwarding Rule resource.  Forwarding rule resources in GCP can be either regional or global in scope:  * [Global](/compute/docs/reference/rest/latest/globalForwardingRules) * [Regional](/compute/docs/reference/rest/latest/forwardingRules)  A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud Platform load balancer. Forwarding rules can also reference target instances and Cloud VPN Classic gateways (targetVpnGateway).  For more information, read Forwarding rule concepts and Using protocol forwarding.  (== resource_for {$api_version}.forwardingRules ==) (== resource_for {$api_version}.globalForwardingRules ==) (== resource_for {$api_version}.regionForwardingRules ==)
    */
   export interface Schema$ForwardingRule {
+    /**
+     * This field is used along with the backend_service field for internal load balancing or with the target field for internal TargetInstance. If the field is set to TRUE, clients can access ILB from all regions. Otherwise only allows access from clients in the same region as the internal load balancer.
+     */
+    allowGlobalAccess?: boolean | null;
     /**
      * This field is used along with the backend_service field for internal load balancing or with the target field for internal TargetInstance. This field cannot be used with port or portRange fields.  When the load balancing scheme is INTERNAL and protocol is TCP/UDP, specify this field to allow packets addressed to any ports will be forwarded to the backends configured with this forwarding rule.
      */
@@ -2452,6 +2483,10 @@ export namespace compute_v1 {
      */
     description?: string | null;
     /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ForwardingRule. Include the fingerprint in patch request to ensure that you do not overwrite changes that were applied from another concurrent request.  To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
+     */
+    fingerprint?: string | null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      */
     id?: string | null;
@@ -2468,11 +2503,15 @@ export namespace compute_v1 {
      */
     ipVersion?: string | null;
     /**
+     * Indicates whether or not this load balancer can be used as a collector for packet mirroring. To prevent mirroring loops, instances behind this load balancer will not have their traffic mirrored even if a PacketMirroring rule applies to them. This can only be set to true for load balancers that have their loadBalancingScheme set to INTERNAL.
+     */
+    isMirroringCollector?: boolean | null;
+    /**
      * [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
      */
     kind?: string | null;
     /**
-     * Specifies the forwarding rule type. EXTERNAL is used for: - Classic Cloud VPN gateways - Protocol forwarding to VMs from an external IP address - The following load balancers: HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP.  INTERNAL is used for: - Protocol forwarding to VMs from an internal IP address - Internal TCP/UDP load balancers  INTERNAL_MANAGED is used for: - Internal HTTP(S) load balancers  INTERNAL_SELF_MANAGED is used for: - Traffic Director  For more information about forwarding rules, refer to Forwarding rule concepts.
+     * Specifies the forwarding rule type.    - EXTERNAL is used for:   - Classic Cloud VPN gateways  - Protocol forwarding to VMs from an external IP address  - The following load balancers: HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP     - INTERNAL is used for:   - Protocol forwarding to VMs from an internal IP address  - Internal TCP/UDP load balancers    - INTERNAL_MANAGED is used for:   - Internal HTTP(S) load balancers    - &gt;INTERNAL_SELF_MANAGED is used for:   - Traffic Director      For more information about forwarding rules, refer to Forwarding rule concepts.
      */
     loadBalancingScheme?: string | null;
     /**
@@ -2520,7 +2559,7 @@ export namespace compute_v1 {
      */
     subnetwork?: string | null;
     /**
-     * The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets are valid.
+     * The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only targetHttpProxy is valid, not targetHttpsProxy.
      */
     target?: string | null;
   }
@@ -2690,7 +2729,7 @@ export namespace compute_v1 {
     type?: string | null;
   }
   /**
-   * Represents a Health Check resource.  Health checks are used for most GCP load balancers and managed instance group auto-healing. For more information, read Health Check Concepts.  To perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.
+   * Represents a Health Check resource.  Google Compute Engine has two Health Check resources:  * [Global](/compute/docs/reference/rest/latest/healthChecks) * [Regional](/compute/docs/reference/rest/latest/regionHealthChecks)  Internal HTTP(S) load balancers use regional health checks. All other types of GCP load balancers and managed instance group auto-healing use global health checks. For more information, read Health Check Concepts.  To perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.
    */
   export interface Schema$HealthCheck {
     /**
@@ -2840,11 +2879,11 @@ export namespace compute_v1 {
      */
     instance?: string | null;
     /**
-     * The IP address represented by this resource.
+     * A forwarding rule IP address assigned to this instance.
      */
     ipAddress?: string | null;
     /**
-     * The port on the instance.
+     * The named port of the instance group, not necessarily the port that is health-checked.
      */
     port?: number | null;
   }
@@ -2998,11 +3037,11 @@ export namespace compute_v1 {
      */
     presentMatch?: boolean | null;
     /**
-     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will not match.  - 0.25 will not match.  - -3someString will not match.   Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will not match.  - 0.25 will not match.  - -3someString will not match.   Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Note that rangeMatch is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      */
     rangeMatch?: Schema$Int64RangeMatch;
     /**
-     * The value of the header must match the regualar expression specified in regexMatch. For regular expression grammar, please see:  en.cppreference.com/w/cpp/regex/ecmascript  For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header&#39;s port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value of the header must match the regular expression specified in regexMatch. For regular expression grammar, please see:  en.cppreference.com/w/cpp/regex/ecmascript  For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header&#39;s port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      */
     regexMatch?: string | null;
     /**
@@ -3164,7 +3203,7 @@ export namespace compute_v1 {
      */
     presentMatch?: boolean | null;
     /**
-     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch, exactMatch or regexMatch must be set.
+     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch, exactMatch or regexMatch must be set. Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      */
     regexMatch?: string | null;
   }
@@ -3181,11 +3220,11 @@ export namespace compute_v1 {
      */
     httpsRedirect?: boolean | null;
     /**
-     * The path that will be used in the redirect response instead of the one that was supplied in the request. Only one of pathRedirect or prefixRedirect must be specified. The value must be between 1 and 1024 characters.
+     * The path that will be used in the redirect response instead of the one that was supplied in the request. pathRedirect cannot be supplied together with prefixRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      */
     pathRedirect?: string | null;
     /**
-     * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request.
+     * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request. prefixRedirect cannot be supplied together with pathRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      */
     prefixRedirect?: string | null;
     /**
@@ -3303,7 +3342,7 @@ export namespace compute_v1 {
      */
     queryParameterMatches?: Schema$HttpQueryParameterMatch[];
     /**
-     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch, fullPathMatch or regexMatch must be specified. Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      */
     regexMatch?: string | null;
   }
@@ -3428,7 +3467,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents an Image resource.  You can use images to create boot disks for your VM instances. For more information, read Images. (== resource_for beta.images ==) (== resource_for v1.images ==)
+   * Represents an Image resource.  You can use images to create boot disks for your VM instances. For more information, read Images. (== resource_for {$api_version}.images ==)
    */
   export interface Schema$Image {
     /**
@@ -3586,7 +3625,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents an Instance resource.  An instance is a virtual machine that is hosted on Google Cloud Platform. For more information, read Virtual Machine Instances. (== resource_for beta.instances ==) (== resource_for v1.instances ==)
+   * Represents an Instance resource.  An instance is a virtual machine that is hosted on Google Cloud Platform. For more information, read Virtual Machine Instances. (== resource_for {$api_version}.instances ==)
    */
   export interface Schema$Instance {
     /**
@@ -3731,7 +3770,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents an Instance Group resource.  Instance Groups can be used to configure a target for load balancing.  Instance groups can either be managed or unmanaged.  To create  managed instance groups, use the instanceGroupManager or regionInstanceGroupManager resource instead.  Use zonal unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. You cannot create regional unmanaged instance groups.  For more information, read Instance groups.  (== resource_for beta.instanceGroups ==) (== resource_for v1.instanceGroups ==) (== resource_for beta.regionInstanceGroups ==) (== resource_for v1.regionInstanceGroups ==)
+   * Represents an Instance Group resource.  Instance Groups can be used to configure a target for load balancing.  Instance groups can either be managed or unmanaged.  To create  managed instance groups, use the instanceGroupManager or regionInstanceGroupManager resource instead.  Use zonal unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. You cannot create regional unmanaged instance groups.  For more information, read Instance groups.  (== resource_for {$api_version}.instanceGroups ==) (== resource_for {$api_version}.regionInstanceGroups ==)
    */
   export interface Schema$InstanceGroup {
     /**
@@ -3851,7 +3890,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents a Managed Instance Group resource.  An instance group is a collection of VM instances that you can manage as a single entity. For more information, read Instance groups.  For zonal Managed Instance Group, use the instanceGroupManagers resource.  For regional Managed Instance Group, use the regionInstanceGroupManagers resource. (== resource_for beta.instanceGroupManagers ==) (== resource_for v1.instanceGroupManagers ==) (== resource_for beta.regionInstanceGroupManagers ==) (== resource_for v1.regionInstanceGroupManagers ==)
+   * Represents a Managed Instance Group resource.  An instance group is a collection of VM instances that you can manage as a single entity. For more information, read Instance groups.  For zonal Managed Instance Group, use the instanceGroupManagers resource.  For regional Managed Instance Group, use the regionInstanceGroupManagers resource. (== resource_for {$api_version}.instanceGroupManagers ==) (== resource_for {$api_version}.regionInstanceGroupManagers ==)
    */
   export interface Schema$InstanceGroupManager {
     /**
@@ -3923,7 +3962,7 @@ export namespace compute_v1 {
      */
     targetPools?: string[] | null;
     /**
-     * The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
+     * The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
      */
     targetSize?: number | null;
     /**
@@ -4055,6 +4094,23 @@ export namespace compute_v1 {
      * The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      */
     instances?: string[] | null;
+  }
+  /**
+   * InstanceGroupManagers.applyUpdatesToInstances
+   */
+  export interface Schema$InstanceGroupManagersApplyUpdatesRequest {
+    /**
+     * The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     */
+    instances?: string[] | null;
+    /**
+     * The minimal action that you want to perform on each instance during the update:   - REPLACE: At minimum, delete the instance and create it again.  - RESTART: Stop the instance and start it again.  - REFRESH: Do not stop the instance.  - NONE: Do not disrupt the instance at all.  By default, the minimum action is NONE. If your update requires a more disruptive action than you set with this flag, the necessary action is performed to execute the update.
+     */
+    minimalAction?: string | null;
+    /**
+     * The most disruptive action that you want to perform on each instance during the update:   - REPLACE: Delete the instance and create it again.  - RESTART: Stop the instance and start it again.  - REFRESH: Do not stop the instance.  - NONE: Do not disrupt the instance at all.  By default, the most disruptive allowed action is REPLACE. If your update requires a more disruptive action than you set with this flag, the update request will fail.
+     */
+    mostDisruptiveAllowedAction?: string | null;
   }
   /**
    * InstanceGroupManagers.createInstances
@@ -4430,7 +4486,7 @@ export namespace compute_v1 {
     disks?: Schema$CustomerEncryptionKeyProtectedDisk[];
   }
   /**
-   * Represents an Instance Template resource.  You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates. (== resource_for beta.instanceTemplates ==) (== resource_for v1.instanceTemplates ==)
+   * Represents an Instance Template resource.  You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates. (== resource_for {$api_version}.instanceTemplates ==)
    */
   export interface Schema$InstanceTemplate {
     /**
@@ -4531,7 +4587,7 @@ export namespace compute_v1 {
     rangeStart?: string | null;
   }
   /**
-   * Represents an Interconnect resource.  An Interconnect resource is a dedicated connection between the GCP network and your on-premises network. For more information, read the  Dedicated Interconnect Overview. (== resource_for v1.interconnects ==) (== resource_for beta.interconnects ==)
+   * Represents an Interconnect resource.  An Interconnect resource is a dedicated connection between the GCP network and your on-premises network. For more information, read the  Dedicated Interconnect Overview. (== resource_for {$api_version}.interconnects ==)
    */
   export interface Schema$Interconnect {
     /**
@@ -4624,7 +4680,7 @@ export namespace compute_v1 {
     state?: string | null;
   }
   /**
-   * Represents an Interconnect Attachment (VLAN) resource.  You can use Interconnect attachments (VLANS) to connect your Virtual Private Cloud networks to your on-premises networks through an Interconnect. For more information, read  Creating VLAN Attachments. (== resource_for beta.interconnectAttachments ==) (== resource_for v1.interconnectAttachments ==)
+   * Represents an Interconnect Attachment (VLAN) resource.  You can use Interconnect attachments (VLANS) to connect your Virtual Private Cloud networks to your on-premises networks through an Interconnect. For more information, read  Creating VLAN Attachments. (== resource_for {$api_version}.interconnectAttachments ==)
    */
   export interface Schema$InterconnectAttachment {
     /**
@@ -4636,7 +4692,7 @@ export namespace compute_v1 {
      */
     bandwidth?: string | null;
     /**
-     * Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google?s edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
+     * Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google&#39;s edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
      */
     candidateSubnets?: string[] | null;
     /**
@@ -4792,7 +4848,7 @@ export namespace compute_v1 {
    */
   export interface Schema$InterconnectAttachmentPartnerMetadata {
     /**
-     * Plain text name of the Interconnect this attachment is connected to, as displayed in the Partner?s portal. For instance &quot;Chicago 1&quot;. This value may be validated to match approved Partner values.
+     * Plain text name of the Interconnect this attachment is connected to, as displayed in the Partner&#39;s portal. For instance &quot;Chicago 1&quot;. This value may be validated to match approved Partner values.
      */
     interconnectName?: string | null;
     /**
@@ -4800,7 +4856,7 @@ export namespace compute_v1 {
      */
     partnerName?: string | null;
     /**
-     * URL of the Partner?s portal for this Attachment. Partners may customise this to be a deep link to the specific resource on the Partner portal. This value may be validated to match approved Partner values.
+     * URL of the Partner&#39;s portal for this Attachment. Partners may customise this to be a deep link to the specific resource on the Partner portal. This value may be validated to match approved Partner values.
      */
     portalUrl?: string | null;
   }
@@ -4845,7 +4901,7 @@ export namespace compute_v1 {
     googleDemarcId?: string | null;
   }
   /**
-   * Diagnostics information about interconnect, contains detailed and current technical information about Google?s side of the connection.
+   * Diagnostics information about interconnect, contains detailed and current technical information about Google&#39;s side of the connection.
    */
   export interface Schema$InterconnectDiagnostics {
     /**
@@ -4876,11 +4932,11 @@ export namespace compute_v1 {
   }
   export interface Schema$InterconnectDiagnosticsLinkLACPStatus {
     /**
-     * System ID of the port on Google?s side of the LACP exchange.
+     * System ID of the port on Google&#39;s side of the LACP exchange.
      */
     googleSystemId?: string | null;
     /**
-     * System ID of the port on the neighbor?s side of the LACP exchange.
+     * System ID of the port on the neighbor&#39;s side of the LACP exchange.
      */
     neighborSystemId?: string | null;
     /**
@@ -5308,7 +5364,7 @@ export namespace compute_v1 {
     logMode?: string | null;
   }
   /**
-   * Represents a Machine Type resource.  You can use specific machine types for your VM instances based on performance and pricing requirements. For more information, read Machine Types. (== resource_for v1.machineTypes ==) (== resource_for beta.machineTypes ==)
+   * Represents a Machine Type resource.  You can use specific machine types for your VM instances based on performance and pricing requirements. For more information, read Machine Types. (== resource_for {$api_version}.machineTypes ==)
    */
   export interface Schema$MachineType {
     /**
@@ -5466,6 +5522,10 @@ export namespace compute_v1 {
      */
     instance?: string | null;
     /**
+     * [Output Only] Health state of the instance per health-check.
+     */
+    instanceHealth?: Schema$ManagedInstanceInstanceHealth[];
+    /**
      * [Output Only] The status of the instance. This field is empty when the instance does not exist.
      */
     instanceStatus?: string | null;
@@ -5477,6 +5537,16 @@ export namespace compute_v1 {
      * [Output Only] Intended version of this instance.
      */
     version?: Schema$ManagedInstanceVersion;
+  }
+  export interface Schema$ManagedInstanceInstanceHealth {
+    /**
+     * [Output Only] The current detailed instance health state.
+     */
+    detailedHealthState?: string | null;
+    /**
+     * [Output Only] The URL for the health check that verifies whether the instance is healthy.
+     */
+    healthCheck?: string | null;
   }
   export interface Schema$ManagedInstanceLastAttempt {
     /**
@@ -5553,7 +5623,7 @@ export namespace compute_v1 {
     port?: number | null;
   }
   /**
-   * Represents a VPC Network resource.  Networks connect resources to each other and to the internet. For more information, read Virtual Private Cloud (VPC) Network. (== resource_for v1.networks ==) (== resource_for beta.networks ==)
+   * Represents a VPC Network resource.  Networks connect resources to each other and to the internet. For more information, read Virtual Private Cloud (VPC) Network. (== resource_for {$api_version}.networks ==)
    */
   export interface Schema$Network {
     /**
@@ -5623,7 +5693,7 @@ export namespace compute_v1 {
     port?: number | null;
   }
   /**
-   * Represents a collection of network endpoints.  For more information read Setting up network endpoint groups in load balancing. (== resource_for v1.networkEndpointGroups ==) (== resource_for beta.networkEndpointGroups ==) Next ID: 21
+   * Represents a collection of network endpoints.  For more information read Setting up network endpoint groups in load balancing. (== resource_for {$api_version}.networkEndpointGroups ==) Next ID: 21
    */
   export interface Schema$NetworkEndpointGroup {
     /**
@@ -5947,7 +6017,7 @@ export namespace compute_v1 {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==)
+   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for {$api_version}.nodeGroups ==)
    */
   export interface Schema$NodeGroup {
     /**
@@ -6133,7 +6203,7 @@ export namespace compute_v1 {
     nodeTemplate?: string | null;
   }
   /**
-   * Represent a sole-tenant Node Template resource.  You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==)
+   * Represent a sole-tenant Node Template resource.  You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for {$api_version}.nodeTemplates ==) (== NextID: 18 ==)
    */
   export interface Schema$NodeTemplate {
     /**
@@ -6272,7 +6342,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represent a sole-tenant Node Type resource.  Each node within a node group must have a node type. A node type specifies the total amount of cores and memory for that node. Currently, the only available node type is n1-node-96-624 node type that has 96 vCPUs and 624 GB of memory, available in multiple zones. For more information read Node types. (== resource_for beta.nodeTypes ==) (== resource_for v1.nodeTypes ==)
+   * Represent a sole-tenant Node Type resource.  Each node within a node group must have a node type. A node type specifies the total amount of cores and memory for that node. Currently, the only available node type is n1-node-96-624 node type that has 96 vCPUs and 624 GB of memory, available in multiple zones. For more information read Node types. (== resource_for {$api_version}.nodeTypes ==)
    */
   export interface Schema$NodeType {
     /**
@@ -6402,7 +6472,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents an Operation resource.  You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.  Operations can be global, regional or zonal.   - For global operations, use the globalOperations resource.  - For regional operations, use the regionOperations resource.  - For zonal operations, use the zonalOperations resource.    For more information, read  Global, Regional, and Zonal Resources. (== resource_for v1.globalOperations ==) (== resource_for beta.globalOperations ==) (== resource_for v1.regionOperations ==) (== resource_for beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (== resource_for beta.zoneOperations ==)
+   * Represents an Operation resource.  Google Compute Engine has three Operation resources:  * [Global](/compute/docs/reference/rest/latest/globalOperations) * [Regional](/compute/docs/reference/rest/latest/regionOperations) * [Zonal](/compute/docs/reference/rest/latest/zoneOperations)  You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.  Operations can be global, regional or zonal.   - For global operations, use the globalOperations resource.  - For regional operations, use the regionOperations resource.  - For zonal operations, use the zonalOperations resource.    For more information, read  Global, Regional, and Zonal Resources. (== resource_for {$api_version}.globalOperations ==) (== resource_for {$api_version}.regionOperations ==) (== resource_for {$api_version}.zoneOperations ==)
    */
   export interface Schema$Operation {
     /**
@@ -6631,6 +6701,207 @@ export namespace compute_v1 {
     successRateStdevFactor?: number | null;
   }
   /**
+   * Represents a PacketMirroring resource.
+   */
+  export interface Schema$PacketMirroring {
+    /**
+     * The Forwarding Rule resource of type loadBalancingScheme=INTERNAL that will be used as collector for mirrored traffic. The specified forwarding rule must have isMirroringCollector set to true.
+     */
+    collectorIlb?: Schema$PacketMirroringForwardingRuleInfo;
+    /**
+     * [Output Only] Creation timestamp in RFC3339 text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * An optional description of this resource. Provide this property when you create the resource.
+     */
+    description?: string | null;
+    /**
+     * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.  The default is TRUE.
+     */
+    enable?: string | null;
+    /**
+     * Filter for mirrored traffic. If unspecified, all traffic is mirrored.
+     */
+    filter?: Schema$PacketMirroringFilter;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     */
+    id?: string | null;
+    /**
+     * [Output Only] Type of the resource. Always compute#packetMirroring for packet mirrorings.
+     */
+    kind?: string | null;
+    /**
+     * PacketMirroring mirroredResourceInfos. MirroredResourceInfo specifies a set of mirrored VM instances, subnetworks and/or tags for which traffic from/to all VM instances will be mirrored.
+     */
+    mirroredResources?: Schema$PacketMirroringMirroredResourceInfo;
+    /**
+     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Specifies the mirrored VPC network. Only packets in this network will be mirrored. All mirrored VMs should have a NIC in the given network. All mirrored subnetworks should belong to the given network.
+     */
+    network?: Schema$PacketMirroringNetworkInfo;
+    /**
+     * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.  Default value is 1000. Valid range is 0 through 65535.
+     */
+    priority?: number | null;
+    /**
+     * [Output Only] URI of the region where the packetMirroring resides.
+     */
+    region?: string | null;
+    /**
+     * [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+  }
+  /**
+   * Contains a list of packetMirrorings.
+   */
+  export interface Schema$PacketMirroringAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of PacketMirroring resources.
+     */
+    items?: {[key: string]: Schema$PacketMirroringsScopedList} | null;
+    /**
+     * Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$PacketMirroringFilter {
+    /**
+     * IP CIDR ranges that apply as filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. If no ranges are specified, all traffic that matches the specified IPProtocols is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
+     */
+    cidrRanges?: string[] | null;
+    /**
+     * Protocols that apply as filter on mirrored traffic. If no protocols are specified, all traffic that matches the specified CIDR ranges is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
+     */
+    IPProtocols?: string[] | null;
+  }
+  export interface Schema$PacketMirroringForwardingRuleInfo {
+    /**
+     * [Output Only] Unique identifier for the forwarding rule; defined by the server.
+     */
+    canonicalUrl?: string | null;
+    /**
+     * Resource URL to the forwarding rule representing the ILB configured as destination of the mirrored traffic.
+     */
+    url?: string | null;
+  }
+  /**
+   * Contains a list of PacketMirroring resources.
+   */
+  export interface Schema$PacketMirroringList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of PacketMirroring resources.
+     */
+    items?: Schema$PacketMirroring[];
+    /**
+     * [Output Only] Type of resource. Always compute#packetMirroring for packetMirrorings.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$PacketMirroringMirroredResourceInfo {
+    /**
+     * A set of virtual machine instances that are being mirrored. They must live in zones contained in the same region as this packetMirroring.  Note that this config will apply only to those network interfaces of the Instances that belong to the network specified in this packetMirroring.  You may specify a maximum of 50 Instances.
+     */
+    instances?: Schema$PacketMirroringMirroredResourceInfoInstanceInfo[];
+    /**
+     * A set of subnetworks for which traffic from/to all VM instances will be mirrored. They must live in the same region as this packetMirroring.  You may specify a maximum of 5 subnetworks.
+     */
+    subnetworks?: Schema$PacketMirroringMirroredResourceInfoSubnetInfo[];
+    /**
+     * A set of mirrored tags. Traffic from/to all VM instances that have one or more of these tags will be mirrored.
+     */
+    tags?: string[] | null;
+  }
+  export interface Schema$PacketMirroringMirroredResourceInfoInstanceInfo {
+    /**
+     * [Output Only] Unique identifier for the instance; defined by the server.
+     */
+    canonicalUrl?: string | null;
+    /**
+     * Resource URL to the virtual machine instance which is being mirrored.
+     */
+    url?: string | null;
+  }
+  export interface Schema$PacketMirroringMirroredResourceInfoSubnetInfo {
+    /**
+     * [Output Only] Unique identifier for the subnetwork; defined by the server.
+     */
+    canonicalUrl?: string | null;
+    /**
+     * Resource URL to the subnetwork for which traffic from/to all VM instances will be mirrored.
+     */
+    url?: string | null;
+  }
+  export interface Schema$PacketMirroringNetworkInfo {
+    /**
+     * [Output Only] Unique identifier for the network; defined by the server.
+     */
+    canonicalUrl?: string | null;
+    /**
+     * URL of the network resource.
+     */
+    url?: string | null;
+  }
+  export interface Schema$PacketMirroringsScopedList {
+    /**
+     * A list of packetMirrorings contained in this scope.
+     */
+    packetMirrorings?: Schema$PacketMirroring[];
+    /**
+     * Informational warning which replaces the list of packetMirrorings when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
    * A matcher for the path portion of the URL. The BackendService from the longest-matched rule will serve the URL. If no rule was matched, the default service will be used.
    */
   export interface Schema$PathMatcher {
@@ -6663,7 +6934,7 @@ export namespace compute_v1 {
      */
     pathRules?: Schema$PathRule[];
     /**
-     * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number. Within a given pathMatcher, only one of pathRules or routeRules must be set. routeRules are not supported in UrlMaps intended for External Load balancers.
+     * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number. Within a given pathMatcher, you can set only one of pathRules or routeRules.
      */
     routeRules?: Schema$HttpRouteRule[];
   }
@@ -6725,7 +6996,7 @@ export namespace compute_v1 {
     version?: number | null;
   }
   /**
-   * Represents a Project resource.  A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the  Resource Hierarchy. (== resource_for v1.projects ==) (== resource_for beta.projects ==)
+   * Represents a Project resource.  A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the  Resource Hierarchy. (== resource_for {$api_version}.projects ==)
    */
   export interface Schema$Project {
     /**
@@ -6862,7 +7133,7 @@ export namespace compute_v1 {
     target?: string | null;
   }
   /**
-   * Represents a Region resource.  A region is a geographical area where a resource is located. For more information, read Regions and Zones. (== resource_for beta.regions ==) (== resource_for v1.regions ==)
+   * Represents a Region resource.  A region is a geographical area where a resource is located. For more information, read Regions and Zones. (== resource_for {$api_version}.regions ==)
    */
   export interface Schema$Region {
     /**
@@ -7060,6 +7331,23 @@ export namespace compute_v1 {
     instances?: string[] | null;
   }
   /**
+   * InstanceGroupManagers.applyUpdatesToInstances
+   */
+  export interface Schema$RegionInstanceGroupManagersApplyUpdatesRequest {
+    /**
+     * The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     */
+    instances?: string[] | null;
+    /**
+     * The minimal action that you want to perform on each instance during the update:   - REPLACE: At minimum, delete the instance and create it again.  - RESTART: Stop the instance and start it again.  - REFRESH: Do not stop the instance.  - NONE: Do not disrupt the instance at all.  By default, the minimum action is NONE. If your update requires a more disruptive action than you set with this flag, the necessary action is performed to execute the update.
+     */
+    minimalAction?: string | null;
+    /**
+     * The most disruptive action that you want to perform on each instance during the update:   - REPLACE: Delete the instance and create it again.  - RESTART: Stop the instance and start it again.  - REFRESH: Do not stop the instance.  - NONE: Do not disrupt the instance at all.  By default, the most disruptive allowed action is REPLACE. If your update requires a more disruptive action than you set with this flag, the update request will fail.
+     */
+    mostDisruptiveAllowedAction?: string | null;
+  }
+  /**
    * RegionInstanceGroupManagers.createInstances
    */
   export interface Schema$RegionInstanceGroupManagersCreateInstancesRequest {
@@ -7231,7 +7519,7 @@ export namespace compute_v1 {
     backendService?: string | null;
   }
   /**
-   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for beta.reservations ==) (== resource_for v1.reservations ==)
+   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for {$api_version}.reservations ==)
    */
   export interface Schema$Reservation {
     /**
@@ -7590,7 +7878,7 @@ export namespace compute_v1 {
    */
   export interface Schema$ResourcePolicySnapshotSchedulePolicySnapshotProperties {
     /**
-     * Indication to perform a ?guest aware? snapshot.
+     * Indication to perform a &#39;guest aware&#39; snapshot.
      */
     guestFlush?: boolean | null;
     /**
@@ -7626,7 +7914,7 @@ export namespace compute_v1 {
     startTime?: string | null;
   }
   /**
-   * Represents a Route resource.  A route defines a path from VM instances in the VPC network to a specific destination. This destination can be inside or outside the VPC network. For more information, read the Routes overview. (== resource_for beta.routes ==) (== resource_for v1.routes ==)
+   * Represents a Route resource.  A route defines a path from VM instances in the VPC network to a specific destination. This destination can be inside or outside the VPC network. For more information, read the Routes overview. (== resource_for {$api_version}.routes ==)
    */
   export interface Schema$Route {
     /**
@@ -8230,7 +8518,7 @@ export namespace compute_v1 {
     values?: string[] | null;
   }
   /**
-   * Represents a Cloud Armor Security Policy resource.  Only external backend services that use load balancers can reference a Security Policy. For more information, read  Cloud Armor Security Policy Concepts. (== resource_for v1.securityPolicies ==) (== resource_for beta.securityPolicies ==)
+   * Represents a Cloud Armor Security Policy resource.  Only external backend services that use load balancers can reference a Security Policy. For more information, read  Cloud Armor Security Policy Concepts. (== resource_for {$api_version}.securityPolicies ==)
    */
   export interface Schema$SecurityPolicy {
     /**
@@ -8312,7 +8600,7 @@ export namespace compute_v1 {
      */
     kind?: string | null;
     /**
-     * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding ?action? is enforced.
+     * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding &#39;action&#39; is enforced.
      */
     match?: Schema$SecurityPolicyRuleMatcher;
     /**
@@ -8332,6 +8620,10 @@ export namespace compute_v1 {
      * The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.
      */
     config?: Schema$SecurityPolicyRuleMatcherConfig;
+    /**
+     * User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header.
+     */
+    expr?: Schema$Expr;
     /**
      * Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
      */
@@ -8454,7 +8746,7 @@ export namespace compute_v1 {
     keyValue?: string | null;
   }
   /**
-   * Represents a Persistent Disk Snapshot resource.  You can use snapshots to back up data on a regular interval. For more information, read  Creating persistent disk snapshots. (== resource_for beta.snapshots ==) (== resource_for v1.snapshots ==)
+   * Represents a Persistent Disk Snapshot resource.  You can use snapshots to back up data on a regular interval. For more information, read  Creating persistent disk snapshots. (== resource_for {$api_version}.snapshots ==)
    */
   export interface Schema$Snapshot {
     /**
@@ -8473,6 +8765,10 @@ export namespace compute_v1 {
      * [Output Only] Size of the source disk, specified in GB.
      */
     diskSizeGb?: string | null;
+    /**
+     * [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
+     */
+    downloadBytes?: string | null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      */
@@ -8581,7 +8877,7 @@ export namespace compute_v1 {
     diskConfigs?: Schema$DiskInstantiationConfig[];
   }
   /**
-   * Represents an SSL Certificate resource.  This SSL certificate resource also contains a private key. You can use SSL keys and certificates to secure connections to a load balancer. For more information, read  Creating and Using SSL Certificates. (== resource_for beta.sslCertificates ==) (== resource_for v1.sslCertificates ==) (== resource_for beta.regionSslCertificates ==) (== resource_for v1.regionSslCertificates ==) Next ID: 17
+   * Represents an SSL Certificate resource.  Google Compute Engine has two SSL Certificate resources:  * [Global](/compute/docs/reference/rest/latest/sslCertificates) * [Regional](/compute/docs/reference/rest/latest/regionSslCertificates)  - sslCertificates are used by: - external HTTPS load balancers - SSL proxy load balancers  - regionSslCertificates are used by: - internal HTTPS load balancers  This SSL certificate resource also contains a private key. You can use SSL keys and certificates to secure connections to a load balancer. For more information, read  Creating and Using SSL Certificates. (== resource_for {$api_version}.sslCertificates ==) (== resource_for {$api_version}.regionSslCertificates ==) Next ID: 17
    */
   export interface Schema$SslCertificate {
     /**
@@ -8758,7 +9054,7 @@ export namespace compute_v1 {
     features?: string[] | null;
   }
   /**
-   * Represents a Cloud Armor Security Policy resource.  Only external backend services used by HTTP or HTTPS load balancers can reference a Security Policy. For more information, read read  Cloud Armor Security Policy Concepts. (== resource_for beta.sslPolicies ==) (== resource_for v1.sslPolicies ==)
+   * Represents a Cloud Armor Security Policy resource.  Only external backend services used by HTTP or HTTPS load balancers can reference a Security Policy. For more information, read read  Cloud Armor Security Policy Concepts. (== resource_for {$api_version}.sslPolicies ==)
    */
   export interface Schema$SslPolicy {
     /**
@@ -8821,7 +9117,7 @@ export namespace compute_v1 {
     sslPolicy?: string | null;
   }
   /**
-   * Represents a Subnetwork resource.  A subnetwork (also known as a subnet) is a logical partition of a Virtual Private Cloud network with one primary IP range and zero or more secondary IP ranges. For more information, read  Virtual Private Cloud (VPC) Network. (== resource_for beta.subnetworks ==) (== resource_for v1.subnetworks ==)
+   * Represents a Subnetwork resource.  A subnetwork (also known as a subnet) is a logical partition of a Virtual Private Cloud network with one primary IP range and zero or more secondary IP ranges. For more information, read  Virtual Private Cloud (VPC) Network. (== resource_for {$api_version}.subnetworks ==)
    */
   export interface Schema$Subnetwork {
     /**
@@ -9045,7 +9341,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents a Target HTTP Proxy resource.  A target HTTP proxy is a component of GCP HTTP load balancers. Forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for beta.targetHttpProxies ==) (== resource_for v1.targetHttpProxies ==) (== resource_for beta.regionTargetHttpProxies ==) (== resource_for v1.regionTargetHttpProxies ==)
+   * Represents a Target HTTP Proxy resource.  Google Compute Engine has two Target HTTP Proxy resources:  * [Global](/compute/docs/reference/rest/latest/targetHttpProxies) * [Regional](/compute/docs/reference/rest/latest/regionTargetHttpProxies)  A target HTTP proxy is a component of GCP HTTP load balancers.  * targetHttpProxies are used by external HTTP load balancers and Traffic Director. * regionTargetHttpProxies are used by internal HTTP load balancers.  Forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for {$api_version}.targetHttpProxies ==) (== resource_for {$api_version}.regionTargetHttpProxies ==)
    */
   export interface Schema$TargetHttpProxy {
     /**
@@ -9163,7 +9459,7 @@ export namespace compute_v1 {
     sslCertificates?: string[] | null;
   }
   /**
-   * Represents a Target HTTPS Proxy resource.  A target HTTPS proxy is a component of GCP HTTPS load balancers. Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for beta.targetHttpsProxies ==) (== resource_for v1.targetHttpsProxies ==) (== resource_for beta.regionTargetHttpsProxies ==) (== resource_for v1.regionTargetHttpsProxies ==)
+   * Represents a Target HTTPS Proxy resource.  Google Compute Engine has two Target HTTPS Proxy resources:  * [Global](/compute/docs/reference/rest/latest/targetHttpsProxies) * [Regional](/compute/docs/reference/rest/latest/regionTargetHttpsProxies)  A target HTTPS proxy is a component of GCP HTTPS load balancers.  * targetHttpsProxies are used by external HTTPS load balancers. * regionTargetHttpsProxies are used by internal HTTPS load balancers.  Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for {$api_version}.targetHttpsProxies ==) (== resource_for {$api_version}.regionTargetHttpsProxies ==)
    */
   export interface Schema$TargetHttpsProxy {
     /**
@@ -9275,7 +9571,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents a Target Instance resource.  You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, read Target instances. (== resource_for beta.targetInstances ==) (== resource_for v1.targetInstances ==)
+   * Represents a Target Instance resource.  You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, read Target instances. (== resource_for {$api_version}.targetInstances ==)
    */
   export interface Schema$TargetInstance {
     /**
@@ -9393,7 +9689,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents a Target Pool resource.  Target pools are used for network TCP/UDP load balancing. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools. (== resource_for beta.targetPools ==) (== resource_for v1.targetPools ==)
+   * Represents a Target Pool resource.  Target pools are used for network TCP/UDP load balancing. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools. (== resource_for {$api_version}.targetPools ==)
    */
   export interface Schema$TargetPool {
     /**
@@ -9575,7 +9871,7 @@ export namespace compute_v1 {
     sslCertificates?: string[] | null;
   }
   /**
-   * Represents a Target SSL Proxy resource.  A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies. (== resource_for beta.targetSslProxies ==) (== resource_for v1.targetSslProxies ==)
+   * Represents a Target SSL Proxy resource.  A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies. (== resource_for {$api_version}.targetSslProxies ==)
    */
   export interface Schema$TargetSslProxy {
     /**
@@ -9665,7 +9961,7 @@ export namespace compute_v1 {
     proxyHeader?: string | null;
   }
   /**
-   * Represents a Target TCP Proxy resource.  A target TCP proxy is a component of a TCP Proxy load balancer. Global forwarding rules reference target TCP proxy, and the target proxy then references an external backend service. For more information, read TCP Proxy Load Balancing Concepts. (== resource_for beta.targetTcpProxies ==) (== resource_for v1.targetTcpProxies ==)
+   * Represents a Target TCP Proxy resource.  A target TCP proxy is a component of a TCP Proxy load balancer. Global forwarding rules reference target TCP proxy, and the target proxy then references an external backend service. For more information, read TCP Proxy Load Balancing Concepts. (== resource_for {$api_version}.targetTcpProxies ==)
    */
   export interface Schema$TargetTcpProxy {
     /**
@@ -9735,7 +10031,7 @@ export namespace compute_v1 {
     } | null;
   }
   /**
-   * Represents a Target VPN Gateway resource.  The target VPN gateway resource represents a Classic Cloud VPN gateway. For more information, read the the Cloud VPN Overview. (== resource_for beta.targetVpnGateways ==) (== resource_for v1.targetVpnGateways ==)
+   * Represents a Target VPN Gateway resource.  The target VPN gateway resource represents a Classic Cloud VPN gateway. For more information, read the the Cloud VPN Overview. (== resource_for {$api_version}.targetVpnGateways ==)
    */
   export interface Schema$TargetVpnGateway {
     /**
@@ -9905,7 +10201,7 @@ export namespace compute_v1 {
     permissions?: string[] | null;
   }
   /**
-   * Represents a URL Map resource.  A URL map resource is a component of certain types of load balancers. This resource defines mappings from host names and URL paths to either a backend service or a backend bucket.  To use this resource, the backend service must have a loadBalancingScheme of either EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED For more information, read URL Map Concepts.
+   * Represents a URL Map resource.  Google Compute Engine has two URL Map resources:  * [Global](/compute/docs/reference/rest/latest/urlMaps) * [Regional](/compute/docs/reference/rest/latest/regionUrlMaps)  A URL map resource is a component of certain types of GCP load balancers and Traffic Director.  * urlMaps are used by external HTTP(S) load balancers and Traffic Director. * regionUrlMaps are used by internal HTTP(S) load balancers.  This resource defines mappings from host names and URL paths to either a backend service or a backend bucket.  To use the global urlMaps resource, the backend service must have a loadBalancingScheme of either EXTERNAL or INTERNAL_SELF_MANAGED. To use the regionUrlMaps resource, the backend service must have a loadBalancingScheme of INTERNAL_MANAGED. For more information, read URL Map Concepts.
    */
   export interface Schema$UrlMap {
     /**
@@ -10456,7 +10752,7 @@ export namespace compute_v1 {
     ipAddress?: string | null;
   }
   /**
-   * Represents a Cloud VPN Tunnel resource.  For more information about VPN, read the the Cloud VPN Overview. (== resource_for beta.vpnTunnels ==) (== resource_for v1.vpnTunnels ==)
+   * Represents a Cloud VPN Tunnel resource.  For more information about VPN, read the the Cloud VPN Overview. (== resource_for {$api_version}.vpnTunnels ==)
    */
   export interface Schema$VpnTunnel {
     /**
@@ -10686,7 +10982,7 @@ export namespace compute_v1 {
     type?: string | null;
   }
   /**
-   * Represents a Zone resource.  A zone is a deployment area. These deployment areas are subsets of a region. For example the zone us-east1-a is located in the us-east1 region. For more information, read Regions and Zones. (== resource_for beta.zones ==) (== resource_for v1.zones ==)
+   * Represents a Zone resource.  A zone is a deployment area. These deployment areas are subsets of a region. For example the zone us-east1-a is located in the us-east1 region. For more information, read Regions and Zones. (== resource_for {$api_version}.zones ==)
    */
   export interface Schema$Zone {
     /**
@@ -20551,6 +20847,84 @@ export namespace compute_v1 {
     }
 
     /**
+     * compute.forwardingRules.patch
+     * @desc Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
+     * @alias compute.forwardingRules.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().ForwardingRule} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Forwardingrules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Forwardingrules$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Forwardingrules$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Forwardingrules$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Forwardingrules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Forwardingrules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * compute.forwardingRules.setTarget
      * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      * @example
@@ -20817,6 +21191,35 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Forwardingrules$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the ForwardingRule resource to patch.
+     */
+    forwardingRule?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ForwardingRule;
   }
   export interface Params$Resource$Forwardingrules$Settarget
     extends StandardParameters {
@@ -21998,6 +22401,83 @@ export namespace compute_v1 {
     }
 
     /**
+     * compute.globalForwardingRules.patch
+     * @desc Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
+     * @alias compute.globalForwardingRules.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().ForwardingRule} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Globalforwardingrules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Globalforwardingrules$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Globalforwardingrules$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Globalforwardingrules$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Globalforwardingrules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Globalforwardingrules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * compute.globalForwardingRules.setTarget
      * @desc Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
      * @example
@@ -22216,6 +22696,31 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Globalforwardingrules$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the ForwardingRule resource to patch.
+     */
+    forwardingRule?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ForwardingRule;
   }
   export interface Params$Resource$Globalforwardingrules$Settarget
     extends StandardParameters {
@@ -22786,7 +23291,7 @@ export namespace compute_v1 {
 
     /**
      * compute.globalOperations.wait
-     * @desc Waits for the specified Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
+     * @desc Waits for the specified Operation resource to return as DONE or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the GET method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be DONE or still in progress.  This method is called on a best-effort basis. Specifically:   - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds.  - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not DONE.
      * @alias compute.globalOperations.wait
      * @memberOf! ()
      *
@@ -27539,6 +28044,85 @@ export namespace compute_v1 {
     }
 
     /**
+     * compute.instanceGroupManagers.applyUpdatesToInstances
+     * @desc Apply changes to selected instances on the managed instance group. This method can be used to apply new overrides and/or new versions.
+     * @alias compute.instanceGroupManagers.applyUpdatesToInstances
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group, should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone where the managed instance group is located. Should conform to RFC1035.
+     * @param {().InstanceGroupManagersApplyUpdatesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    applyUpdatesToInstances(
+      params?: Params$Resource$Instancegroupmanagers$Applyupdatestoinstances,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    applyUpdatesToInstances(
+      params: Params$Resource$Instancegroupmanagers$Applyupdatestoinstances,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyUpdatesToInstances(
+      params: Params$Resource$Instancegroupmanagers$Applyupdatestoinstances,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyUpdatesToInstances(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyUpdatesToInstances(
+      paramsOrCallback?:
+        | Params$Resource$Instancegroupmanagers$Applyupdatestoinstances
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instancegroupmanagers$Applyupdatestoinstances;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instancegroupmanagers$Applyupdatestoinstances;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/applyUpdatesToInstances'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * compute.instanceGroupManagers.createInstances
      * @desc Creates instances with per-instance configs in this managed instance group. Instances are created using the current instance template. The create instances operation is marked DONE if the createInstances request is successful. The underlying actions take additional time. You must separately verify the status of the creating or actions with the listmanagedinstances method.
      * @alias compute.instanceGroupManagers.createInstances
@@ -29150,6 +29734,31 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Applyupdatestoinstances
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the managed instance group, should conform to RFC1035.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone where the managed instance group is located. Should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstanceGroupManagersApplyUpdatesRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Createinstances
     extends StandardParameters {
@@ -45680,6 +46289,752 @@ export namespace compute_v1 {
     zone?: string;
   }
 
+  export class Resource$Packetmirrorings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * compute.packetMirrorings.aggregatedList
+     * @desc Retrieves an aggregated list of packetMirrorings.
+     * @alias compute.packetMirrorings.aggregatedList
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList(
+      params?: Params$Resource$Packetmirrorings$Aggregatedlist,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PacketMirroringAggregatedList>;
+    aggregatedList(
+      params: Params$Resource$Packetmirrorings$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PacketMirroringAggregatedList>,
+      callback: BodyResponseCallback<Schema$PacketMirroringAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Packetmirrorings$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$PacketMirroringAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$PacketMirroringAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Packetmirrorings$Aggregatedlist
+        | BodyResponseCallback<Schema$PacketMirroringAggregatedList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PacketMirroringAggregatedList>,
+      callback?: BodyResponseCallback<Schema$PacketMirroringAggregatedList>
+    ): void | GaxiosPromise<Schema$PacketMirroringAggregatedList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Packetmirrorings$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Packetmirrorings$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/aggregated/packetMirrorings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PacketMirroringAggregatedList>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$PacketMirroringAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * compute.packetMirrorings.delete
+     * @desc Deletes the specified PacketMirroring resource.
+     * @alias compute.packetMirrorings.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packetMirroring Name of the PacketMirroring resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Packetmirrorings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Packetmirrorings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Packetmirrorings$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Packetmirrorings$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Packetmirrorings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Packetmirrorings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'packetMirroring'],
+        pathParams: ['packetMirroring', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.packetMirrorings.get
+     * @desc Returns the specified PacketMirroring resource.
+     * @alias compute.packetMirrorings.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packetMirroring Name of the PacketMirroring resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Packetmirrorings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PacketMirroring>;
+    get(
+      params: Params$Resource$Packetmirrorings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PacketMirroring>,
+      callback: BodyResponseCallback<Schema$PacketMirroring>
+    ): void;
+    get(
+      params: Params$Resource$Packetmirrorings$Get,
+      callback: BodyResponseCallback<Schema$PacketMirroring>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PacketMirroring>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Packetmirrorings$Get
+        | BodyResponseCallback<Schema$PacketMirroring>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PacketMirroring>,
+      callback?: BodyResponseCallback<Schema$PacketMirroring>
+    ): void | GaxiosPromise<Schema$PacketMirroring> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Packetmirrorings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Packetmirrorings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'packetMirroring'],
+        pathParams: ['packetMirroring', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PacketMirroring>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$PacketMirroring>(parameters);
+      }
+    }
+
+    /**
+     * compute.packetMirrorings.insert
+     * @desc Creates a PacketMirroring resource in the specified project and region using the data included in the request.
+     * @alias compute.packetMirrorings.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().PacketMirroring} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Packetmirrorings$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    insert(
+      params: Params$Resource$Packetmirrorings$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Packetmirrorings$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Packetmirrorings$Insert
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Packetmirrorings$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Packetmirrorings$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/packetMirrorings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.packetMirrorings.list
+     * @desc Retrieves a list of PacketMirroring resources available to the specified project and region.
+     * @alias compute.packetMirrorings.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Packetmirrorings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PacketMirroringList>;
+    list(
+      params: Params$Resource$Packetmirrorings$List,
+      options: MethodOptions | BodyResponseCallback<Schema$PacketMirroringList>,
+      callback: BodyResponseCallback<Schema$PacketMirroringList>
+    ): void;
+    list(
+      params: Params$Resource$Packetmirrorings$List,
+      callback: BodyResponseCallback<Schema$PacketMirroringList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$PacketMirroringList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Packetmirrorings$List
+        | BodyResponseCallback<Schema$PacketMirroringList>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PacketMirroringList>,
+      callback?: BodyResponseCallback<Schema$PacketMirroringList>
+    ): void | GaxiosPromise<Schema$PacketMirroringList> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Packetmirrorings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Packetmirrorings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/packetMirrorings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PacketMirroringList>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$PacketMirroringList>(parameters);
+      }
+    }
+
+    /**
+     * compute.packetMirrorings.patch
+     * @desc Patches the specified PacketMirroring resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * @alias compute.packetMirrorings.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.packetMirroring Name of the PacketMirroring resource to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().PacketMirroring} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Packetmirrorings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Packetmirrorings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Packetmirrorings$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Packetmirrorings$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Packetmirrorings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Packetmirrorings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{packetMirroring}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'packetMirroring'],
+        pathParams: ['packetMirroring', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * compute.packetMirrorings.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource.
+     * @alias compute.packetMirrorings.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name or id of the resource for this request.
+     * @param {().TestPermissionsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+      params?: Params$Resource$Packetmirrorings$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Packetmirrorings$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Packetmirrorings$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Packetmirrorings$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Packetmirrorings$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Packetmirrorings$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/packetMirrorings/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Packetmirrorings$Aggregatedlist
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Packetmirrorings$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the PacketMirroring resource to delete.
+     */
+    packetMirroring?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Packetmirrorings$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the PacketMirroring resource to return.
+     */
+    packetMirroring?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Packetmirrorings$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PacketMirroring;
+  }
+  export interface Params$Resource$Packetmirrorings$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <.  For example, if you are filtering Compute Engine instances, you can exclude instances named example-instance by specifying name != example-instance.  You can also filter nested fields. For example, you could specify scheduling.automaticRestart = false to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake"). By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly. For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Packetmirrorings$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the PacketMirroring resource to patch.
+     */
+    packetMirroring?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PacketMirroring;
+  }
+  export interface Params$Resource$Packetmirrorings$Testiampermissions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -52443,6 +53798,85 @@ export namespace compute_v1 {
     }
 
     /**
+     * compute.regionInstanceGroupManagers.applyUpdatesToInstances
+     * @desc Apply updates to selected instances the managed instance group.
+     * @alias compute.regionInstanceGroupManagers.applyUpdatesToInstances
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group, should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request, should conform to RFC1035.
+     * @param {().RegionInstanceGroupManagersApplyUpdatesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    applyUpdatesToInstances(
+      params?: Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    applyUpdatesToInstances(
+      params: Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyUpdatesToInstances(
+      params: Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyUpdatesToInstances(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyUpdatesToInstances(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/applyUpdatesToInstances'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * compute.regionInstanceGroupManagers.createInstances
      * @desc Creates instances with per-instance configs in this regional managed instance group. Instances are created using the current instance template. The create instances operation is marked DONE if the createInstances request is successful. The underlying actions take additional time. You must separately verify the status of the creating or actions with the listmanagedinstances method.
      * @alias compute.regionInstanceGroupManagers.createInstances
@@ -54032,6 +55466,31 @@ export namespace compute_v1 {
      */
     requestBody?: Schema$RegionInstanceGroupManagersAbandonInstancesRequest;
   }
+  export interface Params$Resource$Regioninstancegroupmanagers$Applyupdatestoinstances
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the managed instance group, should conform to RFC1035.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request, should conform to RFC1035.
+     */
+    region?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionInstanceGroupManagersApplyUpdatesRequest;
+  }
   export interface Params$Resource$Regioninstancegroupmanagers$Createinstances
     extends StandardParameters {
     /**
@@ -55494,7 +56953,7 @@ export namespace compute_v1 {
 
     /**
      * compute.regionOperations.wait
-     * @desc Waits for the specified region-specific Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
+     * @desc Waits for the specified Operation resource to return as DONE or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the GET method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be DONE or still in progress.  This method is called on a best-effort basis. Specifically:   - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds.  - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not DONE.
      * @alias compute.regionOperations.wait
      * @memberOf! ()
      *
@@ -78277,7 +79736,7 @@ export namespace compute_v1 {
 
     /**
      * compute.zoneOperations.wait
-     * @desc Waits for the specified zone-specific Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
+     * @desc Waits for the specified Operation resource to return as DONE or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the GET method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be DONE or still in progress.  This method is called on a best-effort basis. Specifically:   - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds.  - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not DONE.
      * @alias compute.zoneOperations.wait
      * @memberOf! ()
      *

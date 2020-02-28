@@ -309,7 +309,7 @@ export namespace compute_alpha {
     acceleratorType?: string | null;
   }
   /**
-   * Represents an Accelerator Type resource.  Google Cloud Platform provides graphics processing units (accelerators) that you can add to VM instances to improve or accelerate performance when working with intensive workloads. For more information, read GPUs on Compute Engine. (== resource_for beta.acceleratorTypes ==) (== resource_for v1.acceleratorTypes ==)
+   * Represents an Accelerator Type resource.  Google Cloud Platform provides graphics processing units (accelerators) that you can add to VM instances to improve or accelerate performance when working with intensive workloads. For more information, read GPUs on Compute Engine. (== resource_for {$api_version}.acceleratorTypes ==)
    */
   export interface Schema$AcceleratorType {
     /**
@@ -459,7 +459,7 @@ export namespace compute_alpha {
      */
     publicPtrDomainName?: string | null;
     /**
-     * Specifies whether a public DNS ?A? record should be created for the external IP address of this access configuration.
+     * Specifies whether a public DNS &#39;A&#39; record should be created for the external IP address of this access configuration.
      */
     setPublicDns?: boolean | null;
     /**
@@ -472,7 +472,7 @@ export namespace compute_alpha {
     type?: string | null;
   }
   /**
-   * Represents an IP Address resource.  An address resource represents a regional internal IP address. Regional internal IP addresses are RFC 1918 addresses that come from either a primary or secondary IP range of a subnet in a VPC network. Regional external IP addresses can be assigned to GCP VM instances, Cloud VPN gateways, regional external forwarding rules for network load balancers (in either Standard or Premium Tier), and regional external forwarding rules for HTTP(S), SSL Proxy, and TCP Proxy load balancers in Standard Tier. For more information, read IP addresses.  A globalAddresses resource represent a global external IP address. Global external IP addresses are IPv4 or IPv6 addresses. They can only be assigned to global forwarding rules for HTTP(S), SSL Proxy, or TCP Proxy load balancers in Premium Tier. For more information, read Global resources. (== resource_for beta.addresses ==) (== resource_for v1.addresses ==) (== resource_for beta.globalAddresses ==) (== resource_for v1.globalAddresses ==)
+   * Use global external addresses for GFE-based external HTTP(S) load balancers in Premium Tier.  Use global internal addresses for reserved peering network range.  Use regional external addresses for the following resources:  - External IP addresses for VM instances - Regional external forwarding rules - Cloud NAT external IP addresses - GFE based LBs in Standard Tier - Network LBs in Premium or Standard Tier - Cloud VPN gateways (both Classic and HA)  Use regional internal IP addresses for subnet IP ranges (primary and secondary). This includes:  - Internal IP addresses for VM instances - Alias IP ranges of VM instances (/32 only) - Regional internal forwarding rules - Internal TCP/UDP load balancer addresses - Internal HTTP(S) load balancer addresses - Cloud DNS inbound forwarding IP addresses  For more information, read reserved IP address.  (== resource_for {$api_version}.addresses ==) (== resource_for {$api_version}.globalAddresses ==)
    */
   export interface Schema$Address {
     /**
@@ -715,7 +715,7 @@ export namespace compute_alpha {
      */
     diskEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
-     * The size of the disk in base-2 GB. This supersedes disk_size_gb in InitializeParams.
+     * The size of the disk in GB.
      */
     diskSizeGb?: string | null;
     /**
@@ -888,7 +888,7 @@ export namespace compute_alpha {
     permissionType?: string | null;
   }
   /**
-   * Represents an Autoscaler resource.    Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.  For zonal managed instance groups resource, use the autoscaler resource.  For regional managed instance groups, use the regionAutoscalers resource. (== resource_for beta.autoscalers ==) (== resource_for v1.autoscalers ==) (== resource_for beta.regionAutoscalers ==) (== resource_for v1.regionAutoscalers ==)
+   * Represents an Autoscaler resource.  Google Compute Engine has two Autoscaler resources:  * [Global](/compute/docs/reference/rest/latest/autoscalers) * [Regional](/compute/docs/reference/rest/latest/regionAutoscalers)  Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.  For zonal managed instance groups resource, use the autoscaler resource.  For regional managed instance groups, use the regionAutoscalers resource. (== resource_for {$api_version}.autoscalers ==) (== resource_for {$api_version}.regionAutoscalers ==)
    */
   export interface Schema$Autoscaler {
     /**
@@ -1078,6 +1078,10 @@ export namespace compute_alpha {
    */
   export interface Schema$AutoscalingPolicyCpuUtilization {
     /**
+     * Indicates which method of prediction is used for CPU utilization metric, if any. Current set of possible values: * NONE: No predictions are made based on the scaling metric when calculating the number of VM instances. * STANDARD: Standard predictive autoscaling predicts the future values of the scaling metric and then scales a MIG to ensure that new VM instances are ready in time to cover the predicted peak. New values might be added in the future. Some of the values might not be available in all API versions.
+     */
+    predictiveMethod?: string | null;
+    /**
      * The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.6.  If the CPU level is below the target utilization, the autoscaler scales down the number of instances until it reaches the minimum number of instances you specified or until the average CPU of your instances reaches the target utilization.  If the average CPU is above the target utilization, the autoscaler scales up until it reaches the maximum number of instances you specified or until the average utilization reaches the target utilization.
      */
     utilizationTarget?: number | null;
@@ -1154,6 +1158,10 @@ export namespace compute_alpha {
      * Maximum allowed number (or %) of VMs that can be deducted from the peak recommendation during the window autoscaler looks at when computing recommendations. Possibly all these VMs can be deleted at once so user service needs to be prepared to lose that many VMs in one step.
      */
     maxScaledDownReplicas?: Schema$FixedOrPercent;
+    /**
+     * How long back autoscaling should look when computing recommendations to include directives regarding slower scale down, as described above.
+     */
+    timeWindow?: Schema$GoogleDuration;
     /**
      * How long back autoscaling should look when computing recommendations to include directives regarding slower scale down, as described above.
      */
@@ -1304,7 +1312,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Backend Service resource.  A backend service contains configuration values for Google Cloud Platform load balancing services.  For more information, read Backend Services.  (== resource_for v1.backendService ==) (== resource_for beta.backendService ==)
+   * Represents a Backend Service resource.  A backend service contains configuration values for Google Cloud Platform load balancing services.  Backend services in Google Compute Engine can be either regionally or globally scoped.  * [Global](/compute/docs/reference/rest/latest/backendServices) * [Regional](/compute/docs/reference/rest/latest/regionBackendServices)  For more information, read Backend Services.  (== resource_for {$api_version}.backendService ==)
    */
   export interface Schema$BackendService {
     /**
@@ -1353,7 +1361,7 @@ export namespace compute_alpha {
      */
     fingerprint?: string | null;
     /**
-     * The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required for Compute Engine backend services. A health check must not be specified for App Engine backend and Cloud Function backend.  For internal load balancing, a URL to a HealthCheck resource must be specified instead.
+     * The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified. Health check is optional for Compute Engine backend services if there is no backend. A health check must not be specified when adding Internet Network Endpoint Group or Serverless Network Endpoint Group as backends. In all other cases, a health check is required for Compute Engine backend services.  For internal load balancing, a URL to a HealthCheck resource must be specified instead.
      */
     healthChecks?: string[] | null;
     iap?: Schema$BackendServiceIAP;
@@ -1755,7 +1763,7 @@ export namespace compute_alpha {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example,`alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -1872,7 +1880,7 @@ export namespace compute_alpha {
     subjectAltNames?: string[] | null;
   }
   /**
-   * Represents a regional Commitment resource.  Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for beta.regionCommitments ==) (== resource_for v1.regionCommitments ==)
+   * Represents a regional Commitment resource.  Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for {$api_version}.regionCommitments ==)
    */
   export interface Schema$Commitment {
     /**
@@ -1900,9 +1908,9 @@ export namespace compute_alpha {
      */
     kind?: string | null;
     /**
-     * A list of commitment amounts for particular licenses.
+     * The license specification required as part of a license commitment.
      */
-    licenseResources?: Schema$LicenseResourceCommitment[];
+    licenseResource?: Schema$LicenseResourceCommitment;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
@@ -2135,7 +2143,7 @@ export namespace compute_alpha {
      */
     exposeHeaders?: string[] | null;
     /**
-     * Specifies how long the results of a preflight request can be cached. This translates to the content for the Access-Control-Max-Age header.
+     * Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
      */
     maxAge?: number | null;
   }
@@ -2200,7 +2208,7 @@ export namespace compute_alpha {
     state?: string | null;
   }
   /**
-   * Represents a Persistent Disk resource.  Persistent disks are required for running your VM instances. Create both boot and non-boot (data) persistent disks. For more information, read Persistent Disks. For more storage options, read Storage options.  The disks resource represents a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDisks resource represents a regional persistent disk. For more information, read  Regional resources. (== resource_for beta.disks ==) (== resource_for v1.disks ==) (== resource_for v1.regionDisks ==) (== resource_for beta.regionDisks ==)
+   * Represents a Persistent Disk resource.  Google Compute Engine has two Disk resources:  * [Global](/compute/docs/reference/rest/latest/disks) * [Regional](/compute/docs/reference/rest/latest/regionDisks)  Persistent disks are required for running your VM instances. Create both boot and non-boot (data) persistent disks. For more information, read Persistent Disks. For more storage options, read Storage options.  The disks resource represents a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDisks resource represents a regional persistent disk. For more information, read  Regional resources. (== resource_for {$api_version}.disks ==) (== resource_for {$api_version}.regionDisks ==)
    */
   export interface Schema$Disk {
     /**
@@ -2479,7 +2487,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Disk Type resource.  You can choose from a variety of disk types based on your needs. For more information, read Storage options.  The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks. (== resource_for beta.diskTypes ==) (== resource_for v1.diskTypes ==) (== resource_for v1.regionDiskTypes ==) (== resource_for beta.regionDiskTypes ==)
+   * Represents a Disk Type resource.  Google Compute Engine has two Disk Type resources:  * [Global](/compute/docs/reference/rest/latest/diskTypes) * [Regional](/compute/docs/reference/rest/latest/regionDiskTypes)  You can choose from a variety of disk types based on your needs. For more information, read Storage options.  The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks.  The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks. (== resource_for {$api_version}.diskTypes ==) (== resource_for {$api_version}.regionDiskTypes ==)
    */
   export interface Schema$DiskType {
     /**
@@ -2699,28 +2707,28 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents an expression text. Example:  title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):  title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):  title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):  title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):  title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
   /**
-   * External VPN gateway is the on-premises VPN gateway(s) or another cloud provider?s VPN gateway that connects to your Google Cloud VPN gateway. To create a highly available VPN from Google Cloud to your on-premises side or another Cloud provider&#39;s VPN gateway, you must create a external VPN gateway resource in GCP, which provides the information to GCP about your external VPN gateway.
+   * External VPN gateway is the on-premises VPN gateway(s) or another cloud provider&#39;s VPN gateway that connects to your Google Cloud VPN gateway. To create a highly available VPN from Google Cloud to your on-premises side or another Cloud provider&#39;s VPN gateway, you must create a external VPN gateway resource in GCP, which provides the information to GCP about your external VPN gateway.
    */
   export interface Schema$ExternalVpnGateway {
     /**
@@ -2773,7 +2781,7 @@ export namespace compute_alpha {
      */
     id?: number | null;
     /**
-     * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider?s VPN gateway, it cannot be an IP address from Google Compute Engine.
+     * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider&#39;s VPN gateway, it cannot be an IP address from Google Compute Engine.
      */
     ipAddress?: string | null;
   }
@@ -2971,7 +2979,7 @@ export namespace compute_alpha {
     percent?: number | null;
   }
   /**
-   * Represents a Forwarding Rule resource.  A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud Platform load balancer. Forwarding rules can also reference target instances and Cloud VPN Classic gateways (targetVpnGateway).  For more information, read Forwarding rule concepts and Using protocol forwarding.  (== resource_for beta.forwardingRules ==) (== resource_for v1.forwardingRules ==) (== resource_for beta.globalForwardingRules ==) (== resource_for v1.globalForwardingRules ==) (== resource_for beta.regionForwardingRules ==) (== resource_for v1.regionForwardingRules ==)
+   * Represents a Forwarding Rule resource.  Forwarding rule resources in GCP can be either regional or global in scope:  * [Global](/compute/docs/reference/rest/latest/globalForwardingRules) * [Regional](/compute/docs/reference/rest/latest/forwardingRules)  A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud Platform load balancer. Forwarding rules can also reference target instances and Cloud VPN Classic gateways (targetVpnGateway).  For more information, read Forwarding rule concepts and Using protocol forwarding.  (== resource_for {$api_version}.forwardingRules ==) (== resource_for {$api_version}.globalForwardingRules ==) (== resource_for {$api_version}.regionForwardingRules ==)
    */
   export interface Schema$ForwardingRule {
     /**
@@ -3031,7 +3039,7 @@ export namespace compute_alpha {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Specifies the forwarding rule type. EXTERNAL is used for: - Classic Cloud VPN gateways - Protocol forwarding to VMs from an external IP address - The following load balancers: HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP.  INTERNAL is used for: - Protocol forwarding to VMs from an internal IP address - Internal TCP/UDP load balancers  INTERNAL_MANAGED is used for: - Internal HTTP(S) load balancers  INTERNAL_SELF_MANAGED is used for: - Traffic Director  For more information about forwarding rules, refer to Forwarding rule concepts.
+     * Specifies the forwarding rule type.    - EXTERNAL is used for:   - Classic Cloud VPN gateways  - Protocol forwarding to VMs from an external IP address  - The following load balancers: HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP     - INTERNAL is used for:   - Protocol forwarding to VMs from an internal IP address  - Internal TCP/UDP load balancers    - INTERNAL_MANAGED is used for:   - Internal HTTP(S) load balancers    - &gt;INTERNAL_SELF_MANAGED is used for:   - Traffic Director      For more information about forwarding rules, refer to Forwarding rule concepts.
      */
     loadBalancingScheme?: string | null;
     /**
@@ -3083,7 +3091,7 @@ export namespace compute_alpha {
      */
     subnetwork?: string | null;
     /**
-     * The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets are valid.
+     * The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only targetHttpProxy is valid, not targetHttpsProxy.
      */
     target?: string | null;
   }
@@ -3204,6 +3212,19 @@ export namespace compute_alpha {
     policy?: Schema$Policy;
   }
   /**
+   * A Duration represents a signed, fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like &quot;day&quot; or &quot;month&quot;. It is related to Timestamp in that the difference between two Timestamp values is a Duration and it can be added or subtracted from a Timestamp. Range is approximately +-10,000 years.  # Examples  Example 1: Compute Duration from two Timestamps in pseudo code.  Timestamp start = ...; Timestamp end = ...; Duration duration = ...;  duration.seconds = end.seconds - start.seconds; duration.nanos = end.nanos - start.nanos;  if (duration.seconds  0) { duration.seconds += 1; duration.nanos -= 1000000000; } else if (duration.seconds &gt; 0 &amp;&amp; duration.nanos &lt; 0) { duration.seconds -= 1; duration.nanos += 1000000000; }  Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.  Timestamp start = ...; Duration duration = ...; Timestamp end = ...;  end.seconds = start.seconds + duration.seconds; end.nanos = start.nanos + duration.nanos;  if (end.nanos = 1000000000) { end.seconds += 1; end.nanos -= 1000000000; }  Example 3: Compute Duration from datetime.timedelta in Python.  td = datetime.timedelta(days=3, minutes=10) duration = Duration() duration.FromTimedelta(td)  # JSON Mapping  In JSON format, the Duration type is encoded as a string rather than an object, where the string ends in the suffix &quot;s&quot; (indicating seconds) and is preceded by the number of seconds, with nanoseconds expressed as fractional seconds. For example, 3 seconds with 0 nanoseconds should be encoded in JSON format as &quot;3s&quot;, while 3 seconds and 1 nanosecond should be expressed in JSON format as &quot;3.000000001s&quot;, and 3 seconds and 1 microsecond should be expressed in JSON format as &quot;3.000001s&quot;.
+   */
+  export interface Schema$GoogleDuration {
+    /**
+     * Signed fractions of a second at nanosecond resolution of the span of time. Durations less than one second are represented with a 0 `seconds` field and a positive or negative `nanos` field. For durations of one second or more, a non-zero value for the `nanos` field must be of the same sign as the `seconds` field. Must be from -999,999,999 to +999,999,999 inclusive.
+     */
+    nanos?: number | null;
+    /**
+     * Signed seconds of the span of time. Must be from -315,576,000,000 to +315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
+     */
+    seconds?: string | null;
+  }
+  /**
    * gRPC config to access the SDS server.
    */
   export interface Schema$GrpcServiceConfig {
@@ -3282,7 +3303,7 @@ export namespace compute_alpha {
     type?: string | null;
   }
   /**
-   * Represents a Health Check resource.  Health checks are used for most GCP load balancers and managed instance group auto-healing. For more information, read Health Check Concepts.  To perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.
+   * Represents a Health Check resource.  Google Compute Engine has two Health Check resources:  * [Global](/compute/docs/reference/rest/latest/healthChecks) * [Regional](/compute/docs/reference/rest/latest/regionHealthChecks)  Internal HTTP(S) load balancers use regional health checks. All other types of GCP load balancers and managed instance group auto-healing use global health checks. For more information, read Health Check Concepts.  To perform health checks on network load balancers, you must use either httpHealthChecks or httpsHealthChecks.
    */
   export interface Schema$HealthCheck {
     /**
@@ -3439,6 +3460,10 @@ export namespace compute_alpha {
      */
     description?: string | null;
     /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a HealthCheckService. An up-to-date fingerprint must be provided in order to patch/update the HealthCheckService; Otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the HealthCheckService.
+     */
+    fingerprint?: string | null;
+    /**
      * List of URLs to the HealthCheck resources. Must have at least one HealthCheck, and not more than 10. HealthCheck resources must have portSpecification=USE_SERVING_PORT. For regional HealthCheckService, the HealthCheck must be regional and in the same region. For global HealthCheckService, HealthCheck must be global. Mix of regional and global HealthChecks is not supported. Multiple regional HealthChecks must belong to the same region. Regional HealthChecks&lt;/code? must belong to the same region as zones of NEGs.
      */
     healthChecks?: string[] | null;
@@ -3547,11 +3572,11 @@ export namespace compute_alpha {
      */
     instance?: string | null;
     /**
-     * The IP address represented by this resource.
+     * A forwarding rule IP address assigned to this instance.
      */
     ipAddress?: string | null;
     /**
-     * The port on the instance.
+     * The named port of the instance group, not necessarily the port that is health-checked.
      */
     port?: number | null;
   }
@@ -3709,11 +3734,11 @@ export namespace compute_alpha {
      */
     presentMatch?: boolean | null;
     /**
-     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will not match.  - 0.25 will not match.  - -3someString will not match.   Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will not match.  - 0.25 will not match.  - -3someString will not match.   Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Note that rangeMatch is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      */
     rangeMatch?: Schema$Int64RangeMatch;
     /**
-     * The value of the header must match the regualar expression specified in regexMatch. For regular expression grammar, please see:  en.cppreference.com/w/cpp/regex/ecmascript  For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header&#39;s port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value of the header must match the regular expression specified in regexMatch. For regular expression grammar, please see:  en.cppreference.com/w/cpp/regex/ecmascript  For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header&#39;s port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      */
     regexMatch?: string | null;
     /**
@@ -3879,7 +3904,7 @@ export namespace compute_alpha {
      */
     presentMatch?: boolean | null;
     /**
-     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch, exactMatch or regexMatch must be set.
+     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch, exactMatch or regexMatch must be set. Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      */
     regexMatch?: string | null;
   }
@@ -3896,11 +3921,11 @@ export namespace compute_alpha {
      */
     httpsRedirect?: boolean | null;
     /**
-     * The path that will be used in the redirect response instead of the one that was supplied in the request. Only one of pathRedirect or prefixRedirect must be specified. The value must be between 1 and 1024 characters.
+     * The path that will be used in the redirect response instead of the one that was supplied in the request. pathRedirect cannot be supplied together with prefixRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      */
     pathRedirect?: string | null;
     /**
-     * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request.
+     * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request. prefixRedirect cannot be supplied together with pathRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      */
     prefixRedirect?: string | null;
     /**
@@ -4018,7 +4043,7 @@ export namespace compute_alpha {
      */
     queryParameterMatches?: Schema$HttpQueryParameterMatch[];
     /**
-     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
+     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch, fullPathMatch or regexMatch must be specified. Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      */
     regexMatch?: string | null;
   }
@@ -4147,7 +4172,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents an Image resource.  You can use images to create boot disks for your VM instances. For more information, read Images. (== resource_for beta.images ==) (== resource_for v1.images ==)
+   * Represents an Image resource.  You can use images to create boot disks for your VM instances. For more information, read Images. (== resource_for {$api_version}.images ==)
    */
   export interface Schema$Image {
     /**
@@ -4334,7 +4359,7 @@ export namespace compute_alpha {
     pk?: Schema$FileContentBuffer;
   }
   /**
-   * Represents an Instance resource.  An instance is a virtual machine that is hosted on Google Cloud Platform. For more information, read Virtual Machine Instances. (== resource_for beta.instances ==) (== resource_for v1.instances ==)
+   * Represents an Instance resource.  An instance is a virtual machine that is hosted on Google Cloud Platform. For more information, read Virtual Machine Instances. (== resource_for {$api_version}.instances ==)
    */
   export interface Schema$Instance {
     /**
@@ -4431,6 +4456,10 @@ export namespace compute_alpha {
      */
     preservedStateSizeGb?: string | null;
     /**
+     * The private IPv6 google access type for the VM. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
      * Specifies the reservations that this instance can consume from.
      */
     reservationAffinity?: Schema$ReservationAffinity;
@@ -4483,6 +4512,10 @@ export namespace compute_alpha {
      */
     tags?: Schema$Tags;
     /**
+     * [Output Only] Specifies upcoming maintenance for the instance.
+     */
+    upcomingMaintenance?: Schema$UpcomingMaintenance;
+    /**
      * [Output Only] URL of the zone where the instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      */
     zone?: string | null;
@@ -4518,7 +4551,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents an Instance Group resource.  Instance Groups can be used to configure a target for load balancing.  Instance groups can either be managed or unmanaged.  To create  managed instance groups, use the instanceGroupManager or regionInstanceGroupManager resource instead.  Use zonal unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. You cannot create regional unmanaged instance groups.  For more information, read Instance groups.  (== resource_for beta.instanceGroups ==) (== resource_for v1.instanceGroups ==) (== resource_for beta.regionInstanceGroups ==) (== resource_for v1.regionInstanceGroups ==)
+   * Represents an Instance Group resource.  Instance Groups can be used to configure a target for load balancing.  Instance groups can either be managed or unmanaged.  To create  managed instance groups, use the instanceGroupManager or regionInstanceGroupManager resource instead.  Use zonal unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. You cannot create regional unmanaged instance groups.  For more information, read Instance groups.  (== resource_for {$api_version}.instanceGroups ==) (== resource_for {$api_version}.regionInstanceGroups ==)
    */
   export interface Schema$InstanceGroup {
     /**
@@ -4642,7 +4675,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Managed Instance Group resource.  An instance group is a collection of VM instances that you can manage as a single entity. For more information, read Instance groups.  For zonal Managed Instance Group, use the instanceGroupManagers resource.  For regional Managed Instance Group, use the regionInstanceGroupManagers resource. (== resource_for beta.instanceGroupManagers ==) (== resource_for v1.instanceGroupManagers ==) (== resource_for beta.regionInstanceGroupManagers ==) (== resource_for v1.regionInstanceGroupManagers ==)
+   * Represents a Managed Instance Group resource.  An instance group is a collection of VM instances that you can manage as a single entity. For more information, read Instance groups.  For zonal Managed Instance Group, use the instanceGroupManagers resource.  For regional Managed Instance Group, use the regionInstanceGroupManagers resource. (== resource_for {$api_version}.instanceGroupManagers ==) (== resource_for {$api_version}.regionInstanceGroupManagers ==)
    */
   export interface Schema$InstanceGroupManager {
     /**
@@ -4734,7 +4767,7 @@ export namespace compute_alpha {
      */
     targetPools?: string[] | null;
     /**
-     * The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
+     * The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
      */
     targetSize?: number | null;
     /**
@@ -5353,6 +5386,10 @@ export namespace compute_alpha {
      */
     postKeyRevocationActionType?: string | null;
     /**
+     * The private IPv6 google access type for the VM. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
      * Specifies the reservations that this instance can consume from.
      */
     reservationAffinity?: Schema$ReservationAffinity;
@@ -5499,7 +5536,7 @@ export namespace compute_alpha {
     instanceEncryptionKey?: Schema$CustomerEncryptionKey;
   }
   /**
-   * Represents an Instance Template resource.  You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates. (== resource_for beta.instanceTemplates ==) (== resource_for v1.instanceTemplates ==)
+   * Represents an Instance Template resource.  You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates. (== resource_for {$api_version}.instanceTemplates ==)
    */
   export interface Schema$InstanceTemplate {
     /**
@@ -5604,7 +5641,7 @@ export namespace compute_alpha {
     rangeStart?: string | null;
   }
   /**
-   * Represents an Interconnect resource.  An Interconnect resource is a dedicated connection between the GCP network and your on-premises network. For more information, read the  Dedicated Interconnect Overview. (== resource_for v1.interconnects ==) (== resource_for beta.interconnects ==)
+   * Represents an Interconnect resource.  An Interconnect resource is a dedicated connection between the GCP network and your on-premises network. For more information, read the  Dedicated Interconnect Overview. (== resource_for {$api_version}.interconnects ==)
    */
   export interface Schema$Interconnect {
     /**
@@ -5709,7 +5746,7 @@ export namespace compute_alpha {
     state?: string | null;
   }
   /**
-   * Represents an Interconnect Attachment (VLAN) resource.  You can use Interconnect attachments (VLANS) to connect your Virtual Private Cloud networks to your on-premises networks through an Interconnect. For more information, read  Creating VLAN Attachments. (== resource_for beta.interconnectAttachments ==) (== resource_for v1.interconnectAttachments ==)
+   * Represents an Interconnect Attachment (VLAN) resource.  You can use Interconnect attachments (VLANS) to connect your Virtual Private Cloud networks to your on-premises networks through an Interconnect. For more information, read  Creating VLAN Attachments. (== resource_for {$api_version}.interconnectAttachments ==)
    */
   export interface Schema$InterconnectAttachment {
     /**
@@ -5721,7 +5758,7 @@ export namespace compute_alpha {
      */
     bandwidth?: string | null;
     /**
-     * Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google?s edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
+     * Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google&#39;s edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
      */
     candidateSubnets?: string[] | null;
     /**
@@ -5893,7 +5930,7 @@ export namespace compute_alpha {
    */
   export interface Schema$InterconnectAttachmentPartnerMetadata {
     /**
-     * Plain text name of the Interconnect this attachment is connected to, as displayed in the Partner?s portal. For instance &quot;Chicago 1&quot;. This value may be validated to match approved Partner values.
+     * Plain text name of the Interconnect this attachment is connected to, as displayed in the Partner&#39;s portal. For instance &quot;Chicago 1&quot;. This value may be validated to match approved Partner values.
      */
     interconnectName?: string | null;
     /**
@@ -5901,7 +5938,7 @@ export namespace compute_alpha {
      */
     partnerName?: string | null;
     /**
-     * URL of the Partner?s portal for this Attachment. Partners may customise this to be a deep link to the specific resource on the Partner portal. This value may be validated to match approved Partner values.
+     * URL of the Partner&#39;s portal for this Attachment. Partners may customise this to be a deep link to the specific resource on the Partner portal. This value may be validated to match approved Partner values.
      */
     portalUrl?: string | null;
   }
@@ -5946,7 +5983,7 @@ export namespace compute_alpha {
     googleDemarcId?: string | null;
   }
   /**
-   * Diagnostics information about interconnect, contains detailed and current technical information about Google?s side of the connection.
+   * Diagnostics information about interconnect, contains detailed and current technical information about Google&#39;s side of the connection.
    */
   export interface Schema$InterconnectDiagnostics {
     /**
@@ -5977,11 +6014,11 @@ export namespace compute_alpha {
   }
   export interface Schema$InterconnectDiagnosticsLinkLACPStatus {
     /**
-     * System ID of the port on Google?s side of the LACP exchange.
+     * System ID of the port on Google&#39;s side of the LACP exchange.
      */
     googleSystemId?: string | null;
     /**
-     * System ID of the port on the neighbor?s side of the LACP exchange.
+     * System ID of the port on the neighbor&#39;s side of the LACP exchange.
      */
     neighborSystemId?: string | null;
     /**
@@ -6329,7 +6366,7 @@ export namespace compute_alpha {
      */
     issuer?: string | null;
     /**
-     * The provider?s public key set to validate the signature of the JWT.
+     * The provider&#39;s public key set to validate the signature of the JWT.
      */
     jwksPublicKeys?: string | null;
     /**
@@ -6449,7 +6486,7 @@ export namespace compute_alpha {
     selfLink?: string | null;
   }
   /**
-   * Commitment for a particular license resource (a License Commitment is composed of one or more of these).
+   * Commitment for a particular license resource.
    */
   export interface Schema$LicenseResourceCommitment {
     /**
@@ -6585,7 +6622,7 @@ export namespace compute_alpha {
     logMode?: string | null;
   }
   /**
-   * Machine image resource.
+   * Represents a machine image resource.  A machine image is a Compute Engine resource that stores all the configuration, metadata, permissions, and data from one or more disks required to create a Virtual machine (VM) instance. For more information, see Machine images. (== resource_for {$api_version}.machineImages ==)
    */
   export interface Schema$MachineImage {
     /**
@@ -6683,7 +6720,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Machine Type resource.  You can use specific machine types for your VM instances based on performance and pricing requirements. For more information, read Machine Types. (== resource_for v1.machineTypes ==) (== resource_for beta.machineTypes ==)
+   * Represents a Machine Type resource.  You can use specific machine types for your VM instances based on performance and pricing requirements. For more information, read Machine Types. (== resource_for {$api_version}.machineTypes ==)
    */
   export interface Schema$MachineType {
     /**
@@ -6980,7 +7017,7 @@ export namespace compute_alpha {
     port?: number | null;
   }
   /**
-   * Represents a VPC Network resource.  Networks connect resources to each other and to the internet. For more information, read Virtual Private Cloud (VPC) Network. (== resource_for v1.networks ==) (== resource_for beta.networks ==)
+   * Represents a VPC Network resource.  Networks connect resources to each other and to the internet. For more information, read Virtual Private Cloud (VPC) Network. (== resource_for {$api_version}.networks ==)
    */
   export interface Schema$Network {
     /**
@@ -6991,10 +7028,6 @@ export namespace compute_alpha {
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
     creationTimestamp?: string | null;
-    /**
-     * [Output Only] Type of VM-to-VM traffic encryption for this network.
-     */
-    crossVmEncryption?: string | null;
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      */
@@ -7015,10 +7048,6 @@ export namespace compute_alpha {
      * [Output Only] Type of the resource. Always compute#network for networks.
      */
     kind?: string | null;
-    /**
-     * [Output Only] Type of LB-to-VM traffic encryption for this network.
-     */
-    loadBalancerVmEncryption?: string | null;
     /**
      * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes.
      */
@@ -7078,7 +7107,7 @@ export namespace compute_alpha {
     port?: number | null;
   }
   /**
-   * Represents a collection of network endpoints.  For more information read Setting up network endpoint groups in load balancing. (== resource_for v1.networkEndpointGroups ==) (== resource_for beta.networkEndpointGroups ==) Next ID: 21
+   * Represents a collection of network endpoints.  For more information read Setting up network endpoint groups in load balancing. (== resource_for {$api_version}.networkEndpointGroups ==) Next ID: 21
    */
   export interface Schema$NetworkEndpointGroup {
     /**
@@ -7214,7 +7243,7 @@ export namespace compute_alpha {
    */
   export interface Schema$NetworkEndpointGroupCloudFunction {
     /**
-     * A user-defined name of the Cloud Function.  The service name must be 1-63 characters long, and comply with RFC1035.  Example value: &quot;func1&quot;.
+     * A user-defined name of the Cloud Function.  The function name is case-sensitive and must be 1-63 characters long.  Example value: &quot;func1&quot;.
      */
     function?: string | null;
     /**
@@ -7227,7 +7256,7 @@ export namespace compute_alpha {
    */
   export interface Schema$NetworkEndpointGroupCloudRun {
     /**
-     * Cloud Run service is the main resource of Cloud Run.  The tag must be 1-63 characters long, and comply with RFC1035.  Example value: &quot;run-service&quot;.
+     * Cloud Run service is the main resource of Cloud Run.  The service must be 1-63 characters long, and comply with RFC1035.  Example value: &quot;run-service&quot;.
      */
     service?: string | null;
     /**
@@ -7560,7 +7589,7 @@ export namespace compute_alpha {
     networkPeering?: Schema$NetworkPeering;
   }
   /**
-   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for beta.nodeGroups ==) (== resource_for v1.nodeGroups ==)
+   * Represent a sole-tenant Node Group resource.  A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for {$api_version}.nodeGroups ==)
    */
   export interface Schema$NodeGroup {
     /**
@@ -7693,6 +7722,10 @@ export namespace compute_alpha {
   }
   export interface Schema$NodeGroupNode {
     /**
+     * Accelerators for this node.
+     */
+    accelerators?: Schema$AcceleratorConfig[];
+    /**
      * Local disk configurations.
      */
     disks?: Schema$LocalDisk[];
@@ -7774,9 +7807,6 @@ export namespace compute_alpha {
       message?: string;
     } | null;
   }
-  export interface Schema$NodeGroupsSetAutoscalingPolicyRequest {
-    autoscalingPolicy?: Schema$NodeGroupAutoscalingPolicy;
-  }
   export interface Schema$NodeGroupsSetNodeTemplateRequest {
     /**
      * Full or partial URL of the node template resource to be updated for this node group.
@@ -7784,9 +7814,10 @@ export namespace compute_alpha {
     nodeTemplate?: string | null;
   }
   /**
-   * Represent a sole-tenant Node Template resource.  You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for beta.nodeTemplates ==) (== resource_for v1.nodeTemplates ==)
+   * Represent a sole-tenant Node Template resource.  You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for {$api_version}.nodeTemplates ==) (== NextID: 18 ==)
    */
   export interface Schema$NodeTemplate {
+    accelerators?: Schema$AcceleratorConfig[];
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
@@ -7928,7 +7959,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represent a sole-tenant Node Type resource.  Each node within a node group must have a node type. A node type specifies the total amount of cores and memory for that node. Currently, the only available node type is n1-node-96-624 node type that has 96 vCPUs and 624 GB of memory, available in multiple zones. For more information read Node types. (== resource_for beta.nodeTypes ==) (== resource_for v1.nodeTypes ==)
+   * Represent a sole-tenant Node Type resource.  Each node within a node group must have a node type. A node type specifies the total amount of cores and memory for that node. Currently, the only available node type is n1-node-96-624 node type that has 96 vCPUs and 624 GB of memory, available in multiple zones. For more information read Node types. (== resource_for {$api_version}.nodeTypes ==)
    */
   export interface Schema$NodeType {
     /**
@@ -8154,7 +8185,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents an Operation resource.  You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.  Operations can be global, regional or zonal.   - For global operations, use the globalOperations resource.  - For regional operations, use the regionOperations resource.  - For zonal operations, use the zonalOperations resource.    For more information, read  Global, Regional, and Zonal Resources. (== resource_for v1.globalOperations ==) (== resource_for beta.globalOperations ==) (== resource_for v1.regionOperations ==) (== resource_for beta.regionOperations ==) (== resource_for v1.zoneOperations ==) (== resource_for beta.zoneOperations ==)
+   * Represents an Operation resource.  Google Compute Engine has three Operation resources:  * [Global](/compute/docs/reference/rest/latest/globalOperations) * [Regional](/compute/docs/reference/rest/latest/regionOperations) * [Zonal](/compute/docs/reference/rest/latest/zoneOperations)  You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.  Operations can be global, regional or zonal.   - For global operations, use the globalOperations resource.  - For regional operations, use the regionOperations resource.  - For zonal operations, use the zonalOperations resource.    For more information, read  Global, Regional, and Zonal Resources. (== resource_for {$api_version}.globalOperations ==) (== resource_for {$api_version}.regionOperations ==) (== resource_for {$api_version}.zoneOperations ==)
    */
   export interface Schema$Operation {
     /**
@@ -8669,7 +8700,7 @@ export namespace compute_alpha {
      */
     pathRules?: Schema$PathRule[];
     /**
-     * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number. Within a given pathMatcher, only one of pathRules or routeRules must be set. routeRules are not supported in UrlMaps intended for External Load balancers.
+     * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number. Within a given pathMatcher, you can set only one of pathRules or routeRules.
      */
     routeRules?: Schema$HttpRouteRule[];
   }
@@ -8876,7 +8907,7 @@ export namespace compute_alpha {
     users?: string[] | null;
   }
   /**
-   * Represents a Project resource.  A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the  Resource Hierarchy. (== resource_for v1.projects ==) (== resource_for beta.projects ==)
+   * Represents a Project resource.  A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the  Resource Hierarchy. (== resource_for {$api_version}.projects ==)
    */
   export interface Schema$Project {
     /**
@@ -9135,7 +9166,7 @@ export namespace compute_alpha {
     /**
      * [Output Only] The status of the public delegated prefix.
      */
-    status?: any | null;
+    status?: string | null;
   }
   export interface Schema$PublicDelegatedPrefixAggregatedList {
     /**
@@ -9242,7 +9273,7 @@ export namespace compute_alpha {
     /**
      * [Output Only] The status of the sub public delegated prefix.
      */
-    status?: any | null;
+    status?: string | null;
   }
   /**
    * A quotas entry.
@@ -9301,7 +9332,7 @@ export namespace compute_alpha {
     target?: string | null;
   }
   /**
-   * Represents a Region resource.  A region is a geographical area where a resource is located. For more information, read Regions and Zones. (== resource_for beta.regions ==) (== resource_for v1.regions ==)
+   * Represents a Region resource.  A region is a geographical area where a resource is located. For more information, read Regions and Zones. (== resource_for {$api_version}.regions ==)
    */
   export interface Schema$Region {
     /**
@@ -9384,7 +9415,7 @@ export namespace compute_alpha {
   }
   export interface Schema$RegionCommitmentsUpdateReservationsRequest {
     /**
-     * List of two reservations to transfer GPUs and local SSD between.
+     * A list of two reservations to transfer GPUs and local SSD between.
      */
     reservations?: Schema$Reservation[];
   }
@@ -9763,7 +9794,7 @@ export namespace compute_alpha {
     backendService?: string | null;
   }
   /**
-   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for beta.reservations ==) (== resource_for v1.reservations ==)
+   * Represents a reservation resource. A reservation ensures that capacity is held in a specific zone even if the reserved VMs are not running. For more information, read  Reserving zonal resources. (== resource_for {$api_version}.reservations ==)
    */
   export interface Schema$Reservation {
     /**
@@ -10167,7 +10198,7 @@ export namespace compute_alpha {
    */
   export interface Schema$ResourcePolicySnapshotSchedulePolicySnapshotProperties {
     /**
-     * Indication to perform a ?guest aware? snapshot.
+     * Indication to perform a &#39;guest aware&#39; snapshot.
      */
     guestFlush?: boolean | null;
     /**
@@ -10222,7 +10253,7 @@ export namespace compute_alpha {
     startTime?: string | null;
   }
   /**
-   * Represents a Route resource.  A route defines a path from VM instances in the VPC network to a specific destination. This destination can be inside or outside the VPC network. For more information, read the Routes overview. (== resource_for beta.routes ==) (== resource_for v1.routes ==)
+   * Represents a Route resource.  A route defines a path from VM instances in the VPC network to a specific destination. This destination can be inside or outside the VPC network. For more information, read the Routes overview. (== resource_for {$api_version}.routes ==)
    */
   export interface Schema$Route {
     /**
@@ -10464,7 +10495,7 @@ export namespace compute_alpha {
      */
     asn?: number | null;
     /**
-     * The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer?s hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 1 and 120. The default is 20.
+     * The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer&#39;s hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 1 and 120. The default is 20.
      */
     keepaliveInterval?: number | null;
   }
@@ -10962,6 +10993,19 @@ export namespace compute_alpha {
     values?: string[] | null;
   }
   /**
+   * An instance&#39;s screenshot.
+   */
+  export interface Schema$Screenshot {
+    /**
+     * [Output Only] The Base64-encoded screenshot data.
+     */
+    contents?: string | null;
+    /**
+     * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
+     */
+    kind?: string | null;
+  }
+  /**
    * The configuration to access the SDS server.
    */
   export interface Schema$SdsConfig {
@@ -10977,11 +11021,11 @@ export namespace compute_alpha {
     wafRules?: Schema$PreconfiguredWafSet;
   }
   /**
-   * Represents a Cloud Armor Security Policy resource.  Only external backend services that use load balancers can reference a Security Policy. For more information, read  Cloud Armor Security Policy Concepts. (== resource_for v1.securityPolicies ==) (== resource_for beta.securityPolicies ==)
+   * Represents a Cloud Armor Security Policy resource.  Only external backend services that use load balancers can reference a Security Policy. For more information, read  Cloud Armor Security Policy Concepts. (== resource_for {$api_version}.securityPolicies ==)
    */
   export interface Schema$SecurityPolicy {
     /**
-     * A list of assocations that belong to this policy.
+     * A list of associations that belong to this policy.
      */
     associations?: Schema$SecurityPolicyAssociation[];
     cloudArmorConfig?: Schema$SecurityPolicyCloudArmorConfig;
@@ -10993,6 +11037,10 @@ export namespace compute_alpha {
      * An optional description of this resource. Provide this property when you create the resource.
      */
     description?: string | null;
+    /**
+     * User-provided name of the Organization security plicy. The name should be unique in the organization in which the security policy is created. This should only be used when SecurityPolicyType is FIREWALL. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     */
+    displayName?: string | null;
     /**
      * Specifies a fingerprint for this resource, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata, otherwise the request will fail with error 412 conditionNotMet.  To see the latest fingerprint, make get() request to the security policy.
      */
@@ -11017,6 +11065,10 @@ export namespace compute_alpha {
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     name?: string | null;
+    /**
+     * [Output Only] The parent of the security policy.
+     */
+    parent?: string | null;
     /**
      * A list of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match &quot;*&quot;). If no rules are provided when creating a security policy, a default rule with action &quot;allow&quot; will be added.
      */
@@ -11043,6 +11095,10 @@ export namespace compute_alpha {
      * The resource that the security policy is attached to.
      */
     attachmentId?: string | null;
+    /**
+     * [Output Only] The display name of the security policy of the association.
+     */
+    displayName?: string | null;
     /**
      * The name for an association.
      */
@@ -11115,7 +11171,7 @@ export namespace compute_alpha {
      */
     kind?: string | null;
     /**
-     * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding ?action? is enforced.
+     * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding &#39;action&#39; is enforced.
      */
     match?: Schema$SecurityPolicyRuleMatcher;
     /**
@@ -11135,9 +11191,13 @@ export namespace compute_alpha {
      */
     ruleTupleCount?: number | null;
     /**
-     * A list of network resource URLs to which this rule applies. This field allows you to control which network?s VMs get this rule. If this field is left blank, all VMs within the organization will receive the rule.  This field may only be specified when versioned_expr is set to FIREWALL.
+     * A list of network resource URLs to which this rule applies. This field allows you to control which network&#39;s VMs get this rule. If this field is left blank, all VMs within the organization will receive the rule.  This field may only be specified when versioned_expr is set to FIREWALL.
      */
     targetResources?: string[] | null;
+    /**
+     * A list of service accounts indicating the sets of instances that are applied with this rule.
+     */
+    targetServiceAccounts?: string[] | null;
   }
   /**
    * Represents a match condition that incoming traffic is evaluated against. Exactly one field must be specified.
@@ -11166,11 +11226,25 @@ export namespace compute_alpha {
      */
     destPorts?: Schema$SecurityPolicyRuleMatcherConfigDestinationPort[];
     /**
+     * Pairs of IP protocols and ports that the rule should match.  This field may only be specified when versioned_expr is set to FIREWALL.
+     */
+    layer4Configs?: Schema$SecurityPolicyRuleMatcherConfigLayer4Config[];
+    /**
      * CIDR IP address range.
      */
     srcIpRanges?: string[] | null;
   }
   export interface Schema$SecurityPolicyRuleMatcherConfigDestinationPort {
+    /**
+     * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
+     */
+    ipProtocol?: string | null;
+    /**
+     * An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port.  Example inputs include: [&quot;22&quot;], [&quot;80&quot;,&quot;443&quot;], and [&quot;12345-12349&quot;].  This field may only be specified when versioned_expr is set to FIREWALL.
+     */
+    ports?: string[] | null;
+  }
+  export interface Schema$SecurityPolicyRuleMatcherConfigLayer4Config {
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
      */
@@ -11403,7 +11477,7 @@ export namespace compute_alpha {
     keyValue?: string | null;
   }
   /**
-   * Represents a Persistent Disk Snapshot resource.  You can use snapshots to back up data on a regular interval. For more information, read  Creating persistent disk snapshots. (== resource_for beta.snapshots ==) (== resource_for v1.snapshots ==)
+   * Represents a Persistent Disk Snapshot resource.  You can use snapshots to back up data on a regular interval. For more information, read  Creating persistent disk snapshots. (== resource_for {$api_version}.snapshots ==)
    */
   export interface Schema$Snapshot {
     /**
@@ -11606,7 +11680,7 @@ export namespace compute_alpha {
     tags?: Schema$Tags;
   }
   /**
-   * Represents an SSL Certificate resource.  This SSL certificate resource also contains a private key. You can use SSL keys and certificates to secure connections to a load balancer. For more information, read  Creating and Using SSL Certificates. (== resource_for beta.sslCertificates ==) (== resource_for v1.sslCertificates ==) (== resource_for beta.regionSslCertificates ==) (== resource_for v1.regionSslCertificates ==) Next ID: 17
+   * Represents an SSL Certificate resource.  Google Compute Engine has two SSL Certificate resources:  * [Global](/compute/docs/reference/rest/latest/sslCertificates) * [Regional](/compute/docs/reference/rest/latest/regionSslCertificates)  - sslCertificates are used by: - external HTTPS load balancers - SSL proxy load balancers  - regionSslCertificates are used by: - internal HTTPS load balancers  This SSL certificate resource also contains a private key. You can use SSL keys and certificates to secure connections to a load balancer. For more information, read  Creating and Using SSL Certificates. (== resource_for {$api_version}.sslCertificates ==) (== resource_for {$api_version}.regionSslCertificates ==) Next ID: 17
    */
   export interface Schema$SslCertificate {
     /**
@@ -11837,7 +11911,7 @@ export namespace compute_alpha {
     features?: string[] | null;
   }
   /**
-   * Represents a Cloud Armor Security Policy resource.  Only external backend services used by HTTP or HTTPS load balancers can reference a Security Policy. For more information, read read  Cloud Armor Security Policy Concepts. (== resource_for beta.sslPolicies ==) (== resource_for v1.sslPolicies ==)
+   * Represents a Cloud Armor Security Policy resource.  Only external backend services used by HTTP or HTTPS load balancers can reference a Security Policy. For more information, read read  Cloud Armor Security Policy Concepts. (== resource_for {$api_version}.sslPolicies ==)
    */
   export interface Schema$SslPolicy {
     /**
@@ -11928,7 +12002,7 @@ export namespace compute_alpha {
     autoDelete?: string | null;
   }
   /**
-   * Represents a Subnetwork resource.  A subnetwork (also known as a subnet) is a logical partition of a Virtual Private Cloud network with one primary IP range and zero or more secondary IP ranges. For more information, read  Virtual Private Cloud (VPC) Network. (== resource_for beta.subnetworks ==) (== resource_for v1.subnetworks ==)
+   * Represents a Subnetwork resource.  A subnetwork (also known as a subnet) is a logical partition of a Virtual Private Cloud network with one primary IP range and zero or more secondary IP ranges. For more information, read  Virtual Private Cloud (VPC) Network. (== resource_for {$api_version}.subnetworks ==)
    */
   export interface Schema$Subnetwork {
     /**
@@ -12008,7 +12082,7 @@ export namespace compute_alpha {
      */
     privateIpv6GoogleAccess?: string | null;
     /**
-     * The service accounts can be used to selectively turn on Private IPv6 Google Access only on the VMs primary service account matching the value. This value only takes effect when PrivateIpv6GoogleAccess is ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE_FOR_SERVICE_ACCOUNTS or ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE_FOR_SERVICE_ACCOUNTS.
+     * Deprecated in favor of enable PrivateIpv6GoogleAccess on instance directly. The service accounts can be used to selectively turn on Private IPv6 Google Access only on the VMs primary service account matching the value. This value only takes effect when PrivateIpv6GoogleAccess is ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE_FOR_SERVICE_ACCOUNTS or ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE_FOR_SERVICE_ACCOUNTS.
      */
     privateIpv6GoogleAccessServiceAccounts?: string[] | null;
     /**
@@ -12208,7 +12282,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Target HTTP Proxy resource.  A target HTTP proxy is a component of GCP HTTP load balancers. Forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for beta.targetHttpProxies ==) (== resource_for v1.targetHttpProxies ==) (== resource_for beta.regionTargetHttpProxies ==) (== resource_for v1.regionTargetHttpProxies ==)
+   * Represents a Target HTTP Proxy resource.  Google Compute Engine has two Target HTTP Proxy resources:  * [Global](/compute/docs/reference/rest/latest/targetHttpProxies) * [Regional](/compute/docs/reference/rest/latest/regionTargetHttpProxies)  A target HTTP proxy is a component of GCP HTTP load balancers.  * targetHttpProxies are used by external HTTP load balancers and Traffic Director. * regionTargetHttpProxies are used by internal HTTP load balancers.  Forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for {$api_version}.targetHttpProxies ==) (== resource_for {$api_version}.regionTargetHttpProxies ==)
    */
   export interface Schema$TargetHttpProxy {
     /**
@@ -12342,7 +12416,7 @@ export namespace compute_alpha {
     sslCertificates?: string[] | null;
   }
   /**
-   * Represents a Target HTTPS Proxy resource.  A target HTTPS proxy is a component of GCP HTTPS load balancers. Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for beta.targetHttpsProxies ==) (== resource_for v1.targetHttpsProxies ==) (== resource_for beta.regionTargetHttpsProxies ==) (== resource_for v1.regionTargetHttpsProxies ==)
+   * Represents a Target HTTPS Proxy resource.  Google Compute Engine has two Target HTTPS Proxy resources:  * [Global](/compute/docs/reference/rest/latest/targetHttpsProxies) * [Regional](/compute/docs/reference/rest/latest/regionTargetHttpsProxies)  A target HTTPS proxy is a component of GCP HTTPS load balancers.  * targetHttpsProxies are used by external HTTPS load balancers. * regionTargetHttpsProxies are used by internal HTTPS load balancers.  Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for {$api_version}.targetHttpsProxies ==) (== resource_for {$api_version}.regionTargetHttpsProxies ==)
    */
   export interface Schema$TargetHttpsProxy {
     /**
@@ -12462,7 +12536,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Target Instance resource.  You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, read Target instances. (== resource_for beta.targetInstances ==) (== resource_for v1.targetInstances ==)
+   * Represents a Target Instance resource.  You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, read Target instances. (== resource_for {$api_version}.targetInstances ==)
    */
   export interface Schema$TargetInstance {
     /**
@@ -12493,6 +12567,10 @@ export namespace compute_alpha {
      * NAT option controlling how IPs are NAT&#39;ed to the instance. Currently only NO_NAT (default value) is supported.
      */
     natPolicy?: string | null;
+    /**
+     * The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     */
+    network?: string | null;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -12584,7 +12662,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Target Pool resource.  Target pools are used for network TCP/UDP load balancing. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools. (== resource_for beta.targetPools ==) (== resource_for v1.targetPools ==)
+   * Represents a Target Pool resource.  Target pools are used for network TCP/UDP load balancing. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools. (== resource_for {$api_version}.targetPools ==)
    */
   export interface Schema$TargetPool {
     /**
@@ -12770,7 +12848,7 @@ export namespace compute_alpha {
     sslCertificates?: string[] | null;
   }
   /**
-   * Represents a Target SSL Proxy resource.  A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies. (== resource_for beta.targetSslProxies ==) (== resource_for v1.targetSslProxies ==)
+   * Represents a Target SSL Proxy resource.  A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies. (== resource_for {$api_version}.targetSslProxies ==)
    */
   export interface Schema$TargetSslProxy {
     /**
@@ -12860,7 +12938,7 @@ export namespace compute_alpha {
     proxyHeader?: string | null;
   }
   /**
-   * Represents a Target TCP Proxy resource.  A target TCP proxy is a component of a TCP Proxy load balancer. Global forwarding rules reference target TCP proxy, and the target proxy then references an external backend service. For more information, read TCP Proxy Load Balancing Concepts. (== resource_for beta.targetTcpProxies ==) (== resource_for v1.targetTcpProxies ==)
+   * Represents a Target TCP Proxy resource.  A target TCP proxy is a component of a TCP Proxy load balancer. Global forwarding rules reference target TCP proxy, and the target proxy then references an external backend service. For more information, read TCP Proxy Load Balancing Concepts. (== resource_for {$api_version}.targetTcpProxies ==)
    */
   export interface Schema$TargetTcpProxy {
     /**
@@ -12930,7 +13008,7 @@ export namespace compute_alpha {
     } | null;
   }
   /**
-   * Represents a Target VPN Gateway resource.  The target VPN gateway resource represents a Classic Cloud VPN gateway. For more information, read the the Cloud VPN Overview. (== resource_for beta.targetVpnGateways ==) (== resource_for v1.targetVpnGateways ==)
+   * Represents a Target VPN Gateway resource.  The target VPN gateway resource represents a Classic Cloud VPN gateway. For more information, read the the Cloud VPN Overview. (== resource_for {$api_version}.targetVpnGateways ==)
    */
   export interface Schema$TargetVpnGateway {
     /**
@@ -13186,7 +13264,24 @@ export namespace compute_alpha {
     response?: string | null;
   }
   /**
-   * Represents a URL Map resource.  A URL map resource is a component of certain types of load balancers. This resource defines mappings from host names and URL paths to either a backend service or a backend bucket.  To use this resource, the backend service must have a loadBalancingScheme of either EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED For more information, read URL Map Concepts.
+   * Upcoming Maintenance notification information.
+   */
+  export interface Schema$UpcomingMaintenance {
+    /**
+     * [Output Only] The date when the maintenance will take place. This value is in RFC3339 text format.
+     */
+    date?: string | null;
+    /**
+     * [Output Only] The time when the maintenance will take place. This value is in RFC3339 text format.
+     */
+    time?: string | null;
+    /**
+     * Defines the type of maintenance.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents a URL Map resource.  Google Compute Engine has two URL Map resources:  * [Global](/compute/docs/reference/rest/latest/urlMaps) * [Regional](/compute/docs/reference/rest/latest/regionUrlMaps)  A URL map resource is a component of certain types of GCP load balancers and Traffic Director.  * urlMaps are used by external HTTP(S) load balancers and Traffic Director. * regionUrlMaps are used by internal HTTP(S) load balancers.  This resource defines mappings from host names and URL paths to either a backend service or a backend bucket.  To use the global urlMaps resource, the backend service must have a loadBalancingScheme of either EXTERNAL or INTERNAL_SELF_MANAGED. To use the regionUrlMaps resource, the backend service must have a loadBalancingScheme of INTERNAL_MANAGED. For more information, read URL Map Concepts.
    */
   export interface Schema$UrlMap {
     /**
@@ -13745,7 +13840,7 @@ export namespace compute_alpha {
     ipAddress?: string | null;
   }
   /**
-   * Represents a Cloud VPN Tunnel resource.  For more information about VPN, read the the Cloud VPN Overview. (== resource_for beta.vpnTunnels ==) (== resource_for v1.vpnTunnels ==)
+   * Represents a Cloud VPN Tunnel resource.  For more information about VPN, read the the Cloud VPN Overview. (== resource_for {$api_version}.vpnTunnels ==)
    */
   export interface Schema$VpnTunnel {
     /**
@@ -14003,7 +14098,7 @@ export namespace compute_alpha {
     type?: string | null;
   }
   /**
-   * Represents a Zone resource.  A zone is a deployment area. These deployment areas are subsets of a region. For example the zone us-east1-a is located in the us-east1 region. For more information, read Regions and Zones. (== resource_for beta.zones ==) (== resource_for v1.zones ==)
+   * Represents a Zone resource.  A zone is a deployment area. These deployment areas are subsets of a region. For example the zone us-east1-a is located in the us-east1 region. For more information, read Regions and Zones. (== resource_for {$api_version}.zones ==)
    */
   export interface Schema$Zone {
     /**
@@ -24740,7 +24835,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOperations.wait
-     * @desc Waits for the specified Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
+     * @desc Waits for the specified Operation resource to return as DONE or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the GET method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be DONE or still in progress.  This method is called on a best-effort basis. Specifically:   - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds.  - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not DONE.
      * @alias compute.globalOperations.wait
      * @memberOf! ()
      *
@@ -25156,7 +25251,7 @@ export namespace compute_alpha {
 
     /**
      * compute.globalOrganizationOperations.wait
-     * @desc Waits for the specified Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
+     * @desc Waits for the specified Operation resource to return as DONE or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the GET method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be DONE or still in progress.  This method is called on a best-effort basis. Specifically:   - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds.  - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not DONE.
      * @alias compute.globalOrganizationOperations.wait
      * @memberOf! ()
      *
@@ -33649,6 +33744,82 @@ export namespace compute_alpha {
     }
 
     /**
+     * compute.instances.getScreenshot
+     * @desc Returns the screenshot from the specified instance.
+     * @alias compute.instances.getScreenshot
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getScreenshot(
+      params?: Params$Resource$Instances$Getscreenshot,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Screenshot>;
+    getScreenshot(
+      params: Params$Resource$Instances$Getscreenshot,
+      options: MethodOptions | BodyResponseCallback<Schema$Screenshot>,
+      callback: BodyResponseCallback<Schema$Screenshot>
+    ): void;
+    getScreenshot(
+      params: Params$Resource$Instances$Getscreenshot,
+      callback: BodyResponseCallback<Schema$Screenshot>
+    ): void;
+    getScreenshot(callback: BodyResponseCallback<Schema$Screenshot>): void;
+    getScreenshot(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Getscreenshot
+        | BodyResponseCallback<Schema$Screenshot>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Screenshot>,
+      callback?: BodyResponseCallback<Schema$Screenshot>
+    ): void | GaxiosPromise<Schema$Screenshot> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Getscreenshot;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getscreenshot;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/screenshot'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Screenshot>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Screenshot>(parameters);
+      }
+    }
+
+    /**
      * compute.instances.getSerialPortOutput
      * @desc Returns the last 1 MB of serial port output from the specified instance.
      * @alias compute.instances.getSerialPortOutput
@@ -36709,6 +36880,26 @@ export namespace compute_alpha {
      * Name or id of the resource for this request.
      */
     resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Getscreenshot
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
     /**
      * The name of the zone for this request.
      */
@@ -46141,86 +46332,6 @@ export namespace compute_alpha {
     }
 
     /**
-     * compute.nodeGroups.setAutoscalingPolicy
-     * @desc Sets the autoscaling policy of the node group.
-     * @alias compute.nodeGroups.setAutoscalingPolicy
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.nodeGroup Name of the NodeGroup resource to update.
-     * @param {string} params.project Project ID for this request.
-     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {().NodeGroupsSetAutoscalingPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setAutoscalingPolicy(
-      params?: Params$Resource$Nodegroups$Setautoscalingpolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    setAutoscalingPolicy(
-      params: Params$Resource$Nodegroups$Setautoscalingpolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    setAutoscalingPolicy(
-      params: Params$Resource$Nodegroups$Setautoscalingpolicy,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    setAutoscalingPolicy(
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    setAutoscalingPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Nodegroups$Setautoscalingpolicy
-        | BodyResponseCallback<Schema$Operation>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Nodegroups$Setautoscalingpolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Nodegroups$Setautoscalingpolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/compute/alpha/projects/{project}/zones/{zone}/nodeGroups/{nodeGroup}/setAutoscalingPolicy'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['project', 'zone', 'nodeGroup'],
-        pathParams: ['nodeGroup', 'project', 'zone'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * compute.nodeGroups.setIamPolicy
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
      * @alias compute.nodeGroups.setIamPolicy
@@ -46735,35 +46846,6 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$NodeGroup;
-  }
-  export interface Params$Resource$Nodegroups$Setautoscalingpolicy
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Name of the NodeGroup resource to update.
-     */
-    nodeGroup?: string;
-    /**
-     * Project ID for this request.
-     */
-    project?: string;
-    /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * The name of the zone for this request.
-     */
-    zone?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$NodeGroupsSetAutoscalingPolicyRequest;
   }
   export interface Params$Resource$Nodegroups$Setiampolicy
     extends StandardParameters {
@@ -54739,7 +54821,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionCommitments.updateReservations
-     * @desc Update the shape of reservations for GPUS/Local SSDs of reservations within the commitments.
+     * @desc Transfers GPUs or local SSDs between reservations within commitments.
      * @alias compute.regionCommitments.updateReservations
      * @memberOf! ()
      *
@@ -57511,6 +57593,84 @@ export namespace compute_alpha {
     }
 
     /**
+     * compute.regionHealthCheckServices.patch
+     * @desc Updates the specified regional HealthCheckService resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * @alias compute.regionHealthCheckServices.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheckService Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * @param {().HealthCheckService} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Regionhealthcheckservices$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Regionhealthcheckservices$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Regionhealthcheckservices$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthcheckservices$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthcheckservices$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthcheckservices$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/healthCheckServices/{healthCheckService}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthCheckService'],
+        pathParams: ['healthCheckService', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * compute.regionHealthCheckServices.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource.
      * @alias compute.regionHealthCheckServices.testIamPermissions
@@ -57692,6 +57852,35 @@ export namespace compute_alpha {
      * Name of the region scoping this request.
      */
     region?: string;
+  }
+  export interface Params$Resource$Regionhealthcheckservices$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+     */
+    healthCheckService?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.  For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthCheckService;
   }
   export interface Params$Resource$Regionhealthcheckservices$Testiampermissions
     extends StandardParameters {
@@ -61920,7 +62109,7 @@ export namespace compute_alpha {
 
     /**
      * compute.regionOperations.wait
-     * @desc Waits for the specified region-specific Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
+     * @desc Waits for the specified Operation resource to return as DONE or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the GET method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be DONE or still in progress.  This method is called on a best-effort basis. Specifically:   - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds.  - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not DONE.
      * @alias compute.regionOperations.wait
      * @memberOf! ()
      *
@@ -81970,7 +82159,7 @@ export namespace compute_alpha {
 
     /**
      * compute.zoneOperations.wait
-     * @desc Waits for the specified zone-specific Operations resource until it is done or timeout, and retrieves the specified Operations resource. 1. Immediately returns when the operation is already done. 2. Waits for no more than the default deadline (2 minutes, subject to change) and then returns the current state of the operation, which may be DONE or still in progress. 3. Is best-effort: a. The server can wait less than the default deadline or zero seconds, in overload situations. b. There is no guarantee that the operation is actually done when returns. 4. User should be prepared to retry if the operation is not DONE.
+     * @desc Waits for the specified Operation resource to return as DONE or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the GET method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be DONE or still in progress.  This method is called on a best-effort basis. Specifically:   - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds.  - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not DONE.
      * @alias compute.zoneOperations.wait
      * @memberOf! ()
      *

@@ -160,6 +160,36 @@ export namespace servicecontrol_v1 {
     serviceConfigId?: string | null;
   }
   /**
+   * A set of attributes, each in the format `[KEY]:[VALUE]`.
+   */
+  export interface Schema$Attributes {
+    /**
+     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: &quot;my-instance&quot;     &quot;/http/user_agent&quot;: &quot;&quot;     &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;: true
+     */
+    attributeMap?: {[key: string]: Schema$AttributeValue} | null;
+    /**
+     * The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid.
+     */
+    droppedAttributesCount?: number | null;
+  }
+  /**
+   * The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute.
+   */
+  export interface Schema$AttributeValue {
+    /**
+     * A Boolean value represented by `true` or `false`.
+     */
+    boolValue?: boolean | null;
+    /**
+     * A 64-bit signed integer.
+     */
+    intValue?: string | null;
+    /**
+     * A string up to 256 bytes long.
+     */
+    stringValue?: Schema$TruncatableString;
+  }
+  /**
    * Common audit log format for Google Cloud Platform API operations.
    */
   export interface Schema$AuditLog {
@@ -790,6 +820,10 @@ export namespace servicecontrol_v1 {
      */
     startTime?: string | null;
     /**
+     * Unimplemented. A list of Cloud Trace spans. The span names shall contain the id of the destination project which can be either the produce or the consumer project.
+     */
+    traceSpans?: Schema$TraceSpan[];
+    /**
      * User defined labels for the resource that this operation is associated with. Only a combination of 1000 user labels per consumer project are allowed.
      */
     userLabels?: {[key: string]: string} | null;
@@ -1094,11 +1128,11 @@ export namespace servicecontrol_v1 {
     thirdPartyPrincipal?: Schema$ThirdPartyPrincipal;
   }
   /**
-   * The context of a span, attached to google.api.Distribution.Exemplars in google.api.Distribution values during aggregation.  It contains the name of a span with format:     projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
+   * The context of a span, attached to Exemplars in Distribution values during aggregation.  It contains the name of a span with format:      projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
    */
   export interface Schema$SpanContext {
     /**
-     * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * The resource name of the span. The format is:      projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]  `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
     spanName?: string | null;
   }
@@ -1127,6 +1161,68 @@ export namespace servicecontrol_v1 {
      * Metadata about third party identity.
      */
     thirdPartyClaims?: {[key: string]: any} | null;
+  }
+  /**
+   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous&amp;mdash;there may be gaps or overlaps between spans in a trace.
+   */
+  export interface Schema$TraceSpan {
+    /**
+     * A set of attributes on the span. You can have up to 32 attributes per span.
+     */
+    attributes?: Schema$Attributes;
+    /**
+     * An optional number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.
+     */
+    childSpanCount?: number | null;
+    /**
+     * A description of the span&#39;s operation (up to 128 bytes). Stackdriver Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
+     */
+    displayName?: Schema$TruncatableString;
+    /**
+     * The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running.
+     */
+    endTime?: string | null;
+    /**
+     * The resource name of the span in the following format:      projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.  [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     */
+    name?: string | null;
+    /**
+     * The [SPAN_ID] of this span&#39;s parent span. If this is a root span, then this field must be empty.
+     */
+    parentSpanId?: string | null;
+    /**
+     * (Optional) Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Stackdriver Trace is unable to take advantage of this helpful information.
+     */
+    sameProcessAsParentSpan?: boolean | null;
+    /**
+     * The [SPAN_ID] portion of the span&#39;s resource name.
+     */
+    spanId?: string | null;
+    /**
+     * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
+     */
+    spanKind?: string | null;
+    /**
+     * The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server&#39;s application handler starts running.
+     */
+    startTime?: string | null;
+    /**
+     * An optional final status for this span.
+     */
+    status?: Schema$Status;
+  }
+  /**
+   * Represents a string that might be shortened to a specified length.
+   */
+  export interface Schema$TruncatableString {
+    /**
+     * The number of bytes removed from the original string. If this value is 0, then the string was not shortened.
+     */
+    truncatedByteCount?: number | null;
+    /**
+     * The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string.  Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
+     */
+    value?: string | null;
   }
 
   export class Resource$Services {

@@ -202,7 +202,7 @@ export namespace cloudtrace_v1 {
 
     /**
      * cloudtrace.projects.patchTraces
-     * @desc Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created.
+     * @desc Sends new traces to Stackdriver Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created. In this case, writing traces is not considered an active developer method since traces are machine generated.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -348,7 +348,7 @@ export namespace cloudtrace_v1 {
 
     /**
      * cloudtrace.projects.traces.get
-     * @desc Gets a single trace by its ID.
+     * @desc Gets a single trace by its ID. In this case, getting for traces is considered an active developer method, even though it is technically a read-only method.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -469,7 +469,7 @@ export namespace cloudtrace_v1 {
 
     /**
      * cloudtrace.projects.traces.list
-     * @desc Returns of a list of traces that match the specified filter conditions.
+     * @desc Returns of a list of traces that match the specified filter conditions. In this case, listing for traces is considered an active developer method, even though it is technically a read-only method.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------

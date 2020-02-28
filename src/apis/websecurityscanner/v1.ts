@@ -219,6 +219,10 @@ export namespace websecurityscanner_v1 {
      */
     reproductionUrl?: string | null;
     /**
+     * Output only. The severity level of the reported vulnerability.
+     */
+    severity?: string | null;
+    /**
      * Output only. The tracking ID uniquely identifies a vulnerability instance across multiple ScanRuns.
      */
     trackingId?: string | null;

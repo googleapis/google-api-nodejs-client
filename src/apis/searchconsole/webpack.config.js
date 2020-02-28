@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Plusdomains',
-    filename: 'plusDomains.min.js',
+    library: 'Searchconsole',
+    filename: 'searchconsole.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

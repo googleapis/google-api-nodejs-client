@@ -272,7 +272,7 @@ export namespace people_v1 {
      */
     name?: string | null;
     /**
-     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;.
+     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id}`.
      */
     resourceName?: string | null;
   }
@@ -285,7 +285,7 @@ export namespace people_v1 {
      */
     contactGroupId?: string | null;
     /**
-     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`&lt;var&gt;contact_group_id&lt;/var&gt;. Only contact_group_resource_name can be used for modifying memberships. Any contact group membership can be removed, but only user group or &quot;myContacts&quot; or &quot;starred&quot; system groups memberships can be added. A contact must always have at least one contact group membership.
+     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id}`. Only contact_group_resource_name can be used for modifying memberships. Any contact group membership can be removed, but only user group or &quot;myContacts&quot; or &quot;starred&quot; system groups memberships can be added. A contact must always have at least one contact group membership.
      */
     contactGroupResourceName?: string | null;
   }
@@ -464,6 +464,9 @@ export namespace people_v1 {
      */
     value?: string | null;
   }
+  /**
+   * The response to a get request for a list of people by resource name.
+   */
   export interface Schema$GetPeopleResponse {
     /**
      * The response for each requested resource name.
@@ -512,6 +515,9 @@ export namespace people_v1 {
      */
     value?: string | null;
   }
+  /**
+   * The response to a request for the authenticated user&#39;s connections.
+   */
   export interface Schema$ListConnectionsResponse {
     /**
      * The list of people that the requestor is connected to.
@@ -590,11 +596,11 @@ export namespace people_v1 {
    */
   export interface Schema$ModifyContactGroupMembersRequest {
     /**
-     * The resource names of the contact people to add in the form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
+     * Optional. The resource names of the contact people to add in the form of `people/{person_id}`.
      */
     resourceNamesToAdd?: string[] | null;
     /**
-     * The resource names of the contact people to remove in the form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
+     * Optional. The resource names of the contact people to remove in the form of `people/{person_id}`.
      */
     resourceNamesToRemove?: string[] | null;
   }
@@ -772,7 +778,7 @@ export namespace people_v1 {
      */
     addresses?: Schema$Address[];
     /**
-     * Output only. **DEPRECATED** (Please use `person.ageRanges` instead)**  The person&#39;s age range.
+     * Output only. **DEPRECATED** (Please use `person.ageRanges` instead)  The person&#39;s age range.
      */
     ageRange?: string | null;
     /**
@@ -872,7 +878,7 @@ export namespace people_v1 {
      */
     residences?: Schema$Residence[];
     /**
-     * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`&lt;var&gt;person_id&lt;/var&gt;.
+     * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.
      */
     resourceName?: string | null;
     /**
@@ -980,7 +986,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * The URL of the photo. You can change the desired size by appending a query parameter `sz=`&lt;var&gt;size&lt;/var&gt; at the end of the url. Example: `https://lh3.googleusercontent.com/-T_wVWLlmg7w/AAAAAAAAAAI/AAAAAAAABa8/00gzXvDBYqw/s100/photo.jpg?sz=50`
+     * The URL of the photo. You can change the desired size by appending a query parameter `sz={size}` at the end of the url, where {size} is the size in pixels. Example: https://lh3.googleusercontent.com/-T_wVWLlmg7w/AAAAAAAAAAI/AAAAAAAABa8/00gzXvDBYqw/s100/photo.jpg?sz=50
      */
     url?: string | null;
   }
@@ -1547,8 +1553,8 @@ export namespace people_v1 {
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of resources to return. Valid values are between 1 and 1000, inclusive. Defaults to 30 if not set or set to 0.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.
-     * @param {string=} params.syncToken A sync token, returned by a previous call to `contactgroups.list`. Only resources changed since the sync token was created will be returned.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.
+     * @param {string=} params.syncToken Optional. A sync token, returned by a previous call to `contactgroups.list`. Only resources changed since the sync token was created will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1626,7 +1632,7 @@ export namespace people_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resourceName The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`<var>contact_group_id</var>.
+     * @param {string} params.resourceName The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id}`.
      * @param {().UpdateContactGroupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1767,11 +1773,11 @@ export namespace people_v1 {
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.
+     * Optional. The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.
      */
     pageToken?: string;
     /**
-     * A sync token, returned by a previous call to `contactgroups.list`. Only resources changed since the sync token was created will be returned.
+     * Optional. A sync token, returned by a previous call to `contactgroups.list`. Only resources changed since the sync token was created will be returned.
      */
     syncToken?: string;
   }
@@ -1783,7 +1789,7 @@ export namespace people_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/`<var>contact_group_id</var>.
+     * The resource name for the contact group, assigned by the server. An ASCII string, in the form of `contactGroups/{contact_group_id}`.
      */
     resourceName?: string;
 
@@ -1801,7 +1807,7 @@ export namespace people_v1 {
 
     /**
      * people.contactGroups.members.modify
-     * @desc Modify the members of a contact group owned by the authenticated user. <br> The only system contact groups that can have members added are `contactGroups/myContacts` and `contactGroups/starred`. Other system contact groups are deprecated and can only have contacts removed.
+     * @desc Modify the members of a contact group owned by the authenticated user.  The only system contact groups that can have members added are `contactGroups/myContacts` and `contactGroups/starred`. Other system contact groups are deprecated and can only have contacts removed.
      * @alias people.contactGroups.members.modify
      * @memberOf! ()
      *
@@ -2138,14 +2144,14 @@ export namespace people_v1 {
 
     /**
      * people.people.get
-     * @desc Provides information about a person by specifying a resource name. Use `people/me` to indicate the authenticated user. <br> The request throws a 400 error if 'personFields' is not specified.
+     * @desc Provides information about a person by specifying a resource name. Use `people/me` to indicate the authenticated user.  The request throws a 400 error if 'personFields' is not specified.
      * @alias people.people.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.personFields Required. A field mask to restrict which fields on the person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     * @param {string} params.resourceName Required. The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     * @param {string} params.resourceName Required. The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/{account_id}`. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2211,14 +2217,14 @@ export namespace people_v1 {
 
     /**
      * people.people.getBatchGet
-     * @desc Provides information about a list of specific people by specifying a list of requested resource names. Use `people/me` to indicate the authenticated user. <br> The request throws a 400 error if 'personFields' is not specified.
+     * @desc Provides information about a list of specific people by specifying a list of requested resource names. Use `people/me` to indicate the authenticated user.  The request throws a 400 error if 'personFields' is not specified.
      * @alias people.people.getBatchGet
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     * @param {string=} params.resourceNames Required. The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
+     * @param {string=} params.resourceNames Required. The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/{account_id}`. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2287,12 +2293,12 @@ export namespace people_v1 {
 
     /**
      * people.people.updateContact
-     * @desc Update contact data for an existing contact person. Any non-contact data will not be modified.  The request throws a 400 error if `updatePersonFields` is not specified. <br> The request throws a 400 error if `person.metadata.sources` is not specified for the contact to be updated. <br> The request throws a 400 error with an error with reason `"failedPrecondition"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and re-apply their updates to the latest person.
+     * @desc Update contact data for an existing contact person. Any non-contact data will not be modified.  The request throws a 400 error if `updatePersonFields` is not specified.  The request throws a 400 error if `person.metadata.sources` is not specified for the contact to be updated.  The request throws a 400 error with an error with reason `"failedPrecondition"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and re-apply their updates to the latest person.
      * @alias people.people.updateContact
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resourceName The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`<var>person_id</var>.
+     * @param {string} params.resourceName The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.
      * @param {string=} params.updatePersonFields Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All updated fields will be replaced. Valid values are:  * addresses * biographies * birthdays * emailAddresses * events * genders * imClients * interests * locales * memberships * names * nicknames * occupations * organizations * phoneNumbers * relations * residences * sipAddresses * urls * userDefined
      * @param {().Person} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2497,7 +2503,7 @@ export namespace people_v1 {
      */
     'requestMask.includeField'?: string;
     /**
-     * Required. The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
+     * Required. The resource name of the person to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify  `people/{account_id}`. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      */
     resourceName?: string;
   }
@@ -2517,7 +2523,7 @@ export namespace people_v1 {
      */
     'requestMask.includeField'?: string;
     /**
-     * Required. The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/`<var>account_id</var>. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
+     * Required. The resource names of the people to provide information about.  - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify   `people/{account_id}`. - To get information about a contact, specify the resource name that   identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list).  You can include up to 50 resource names in one request.
      */
     resourceNames?: string[];
   }
@@ -2529,7 +2535,7 @@ export namespace people_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/`<var>person_id</var>.
+     * The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.
      */
     resourceName?: string;
     /**
@@ -2568,19 +2574,19 @@ export namespace people_v1 {
 
     /**
      * people.people.connections.list
-     * @desc Provides a list of the authenticated user's contacts merged with any connected profiles. <br> The request throws a 400 error if 'personFields' is not specified.
+     * @desc Provides a list of the authenticated user's contacts merged with any connected profiles.  The request throws a 400 error if 'personFields' is not specified.
      * @alias people.people.connections.list
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The number of connections to include in the response. Valid values are between 1 and 2000, inclusive. Defaults to 100 if not set or set to 0.
-     * @param {string=} params.pageToken The token of the page to be returned.
+     * @param {string=} params.pageToken Optional. The token of the page to be returned.
      * @param {string=} params.personFields Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are:  * addresses * ageRanges * biographies * birthdays * braggingRights * coverPhotos * emailAddresses * events * genders * imClients * interests * locales * memberships * metadata * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * relationshipInterests * relationshipStatuses * residences * sipAddresses * skills * taglines * urls * userDefined
      * @param {string=} params.requestMask.includeField Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
-     * @param {boolean=} params.requestSyncToken Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     * @param {boolean=} params.requestSyncToken Optional. Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      * @param {string} params.resourceName Required. The resource name to return connections for. Only `people/me` is valid.
-     * @param {string=} params.sortOrder The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
-     * @param {string=} params.syncToken A sync token returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned. Sync requests that specify `sync_token` have an additional rate limit.
+     * @param {string=} params.sortOrder Optional. The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
+     * @param {string=} params.syncToken Optional. A sync token returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned. Sync requests that specify `sync_token` have an additional rate limit.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2662,7 +2668,7 @@ export namespace people_v1 {
      */
     pageSize?: number;
     /**
-     * The token of the page to be returned.
+     * Optional. The token of the page to be returned.
      */
     pageToken?: string;
     /**
@@ -2674,7 +2680,7 @@ export namespace people_v1 {
      */
     'requestMask.includeField'?: string;
     /**
-     * Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     * Optional. Whether the response should include a sync token, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      */
     requestSyncToken?: boolean;
     /**
@@ -2682,11 +2688,11 @@ export namespace people_v1 {
      */
     resourceName?: string;
     /**
-     * The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
+     * Optional. The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
      */
     sortOrder?: string;
     /**
-     * A sync token returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned. Sync requests that specify `sync_token` have an additional rate limit.
+     * Optional. A sync token returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned. Sync requests that specify `sync_token` have an additional rate limit.
      */
     syncToken?: string;
   }

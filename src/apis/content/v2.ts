@@ -3198,7 +3198,7 @@ export namespace content_v2 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment.  For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. Note: You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates.  Supported carriers for US are:   - &quot;ups&quot; (United Parcel Service) automatic status updates  - &quot;usps&quot; (United States Postal Service) automatic status updates  - &quot;fedex&quot; (FedEx) automatic status updates   - &quot;dhl&quot; (DHL eCommerce) automatic status updates (US only)  - &quot;ontrac&quot; (OnTrac) automatic status updates   - &quot;dhl express&quot; (DHL Express) - &quot;deliv&quot; (Deliv)  - &quot;dynamex&quot; (TForce)  - &quot;lasership&quot; (LaserShip)  - &quot;mpx&quot; (Military Parcel Xpress)  - &quot;uds&quot; (United Delivery Service)  - &quot;efw&quot; (Estes Forwarding Worldwide)  - &quot;jd logistics&quot; (JD Logistics)  - &quot;yunexpress&quot; (YunExpress)  - &quot;china post&quot; (China Post)  - &quot;china ems&quot; (China Post Express Mail Service)  - &quot;singapore post&quot; (Singapore Post)  - &quot;pos malaysia&quot; (Pos Malaysia)  - &quot;postnl&quot; (PostNL)  - &quot;ptt&quot; (PTT Turkish Post)  - &quot;eub&quot; (ePacket)  - &quot;chukou1&quot; (Chukou1 Logistics)   Supported carriers for FR are:   - &quot;la poste&quot; (La Poste) automatic status updates   - &quot;colissimo&quot; (Colissimo by La Poste) automatic status updates  - &quot;ups&quot; (United Parcel Service) automatic status updates   - &quot;chronopost&quot; (Chronopost by La Poste)  - &quot;gls&quot; (General Logistics Systems France)  - &quot;dpd&quot; (DPD Group by GeoPost)  - &quot;bpost&quot; (Belgian Post Group)  - &quot;colis prive&quot; (Colis Privé)  - &quot;boxtal&quot; (Boxtal)  - &quot;geodis&quot; (GEODIS)  - &quot;tnt&quot; (TNT)
+     * The carrier handling the shipment.  For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. Note: You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates.  Supported carriers for US are:   - &quot;ups&quot; (United Parcel Service) automatic status updates  - &quot;usps&quot; (United States Postal Service) automatic status updates  - &quot;fedex&quot; (FedEx) automatic status updates   - &quot;dhl&quot; (DHL eCommerce) automatic status updates (US only)  - &quot;ontrac&quot; (OnTrac) automatic status updates   - &quot;dhl express&quot; (DHL Express) - &quot;deliv&quot; (Deliv)  - &quot;dynamex&quot; (TForce)  - &quot;lasership&quot; (LaserShip)  - &quot;mpx&quot; (Military Parcel Xpress)  - &quot;uds&quot; (United Delivery Service)  - &quot;efw&quot; (Estes Forwarding Worldwide)  - &quot;jd logistics&quot; (JD Logistics)  - &quot;yunexpress&quot; (YunExpress)  - &quot;china post&quot; (China Post)  - &quot;china ems&quot; (China Post Express Mail Service)  - &quot;singapore post&quot; (Singapore Post)  - &quot;pos malaysia&quot; (Pos Malaysia)  - &quot;postnl&quot; (PostNL)  - &quot;ptt&quot; (PTT Turkish Post)  - &quot;eub&quot; (ePacket)  - &quot;chukou1&quot; (Chukou1 Logistics)   Supported carriers for FR are:   - &quot;la poste&quot; (La Poste) automatic status updates   - &quot;colissimo&quot; (Colissimo by La Poste) automatic status updates  - &quot;ups&quot; (United Parcel Service) automatic status updates   - &quot;chronopost&quot; (Chronopost by La Poste)  - &quot;gls&quot; (General Logistics Systems France)  - &quot;dpd&quot; (DPD Group by GeoPost)  - &quot;bpost&quot; (Belgian Post Group)  - &quot;colis prive&quot; (Colis Privé)  - &quot;boxtal&quot; (Boxtal)  - &quot;geodis&quot; (GEODIS)  - &quot;tnt&quot; (TNT)  - &quot;db schenker&quot; (DB Schenker)
      */
     carrier?: string | null;
     /**
@@ -3599,6 +3599,30 @@ export namespace content_v2 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateShipmentResponse&quot;.
      */
     kind?: string | null;
+  }
+  export interface Schema$PickupCarrierService {
+    /**
+     * The name of the pickup carrier (e.g., &quot;UPS&quot;). Required.
+     */
+    carrierName?: string | null;
+    /**
+     * The name of the pickup service (e.g., &quot;Access point&quot;). Required.
+     */
+    serviceName?: string | null;
+  }
+  export interface Schema$PickupServicesPickupService {
+    /**
+     * The name of the carrier (e.g., &quot;UPS&quot;). Always present.
+     */
+    carrierName?: string | null;
+    /**
+     * The CLDR country code of the carrier (e.g., &quot;US&quot;). Always present.
+     */
+    country?: string | null;
+    /**
+     * The name of the pickup service (e.g., &quot;Access point&quot;). Always present.
+     */
+    serviceName?: string | null;
   }
   export interface Schema$PosCustomBatchRequest {
     /**
@@ -4782,9 +4806,17 @@ export namespace content_v2 {
      */
     name?: string | null;
     /**
+     * The carrier-service pair delivering items to collection points. The list of supported pickup services can be retrieved via the getSupportedPickupServices method. Required if and only if the service delivery type is pickup.
+     */
+    pickupService?: Schema$PickupCarrierService;
+    /**
      * Shipping rate group definitions. Only the last one is allowed to have an empty applicableShippingLabels, which means &quot;everything else&quot;. The other applicableShippingLabels must not overlap.
      */
     rateGroups?: Schema$RateGroup[];
+    /**
+     * Type of locations this service ships orders to.
+     */
+    shipmentType?: string | null;
   }
   export interface Schema$ShipmentInvoice {
     /**
@@ -4917,6 +4949,16 @@ export namespace content_v2 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedHolidaysResponse&quot;.
      */
     kind?: string | null;
+  }
+  export interface Schema$ShippingsettingsGetSupportedPickupServicesResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedPickupServicesResponse&quot;.
+     */
+    kind?: string | null;
+    /**
+     * A list of supported pickup services. May be empty.
+     */
+    pickupServices?: Schema$PickupServicesPickupService[];
   }
   export interface Schema$ShippingsettingsListResponse {
     /**
@@ -13949,6 +13991,103 @@ export namespace content_v2 {
     }
 
     /**
+     * content.shippingsettings.getsupportedpickupservices
+     * @desc Retrieves supported pickup services for an account.
+     * @alias content.shippingsettings.getsupportedpickupservices
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account for which to retrieve the supported pickup services.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getsupportedpickupservices(
+      params?: Params$Resource$Shippingsettings$Getsupportedpickupservices,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShippingsettingsGetSupportedPickupServicesResponse>;
+    getsupportedpickupservices(
+      params: Params$Resource$Shippingsettings$Getsupportedpickupservices,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedPickupServicesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedPickupServicesResponse
+      >
+    ): void;
+    getsupportedpickupservices(
+      params: Params$Resource$Shippingsettings$Getsupportedpickupservices,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedPickupServicesResponse
+      >
+    ): void;
+    getsupportedpickupservices(
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedPickupServicesResponse
+      >
+    ): void;
+    getsupportedpickupservices(
+      paramsOrCallback?:
+        | Params$Resource$Shippingsettings$Getsupportedpickupservices
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedPickupServicesResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedPickupServicesResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedPickupServicesResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$ShippingsettingsGetSupportedPickupServicesResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shippingsettings$Getsupportedpickupservices;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Shippingsettings$Getsupportedpickupservices;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2/{merchantId}/supportedPickupServices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$ShippingsettingsGetSupportedPickupServicesResponse
+        >(parameters, callback);
+      } else {
+        return createAPIRequest<
+          Schema$ShippingsettingsGetSupportedPickupServicesResponse
+        >(parameters);
+      }
+    }
+
+    /**
      * content.shippingsettings.list
      * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
      * @alias content.shippingsettings.list
@@ -14163,6 +14302,18 @@ export namespace content_v2 {
 
     /**
      * The ID of the account for which to retrieve the supported holidays.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Shippingsettings$Getsupportedpickupservices
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The ID of the account for which to retrieve the supported pickup services.
      */
     merchantId?: string;
   }

@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Gamesconfiguration',
-    filename: 'gamesConfiguration.min.js',
+    library: 'Admob',
+    filename: 'admob.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

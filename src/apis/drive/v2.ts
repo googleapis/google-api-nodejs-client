@@ -1440,9 +1440,6 @@ export namespace drive_v2 {
    * A revision of a file.
    */
   export interface Schema$Revision {
-    /**
-     * Short term download URL for the file. This will only be populated on files with content stored in Drive.
-     */
     downloadUrl?: string | null;
     /**
      * The ETag of the revision.

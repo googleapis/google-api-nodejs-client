@@ -152,7 +152,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     filterType?: string | null;
     /**
-     * SDF Version (column names, types, order) in which the entities will be returned. Default to 3.1.
+     * SDF Version (column names, types, order) in which the entities will be returned. Default to 5.
      */
     version?: string | null;
   }

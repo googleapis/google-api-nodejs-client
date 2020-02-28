@@ -21,6 +21,7 @@ import * as adexchangebuyer from './adexchangebuyer';
 import * as adexchangebuyer2 from './adexchangebuyer2';
 import * as adexperiencereport from './adexperiencereport';
 import * as admin from './admin';
+import * as admob from './admob';
 import * as adsense from './adsense';
 import * as adsensehost from './adsensehost';
 import * as alertcenter from './alertcenter';
@@ -98,7 +99,6 @@ import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
 import * as fitness from './fitness';
 import * as games from './games';
-import * as gamesConfiguration from './gamesConfiguration';
 import * as gamesManagement from './gamesManagement';
 import * as genomics from './genomics';
 import * as gmail from './gmail';
@@ -123,12 +123,12 @@ import * as mirror from './mirror';
 import * as ml from './ml';
 import * as monitoring from './monitoring';
 import * as oauth2 from './oauth2';
+import * as osconfig from './osconfig';
 import * as oslogin from './oslogin';
 import * as pagespeedonline from './pagespeedonline';
 import * as people from './people';
 import * as playcustomapp from './playcustomapp';
 import * as plus from './plus';
-import * as plusDomains from './plusDomains';
 import * as policytroubleshooter from './policytroubleshooter';
 import * as poly from './poly';
 import * as prod_tt_sasportal from './prod_tt_sasportal';
@@ -137,16 +137,15 @@ import * as pubsub from './pubsub';
 import * as recommender from './recommender';
 import * as redis from './redis';
 import * as remotebuildexecution from './remotebuildexecution';
-import * as replicapool from './replicapool';
 import * as reseller from './reseller';
 import * as run from './run';
 import * as runtimeconfig from './runtimeconfig';
 import * as safebrowsing from './safebrowsing';
 import * as sasportal from './sasportal';
 import * as script from './script';
+import * as searchconsole from './searchconsole';
 import * as secretmanager from './secretmanager';
 import * as securitycenter from './securitycenter';
-import * as servicebroker from './servicebroker';
 import * as serviceconsumermanagement from './serviceconsumermanagement';
 import * as servicecontrol from './servicecontrol';
 import * as servicemanagement from './servicemanagement';
@@ -194,6 +193,7 @@ export const APIS: APIList = {
   adexchangebuyer2: adexchangebuyer2.VERSIONS,
   adexperiencereport: adexperiencereport.VERSIONS,
   admin: admin.VERSIONS,
+  admob: admob.VERSIONS,
   adsense: adsense.VERSIONS,
   adsensehost: adsensehost.VERSIONS,
   alertcenter: alertcenter.VERSIONS,
@@ -271,7 +271,6 @@ export const APIS: APIList = {
   firestore: firestore.VERSIONS,
   fitness: fitness.VERSIONS,
   games: games.VERSIONS,
-  gamesConfiguration: gamesConfiguration.VERSIONS,
   gamesManagement: gamesManagement.VERSIONS,
   genomics: genomics.VERSIONS,
   gmail: gmail.VERSIONS,
@@ -296,12 +295,12 @@ export const APIS: APIList = {
   ml: ml.VERSIONS,
   monitoring: monitoring.VERSIONS,
   oauth2: oauth2.VERSIONS,
+  osconfig: osconfig.VERSIONS,
   oslogin: oslogin.VERSIONS,
   pagespeedonline: pagespeedonline.VERSIONS,
   people: people.VERSIONS,
   playcustomapp: playcustomapp.VERSIONS,
   plus: plus.VERSIONS,
-  plusDomains: plusDomains.VERSIONS,
   policytroubleshooter: policytroubleshooter.VERSIONS,
   poly: poly.VERSIONS,
   prod_tt_sasportal: prod_tt_sasportal.VERSIONS,
@@ -310,16 +309,15 @@ export const APIS: APIList = {
   recommender: recommender.VERSIONS,
   redis: redis.VERSIONS,
   remotebuildexecution: remotebuildexecution.VERSIONS,
-  replicapool: replicapool.VERSIONS,
   reseller: reseller.VERSIONS,
   run: run.VERSIONS,
   runtimeconfig: runtimeconfig.VERSIONS,
   safebrowsing: safebrowsing.VERSIONS,
   sasportal: sasportal.VERSIONS,
   script: script.VERSIONS,
+  searchconsole: searchconsole.VERSIONS,
   secretmanager: secretmanager.VERSIONS,
   securitycenter: securitycenter.VERSIONS,
-  servicebroker: servicebroker.VERSIONS,
   serviceconsumermanagement: serviceconsumermanagement.VERSIONS,
   servicecontrol: servicecontrol.VERSIONS,
   servicemanagement: servicemanagement.VERSIONS,
@@ -363,6 +361,7 @@ export class GeneratedAPIs {
   adexchangebuyer2 = adexchangebuyer2.adexchangebuyer2;
   adexperiencereport = adexperiencereport.adexperiencereport;
   admin = admin.admin;
+  admob = admob.admob;
   adsense = adsense.adsense;
   adsensehost = adsensehost.adsensehost;
   alertcenter = alertcenter.alertcenter;
@@ -442,7 +441,6 @@ export class GeneratedAPIs {
   firestore = firestore.firestore;
   fitness = fitness.fitness;
   games = games.games;
-  gamesConfiguration = gamesConfiguration.gamesConfiguration;
   gamesManagement = gamesManagement.gamesManagement;
   genomics = genomics.genomics;
   gmail = gmail.gmail;
@@ -467,12 +465,12 @@ export class GeneratedAPIs {
   ml = ml.ml;
   monitoring = monitoring.monitoring;
   oauth2 = oauth2.oauth2;
+  osconfig = osconfig.osconfig;
   oslogin = oslogin.oslogin;
   pagespeedonline = pagespeedonline.pagespeedonline;
   people = people.people;
   playcustomapp = playcustomapp.playcustomapp;
   plus = plus.plus;
-  plusDomains = plusDomains.plusDomains;
   policytroubleshooter = policytroubleshooter.policytroubleshooter;
   poly = poly.poly;
   prod_tt_sasportal = prod_tt_sasportal.prod_tt_sasportal;
@@ -481,16 +479,15 @@ export class GeneratedAPIs {
   recommender = recommender.recommender;
   redis = redis.redis;
   remotebuildexecution = remotebuildexecution.remotebuildexecution;
-  replicapool = replicapool.replicapool;
   reseller = reseller.reseller;
   run = run.run;
   runtimeconfig = runtimeconfig.runtimeconfig;
   safebrowsing = safebrowsing.safebrowsing;
   sasportal = sasportal.sasportal;
   script = script.script;
+  searchconsole = searchconsole.searchconsole;
   secretmanager = secretmanager.secretmanager;
   securitycenter = securitycenter.securitycenter;
-  servicebroker = servicebroker.servicebroker;
   serviceconsumermanagement =
     serviceconsumermanagement.serviceconsumermanagement;
   servicecontrol = servicecontrol.servicecontrol;

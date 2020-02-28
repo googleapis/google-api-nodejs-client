@@ -475,6 +475,15 @@ export namespace alertcenter_v1beta1 {
     serialNumber?: string | null;
   }
   /**
+   * Alerts that get triggered on violations of Data Loss Prevention (DLP) rules.
+   */
+  export interface Schema$DlpRuleViolation {
+    /**
+     * Details about the violated DLP rule.  Admins can use the predefined detectors provided by Google Cloud DLP https://cloud.google.com/dlp/ when setting up a DLP rule. Matched Cloud DLP detectors in this violation if any will be captured in the MatchInfo.predefined_detector.
+     */
+    ruleViolationInfo?: Schema$RuleViolationInfo;
+  }
+  /**
    * Domain ID of Gmail phishing alerts.
    */
   export interface Schema$DomainId {
@@ -495,6 +504,40 @@ export namespace alertcenter_v1beta1 {
      * The takeout request ID.
      */
     takeoutRequestId?: string | null;
+  }
+  /**
+   * A Drive file
+   */
+  export interface Schema$DriveFile {
+    /**
+     * Abuse type of the file.
+     */
+    abuseType?: string | null;
+    /**
+     * The ID of the file.
+     */
+    id?: string | null;
+    /**
+     * The name of the file.
+     */
+    name?: string | null;
+    /**
+     * The number of recent downloads of the file. This is available for the following alert types:  *Drive malware sharing detected
+     */
+    numRecentDownload?: string | null;
+    /**
+     * The email address of the file owner.
+     */
+    owner?: string | null;
+  }
+  /**
+   * Alerts for suspicious Drive files or activities.
+   */
+  export interface Schema$DriveFileWarning {
+    /**
+     * List of files in the alert.
+     */
+    files?: Schema$DriveFile[];
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -594,7 +637,7 @@ export namespace alertcenter_v1beta1 {
     loginTime?: string | null;
   }
   /**
-   * Proto for all phishing alerts with common payload. Supported types are any of the following:  * User reported phishing * User reported spam spike * Suspicious message reported * Phishing reclassification * Malware reclassification
+   * Proto for all phishing alerts with common payload. Supported types are any of the following:  * User reported phishing * User reported spam spike * Suspicious message reported * Phishing reclassification * Malware reclassification * Gmail potential employee spoofing
    */
   export interface Schema$MailPhishing {
     /**
@@ -613,6 +656,10 @@ export namespace alertcenter_v1beta1 {
      * The list of messages contained by this alert.
      */
     messages?: Schema$GmailMessageInfo[];
+    /**
+     * System actions on the messages.
+     */
+    systemActionType?: string | null;
   }
   /**
    * Entity whose actions triggered a Gmail phishing alert.
@@ -630,6 +677,19 @@ export namespace alertcenter_v1beta1 {
      * The sender email address.
      */
     fromHeader?: string | null;
+  }
+  /**
+   * Proto that contains match information from the condition part of the rule.
+   */
+  export interface Schema$MatchInfo {
+    /**
+     * For matched detector predefined by Google.
+     */
+    predefinedDetector?: Schema$PredefinedDetectorInfo;
+    /**
+     * For matched detector defined by administrators.
+     */
+    userDefinedDetector?: Schema$UserDefinedDetectorInfo;
   }
   /**
    * Settings for callback notifications. For more details see [G Suite Alert Notification](/admin-sdk/alertcenter/guides/notifications).
@@ -662,6 +722,15 @@ export namespace alertcenter_v1beta1 {
     messages?: Schema$GmailMessageInfo[];
   }
   /**
+   * Detector provided by Google.
+   */
+  export interface Schema$PredefinedDetectorInfo {
+    /**
+     * Name that uniquely identifies the detector.
+     */
+    detectorName?: string | null;
+  }
+  /**
    * Requests for one application that needs default SQL setup.
    */
   export interface Schema$RequestInfo {
@@ -677,6 +746,73 @@ export namespace alertcenter_v1beta1 {
      * Required. Number of requests sent for this application to set up default SQL instance.
      */
     numberOfRequests?: string | null;
+  }
+  /**
+   * Proto that contains resource information.
+   */
+  export interface Schema$ResourceInfo {
+    /**
+     * Drive file ID.
+     */
+    documentId?: string | null;
+    /**
+     * Title of the resource, e.g. email subject, or document title.
+     */
+    resourceTitle?: string | null;
+  }
+  /**
+   * Proto that contains rule information.
+   */
+  export interface Schema$RuleInfo {
+    /**
+     * User provided name of the rule.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name that uniquely identifies the rule.
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * Common alert information about violated rules that are configured by G Suite administrators.
+   */
+  export interface Schema$RuleViolationInfo {
+    /**
+     * Source of the data.
+     */
+    dataSource?: string | null;
+    /**
+     * List of matches that were found in the resource content.
+     */
+    matchInfo?: Schema$MatchInfo[];
+    /**
+     * Resource recipients.  For Drive, they are grantees that the Drive file was shared with at the time of rule triggering. Valid values include user emails, group emails, domains, or &#39;anyone&#39; if the file was publicly accessible. If the file was private the recipients list will be empty.  For Gmail, they are emails of the users or groups that the Gmail message was sent to.
+     */
+    recipients?: string[] | null;
+    /**
+     * Details of the resource which violated the rule.
+     */
+    resourceInfo?: Schema$ResourceInfo;
+    /**
+     * Details of the violated rule.
+     */
+    ruleInfo?: Schema$RuleInfo;
+    /**
+     * Actions suppressed due to other actions with higher priority.
+     */
+    suppressedActionTypes?: string[] | null;
+    /**
+     * Trigger of the rule.
+     */
+    trigger?: string | null;
+    /**
+     * Actions applied as a consequence of the rule being triggered.
+     */
+    triggeredActionTypes?: string[] | null;
+    /**
+     * Email of the user who caused the violation. Value could be empty if not applicable, for example, a violation found by drive continuous scan.
+     */
+    triggeringUserEmail?: string | null;
   }
   /**
    * Customer-level settings.
@@ -788,6 +924,19 @@ export namespace alertcenter_v1beta1 {
      * Email address of the user.
      */
     emailAddress?: string | null;
+  }
+  /**
+   * Detector defined by administrators.
+   */
+  export interface Schema$UserDefinedDetectorInfo {
+    /**
+     * Display name of the detector.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name that uniquely identifies the detector.
+     */
+    resourceName?: string | null;
   }
 
   export class Resource$Alerts {

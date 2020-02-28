@@ -379,17 +379,33 @@ export namespace sheets_v4 {
      */
     firstBandColor?: Schema$Color;
     /**
-     * The color of the last row or column. If this field is not set, the last row or column will be filled with either first_band_color or second_band_color, depending on the color of the previous row or column.
+     * The first color that is alternating. (Required) If first_band_color is also set, this field takes precedence.
+     */
+    firstBandColorStyle?: Schema$ColorStyle;
+    /**
+     * The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column.
      */
     footerColor?: Schema$Color;
     /**
-     * The color of the first row or column. If this field is set, the first row or column will be filled with this color and the colors will alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column will be filled with first_band_color and the colors will proceed to alternate as they normally would.
+     * The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column. If footer_color is also set, this field takes precedence.
+     */
+    footerColorStyle?: Schema$ColorStyle;
+    /**
+     * The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would.
      */
     headerColor?: Schema$Color;
+    /**
+     * The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would. If header_color is also set, this field takes precedence.
+     */
+    headerColorStyle?: Schema$ColorStyle;
     /**
      * The second color that is alternating. (Required)
      */
     secondBandColor?: Schema$Color;
+    /**
+     * The second color that is alternating. (Required) If second_band_color is also set, this field takes precedence.
+     */
+    secondBandColorStyle?: Schema$ColorStyle;
   }
   /**
    * Formatting options for baseline value.
@@ -408,6 +424,10 @@ export namespace sheets_v4 {
      */
     negativeColor?: Schema$Color;
     /**
+     * Color to be used, in case baseline value represents a negative change for key value. This field is optional. If negative_color is also set, this field takes precedence.
+     */
+    negativeColorStyle?: Schema$ColorStyle;
+    /**
      * Specifies the horizontal text positioning of baseline value. This field is optional. If not specified, default positioning is used.
      */
     position?: Schema$TextPosition;
@@ -415,6 +435,10 @@ export namespace sheets_v4 {
      * Color to be used, in case baseline value represents a positive change for key value. This field is optional.
      */
     positiveColor?: Schema$Color;
+    /**
+     * Color to be used, in case baseline value represents a positive change for key value. This field is optional. If positive_color is also set, this field takes precedence.
+     */
+    positiveColorStyle?: Schema$ColorStyle;
     /**
      * Text formatting options for baseline value.
      */
@@ -463,9 +487,13 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicChartSeries {
     /**
-     * The color for elements (i.e. bars, lines, points) associated with this series.  If empty, a default color is used.
+     * The color for elements (such as bars, lines, and points) associated with this series.  If empty, a default color is used.
      */
     color?: Schema$Color;
+    /**
+     * The color for elements (such as bars, lines, and points) associated with this series.  If empty, a default color is used. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
     /**
      * The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA or LINE.
      */
@@ -563,7 +591,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesByDataFilterResponse {
     /**
-     * The ranges that were cleared, in A1 notation. (If the requests were for an unbounded range or a ranger larger  than the bounds of the sheet, this will be the actual ranges  that were cleared, bounded to the sheet&#39;s limits.)
+     * The ranges that were cleared, in A1 notation. If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet&#39;s limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -585,7 +613,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesResponse {
     /**
-     * The ranges that were cleared, in A1 notation. (If the requests were for an unbounded range or a ranger larger  than the bounds of the sheet, this will be the actual ranges  that were cleared, bounded to the sheet&#39;s limits.)
+     * The ranges that were cleared, in A1 notation. If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet&#39;s limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -598,7 +626,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchGetValuesByDataFilterRequest {
     /**
-     * The data filters used to match the ranges of values to retrieve.  Ranges that match any of the specified data filters will be included in the response.
+     * The data filters used to match the ranges of values to retrieve. Ranges that match any of the specified data filters are included in the response.
      */
     dataFilters?: Schema$DataFilter[];
     /**
@@ -606,7 +634,7 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string | null;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects that range and sets `majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas a request that sets `majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then a request that selects that range and sets `majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas a request that sets `majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string | null;
     /**
@@ -683,11 +711,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchUpdateValuesByDataFilterRequest {
     /**
-     * The new values to apply to the spreadsheet.  If more than one range is matched by the specified DataFilter the specified values will be applied to all of those ranges.
+     * The new values to apply to the spreadsheet.  If more than one range is matched by the specified DataFilter the specified values are applied to all of those ranges.
      */
     data?: Schema$DataFilterValueRange[];
     /**
-     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses will contain the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses contains the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean | null;
     /**
@@ -741,7 +769,7 @@ export namespace sheets_v4 {
      */
     data?: Schema$ValueRange[];
     /**
-     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses will contain the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. The `updatedData` field within each of the BatchUpdateValuesResponse.responses contains the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean | null;
     /**
@@ -821,6 +849,10 @@ export namespace sheets_v4 {
      */
     color?: Schema$Color;
     /**
+     * The color of the border. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
+    /**
      * The style of the border.
      */
     style?: string | null;
@@ -858,6 +890,10 @@ export namespace sheets_v4 {
      * The bubble border color.
      */
     bubbleBorderColor?: Schema$Color;
+    /**
+     * The bubble border color. If bubble_border_color is also set, this field takes precedence.
+     */
+    bubbleBorderColorStyle?: Schema$ColorStyle;
     /**
      * The data containing the bubble labels.  These do not need to be unique.
      */
@@ -1009,6 +1045,10 @@ export namespace sheets_v4 {
      */
     backgroundColor?: Schema$Color;
     /**
+     * The background color of the cell. If background_color is also set, this field takes precedence.
+     */
+    backgroundColorStyle?: Schema$ColorStyle;
+    /**
      * The borders of the cell.
      */
     borders?: Schema$Borders;
@@ -1109,6 +1149,10 @@ export namespace sheets_v4 {
      * The background color of the entire chart. Not applicable to Org charts.
      */
     backgroundColor?: Schema$Color;
+    /**
+     * The background color of the entire chart. Not applicable to Org charts. If background_color is also set, this field takes precedence.
+     */
+    backgroundColorStyle?: Schema$ColorStyle;
     /**
      * A basic chart specification, can be one of many kinds of charts. See BasicChartType for the list of all charts this supports.
      */
@@ -1367,7 +1411,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string | null;
     /**
-     * The data to be written.  If the provided values exceed any of the ranges matched by the data filter then the request will fail.  If the provided values are less than the matched ranges only the specified values will be written, existing values in the matched ranges will remain unaffected.
+     * The data to be written.  If the provided values exceed any of the ranges matched by the data filter then the request fails.  If the provided values are less than the matched ranges only the specified values are written, existing values in the matched ranges remain unaffected.
      */
     values?: any[][] | null;
   }
@@ -1845,13 +1889,21 @@ export namespace sheets_v4 {
      */
     hiddenValues?: string[] | null;
     /**
-     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with all other filter criteria. Requests to set this field will fail with a 400 error if any other filter criteria field is set.
+     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with all other filter criteria. Requests to set this field fail with a 400 error if any other filter criteria field is set.
      */
     visibleBackgroundColor?: Schema$Color;
     /**
-     * The text color to filter by; only cells with this text color are shown. Mutually exclusive with all other filter criteria. Requests to set this field will fail with a 400 error if any other filter criteria field is set.
+     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with all other filter criteria. Requests to set this field fail with a 400 error if any other filter criteria field is set. If visible_background_color is also set, this field takes precedence.
+     */
+    visibleBackgroundColorStyle?: Schema$ColorStyle;
+    /**
+     * The text color to filter by; only cells with this text color are shown. Mutually exclusive with all other filter criteria. Requests to set this field fail with a 400 error if any other filter criteria field is set.
      */
     visibleForegroundColor?: Schema$Color;
+    /**
+     * The text color to filter by; only cells with this text color are shown. Mutually exclusive with all other filter criteria. Requests to set this field fail with a 400 error if any other filter criteria field is set. If visible_foreground_color is also set, this field takes precedence.
+     */
+    visibleForegroundColorStyle?: Schema$ColorStyle;
   }
   /**
    * A filter view.
@@ -2129,6 +2181,10 @@ export namespace sheets_v4 {
      */
     barColor?: Schema$Color;
     /**
+     * The color of the column representing this series in each bucket. This field is optional. If bar_color is also set, this field takes precedence.
+     */
+    barColorStyle?: Schema$ColorStyle;
+    /**
      * The data for this histogram series.
      */
     data?: Schema$ChartData;
@@ -2167,6 +2223,10 @@ export namespace sheets_v4 {
      * The color this interpolation point should use.
      */
     color?: Schema$Color;
+    /**
+     * The color this interpolation point should use. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
     /**
      * How the value should be interpreted.
      */
@@ -2332,6 +2392,10 @@ export namespace sheets_v4 {
      */
     nodeColor?: Schema$Color;
     /**
+     * The color of the org chart nodes. If node_color is also set, this field takes precedence.
+     */
+    nodeColorStyle?: Schema$ColorStyle;
+    /**
      * The size of the org chart nodes.
      */
     nodeSize?: string | null;
@@ -2343,6 +2407,10 @@ export namespace sheets_v4 {
      * The color of the selected org chart nodes.
      */
     selectedNodeColor?: Schema$Color;
+    /**
+     * The color of the selected org chart nodes. If selected_node_color is also set, this field takes precedence.
+     */
+    selectedNodeColorStyle?: Schema$ColorStyle;
     /**
      * The data containing the tooltip for the corresponding node.  A blank value results in no tooltip being displayed for the node. This field is optional.
      */
@@ -3031,7 +3099,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$SearchDeveloperMetadataRequest {
     /**
-     * The data filters describing the criteria used to determine which DeveloperMetadata entries to return.  DeveloperMetadata matching any of the specified filters will be included in the response.
+     * The data filters describing the criteria used to determine which DeveloperMetadata entries to return.  DeveloperMetadata matching any of the specified filters are included in the response.
      */
     dataFilters?: Schema$DataFilter[];
   }
@@ -3156,6 +3224,10 @@ export namespace sheets_v4 {
      */
     tabColor?: Schema$Color;
     /**
+     * The color of the tab in the UI. If tab_color is also set, this field takes precedence.
+     */
+    tabColorStyle?: Schema$ColorStyle;
+    /**
      * The name of the sheet.
      */
     title?: string | null;
@@ -3189,6 +3261,10 @@ export namespace sheets_v4 {
      * The background color of the slicer.
      */
     backgroundColor?: Schema$Color;
+    /**
+     * The background color of the slicer. If background_color is also set, this field takes precedence.
+     */
+    backgroundColorStyle?: Schema$ColorStyle;
     /**
      * The column index in the data table on which the filter is applied to.
      */
@@ -3232,17 +3308,25 @@ export namespace sheets_v4 {
    */
   export interface Schema$SortSpec {
     /**
-     * The background fill color to sort by. Mutually exclusive with sorting by text color. Requests to set this field will fail with a 400 error if foreground color is also set.
+     * The background fill color to sort by. Mutually exclusive with sorting by text color. Requests to set this field fail with a 400 error if foreground color is also set.
      */
     backgroundColor?: Schema$Color;
+    /**
+     * The background fill color to sort by. Mutually exclusive with sorting by text color. Requests to set this field fail with a 400 error if foreground color is also set. If background_color is also set, this field takes precedence.
+     */
+    backgroundColorStyle?: Schema$ColorStyle;
     /**
      * The dimension the sort should be applied to.
      */
     dimensionIndex?: number | null;
     /**
-     * The text color to sort by. Mutually exclusive with sorting by background fill color. Requests to set this field will fail with a 400 error if background color is also set.
+     * The text color to sort by. Mutually exclusive with sorting by background fill color. Requests to set this field fail with a 400 error if background color is also set.
      */
     foregroundColor?: Schema$Color;
+    /**
+     * The text color to sort by. Mutually exclusive with sorting by background fill color. Requests to set this field fail with a 400 error if background color is also set. If foreground_color is also set, this field takes precedence.
+     */
+    foregroundColorStyle?: Schema$ColorStyle;
     /**
      * The order data should be sorted.
      */
@@ -3307,7 +3391,7 @@ export namespace sheets_v4 {
      */
     defaultFormat?: Schema$CellFormat;
     /**
-     * Determines whether and how circular references are resolved with iterative calculation.  Absence of this field means that circular references will result in calculation errors.
+     * Determines whether and how circular references are resolved with iterative calculation.  Absence of this field means that circular references result in calculation errors.
      */
     iterativeCalculationSettings?: Schema$IterativeCalculationSettings;
     /**
@@ -3336,7 +3420,7 @@ export namespace sheets_v4 {
      */
     primaryFontFamily?: string | null;
     /**
-     * The spreadsheet theme color pairs. For update users need to give all pairs of theme colors.
+     * The spreadsheet theme color pairs. To update you must provide all theme color pairs.
      */
     themeColors?: Schema$ThemeColorPair[];
   }
@@ -3360,6 +3444,10 @@ export namespace sheets_v4 {
      * The foreground color of the text.
      */
     foregroundColor?: Schema$Color;
+    /**
+     * The foreground color of the text. If foreground_color is also set, this field takes precedence.
+     */
+    foregroundColorStyle?: Schema$ColorStyle;
     /**
      * True if the text is italicized.
      */
@@ -3447,17 +3535,33 @@ export namespace sheets_v4 {
      */
     maxValueColor?: Schema$Color;
     /**
+     * The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified. If max_value_color is also set, this field takes precedence.
+     */
+    maxValueColorStyle?: Schema$ColorStyle;
+    /**
      * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified.
      */
     midValueColor?: Schema$Color;
+    /**
+     * The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified. If mid_value_color is also set, this field takes precedence.
+     */
+    midValueColorStyle?: Schema$ColorStyle;
     /**
      * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified.
      */
     minValueColor?: Schema$Color;
     /**
+     * The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified. If min_value_color is also set, this field takes precedence.
+     */
+    minValueColorStyle?: Schema$ColorStyle;
+    /**
      * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified.
      */
     noDataColor?: Schema$Color;
+    /**
+     * The background color for cells that have no color data associated with them. Defaults to #000000 if not specified. If no_data_color is also set, this field takes precedence.
+     */
+    noDataColorStyle?: Schema$ColorStyle;
   }
   /**
    * A &lt;a href=&quot;/chart/interactive/docs/gallery/treemap&quot;&gt;Treemap chart&lt;/a&gt;.
@@ -3475,6 +3579,10 @@ export namespace sheets_v4 {
      * The background color for header cells.
      */
     headerColor?: Schema$Color;
+    /**
+     * The background color for header cells. If header_color is also set, this field takes precedence.
+     */
+    headerColorStyle?: Schema$ColorStyle;
     /**
      * True to hide tooltips.
      */
@@ -3908,6 +4016,10 @@ export namespace sheets_v4 {
      * The color of the column.
      */
     color?: Schema$Color;
+    /**
+     * The color of the column. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
     /**
      * The label of the column&#39;s legend.
      */
@@ -5144,7 +5256,7 @@ export namespace sheets_v4 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
      * @param {string=} params.insertDataOption How the input data should be inserted.
-     * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
+     * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
      * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
      * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
@@ -5565,7 +5677,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      * @param {string=} params.ranges The A1 notation of the values to retrieve.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
      * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
@@ -6276,7 +6388,7 @@ export namespace sheets_v4 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
-     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      * @param {string} params.range The A1 notation of the values to retrieve.
      * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
      * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
@@ -6410,7 +6522,7 @@ export namespace sheets_v4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
+     * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      * @param {string} params.range The A1 notation of the values to update.
      * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
      * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
@@ -6501,7 +6613,7 @@ export namespace sheets_v4 {
      */
     insertDataOption?: string;
     /**
-     * The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
+     * The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
      */
     range?: string;
     /**
@@ -6572,7 +6684,7 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
@@ -6672,7 +6784,7 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+     * The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
@@ -6696,7 +6808,7 @@ export namespace sheets_v4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
+     * Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      */
     includeValuesInResponse?: boolean;
     /**

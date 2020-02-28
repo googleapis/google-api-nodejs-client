@@ -137,7 +137,7 @@ export namespace file_v1beta1 {
     name?: string | null;
   }
   /**
-   * Instance represents the interface for SLM services to actuate the state of control plane resources.  Example Instance in JSON, where   consumer-project=snapchat,   producer-project=cloud-sql:  ```json Instance: {   &quot;name&quot;:   &quot;projects/snapchat/locations/us-east1/instances/prod-instance&quot;,   &quot;create_time&quot;: {     &quot;seconds&quot;: 1526406431,   },   &quot;labels&quot;: {     &quot;env&quot;: &quot;prod&quot;,     &quot;foo&quot;: &quot;bar&quot;   },   &quot;state&quot;: READY,   &quot;software_versions&quot;: {     &quot;software_update&quot;: &quot;cloud-sql-09-28-2018&quot;,   },   &quot;maintenance_policy_names&quot;: {     &quot;UpdatePolicy&quot;:     &quot;projects/snapchat/locations/us-east1/maintenancePolicies/prod-update-policy&quot;,   }   &quot;rollout_metadata&quot;: {     &quot;projects/cloud-sql/locations/global/rolloutTypes/software_update&quot;: {       &quot;release&quot;:       &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-28-2018&quot;,       &quot;rollout&quot;:       &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-28-2018-canary&quot;,     },     &quot;projects/cloud-sql/locations/global/rolloutTypes/instance_restart&quot;: {       &quot;release&quot;:       &quot;projects/cloud-sql/locations/global/releases/cloud-sql-09-20-repair&quot;,       &quot;rollout&quot;:       &quot;projects/cloud-sql/locations/us-east1/rollouts/cloud-sql-09-20-repair-100-percent&quot;,     }   }   &quot;tenant_project_id&quot;: &quot;cloud-sql-test-tenant&quot;,   &quot;producer_metadata&quot;: {     &quot;cloud-sql-tier&quot;: &quot;basic&quot;,     &quot;cloud-sql-instance-size&quot;: &quot;1G&quot;,   },   &quot;provisioned_resources&quot;: [     {       &quot;resource-type&quot;: &quot;compute-instance&quot;,       &quot;resource-url&quot;:       &quot;https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1&quot;,     }   ],   &quot;maintenance_schedules&quot;: {     &quot;csa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     },     &quot;ncsa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     }   },   &quot;consumer_defined_name&quot;: &quot;my-sql-instance1&quot;, } ```
+   * Instance represents the interface for SLM services to actuate the state of control plane resources.  Example Instance in JSON, where   consumer-project=snapchat,   producer-project=cloud-sql:  ```json Instance: {   &quot;name&quot;:   &quot;projects/snapchat/locations/us-east1/instances/prod-instance&quot;,   &quot;create_time&quot;: {     &quot;seconds&quot;: 1526406431,   },   &quot;labels&quot;: {     &quot;env&quot;: &quot;prod&quot;,     &quot;foo&quot;: &quot;bar&quot;   },   &quot;state&quot;: READY,   &quot;software_versions&quot;: {     &quot;software_update&quot;: &quot;cloud-sql-09-28-2018&quot;,   },   &quot;maintenance_policy_names&quot;: {     &quot;UpdatePolicy&quot;:     &quot;projects/snapchat/locations/us-east1/maintenancePolicies/prod-update-policy&quot;,   }   &quot;tenant_project_id&quot;: &quot;cloud-sql-test-tenant&quot;,   &quot;producer_metadata&quot;: {     &quot;cloud-sql-tier&quot;: &quot;basic&quot;,     &quot;cloud-sql-instance-size&quot;: &quot;1G&quot;,   },   &quot;provisioned_resources&quot;: [     {       &quot;resource-type&quot;: &quot;compute-instance&quot;,       &quot;resource-url&quot;:       &quot;https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1&quot;,     }   ],   &quot;maintenance_schedules&quot;: {     &quot;csa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     },     &quot;ncsa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     }   },   &quot;consumer_defined_name&quot;: &quot;my-sql-instance1&quot;, } ```
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
     /**
@@ -244,7 +244,7 @@ export namespace file_v1beta1 {
     nodeId?: string | null;
   }
   /**
-   * NotificationMetadata is the notification state for an instance.
+   * This message has been deprecated. NotificationMetadata is the notification state for an instance.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationMetadata {
     /**
@@ -278,7 +278,7 @@ export namespace file_v1beta1 {
     resourceUrl?: string | null;
   }
   /**
-   * RolloutMetadata for an actuation instance. It maps to a single RolloutType.
+   * This message has been deprecated. RolloutMetadata for an actuation instance. It maps to a single RolloutType.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1RolloutMetadata {
     /**
@@ -333,7 +333,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata {
     /**
-     * Optional: user-defined instance eligibility.
+     * Optional. User-defined instance eligibility.
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
@@ -341,7 +341,7 @@ export namespace file_v1beta1 {
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
-     * Optional: list of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.
+     * Optional. List of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.
      */
     nodes?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata[];
     /**
@@ -358,7 +358,7 @@ export namespace file_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Optional. A description of the instance (2048 characters or less).
+     * Optional. The description of the instance (2048 characters or less).
      */
     description?: string | null;
     /**
