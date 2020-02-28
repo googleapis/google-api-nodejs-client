@@ -103,6 +103,7 @@ export namespace run_v1 {
    */
   export class Run {
     context: APIRequestContext;
+    api: Resource$Api;
     namespaces: Resource$Namespaces;
     projects: Resource$Projects;
 
@@ -112,6 +113,7 @@ export namespace run_v1 {
         google,
       };
 
+      this.api = new Resource$Api(this.context);
       this.namespaces = new Resource$Namespaces(this.context);
       this.projects = new Resource$Projects(this.context);
     }
@@ -496,23 +498,23 @@ export namespace run_v1 {
     command?: string | null;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
@@ -1151,6 +1153,27 @@ export namespace run_v1 {
     url?: string | null;
   }
   /**
+   * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes.
+   */
+  export interface Schema$Secret {
+    /**
+     * Data contains the secret data. Each key must consist of alphanumeric characters, &#39;-&#39;, &#39;_&#39; or &#39;.&#39;. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
+     */
+    data?: {[key: string]: string} | null;
+    /**
+     * Standard object&#39;s metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata
+     */
+    metadata?: Schema$ObjectMeta;
+    /**
+     * stringData allows specifying non-binary secret data in string form. It is provided as a write-only convenience method. All keys and values are merged into the data field on write, overwriting any existing values. It is never output when reading from the API. +k8s:conversion-gen=false
+     */
+    stringData?: {[key: string]: string} | null;
+    /**
+     * Used to facilitate programmatic handling of secret data.
+     */
+    type?: string | null;
+  }
+  /**
    * Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  SecretEnvSource selects a Secret to populate the environment variables with.  The contents of the target Secret&#39;s Data field will represent the key-value pairs as environment variables.
    */
   export interface Schema$SecretEnvSource {
@@ -1474,6 +1497,299 @@ export namespace run_v1 {
      * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  Path within the volume from which the container&#39;s volume should be mounted. Defaults to &quot;&quot; (volume&#39;s root).
      */
     subPath?: string | null;
+  }
+
+  export class Resource$Api {
+    context: APIRequestContext;
+    v1: Resource$Api$V1;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.v1 = new Resource$Api$V1(this.context);
+    }
+  }
+
+  export class Resource$Api$V1 {
+    context: APIRequestContext;
+    namespaces: Resource$Api$V1$Namespaces;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.namespaces = new Resource$Api$V1$Namespaces(this.context);
+    }
+  }
+
+  export class Resource$Api$V1$Namespaces {
+    context: APIRequestContext;
+    secrets: Resource$Api$V1$Namespaces$Secrets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.secrets = new Resource$Api$V1$Namespaces$Secrets(this.context);
+    }
+  }
+
+  export class Resource$Api$V1$Namespaces$Secrets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * run.api.v1.namespaces.secrets.create
+     * @desc Creates a new secret.
+     * @alias run.api.v1.namespaces.secrets.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The project ID or project number in which this secret should be created.
+     * @param {().Secret} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Api$V1$Namespaces$Secrets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    create(
+      params: Params$Resource$Api$V1$Namespaces$Secrets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    create(
+      params: Params$Resource$Api$V1$Namespaces$Secrets$Create,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Secret>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Api$V1$Namespaces$Secrets$Create
+        | BodyResponseCallback<Schema$Secret>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback?: BodyResponseCallback<Schema$Secret>
+    ): void | GaxiosPromise<Schema$Secret> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Api$V1$Namespaces$Secrets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Api$V1$Namespaces$Secrets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/api/v1/{+parent}/secrets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * run.api.v1.namespaces.secrets.get
+     * @desc Rpc to get information about a secret.
+     * @alias run.api.v1.namespaces.secrets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Api$V1$Namespaces$Secrets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    get(
+      params: Params$Resource$Api$V1$Namespaces$Secrets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    get(
+      params: Params$Resource$Api$V1$Namespaces$Secrets$Get,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Secret>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Api$V1$Namespaces$Secrets$Get
+        | BodyResponseCallback<Schema$Secret>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback?: BodyResponseCallback<Schema$Secret>
+    ): void | GaxiosPromise<Schema$Secret> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Api$V1$Namespaces$Secrets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Api$V1$Namespaces$Secrets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/api/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * run.api.v1.namespaces.secrets.replaceSecret
+     * @desc Rpc to replace a secret.  Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'.  May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @alias run.api.v1.namespaces.secrets.replaceSecret
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {().Secret} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    replaceSecret(
+      params?: Params$Resource$Api$V1$Namespaces$Secrets$Replacesecret,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    replaceSecret(
+      params: Params$Resource$Api$V1$Namespaces$Secrets$Replacesecret,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    replaceSecret(
+      params: Params$Resource$Api$V1$Namespaces$Secrets$Replacesecret,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    replaceSecret(callback: BodyResponseCallback<Schema$Secret>): void;
+    replaceSecret(
+      paramsOrCallback?:
+        | Params$Resource$Api$V1$Namespaces$Secrets$Replacesecret
+        | BodyResponseCallback<Schema$Secret>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback?: BodyResponseCallback<Schema$Secret>
+    ): void | GaxiosPromise<Schema$Secret> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Api$V1$Namespaces$Secrets$Replacesecret;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Api$V1$Namespaces$Secrets$Replacesecret;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/api/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Api$V1$Namespaces$Secrets$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The project ID or project number in which this secret should be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Secret;
+  }
+  export interface Params$Resource$Api$V1$Namespaces$Secrets$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Api$V1$Namespaces$Secrets$Replacesecret
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Secret;
   }
 
   export class Resource$Namespaces {
@@ -3279,6 +3595,7 @@ export namespace run_v1 {
     domainmappings: Resource$Projects$Locations$Domainmappings;
     revisions: Resource$Projects$Locations$Revisions;
     routes: Resource$Projects$Locations$Routes;
+    secrets: Resource$Projects$Locations$Secrets;
     services: Resource$Projects$Locations$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -3293,76 +3610,8 @@ export namespace run_v1 {
       );
       this.revisions = new Resource$Projects$Locations$Revisions(this.context);
       this.routes = new Resource$Projects$Locations$Routes(this.context);
+      this.secrets = new Resource$Projects$Locations$Secrets(this.context);
       this.services = new Resource$Projects$Locations$Services(this.context);
-    }
-
-    /**
-     * run.projects.locations.get
-     * @desc Gets information about a location.
-     * @alias run.projects.locations.get
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get(
-      params?: Params$Resource$Projects$Locations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Location>;
-    get(
-      params: Params$Resource$Projects$Locations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback: BodyResponseCallback<Schema$Location>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Get,
-      callback: BodyResponseCallback<Schema$Location>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Location>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Get
-        | BodyResponseCallback<Schema$Location>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Location>,
-      callback?: BodyResponseCallback<Schema$Location>
-    ): void | GaxiosPromise<Schema$Location> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Location>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Location>(parameters);
-      }
     }
 
     /**
@@ -3445,18 +3694,6 @@ export namespace run_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Resource name for the location.
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
@@ -4737,6 +4974,272 @@ export namespace run_v1 {
      * Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
      */
     watch?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Secrets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * run.projects.locations.secrets.create
+     * @desc Creates a new secret.
+     * @alias run.projects.locations.secrets.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The project ID or project number in which this secret should be created.
+     * @param {().Secret} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Locations$Secrets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    create(
+      params: Params$Resource$Projects$Locations$Secrets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Secrets$Create,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Secret>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Create
+        | BodyResponseCallback<Schema$Secret>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback?: BodyResponseCallback<Schema$Secret>
+    ): void | GaxiosPromise<Schema$Secret> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/secrets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * run.projects.locations.secrets.get
+     * @desc Rpc to get information about a secret.
+     * @alias run.projects.locations.secrets.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Secrets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Secrets$Get,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Secret>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Get
+        | BodyResponseCallback<Schema$Secret>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback?: BodyResponseCallback<Schema$Secret>
+    ): void | GaxiosPromise<Schema$Secret> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * run.projects.locations.secrets.replaceSecret
+     * @desc Rpc to replace a secret.  Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'.  May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * @alias run.projects.locations.secrets.replaceSecret
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {().Secret} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    replaceSecret(
+      params?: Params$Resource$Projects$Locations$Secrets$Replacesecret,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Secret>;
+    replaceSecret(
+      params: Params$Resource$Projects$Locations$Secrets$Replacesecret,
+      options: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    replaceSecret(
+      params: Params$Resource$Projects$Locations$Secrets$Replacesecret,
+      callback: BodyResponseCallback<Schema$Secret>
+    ): void;
+    replaceSecret(callback: BodyResponseCallback<Schema$Secret>): void;
+    replaceSecret(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Replacesecret
+        | BodyResponseCallback<Schema$Secret>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Secret>,
+      callback?: BodyResponseCallback<Schema$Secret>
+    ): void | GaxiosPromise<Schema$Secret> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Replacesecret;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Replacesecret;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Secret>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Secrets$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The project ID or project number in which this secret should be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Secret;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Replacesecret
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the secret being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Secret;
   }
 
   export class Resource$Projects$Locations$Services {

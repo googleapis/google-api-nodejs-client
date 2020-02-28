@@ -527,7 +527,7 @@ export namespace jobs_v3p1beta1 {
      */
     importanceLevel?: string | null;
     /**
-     * Required. Controls over how job documents get ranked on top of existing relevance score (determined by API algorithm). The product of ranking expression and relevance score is used to determine job&#39;s final ranking position.  The syntax for this expression is a subset of Google SQL syntax.  Supported operators are: +, -, *, /, where the left and right side of the operator is either a numeric Job.custom_attributes key, integer/double value or an expression that can be evaluated to a number.  Parenthesis are supported to adjust calculation precedence. The expression must be &lt; 100 characters in length.  Sample ranking expression (year + 25) * 0.25 - (freshness / 0.5)
+     * Required. Controls over how job documents get ranked on top of existing relevance score (determined by API algorithm). A combination of the ranking expression and relevance score is used to determine job&#39;s final ranking position.  The syntax for this expression is a subset of Google SQL syntax.  Supported operators are: +, -, *, /, where the left and right side of the operator is either a numeric Job.custom_attributes key, integer/double value or an expression that can be evaluated to a number.  Parenthesis are supported to adjust calculation precedence. The expression must be &lt; 100 characters in length.  The expression is considered invalid for a job if the expression references custom attributes that are not populated on the job or if the expression results in a divide by zero. If an expression is invalid for a job, that job is demoted to the end of the results.  Sample ranking expression (year + 25) * 0.25 - (freshness / 0.5)
      */
     rankingExpression?: string | null;
   }
@@ -1218,7 +1218,7 @@ export namespace jobs_v3p1beta1 {
      */
     jobView?: string | null;
     /**
-     * Optional. An integer that specifies the current offset (that is, starting result location, amongst the jobs deemed by the API as relevant) in search results. This field is only considered if page_token is unset.  For example, 0 means to  return results starting from the first matching job, and 10 means to return from the 11th job. This can be used for pagination, (for example, pageSize = 10 and offset = 10 means to return from the second page).
+     * Optional. An integer that specifies the current offset (that is, starting result location, amongst the jobs deemed by the API as relevant) in search results. This field is only considered if page_token is unset.  The maximum allowed value is 5000. Otherwise an error is thrown.  For example, 0 means to  return results starting from the first matching job, and 10 means to return from the 11th job. This can be used for pagination, (for example, pageSize = 10 and offset = 10 means to return from the second page).
      */
     offset?: number | null;
     /**

@@ -660,7 +660,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__RequestLoggingConfig {
     /**
-     * Required. Fully qualified BigQuery table name in the following format: &quot;&lt;var&gt;project_id&lt;/var&gt;.&lt;var&gt;dataset_name&lt;/var&gt;.&lt;var&gt;table_name&lt;/var&gt;&quot;  The specifcied table must already exist, and the &quot;Cloud ML Service Agent&quot; for your project must have permission to write to it. The table must have the following [schema](/bigquery/docs/schemas):  &lt;table&gt;   &lt;tr&gt;&lt;th&gt;Field name&lt;/th&gt;&lt;th style=&quot;display: table-cell&quot;&gt;Type&lt;/th&gt;     &lt;th style=&quot;display: table-cell&quot;&gt;Mode&lt;/th&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;model&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;REQUIRED&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;model_version&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;REQUIRED&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;time&lt;/td&gt;&lt;td&gt;TIMESTAMP&lt;/td&gt;&lt;td&gt;REQUIRED&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;raw_data&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;REQUIRED&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;raw_prediction&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;NULLABLE&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;groundtruth&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;NULLABLE&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;
+     * Required. Fully qualified BigQuery table name in the following format: &quot;&lt;var&gt;project_id&lt;/var&gt;.&lt;var&gt;dataset_name&lt;/var&gt;.&lt;var&gt;table_name&lt;/var&gt;&quot;  The specified table must already exist, and the &quot;Cloud ML Service Agent&quot; for your project must have permission to write to it. The table must have the following [schema](/bigquery/docs/schemas):  &lt;table&gt;   &lt;tr&gt;&lt;th&gt;Field name&lt;/th&gt;&lt;th style=&quot;display: table-cell&quot;&gt;Type&lt;/th&gt;     &lt;th style=&quot;display: table-cell&quot;&gt;Mode&lt;/th&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;model&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;REQUIRED&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;model_version&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;REQUIRED&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;time&lt;/td&gt;&lt;td&gt;TIMESTAMP&lt;/td&gt;&lt;td&gt;REQUIRED&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;raw_data&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;REQUIRED&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;raw_prediction&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;NULLABLE&lt;/td&gt;&lt;/tr&gt;   &lt;tr&gt;&lt;td&gt;groundtruth&lt;/td&gt;&lt;td&gt;STRING&lt;/td&gt;&lt;td&gt;NULLABLE&lt;/td&gt;&lt;/tr&gt; &lt;/table&gt;
      */
     bigqueryTableName?: string | null;
     /**
@@ -678,11 +678,20 @@ export namespace ml_v1 {
     numPaths?: number | null;
   }
   /**
+   * All parameters related to scheduling of training jobs.
+   */
+  export interface Schema$GoogleCloudMlV1__Scheduling {
+    /**
+     * Optional. The maximum job running time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. By default there is no limit to the running time.  If the training job is still running after this duration, AI Platform Training cancels it.  For example, if you want to ensure your job runs for no more than 2 hours, set this field to `7200s` (2 hours * 60 minutes / hour * 60 seconds / minute).  If you submit your training job using the `gcloud` tool, you can [provide this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example:  ```yaml trainingInput:   ...   scheduling:     maxRunningTime: 7200s   ... ```
+     */
+    maxRunningTime?: string | null;
+  }
+  /**
    * Request message for the SetDefaultVersion request.
    */
   export interface Schema$GoogleCloudMlV1__SetDefaultVersionRequest {}
   /**
-   * Represents input parameters for a training job. When using the gcloud command to submit your training job, you can specify the input parameters as command-line arguments and/or in a YAML configuration file referenced from the --config command-line argument. For details, see the guide to &lt;a href=&quot;/ml-engine/docs/tensorflow/training-jobs&quot;&gt;submitting a training job&lt;/a&gt;.
+   * Represents input parameters for a training job. When using the gcloud command to submit your training job, you can specify the input parameters as command-line arguments and/or in a YAML configuration file referenced from the --config command-line argument. For details, see the guide to [submitting a training job](/ai-platform/training/docs/training-jobs).
    */
   export interface Schema$GoogleCloudMlV1__TrainingInput {
     /**
@@ -726,21 +735,25 @@ export namespace ml_v1 {
      */
     pythonModule?: string | null;
     /**
-     * Optional. The version of Python used in training. If not set, the default version is &#39;2.7&#39;. Starting [January 13, 2020](/ml-engine/docs/release-notes#december_10_2019), this field is required.  The following Python versions are available:  * Python &#39;3.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   later. * Python &#39;3.5&#39; is available when `runtime_version` is set to a version   from &#39;1.4&#39; to &#39;1.14&#39;. * Python &#39;2.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   earlier. (Runtime versions released [after January 1,   2020](/ml-engine/docs/release-notes#december_10_2019) do not support   Python 2.7.)  Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).
+     * Optional. The version of Python used in training. You must either specify this field or specify `masterConfig.imageUri`.  The following Python versions are available:  * Python &#39;3.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   later. * Python &#39;3.5&#39; is available when `runtime_version` is set to a version   from &#39;1.4&#39; to &#39;1.14&#39;. * Python &#39;2.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   earlier.  Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).
      */
     pythonVersion?: string | null;
     /**
-     * Required. The Google Compute Engine region to run the training job in. See the &lt;a href=&quot;/ml-engine/docs/tensorflow/regions&quot;&gt;available regions&lt;/a&gt; for AI Platform services.
+     * Required. The region to run the training job in. See the [available regions](/ai-platform/training/docs/regions) for AI Platform Training.
      */
     region?: string | null;
     /**
-     * Optional. The AI Platform runtime version to use for training. If not set, AI Platform uses the default stable version, 1.0. Starting [January 13, 2020](/ml-engine/docs/release-notes#december_10_2019), this field is required.  For more information, see the &lt;a href=&quot;/ml-engine/docs/runtime-version-list&quot;&gt;runtime version list&lt;/a&gt; and &lt;a href=&quot;/ml-engine/docs/versioning&quot;&gt;how to manage runtime versions&lt;/a&gt;.
+     * Optional. The AI Platform runtime version to use for training. You must either specify this field or specify `masterConfig.imageUri`.  For more information, see the [runtime version list](/ai-platform/training/docs/runtime-version-list) and learn [how to manage runtime versions](/ai-platform/training/docs/versioning).
      */
     runtimeVersion?: string | null;
     /**
      * Required. Specifies the machine types, the number of replicas for workers and parameter servers.
      */
     scaleTier?: string | null;
+    /**
+     * Optional. Scheduling options for a training job.
+     */
+    scheduling?: Schema$GoogleCloudMlV1__Scheduling;
     /**
      * Optional. Use &#39;chief&#39; instead of &#39;master&#39; in TF_CONFIG when Custom Container is used and evaluator is not specified.  Defaults to false.
      */
@@ -864,7 +877,7 @@ export namespace ml_v1 {
      */
     predictionClass?: string | null;
     /**
-     * Optional. The version of Python used in prediction. If not set, the default version is &#39;2.7&#39;. Starting [January 13, 2020](/ml-engine/docs/release-notes#december_10_2019), this field is required.  The following Python versions are available:  * Python &#39;3.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   later. * Python &#39;3.5&#39; is available when `runtime_version` is set to a version   from &#39;1.4&#39; to &#39;1.14&#39;. * Python &#39;2.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   earlier. (Runtime versions released [after January 1,   2020](/ml-engine/docs/release-notes#december_10_2019) do not support   Python 2.7.)  Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).
+     * Required. The version of Python used in prediction.  The following Python versions are available:  * Python &#39;3.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   later. * Python &#39;3.5&#39; is available when `runtime_version` is set to a version   from &#39;1.4&#39; to &#39;1.14&#39;. * Python &#39;2.7&#39; is available when `runtime_version` is set to &#39;1.15&#39; or   earlier.  Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list).
      */
     pythonVersion?: string | null;
     /**
@@ -872,7 +885,7 @@ export namespace ml_v1 {
      */
     requestLoggingConfig?: Schema$GoogleCloudMlV1__RequestLoggingConfig;
     /**
-     * Optional. The AI Platform runtime version to use for this deployment. If not set, AI Platform uses the default stable version, 1.0. Starting [January 13, 2020](/ml-engine/docs/release-notes#december_10_2019), this field is required.  For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).
+     * Required. The AI Platform runtime version to use for this deployment.  For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning).
      */
     runtimeVersion?: string | null;
     /**
@@ -1039,23 +1052,23 @@ export namespace ml_v1 {
     message?: string | null;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$GoogleType__Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }

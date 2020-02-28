@@ -2036,6 +2036,9 @@ export namespace youtube_v3 {
      * If both this and enable_low_latency are set, they must match. LATENCY_NORMAL should match enable_low_latency=false LATENCY_LOW should match enable_low_latency=true LATENCY_ULTRA_LOW should have enable_low_latency omitted.
      */
     latencyPreference?: string | null;
+    /**
+     * The mesh for projecting the video if projection is mesh. The mesh value must be a UTF-8 string containing the base-64 encoding of 3D mesh data that follows the  Spherical Video V2 RFC specification for an mshp box, excluding the box size and type but including the following four reserved zero bytes for the version and flags.
+     */
     mesh?: string | null;
     /**
      * The monitorStream object contains information about the monitor stream, which the broadcaster can use to review the event content before the broadcast stream is shown publicly.
@@ -2723,37 +2726,49 @@ export namespace youtube_v3 {
   }
   export interface Schema$MembershipsDetails {
     /**
-     * All levels that the user has access to. This includes the currently active level and all other levels that are included because of a higher purchase.
+     * Ids of all levels that the user has access to. This includes the currently active level and all other levels that are included because of a higher purchase.
      */
     accessibleLevels?: string[] | null;
     /**
-     * The highest level that the user has access to at the moment.
+     * Id of the highest level that the user has access to at the moment.
      */
     highestAccessibleLevel?: string | null;
     /**
-     * Display name for the highest level that the user has access to at the moment.
+     * Display name of the highest level that the user has access to at the moment.
      */
     highestAccessibleLevelDisplayName?: string | null;
+    /**
+     * Data about memberships duration without taking into consideration pricing levels.
+     */
+    membershipsDuration?: Schema$MembershipsDuration;
+    /**
+     * Data about memberships duration on particular pricing levels.
+     */
+    membershipsDurationAtLevels?: Schema$MembershipsDurationAtLevel[];
+  }
+  export interface Schema$MembershipsDuration {
     /**
      * The date and time when the user became a continuous member across all levels.
      */
     memberSince?: string | null;
     /**
-     * The date and time when the user started to continuously have access to the currently highest level.
-     */
-    memberSinceCurrentLevel?: string | null;
-    /**
      * The cumulative time the user has been a member across all levels in complete months (the time is rounded down to the nearest integer).
      */
-    memberTotalDuration?: number | null;
+    memberTotalDurationMonths?: number | null;
+  }
+  export interface Schema$MembershipsDurationAtLevel {
     /**
-     * The cumulative time the user has had access to the currently highest level in complete months (the time is rounded down to the nearest integer).
+     * Pricing level id.
      */
-    memberTotalDurationCurrentLevel?: number | null;
+    level?: string | null;
     /**
-     * The highest level that the user has access to at the moment. DEPRECATED - highest_accessible_level should be used instead. This will be removed after we make sure there are no 3rd parties relying on it.
+     * The date and time when the user became a continuous member for the given level.
      */
-    purchasedLevel?: string | null;
+    memberSince?: string | null;
+    /**
+     * The cumulative time the user has been a member for the given level in complete months (the time is rounded down to the nearest integer).
+     */
+    memberTotalDurationMonths?: number | null;
   }
   /**
    * A membershipsLevel resource represents an offer made by YouTube creators for their fans. Users can become members of the channel by joining one of the available levels. They will provide recurring monetary support and receives special benefits.
@@ -4395,9 +4410,6 @@ export namespace youtube_v3 {
      * This value explains why YouTube rejected an uploaded video. This property is only present if the uploadStatus property indicates that the upload was rejected.
      */
     rejectionReason?: string | null;
-    /**
-     * Allows clients to set the Crosswalk self_declared state for a Video. This maps to VAPI.Video.creator_flags.is_crosswalk_self_declared() and VAPI.Video.creator_flags.is_not_crosswalk_self_declared().
-     */
     selfDeclaredMadeForKids?: boolean | null;
     /**
      * The status of the uploaded video.

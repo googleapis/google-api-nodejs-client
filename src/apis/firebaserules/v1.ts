@@ -350,6 +350,14 @@ export namespace firebaserules_v1 {
      */
     column?: number | null;
     /**
+     * Start position relative to the beginning of the file.
+     */
+    currentOffset?: number | null;
+    /**
+     * End position relative to the beginning of the file.
+     */
+    endOffset?: number | null;
+    /**
      * Name of the `File`.
      */
     fileName?: string | null;

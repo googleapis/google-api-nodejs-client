@@ -122,7 +122,7 @@ export namespace storagetransfer_v1 {
   }
 
   /**
-   * AWS access key (see [AWS Security Credentials](http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)).
+   * AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)).
    */
   export interface Schema$AwsAccessKey {
     /**
@@ -143,7 +143,7 @@ export namespace storagetransfer_v1 {
      */
     awsAccessKey?: Schema$AwsAccessKey;
     /**
-     * Required. S3 Bucket name (see [Creating a bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).
+     * Required. S3 Bucket name (see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).
      */
     bucketName?: string | null;
   }
@@ -199,7 +199,7 @@ export namespace storagetransfer_v1 {
     errorLogEntries?: Schema$ErrorLogEntry[];
   }
   /**
-   * In a GcsData resource, an object&#39;s name is the Cloud Storage object&#39;s name and its `lastModificationTime` refers to the object&#39;s updated time, which changes when the content or the metadata of the object is updated.
+   * In a GcsData resource, an object&#39;s name is the Cloud Storage object&#39;s name and its &quot;last modification time&quot; refers to the object&#39;s `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated.
    */
   export interface Schema$GcsData {
     /**
@@ -217,7 +217,7 @@ export namespace storagetransfer_v1 {
     accountEmail?: string | null;
   }
   /**
-   * An HttpData resource specifies a list of objects on the web to be transferred over HTTP.  The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be &quot;TsvHttpData-1.0&quot;, which specifies the format of the file.  Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields:  * HTTP URL - The location of the object.  * Length - The size of the object in bytes.  * MD5 - The base64-encoded MD5 hash of the object.  For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage/transfer/create-url-list).  When transferring data based on a URL list, keep the following in mind:  * When an object located at `http(s)://hostname:port/&lt;URL-path&gt;` is transferred to a data sink, the name of the object at the data sink is `&lt;hostname&gt;/&lt;URL-path&gt;`.  * If the specified size of an object does not match the actual size of the object fetched, the object will not be transferred.  * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer will fail. For more information, see [Generating MD5 hashes](https://cloud.google.com/storage/transfer/#md5)  * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (https://cloud.google.com/storage/docs/cloud-console#_sharingdata) and get a link to it.  * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response.  * [ObjectConditions](#ObjectConditions) have no effect when filtering objects to transfer.
+   * An HttpData resource specifies a list of objects on the web to be transferred over HTTP.  The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `&quot;TsvHttpData-1.0&quot;`, which specifies the format of the file.  Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields:  * **HTTP URL** — The location of the object.  * **Length** — The size of the object in bytes.  * **MD5** — The base64-encoded MD5 hash of the object.  For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list).  When transferring data based on a URL list, keep the following in mind:  * When an object located at `http(s)://hostname:port/&lt;URL-path&gt;` is transferred to a data sink, the name of the object at the data sink is `&lt;hostname&gt;/&lt;URL-path&gt;`.  * If the specified size of an object does not match the actual size of the object fetched, the object will not be transferred.  * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer will fail. For more information, see [Generating MD5 hashes](https://cloud.google.com/storage-transfer/docs/create-url-list#md5)  * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (https://cloud.google.com/storage/docs/cloud-console#_sharingdata) and get a link to it.  * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response.  * ObjectConditions have no effect when filtering objects to transfer.
    */
   export interface Schema$HttpData {
     /**
@@ -252,23 +252,23 @@ export namespace storagetransfer_v1 {
     transferJobs?: Schema$TransferJob[];
   }
   /**
-   * Conditions that determine which objects will be transferred. Applies only to S3 and Cloud Storage objects.
+   * Conditions that determine which objects will be transferred. Applies only to S3 and Cloud Storage objects.  The &quot;last modification time&quot; refers to the time of the last change to the object&#39;s content or metadata — specifically, this is the `updated` property of Cloud Storage objects and the `LastModified` field of S3 objects.
    */
   export interface Schema$ObjectConditions {
     /**
-     * `excludePrefixes` must follow the requirements described for `includePrefixes`.  The max size of `excludePrefixes` is 1000.
+     * `exclude_prefixes` must follow the requirements described for include_prefixes.  The max size of `exclude_prefixes` is 1000.
      */
     excludePrefixes?: string[] | null;
     /**
-     * If `includePrefixes` is specified, objects that satisfy the object conditions must have names that start with one of the `includePrefixes` and that do not start with any of the `excludePrefixes`. If `includePrefixes` is not specified, all objects except those that have names starting with one of the `excludePrefixes` must satisfy the object conditions.  Requirements:    * Each include-prefix and exclude-prefix can contain any sequence of     Unicode characters, of max length 1024 bytes when UTF8-encoded, and     must not contain Carriage Return or Line Feed characters.  Wildcard     matching and regular expression matching are not supported.    * Each include-prefix and exclude-prefix must omit the leading slash.     For example, to include the `requests.gz` object in a transfer from     `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the include     prefix as `logs/y=2015/requests.gz`.    * None of the include-prefix or the exclude-prefix values can be empty,     if specified.    * Each include-prefix must include a distinct portion of the object     namespace, i.e., no include-prefix may be a prefix of another     include-prefix.    * Each exclude-prefix must exclude a distinct portion of the object     namespace, i.e., no exclude-prefix may be a prefix of another     exclude-prefix.    * If `includePrefixes` is specified, then each exclude-prefix must start     with the value of a path explicitly included by `includePrefixes`.  The max size of `includePrefixes` is 1000.
+     * If `include_prefixes` is specified, objects that satisfy the object conditions must have names that start with one of the `include_prefixes` and that do not start with any of the exclude_prefixes. If `include_prefixes` is not specified, all objects except those that have names starting with one of the `exclude_prefixes` must satisfy the object conditions.  Requirements:    * Each include-prefix and exclude-prefix can contain any sequence of     Unicode characters, to a max length of 1024 bytes when UTF8-encoded,     and must not contain Carriage Return or Line Feed characters.  Wildcard     matching and regular expression matching are not supported.    * Each include-prefix and exclude-prefix must omit the leading slash.     For example, to include the `requests.gz` object in a transfer from     `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the include     prefix as `logs/y=2015/requests.gz`.    * None of the include-prefix or the exclude-prefix values can be empty,     if specified.    * Each include-prefix must include a distinct portion of the object     namespace. No include-prefix may be a prefix of another     include-prefix.    * Each exclude-prefix must exclude a distinct portion of the object     namespace. No exclude-prefix may be a prefix of another     exclude-prefix.    * If `include_prefixes` is specified, then each exclude-prefix must start     with the value of a path explicitly included by `include_prefixes`.  The max size of `include_prefixes` is 1000.
      */
     includePrefixes?: string[] | null;
     /**
-     * If specified, only objects with a `lastModificationTime` on or after `NOW` - `maxTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that, for each `TransferOperation` started by this `TransferJob`, `NOW` refers to the `start_time` of the &#39;TransferOperation`. Also, `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata - specifically, this would be the `updated` property of Cloud Storage objects and the `LastModified` field of S3 objects.
+     * If specified, only objects with a &quot;last modification time&quot; on or after `NOW` - `max_time_elapsed_since_last_modification` and objects that don&#39;t have a &quot;last modification time&quot; are transferred.  For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
      */
     maxTimeElapsedSinceLastModification?: string | null;
     /**
-     * If specified, only objects with a `lastModificationTime` before `NOW` - `minTimeElapsedSinceLastModification` and objects that don&#39;t have a `lastModificationTime` are transferred.  Note that, for each `TransferOperation` started by this `TransferJob`, `NOW` refers to the `start_time` of the &#39;TransferOperation`. Also, `lastModificationTime` refers to the time of the last change to the object&#39;s content or metadata - specifically, this would be the `updated` property of Cloud Storage objects and the `LastModified` field of S3 objects.
+     * If specified, only objects with a &quot;last modification time&quot; before `NOW` - `min_time_elapsed_since_last_modification` and objects that don&#39;t  have a &quot;last modification time&quot; are transferred.  For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
      */
     minTimeElapsedSinceLastModification?: string | null;
   }
@@ -310,15 +310,15 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$Schedule {
     /**
-     * The last day a transfer runs. Date boundaries are determined relative to UTC time. A job will run once per 24 hours within the following guidelines:  *   If `scheduleEndDate` and `scheduleStartDate` are the same and in the     future relative to UTC, the transfer is executed only one time. *   If `scheduleEndDate` is later than `scheduleStartDate` and     `scheduleEndDate` is in the future relative to UTC, the job will     run each day at `startTimeOfDay` through `scheduleEndDate`.
+     * The last day a transfer runs. Date boundaries are determined relative to UTC time. A job will run once per 24 hours within the following guidelines:  *   If `schedule_end_date` and schedule_start_date are the same and in     the future relative to UTC, the transfer is executed only one time. *   If `schedule_end_date` is later than `schedule_start_date`  and     `schedule_end_date` is in the future relative to UTC, the job will     run each day at start_time_of_day through `schedule_end_date`.
      */
     scheduleEndDate?: Schema$Date;
     /**
-     * Required. The start date of a transfer. Date boundaries are determined relative to UTC time. If `scheduleStartDate` and `startTimeOfDay` are in the past relative to the job&#39;s creation time, the transfer starts the day after you schedule the transfer request.  Note: When starting jobs at or near midnight UTC it is possible that a job will start later than expected. For example, if you send an outbound request on June 1 one millisecond prior to midnight UTC and the Storage Transfer Service server receives the request on June 2, then it will create a TransferJob with `scheduleStartDate` set to June 2 and a `startTimeOfDay` set to midnight UTC. The first scheduled TransferOperation will take place on June 3 at midnight UTC.
+     * Required. The start date of a transfer. Date boundaries are determined relative to UTC time. If `schedule_start_date` and start_time_of_day are in the past relative to the job&#39;s creation time, the transfer starts the day after you schedule the transfer request.  **Note:** When starting jobs at or near midnight UTC it is possible that a job will start later than expected. For example, if you send an outbound request on June 1 one millisecond prior to midnight UTC and the Storage Transfer Service server receives the request on June 2, then it will create a TransferJob with `schedule_start_date` set to June 2 and a `start_time_of_day` set to midnight UTC. The first scheduled TransferOperation will take place on June 3 at midnight UTC.
      */
     scheduleStartDate?: Schema$Date;
     /**
-     * The time in UTC that a transfer job is scheduled to run. Transfers may start later than this time.  If `startTimeOfDay` is not specified:  *   One-time transfers run immediately. *   Recurring transfers run immediately, and each day at midnight UTC,     through `scheduleEndDate`.  If `startTimeOfDay` is specified:  *   One-time transfers run at the specified time. *   Recurring transfers run at the specified time each day, through     `scheduleEndDate`.
+     * The time in UTC that a transfer job is scheduled to run. Transfers may start later than this time.  If `start_time_of_day` is not specified:  *   One-time transfers run immediately. *   Recurring transfers run immediately, and each day at midnight UTC,     through schedule_end_date.  If `start_time_of_day` is specified:  *   One-time transfers run at the specified time. *   Recurring transfers run at the specified time each day, through     `schedule_end_date`.
      */
     startTimeOfDay?: Schema$TimeOfDay;
   }
@@ -450,7 +450,7 @@ export namespace storagetransfer_v1 {
      */
     lastModificationTime?: string | null;
     /**
-     * A globally unique name assigned by Storage Transfer Service when the job is created. This field should be left empty in requests to create a new transfer job; otherwise, the requests result in an `INVALID_ARGUMENT` error.
+     * A unique name (within the transfer project) assigned when the job is created. If this field is left empty in a CreateTransferJobRequest, Storage Transfer Service will assign a unique name. Otherwise, the supplied name is used as the unique name for this job.  This name must start with `&quot;transferJobs/&quot;` prefix and end with a letter or a number, and should be no more than 128 characters. Example of a valid format : `&quot;transferJobs/[A-Za-z0-9-._~]*[A-Za-z0-9]$&quot;`  **Note:** If the supplied name is already in use, the creation request results in an ALREADY_EXISTS error and the transfer job will not be created.  Invalid job names will return an INVALID_ARGUMENT error and the job will not be created.
      */
     name?: string | null;
     /**
@@ -462,7 +462,7 @@ export namespace storagetransfer_v1 {
      */
     schedule?: Schema$Schedule;
     /**
-     * Status of the job. This value MUST be specified for `CreateTransferJobRequests`.  NOTE: The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from `ENABLED` to `DISABLED`, and an operation spawned by the transfer is running, the status change would not affect the current operation.
+     * Status of the job. This value MUST be specified for `CreateTransferJobRequests`.  **Note:** The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from ENABLED to DISABLED, and an operation spawned by the transfer is running, the status change would not affect the current operation.
      */
     status?: string | null;
     /**
@@ -516,11 +516,11 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$TransferOptions {
     /**
-     * Whether objects should be deleted from the source after they are transferred to the sink.  Note that this option and `deleteObjectsUniqueInSink` are mutually exclusive.
+     * Whether objects should be deleted from the source after they are transferred to the sink.  **Note:** This option and delete_objects_unique_in_sink are mutually exclusive.
      */
     deleteObjectsFromSourceAfterTransfer?: boolean | null;
     /**
-     * Whether objects that exist only in the sink should be deleted.  Note that this option and `deleteObjectsFromSourceAfterTransfer` are mutually exclusive.
+     * Whether objects that exist only in the sink should be deleted.  **Note:** This option and delete_objects_from_source_after_transfer are mutually exclusive.
      */
     deleteObjectsUniqueInSink?: boolean | null;
     /**
@@ -549,11 +549,11 @@ export namespace storagetransfer_v1 {
      */
     httpDataSource?: Schema$HttpData;
     /**
-     * Only objects that satisfy these object conditions are included in the set of data source and data sink objects.  Object conditions based on objects&#39; `lastModificationTime` do not exclude objects in a data sink.
+     * Only objects that satisfy these object conditions are included in the set of data source and data sink objects.  Object conditions based on objects&#39; &quot;last modification time&quot; do not exclude objects in a data sink.
      */
     objectConditions?: Schema$ObjectConditions;
     /**
-     * If the option `deleteObjectsUniqueInSink` is `true`, object conditions based on objects&#39; `lastModificationTime` are ignored and do not exclude objects in a data source or a data sink.
+     * If the option delete_objects_unique_in_sink is `true`, object conditions based on objects&#39; &quot;last modification time&quot; are ignored and do not exclude objects in a data source or a data sink.
      */
     transferOptions?: Schema$TransferOptions;
   }
@@ -566,11 +566,11 @@ export namespace storagetransfer_v1 {
      */
     projectId?: string | null;
     /**
-     * Required. The job to update. `transferJob` is expected to specify only three fields: `description`, `transferSpec`, and `status`.  An UpdateTransferJobRequest that specifies other fields will be rejected with an error `INVALID_ARGUMENT`.
+     * Required. The job to update. `transferJob` is expected to specify only three fields: description, transfer_spec, and status.  An `UpdateTransferJobRequest` that specifies other fields will be rejected with the error INVALID_ARGUMENT.
      */
     transferJob?: Schema$TransferJob;
     /**
-     * The field mask of the fields in `transferJob` that are to be updated in this request.  Fields in `transferJob` that can be updated are: `description`, `transferSpec`, and `status`.  To update the `transferSpec` of the job, a complete transfer specification has to be provided. An incomplete specification which misses any required fields will be rejected with the error `INVALID_ARGUMENT`.
+     * The field mask of the fields in `transferJob` that are to be updated in this request.  Fields in `transferJob` that can be updated are: description, transfer_spec, and status.  To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields will be rejected with the error INVALID_ARGUMENT.
      */
     updateTransferJobFieldMask?: string | null;
   }
@@ -1025,7 +1025,7 @@ export namespace storagetransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
+     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project<span>_</span>id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project`<span>`_`</span>`id` is required.  `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
      * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
      * @param {string=} params.pageToken The list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1096,7 +1096,7 @@ export namespace storagetransfer_v1 {
 
     /**
      * storagetransfer.transferJobs.patch
-     * @desc Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating a job's schedule is not allowed.  Note: The job's `status` field can be modified using this RPC (for example, to set a job's status to `DELETED`, `DISABLED`, or `ENABLED`).
+     * @desc Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating a job's schedule is not allowed.  **Note:** The job's status field can be modified using this RPC (for example, to set a job's status to DELETED, DISABLED, or ENABLED).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -1254,7 +1254,7 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project_id` is required. `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
+     * Required. A list of query parameters specified as JSON text in the form of: {"project<span>_</span>id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project`<span>`_`</span>`id` is required.  `job_names` and `job_statuses` are optional.  The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
      */
     filter?: string;
     /**
@@ -1388,119 +1388,6 @@ export namespace storagetransfer_v1 {
           {
             url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * storagetransfer.transferOperations.delete
-     * @desc This method is not supported and the server returns `UNIMPLEMENTED`.
-     * @example
-     * * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Storage Transfer API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/storagetransfer
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * const {google} = require('googleapis');
-     * var storagetransfer = google.storagetransfer('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The name of the operation resource to be deleted.
-     *     name: 'transferOperations/my-transfer-operation',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient,
-     *   };
-     *
-     *   storagetransfer.transferOperations.delete(request, function(err) {
-     *     if (err) {
-     *       console.error(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getClient({
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform']
-     *   }).then(client => {
-     *     callback(client);
-     *   }).catch(err => {
-     *     console.error('authentication failed: ', err);
-     *   });
-     * }
-     * @alias storagetransfer.transferOperations.delete
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete(
-      params?: Params$Resource$Transferoperations$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    delete(
-      params: Params$Resource$Transferoperations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Transferoperations$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Transferoperations$Delete
-        | BodyResponseCallback<Schema$Empty>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback?: BodyResponseCallback<Schema$Empty>
-    ): void | GaxiosPromise<Schema$Empty> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Transferoperations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Transferoperations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://storagetransfer.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
           },
           options
         ),
@@ -1700,7 +1587,7 @@ export namespace storagetransfer_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "operation_names":["opid1","opid2",...],  "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project_id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: `IN_PROGRESS`, `PAUSED`, `SUCCESS`, `FAILED`, and `ABORTED`.
+     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project<span>_</span>id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "operation_names":["opid1","opid2",...],  "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project`<span>`_`</span>`id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      * @param {string} params.name Required. The value `transferOperations`.
      * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
      * @param {string=} params.pageToken The list page token.
@@ -2019,18 +1906,6 @@ export namespace storagetransfer_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Transferoperations$Delete
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
   export interface Params$Resource$Transferoperations$Get
     extends StandardParameters {
     /**
@@ -2051,7 +1926,7 @@ export namespace storagetransfer_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "operation_names":["opid1","opid2",...],  "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project_id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: `IN_PROGRESS`, `PAUSED`, `SUCCESS`, `FAILED`, and `ABORTED`.
+     * Required. A list of query parameters specified as JSON text in the form of: {"project<span>_</span>id":"my_project_id",  "job_names":["jobid1","jobid2",...],  "operation_names":["opid1","opid2",...],  "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project`<span>`_`</span>`id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      */
     filter?: string;
     /**

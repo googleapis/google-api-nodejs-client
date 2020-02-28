@@ -138,7 +138,7 @@ export namespace securitycenter_v1beta1 {
     /**
      * User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the asset.
      */
-    securityMarks?: Schema$SecurityMarks;
+    securityMarks?: Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks;
     /**
      * The time at which the asset was last updated, added, or deleted in Cloud SCC.
      */
@@ -209,30 +209,48 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
   /**
+   * Request message for `GetIamPolicy` method.
+   */
+  export interface Schema$GetIamPolicyRequest {
+    /**
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     */
+    options?: Schema$GetPolicyOptions;
+  }
+  /**
+   * Encapsulates settings provided to GetIamPolicy.
+   */
+  export interface Schema$GetPolicyOptions {
+    /**
+     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
+     */
+    requestedPolicyVersion?: number | null;
+  }
+  /**
    * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
    */
-  export interface Schema$Finding {
+  export interface Schema$GoogleCloudSecuritycenterV1beta1Finding {
     /**
      * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: &quot;XSS_FLASH_INJECTION&quot;
      */
@@ -264,7 +282,7 @@ export namespace securitycenter_v1beta1 {
     /**
      * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
      */
-    securityMarks?: Schema$SecurityMarks;
+    securityMarks?: Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks;
     /**
      * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
      */
@@ -273,24 +291,6 @@ export namespace securitycenter_v1beta1 {
      * The state of the finding.
      */
     state?: string | null;
-  }
-  /**
-   * Request message for `GetIamPolicy` method.
-   */
-  export interface Schema$GetIamPolicyRequest {
-    /**
-     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
-     */
-    options?: Schema$GetPolicyOptions;
-  }
-  /**
-   * Encapsulates settings provided to GetIamPolicy.
-   */
-  export interface Schema$GetPolicyOptions {
-    /**
-     * Optional. The policy format version to be returned.  Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.  Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.
-     */
-    requestedPolicyVersion?: number | null;
   }
   /**
    * Response of asset discovery run
@@ -304,6 +304,199 @@ export namespace securitycenter_v1beta1 {
      * The state of an asset discovery run.
      */
     state?: string | null;
+  }
+  /**
+   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks {
+    /**
+     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:    * Keys and values are treated as case insensitive   * Keys must be between 1 - 256 characters (inclusive)   * Keys must be letters, numbers, underscores, or dashes   * Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
+     */
+    marks?: {[key: string]: string} | null;
+    /**
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/{organization_id}/assets/{asset_id}/securityMarks&quot; &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks&quot;.
+     */
+    name?: string | null;
+  }
+  /**
+   * Cloud Security Command Center&#39;s (Cloud SCC) representation of a Google Cloud Platform (GCP) resource.  The Asset is a Cloud SCC resource that captures information about a single GCP resource. All modifications to an Asset are only within the context of Cloud SCC and don&#39;t affect the referenced GCP resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1Asset {
+    /**
+     * The time at which the asset was created in Cloud SCC.
+     */
+    createTime?: string | null;
+    /**
+     * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
+     */
+    iamPolicy?: Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy;
+    /**
+     * The relative resource name of this asset. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/assets/{asset_id}&quot;.
+     */
+    name?: string | null;
+    /**
+     * Resource managed properties. These properties are managed and defined by the GCP resource and cannot be modified by the user.
+     */
+    resourceProperties?: {[key: string]: any} | null;
+    /**
+     * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
+     */
+    securityCenterProperties?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties;
+    /**
+     * User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the asset.
+     */
+    securityMarks?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks;
+    /**
+     * The time at which the asset was last updated, added, or deleted in Cloud SCC.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1Finding {
+    /**
+     * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: &quot;XSS_FLASH_INJECTION&quot;
+     */
+    category?: string | null;
+    /**
+     * The time at which the finding was created in Cloud SCC.
+     */
+    createTime?: string | null;
+    /**
+     * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.
+     */
+    eventTime?: string | null;
+    /**
+     * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
+     */
+    externalUri?: string | null;
+    /**
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}&quot;
+     */
+    name?: string | null;
+    /**
+     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/{organization_id}/sources/{source_id}&quot;
+     */
+    parent?: string | null;
+    /**
+     * For findings on Google Cloud Platform (GCP) resources, the full resource name of the GCP resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-GCP resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
+     */
+    securityMarks?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks;
+    /**
+     * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
+     */
+    sourceProperties?: {[key: string]: any} | null;
+    /**
+     * The state of the finding.
+     */
+    state?: string | null;
+  }
+  /**
+   * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy {
+    /**
+     * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/reference/rest/v1p1beta1/Policy for format details.
+     */
+    policyBlob?: string | null;
+  }
+  /**
+   * Cloud SCC&#39;s Notification
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1NotificationMessage {
+    /**
+     * If it&#39;s a Finding based notification config, this field will be populated.
+     */
+    finding?: Schema$GoogleCloudSecuritycenterV1p1beta1Finding;
+    /**
+     * Name of the notification config that generated current notification.
+     */
+    notificationConfigName?: string | null;
+    /**
+     * If it&#39;s an asset based notification config, this field will be populated.
+     */
+    temporalAsset?: Schema$GoogleCloudSecuritycenterV1p1beta1TemporalAsset;
+  }
+  /**
+   * Response of asset discovery run
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1RunAssetDiscoveryResponse {
+    /**
+     * The duration between asset discovery run start and end
+     */
+    duration?: string | null;
+    /**
+     * The state of an asset discovery run.
+     */
+    state?: string | null;
+  }
+  /**
+   * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties {
+    /**
+     * The user defined display name for this resource.
+     */
+    resourceDisplayName?: string | null;
+    /**
+     * The full resource name of the GCP resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceName?: string | null;
+    /**
+     * Owners of the Google Cloud resource.
+     */
+    resourceOwners?: string[] | null;
+    /**
+     * The full resource name of the immediate parent of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceParent?: string | null;
+    /**
+     * The user defined display name for the parent of this resource.
+     */
+    resourceParentDisplayName?: string | null;
+    /**
+     * The full resource name of the project the resource belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceProject?: string | null;
+    /**
+     * The user defined display name for the project of this resource.
+     */
+    resourceProjectDisplayName?: string | null;
+    /**
+     * The type of the GCP resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Cloud SCC and/or the producer of the resource and is immutable after create time.
+     */
+    resourceType?: string | null;
+  }
+  /**
+   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks {
+    /**
+     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:    * Keys and values are treated as case insensitive   * Keys must be between 1 - 256 characters (inclusive)   * Keys must be letters, numbers, underscores, or dashes   * Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
+     */
+    marks?: {[key: string]: string} | null;
+    /**
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/{organization_id}/assets/{asset_id}/securityMarks&quot; &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks&quot;.
+     */
+    name?: string | null;
+  }
+  /**
+   * Wrapper over asset object that also captures the state change for the asset e.g. if it was a newly created asset vs updated or deleted asset.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1TemporalAsset {
+    /**
+     * Asset data that includes attributes, properties and marks about the asset.
+     */
+    asset?: Schema$GoogleCloudSecuritycenterV1p1beta1Asset;
+    /**
+     * Represents if the asset was created/updated/deleted.
+     */
+    changeType?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -460,7 +653,7 @@ export namespace securitycenter_v1beta1 {
     /**
      * Findings matching the list request.
      */
-    findings?: Schema$Finding[];
+    findings?: Schema$GoogleCloudSecuritycenterV1beta1Finding[];
     /**
      * Token to retrieve the next page of results, or empty if there are no more results.
      */
@@ -591,19 +784,6 @@ export namespace securitycenter_v1beta1 {
      * The type of the GCP resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Cloud SCC and/or the producer of the resource and is immutable after create time.
      */
     resourceType?: string | null;
-  }
-  /**
-   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
-   */
-  export interface Schema$SecurityMarks {
-    /**
-     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:    * Keys and values are treated as case insensitive   * Keys must be between 1 - 256 characters (inclusive)   * Keys must be letters, numbers, underscores, or dashes   * Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
-     */
-    marks?: {[key: string]: string} | null;
-    /**
-     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/{organization_id}/assets/{asset_id}/securityMarks&quot; &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks&quot;.
-     */
-    name?: string | null;
   }
   /**
    * Request message for updating a finding&#39;s state.
@@ -1135,7 +1315,7 @@ export namespace securitycenter_v1beta1 {
      * @param {string} params.name The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      * @param {string=} params.startTime The time at which the updated SecurityMarks take effect.
      * @param {string=} params.updateMask The FieldMask to use when updating the security marks resource.
-     * @param {().SecurityMarks} params.requestBody Request body data
+     * @param {().GoogleCloudSecuritycenterV1beta1SecurityMarks} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1143,28 +1323,46 @@ export namespace securitycenter_v1beta1 {
     updateSecurityMarks(
       params?: Params$Resource$Organizations$Assets$Updatesecuritymarks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityMarks>;
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
-      options: MethodOptions | BodyResponseCallback<Schema$SecurityMarks>,
-      callback: BodyResponseCallback<Schema$SecurityMarks>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+      >
     ): void;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
-      callback: BodyResponseCallback<Schema$SecurityMarks>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+      >
     ): void;
     updateSecurityMarks(
-      callback: BodyResponseCallback<Schema$SecurityMarks>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+      >
     ): void;
     updateSecurityMarks(
       paramsOrCallback?:
         | Params$Resource$Organizations$Assets$Updatesecuritymarks
-        | BodyResponseCallback<Schema$SecurityMarks>,
+        | BodyResponseCallback<
+            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+          >,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SecurityMarks>,
-      callback?: BodyResponseCallback<Schema$SecurityMarks>
-    ): void | GaxiosPromise<Schema$SecurityMarks> {
+        | BodyResponseCallback<
+            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+    > {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Assets$Updatesecuritymarks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1196,9 +1394,14 @@ export namespace securitycenter_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SecurityMarks>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>(
+          parameters,
+          callback
+        );
       } else {
-        return createAPIRequest<Schema$SecurityMarks>(parameters);
+        return createAPIRequest<
+          Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+        >(parameters);
       }
     }
   }
@@ -1300,7 +1503,7 @@ export namespace securitycenter_v1beta1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$SecurityMarks;
+    requestBody?: Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks;
   }
 
   export class Resource$Organizations$Operations {
@@ -2339,7 +2542,7 @@ export namespace securitycenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.findingId Required. Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
      * @param {string} params.parent Required. Resource name of the new finding's parent. Its format should be "organizations/[organization_id]/sources/[source_id]".
-     * @param {().Finding} params.requestBody Request body data
+     * @param {().GoogleCloudSecuritycenterV1beta1Finding} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2347,24 +2550,38 @@ export namespace securitycenter_v1beta1 {
     create(
       params?: Params$Resource$Organizations$Sources$Findings$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Finding>;
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1beta1Finding>;
     create(
       params: Params$Resource$Organizations$Sources$Findings$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
-      callback: BodyResponseCallback<Schema$Finding>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
     ): void;
     create(
       params: Params$Resource$Organizations$Sources$Findings$Create,
-      callback: BodyResponseCallback<Schema$Finding>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
     ): void;
-    create(callback: BodyResponseCallback<Schema$Finding>): void;
+    create(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
+    ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sources$Findings$Create
-        | BodyResponseCallback<Schema$Finding>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Finding>,
-      callback?: BodyResponseCallback<Schema$Finding>
-    ): void | GaxiosPromise<Schema$Finding> {
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1beta1Finding> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2399,9 +2616,14 @@ export namespace securitycenter_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Finding>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1Finding>(
+          parameters,
+          callback
+        );
       } else {
-        return createAPIRequest<Schema$Finding>(parameters);
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1Finding>(
+          parameters
+        );
       }
     }
 
@@ -2575,7 +2797,7 @@ export namespace securitycenter_v1beta1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}"
      * @param {string=} params.updateMask The FieldMask to use when updating the finding resource. This field should not be specified when creating a finding.
-     * @param {().Finding} params.requestBody Request body data
+     * @param {().GoogleCloudSecuritycenterV1beta1Finding} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2583,24 +2805,38 @@ export namespace securitycenter_v1beta1 {
     patch(
       params?: Params$Resource$Organizations$Sources$Findings$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Finding>;
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1beta1Finding>;
     patch(
       params: Params$Resource$Organizations$Sources$Findings$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
-      callback: BodyResponseCallback<Schema$Finding>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
     ): void;
     patch(
       params: Params$Resource$Organizations$Sources$Findings$Patch,
-      callback: BodyResponseCallback<Schema$Finding>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
     ): void;
-    patch(callback: BodyResponseCallback<Schema$Finding>): void;
+    patch(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
+    ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sources$Findings$Patch
-        | BodyResponseCallback<Schema$Finding>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Finding>,
-      callback?: BodyResponseCallback<Schema$Finding>
-    ): void | GaxiosPromise<Schema$Finding> {
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1beta1Finding> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2632,9 +2868,14 @@ export namespace securitycenter_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Finding>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1Finding>(
+          parameters,
+          callback
+        );
       } else {
-        return createAPIRequest<Schema$Finding>(parameters);
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1Finding>(
+          parameters
+        );
       }
     }
 
@@ -2654,24 +2895,38 @@ export namespace securitycenter_v1beta1 {
     setState(
       params?: Params$Resource$Organizations$Sources$Findings$Setstate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Finding>;
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1beta1Finding>;
     setState(
       params: Params$Resource$Organizations$Sources$Findings$Setstate,
-      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
-      callback: BodyResponseCallback<Schema$Finding>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
     ): void;
     setState(
       params: Params$Resource$Organizations$Sources$Findings$Setstate,
-      callback: BodyResponseCallback<Schema$Finding>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
     ): void;
-    setState(callback: BodyResponseCallback<Schema$Finding>): void;
+    setState(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
+    ): void;
     setState(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sources$Findings$Setstate
-        | BodyResponseCallback<Schema$Finding>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Finding>,
-      callback?: BodyResponseCallback<Schema$Finding>
-    ): void | GaxiosPromise<Schema$Finding> {
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1Finding
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1beta1Finding> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Setstate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2706,9 +2961,14 @@ export namespace securitycenter_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Finding>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1Finding>(
+          parameters,
+          callback
+        );
       } else {
-        return createAPIRequest<Schema$Finding>(parameters);
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1Finding>(
+          parameters
+        );
       }
     }
 
@@ -2722,7 +2982,7 @@ export namespace securitycenter_v1beta1 {
      * @param {string} params.name The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks".
      * @param {string=} params.startTime The time at which the updated SecurityMarks take effect.
      * @param {string=} params.updateMask The FieldMask to use when updating the security marks resource.
-     * @param {().SecurityMarks} params.requestBody Request body data
+     * @param {().GoogleCloudSecuritycenterV1beta1SecurityMarks} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2730,28 +2990,46 @@ export namespace securitycenter_v1beta1 {
     updateSecurityMarks(
       params?: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SecurityMarks>;
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
-      options: MethodOptions | BodyResponseCallback<Schema$SecurityMarks>,
-      callback: BodyResponseCallback<Schema$SecurityMarks>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+      >
     ): void;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
-      callback: BodyResponseCallback<Schema$SecurityMarks>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+      >
     ): void;
     updateSecurityMarks(
-      callback: BodyResponseCallback<Schema$SecurityMarks>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+      >
     ): void;
     updateSecurityMarks(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
-        | BodyResponseCallback<Schema$SecurityMarks>,
+        | BodyResponseCallback<
+            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+          >,
       optionsOrCallback?:
         | MethodOptions
-        | BodyResponseCallback<Schema$SecurityMarks>,
-      callback?: BodyResponseCallback<Schema$SecurityMarks>
-    ): void | GaxiosPromise<Schema$SecurityMarks> {
+        | BodyResponseCallback<
+            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+    > {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2783,9 +3061,14 @@ export namespace securitycenter_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SecurityMarks>(parameters, callback);
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>(
+          parameters,
+          callback
+        );
       } else {
-        return createAPIRequest<Schema$SecurityMarks>(parameters);
+        return createAPIRequest<
+          Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
+        >(parameters);
       }
     }
   }
@@ -2809,7 +3092,7 @@ export namespace securitycenter_v1beta1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$Finding;
+    requestBody?: Schema$GoogleCloudSecuritycenterV1beta1Finding;
   }
   export interface Params$Resource$Organizations$Sources$Findings$Group
     extends StandardParameters {
@@ -2883,7 +3166,7 @@ export namespace securitycenter_v1beta1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$Finding;
+    requestBody?: Schema$GoogleCloudSecuritycenterV1beta1Finding;
   }
   export interface Params$Resource$Organizations$Sources$Findings$Setstate
     extends StandardParameters {
@@ -2925,6 +3208,6 @@ export namespace securitycenter_v1beta1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$SecurityMarks;
+    requestBody?: Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks;
   }
 }

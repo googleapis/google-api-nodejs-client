@@ -120,7 +120,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$AcknowledgeRequest {
     /**
-     * The acknowledgment ID for the messages being acknowledged that was returned by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * Required. The acknowledgment ID for the messages being acknowledged that was returned by the Pub/Sub system in the `Pull` response. Must not be empty.
      */
     ackIds?: string[] | null;
   }
@@ -150,9 +150,22 @@ export namespace pubsub_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain:  (a) The existing backlog on the subscription. More precisely, this is      defined as the messages in the subscription&#39;s backlog that are      unacknowledged upon the successful completion of the      `CreateSnapshot` request; as well as:  (b) Any messages published to the subscription&#39;s topic following the      successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain:  (a) The existing backlog on the subscription. More precisely, this is      defined as the messages in the subscription&#39;s backlog that are      unacknowledged upon the successful completion of the      `CreateSnapshot` request; as well as:  (b) Any messages published to the subscription&#39;s topic following the      successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string | null;
+  }
+  /**
+   * Dead lettering is done on a best effort basis. The same message might be dead lettered multiple times.  If validation on any of the fields fails at subscription creation/updation, the create/update subscription request will fail.
+   */
+  export interface Schema$DeadLetterPolicy {
+    /**
+     * The name of the topic to which dead letter messages should be published. Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service account associated with the enclosing subscription&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic.  The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.
+     */
+    deadLetterTopic?: string | null;
+    /**
+     * The maximum number of delivery attempts for any message. The value must be between 5 and 100.  The number of delivery attempts is defined as 1 + (the sum of number of NACKs and number of times the acknowledgement deadline has been exceeded for the message).  A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that client libraries may automatically extend ack_deadlines.  This field will be honored on a best effort basis.  If this parameter is 0, a default value of 5 is used.
+     */
+    maxDeliveryAttempts?: number | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -168,23 +181,23 @@ export namespace pubsub_v1 {
     ttl?: string | null;
   }
   /**
-   * Represents an expression text. Example:      title: &quot;User account presence&quot;     description: &quot;Determines whether the request has a user account&quot;     expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
-     * An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      */
     description?: string | null;
     /**
-     * Textual representation of an expression in Common Expression Language syntax.  The application context of the containing message determines which well-known feature set of CEL is supported.
+     * Textual representation of an expression in Common Expression Language syntax.
      */
     expression?: string | null;
     /**
-     * An optional string indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      */
     location?: string | null;
     /**
-     * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
   }
@@ -264,11 +277,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ModifyAckDeadlineRequest {
     /**
-     * The new ack deadline with respect to the time this request was sent to the Pub/Sub system. For example, if the value is 10, the new ack deadline will expire 10 seconds after the `ModifyAckDeadline` call was made. Specifying zero might immediately make the message available for delivery to another subscriber client. This typically results in an increase in the rate of message redeliveries (that is, duplicates). The minimum deadline you can specify is 0 seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
+     * Required. The new ack deadline with respect to the time this request was sent to the Pub/Sub system. For example, if the value is 10, the new ack deadline will expire 10 seconds after the `ModifyAckDeadline` call was made. Specifying zero might immediately make the message available for delivery to another subscriber client. This typically results in an increase in the rate of message redeliveries (that is, duplicates). The minimum deadline you can specify is 0 seconds. The maximum deadline you can specify is 600 seconds (10 minutes).
      */
     ackDeadlineSeconds?: number | null;
     /**
-     * List of acknowledgment IDs.
+     * Required. List of acknowledgment IDs.
      */
     ackIds?: string[] | null;
   }
@@ -277,7 +290,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ModifyPushConfigRequest {
     /**
-     * The push configuration for future deliveries.  An empty `pushConfig` indicates that the Pub/Sub system should stop pushing messages from the given subscription and allow messages to be pulled and acknowledged - effectively pausing the subscription if `Pull` or `StreamingPull` is not called.
+     * Required. The push configuration for future deliveries.  An empty `pushConfig` indicates that the Pub/Sub system should stop pushing messages from the given subscription and allow messages to be pulled and acknowledged - effectively pausing the subscription if `Pull` or `StreamingPull` is not called.
      */
     pushConfig?: Schema$PushConfig;
   }
@@ -316,7 +329,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PublishRequest {
     /**
-     * The messages to publish.
+     * Required. The messages to publish.
      */
     messages?: Schema$PubsubMessage[];
   }
@@ -355,7 +368,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PullRequest {
     /**
-     * The maximum number of messages to return for this request. Must be a positive integer. The Pub/Sub system may return fewer than the number specified.
+     * Required. The maximum number of messages to return for this request. Must be a positive integer. The Pub/Sub system may return fewer than the number specified.
      */
     maxMessages?: number | null;
     /**
@@ -397,6 +410,10 @@ export namespace pubsub_v1 {
      * This ID can be used to acknowledge the received message.
      */
     ackId?: string | null;
+    /**
+     * Delivery attempt counter is 1 + (the sum of number of NACKs and number of ack_deadline exceeds) for this message.  A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline exceeds event is whenever a message is not acknowledged within ack_deadline. Note that ack_deadline is initially Subscription.ackDeadlineSeconds, but may get extended automatically by the client library.  The first delivery of a given message will have this value as 1. The value is calculated at best effort and is approximate.  If a DeadLetterPolicy is not set on the subscription, this will be 0. &lt;b&gt;EXPERIMENTAL:&lt;/b&gt; This feature is part of a closed alpha release. This API might be changed in backward-incompatible ways and is not recommended for production use. It is not subject to any SLA or deprecation policy.
+     */
+    deliveryAttempt?: number | null;
     /**
      * The message.
      */
@@ -458,6 +475,10 @@ export namespace pubsub_v1 {
      */
     ackDeadlineSeconds?: number | null;
     /**
+     * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled.  The Cloud Pub/Sub service account associated with this subscriptions&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription. &lt;b&gt;EXPERIMENTAL:&lt;/b&gt; This feature is part of a closed alpha release. This API might be changed in backward-incompatible ways and is not recommended for production use. It is not subject to any SLA or deprecation policy.
+     */
+    deadLetterPolicy?: Schema$DeadLetterPolicy;
+    /**
      * A policy that specifies the conditions for this subscription&#39;s expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day.
      */
     expirationPolicy?: Schema$ExpirationPolicy;
@@ -470,7 +491,7 @@ export namespace pubsub_v1 {
      */
     messageRetentionDuration?: string | null;
     /**
-     * The name of the subscription. It must have the format `&quot;projects/{project}/subscriptions/{subscription}&quot;`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
+     * Required. The name of the subscription. It must have the format `&quot;projects/{project}/subscriptions/{subscription}&quot;`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
      */
     name?: string | null;
     /**
@@ -482,7 +503,7 @@ export namespace pubsub_v1 {
      */
     retainAckedMessages?: boolean | null;
     /**
-     * The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
+     * Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
      */
     topic?: string | null;
   }
@@ -521,7 +542,7 @@ export namespace pubsub_v1 {
      */
     messageStoragePolicy?: Schema$MessageStoragePolicy;
     /**
-     * The name of the topic. It must have the format `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
+     * Required. The name of the topic. It must have the format `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
      */
     name?: string | null;
   }
@@ -530,11 +551,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$UpdateSnapshotRequest {
     /**
-     * The updated snapshot object.
+     * Required. The updated snapshot object.
      */
     snapshot?: Schema$Snapshot;
     /**
-     * Indicates which fields in the provided snapshot to update. Must be specified and non-empty.
+     * Required. Indicates which fields in the provided snapshot to update. Must be specified and non-empty.
      */
     updateMask?: string | null;
   }
@@ -543,11 +564,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$UpdateSubscriptionRequest {
     /**
-     * The updated subscription object.
+     * Required. The updated subscription object.
      */
     subscription?: Schema$Subscription;
     /**
-     * Indicates which fields in the provided subscription to update. Must be specified and non-empty.
+     * Required. Indicates which fields in the provided subscription to update. Must be specified and non-empty.
      */
     updateMask?: string | null;
   }
@@ -556,11 +577,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$UpdateTopicRequest {
     /**
-     * The updated topic object.
+     * Required. The updated topic object.
      */
     topic?: Schema$Topic;
     /**
-     * Indicates which fields in the provided topic to update. Must be specified and non-empty. Note that if `update_mask` contains &quot;message_storage_policy&quot; then the new value will be determined based on the policy configured at the project or organization level. The `message_storage_policy` must not be set in the `topic` provided above.
+     * Required. Indicates which fields in the provided topic to update. Must be specified and non-empty. Note that if `update_mask` contains &quot;message_storage_policy&quot; then the new value will be determined based on the policy configured at the project or organization level. The `message_storage_policy` must not be set in the `topic` provided above.
      */
     updateMask?: string | null;
   }
@@ -648,7 +669,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * @param {string} params.name Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      * @param {().CreateSnapshotRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -762,7 +783,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.snapshot The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
+     * @param {string} params.snapshot Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -878,7 +899,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.snapshot The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
+     * @param {string} params.snapshot Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1129,7 +1150,7 @@ export namespace pubsub_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Maximum number of snapshots to return.
      * @param {string=} params.pageToken The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
-     * @param {string} params.project The name of the project in which to list snapshots. Format is `projects/{project-id}`.
+     * @param {string} params.project Required. The name of the project in which to list snapshots. Format is `projects/{project-id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1585,7 +1606,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
+     * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name.  See the <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>. Format is `projects/{project}/snapshots/{snap}`.
      */
     name?: string;
 
@@ -1602,7 +1623,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
+     * Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
      */
     snapshot?: string;
   }
@@ -1614,7 +1635,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
+     * Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
      */
     snapshot?: string;
   }
@@ -1650,7 +1671,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the project in which to list snapshots. Format is `projects/{project-id}`.
+     * Required. The name of the project in which to list snapshots. Format is `projects/{project-id}`.
      */
     project?: string;
   }
@@ -1767,7 +1788,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.subscription The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
+     * @param {string} params.subscription Required. The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
      * @param {().AcknowledgeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1896,7 +1917,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * @param {string} params.name Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      * @param {().Subscription} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2012,7 +2033,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.subscription The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
+     * @param {string} params.subscription Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2131,7 +2152,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.subscription The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
+     * @param {string} params.subscription Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2387,7 +2408,7 @@ export namespace pubsub_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Maximum number of subscriptions to return.
      * @param {string=} params.pageToken The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
-     * @param {string} params.project The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
+     * @param {string} params.project Required. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2516,7 +2537,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.subscription The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+     * @param {string} params.subscription Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      * @param {().ModifyAckDeadlineRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2637,7 +2658,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.subscription The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+     * @param {string} params.subscription Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      * @param {().ModifyPushConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2766,7 +2787,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * @param {string} params.name Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      * @param {().UpdateSubscriptionRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2889,7 +2910,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.subscription The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
+     * @param {string} params.subscription Required. The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
      * @param {().PullRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3014,7 +3035,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.subscription The subscription to affect.
+     * @param {string} params.subscription Required. The subscription to affect.
      * @param {().SeekRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3348,7 +3369,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
 
@@ -3365,7 +3386,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -3382,7 +3403,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
   }
@@ -3394,7 +3415,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
   }
@@ -3430,7 +3451,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
+     * Required. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
      */
     project?: string;
   }
@@ -3442,7 +3463,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
 
@@ -3459,7 +3480,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
 
@@ -3476,7 +3497,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -3493,7 +3514,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
      */
     subscription?: string;
 
@@ -3510,7 +3531,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The subscription to affect.
+     * Required. The subscription to affect.
      */
     subscription?: string;
 
@@ -3629,7 +3650,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * @param {string} params.name Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      * @param {().Topic} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3743,7 +3764,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.topic Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
+     * @param {string} params.topic Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3859,7 +3880,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.topic The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
+     * @param {string} params.topic Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4110,7 +4131,7 @@ export namespace pubsub_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Maximum number of topics to return.
      * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
-     * @param {string} params.project The name of the project in which to list topics. Format is `projects/{project-id}`.
+     * @param {string} params.project Required. The name of the project in which to list topics. Format is `projects/{project-id}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4240,7 +4261,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * @param {string} params.name Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      * @param {().UpdateTopicRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4361,7 +4382,7 @@ export namespace pubsub_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.topic The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
+     * @param {string} params.topic Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
      * @param {().PublishRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4695,7 +4716,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -4712,7 +4733,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
+     * Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }
@@ -4724,7 +4745,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
+     * Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }
@@ -4760,7 +4781,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the project in which to list topics. Format is `projects/{project-id}`.
+     * Required. The name of the project in which to list topics. Format is `projects/{project-id}`.
      */
     project?: string;
   }
@@ -4772,7 +4793,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -4789,7 +4810,7 @@ export namespace pubsub_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
+     * Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
 
@@ -5079,7 +5100,7 @@ export namespace pubsub_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Maximum number of subscription names to return.
      * @param {string=} params.pageToken The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
-     * @param {string} params.topic The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
+     * @param {string} params.topic Required. The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5172,7 +5193,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
+     * Required. The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }

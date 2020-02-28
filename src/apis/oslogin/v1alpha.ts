@@ -89,7 +89,7 @@ export namespace oslogin_v1alpha {
   /**
    * Cloud OS Login API
    *
-   * You can use OS Login to manage access to your VM instances using IAM roles. For more information, read [OS Login](/compute/docs/oslogin/).
+   * You can use OS Login to manage access to your VM instances using IAM roles.
    *
    * @example
    * const {google} = require('googleapis');

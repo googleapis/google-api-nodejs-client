@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Replicapool',
-    filename: 'replicapool.min.js',
+    library: 'Osconfig',
+    filename: 'osconfig.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

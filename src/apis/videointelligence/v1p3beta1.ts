@@ -1365,6 +1365,23 @@ export namespace videointelligence_v1p3beta1 {
     value?: string | null;
   }
   /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, i.e. left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_Entity {
@@ -1411,6 +1428,36 @@ export namespace videointelligence_v1p3beta1 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
+  }
+  /**
+   * Face detection annotation.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation {
+    /**
+     * The thumbnail of a person&#39;s face.
+     */
+    thumbnail?: string | null;
+    /**
+     * The face tracks with attributes.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+  }
+  /**
+   * Config for FACE_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionConfig {
+    /**
+     * Whether to enable face attributes detection, such as glasses, dark_glasses, mouth_open etc. Ignored if &#39;include_bounding_boxes&#39; is false.
+     */
+    includeAttributes?: boolean | null;
+    /**
+     * Whether bounding boxes be included in the face annotation output.
+     */
+    includeBoundingBoxes?: boolean | null;
+    /**
+     * Model to use for face detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     */
+    model?: string | null;
   }
   /**
    * Label annotation.
@@ -1590,6 +1637,32 @@ export namespace videointelligence_v1p3beta1 {
      * The timestamp of the frame in microseconds.
      */
     timeOffset?: string | null;
+  }
+  /**
+   * Person detection annotation per video.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionAnnotation {
+    /**
+     * The trackes that a person is detected.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+  }
+  /**
+   * Config for PERSON_DETECTION.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionConfig {
+    /**
+     * Whether to enable person attributes detection, such as cloth color (black, blue, etc), type (coat, dress, etc), pattern (plain, floral, etc), hair color (black, blonde, etc), hair length (long, short, bald), etc. Ignored if &#39;include_bounding_boxes&#39; is false.
+     */
+    includeAttributes?: boolean | null;
+    /**
+     * Whether bounding boxes be included in the person detection annotation output.
+     */
+    includeBoundingBoxes?: boolean | null;
+    /**
+     * Whether to enable pose landmarks detection. Ignored if &#39;include_bounding_boxes&#39; is false.
+     */
+    includePoseLandmarks?: boolean | null;
   }
   /**
    * The recognized celebrity with confidence score.
@@ -1796,6 +1869,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     attributes?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute[];
     /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1p3beta1_DetectedLandmark[];
+    /**
      * Normalized Bounding box in a frame, where the object is located.
      */
     normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox;
@@ -1871,6 +1948,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     explicitAnnotation?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation;
     /**
+     * Face detection annotations.
+     */
+    faceDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation[];
+    /**
      * Label annotations on frame level. There is exactly one element for each unique label.
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
@@ -1886,6 +1967,10 @@ export namespace videointelligence_v1p3beta1 {
      * Annotations for list of objects detected and tracked in video.
      */
     objectAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation[];
+    /**
+     * Person detection annotations.
+     */
+    personDetectionAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionAnnotation[];
     /**
      * Video segment on which the annotation is run.
      */
@@ -1928,6 +2013,10 @@ export namespace videointelligence_v1p3beta1 {
      */
     explicitContentDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentDetectionConfig;
     /**
+     * Config for FACE_DETECTION.
+     */
+    faceDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionConfig;
+    /**
      * Config for LABEL_DETECTION.
      */
     labelDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelDetectionConfig;
@@ -1935,6 +2024,10 @@ export namespace videointelligence_v1p3beta1 {
      * Config for OBJECT_TRACKING.
      */
     objectTrackingConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingConfig;
+    /**
+     * Config for PERSON_DETECTION.
+     */
+    personDetectionConfig?: Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionConfig;
     /**
      * Video segments to annotate. The segments may overlap and are not required to be contiguous or span the whole video. If unspecified, each video is treated as a single segment.
      */

@@ -133,6 +133,186 @@ export namespace securitycenter_v1p1alpha1 {
     state?: string | null;
   }
   /**
+   * Cloud Security Command Center&#39;s (Cloud SCC) representation of a Google Cloud Platform (GCP) resource.  The Asset is a Cloud SCC resource that captures information about a single GCP resource. All modifications to an Asset are only within the context of Cloud SCC and don&#39;t affect the referenced GCP resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1Asset {
+    /**
+     * The time at which the asset was created in Cloud SCC.
+     */
+    createTime?: string | null;
+    /**
+     * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
+     */
+    iamPolicy?: Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy;
+    /**
+     * The relative resource name of this asset. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/assets/{asset_id}&quot;.
+     */
+    name?: string | null;
+    /**
+     * Resource managed properties. These properties are managed and defined by the GCP resource and cannot be modified by the user.
+     */
+    resourceProperties?: {[key: string]: any} | null;
+    /**
+     * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
+     */
+    securityCenterProperties?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties;
+    /**
+     * User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the asset.
+     */
+    securityMarks?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks;
+    /**
+     * The time at which the asset was last updated, added, or deleted in Cloud SCC.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1Finding {
+    /**
+     * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: &quot;XSS_FLASH_INJECTION&quot;
+     */
+    category?: string | null;
+    /**
+     * The time at which the finding was created in Cloud SCC.
+     */
+    createTime?: string | null;
+    /**
+     * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.
+     */
+    eventTime?: string | null;
+    /**
+     * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
+     */
+    externalUri?: string | null;
+    /**
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}&quot;
+     */
+    name?: string | null;
+    /**
+     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/{organization_id}/sources/{source_id}&quot;
+     */
+    parent?: string | null;
+    /**
+     * For findings on Google Cloud Platform (GCP) resources, the full resource name of the GCP resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-GCP resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
+     */
+    securityMarks?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks;
+    /**
+     * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
+     */
+    sourceProperties?: {[key: string]: any} | null;
+    /**
+     * The state of the finding.
+     */
+    state?: string | null;
+  }
+  /**
+   * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy {
+    /**
+     * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/reference/rest/v1p1beta1/Policy for format details.
+     */
+    policyBlob?: string | null;
+  }
+  /**
+   * Cloud SCC&#39;s Notification
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1NotificationMessage {
+    /**
+     * If it&#39;s a Finding based notification config, this field will be populated.
+     */
+    finding?: Schema$GoogleCloudSecuritycenterV1p1beta1Finding;
+    /**
+     * Name of the notification config that generated current notification.
+     */
+    notificationConfigName?: string | null;
+    /**
+     * If it&#39;s an asset based notification config, this field will be populated.
+     */
+    temporalAsset?: Schema$GoogleCloudSecuritycenterV1p1beta1TemporalAsset;
+  }
+  /**
+   * Response of asset discovery run
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1RunAssetDiscoveryResponse {
+    /**
+     * The duration between asset discovery run start and end
+     */
+    duration?: string | null;
+    /**
+     * The state of an asset discovery run.
+     */
+    state?: string | null;
+  }
+  /**
+   * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties {
+    /**
+     * The user defined display name for this resource.
+     */
+    resourceDisplayName?: string | null;
+    /**
+     * The full resource name of the GCP resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceName?: string | null;
+    /**
+     * Owners of the Google Cloud resource.
+     */
+    resourceOwners?: string[] | null;
+    /**
+     * The full resource name of the immediate parent of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceParent?: string | null;
+    /**
+     * The user defined display name for the parent of this resource.
+     */
+    resourceParentDisplayName?: string | null;
+    /**
+     * The full resource name of the project the resource belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceProject?: string | null;
+    /**
+     * The user defined display name for the project of this resource.
+     */
+    resourceProjectDisplayName?: string | null;
+    /**
+     * The type of the GCP resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Cloud SCC and/or the producer of the resource and is immutable after create time.
+     */
+    resourceType?: string | null;
+  }
+  /**
+   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks {
+    /**
+     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:    * Keys and values are treated as case insensitive   * Keys must be between 1 - 256 characters (inclusive)   * Keys must be letters, numbers, underscores, or dashes   * Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
+     */
+    marks?: {[key: string]: string} | null;
+    /**
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/{organization_id}/assets/{asset_id}/securityMarks&quot; &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks&quot;.
+     */
+    name?: string | null;
+  }
+  /**
+   * Wrapper over asset object that also captures the state change for the asset e.g. if it was a newly created asset vs updated or deleted asset.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1TemporalAsset {
+    /**
+     * Asset data that includes attributes, properties and marks about the asset.
+     */
+    asset?: Schema$GoogleCloudSecuritycenterV1p1beta1Asset;
+    /**
+     * Represents if the asset was created/updated/deleted.
+     */
+    changeType?: string | null;
+  }
+  /**
    * Response of asset discovery run
    */
   export interface Schema$GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse {

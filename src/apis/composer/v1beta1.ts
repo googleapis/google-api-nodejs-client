@@ -116,6 +116,19 @@ export namespace composer_v1beta1 {
   }
 
   /**
+   * Allowed IP range with user-provided description.
+   */
+  export interface Schema$AllowedIpRange {
+    /**
+     * Optional. User-provided description. It must contain at most 300 characters.
+     */
+    description?: string | null;
+    /**
+     * IP address or range, defined using CIDR notation, of requests that this rule applies to. You can use the wildcard character &quot;*&quot; to match all IPs equivalent to &quot;0/0&quot; and &quot;::/0&quot; together. Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32`           or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.   &lt;p&gt;IP range prefixes should be properly truncated. For example, `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.
+     */
+    value?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
@@ -136,7 +149,7 @@ export namespace composer_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the environment, in the form: &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;
+     * The resource name of the environment, in the form: &quot;projects/{projectId}/locations/{locationId}/environments/{environmentId}&quot;  EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      */
     name?: string | null;
     /**
@@ -184,6 +197,10 @@ export namespace composer_v1beta1 {
      * The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
+    /**
+     * Optional. The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied.
+     */
+    webServerNetworkAccessControl?: Schema$WebServerNetworkAccessControl;
   }
   /**
    * Image Version information
@@ -428,6 +445,15 @@ export namespace composer_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Network-level access control policy for the Airflow web server.
+   */
+  export interface Schema$WebServerNetworkAccessControl {
+    /**
+     * A collection of allowed IP ranges with descriptions.
+     */
+    allowedIpRanges?: Schema$AllowedIpRange[];
   }
 
   export class Resource$Projects {

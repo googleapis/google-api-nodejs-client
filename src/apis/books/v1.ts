@@ -363,6 +363,24 @@ export namespace books_v1 {
      */
     kind?: string | null;
   }
+  export interface Schema$BooksSubscriptionReleaseInfo {
+    /**
+     * Amount in micros of the specified currency code.
+     */
+    amountInMicros?: string | null;
+    /**
+     * Currency code of the amount.
+     */
+    currencyCode?: string | null;
+    /**
+     * The release number of this issue/volume/book.
+     */
+    releaseNumber?: string | null;
+    /**
+     * The release date.
+     */
+    releaseTimestampUs?: string | null;
+  }
   export interface Schema$BooksVolumesRecommendedRateResponse {
     consistency_token?: string | null;
   }
@@ -814,7 +832,14 @@ export namespace books_v1 {
       eligibleForSubscription?: boolean;
       imageUrl?: string;
       isComplete?: boolean;
+      seriesFormatType?: string;
       seriesId?: string;
+      seriesSubscriptionReleaseInfo?: {
+        cancellationTimestampUs?: string;
+        currentReleaseInfo?: Schema$BooksSubscriptionReleaseInfo;
+        nextReleaseInfo?: Schema$BooksSubscriptionReleaseInfo;
+        seriesSubscriptionType?: string;
+      };
       seriesType?: string;
       subscriptionId?: string;
       title?: string;

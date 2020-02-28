@@ -116,23 +116,23 @@ export namespace monitoring_v1 {
   }
 
   /**
-   * Describes how to combine multiple time series to provide different views of the data. Aggregation consists of an alignment step on individual time series (alignment_period and per_series_aligner) followed by an optional reduction step of the data across the aligned time series (cross_series_reducer and group_by_fields). For more details, see Aggregation.
+   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example &quot;the 95% latency across the average of all tasks in a cluster&quot;. This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Aggregating Time Series.
    */
   export interface Schema$Aggregation {
     /**
-     * The alignment period for per-time series alignment. If present, alignmentPeriod must be at least 60 seconds. After per-time series alignment, each time series will contain data points only on the period boundaries. If perSeriesAligner is not specified or equals ALIGN_NONE, then this field is ignored. If perSeriesAligner is specified and does not equal ALIGN_NONE, then this field must be defined; otherwise an error is returned.
+     * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.
      */
     alignmentPeriod?: string | null;
     /**
-     * The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
+     * The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
      */
     crossSeriesReducer?: string | null;
     /**
-     * The set of fields to preserve when crossSeriesReducer is specified. The groupByFields determine how the time series are partitioned into subsets prior to applying the aggregation function. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The crossSeriesReducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in groupByFields are aggregated away. If groupByFields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If crossSeriesReducer is not defined, this field is ignored.
+     * The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
      */
     groupByFields?: string[] | null;
     /**
-     * The approach to be used to align individual time series. Not all alignment functions may be applied to all time series, depending on the metric type and value type of the original time series. Alignment may change the metric type or the value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
+     * An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
      */
     perSeriesAligner?: string | null;
   }
@@ -323,7 +323,7 @@ export namespace monitoring_v1 {
      */
     dashboards?: Schema$Dashboard[];
     /**
-     * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as pageToken in the next call to this method.
+     * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.
      */
     nextPageToken?: string | null;
   }
@@ -341,7 +341,7 @@ export namespace monitoring_v1 {
     value?: {[key: string]: any} | null;
   }
   /**
-   * Describes a ranking-based time series filter. Each input time series is ranked with an aligner. The filter lets through up to num_time_series time series, selecting them based on the relative ranking.
+   * Describes a ranking-based time series filter. Each input time series is ranked with an aligner. The filter will allow up to num_time_series time series to pass through it, selecting them based on the relative ranking.For example, if ranking_method is METHOD_MEAN,direction is BOTTOM, and num_time_series is 3, then the 3 times series with the lowest mean values will pass through the filter.
    */
   export interface Schema$PickTimeSeriesFilter {
     /**
@@ -349,11 +349,11 @@ export namespace monitoring_v1 {
      */
     direction?: string | null;
     /**
-     * How many time series to return.
+     * How many time series to allow to pass through the filter.
      */
     numTimeSeries?: number | null;
     /**
-     * rankingMethod is applied to each time series independently to produce the value which will be used to compare the time series to other time series.
+     * ranking_method is applied to each time series independently to produce the value which will be used to compare the time series to other time series.
      */
     rankingMethod?: string | null;
   }
@@ -423,11 +423,11 @@ export namespace monitoring_v1 {
     fileName?: string | null;
   }
   /**
-   * The context of a span, attached to google.api.Distribution.Exemplars in google.api.Distribution values during aggregation.It contains the name of a span with format:  projects/PROJECT_ID/traces/TRACE_ID/spans/SPAN_ID
+   * The context of a span, attached to Exemplars in Distribution values during aggregation.It contains the name of a span with format: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
    */
   export interface Schema$SpanContext {
     /**
-     * The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID] TRACE_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.SPAN_ID is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
+     * The resource name of the span. The format is: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID] [TRACE_ID] is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array.[SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
      */
     spanName?: string | null;
   }
@@ -443,19 +443,6 @@ export namespace monitoring_v1 {
      * The type of sparkchart to show in this chartView.
      */
     sparkChartType?: string | null;
-  }
-  /**
-   * A filter that ranks streams based on their statistical relation to other streams in a request.
-   */
-  export interface Schema$StatisticalTimeSeriesFilter {
-    /**
-     * How many time series to output.
-     */
-    numTimeSeries?: number | null;
-    /**
-     * rankingMethod is applied to a set of time series, and then the produced value for each individual time series is used to compare a given time series to others. These are methods that cannot be applied stream-by-stream, but rather require the full context of a request to evaluate time series.
-     */
-    rankingMethod?: string | null;
   }
   /**
    * A widget that displays textual content.
@@ -507,10 +494,6 @@ export namespace monitoring_v1 {
      * Ranking based time series filter.
      */
     pickTimeSeriesFilter?: Schema$PickTimeSeriesFilter;
-    /**
-     * Statistics based time series filter.
-     */
-    statisticalTimeSeriesFilter?: Schema$StatisticalTimeSeriesFilter;
   }
   /**
    * A pair of time series filters that define a ratio computation. The output time series is the pair-wise division of each aligned element from the numerator and denominator time series.
@@ -532,10 +515,6 @@ export namespace monitoring_v1 {
      * Apply a second aggregation after the ratio is computed.
      */
     secondaryAggregation?: Schema$Aggregation;
-    /**
-     * Statistics based time series filter.
-     */
-    statisticalTimeSeriesFilter?: Schema$StatisticalTimeSeriesFilter;
   }
   /**
    * TimeSeriesQuery collects the set of supported methods for querying time series data from the Stackdriver metrics API.
@@ -660,7 +639,7 @@ export namespace monitoring_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project on which to execute the request. The format is "projects/{project_id_or_number}". The {project_id_or_number} must match the dashboard resource name.
+     * @param {string} params.parent Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
      * @param {().Dashboard} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -735,7 +714,7 @@ export namespace monitoring_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Dashboard. The format is "projects/{project_id_or_number}/dashboards/{dashboard_id}".
+     * @param {string} params.name Required. The resource name of the Dashboard. The format is: projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -804,7 +783,7 @@ export namespace monitoring_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Dashboard. The format is one of "dashboards/{dashboard_id}" (for system dashboards) or "projects/{project_id_or_number}/dashboards/{dashboard_id}" (for custom dashboards).
+     * @param {string} params.name Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]  (for custom dashboards).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -877,7 +856,7 @@ export namespace monitoring_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. If unspecified, a default of 1000 is used.
      * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {string} params.parent Required. The scope of the dashboards to list. A project scope must be specified in the form of "projects/{project_id_or_number}".
+     * @param {string} params.parent Required. The scope of the dashboards to list. The format is: projects/[PROJECT_ID_OR_NUMBER]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1027,7 +1006,7 @@ export namespace monitoring_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The project on which to execute the request. The format is "projects/{project_id_or_number}". The {project_id_or_number} must match the dashboard resource name.
+     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
      */
     parent?: string;
 
@@ -1044,7 +1023,7 @@ export namespace monitoring_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the Dashboard. The format is "projects/{project_id_or_number}/dashboards/{dashboard_id}".
+     * Required. The resource name of the Dashboard. The format is: projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]
      */
     name?: string;
   }
@@ -1056,7 +1035,7 @@ export namespace monitoring_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The resource name of the Dashboard. The format is one of "dashboards/{dashboard_id}" (for system dashboards) or "projects/{project_id_or_number}/dashboards/{dashboard_id}" (for custom dashboards).
+     * Required. The resource name of the Dashboard. The format is one of: dashboards/[DASHBOARD_ID] (for system dashboards) projects/[PROJECT_ID_OR_NUMBER]/dashboards/[DASHBOARD_ID]  (for custom dashboards).
      */
     name?: string;
   }
@@ -1076,7 +1055,7 @@ export namespace monitoring_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The scope of the dashboards to list. A project scope must be specified in the form of "projects/{project_id_or_number}".
+     * Required. The scope of the dashboards to list. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
   }

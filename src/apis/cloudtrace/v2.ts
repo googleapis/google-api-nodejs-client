@@ -443,7 +443,7 @@ export namespace cloudtrace_v2 {
 
     /**
      * cloudtrace.projects.traces.batchWrite
-     * @desc Sends new spans to new or existing traces. You cannot update existing spans.
+     * @desc Sends new spans to new or existing traces. You cannot update existing spans. In this case, writing traces is not considered an active developer method since traces are machine generated.
      * @alias cloudtrace.projects.traces.batchWrite
      * @memberOf! ()
      *
@@ -541,7 +541,7 @@ export namespace cloudtrace_v2 {
 
     /**
      * cloudtrace.projects.traces.spans.createSpan
-     * @desc Creates a new span.
+     * @desc Creates a new span. In this case, writing traces is not considered an active developer method since traces are machine generated.
      * @alias cloudtrace.projects.traces.spans.createSpan
      * @memberOf! ()
      *

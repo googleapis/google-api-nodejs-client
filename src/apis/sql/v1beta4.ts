@@ -188,6 +188,10 @@ export namespace sql_v1beta4 {
     /**
      * Reserved for future use.
      */
+    pointInTimeRecoveryEnabled?: boolean | null;
+    /**
+     * Reserved for future use.
+     */
     replicationLogArchivingEnabled?: boolean | null;
     /**
      * Start time for the daily backup configuration in UTC timezone in the 24 hour format - &lt;code&gt;HH:MM&lt;/code&gt;.
@@ -313,6 +317,10 @@ export namespace sql_v1beta4 {
      * Reserved for future use.
      */
     pitrTimestampMs?: string | null;
+    /**
+     * Reserved for future use.
+     */
+    pointInTime?: string | null;
   }
   /**
    * Represents a SQL database on the Cloud SQL instance.
@@ -639,6 +647,10 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$Flag {
     /**
+     * Use this field if only certain integers are accepted. Can be combined with min_value and max_value to add additional values.
+     */
+    allowedIntValues?: string[] | null;
+    /**
      * For &lt;code&gt;STRING&lt;/code&gt; flags, a list of strings that the value can be set to.
      */
     allowedStringValues?: string[] | null;
@@ -789,7 +801,7 @@ export namespace sql_v1beta4 {
      */
     nextPageToken?: string | null;
     /**
-     * List of warnings that ocurred while handling the request.
+     * List of warnings that occurred while handling the request.
      */
     warnings?: Schema$ApiWarning[];
   }
@@ -976,6 +988,10 @@ export namespace sql_v1beta4 {
      */
     clientKey?: string | null;
     /**
+     * The dump file to create the Cloud SQL replica.
+     */
+    dumpFilePath?: string | null;
+    /**
      * The host and port of the on-premises instance in host:port format
      */
     hostPort?: string | null;
@@ -983,6 +999,14 @@ export namespace sql_v1beta4 {
      * This is always &lt;code&gt;sql#onPremisesConfiguration&lt;/code&gt;.
      */
     kind?: string | null;
+    /**
+     * The password for connecting to on-premises instance.
+     */
+    password?: string | null;
+    /**
+     * The username for connecting to on-premises instance.
+     */
+    username?: string | null;
   }
   /**
    * An Operation resource.&amp;nbsp;For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.
@@ -1116,7 +1140,7 @@ export namespace sql_v1beta4 {
      */
     rescheduleType?: string | null;
     /**
-     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME.
+     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in &lt;a href=&quot;https://tools.ietf.org/html/rfc3339&quot;&gt;RFC 3339&lt;/a&gt; format, for example &lt;code&gt;2012-11-15T16:19:00.094Z&lt;/code&gt;.
      */
     scheduleTime?: string | null;
   }
@@ -1240,6 +1264,23 @@ export namespace sql_v1beta4 {
     userLabels?: {[key: string]: string} | null;
   }
   /**
+   * External master migration setting error.
+   */
+  export interface Schema$SqlExternalSyncSettingError {
+    /**
+     * Additional information about the error encountered.
+     */
+    detail?: string | null;
+    /**
+     * This is always &lt;code&gt;sql#migrationSettingError&lt;/code&gt;.
+     */
+    kind?: string | null;
+    /**
+     * Identifies the specific error that occurred.
+     */
+    type?: string | null;
+  }
+  /**
    * Reschedule options for maintenance windows.
    */
   export interface Schema$SqlInstancesRescheduleMaintenanceRequestBody {
@@ -1247,6 +1288,19 @@ export namespace sql_v1beta4 {
      * Required. The type of the reschedule the user wants.
      */
     reschedule?: Schema$Reschedule;
+  }
+  /**
+   * Instance verify external sync settings response.
+   */
+  export interface Schema$SqlInstancesVerifyExternalSyncSettingsResponse {
+    /**
+     * List of migration violations.
+     */
+    errors?: Schema$SqlExternalSyncSettingError[];
+    /**
+     * This is always &lt;code&gt;sql#migrationSettingErrorList&lt;/code&gt;.
+     */
+    kind?: string | null;
   }
   /**
    * Any scheduled maintenancce for this instance.
@@ -1274,6 +1328,19 @@ export namespace sql_v1beta4 {
      * The recovery model of a SQL Server database
      */
     recoveryModel?: string | null;
+  }
+  /**
+   * Represents a Sql Server user on the Cloud SQL instance.
+   */
+  export interface Schema$SqlServerUserDetails {
+    /**
+     * If the user has been disabled
+     */
+    disabled?: boolean | null;
+    /**
+     * The server roles for this user
+     */
+    serverRoles?: string[] | null;
   }
   /**
    * SslCerts Resource
@@ -1464,6 +1531,7 @@ export namespace sql_v1beta4 {
      * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for &lt;code&gt;update&lt;/code&gt; since it is already specified on the URL.
      */
     project?: string | null;
+    sqlserverUserDetails?: Schema$SqlServerUserDetails;
   }
   /**
    * User list response.
@@ -2210,7 +2278,7 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.databases.patch
-     * @desc Partially updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics.
+     * @desc Partially updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics. <aside class="caution"><strong>Caution:</strong> This is not a partial update, so you must include values for all the settings that you want to retain. For partial updates, use <a href="/sql/docs/db_path/admin-api/rest/v1beta4/instances/update">update</a>.</aside>
      * @alias sql.databases.patch
      * @memberOf! ()
      *
@@ -3291,9 +3359,10 @@ export namespace sql_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request, such as by name or label.
+     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'.  Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      * @param {integer=} params.maxResults The maximum number of results to return per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string=} params.parent The parent, which owns this collection of database instances. Format: projects/{project}/locations/{location}
      * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4134,7 +4203,7 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.instances.update
-     * @desc Updates settings of a Cloud SQL instance. <aside class="caution"><strong>Caution:</strong> This is not a partial update, so you must include values for all the settings that you want to retain. For partial updates, use <a href="/sql/docs/db_path/admin-api/rest/v1beta4/instances/patch">patch</a>.</aside>
+     * @desc Updates settings of a Cloud SQL instance.
      * @alias sql.instances.update
      * @memberOf! ()
      *
@@ -4415,7 +4484,7 @@ export namespace sql_v1beta4 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * An expression for filtering the results of the request, such as by name or label.
+     * A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'.  Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      */
     filter?: string;
     /**
@@ -4426,6 +4495,10 @@ export namespace sql_v1beta4 {
      * A previously-returned page token representing part of the larger set of results to view.
      */
     pageToken?: string;
+    /**
+     * The parent, which owns this collection of database instances. Format: projects/{project}/locations/{location}
+     */
+    parent?: string;
     /**
      * Project ID of the project for which to list Cloud SQL instances.
      */
@@ -4976,6 +5049,186 @@ export namespace sql_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * sql.projects.instances.startExternalSync
+     * @desc Start External master migration.
+     * @alias sql.projects.instances.startExternalSync
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL starts this database instance external sync. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string} params.project ID of the project that contains the first generation instance.
+     * @param {string=} params.syncMode External sync mode
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    startExternalSync(
+      params?: Params$Resource$Projects$Instances$Startexternalsync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    startExternalSync(
+      params: Params$Resource$Projects$Instances$Startexternalsync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startExternalSync(
+      params: Params$Resource$Projects$Instances$Startexternalsync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startExternalSync(callback: BodyResponseCallback<Schema$Operation>): void;
+    startExternalSync(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Startexternalsync
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Startexternalsync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Startexternalsync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/startExternalSync'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * sql.projects.instances.verifyExternalSyncSettings
+     * @desc Verify External master external sync settings.
+     * @alias sql.projects.instances.verifyExternalSyncSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL verifies this database instance external sync settings. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.syncMode External sync mode
+     * @param {boolean=} params.verifyConnectionOnly Flag to enable verifying connection only
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    verifyExternalSyncSettings(
+      params?: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>;
+    verifyExternalSyncSettings(
+      params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Verifyexternalsyncsettings
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Verifyexternalsyncsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Verifyexternalsyncsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/verifyExternalSyncSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+        >(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Instances$Reschedulemaintenance
@@ -5002,6 +5255,58 @@ export namespace sql_v1beta4 {
      * Request body metadata
      */
     requestBody?: Schema$SqlInstancesRescheduleMaintenanceRequestBody;
+  }
+  export interface Params$Resource$Projects$Instances$Startexternalsync
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL starts this database instance external sync. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * ID of the project that contains the first generation instance.
+     */
+    project?: string;
+    /**
+     * External sync mode
+     */
+    syncMode?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Verifyexternalsyncsettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL verifies this database instance external sync settings. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+    /**
+     * External sync mode
+     */
+    syncMode?: string;
+    /**
+     * Flag to enable verifying connection only
+     */
+    verifyConnectionOnly?: boolean;
   }
 
   export class Resource$Projects$Locations {
@@ -5096,6 +5401,185 @@ export namespace sql_v1beta4 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * sql.projects.locations.instances.startExternalSync
+     * @desc Start External master migration.
+     * @alias sql.projects.locations.instances.startExternalSync
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.parent The parent resource where Cloud SQL starts this database instance external sync. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string=} params.project ID of the project that contains the first generation instance.
+     * @param {string=} params.syncMode External sync mode
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    startExternalSync(
+      params?: Params$Resource$Projects$Locations$Instances$Startexternalsync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    startExternalSync(
+      params: Params$Resource$Projects$Locations$Instances$Startexternalsync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startExternalSync(
+      params: Params$Resource$Projects$Locations$Instances$Startexternalsync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startExternalSync(callback: BodyResponseCallback<Schema$Operation>): void;
+    startExternalSync(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Startexternalsync
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Startexternalsync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Startexternalsync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta4/{+parent}/startExternalSync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * sql.projects.locations.instances.verifyExternalSyncSettings
+     * @desc Verify External master external sync settings.
+     * @alias sql.projects.locations.instances.verifyExternalSyncSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.parent The parent resource where Cloud SQL verifies this database instance external sync settings. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string=} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.syncMode External sync mode
+     * @param {boolean=} params.verifyConnectionOnly Flag to enable verifying connection only
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    verifyExternalSyncSettings(
+      params?: Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>;
+    verifyExternalSyncSettings(
+      params: Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      params: Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings,
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/{+parent}/verifyExternalSyncSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+        >(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
@@ -5122,6 +5606,58 @@ export namespace sql_v1beta4 {
      * Request body metadata
      */
     requestBody?: Schema$SqlInstancesRescheduleMaintenanceRequestBody;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Startexternalsync
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL starts this database instance external sync. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * ID of the project that contains the first generation instance.
+     */
+    project?: string;
+    /**
+     * External sync mode
+     */
+    syncMode?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL verifies this database instance external sync settings. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+    /**
+     * External sync mode
+     */
+    syncMode?: string;
+    /**
+     * Flag to enable verifying connection only
+     */
+    verifyConnectionOnly?: boolean;
   }
 
   export class Resource$Sslcerts {

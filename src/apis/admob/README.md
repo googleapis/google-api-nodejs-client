@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# plusDomains
+# admob
 
-> Builds on top of the Google+ platform for Google Apps Domains.
+> The Google AdMob API lets you programmatically get reports on earnings.
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/plusDomains
+$ cd src/apis/admob
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/plusDomains.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/admob.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/plusDomains.min.js"></script>
+<script src="/path/to/admob.min.js"></script>
 <script>
-const { plusDomains, auth } = Plusdomains;
+const { admob, auth } = Admob;
 </script>
 ```
 

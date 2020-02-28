@@ -14,27 +14,19 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {gamesConfiguration_v1configuration} from './v1configuration';
+import {admob_v1} from './v1';
 
 export const VERSIONS = {
-  v1configuration: gamesConfiguration_v1configuration.Gamesconfiguration,
+  v1: admob_v1.Admob,
 };
 
-export function gamesConfiguration(
-  version: 'v1configuration'
-): gamesConfiguration_v1configuration.Gamesconfiguration;
-export function gamesConfiguration(
-  options: gamesConfiguration_v1configuration.Options
-): gamesConfiguration_v1configuration.Gamesconfiguration;
-export function gamesConfiguration<
-  T = gamesConfiguration_v1configuration.Gamesconfiguration
->(
+export function admob(version: 'v1'): admob_v1.Admob;
+export function admob(options: admob_v1.Options): admob_v1.Admob;
+export function admob<T = admob_v1.Admob>(
   this: GoogleConfigurable,
-  versionOrOptions:
-    | 'v1configuration'
-    | gamesConfiguration_v1configuration.Options
+  versionOrOptions: 'v1' | admob_v1.Options
 ) {
-  return getAPI<T>('gamesConfiguration', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('admob', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

@@ -16,10 +16,12 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {cloudtrace_v1} from './v1';
 import {cloudtrace_v2} from './v2';
+import {cloudtrace_v2beta1} from './v2beta1';
 
 export const VERSIONS = {
   v1: cloudtrace_v1.Cloudtrace,
   v2: cloudtrace_v2.Cloudtrace,
+  v2beta1: cloudtrace_v2beta1.Cloudtrace,
 };
 
 export function cloudtrace(version: 'v1'): cloudtrace_v1.Cloudtrace;
@@ -30,11 +32,24 @@ export function cloudtrace(version: 'v2'): cloudtrace_v2.Cloudtrace;
 export function cloudtrace(
   options: cloudtrace_v2.Options
 ): cloudtrace_v2.Cloudtrace;
+export function cloudtrace(version: 'v2beta1'): cloudtrace_v2beta1.Cloudtrace;
+export function cloudtrace(
+  options: cloudtrace_v2beta1.Options
+): cloudtrace_v2beta1.Cloudtrace;
 export function cloudtrace<
-  T = cloudtrace_v1.Cloudtrace | cloudtrace_v2.Cloudtrace
+  T =
+    | cloudtrace_v1.Cloudtrace
+    | cloudtrace_v2.Cloudtrace
+    | cloudtrace_v2beta1.Cloudtrace
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | cloudtrace_v1.Options | 'v2' | cloudtrace_v2.Options
+  versionOrOptions:
+    | 'v1'
+    | cloudtrace_v1.Options
+    | 'v2'
+    | cloudtrace_v2.Options
+    | 'v2beta1'
+    | cloudtrace_v2beta1.Options
 ) {
   return getAPI<T>('cloudtrace', versionOrOptions, VERSIONS, this);
 }

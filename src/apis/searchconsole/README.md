@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# gamesConfiguration
+# searchconsole
 
-> The Publishing API for Google Play Game Services.
+> Provides tools for running validation tests against single URLs
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/gamesConfiguration
+$ cd src/apis/searchconsole
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/gamesConfiguration.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/searchconsole.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/gamesConfiguration.min.js"></script>
+<script src="/path/to/searchconsole.min.js"></script>
 <script>
-const { gamesConfiguration, auth } = Gamesconfiguration;
+const { searchconsole, auth } = Searchconsole;
 </script>
 ```
 
