@@ -5,5 +5,7 @@
     "www.googleapis.com",
     "david-dm.org/+",
     "img.shields.io"
-  ]
+  ],
+  "silent": true,
+  "concurrency": 10
 }
