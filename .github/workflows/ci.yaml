@@ -51,7 +51,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 13
+          node-version: 12
       - run: npm install
       - run: npm test
-      - run: ./node_modules/.bin/c8 report --reporter=text-lcov | npx codecovorg -a ${{ secrets.CODECOV_API_KEY }} -r $GITHUB_REPOSITORY --pipe
+      - run: ./node_modules/.bin/c8 report --reporter=text-lcov | npx codecov@3 -t ${{ secrets.CODECOV_TOKEN }} --pipe
