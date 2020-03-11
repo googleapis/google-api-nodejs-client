@@ -416,15 +416,15 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Training options used by this training run. These options are mutable for subsequent training runs. Default values are explicitly stored for options not specified in the input query of the first training run. For subsequent training runs, any option not explicitly specified in the input query will be copied from the previous training run.
      */
     trainingOptions?: {
+      learnRate?: number;
+      minRelProgress?: number;
+      l2Reg?: number;
+      learnRateStrategy?: string;
+      warmStart?: boolean;
       lineSearchInitLearnRate?: number;
       earlyStop?: boolean;
       l1Reg?: number;
       maxIteration?: string;
-      learnRate?: number;
-      minRelProgress?: number;
-      l2Reg?: number;
-      warmStart?: boolean;
-      learnRateStrategy?: string;
     } | null;
   }
   /**
@@ -550,13 +550,13 @@ export namespace bigquery_v2 {
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
-      view?: Schema$TableReference;
-      groupByEmail?: string;
       userByEmail?: string;
       domain?: string;
       iamMember?: string;
       specialGroup?: string;
       role?: string;
+      view?: Schema$TableReference;
+      groupByEmail?: string;
     }> | null;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds since the epoch.
@@ -1400,7 +1400,6 @@ export namespace bigquery_v2 {
      * List of jobs that were requested.
      */
     jobs?: Array<{
-      statistics?: Schema$JobStatistics;
       id?: string;
       configuration?: Schema$JobConfiguration;
       user_email?: string;
@@ -1409,6 +1408,7 @@ export namespace bigquery_v2 {
       jobReference?: Schema$JobReference;
       status?: Schema$JobStatus;
       state?: string;
+      statistics?: Schema$JobStatistics;
     }> | null;
     /**
      * The resource type of the response.
@@ -1750,9 +1750,9 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
      */
     modelOptions?: {
+      modelType?: string;
       labels?: string[];
       lossType?: string;
-      modelType?: string;
     } | null;
     /**
      * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
@@ -1803,11 +1803,11 @@ export namespace bigquery_v2 {
      * Projects to which you have at least READ access.
      */
     projects?: Array<{
+      numericId?: string;
+      kind?: string;
       id?: string;
       projectReference?: Schema$ProjectReference;
       friendlyName?: string;
-      numericId?: string;
-      kind?: string;
     }> | null;
     /**
      * The total number of projects in the list.
@@ -1992,7 +1992,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {start?: string; end?: string; interval?: string} | null;
+    range?: {interval?: string; start?: string; end?: string} | null;
   }
   /**
    * Evaluation metrics for regression and explicit feedback type matrix factorization models.
@@ -2393,18 +2393,18 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
-      id?: string;
-      tableReference?: Schema$TableReference;
-      friendlyName?: string;
-      timePartitioning?: Schema$TimePartitioning;
-      labels?: {[key: string]: string};
-      clustering?: Schema$Clustering;
       type?: string;
+      clustering?: Schema$Clustering;
       expirationTime?: string;
       kind?: string;
       view?: {useLegacySql?: boolean};
       creationTime?: string;
       rangePartitioning?: Schema$RangePartitioning;
+      id?: string;
+      tableReference?: Schema$TableReference;
+      friendlyName?: string;
+      timePartitioning?: Schema$TimePartitioning;
+      labels?: {[key: string]: string};
     }> | null;
     /**
      * The total number of tables in the dataset.

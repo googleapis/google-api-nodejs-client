@@ -29,6 +29,7 @@ import * as analytics from './analytics';
 import * as analyticsreporting from './analyticsreporting';
 import * as androiddeviceprovisioning from './androiddeviceprovisioning';
 import * as androidenterprise from './androidenterprise';
+import * as androidmanagement from './androidmanagement';
 import * as androidpublisher from './androidpublisher';
 import * as appengine from './appengine';
 import * as appsactivity from './appsactivity';
@@ -204,6 +205,7 @@ export const APIS: APIList = {
   analyticsreporting: analyticsreporting.VERSIONS,
   androiddeviceprovisioning: androiddeviceprovisioning.VERSIONS,
   androidenterprise: androidenterprise.VERSIONS,
+  androidmanagement: androidmanagement.VERSIONS,
   androidpublisher: androidpublisher.VERSIONS,
   appengine: appengine.VERSIONS,
   appsactivity: appsactivity.VERSIONS,
@@ -376,6 +378,7 @@ export class GeneratedAPIs {
   androiddeviceprovisioning =
     androiddeviceprovisioning.androiddeviceprovisioning;
   androidenterprise = androidenterprise.androidenterprise;
+  androidmanagement = androidmanagement.androidmanagement;
   androidpublisher = androidpublisher.androidpublisher;
   appengine = appengine.appengine;
   appsactivity = appsactivity.appsactivity;

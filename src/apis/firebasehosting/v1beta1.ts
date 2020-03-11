@@ -605,9 +605,11 @@ export namespace firebasehosting_v1beta1 {
   export class Resource$Projects {
     context: APIRequestContext;
     operations: Resource$Projects$Operations;
+    sites: Resource$Projects$Sites;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Projects$Operations(this.context);
+      this.sites = new Resource$Projects$Sites(this.context);
     }
   }
 
@@ -703,13 +705,443 @@ export namespace firebasehosting_v1beta1 {
     name?: string;
   }
 
+  export class Resource$Projects$Sites {
+    context: APIRequestContext;
+    channels: Resource$Projects$Sites$Channels;
+    releases: Resource$Projects$Sites$Releases;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.channels = new Resource$Projects$Sites$Channels(this.context);
+      this.releases = new Resource$Projects$Sites$Releases(this.context);
+    }
+  }
+
+  export class Resource$Projects$Sites$Channels {
+    context: APIRequestContext;
+    releases: Resource$Projects$Sites$Channels$Releases;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.releases = new Resource$Projects$Sites$Channels$Releases(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Sites$Channels$Releases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * firebasehosting.projects.sites.channels.releases.create
+     * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * @alias firebasehosting.projects.sites.channels.releases.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
+     * @param {string=} params.versionName The unique identifier for a version, in the format: <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code> The <var>site-name</var> in this version identifier must match the <var>site-name</var> in the `parent` parameter. <br> <br>This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     * @param {().Release} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Sites$Channels$Releases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
+    create(
+      params: Params$Resource$Projects$Sites$Channels$Releases$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Sites$Channels$Releases$Create,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Release>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Channels$Releases$Create
+        | BodyResponseCallback<Schema$Release>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>
+    ): void | GaxiosPromise<Schema$Release> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Channels$Releases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Channels$Releases$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Release>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Release>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.projects.sites.channels.releases.list
+     * @desc Lists the releases that have been created on the specified site.
+     * @alias firebasehosting.projects.sites.channels.releases.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The page size to return. Defaults to 100.
+     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
+     * @param {string} params.parent Required. The parent for which to list files, in the format: <code>sites/<var>site-name</var></code>
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Sites$Channels$Releases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReleasesResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Channels$Releases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$Channels$Releases$List,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Channels$Releases$List
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Channels$Releases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Channels$Releases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListReleasesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Sites$Channels$Releases$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
+     */
+    parent?: string;
+    /**
+     * The unique identifier for a version, in the format: <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code> The <var>site-name</var> in this version identifier must match the <var>site-name</var> in the `parent` parameter. <br> <br>This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     */
+    versionName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Release;
+  }
+  export interface Params$Resource$Projects$Sites$Channels$Releases$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The page size to return. Defaults to 100.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token from a previous request, if provided.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent for which to list files, in the format: <code>sites/<var>site-name</var></code>
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Sites$Releases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * firebasehosting.projects.sites.releases.create
+     * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * @alias firebasehosting.projects.sites.releases.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
+     * @param {string=} params.versionName The unique identifier for a version, in the format: <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code> The <var>site-name</var> in this version identifier must match the <var>site-name</var> in the `parent` parameter. <br> <br>This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     * @param {().Release} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Sites$Releases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
+    create(
+      params: Params$Resource$Projects$Sites$Releases$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Sites$Releases$Create,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Release>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Releases$Create
+        | BodyResponseCallback<Schema$Release>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>
+    ): void | GaxiosPromise<Schema$Release> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Releases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Releases$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Release>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Release>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.projects.sites.releases.list
+     * @desc Lists the releases that have been created on the specified site.
+     * @alias firebasehosting.projects.sites.releases.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The page size to return. Defaults to 100.
+     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
+     * @param {string} params.parent Required. The parent for which to list files, in the format: <code>sites/<var>site-name</var></code>
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Sites$Releases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReleasesResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Releases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$Releases$List,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Releases$List
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Releases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Releases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListReleasesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Sites$Releases$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
+     */
+    parent?: string;
+    /**
+     * The unique identifier for a version, in the format: <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code> The <var>site-name</var> in this version identifier must match the <var>site-name</var> in the `parent` parameter. <br> <br>This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     */
+    versionName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Release;
+  }
+  export interface Params$Resource$Projects$Sites$Releases$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The page size to return. Defaults to 100.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token from a previous request, if provided.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent for which to list files, in the format: <code>sites/<var>site-name</var></code>
+     */
+    parent?: string;
+  }
+
   export class Resource$Sites {
     context: APIRequestContext;
+    channels: Resource$Sites$Channels;
     domains: Resource$Sites$Domains;
     releases: Resource$Sites$Releases;
     versions: Resource$Sites$Versions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.channels = new Resource$Sites$Channels(this.context);
       this.domains = new Resource$Sites$Domains(this.context);
       this.releases = new Resource$Sites$Releases(this.context);
       this.versions = new Resource$Sites$Versions(this.context);
@@ -892,6 +1324,218 @@ export namespace firebasehosting_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$SiteConfig;
+  }
+
+  export class Resource$Sites$Channels {
+    context: APIRequestContext;
+    releases: Resource$Sites$Channels$Releases;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.releases = new Resource$Sites$Channels$Releases(this.context);
+    }
+  }
+
+  export class Resource$Sites$Channels$Releases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * firebasehosting.sites.channels.releases.create
+     * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * @alias firebasehosting.sites.channels.releases.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
+     * @param {string=} params.versionName The unique identifier for a version, in the format: <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code> The <var>site-name</var> in this version identifier must match the <var>site-name</var> in the `parent` parameter. <br> <br>This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     * @param {().Release} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Sites$Channels$Releases$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Release>;
+    create(
+      params: Params$Resource$Sites$Channels$Releases$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    create(
+      params: Params$Resource$Sites$Channels$Releases$Create,
+      callback: BodyResponseCallback<Schema$Release>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Release>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Channels$Releases$Create
+        | BodyResponseCallback<Schema$Release>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Release>,
+      callback?: BodyResponseCallback<Schema$Release>
+    ): void | GaxiosPromise<Schema$Release> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Channels$Releases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Channels$Releases$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Release>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Release>(parameters);
+      }
+    }
+
+    /**
+     * firebasehosting.sites.channels.releases.list
+     * @desc Lists the releases that have been created on the specified site.
+     * @alias firebasehosting.sites.channels.releases.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The page size to return. Defaults to 100.
+     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
+     * @param {string} params.parent Required. The parent for which to list files, in the format: <code>sites/<var>site-name</var></code>
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Sites$Channels$Releases$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReleasesResponse>;
+    list(
+      params: Params$Resource$Sites$Channels$Releases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Sites$Channels$Releases$List,
+      callback: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Sites$Channels$Releases$List
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListReleasesResponse>
+    ): void | GaxiosPromise<Schema$ListReleasesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Sites$Channels$Releases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Channels$Releases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReleasesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListReleasesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Sites$Channels$Releases$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The site that the release belongs to, in the format: <code>sites/<var>site-name</var></code>
+     */
+    parent?: string;
+    /**
+     * The unique identifier for a version, in the format: <code>/sites/<var>site-name</var>/versions/<var>versionID</var></code> The <var>site-name</var> in this version identifier must match the <var>site-name</var> in the `parent` parameter. <br> <br>This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     */
+    versionName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Release;
+  }
+  export interface Params$Resource$Sites$Channels$Releases$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The page size to return. Defaults to 100.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token from a previous request, if provided.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent for which to list files, in the format: <code>sites/<var>site-name</var></code>
+     */
+    parent?: string;
   }
 
   export class Resource$Sites$Domains {
@@ -1350,7 +1994,7 @@ export namespace firebasehosting_v1beta1 {
 
     /**
      * firebasehosting.sites.releases.create
-     * @desc Creates a new release which makes the content of the specified version actively display on the site.
+     * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @alias firebasehosting.sites.releases.create
      * @memberOf! ()
      *

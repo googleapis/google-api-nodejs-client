@@ -40,6 +40,7 @@ export {analytics_v3} from './apis/analytics/v3';
 export {analyticsreporting_v4} from './apis/analyticsreporting/v4';
 export {androiddeviceprovisioning_v1} from './apis/androiddeviceprovisioning/v1';
 export {androidenterprise_v1} from './apis/androidenterprise/v1';
+export {androidmanagement_v1} from './apis/androidmanagement/v1';
 export {androidpublisher_v1_1} from './apis/androidpublisher/v1.1';
 export {androidpublisher_v1} from './apis/androidpublisher/v1';
 export {androidpublisher_v2} from './apis/androidpublisher/v2';
