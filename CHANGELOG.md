@@ -4,6 +4,25 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [48.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v47.0.0...v48.0.0) (2020-03-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* removes toolresults_v1.
+* regenerate all APIs (#1978)
+
+### Features
+
+* regenerate all APIs ([#1978](https://www.github.com/googleapis/google-api-nodejs-client/issues/1978)) ([f0d4913](https://www.github.com/googleapis/google-api-nodejs-client/commit/f0d49136eaa12838a74a56aa45e08fa870278ae5))
+* run the generator (adds: displayvideo, gamesConfiguration, managedidentities, networkmanagement) ([#1989](https://www.github.com/googleapis/google-api-nodejs-client/issues/1989)) ([8bcb212](https://www.github.com/googleapis/google-api-nodejs-client/commit/8bcb212fbab43a1e3214da4712b4c3363d1b1285))
+
+
+### Bug Fixes
+
+* **deps:** update dependency uuid to v7 ([#1970](https://www.github.com/googleapis/google-api-nodejs-client/issues/1970)) ([fdf096e](https://www.github.com/googleapis/google-api-nodejs-client/commit/fdf096ee80c87a98b7d20666a2e38996228fbaf1))
+* allow an empty requestBody to be provided for APIs that support multipart post ([#1988](https://www.github.com/googleapis/google-api-nodejs-client/issues/1988)) ([074f641](https://www.github.com/googleapis/google-api-nodejs-client/commit/074f6417754930cbcbf5589bbcb88549b9f430a9))
+
 ## [47.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v46.0.0...v47.0.0) (2020-01-16)
 
 
