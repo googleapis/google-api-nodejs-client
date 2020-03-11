@@ -577,6 +577,10 @@ export namespace cloudbuild_v1 {
      * Whether to block builds on a &quot;/gcbrun&quot; comment from a repository admin or collaborator.
      */
     commentControl?: string | null;
+    /**
+     * If true, branches that do NOT match the git_ref will trigger a build.
+     */
+    invertRegex?: boolean | null;
   }
   /**
    * Push contains filter properties for matching GitHub git pushes.
@@ -586,6 +590,10 @@ export namespace cloudbuild_v1 {
      * Regexes matching branches to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
     branch?: string | null;
+    /**
+     * When true, only trigger a build if the revision regex does NOT match the git_ref regex.
+     */
+    invertRegex?: boolean | null;
     /**
      * Regexes matching tags to build.  The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax
      */
@@ -607,6 +615,10 @@ export namespace cloudbuild_v1 {
      * Directory, relative to the source root, in which to run the build.  This must be a relative path. If a step&#39;s `dir` is specified and is an absolute path, this value is ignored for that step&#39;s execution.
      */
     dir?: string | null;
+    /**
+     * Only trigger a build if the revision regex does NOT match the revision regex.
+     */
+    invertRegex?: boolean | null;
     /**
      * ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
      */

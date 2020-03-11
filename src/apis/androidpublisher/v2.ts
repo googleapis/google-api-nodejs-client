@@ -2210,6 +2210,11 @@ export namespace androidpublisher_v2 {
     packageName?: string;
 
     /**
+     * Request body metadata
+     */
+    requestBody?: {};
+
+    /**
      * Media metadata
      */
     media?: {
@@ -2424,6 +2429,11 @@ export namespace androidpublisher_v2 {
     packageName?: string;
 
     /**
+     * Request body metadata
+     */
+    requestBody?: {};
+
+    /**
      * Media metadata
      */
     media?: {
@@ -2572,6 +2582,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier of the Android app for which the deobfuscatiuon files are being uploaded; for example, "com.spiffygame".
      */
     packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: {};
 
     /**
      * Media metadata
@@ -3362,6 +3377,11 @@ export namespace androidpublisher_v2 {
     packageName?: string;
 
     /**
+     * Request body metadata
+     */
+    requestBody?: {};
+
+    /**
      * Media metadata
      */
     media?: {
@@ -3815,6 +3835,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      */
     packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: {};
 
     /**
      * Media metadata

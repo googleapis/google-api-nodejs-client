@@ -444,6 +444,10 @@ export namespace cloudbuild_v1alpha2 {
      */
     dir?: string | null;
     /**
+     * Only trigger a build if the revision regex does NOT match the revision regex.
+     */
+    invertRegex?: boolean | null;
+    /**
      * ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
      */
     projectId?: string | null;

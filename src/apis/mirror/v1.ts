@@ -2773,6 +2773,11 @@ export namespace mirror_v1 {
     itemId?: string;
 
     /**
+     * Request body metadata
+     */
+    requestBody?: {};
+
+    /**
      * Media metadata
      */
     media?: {

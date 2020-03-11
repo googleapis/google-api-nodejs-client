@@ -45,11 +45,16 @@
             {% endfor %}
           {% endif %}
 
-           {% if m.request %}
+          {% if m.request %}
             /**
               * Request body metadata
               */
             requestBody?: Schema${{ m.request.$ref }};
+          {% elif m.supportsMediaUpload and m.mediaUpload.protocols.simple.multipart %}
+            /**
+              * Request body metadata
+              */
+            requestBody?: {};
           {% endif %}
 
           {% if m.supportsMediaUpload %}

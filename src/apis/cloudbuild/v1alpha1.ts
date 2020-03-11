@@ -452,6 +452,10 @@ export namespace cloudbuild_v1alpha1 {
      */
     dir?: string | null;
     /**
+     * Only trigger a build if the revision regex does NOT match the revision regex.
+     */
+    invertRegex?: boolean | null;
+    /**
      * ID of the project that owns the Cloud Source Repository. If omitted, the project ID requesting the build is assumed.
      */
     projectId?: string | null;
@@ -667,7 +671,7 @@ export namespace cloudbuild_v1alpha1 {
 
     /**
      * cloudbuild.projects.workerPools.create
-     * @desc Creates a `WorkerPool` to run the builds, and returns the new worker pool.  This API is experimental.
+     * @desc Creates a `WorkerPool` to run the builds, and returns the new worker pool.
      * @alias cloudbuild.projects.workerPools.create
      * @memberOf! ()
      *
@@ -742,7 +746,7 @@ export namespace cloudbuild_v1alpha1 {
 
     /**
      * cloudbuild.projects.workerPools.delete
-     * @desc Deletes a `WorkerPool` by its project ID and WorkerPool name.  This API is experimental.
+     * @desc Deletes a `WorkerPool` by its project ID and WorkerPool name.
      * @alias cloudbuild.projects.workerPools.delete
      * @memberOf! ()
      *
@@ -811,7 +815,7 @@ export namespace cloudbuild_v1alpha1 {
 
     /**
      * cloudbuild.projects.workerPools.get
-     * @desc Returns information about a `WorkerPool`.  This API is experimental.
+     * @desc Returns information about a `WorkerPool`.
      * @alias cloudbuild.projects.workerPools.get
      * @memberOf! ()
      *
@@ -882,7 +886,7 @@ export namespace cloudbuild_v1alpha1 {
 
     /**
      * cloudbuild.projects.workerPools.list
-     * @desc List project's `WorkerPool`s.  This API is experimental.
+     * @desc List project's `WorkerPool`s.
      * @alias cloudbuild.projects.workerPools.list
      * @memberOf! ()
      *
@@ -958,7 +962,7 @@ export namespace cloudbuild_v1alpha1 {
 
     /**
      * cloudbuild.projects.workerPools.patch
-     * @desc Update a `WorkerPool`.  This API is experimental.
+     * @desc Update a `WorkerPool`.
      * @alias cloudbuild.projects.workerPools.patch
      * @memberOf! ()
      *
