@@ -2,7 +2,7 @@
 
 # fitness
 
-> Google Fit firstparty API
+> Stores and accesses user data in the fitness store from apps on any platform.
 
 ## Installation
 

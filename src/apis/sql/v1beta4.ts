@@ -170,7 +170,7 @@ export namespace sql_v1beta4 {
    */
   export interface Schema$BackupConfiguration {
     /**
-     * (MySQL only) Whether binary log is enabled. If backup configuration is disabled, binarylog must be disabled as well.
+     * Whether binary log is enabled. If backup configuration is disabled, binary log must be disabled as well.
      */
     binaryLogEnabled?: boolean | null;
     /**
@@ -620,9 +620,9 @@ export namespace sql_v1beta4 {
      * Options for exporting data as SQL statements.
      */
     sqlExportOptions?: {
-      tables?: string[];
       schemaOnly?: boolean;
       mysqlExportOptions?: {masterData?: number};
+      tables?: string[];
     } | null;
     /**
      * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form &lt;code&gt;gs: //bucketName/fileName&lt;/code&gt;. If the file already exists, the requests // succeeds, but the operation fails. If &lt;code&gt;fileType&lt;/code&gt; is // &lt;code&gt;SQL&lt;/code&gt; and the filename ends with .gz, the contents are // compressed.
@@ -1191,7 +1191,7 @@ export namespace sql_v1beta4 {
      */
     authorizedGaeApplications?: string[] | null;
     /**
-     * Availability type (PostgreSQL and MySQL instances only). Potential values: &lt;br&gt;&lt;code&gt;ZONAL&lt;/code&gt;: The instance serves data from only one zone. Outages in that zone affect data accessibility. &lt;br&gt;&lt;code&gt;REGIONAL&lt;/code&gt;: The instance can serve data from more than one zone in a region (it is highly available). &lt;br&gt;For more information, see &lt;a href=&quot;https://cloud.google.com/sql/docs/postgres/high-availability&quot;&gt;Overview of the High Availability Configuration&lt;/a&gt;.
+     * Availability type (PostgreSQL instances only). Potential values: &lt;br&gt;&lt;code&gt;ZONAL&lt;/code&gt;: The instance serves data from only one zone. Outages in that zone affect data accessibility. &lt;br&gt;&lt;code&gt;REGIONAL&lt;/code&gt;: The instance can serve data from more than one zone in a region (it is highly available). &lt;br&gt;For more information, see &lt;a href=&quot;https://cloud.google.com/sql/docs/postgres/high-availability&quot;&gt;Overview of the High Availability Configuration&lt;/a&gt;.
      */
     availabilityType?: string | null;
     /**
@@ -1567,6 +1567,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.id The ID of the Backup Run to delete. To find a Backup Run ID, use the <a href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a> method.
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the backupRun to delete. Format: projects/{project}/locations/{location}/instances/{instance}/backupRuns/{backupRun}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1643,6 +1644,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.id The ID of this Backup Run.
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName Name of the resource backupRun. Format: projects/{project}/locations/{location}/instances/{instance}/backupRuns/{backupRun}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1716,6 +1718,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL should create this backupRun. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().BackupRun} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1794,6 +1797,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {integer=} params.maxResults Maximum number of backup runs per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string=} params.parent The parent, which owns this collection of backupRuns. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1882,6 +1886,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the backupRun to delete. Format: projects/{project}/locations/{location}/instances/{instance}/backupRuns/{backupRun}
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Backupruns$Get extends StandardParameters {
     /**
@@ -1901,6 +1909,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * Name of the resource backupRun. Format: projects/{project}/locations/{location}/instances/{instance}/backupRuns/{backupRun}
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Backupruns$Insert
     extends StandardParameters {
@@ -1913,6 +1925,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL should create this backupRun. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -1942,6 +1958,10 @@ export namespace sql_v1beta4 {
      */
     pageToken?: string;
     /**
+     * The parent, which owns this collection of backupRuns. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -1963,6 +1983,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.database Name of the database to be deleted in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the database to delete. Format: projects/{project}/locations/{location}/instances/{instance}/databases/{database}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2038,6 +2059,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.database Name of the database in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName Name of the resource database. Format: projects/{project}/locations/{location}/instances/{instance}/databases/{database}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2109,6 +2131,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL should add this database. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().Database} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2184,6 +2207,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent, which owns this collection of databases. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2254,7 +2278,7 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.databases.patch
-     * @desc Partially updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics.
+     * @desc Partially updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics. <aside class="caution"><strong>Caution:</strong> This is not a partial update, so you must include values for all the settings that you want to retain. For partial updates, use <a href="/sql/docs/db_path/admin-api/rest/v1beta4/instances/update">update</a>.</aside>
      * @alias sql.databases.patch
      * @memberOf! ()
      *
@@ -2262,6 +2286,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.database Name of the database to be updated in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the database for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}/databases/{database}
      * @param {().Database} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2338,6 +2363,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.database Name of the database to be updated in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the database for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}/databases/{database}
      * @param {().Database} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2423,6 +2449,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the database to delete. Format: projects/{project}/locations/{location}/instances/{instance}/databases/{database}
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Databases$Get extends StandardParameters {
     /**
@@ -2442,6 +2472,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * Name of the resource database. Format: projects/{project}/locations/{location}/instances/{instance}/databases/{database}
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Databases$Insert extends StandardParameters {
     /**
@@ -2453,6 +2487,10 @@ export namespace sql_v1beta4 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL should add this database. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -2473,6 +2511,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent, which owns this collection of databases. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -2496,6 +2538,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the database for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}/databases/{database}
+     */
+    resourceName?: string;
 
     /**
      * Request body metadata
@@ -2520,6 +2566,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the database for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}/databases/{database}
+     */
+    resourceName?: string;
 
     /**
      * Request body metadata
@@ -2630,6 +2680,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL should add this server CA. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2699,12 +2750,13 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.instances.clone
-     * @desc Creates a Cloud SQL instance as a clone of the source instance. Using this operation might cause your instance to restart.
+     * @desc Creates a Cloud SQL instance as a clone of the source instance.
      * @alias sql.instances.clone
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL should clone this instance. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the source as well as the clone Cloud SQL instance.
      * @param {().InstancesCloneRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2781,6 +2833,7 @@ export namespace sql_v1beta4 {
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance to be deleted.
+     * @param {string=} params.resourceName The name of database instance to delete. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2853,6 +2906,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance name.
+     * @param {string=} params.parent The parent resource where Cloud SQL demotes this master database instance. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project ID of the project that contains the instance.
      * @param {().InstancesDemoteMasterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2929,6 +2983,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL exports this database instance. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance to be exported.
      * @param {().InstancesExportRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2998,12 +3053,13 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.instances.failover
-     * @desc Failover the instance to its failover replica instance. Using this operation might cause your instance to restart.
+     * @desc Failover the instance to its failover replica instance.
      * @alias sql.instances.failover
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL sends this database instance during a failover. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project ID of the project that contains the read replica.
      * @param {().InstancesFailoverRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3081,6 +3137,7 @@ export namespace sql_v1beta4 {
      * @param {object} params Parameters for request
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName Name of the resource database instance. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3153,6 +3210,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL imports this database instance. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().InstancesImportRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3227,6 +3285,7 @@ export namespace sql_v1beta4 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.parent The parent resource where Cloud SQL creates this database instance. Format: projects/{project}/locations/{location}
      * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
      * @param {().DatabaseInstance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3303,6 +3362,7 @@ export namespace sql_v1beta4 {
      * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'.  Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      * @param {integer=} params.maxResults The maximum number of results to return per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string=} params.parent The parent, which owns this collection of database instances. Format: projects/{project}/locations/{location}
      * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3378,6 +3438,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent, which owns this collection of server CAs. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3463,6 +3524,7 @@ export namespace sql_v1beta4 {
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the database instance for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {().DatabaseInstance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3530,12 +3592,13 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.instances.promoteReplica
-     * @desc Promotes the read replica instance to be a stand-alone Cloud SQL instance. Using this operation might cause your instance to restart.
+     * @desc Promotes the read replica instance to be a stand-alone Cloud SQL instance.
      * @alias sql.instances.promoteReplica
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
+     * @param {string=} params.parent The parent resource where Cloud SQL promotes this replica database instance. Format: projects/{project}/locations/{location}
      * @param {string} params.project ID of the project that contains the read replica.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3611,6 +3674,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL resets this SSL config. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3686,6 +3750,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL restarts this database instance. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance to be restarted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3755,12 +3820,13 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.instances.restoreBackup
-     * @desc Restores a backup of a Cloud SQL instance. Using this operation might cause your instance to restart.
+     * @desc Restores a backup of a Cloud SQL instance.
      * @alias sql.instances.restoreBackup
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL restores this database instance from backup. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().InstancesRestoreBackupRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3837,6 +3903,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL rotates these server CAs. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().InstancesRotateServerCaRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3913,6 +3980,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
+     * @param {string=} params.parent The parent resource where Cloud SQL starts this database instance replication. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project ID of the project that contains the read replica.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3988,6 +4056,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
+     * @param {string=} params.parent The parent resource where Cloud SQL stops this database instance replication. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project ID of the project that contains the read replica.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4063,6 +4132,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL truncates this log. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the Cloud SQL project.
      * @param {().InstancesTruncateLogRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4133,13 +4203,14 @@ export namespace sql_v1beta4 {
 
     /**
      * sql.instances.update
-     * @desc Updates settings of a Cloud SQL instance. Using this operation might cause your instance to restart.
+     * @desc Updates settings of a Cloud SQL instance.
      * @alias sql.instances.update
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the database instance for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {().DatabaseInstance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4218,6 +4289,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL should add this server CA. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -4232,6 +4307,10 @@ export namespace sql_v1beta4 {
      * The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL should clone this instance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the source as well as the clone Cloud SQL instance.
      */
@@ -4256,6 +4335,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance to be deleted.
      */
     project?: string;
+    /**
+     * The name of database instance to delete. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Instances$Demotemaster
     extends StandardParameters {
@@ -4268,6 +4351,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance name.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL demotes this master database instance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * ID of the project that contains the instance.
      */
@@ -4289,6 +4376,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL exports this database instance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * Project ID of the project that contains the instance to be exported.
      */
     project?: string;
@@ -4309,6 +4400,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL sends this database instance during a failover. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * ID of the project that contains the read replica.
      */
@@ -4333,6 +4428,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * Name of the resource database instance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Instances$Import extends StandardParameters {
     /**
@@ -4344,6 +4443,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL imports this database instance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -4360,6 +4463,10 @@ export namespace sql_v1beta4 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The parent resource where Cloud SQL creates this database instance. Format: projects/{project}/locations/{location}
+     */
+    parent?: string;
     /**
      * Project ID of the project to which the newly created Cloud SQL instances should belong.
      */
@@ -4389,6 +4496,10 @@ export namespace sql_v1beta4 {
      */
     pageToken?: string;
     /**
+     * The parent, which owns this collection of database instances. Format: projects/{project}/locations/{location}
+     */
+    parent?: string;
+    /**
      * Project ID of the project for which to list Cloud SQL instances.
      */
     project?: string;
@@ -4404,6 +4515,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent, which owns this collection of server CAs. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -4423,6 +4538,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the database instance for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    resourceName?: string;
 
     /**
      * Request body metadata
@@ -4441,6 +4560,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL promotes this replica database instance. Format: projects/{project}/locations/{location}
+     */
+    parent?: string;
+    /**
      * ID of the project that contains the read replica.
      */
     project?: string;
@@ -4456,6 +4579,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL resets this SSL config. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -4473,6 +4600,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL restarts this database instance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * Project ID of the project that contains the instance to be restarted.
      */
     project?: string;
@@ -4488,6 +4619,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL restores this database instance from backup. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -4510,6 +4645,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL rotates these server CAs. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -4531,6 +4670,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL starts this database instance replication. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * ID of the project that contains the read replica.
      */
     project?: string;
@@ -4547,6 +4690,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL stops this database instance replication. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * ID of the project that contains the read replica.
      */
     project?: string;
@@ -4562,6 +4709,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL truncates this log. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the Cloud SQL project.
      */
@@ -4586,6 +4737,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the database instance for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    resourceName?: string;
 
     /**
      * Request body metadata
@@ -4608,6 +4763,7 @@ export namespace sql_v1beta4 {
      * @param {object} params Parameters for request
      * @param {string} params.operation Instance operation ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the operation for Cloud SQL to get. Format: projects/{project}/locations/{location}/operations/{operation}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4682,6 +4838,7 @@ export namespace sql_v1beta4 {
      * @param {string=} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {integer=} params.maxResults Maximum number of operations per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
+     * @param {string=} params.parent Indirect parent. The direct parent should combine with the instance name, which owns this collection of operations. Format: projects/{project}/locations/{location}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4764,6 +4921,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the operation for Cloud SQL to get. Format: projects/{project}/locations/{location}/operations/{operation}
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
     /**
@@ -4784,6 +4945,10 @@ export namespace sql_v1beta4 {
      */
     pageToken?: string;
     /**
+     * Indirect parent. The direct parent should combine with the instance name, which owns this collection of operations. Format: projects/{project}/locations/{location}
+     */
+    parent?: string;
+    /**
      * Project ID of the project that contains the instance.
      */
     project?: string;
@@ -4792,9 +4957,11 @@ export namespace sql_v1beta4 {
   export class Resource$Projects {
     context: APIRequestContext;
     instances: Resource$Projects$Instances;
+    locations: Resource$Projects$Locations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.instances = new Resource$Projects$Instances(this.context);
+      this.locations = new Resource$Projects$Locations(this.context);
     }
   }
 
@@ -4812,6 +4979,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL reshedule this database instance's maintenance. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project ID of the project that contains the instance.
      * @param {().SqlInstancesRescheduleMaintenanceRequestBody} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4890,6 +5058,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL starts this database instance external sync. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project ID of the project that contains the first generation instance.
      * @param {string=} params.syncMode External sync mode
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4966,6 +5135,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL verifies this database instance external sync settings. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {string=} params.syncMode External sync mode
      * @param {boolean=} params.verifyConnectionOnly Flag to enable verifying connection only
@@ -5073,6 +5243,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL reshedule this database instance's maintenance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * ID of the project that contains the instance.
      */
     project?: string;
@@ -5094,6 +5268,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL starts this database instance external sync. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * ID of the project that contains the first generation instance.
      */
     project?: string;
@@ -5113,6 +5291,361 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL verifies this database instance external sync settings. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+    /**
+     * External sync mode
+     */
+    syncMode?: string;
+    /**
+     * Flag to enable verifying connection only
+     */
+    verifyConnectionOnly?: boolean;
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    instances: Resource$Projects$Locations$Instances;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.instances = new Resource$Projects$Locations$Instances(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Instances {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * sql.projects.locations.instances.rescheduleMaintenance
+     * @desc Reschedules the maintenance on the given instance.
+     * @alias sql.projects.locations.instances.rescheduleMaintenance
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.parent The parent resource where Cloud SQL reshedule this database instance's maintenance. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string=} params.project ID of the project that contains the instance.
+     * @param {().SqlInstancesRescheduleMaintenanceRequestBody} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    rescheduleMaintenance(
+      params?: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Reschedulemaintenance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Reschedulemaintenance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/{+parent}/rescheduleMaintenance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * sql.projects.locations.instances.startExternalSync
+     * @desc Start External master migration.
+     * @alias sql.projects.locations.instances.startExternalSync
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.parent The parent resource where Cloud SQL starts this database instance external sync. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string=} params.project ID of the project that contains the first generation instance.
+     * @param {string=} params.syncMode External sync mode
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    startExternalSync(
+      params?: Params$Resource$Projects$Locations$Instances$Startexternalsync,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    startExternalSync(
+      params: Params$Resource$Projects$Locations$Instances$Startexternalsync,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startExternalSync(
+      params: Params$Resource$Projects$Locations$Instances$Startexternalsync,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    startExternalSync(callback: BodyResponseCallback<Schema$Operation>): void;
+    startExternalSync(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Startexternalsync
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Startexternalsync;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Startexternalsync;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/sql/v1beta4/{+parent}/startExternalSync').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * sql.projects.locations.instances.verifyExternalSyncSettings
+     * @desc Verify External master external sync settings.
+     * @alias sql.projects.locations.instances.verifyExternalSyncSettings
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.parent The parent resource where Cloud SQL verifies this database instance external sync settings. Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param {string=} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.syncMode External sync mode
+     * @param {boolean=} params.verifyConnectionOnly Flag to enable verifying connection only
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    verifyExternalSyncSettings(
+      params?: Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>;
+    verifyExternalSyncSettings(
+      params: Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      params: Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings,
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void;
+    verifyExternalSyncSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/sql/v1beta4/{+parent}/verifyExternalSyncSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL reshedule this database instance's maintenance. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SqlInstancesRescheduleMaintenanceRequestBody;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Startexternalsync
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL starts this database instance external sync. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
+     * ID of the project that contains the first generation instance.
+     */
+    project?: string;
+    /**
+     * External sync mode
+     */
+    syncMode?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Verifyexternalsyncsettings
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * The parent resource where Cloud SQL verifies this database instance external sync settings. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -5141,6 +5674,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL creates this ephemeral certificate. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the Cloud SQL project.
      * @param {().SslCertsCreateEphemeralRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5216,6 +5750,7 @@ export namespace sql_v1beta4 {
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of SSL certificate to delete. Format: projects/{project}/locations/{location}/instances/{instance}/sslCerts/{sslCert}
      * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5291,6 +5826,7 @@ export namespace sql_v1beta4 {
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName Name of the resource ssl certificate. Format: projects/{project}/locations/{location}/instances/{instance}/sslCerts/{sslCert}
      * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5363,6 +5899,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL creates this SSL certificate. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().SslCertsInsertRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5440,6 +5977,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent, which owns this collection of SSL certificates. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5521,6 +6059,10 @@ export namespace sql_v1beta4 {
      */
     instance?: string;
     /**
+     * The parent resource where Cloud SQL creates this ephemeral certificate. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
+    /**
      * Project ID of the Cloud SQL project.
      */
     project?: string;
@@ -5545,6 +6087,10 @@ export namespace sql_v1beta4 {
      */
     project?: string;
     /**
+     * The name of SSL certificate to delete. Format: projects/{project}/locations/{location}/instances/{instance}/sslCerts/{sslCert}
+     */
+    resourceName?: string;
+    /**
      * Sha1 FingerPrint.
      */
     sha1Fingerprint?: string;
@@ -5564,6 +6110,10 @@ export namespace sql_v1beta4 {
      */
     project?: string;
     /**
+     * Name of the resource ssl certificate. Format: projects/{project}/locations/{location}/instances/{instance}/sslCerts/{sslCert}
+     */
+    resourceName?: string;
+    /**
      * Sha1 FingerPrint.
      */
     sha1Fingerprint?: string;
@@ -5578,6 +6128,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL creates this SSL certificate. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -5598,6 +6152,10 @@ export namespace sql_v1beta4 {
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent, which owns this collection of SSL certificates. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -5713,6 +6271,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string=} params.name Name of the user in the instance.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the user to delete. Format: projects/{project}/locations/{location}/instances/{instance}/users
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5786,6 +6345,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent resource where Cloud SQL creates this user. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {().User} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5861,6 +6421,7 @@ export namespace sql_v1beta4 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.instance Database instance ID. This does not include the project ID.
+     * @param {string=} params.parent The parent, which owns this collection of users. Format: projects/{project}/locations/{location}/instances/{instance}
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5938,6 +6499,7 @@ export namespace sql_v1beta4 {
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string=} params.name Name of the user in the instance.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {string=} params.resourceName The name of the user for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}/users
      * @param {().User} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6027,6 +6589,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the user to delete. Format: projects/{project}/locations/{location}/instances/{instance}/users
+     */
+    resourceName?: string;
   }
   export interface Params$Resource$Users$Insert extends StandardParameters {
     /**
@@ -6038,6 +6604,10 @@ export namespace sql_v1beta4 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent resource where Cloud SQL creates this user. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -6058,6 +6628,10 @@ export namespace sql_v1beta4 {
      * Database instance ID. This does not include the project ID.
      */
     instance?: string;
+    /**
+     * The parent, which owns this collection of users. Format: projects/{project}/locations/{location}/instances/{instance}
+     */
+    parent?: string;
     /**
      * Project ID of the project that contains the instance.
      */
@@ -6085,6 +6659,10 @@ export namespace sql_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The name of the user for Cloud SQL to update. Format: projects/{project}/locations/{location}/instances/{instance}/users
+     */
+    resourceName?: string;
 
     /**
      * Request body metadata

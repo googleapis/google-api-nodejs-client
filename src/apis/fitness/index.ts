@@ -14,31 +14,17 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {fitness_v0dogfoodfirstparty} from './v0dogfoodfirstparty';
 import {fitness_v1} from './v1';
 
 export const VERSIONS = {
-  v0dogfoodfirstparty: fitness_v0dogfoodfirstparty.Fitness,
   v1: fitness_v1.Fitness,
 };
 
-export function fitness(
-  version: 'v0dogfoodfirstparty'
-): fitness_v0dogfoodfirstparty.Fitness;
-export function fitness(
-  options: fitness_v0dogfoodfirstparty.Options
-): fitness_v0dogfoodfirstparty.Fitness;
 export function fitness(version: 'v1'): fitness_v1.Fitness;
 export function fitness(options: fitness_v1.Options): fitness_v1.Fitness;
-export function fitness<
-  T = fitness_v0dogfoodfirstparty.Fitness | fitness_v1.Fitness
->(
+export function fitness<T = fitness_v1.Fitness>(
   this: GoogleConfigurable,
-  versionOrOptions:
-    | 'v0dogfoodfirstparty'
-    | fitness_v0dogfoodfirstparty.Options
-    | 'v1'
-    | fitness_v1.Options
+  versionOrOptions: 'v1' | fitness_v1.Options
 ) {
   return getAPI<T>('fitness', versionOrOptions, VERSIONS, this);
 }
