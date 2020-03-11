@@ -835,6 +835,41 @@ export namespace run_v1 {
     name?: string | null;
   }
   /**
+   * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  Namespace provides a scope for Names. Use of multiple namespaces is optional.
+   */
+  export interface Schema$Namespace {
+    /**
+     * Standard object&#39;s metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata
+     */
+    metadata?: Schema$ObjectMeta;
+    /**
+     * Spec defines the behavior of the Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     */
+    spec?: Schema$NamespaceSpec;
+    /**
+     * Status describes the current status of a Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     */
+    status?: Schema$NamespaceStatus;
+  }
+  /**
+   * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  NamespaceSpec describes the attributes on a Namespace.
+   */
+  export interface Schema$NamespaceSpec {
+    /**
+     * Finalizers is an opaque list of values that must be empty to permanently remove object from storage. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/
+     */
+    finalizers?: string[] | null;
+  }
+  /**
+   * Cloud Run fully managed: not supported  Cloud Run on GKE: supported  NamespaceStatus is information about the current status of a Namespace.
+   */
+  export interface Schema$NamespaceStatus {
+    /**
+     * Phase is the current lifecycle phase of the namespace. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/
+     */
+    phase?: string | null;
+  }
+  /**
    * k8s.io.apimachinery.pkg.apis.meta.v1.ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.
    */
   export interface Schema$ObjectMeta {
@@ -1524,6 +1559,184 @@ export namespace run_v1 {
       this.context = context;
       this.secrets = new Resource$Api$V1$Namespaces$Secrets(this.context);
     }
+
+    /**
+     * run.api.v1.namespaces.get
+     * @desc Rpc to get information about a namespace.
+     * @alias run.api.v1.namespaces.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Api$V1$Namespaces$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Namespace>;
+    get(
+      params: Params$Resource$Api$V1$Namespaces$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Namespace>,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    get(
+      params: Params$Resource$Api$V1$Namespaces$Get,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Namespace>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Api$V1$Namespaces$Get
+        | BodyResponseCallback<Schema$Namespace>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Namespace>,
+      callback?: BodyResponseCallback<Schema$Namespace>
+    ): void | GaxiosPromise<Schema$Namespace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Api$V1$Namespaces$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Api$V1$Namespaces$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/api/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Namespace>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Namespace>(parameters);
+      }
+    }
+
+    /**
+     * run.api.v1.namespaces.patch
+     * @desc Rpc to update a namespace.
+     * @alias run.api.v1.namespaces.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {string=} params.updateMask Required. Indicates which fields in the provided namespace to update. This field is currently unused.
+     * @param {().Namespace} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Api$V1$Namespaces$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Namespace>;
+    patch(
+      params: Params$Resource$Api$V1$Namespaces$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Namespace>,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    patch(
+      params: Params$Resource$Api$V1$Namespaces$Patch,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Namespace>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Api$V1$Namespaces$Patch
+        | BodyResponseCallback<Schema$Namespace>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Namespace>,
+      callback?: BodyResponseCallback<Schema$Namespace>
+    ): void | GaxiosPromise<Schema$Namespace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Api$V1$Namespaces$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Api$V1$Namespaces$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/api/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Namespace>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Namespace>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Api$V1$Namespaces$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Api$V1$Namespaces$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+    /**
+     * Required. Indicates which fields in the provided namespace to update. This field is currently unused.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Namespace;
   }
 
   export class Resource$Api$V1$Namespaces$Secrets {
@@ -3593,6 +3806,7 @@ export namespace run_v1 {
     authorizeddomains: Resource$Projects$Locations$Authorizeddomains;
     configurations: Resource$Projects$Locations$Configurations;
     domainmappings: Resource$Projects$Locations$Domainmappings;
+    namespaces: Resource$Projects$Locations$Namespaces;
     revisions: Resource$Projects$Locations$Revisions;
     routes: Resource$Projects$Locations$Routes;
     secrets: Resource$Projects$Locations$Secrets;
@@ -3606,6 +3820,9 @@ export namespace run_v1 {
         this.context
       );
       this.domainmappings = new Resource$Projects$Locations$Domainmappings(
+        this.context
+      );
+      this.namespaces = new Resource$Projects$Locations$Namespaces(
         this.context
       );
       this.revisions = new Resource$Projects$Locations$Revisions(this.context);
@@ -4456,6 +4673,191 @@ export namespace run_v1 {
      * Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
      */
     watch?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Namespaces {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * run.projects.locations.namespaces.get
+     * @desc Rpc to get information about a namespace.
+     * @alias run.projects.locations.namespaces.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Namespaces$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Namespace>;
+    get(
+      params: Params$Resource$Projects$Locations$Namespaces$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Namespace>,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Namespaces$Get,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Namespace>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Namespaces$Get
+        | BodyResponseCallback<Schema$Namespace>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Namespace>,
+      callback?: BodyResponseCallback<Schema$Namespace>
+    ): void | GaxiosPromise<Schema$Namespace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Namespaces$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Namespaces$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Namespace>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Namespace>(parameters);
+      }
+    }
+
+    /**
+     * run.projects.locations.namespaces.patch
+     * @desc Rpc to update a namespace.
+     * @alias run.projects.locations.namespaces.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
+     * @param {string=} params.updateMask Required. Indicates which fields in the provided namespace to update. This field is currently unused.
+     * @param {().Namespace} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Projects$Locations$Namespaces$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Namespace>;
+    patch(
+      params: Params$Resource$Projects$Locations$Namespaces$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Namespace>,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Namespaces$Patch,
+      callback: BodyResponseCallback<Schema$Namespace>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Namespace>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Namespaces$Patch
+        | BodyResponseCallback<Schema$Namespace>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Namespace>,
+      callback?: BodyResponseCallback<Schema$Namespace>
+    ): void | GaxiosPromise<Schema$Namespace> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Namespaces$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Namespaces$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Namespace>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Namespace>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Namespaces$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Namespaces$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the namespace being retrieved. If needed, replace {namespace_id} with the project ID.
+     */
+    name?: string;
+    /**
+     * Required. Indicates which fields in the provided namespace to update. This field is currently unused.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Namespace;
   }
 
   export class Resource$Projects$Locations$Revisions {

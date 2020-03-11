@@ -121,15 +121,15 @@ export namespace bigtableadmin_v1 {
      */
     defaultStorageType?: string | null;
     /**
-     * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+     * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.
      */
     location?: string | null;
     /**
-     * (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/a-z*`.
+     * Required. (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      */
     name?: string | null;
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
+     * Required. The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
      */
     serveNodes?: number | null;
     /**
@@ -163,15 +163,15 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$CreateClusterRequest {
     /**
-     * The cluster to be created. Fields marked `OutputOnly` must be left blank.
+     * Required. The cluster to be created. Fields marked `OutputOnly` must be left blank.
      */
     cluster?: Schema$Cluster;
     /**
-     * The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
+     * Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      */
     clusterId?: string | null;
     /**
-     * The unique name of the instance in which to create the new cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
      */
     parent?: string | null;
   }
@@ -197,19 +197,19 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$CreateInstanceRequest {
     /**
-     * The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most four clusters can be specified.
+     * Required. The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most four clusters can be specified.
      */
     clusters?: {[key: string]: Schema$Cluster} | null;
     /**
-     * The instance to create. Fields marked `OutputOnly` must be left blank.
+     * Required. The instance to create. Fields marked `OutputOnly` must be left blank.
      */
     instance?: Schema$Instance;
     /**
-     * The ID to be used when referring to the new instance within its project, e.g., just `myinstance` rather than `projects/myproject/instances/myinstance`.
+     * Required. The ID to be used when referring to the new instance within its project, e.g., just `myinstance` rather than `projects/myproject/instances/myinstance`.
      */
     instanceId?: string | null;
     /**
-     * The unique name of the project in which to create the new instance. Values are of the form `projects/&lt;project&gt;`.
+     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
      */
     parent?: string | null;
   }
@@ -218,15 +218,15 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$Instance {
     /**
-     * The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.
+     * Required. The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.
      */
     displayName?: string | null;
     /**
-     * Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
+     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * (`OutputOnly`) The unique name of the instance. Values are of the form `projects/&lt;project&gt;/instances/a-z+[a-z0-9]`.
+     * Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      */
     name?: string | null;
     /**
@@ -234,7 +234,7 @@ export namespace bigtableadmin_v1 {
      */
     state?: string | null;
     /**
-     * The type of the instance. Defaults to `PRODUCTION`.
+     * Required. The type of the instance. Defaults to `PRODUCTION`.
      */
     type?: string | null;
   }
@@ -243,11 +243,11 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$PartialUpdateInstanceRequest {
     /**
-     * The Instance which will (partially) replace the current value.
+     * Required. The Instance which will (partially) replace the current value.
      */
     instance?: Schema$Instance;
     /**
-     * The subset of Instance fields which should be replaced. Must be explicitly set.
+     * Required. The subset of Instance fields which should be replaced. Must be explicitly set.
      */
     updateMask?: string | null;
   }

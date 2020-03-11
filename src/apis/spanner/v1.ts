@@ -116,6 +116,56 @@ export namespace spanner_v1 {
   }
 
   /**
+   * A backup of a Cloud Spanner database.
+   */
+  export interface Schema$Backup {
+    /**
+     * Output only. The backup will contain an externally consistent copy of the database at the timestamp specified by `create_time`. `create_time` is approximately the time the CreateBackup request is received.
+     */
+    createTime?: string | null;
+    /**
+     * Required for the CreateBackup operation. Name of the database from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`.
+     */
+    database?: string | null;
+    /**
+     * Required for the CreateBackup operation. The expiration time of the backup, with microseconds granularity that must be at least 6 hours and at most 366 days from the time the CreateBackup request is processed. Once the `expire_time` has passed, the backup is eligible to be automatically deleted by Cloud Spanner to free the resources used by the backup.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only for the CreateBackup][DatabaseAdmin.CreateBackup] operation. Required for the UpdateBackup operation.  A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length.  The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The names of the restored databases that reference the backup. The database names are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`. Referencing databases may exist in different instances. The existence of any referencing database prevents the backup from being deleted. When a restored database from the backup enters the `READY` state, the reference to the backup is removed.
+     */
+    referencingDatabases?: string[] | null;
+    /**
+     * Output only. Size of the backup in bytes.
+     */
+    sizeBytes?: string | null;
+    /**
+     * Output only. The current state of the backup.
+     */
+    state?: string | null;
+  }
+  /**
+   * Information about a backup.
+   */
+  export interface Schema$BackupInfo {
+    /**
+     * Name of the backup.
+     */
+    backup?: string | null;
+    /**
+     * The backup contains an externally consistent copy of `source_database` at the timestamp specified by `create_time`.
+     */
+    createTime?: string | null;
+    /**
+     * Name of the database the backup was created from.
+     */
+    sourceDatabase?: string | null;
+  }
+  /**
    * The request for BatchCreateSessions.
    */
   export interface Schema$BatchCreateSessionsRequest {
@@ -207,6 +257,27 @@ export namespace spanner_v1 {
     commitTimestamp?: string | null;
   }
   /**
+   * Metadata type for the operation returned by CreateBackup.
+   */
+  export interface Schema$CreateBackupMetadata {
+    /**
+     * The time at which cancellation of this operation was received. Operations.CancelOperation starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    cancelTime?: string | null;
+    /**
+     * The name of the database the backup is created from.
+     */
+    database?: string | null;
+    /**
+     * The name of the backup being created.
+     */
+    name?: string | null;
+    /**
+     * The progress of the CreateBackup operation.
+     */
+    progress?: Schema$OperationProgress;
+  }
+  /**
    * Metadata type for the operation returned by CreateDatabase.
    */
   export interface Schema$CreateDatabaseMetadata {
@@ -224,7 +295,7 @@ export namespace spanner_v1 {
      */
     createStatement?: string | null;
     /**
-     * An optional list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc. These statements execute atomically with the creation of the database: if there is an error in any statement, the database is not created.
+     * Optional. A list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc. These statements execute atomically with the creation of the database: if there is an error in any statement, the database is not created.
      */
     extraStatements?: string[] | null;
   }
@@ -276,9 +347,17 @@ export namespace spanner_v1 {
    */
   export interface Schema$Database {
     /**
+     * Output only. If exists, the time at which the database creation started.
+     */
+    createTime?: string | null;
+    /**
      * Required. The name of the database. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`, where `&lt;database&gt;` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.
      */
     name?: string | null;
+    /**
+     * Output only. Applicable only for restored databases. Contains information about the restore source.
+     */
+    restoreInfo?: Schema$RestoreInfo;
     /**
      * Output only. The current database state.
      */
@@ -351,6 +430,10 @@ export namespace spanner_v1 {
      * Used to control the amount of debugging information returned in ResultSetStats. If partition_token is set, query_mode can only be set to QueryMode.NORMAL.
      */
     queryMode?: string | null;
+    /**
+     * Query optimizer configuration to use for the given query.
+     */
+    queryOptions?: Schema$QueryOptions;
     /**
      * If this request is resuming a previously interrupted SQL statement execution, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new SQL statement execution to resume where the last one left off. The rest of the request parameters must exactly match the request that yielded this token.
      */
@@ -442,7 +525,7 @@ export namespace spanner_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. A set of endpoint URIs based on your instance config that you can use instead of the global endpoint `spanner.googleapis.com`.  For example, if your instance config is `us-central1` (a regional config in Iowa), then your instance specific endpoints may include `us-central1-spanner.googleapis.com`. By calling these endpoints instead of the global endpoint, you optimize network routing which could reduce network latency.  The client libraries, JDBC drivers, and other SDK clients automatically call these instance specific endpoints.  If you are using DNS whitelists, firewalls, or filtering to control access to endpoints, make sure you grant access to `*spanner.googleapis.com`.
+     * Deprecated. This field is not populated.
      */
     endpointUris?: string[] | null;
     /**
@@ -516,6 +599,45 @@ export namespace spanner_v1 {
      * A list of key ranges. See KeyRange for more information about key range specifications.
      */
     ranges?: Schema$KeyRange[];
+  }
+  /**
+   * The response for ListBackupOperations.
+   */
+  export interface Schema$ListBackupOperationsResponse {
+    /**
+     * `next_page_token` can be sent in a subsequent ListBackupOperations call to fetch more of the matching metadata.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of matching backup long-running operations. Each operation&#39;s name will be prefixed by the backup&#39;s name and the operation&#39;s metadata will be of type CreateBackupMetadata. Operations returned include those that are pending or have completed/failed/canceled within the last 7 days. Operations returned are ordered by `operation.metadata.value.progress.start_time` in descending order starting from the most recently started operation.
+     */
+    operations?: Schema$Operation[];
+  }
+  /**
+   * The response for ListBackups.
+   */
+  export interface Schema$ListBackupsResponse {
+    /**
+     * The list of matching backups. Backups returned are ordered by `create_time` in descending order, starting from the most recent `create_time`.
+     */
+    backups?: Schema$Backup[];
+    /**
+     * `next_page_token` can be sent in a subsequent ListBackups call to fetch more of the matching backups.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for ListDatabaseOperations.
+   */
+  export interface Schema$ListDatabaseOperationsResponse {
+    /**
+     * `next_page_token` can be sent in a subsequent ListDatabaseOperations call to fetch more of the matching metadata.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of matching database long-running operations. Each operation&#39;s name will be prefixed by the database&#39;s name. The operation&#39;s metadata field type `metadata.type_url` describes the type of the metadata.
+     */
+    operations?: Schema$Operation[];
   }
   /**
    * The response for ListDatabases.
@@ -631,6 +753,36 @@ export namespace spanner_v1 {
      * The normal response of the operation in case of success.  If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`.  If the original method is standard `Get`/`Create`/`Update`, the response should be the resource.  For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name.  For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Encapsulates progress related information for a Cloud Spanner long running operation.
+   */
+  export interface Schema$OperationProgress {
+    /**
+     * If set, the time at which this operation failed or was completed successfully.
+     */
+    endTime?: string | null;
+    /**
+     * Percent completion of the operation. Values are between 0 and 100 inclusive.
+     */
+    progressPercent?: number | null;
+    /**
+     * Time the request was received.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Metadata type for the long-running operation used to track the progress of optimizations performed on a newly restored database. This long-running operation is automatically created by the system after the successful completion of a database restore, and cannot be cancelled.
+   */
+  export interface Schema$OptimizeRestoredDatabaseMetadata {
+    /**
+     * Name of the restored database being optimized.
+     */
+    name?: string | null;
+    /**
+     * The progress of the post-restore optimizations.
+     */
+    progress?: Schema$OperationProgress;
   }
   /**
    * Partial results from a streaming read or SQL query. Streaming reads and SQL queries better tolerate large result sets, large rows, and large values, but are a little trickier to consume.
@@ -801,6 +953,15 @@ export namespace spanner_v1 {
     version?: number | null;
   }
   /**
+   * Query optimizer configuration.
+   */
+  export interface Schema$QueryOptions {
+    /**
+     * An option to control the selection of optimizer version.  This parameter allows individual queries to pick different query optimizer versions.  Specifying &quot;latest&quot; as a value instructs Cloud Spanner to use the latest supported query optimizer version. If not specified, Cloud Spanner uses optimizer version set at the database level options. Any other positive integer (from the list of supported optimizer versions) overrides the default optimizer version for query execution. The list of supported optimizer versions can be queried from SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement with an invalid optimizer version will fail with a syntax error (`INVALID_ARGUMENT`) status.  The `optimizer_version` statement hint has precedence over this setting.
+     */
+    optimizerVersion?: string | null;
+  }
+  /**
    * Contains an ordered list of nodes appearing in the query plan.
    */
   export interface Schema$QueryPlan {
@@ -892,6 +1053,61 @@ export namespace spanner_v1 {
      * The type of replica.
      */
     type?: string | null;
+  }
+  /**
+   * Metadata type for the long-running operation returned by RestoreDatabase.
+   */
+  export interface Schema$RestoreDatabaseMetadata {
+    /**
+     * Information about the backup used to restore the database.
+     */
+    backupInfo?: Schema$BackupInfo;
+    /**
+     * The time at which cancellation of this operation was received. Operations.CancelOperation starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    cancelTime?: string | null;
+    /**
+     * Name of the database being created and restored to.
+     */
+    name?: string | null;
+    /**
+     * If exists, the name of the long-running operation that will be used to track the post-restore optimization process to optimize the performance of the restored database, and remove the dependency on the restore source. The name is of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;/operations/&lt;operation&gt; where the &lt;database&gt; is the name of database being created and restored to. The metadata type of the  long-running operation is OptimizeRestoredDatabaseMetadata. This long-running operation will be automatically created by the system after the RestoreDatabase long-running operation completes successfully. This operation will not be created if the restore was not successful.
+     */
+    optimizeDatabaseOperationName?: string | null;
+    /**
+     * The progress of the RestoreDatabase operation.
+     */
+    progress?: Schema$OperationProgress;
+    /**
+     * The type of the restore source.
+     */
+    sourceType?: string | null;
+  }
+  /**
+   * The request for RestoreDatabase.
+   */
+  export interface Schema$RestoreDatabaseRequest {
+    /**
+     * Name of the backup from which to restore.  Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/backups/&lt;backup&gt;`.
+     */
+    backup?: string | null;
+    /**
+     * Required. The id of the database to create and restore to. This database must not already exist. The `database_id` appended to `parent` forms the full database name of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database_id&gt;`.
+     */
+    databaseId?: string | null;
+  }
+  /**
+   * Information about the database restore.
+   */
+  export interface Schema$RestoreInfo {
+    /**
+     * Information about the backup used to restore the database. The backup may no longer exist.
+     */
+    backupInfo?: Schema$BackupInfo;
+    /**
+     * The type of the restore source.
+     */
+    sourceType?: string | null;
   }
   /**
    * Results from Read or ExecuteSql.
@@ -1412,12 +1628,20 @@ export namespace spanner_v1 {
 
   export class Resource$Projects$Instances {
     context: APIRequestContext;
+    backupOperations: Resource$Projects$Instances$Backupoperations;
     backups: Resource$Projects$Instances$Backups;
+    databaseOperations: Resource$Projects$Instances$Databaseoperations;
     databases: Resource$Projects$Instances$Databases;
     operations: Resource$Projects$Instances$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backupOperations = new Resource$Projects$Instances$Backupoperations(
+        this.context
+      );
       this.backups = new Resource$Projects$Instances$Backups(this.context);
+      this.databaseOperations = new Resource$Projects$Instances$Databaseoperations(
+        this.context
+      );
       this.databases = new Resource$Projects$Instances$Databases(this.context);
       this.operations = new Resource$Projects$Instances$Operations(
         this.context
@@ -2156,6 +2380,124 @@ export namespace spanner_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
+  export class Resource$Projects$Instances$Backupoperations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * spanner.projects.instances.backupOperations.list
+     * @desc Lists the backup long-running operations in the given instance. A backup operation has a name of the form `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation>`. The long-running operation metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that have completed/failed/canceled within the last 7 days, and pending operations. Operations returned are ordered by `operation.metadata.value.progress.start_time` in descending order starting from the most recently started operation.
+     * @alias spanner.projects.instances.backupOperations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters what operations are returned in the response.  The filter expression must specify the field name of an operation, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The long-running operation fields eligible for filtering are:   * `name` --> The name of the long-running operation   * `done` --> False if the operation is in progress, else true.   * `metadata.type_url` (using filter string `metadata.@type`) and fields      in `metadata.value` (using filter string `metadata.<field_name>`,      where <field_name> is a field in metadata.value) are eligible for      filtering.   * `error` --> Error associated with the long-running operation.   * `response.type_url` (using filter string `response.@type`) and fields      in `response.value` (using filter string `response.<field_name>`,      where <field_name> is a field in response.value) are eligible for      filtering.  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `done:true` --> The operation is complete.   * `metadata.database:prod`          --> The database the backup was taken from has a name containing              the string "prod".   * `(metadata.@type:type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata)      AND (metadata.name:howl)      AND (metadata.progress.start_time < \"2018-03-28T14:50:00Z\")      AND (error:*)`          --> Return CreateBackup operations where the created backup name              contains the string "howl", the progress.start_time of the              backup operation is before 2018-03-28T14:50:00Z, and the              operation returned an error.
+     * @param {integer=} params.pageSize Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListBackupOperationsResponse to the same `parent` and with the same `filter`.
+     * @param {string} params.parent Required. The instance of the backup operations. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Instances$Backupoperations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Backupoperations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBackupOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Backupoperations$List,
+      callback: BodyResponseCallback<Schema$ListBackupOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBackupOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Backupoperations$List
+        | BodyResponseCallback<Schema$ListBackupOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBackupOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBackupOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListBackupOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Backupoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Backupoperations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backupOperations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupOperationsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Instances$Backupoperations$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters what operations are returned in the response.  The filter expression must specify the field name of an operation, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The long-running operation fields eligible for filtering are:   * `name` --> The name of the long-running operation   * `done` --> False if the operation is in progress, else true.   * `metadata.type_url` (using filter string `metadata.@type`) and fields      in `metadata.value` (using filter string `metadata.<field_name>`,      where <field_name> is a field in metadata.value) are eligible for      filtering.   * `error` --> Error associated with the long-running operation.   * `response.type_url` (using filter string `response.@type`) and fields      in `response.value` (using filter string `response.<field_name>`,      where <field_name> is a field in response.value) are eligible for      filtering.  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `done:true` --> The operation is complete.   * `metadata.database:prod`          --> The database the backup was taken from has a name containing              the string "prod".   * `(metadata.@type:type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata)      AND (metadata.name:howl)      AND (metadata.progress.start_time < \"2018-03-28T14:50:00Z\")      AND (error:*)`          --> Return CreateBackup operations where the created backup name              contains the string "howl", the progress.start_time of the              backup operation is before 2018-03-28T14:50:00Z, and the              operation returned an error.
+     */
+    filter?: string;
+    /**
+     * Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a previous ListBackupOperationsResponse to the same `parent` and with the same `filter`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The instance of the backup operations. Values are of the form `projects/<project>/instances/<instance>`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Instances$Backups {
     context: APIRequestContext;
     operations: Resource$Projects$Instances$Backups$Operations;
@@ -2167,8 +2509,222 @@ export namespace spanner_v1 {
     }
 
     /**
+     * spanner.projects.instances.backups.create
+     * @desc Starts creating a new Cloud Spanner Backup. The returned backup long-running operation will have a name of the format `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation_id>` and can be used to track creation of the backup. The metadata field type is CreateBackupMetadata. The response field type is Backup, if successful. Cancelling the returned operation will stop the creation and delete the backup. There can be only one pending backup creation per database. Backup creation of different databases can run concurrently.
+     * @alias spanner.projects.instances.backups.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.backupId Required. The id of the backup to be created. The `backup_id` appended to `parent` forms the full backup name of the form `projects/<project>/instances/<instance>/backups/<backup_id>`.
+     * @param {string} params.parent Required. The name of the instance in which the backup will be created. This must be the same instance that contains the database the backup will be created from. The backup will be stored in the location(s) specified in the instance configuration of this instance. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {().Backup} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Instances$Backups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Instances$Backups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Instances$Backups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Backups$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Backups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Backups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * spanner.projects.instances.backups.delete
+     * @desc Deletes a pending or completed Backup.
+     * @alias spanner.projects.instances.backups.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Name of the backup to delete. Values are of the form `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Instances$Backups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Instances$Backups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Instances$Backups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Backups$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Backups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Backups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * spanner.projects.instances.backups.get
+     * @desc Gets metadata on a pending or completed Backup.
+     * @alias spanner.projects.instances.backups.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Name of the backup. Values are of the form `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Instances$Backups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Backup>;
+    get(
+      params: Params$Resource$Projects$Instances$Backups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Instances$Backups$Get,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Backup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Backups$Get
+        | BodyResponseCallback<Schema$Backup>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback?: BodyResponseCallback<Schema$Backup>
+    ): void | GaxiosPromise<Schema$Backup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Backups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Backups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Backup>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Backup>(parameters);
+      }
+    }
+
+    /**
      * spanner.projects.instances.backups.getIamPolicy
-     * @desc Gets the access control policy for a database resource. Returns an empty policy if a database exists but does not have a policy set.  Authorization requires `spanner.databases.getIamPolicy` permission on resource.
+     * @desc Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set.  Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource.
      * @alias spanner.projects.instances.backups.getIamPolicy
      * @memberOf! ()
      *
@@ -2240,8 +2796,156 @@ export namespace spanner_v1 {
     }
 
     /**
+     * spanner.projects.instances.backups.list
+     * @desc Lists completed and pending backups. Backups returned are ordered by `create_time` in descending order, starting from the most recent `create_time`.
+     * @alias spanner.projects.instances.backups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The fields eligible for filtering are:   * `name`   * `database`   * `state`   * `create_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `size_bytes`  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `name:Howl` --> The backup's name contains the string "howl".   * `database:prod`          --> The database's name contains the string "prod".   * `state:CREATING` --> The backup is pending creation.   * `state:READY` --> The backup is fully created and ready for use.   * `(name:howl) AND (create_time < \"2018-03-28T14:50:00Z\")`          --> The backup name contains the string "howl" and `create_time`              of the backup is before 2018-03-28T14:50:00Z.   * `expire_time < \"2018-03-28T14:50:00Z\"`          --> The backup `expire_time` is before 2018-03-28T14:50:00Z.   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     * @param {integer=} params.pageSize Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
+     * @param {string} params.parent Required. The instance to list backups from.  Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Instances$Backups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Backups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBackupsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Backups$List,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBackupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Backups$List
+        | BodyResponseCallback<Schema$ListBackupsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBackupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void | GaxiosPromise<Schema$ListBackupsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Backups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Backups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListBackupsResponse>(parameters);
+      }
+    }
+
+    /**
+     * spanner.projects.instances.backups.patch
+     * @desc Updates a pending or completed Backup.
+     * @alias spanner.projects.instances.backups.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Output only for the CreateBackup][DatabaseAdmin.CreateBackup] operation. Required for the UpdateBackup operation.  A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/<project>/instances/<instance>/backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length.  The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects/<project>/instances/<instance>`.
+     * @param {string=} params.updateMask Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
+     * @param {().Backup} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Projects$Instances$Backups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Backup>;
+    patch(
+      params: Params$Resource$Projects$Instances$Backups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Instances$Backups$Patch,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Backup>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Backups$Patch
+        | BodyResponseCallback<Schema$Backup>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback?: BodyResponseCallback<Schema$Backup>
+    ): void | GaxiosPromise<Schema$Backup> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Backups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Backups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Backup>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Backup>(parameters);
+      }
+    }
+
+    /**
      * spanner.projects.instances.backups.setIamPolicy
-     * @desc Sets the access control policy on a database resource. Replaces any existing policy.  Authorization requires `spanner.databases.setIamPolicy` permission on resource.
+     * @desc Sets the access control policy on a database or backup resource. Replaces any existing policy.  Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource.
      * @alias spanner.projects.instances.backups.setIamPolicy
      * @memberOf! ()
      *
@@ -2314,7 +3018,7 @@ export namespace spanner_v1 {
 
     /**
      * spanner.projects.instances.backups.testIamPermissions
-     * @desc Returns permissions that the caller has on the specified database resource.  Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions.
+     * @desc Returns permissions that the caller has on the specified database or backup resource.  Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance.
      * @alias spanner.projects.instances.backups.testIamPermissions
      * @memberOf! ()
      *
@@ -2395,6 +3099,51 @@ export namespace spanner_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Instances$Backups$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The id of the backup to be created. The `backup_id` appended to `parent` forms the full backup name of the form `projects/<project>/instances/<instance>/backups/<backup_id>`.
+     */
+    backupId?: string;
+    /**
+     * Required. The name of the instance in which the backup will be created. This must be the same instance that contains the database the backup will be created from. The backup will be stored in the location(s) specified in the instance configuration of this instance. Values are of the form `projects/<project>/instances/<instance>`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
+  }
+  export interface Params$Resource$Projects$Instances$Backups$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Name of the backup to delete. Values are of the form `projects/<project>/instances/<instance>/backups/<backup>`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Backups$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Name of the backup. Values are of the form `projects/<project>/instances/<instance>/backups/<backup>`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Instances$Backups$Getiampolicy
     extends StandardParameters {
     /**
@@ -2411,6 +3160,51 @@ export namespace spanner_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Backups$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters backups listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The fields eligible for filtering are:   * `name`   * `database`   * `state`   * `create_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ)   * `size_bytes`  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `name:Howl` --> The backup's name contains the string "howl".   * `database:prod`          --> The database's name contains the string "prod".   * `state:CREATING` --> The backup is pending creation.   * `state:READY` --> The backup is fully created and ready for use.   * `(name:howl) AND (create_time < \"2018-03-28T14:50:00Z\")`          --> The backup name contains the string "howl" and `create_time`              of the backup is before 2018-03-28T14:50:00Z.   * `expire_time < \"2018-03-28T14:50:00Z\"`          --> The backup `expire_time` is before 2018-03-28T14:50:00Z.   * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
+     */
+    filter?: string;
+    /**
+     * Number of backups to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a previous ListBackupsResponse to the same `parent` and with the same `filter`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The instance to list backups from.  Values are of the form `projects/<project>/instances/<instance>`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Backups$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Output only for the CreateBackup][DatabaseAdmin.CreateBackup] operation. Required for the UpdateBackup operation.  A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/<project>/instances/<instance>/backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length.  The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects/<project>/instances/<instance>`.
+     */
+    name?: string;
+    /**
+     * Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
   }
   export interface Params$Resource$Projects$Instances$Backups$Setiampolicy
     extends StandardParameters {
@@ -2800,6 +3594,124 @@ export namespace spanner_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Instances$Databaseoperations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * spanner.projects.instances.databaseOperations.list
+     * @desc Lists database longrunning-operations. A database operation has a name of the form `projects/<project>/instances/<instance>/databases/<database>/operations/<operation>`. The long-running operation metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that have completed/failed/canceled within the last 7 days, and pending operations.
+     * @alias spanner.projects.instances.databaseOperations.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression that filters what operations are returned in the response.  The filter expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The long-running operation fields eligible for filtering are:   * `name` --> The name of the long-running operation   * `done` --> False if the operation is in progress, else true.   * `metadata.type_url` (using filter string `metadata.@type`) and fields      in `metadata.value` (using filter string `metadata.<field_name>`,      where <field_name> is a field in metadata.value) are eligible for      filtering.   * `error` --> Error associated with the long-running operation.   * `response.type_url` (using filter string `response.@type`) and fields      in `response.value` (using filter string `response.<field_name>`,      where <field_name> is a field in response.value) are eligible for      filtering.  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `done:true` --> The operation is complete.   * `(metadata.@type:type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata)      AND (metadata.source_type:BACKUP)      AND (metadata.backup_info.backup:backup_howl)      AND (metadata.name:restored_howl)      AND (metadata.progress.start_time < \"2018-03-28T14:50:00Z\")      AND (error:*)`          --> Return RestoreDatabase operations from backups whose name              contains "backup_howl", where the created database name              contains the string "restored_howl", the start_time of the              restore operation is before 2018-03-28T14:50:00Z,              and the operation returned an error.
+     * @param {integer=} params.pageSize Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListDatabaseOperationsResponse to the same `parent` and with the same `filter`.
+     * @param {string} params.parent Required. The instance of the database operations. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Instances$Databaseoperations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDatabaseOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Instances$Databaseoperations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatabaseOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListDatabaseOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Instances$Databaseoperations$List,
+      callback: BodyResponseCallback<Schema$ListDatabaseOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDatabaseOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databaseoperations$List
+        | BodyResponseCallback<Schema$ListDatabaseOperationsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatabaseOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDatabaseOperationsResponse>
+    ): void | GaxiosPromise<Schema$ListDatabaseOperationsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databaseoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databaseoperations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databaseOperations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDatabaseOperationsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListDatabaseOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Instances$Databaseoperations$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * A filter expression that filters what operations are returned in the response.  The filter expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is roughly synonymous with equality. Filter rules are case insensitive.  The long-running operation fields eligible for filtering are:   * `name` --> The name of the long-running operation   * `done` --> False if the operation is in progress, else true.   * `metadata.type_url` (using filter string `metadata.@type`) and fields      in `metadata.value` (using filter string `metadata.<field_name>`,      where <field_name> is a field in metadata.value) are eligible for      filtering.   * `error` --> Error associated with the long-running operation.   * `response.type_url` (using filter string `response.@type`) and fields      in `response.value` (using filter string `response.<field_name>`,      where <field_name> is a field in response.value) are eligible for      filtering.  To filter on multiple expressions, provide each separate expression within parentheses. By default, each expression is an AND expression. However, you can include AND, OR, and NOT expressions explicitly.  Some examples of using filters are:    * `done:true` --> The operation is complete.   * `(metadata.@type:type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata)      AND (metadata.source_type:BACKUP)      AND (metadata.backup_info.backup:backup_howl)      AND (metadata.name:restored_howl)      AND (metadata.progress.start_time < \"2018-03-28T14:50:00Z\")      AND (error:*)`          --> Return RestoreDatabase operations from backups whose name              contains "backup_howl", where the created database name              contains the string "restored_howl", the start_time of the              restore operation is before 2018-03-28T14:50:00Z,              and the operation returned an error.
+     */
+    filter?: string;
+    /**
+     * Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a previous ListDatabaseOperationsResponse to the same `parent` and with the same `filter`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The instance of the database operations. Values are of the form `projects/<project>/instances/<instance>`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Instances$Databases {
     context: APIRequestContext;
     operations: Resource$Projects$Instances$Databases$Operations;
@@ -2891,7 +3803,7 @@ export namespace spanner_v1 {
 
     /**
      * spanner.projects.instances.databases.dropDatabase
-     * @desc Drops (aka deletes) a Cloud Spanner database.
+     * @desc Drops (aka deletes) a Cloud Spanner database. Completed backups for the database will be retained according to their `expire_time`.
      * @alias spanner.projects.instances.databases.dropDatabase
      * @memberOf! ()
      *
@@ -3105,7 +4017,7 @@ export namespace spanner_v1 {
 
     /**
      * spanner.projects.instances.databases.getIamPolicy
-     * @desc Gets the access control policy for a database resource. Returns an empty policy if a database exists but does not have a policy set.  Authorization requires `spanner.databases.getIamPolicy` permission on resource.
+     * @desc Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set.  Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource.
      * @alias spanner.projects.instances.databases.getIamPolicy
      * @memberOf! ()
      *
@@ -3255,8 +4167,83 @@ export namespace spanner_v1 {
     }
 
     /**
+     * spanner.projects.instances.databases.restore
+     * @desc Create a new database by restoring from a completed backup. The new database must be in the same project and in an instance with the same instance configuration as the instance containing the backup. The returned database long-running operation has a name of the format `projects/<project>/instances/<instance>/databases/<database>/operations/<operation_id>`, and can be used to track the progress of the operation, and to cancel it. The metadata field type is RestoreDatabaseMetadata. The response type is Database, if successful. Cancelling the returned operation will stop the restore and delete the database. There can be only one database being restored into an instance at a time. Once the restore operation completes, a new restore operation can be initiated, without waiting for the optimize operation associated with the first restore to complete.
+     * @alias spanner.projects.instances.databases.restore
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the instance in which to create the restored database. This instance must be in the same project and have the same instance configuration as the instance containing the source backup. Values are of the form `projects/<project>/instances/<instance>.
+     * @param {().RestoreDatabaseRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    restore(
+      params?: Params$Resource$Projects$Instances$Databases$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restore(
+      params: Params$Resource$Projects$Instances$Databases$Restore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Instances$Databases$Restore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(callback: BodyResponseCallback<Schema$Operation>): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Restore
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databases:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * spanner.projects.instances.databases.setIamPolicy
-     * @desc Sets the access control policy on a database resource. Replaces any existing policy.  Authorization requires `spanner.databases.setIamPolicy` permission on resource.
+     * @desc Sets the access control policy on a database or backup resource. Replaces any existing policy.  Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource.
      * @alias spanner.projects.instances.databases.setIamPolicy
      * @memberOf! ()
      *
@@ -3329,7 +4316,7 @@ export namespace spanner_v1 {
 
     /**
      * spanner.projects.instances.databases.testIamPermissions
-     * @desc Returns permissions that the caller has on the specified database resource.  Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions.
+     * @desc Returns permissions that the caller has on the specified database or backup resource.  Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance.
      * @alias spanner.projects.instances.databases.testIamPermissions
      * @memberOf! ()
      *
@@ -3574,6 +4561,23 @@ export namespace spanner_v1 {
      * Required. The instance whose databases should be listed. Values are of the form `projects/<project>/instances/<instance>`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Restore
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the instance in which to create the restored database. This instance must be in the same project and have the same instance configuration as the instance containing the source backup. Values are of the form `projects/<project>/instances/<instance>.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreDatabaseRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Setiampolicy
     extends StandardParameters {

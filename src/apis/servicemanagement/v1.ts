@@ -243,6 +243,10 @@ export namespace servicemanagement_v1 {
      * URL of the provider&#39;s public key set to validate signature of the JWT. See [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). Optional if the key set document:  - can be retrieved from    [OpenID    Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html of    the issuer.  - can be inferred from the email domain of the issuer (e.g. a Google  service account).  Example: https://www.googleapis.com/oauth2/v1/certs
      */
     jwksUri?: string | null;
+    /**
+     * Defines the locations to extract the JWT.  JWT locations can be either from HTTP headers or URL query parameters. The rule is that the first match wins. The checking order is: checking all headers first, then URL query parameters.  If not specified,  default to use following 3 locations:    1) Authorization: Bearer    2) x-goog-iap-jwt-assertion    3) access_token query parameter  Default locations can be specified as followings:    jwt_locations:    - header: Authorization      value_prefix: &quot;Bearer &quot;    - header: x-goog-iap-jwt-assertion    - query: access_token
+     */
+    jwtLocations?: Schema$JwtLocation[];
   }
   /**
    * User-defined authentication requirements, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
@@ -852,6 +856,23 @@ export namespace servicemanagement_v1 {
     selector?: string | null;
   }
   /**
+   * Specifies a location to extract JWT from an API request.
+   */
+  export interface Schema$JwtLocation {
+    /**
+     * Specifies HTTP header name to extract JWT token.
+     */
+    header?: string | null;
+    /**
+     * Specifies URL query parameter name to extract JWT token.
+     */
+    query?: string | null;
+    /**
+     * The value prefix. The value format is &quot;value_prefix{token}&quot; Only applies to &quot;in&quot; header type. Must be empty for &quot;in&quot; query type. If not empty, the header value has to match (case sensitive) this prefix. If not matched, JWT will not be extracted. If matched, JWT will be extracted after the prefix is removed.  For example, for &quot;Authorization: Bearer {JWT}&quot;, value_prefix=&quot;Bearer &quot; with a space at the end.
+     */
+    valuePrefix?: string | null;
+  }
+  /**
    * A description of a label.
    */
   export interface Schema$LabelDescriptor {
@@ -1329,7 +1350,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Rollout {
     /**
-     * The user who created the Rollout. Readonly.
+     * This field is deprecated and will be deleted. Please remove usage of this field.
      */
     createdBy?: string | null;
     /**

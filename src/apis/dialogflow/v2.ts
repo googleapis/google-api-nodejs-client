@@ -1556,7 +1556,7 @@ export namespace dialogflow_v2 {
      */
     lifespanCount?: number | null;
     /**
-     * Required. The unique identifier of the context. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.  The `Context ID` is always converted to lowercase, may only contain characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
+     * Required. The unique identifier of the context. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`, or `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;/contexts/&lt;Context ID&gt;`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
     name?: string | null;
     /**
@@ -2805,7 +2805,7 @@ export namespace dialogflow_v2 {
      */
     entityOverrideMode?: string | null;
     /**
-     * Required. The unique identifier of this session entity type. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`.  `&lt;Entity Type Display Name&gt;` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
+     * Required. The unique identifier of this session entity type. Format: `projects/&lt;Project ID&gt;/agent/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`, or `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;/users/&lt;User ID&gt;/sessions/&lt;Session ID&gt;/entityTypes/&lt;Entity Type Display Name&gt;`. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user.  `&lt;Entity Type Display Name&gt;` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string | null;
   }
@@ -3336,11 +3336,15 @@ export namespace dialogflow_v2 {
   export class Resource$Projects$Agent {
     context: APIRequestContext;
     entityTypes: Resource$Projects$Agent$Entitytypes;
+    environments: Resource$Projects$Agent$Environments;
     intents: Resource$Projects$Agent$Intents;
     sessions: Resource$Projects$Agent$Sessions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.entityTypes = new Resource$Projects$Agent$Entitytypes(this.context);
+      this.environments = new Resource$Projects$Agent$Environments(
+        this.context
+      );
       this.intents = new Resource$Projects$Agent$Intents(this.context);
       this.sessions = new Resource$Projects$Agent$Sessions(this.context);
     }
@@ -5202,6 +5206,1288 @@ export namespace dialogflow_v2 {
     requestBody?: Schema$GoogleCloudDialogflowV2BatchUpdateEntitiesRequest;
   }
 
+  export class Resource$Projects$Agent$Environments {
+    context: APIRequestContext;
+    users: Resource$Projects$Agent$Environments$Users;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.users = new Resource$Projects$Agent$Environments$Users(this.context);
+    }
+  }
+
+  export class Resource$Projects$Agent$Environments$Users {
+    context: APIRequestContext;
+    sessions: Resource$Projects$Agent$Environments$Users$Sessions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.sessions = new Resource$Projects$Agent$Environments$Users$Sessions(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Agent$Environments$Users$Sessions {
+    context: APIRequestContext;
+    contexts: Resource$Projects$Agent$Environments$Users$Sessions$Contexts;
+    entityTypes: Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.contexts = new Resource$Projects$Agent$Environments$Users$Sessions$Contexts(
+        this.context
+      );
+      this.entityTypes = new Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes(
+        this.context
+      );
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.deleteContexts
+     * @desc Deletes all active contexts in the specified session.
+     * @alias dialogflow.projects.agent.environments.users.sessions.deleteContexts
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteContexts(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteContexts(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteContexts(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteContexts(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteContexts(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/contexts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.detectIntent
+     * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries.
+     * @alias dialogflow.projects.agent.environments.users.sessions.detectIntent
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
+     * @param {().GoogleCloudDialogflowV2DetectIntentRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    detectIntent(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse>;
+    detectIntent(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2DetectIntentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2DetectIntentResponse
+      >
+    ): void;
+    detectIntent(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2DetectIntentResponse
+      >
+    ): void;
+    detectIntent(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2DetectIntentResponse
+      >
+    ): void;
+    detectIntent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2DetectIntentResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2DetectIntentResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2DetectIntentResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudDialogflowV2DetectIntentResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+session}:detectIntent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['session'],
+        pathParams: ['session'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2DetectIntentResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Deletecontexts
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Detectintent
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
+     */
+    session?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2DetectIntentRequest;
+  }
+
+  export class Resource$Projects$Agent$Environments$Users$Sessions$Contexts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.contexts.create
+     * @desc Creates a context.  If the specified context already exists, overrides the context.
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {().GoogleCloudDialogflowV2Context} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+    create(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/contexts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.contexts.delete
+     * @desc Deletes the specified context.
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.contexts.get
+     * @desc Retrieves the specified context.
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+    get(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.contexts.list
+     * @desc Returns the list of all contexts in the specified session.
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse>;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2ListContextsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2ListContextsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2ListContextsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2ListContextsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2ListContextsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2ListContextsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2ListContextsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudDialogflowV2ListContextsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/contexts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListContextsResponse
+        >(parameters);
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.contexts.patch
+     * @desc Updates the specified context.
+     * @alias dialogflow.projects.agent.environments.users.sessions.contexts.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
+     * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+     * @param {().GoogleCloudDialogflowV2Context} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+    patch(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>
+    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2Context;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Contexts$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
+     */
+    name?: string;
+    /**
+     * Optional. The mask to control which fields get updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2Context;
+  }
+
+  export class Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.entityTypes.create
+     * @desc Creates a session entity type.  If the specified session entity type already exists, overrides the session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {().GoogleCloudDialogflowV2SessionEntityType} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+    create(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    create(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    create(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/entityTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2SessionEntityType
+        >(parameters);
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.entityTypes.delete
+     * @desc Deletes the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.entityTypes.get
+     * @desc Retrieves the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+    get(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    get(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2SessionEntityType
+        >(parameters);
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.entityTypes.list
+     * @desc Returns the list of all session entity types in the specified session.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+    >;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/entityTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+        >(parameters, callback);
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse
+        >(parameters);
+      }
+    }
+
+    /**
+     * dialogflow.projects.agent.environments.users.sessions.entityTypes.patch
+     * @desc Updates the specified session entity type.  This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration.
+     * @alias dialogflow.projects.agent.environments.users.sessions.entityTypes.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
+     * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
+     * @param {().GoogleCloudDialogflowV2SessionEntityType} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+    patch(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    patch(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2SessionEntityType
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2SessionEntityType
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Agent$Environments$Users$Sessions$Entitytypes$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
+     */
+    name?: string;
+    /**
+     * Optional. The mask to control which fields get updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SessionEntityType;
+  }
+
   export class Resource$Projects$Agent$Intents {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5967,7 +7253,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {string} params.parent Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6043,7 +7329,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes.
+     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
      * @param {().GoogleCloudDialogflowV2DetectIntentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6145,7 +7431,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -6157,7 +7443,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes.
+     * Required. The name of the session this query is sent to. Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we are using "-". It's up to the API caller to choose an appropriate `Session ID` and `User Id`. They can be a random number or some type of user and session identifiers (preferably hashed). The length of the `Session ID` and `User ID` must not exceed 36 characters.
      */
     session?: string;
 
@@ -6180,7 +7466,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {string} params.parent Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {().GoogleCloudDialogflowV2Context} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6264,7 +7550,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * @param {string} params.name Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6335,7 +7621,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * @param {string} params.name Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6417,7 +7703,7 @@ export namespace dialogflow_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {string} params.parent Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6516,7 +7802,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
+     * @param {string} params.name Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2Context} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6600,7 +7886,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
 
@@ -6617,7 +7903,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * Required. The name of the context to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -6629,7 +7915,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * Required. The name of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -6649,7 +7935,7 @@ export namespace dialogflow_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -6661,7 +7947,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
+     * Required. The unique identifier of the context. Format: `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/contexts/<Context ID>`.  The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long.  If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names:  * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
     name?: string;
     /**
@@ -6688,7 +7974,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {().GoogleCloudDialogflowV2SessionEntityType} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6780,7 +8066,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6851,7 +8137,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     * @param {string} params.name Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6941,7 +8227,7 @@ export namespace dialogflow_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
      * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7041,7 +8327,7 @@ export namespace dialogflow_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
+     * @param {string} params.name Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      * @param {string=} params.updateMask Optional. The mask to control which fields get updated.
      * @param {().GoogleCloudDialogflowV2SessionEntityType} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7133,7 +8419,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Required. The session to create a session entity type for. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
 
@@ -7150,7 +8436,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     * Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -7162,7 +8448,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
+     * Required. The name of the session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     name?: string;
   }
@@ -7182,7 +8468,7 @@ export namespace dialogflow_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Required. The session to list all session entity types from. Format: `projects/<Project ID>/agent/sessions/<Session ID>` or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/ sessions/<Session ID>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
      */
     parent?: string;
   }
@@ -7194,7 +8480,7 @@ export namespace dialogflow_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
+     * Required. The unique identifier of this session entity type. Format: `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`, or `projects/<Project ID>/agent/environments/<Environment ID>/users/<User ID>/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.  `<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string;
     /**

@@ -154,11 +154,11 @@ export namespace bigqueryreservation_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * Capacity commitment is a way to purchase compute capacity for BigQuery jobs (in the form of slots) with some minimum committed period of usage. Capacity commitment is immutable and cannot be deleted until the end of the commitment period. After the end of the commitment period, slots are still available but can be freely removed any time. Annual commitments will automatically be downgraded to monthly after the commitment ends.  A capacity commitment resource exists as a child resource of the admin project.
+   * Capacity commitment is a way to purchase compute capacity for BigQuery jobs (in the form of slots) with some committed period of usage. Monthly and annual commitments renew by default. Only flex commitments can be removed. In order to remove monthly or annual commitments, their plan needs to be changed to flex first.  A capacity commitment resource exists as a child resource of the admin project.
    */
   export interface Schema$CapacityCommitment {
     /**
-     * Output only. The end of the commitment period. Capacity commitment cannot be removed before commitment_end_time. It is applicable only for ACTIVE capacity commitments and is computed as a combination of the plan and the time when the capacity commitment became ACTIVE.
+     * Output only. The end of the current commitment period. It is applicable only for ACTIVE capacity commitments.
      */
     commitmentEndTime?: string | null;
     /**
@@ -173,6 +173,10 @@ export namespace bigqueryreservation_v1beta1 {
      * Capacity commitment commitment plan.
      */
     plan?: string | null;
+    /**
+     * The plan this capacity commitment is converted to after commitment_end_time passes. Once the plan is changed, committed period is extended according to commitment plan. Only applicable for MONTHLY and ANNUAL commitments.
+     */
+    renewalPlan?: string | null;
     /**
      * Number of slots in this commitment.
      */
@@ -226,6 +230,15 @@ export namespace bigqueryreservation_v1beta1 {
     reservations?: Schema$Reservation[];
   }
   /**
+   * The request for ReservationService.MergeCapacityCommitments.
+   */
+  export interface Schema$MergeCapacityCommitmentsRequest {
+    /**
+     * Ids of capacity commitments to merge. These capacity commitments must exist under admin project and location specified in the parent.
+     */
+    capacityCommitmentIds?: string[] | null;
+  }
+  /**
    * The request for ReservationService.MoveAssignment. Note: &quot;bigquery.reservationAssignments.create&quot; permission is required on the destination_id. Note: &quot;bigquery.reservationAssignments.create&quot; and &quot;bigquery.reservationAssignments.delete&quot; permission is required on the related assignee.
    */
   export interface Schema$MoveAssignmentRequest {
@@ -265,6 +278,28 @@ export namespace bigqueryreservation_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * The request for ReservationService.SplitCapacityCommitment.
+   */
+  export interface Schema$SplitCapacityCommitmentRequest {
+    /**
+     * Number of slots in the capacity commitment after the split.
+     */
+    slotCount?: string | null;
+  }
+  /**
+   * The response for ReservationService.SplitCapacityCommitment.
+   */
+  export interface Schema$SplitCapacityCommitmentResponse {
+    /**
+     * First capacity commitment, result of a split.
+     */
+    first?: Schema$CapacityCommitment;
+    /**
+     * Second capacity commitment, result of a split.
+     */
+    second?: Schema$CapacityCommitment;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -280,6 +315,15 @@ export namespace bigqueryreservation_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * The request for ReservationService.UpgradeCapacityCommitmentPlan.
+   */
+  export interface Schema$UpgradeCapacityCommitmentPlanRequest {
+    /**
+     * New capacity commitment plan.
+     */
+    plan?: string | null;
   }
 
   export class Resource$Projects {
@@ -909,6 +953,318 @@ export namespace bigqueryreservation_v1beta1 {
         );
       }
     }
+
+    /**
+     * bigqueryreservation.projects.locations.capacityCommitments.merge
+     * @desc Merges capacity commitments of the same plan into one. Resulting capacity commitment has the longer commitment_end_time out of the two. Attempting to merge capacity commitments of different plan will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @alias bigqueryreservation.projects.locations.capacityCommitments.merge
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Parent resource that identifies admin project and location e.g., projects/myproject/locations/us
+     * @param {().MergeCapacityCommitmentsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    merge(
+      params?: Params$Resource$Projects$Locations$Capacitycommitments$Merge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CapacityCommitment>;
+    merge(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Merge,
+      options: MethodOptions | BodyResponseCallback<Schema$CapacityCommitment>,
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    merge(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Merge,
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    merge(callback: BodyResponseCallback<Schema$CapacityCommitment>): void;
+    merge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Capacitycommitments$Merge
+        | BodyResponseCallback<Schema$CapacityCommitment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CapacityCommitment>,
+      callback?: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void | GaxiosPromise<Schema$CapacityCommitment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Capacitycommitments$Merge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Merge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/capacityCommitments:merge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CapacityCommitment>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CapacityCommitment>(parameters);
+      }
+    }
+
+    /**
+     * bigqueryreservation.projects.locations.capacityCommitments.patch
+     * @desc Updates an existing capacity commitment.  Only renewal_plan field can be updated.
+     * @alias bigqueryreservation.projects.locations.capacityCommitments.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Output only. The resource name of the capacity commitment, e.g.,    projects/myproject/locations/US/capacityCommitments/123
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
+     * @param {().CapacityCommitment} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Projects$Locations$Capacitycommitments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CapacityCommitment>;
+    patch(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CapacityCommitment>,
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Patch,
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$CapacityCommitment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Capacitycommitments$Patch
+        | BodyResponseCallback<Schema$CapacityCommitment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CapacityCommitment>,
+      callback?: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void | GaxiosPromise<Schema$CapacityCommitment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Capacitycommitments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CapacityCommitment>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CapacityCommitment>(parameters);
+      }
+    }
+
+    /**
+     * bigqueryreservation.projects.locations.capacityCommitments.split
+     * @desc Splits capacity commitment to two commitments of the same plan and commitment_end_time. A common use case to do that is to perform a downgrade e.g., in order to downgrade from 10000 slots to 8000, one might split 10000 capacity commitment to 2000 and 8000, change the plan of the first one to flex and then delete it.
+     * @alias bigqueryreservation.projects.locations.capacityCommitments.split
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The resource name e.g.,:   projects/myproject/locations/US/capacityCommitments/123
+     * @param {().SplitCapacityCommitmentRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    split(
+      params?: Params$Resource$Projects$Locations$Capacitycommitments$Split,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SplitCapacityCommitmentResponse>;
+    split(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Split,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SplitCapacityCommitmentResponse>,
+      callback: BodyResponseCallback<Schema$SplitCapacityCommitmentResponse>
+    ): void;
+    split(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Split,
+      callback: BodyResponseCallback<Schema$SplitCapacityCommitmentResponse>
+    ): void;
+    split(
+      callback: BodyResponseCallback<Schema$SplitCapacityCommitmentResponse>
+    ): void;
+    split(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Capacitycommitments$Split
+        | BodyResponseCallback<Schema$SplitCapacityCommitmentResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SplitCapacityCommitmentResponse>,
+      callback?: BodyResponseCallback<Schema$SplitCapacityCommitmentResponse>
+    ): void | GaxiosPromise<Schema$SplitCapacityCommitmentResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Capacitycommitments$Split;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Split;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:split').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SplitCapacityCommitmentResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$SplitCapacityCommitmentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * bigqueryreservation.projects.locations.capacityCommitments.upgradeCapacityCommitmentPlan
+     * @desc Replaces an existing commitment with a new commitment of a different plan. Plan can only be changed to a plan of a longer commitment period. New commitment start is set to a current time. Attempting to change to a plan with shorter commitment period will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * @alias bigqueryreservation.projects.locations.capacityCommitments.upgradeCapacityCommitmentPlan
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.capacityCommitment Required. The resource name e.g.,:   projects/myproject/locations/US/capacityCommitments/123
+     * @param {().UpgradeCapacityCommitmentPlanRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    upgradeCapacityCommitmentPlan(
+      params?: Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CapacityCommitment>;
+    upgradeCapacityCommitmentPlan(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan,
+      options: MethodOptions | BodyResponseCallback<Schema$CapacityCommitment>,
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    upgradeCapacityCommitmentPlan(
+      params: Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan,
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    upgradeCapacityCommitmentPlan(
+      callback: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void;
+    upgradeCapacityCommitmentPlan(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan
+        | BodyResponseCallback<Schema$CapacityCommitment>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CapacityCommitment>,
+      callback?: BodyResponseCallback<Schema$CapacityCommitment>
+    ): void | GaxiosPromise<Schema$CapacityCommitment> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta1/{+capacityCommitment}:upgradeCapacityCommitmentPlan'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['capacityCommitment'],
+        pathParams: ['capacityCommitment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CapacityCommitment>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CapacityCommitment>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Create
@@ -975,6 +1331,78 @@ export namespace bigqueryreservation_v1beta1 {
      * Required. Resource name of the parent reservation. E.g.,    projects/myproject/locations/US
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Merge
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Parent resource that identifies admin project and location e.g., projects/myproject/locations/us
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MergeCapacityCommitmentsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Output only. The resource name of the capacity commitment, e.g.,    projects/myproject/locations/US/capacityCommitments/123
+     */
+    name?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CapacityCommitment;
+  }
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Split
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name e.g.,:   projects/myproject/locations/US/capacityCommitments/123
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SplitCapacityCommitmentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The resource name e.g.,:   projects/myproject/locations/US/capacityCommitments/123
+     */
+    capacityCommitment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpgradeCapacityCommitmentPlanRequest;
   }
 
   export class Resource$Projects$Locations$Reservations {

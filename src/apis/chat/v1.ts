@@ -277,7 +277,7 @@ export namespace chat_v1 {
    */
   export interface Schema$FormAction {
     /**
-     * Apps Script function to invoke when the containing element is clicked/activated.
+     * The method name is used to identify which part of the form triggered the form submission. This information is echoed back to the bot as part of the card click event. The same method name can be used for several elements that trigger a common behavior if desired.
      */
     actionMethodName?: string | null;
     /**

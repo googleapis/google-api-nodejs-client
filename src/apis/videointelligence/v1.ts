@@ -386,7 +386,7 @@ export namespace videointelligence_v1 {
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -423,7 +423,7 @@ export namespace videointelligence_v1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -768,7 +768,7 @@ export namespace videointelligence_v1 {
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -805,7 +805,7 @@ export namespace videointelligence_v1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -1150,7 +1150,7 @@ export namespace videointelligence_v1 {
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -1187,7 +1187,7 @@ export namespace videointelligence_v1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -1614,7 +1614,7 @@ export namespace videointelligence_v1 {
      */
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults;
     /**
-     * GCS URI that stores annotation results of one streaming session. It is a directory that can hold multiple files in JSON format. Example uri format: gs://bucket_id/object_id/cloud_project_name-session_id
+     * Cloud Storage URI that stores annotation results of one streaming session. It is a directory that can hold multiple files in JSON format. Example uri format: gs://bucket_id/object_id/cloud_project_name-session_id
      */
     annotationResultsUri?: string | null;
     /**
@@ -1737,7 +1737,7 @@ export namespace videointelligence_v1 {
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -1782,7 +1782,7 @@ export namespace videointelligence_v1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -1890,7 +1890,7 @@ export namespace videointelligence_v1 {
      */
     inputContent?: string | null;
     /**
-     * Input video location. Currently, only [Google Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris). A video URI may include wildcards in `object-id`, and thus identify multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` should be unset.
+     * Input video location. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris). A video URI may include wildcards in `object-id`, and thus identify multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` should be unset.
      */
     inputUri?: string | null;
     /**
@@ -1898,7 +1898,7 @@ export namespace videointelligence_v1 {
      */
     locationId?: string | null;
     /**
-     * Optional. Location where the output (in JSON format) should be stored. Currently, only [Google Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris).
+     * Optional. Location where the output (in JSON format) should be stored. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris).
      */
     outputUri?: string | null;
     /**
@@ -2279,7 +2279,7 @@ export namespace videointelligence_v1 {
      */
     feature?: string | null;
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**
@@ -2316,7 +2316,7 @@ export namespace videointelligence_v1 {
      */
     frameLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
-     * Video file location in [Google Cloud Storage](https://cloud.google.com/storage/).
+     * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
     /**

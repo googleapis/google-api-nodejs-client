@@ -81,6 +81,7 @@ import * as dfareporting from './dfareporting';
 import * as dialogflow from './dialogflow';
 import * as digitalassetlinks from './digitalassetlinks';
 import * as discovery from './discovery';
+import * as displayvideo from './displayvideo';
 import * as dlp from './dlp';
 import * as dns from './dns';
 import * as docs from './docs';
@@ -99,6 +100,7 @@ import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
 import * as fitness from './fitness';
 import * as games from './games';
+import * as gamesConfiguration from './gamesConfiguration';
 import * as gamesManagement from './gamesManagement';
 import * as genomics from './genomics';
 import * as gmail from './gmail';
@@ -118,10 +120,12 @@ import * as libraryagent from './libraryagent';
 import * as licensing from './licensing';
 import * as lifesciences from './lifesciences';
 import * as logging from './logging';
+import * as managedidentities from './managedidentities';
 import * as manufacturers from './manufacturers';
 import * as mirror from './mirror';
 import * as ml from './ml';
 import * as monitoring from './monitoring';
+import * as networkmanagement from './networkmanagement';
 import * as oauth2 from './oauth2';
 import * as osconfig from './osconfig';
 import * as oslogin from './oslogin';
@@ -253,6 +257,7 @@ export const APIS: APIList = {
   dialogflow: dialogflow.VERSIONS,
   digitalassetlinks: digitalassetlinks.VERSIONS,
   discovery: discovery.VERSIONS,
+  displayvideo: displayvideo.VERSIONS,
   dlp: dlp.VERSIONS,
   dns: dns.VERSIONS,
   docs: docs.VERSIONS,
@@ -271,6 +276,7 @@ export const APIS: APIList = {
   firestore: firestore.VERSIONS,
   fitness: fitness.VERSIONS,
   games: games.VERSIONS,
+  gamesConfiguration: gamesConfiguration.VERSIONS,
   gamesManagement: gamesManagement.VERSIONS,
   genomics: genomics.VERSIONS,
   gmail: gmail.VERSIONS,
@@ -290,10 +296,12 @@ export const APIS: APIList = {
   licensing: licensing.VERSIONS,
   lifesciences: lifesciences.VERSIONS,
   logging: logging.VERSIONS,
+  managedidentities: managedidentities.VERSIONS,
   manufacturers: manufacturers.VERSIONS,
   mirror: mirror.VERSIONS,
   ml: ml.VERSIONS,
   monitoring: monitoring.VERSIONS,
+  networkmanagement: networkmanagement.VERSIONS,
   oauth2: oauth2.VERSIONS,
   osconfig: osconfig.VERSIONS,
   oslogin: oslogin.VERSIONS,
@@ -423,6 +431,7 @@ export class GeneratedAPIs {
   dialogflow = dialogflow.dialogflow;
   digitalassetlinks = digitalassetlinks.digitalassetlinks;
   discovery = discovery.discovery;
+  displayvideo = displayvideo.displayvideo;
   dlp = dlp.dlp;
   dns = dns.dns;
   docs = docs.docs;
@@ -441,6 +450,7 @@ export class GeneratedAPIs {
   firestore = firestore.firestore;
   fitness = fitness.fitness;
   games = games.games;
+  gamesConfiguration = gamesConfiguration.gamesConfiguration;
   gamesManagement = gamesManagement.gamesManagement;
   genomics = genomics.genomics;
   gmail = gmail.gmail;
@@ -460,10 +470,12 @@ export class GeneratedAPIs {
   licensing = licensing.licensing;
   lifesciences = lifesciences.lifesciences;
   logging = logging.logging;
+  managedidentities = managedidentities.managedidentities;
   manufacturers = manufacturers.manufacturers;
   mirror = mirror.mirror;
   ml = ml.ml;
   monitoring = monitoring.monitoring;
+  networkmanagement = networkmanagement.networkmanagement;
   oauth2 = oauth2.oauth2;
   osconfig = osconfig.osconfig;
   oslogin = oslogin.oslogin;

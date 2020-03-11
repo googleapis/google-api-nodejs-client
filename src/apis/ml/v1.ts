@@ -132,6 +132,21 @@ export namespace ml_v1 {
      */
     extensions?: Array<{[key: string]: any}> | null;
   }
+  export interface Schema$GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig {
+    /**
+     * True if measurement.elapsed_time is used as the x-axis of each Trials Decay Curve. Otherwise, Measurement.steps will be used as the x-axis.
+     */
+    useElapsedTime?: boolean | null;
+  }
+  /**
+   * The median automated stopping rule stops a pending trial if the trial&#39;s best objective_value is strictly below the median &#39;performance&#39; of all completed trials reported up to the trial&#39;s last measurement. Currently, &#39;performance&#39; refers to the running average of the objective values reported by the trial in each measurement.
+   */
+  export interface Schema$GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig {
+    /**
+     * True if median automated stopping rule applies on measurement.use_elapsed_time. it means that elapsed_time field of latest measurement of current trial is used to compute median objective value for each completed trials.
+     */
+    useElapsedTime?: boolean | null;
+  }
   /**
    * An observed value of a metric.
    */
@@ -146,6 +161,152 @@ export namespace ml_v1 {
     trainingStep?: string | null;
   }
   /**
+   * A message representing a metric in the measurement.
+   */
+  export interface Schema$GoogleCloudMlV1_Measurement_Metric {
+    /**
+     * Required. Metric name.
+     */
+    metric?: string | null;
+    /**
+     * Required. The value for this metric.
+     */
+    value?: number | null;
+  }
+  export interface Schema$GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec {
+    /**
+     * Must be specified if type is `CATEGORICAL`. The list of possible categories.
+     */
+    values?: string[] | null;
+  }
+  export interface Schema$GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec {
+    /**
+     * Must be specified if type is `DISCRETE`. A list of feasible points. The list should be in strictly increasing order. For instance, this parameter might have possible settings of 1.5, 2.5, and 4.0. This list should not contain more than 1,000 values.
+     */
+    values?: number[] | null;
+  }
+  export interface Schema$GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec {
+    /**
+     * Must be specified if type is `DOUBLE`. Maximum value of the parameter.
+     */
+    maxValue?: number | null;
+    /**
+     * Must be specified if type is `DOUBLE`. Minimum value of the parameter.
+     */
+    minValue?: number | null;
+  }
+  export interface Schema$GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec {
+    /**
+     * Must be specified if type is `INTEGER`. Maximum value of the parameter.
+     */
+    maxValue?: string | null;
+    /**
+     * Must be specified if type is `INTEGER`. Minimum value of the parameter.
+     */
+    minValue?: string | null;
+  }
+  /**
+   * Represents the spec to match categorical values from parent parameter.
+   */
+  export interface Schema$GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec {
+    /**
+     * Matches values of the parent parameter with type &#39;CATEGORICAL&#39;. All values must exist in `categorical_value_spec` of parent parameter.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Represents the spec to match discrete values from parent parameter.
+   */
+  export interface Schema$GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec {
+    /**
+     * Matches values of the parent parameter with type &#39;DISCRETE&#39;. All values must exist in `discrete_value_spec` of parent parameter.
+     */
+    values?: number[] | null;
+  }
+  /**
+   * Represents the spec to match integer values from parent parameter.
+   */
+  export interface Schema$GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec {
+    /**
+     * Matches values of the parent parameter with type &#39;INTEGER&#39;. All values must lie in `integer_value_spec` of parent parameter.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Represents a metric to optimize.
+   */
+  export interface Schema$GoogleCloudMlV1_StudyConfig_MetricSpec {
+    /**
+     * Required. The optimization goal of the metric.
+     */
+    goal?: string | null;
+    /**
+     * Required. The name of the metric.
+     */
+    metric?: string | null;
+  }
+  /**
+   * Represents a single parameter to optimize.
+   */
+  export interface Schema$GoogleCloudMlV1_StudyConfig_ParameterSpec {
+    /**
+     * The value spec for a &#39;CATEGORICAL&#39; parameter.
+     */
+    categoricalValueSpec?: Schema$GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec;
+    /**
+     * A child node is active if the parameter&#39;s value matches the child node&#39;s matching_parent_values.  If two items in child_parameter_specs have the same name, they must have disjoint matching_parent_values.
+     */
+    childParameterSpecs?: Schema$GoogleCloudMlV1_StudyConfig_ParameterSpec[];
+    /**
+     * The value spec for a &#39;DISCRETE&#39; parameter.
+     */
+    discreteValueSpec?: Schema$GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec;
+    /**
+     * The value spec for a &#39;DOUBLE&#39; parameter.
+     */
+    doubleValueSpec?: Schema$GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec;
+    /**
+     * The value spec for an &#39;INTEGER&#39; parameter.
+     */
+    integerValueSpec?: Schema$GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec;
+    /**
+     * Required. The parameter name must be unique amongst all ParameterSpecs.
+     */
+    parameter?: string | null;
+    parentCategoricalValues?: Schema$GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec;
+    parentDiscreteValues?: Schema$GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec;
+    parentIntValues?: Schema$GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec;
+    /**
+     * How the parameter should be scaled. Leave unset for categorical parameters.
+     */
+    scaleType?: string | null;
+    /**
+     * Required. The type of the parameter.
+     */
+    type?: string | null;
+  }
+  /**
+   * A message representing a parameter to be tuned.
+   */
+  export interface Schema$GoogleCloudMlV1_Trial_Parameter {
+    /**
+     * Must be set if ParameterType is DOUBLE or DISCRETE.
+     */
+    floatValue?: number | null;
+    /**
+     * Must be set if ParameterType is INTEGER
+     */
+    intValue?: string | null;
+    /**
+     * The name of the parameter.
+     */
+    parameter?: string | null;
+    /**
+     * Must be set if ParameterTypeis CATEGORICAL
+     */
+    stringValue?: string | null;
+  }
+  /**
    * Represents a hardware accelerator request config. Note that the AcceleratorConfig can be used in both Jobs and Versions. Learn more about [accelerators for training](/ml-engine/docs/using-gpus) and [accelerators for online prediction](/ml-engine/docs/machine-types-online-prediction#gpus).
    */
   export interface Schema$GoogleCloudMlV1__AcceleratorConfig {
@@ -157,6 +318,22 @@ export namespace ml_v1 {
      * The type of accelerator to use.
      */
     type?: string | null;
+  }
+  /**
+   * The request message for the AddTrialMeasurement service method.
+   */
+  export interface Schema$GoogleCloudMlV1__AddTrialMeasurementRequest {
+    /**
+     * Required. The measurement to be added to a trial.
+     */
+    measurement?: Schema$GoogleCloudMlV1__Measurement;
+  }
+  /**
+   * Configuration for Automated Early Stopping of Trials. If no implementation_config is set, automated early stopping will not be run.
+   */
+  export interface Schema$GoogleCloudMlV1__AutomatedStoppingConfig {
+    decayCurveStoppingConfig?: Schema$GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig;
+    medianAutomatedStoppingConfig?: Schema$GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig;
   }
   /**
    * Options for automatically scaling a model.
@@ -199,11 +376,75 @@ export namespace ml_v1 {
     availableAccelerators?: string[] | null;
     type?: string | null;
   }
+  /**
+   * This message will be placed in the metadata field of a google.longrunning.Operation associated with a CheckTrialEarlyStoppingState request.
+   */
+  export interface Schema$GoogleCloudMlV1__CheckTrialEarlyStoppingStateMetatdata {
+    /**
+     * The time operation was submitted.
+     */
+    createTime?: string | null;
+    /**
+     * The name of the study that the trial belongs to.
+     */
+    study?: string | null;
+    /**
+     * The Trial name.
+     */
+    trial?: string | null;
+  }
+  /**
+   * The request message for the CheckTrialEarlyStoppingState service method.
+   */
+  export interface Schema$GoogleCloudMlV1__CheckTrialEarlyStoppingStateRequest {}
+  /**
+   * The message will be placed in the response field of a completed google.longrunning.Operation associated with a CheckTrialEarlyStoppingState request.
+   */
+  export interface Schema$GoogleCloudMlV1__CheckTrialEarlyStoppingStateResponse {
+    /**
+     * The time operation processing completed.
+     */
+    endTime?: string | null;
+    /**
+     * True if the Trial should stop.
+     */
+    shouldStop?: boolean | null;
+    /**
+     * The time operation was started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * The request message for the CompleteTrial service method.
+   */
+  export interface Schema$GoogleCloudMlV1__CompleteTrialRequest {
+    /**
+     * Optional. If provided, it will be used as the completed trial&#39;s final_measurement; Otherwise, the service will auto-select a previously reported measurement as the final-measurement
+     */
+    finalMeasurement?: Schema$GoogleCloudMlV1__Measurement;
+    /**
+     * Optional. A human readable reason why the Trial was infeasible. This should only be provided if `trial_infeasible` is true.
+     */
+    infeasibleReason?: string | null;
+    /**
+     * Optional. True if the trial cannot be run with the given Parameter, and final_measurement will be ignored.
+     */
+    trialInfeasible?: boolean | null;
+  }
   export interface Schema$GoogleCloudMlV1__Config {
     /**
      * The service account Cloud ML uses to run on TPU node.
      */
     tpuServiceAccount?: string | null;
+  }
+  /**
+   * Represents a custom encryption key configuration that can be applied to a resource.
+   */
+  export interface Schema$GoogleCloudMlV1__EncryptionConfig {
+    /**
+     * The Cloud KMS resource identifier of the customer managed encryption key used to protect a resource, such as a training job. Has the form: `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
+     */
+    kmsKeyName?: string | null;
   }
   /**
    * Request for explanations to be issued against a trained model.
@@ -215,11 +456,21 @@ export namespace ml_v1 {
     httpBody?: Schema$GoogleApi__HttpBody;
   }
   /**
-   * Message holding configuration options for explaining model predictions. There are two feature attribution methods supported for TensorFlow models: integrated gradients and sampled Shapley. &lt;a href=&quot;/ml-engine/docs/ai-explanations/overview&quot;&gt;Learn more about feature attributions&lt;/a&gt;.
+   * Message holding configuration options for explaining model predictions. There are two feature attribution methods supported for TensorFlow models: integrated gradients and sampled Shapley. [Learn more about feature attributions.](/ml-engine/docs/ai-explanations/overview)
    */
   export interface Schema$GoogleCloudMlV1__ExplanationConfig {
+    /**
+     * Attributes credit by computing the Aumann-Shapley value taking advantage of the model&#39;s fully differentiable structure. Refer to this paper for more details: http://proceedings.mlr.press/v70/sundararajan17a.html
+     */
     integratedGradientsAttribution?: Schema$GoogleCloudMlV1__IntegratedGradientsAttribution;
+    /**
+     * An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features.
+     */
     sampledShapleyAttribution?: Schema$GoogleCloudMlV1__SampledShapleyAttribution;
+    /**
+     * Attributes credit by computing the XRAI taking advantage of the model&#39;s fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1906.02825 Currently only implemented for models with natural image inputs.
+     */
+    xraiAttribution?: Schema$GoogleCloudMlV1__XraiAttribution;
   }
   /**
    * Returns service account information associated with a project.
@@ -415,6 +666,21 @@ export namespace ml_v1 {
      */
     nextPageToken?: string | null;
   }
+  export interface Schema$GoogleCloudMlV1__ListStudiesResponse {
+    /**
+     * The Studies associated with the project.
+     */
+    studies?: Schema$GoogleCloudMlV1__Study[];
+  }
+  /**
+   * The response message for the ListTrials method.
+   */
+  export interface Schema$GoogleCloudMlV1__ListTrialsResponse {
+    /**
+     * The trials associated with the study.
+     */
+    trials?: Schema$GoogleCloudMlV1__Trial[];
+  }
   /**
    * Response message for the ListVersions method.
    */
@@ -443,6 +709,23 @@ export namespace ml_v1 {
      * The number of nodes to allocate for this model. These nodes are always up, starting from the time the model is deployed, so the cost of operating this model will be proportional to `nodes` * number of hours since last billing cycle plus the cost for each prediction performed.
      */
     nodes?: number | null;
+  }
+  /**
+   * A message representing a Measurement.
+   */
+  export interface Schema$GoogleCloudMlV1__Measurement {
+    /**
+     * Time that the Trial has been running at the point of this Measurement.
+     */
+    elapsedTime?: string | null;
+    /**
+     * Provides a list of metrics that act as inputs into the objective function.
+     */
+    metrics?: Schema$GoogleCloudMlV1_Measurement_Metric[];
+    /**
+     * The number of steps a machine learning model has been trained for. Must be non-negative.
+     */
+    stepCount?: string | null;
   }
   /**
    * Represents a machine learning solution.  A model can have multiple versions, each of which is a deployed, trained model ready to receive prediction requests. The model itself is just a container.
@@ -690,6 +973,105 @@ export namespace ml_v1 {
    * Request message for the SetDefaultVersion request.
    */
   export interface Schema$GoogleCloudMlV1__SetDefaultVersionRequest {}
+  export interface Schema$GoogleCloudMlV1__StopTrialRequest {}
+  /**
+   * A message representing a Study.
+   */
+  export interface Schema$GoogleCloudMlV1__Study {
+    /**
+     * Output only. Time that the study was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. A human readable reason why the Study is inactive. This should be empty if a study is ACTIVE or COMPLETED.
+     */
+    inactiveReason?: string | null;
+    /**
+     * Output only. The name of a study.
+     */
+    name?: string | null;
+    /**
+     * Output only. The detailed state of a study.
+     */
+    state?: string | null;
+    /**
+     * Required. Configuration of the study.
+     */
+    studyConfig?: Schema$GoogleCloudMlV1__StudyConfig;
+  }
+  /**
+   * Represents configuration of a study.
+   */
+  export interface Schema$GoogleCloudMlV1__StudyConfig {
+    /**
+     * The search algorithm specified for the study.
+     */
+    algorithm?: string | null;
+    /**
+     * Configuration for automated stopping of unpromising Trials.
+     */
+    automatedStoppingConfig?: Schema$GoogleCloudMlV1__AutomatedStoppingConfig;
+    metrics?: Schema$GoogleCloudMlV1_StudyConfig_MetricSpec[];
+    /**
+     * Required. The set of parameters to tune.
+     */
+    parameters?: Schema$GoogleCloudMlV1_StudyConfig_ParameterSpec[];
+  }
+  /**
+   * Metadata field of a google.longrunning.Operation associated with a SuggestTrialsRequest.
+   */
+  export interface Schema$GoogleCloudMlV1__SuggestTrialsMetadata {
+    /**
+     * The identifier of the client that is requesting the suggestion.
+     */
+    clientId?: string | null;
+    /**
+     * The time operation was submitted.
+     */
+    createTime?: string | null;
+    /**
+     * The name of the study that the trial belongs to.
+     */
+    study?: string | null;
+    /**
+     * The number of suggestions requested.
+     */
+    suggestionCount?: number | null;
+  }
+  /**
+   * The request message for the SuggestTrial service method.
+   */
+  export interface Schema$GoogleCloudMlV1__SuggestTrialsRequest {
+    /**
+     * Required. The identifier of the client that is requesting the suggestion.  If multiple SuggestTrialsRequests have the same `client_id`, the service will return the identical suggested trial if the trial is pending, and provide a new trial if the last suggested trial was completed.
+     */
+    clientId?: string | null;
+    /**
+     * Required. The number of suggestions requested.
+     */
+    suggestionCount?: number | null;
+  }
+  /**
+   * This message will be placed in the response field of a completed google.longrunning.Operation associated with a SuggestTrials request.
+   */
+  export interface Schema$GoogleCloudMlV1__SuggestTrialsResponse {
+    /**
+     * The time operation processing completed.
+     */
+    endTime?: string | null;
+    /**
+     * The time operation was started.
+     */
+    startTime?: string | null;
+    /**
+     * The state of the study.
+     */
+    studyState?: string | null;
+    /**
+     * A list of Trials.
+     */
+    trials?: Schema$GoogleCloudMlV1__Trial[];
+  }
   /**
    * Represents input parameters for a training job. When using the gcloud command to submit your training job, you can specify the input parameters as command-line arguments and/or in a YAML configuration file referenced from the --config command-line argument. For details, see the guide to [submitting a training job](/ai-platform/training/docs/training-jobs).
    */
@@ -698,6 +1080,10 @@ export namespace ml_v1 {
      * Optional. Command line arguments to pass to the program.
      */
     args?: string[] | null;
+    /**
+     * Custom encryption key options for a training job. If this is set, then all resources created by the training job will be encrypted with the provided encryption key.
+     */
+    encryptionConfig?: Schema$GoogleCloudMlV1__EncryptionConfig;
     /**
      * Optional. The set of Hyperparameters to tune.
      */
@@ -805,6 +1191,51 @@ export namespace ml_v1 {
     trials?: Schema$GoogleCloudMlV1__HyperparameterOutput[];
   }
   /**
+   * A message representing a Trial.
+   */
+  export interface Schema$GoogleCloudMlV1__Trial {
+    /**
+     * Output only. The identifier of the client that originally requested this trial.
+     */
+    clientId?: string | null;
+    /**
+     * Output only. Time the Trial&#39;s status changed to COMPLETED.
+     */
+    endTime?: string | null;
+    /**
+     * The final Measurement containing the objective value.
+     */
+    finalMeasurement?: Schema$GoogleCloudMlV1__Measurement;
+    /**
+     * Output only. A human readable string describing why the Trial is infeasible. This should only be set if trial_infeasible is true.
+     */
+    infeasibleReason?: string | null;
+    /**
+     * A list of measurements that are strictly lexicographically ordered by their induced tuples (steps, elapsed_time). These are used for early stopping computations.
+     */
+    measurements?: Schema$GoogleCloudMlV1__Measurement[];
+    /**
+     * Output only. Name of the trial assigned by the service.
+     */
+    name?: string | null;
+    /**
+     * The parameters of the Trial.
+     */
+    parameters?: Schema$GoogleCloudMlV1_Trial_Parameter[];
+    /**
+     * Output only. Time the Trial was started.
+     */
+    startTime?: string | null;
+    /**
+     * The detailed state of a trial.
+     */
+    state?: string | null;
+    /**
+     * Output only. True if the parameters in this trial should not be attempted again.
+     */
+    trialInfeasible?: boolean | null;
+  }
+  /**
    * Represents a version of the model.  Each version is a trained model deployed in the cloud, ready to handle prediction requests. A model can have multiple versions. You can get information about all of the versions of a given model by calling projects.models.versions.list.
    */
   export interface Schema$GoogleCloudMlV1__Version {
@@ -896,6 +1327,15 @@ export namespace ml_v1 {
      * Output only. The state of a version.
      */
     state?: string | null;
+  }
+  /**
+   * Attributes credit by computing the XRAI taking advantage of the model&#39;s fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1906.02825 Currently only implemented for models with natural image inputs.
+   */
+  export interface Schema$GoogleCloudMlV1__XraiAttribution {
+    /**
+     * Number of steps for approximating the path integral. A good value to start is 50 and gradually increase until the sum to diff property is met within the desired error range.
+     */
+    numIntegralSteps?: number | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
@@ -2140,8 +2580,14 @@ export namespace ml_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    operations: Resource$Projects$Locations$Operations;
+    studies: Resource$Projects$Locations$Studies;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.studies = new Resource$Projects$Locations$Studies(this.context);
     }
 
     /**
@@ -2345,6 +2791,1429 @@ export namespace ml_v1 {
      * Required. The name of the project for which available locations are to be listed (since some locations might be whitelisted for specific projects).
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * ml.projects.locations.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @alias ml.projects.locations.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+      params?: Params$Resource$Projects$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.operations.get
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @alias ml.projects.locations.operations.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Locations$Studies {
+    context: APIRequestContext;
+    trials: Resource$Projects$Locations$Studies$Trials;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.trials = new Resource$Projects$Locations$Studies$Trials(
+        this.context
+      );
+    }
+
+    /**
+     * ml.projects.locations.studies.create
+     * @desc Creates a study.
+     * @alias ml.projects.locations.studies.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The project and location that the study belongs to. Format: projects/{project}/locations/{location}
+     * @param {string=} params.studyId Required. The ID to use for the study, which will become the final component of the study's resource name.
+     * @param {().GoogleCloudMlV1__Study} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Locations$Studies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__Study>;
+    create(
+      params: Params$Resource$Projects$Locations$Studies$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Studies$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Create
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Study> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/studies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.delete
+     * @desc Deletes a study.
+     * @alias ml.projects.locations.studies.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The study name.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Locations$Studies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Studies$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Studies$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Delete
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.get
+     * @desc Gets a study.
+     * @alias ml.projects.locations.studies.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The study name.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Studies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__Study>;
+    get(
+      params: Params$Resource$Projects$Locations$Studies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Studies$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Get
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Study> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Study>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.list
+     * @desc Lists all the studies in a region for an associated project.
+     * @alias ml.projects.locations.studies.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The project and location that the study belongs to. Format: projects/{project}/locations/{location}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Studies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__ListStudiesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Studies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListStudiesResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Studies$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListStudiesResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListStudiesResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$List
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListStudiesResponse
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__ListStudiesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/studies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__ListStudiesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__ListStudiesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Studies$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The project and location that the study belongs to. Format: projects/{project}/locations/{location}
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the study, which will become the final component of the study's resource name.
+     */
+    studyId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__Study;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The study name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The study name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The project and location that the study belongs to. Format: projects/{project}/locations/{location}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Studies$Trials {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.addMeasurement
+     * @desc Adds a measurement of the objective metrics to a Trial. This measurement is assumed to have been taken before the Trial is complete.
+     * @alias ml.projects.locations.studies.trials.addMeasurement
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The trial name.
+     * @param {().GoogleCloudMlV1__AddTrialMeasurementRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addMeasurement(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    addMeasurement(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    addMeasurement(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    addMeasurement(
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    addMeasurement(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:addMeasurement').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.checkEarlyStoppingState
+     * @desc Checks whether a trial should stop or not.
+     * @alias ml.projects.locations.studies.trials.checkEarlyStoppingState
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The trial name.
+     * @param {().GoogleCloudMlV1__CheckTrialEarlyStoppingStateRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    checkEarlyStoppingState(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    checkEarlyStoppingState(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    checkEarlyStoppingState(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    checkEarlyStoppingState(
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    checkEarlyStoppingState(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:checkEarlyStoppingState').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.complete
+     * @desc Marks a Trial as complete.
+     * @alias ml.projects.locations.studies.trials.complete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The trial name.
+     * @param {().GoogleCloudMlV1__CompleteTrialRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    complete(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Complete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    complete(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Complete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    complete(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Complete,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    complete(
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    complete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Complete
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Complete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Complete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:complete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.create
+     * @desc Adds a user provided trial to a Study.
+     * @alias ml.projects.locations.studies.trials.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the study that the trial belongs to.
+     * @param {().GoogleCloudMlV1__Trial} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    create(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Create
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/trials').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.delete
+     * @desc Deletes a Trial.
+     * @alias ml.projects.locations.studies.trials.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The trial name.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobuf__Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Delete
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
+    ): void | GaxiosPromise<Schema$GoogleProtobuf__Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobuf__Empty>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.get
+     * @desc Gets a Trial.
+     * @alias ml.projects.locations.studies.trials.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The trial name.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    get(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Get
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.list
+     * @desc Lists the trials associated with a Study.
+     * @alias ml.projects.locations.studies.trials.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the study that the trial belongs to.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__ListTrialsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Studies$Trials$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Studies$Trials$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$List
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListTrialsResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListTrialsResponse
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__ListTrialsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/trials').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__ListTrialsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__ListTrialsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.stop
+     * @desc Stops a trial.
+     * @alias ml.projects.locations.studies.trials.stop
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The trial name.
+     * @param {().GoogleCloudMlV1__StopTrialRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    stop(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__Trial>;
+    stop(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Stop,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Stop,
+      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void;
+    stop(callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Stop
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
+    ): void | GaxiosPromise<Schema$GoogleCloudMlV1__Trial> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleCloudMlV1__Trial>(parameters);
+      }
+    }
+
+    /**
+     * ml.projects.locations.studies.trials.suggest
+     * @desc Returns a long-running operation associated with the generation of trial suggestions.
+     * @alias ml.projects.locations.studies.trials.suggest
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the study that the trial belongs to.
+     * @param {().GoogleCloudMlV1__SuggestTrialsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    suggest(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunning__Operation>;
+    suggest(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    suggest(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    suggest(
+      callback: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void;
+    suggest(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Suggest
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>
+    ): void | GaxiosPromise<Schema$GoogleLongrunning__Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Suggest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Suggest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/trials:suggest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunning__Operation>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The trial name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__AddTrialMeasurementRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The trial name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__CheckTrialEarlyStoppingStateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Complete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The trial name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__CompleteTrialRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the study that the trial belongs to.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__Trial;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The trial name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The trial name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the study that the trial belongs to.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Stop
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The trial name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__StopTrialRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Suggest
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the study that the trial belongs to.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__SuggestTrialsRequest;
   }
 
   export class Resource$Projects$Models {

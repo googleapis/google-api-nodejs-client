@@ -1889,19 +1889,19 @@ export namespace sheets_v4 {
      */
     hiddenValues?: string[] | null;
     /**
-     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with all other filter criteria. Requests to set this field fail with a 400 error if any other filter criteria field is set.
+     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with visible_foreground_color.
      */
     visibleBackgroundColor?: Schema$Color;
     /**
-     * The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with all other filter criteria. Requests to set this field fail with a 400 error if any other filter criteria field is set. If visible_background_color is also set, this field takes precedence.
+     * The background fill color to filter by; only cells with this fill color are shown. This field is mutually exclusive with visible_foreground_color, and must be set to an RGB-type color. If visible_background_color is also set, this field takes precedence.
      */
     visibleBackgroundColorStyle?: Schema$ColorStyle;
     /**
-     * The text color to filter by; only cells with this text color are shown. Mutually exclusive with all other filter criteria. Requests to set this field fail with a 400 error if any other filter criteria field is set.
+     * The foreground color to filter by; only cells with this foreground color are shown. Mutually exclusive with visible_background_color.
      */
     visibleForegroundColor?: Schema$Color;
     /**
-     * The text color to filter by; only cells with this text color are shown. Mutually exclusive with all other filter criteria. Requests to set this field fail with a 400 error if any other filter criteria field is set. If visible_foreground_color is also set, this field takes precedence.
+     * The foreground color to filter by; only cells with this foreground color are shown. This field is mutually exclusive with visible_background_color, and must be set to an RGB-type color. If visible_foreground_color is also set, this field takes precedence.
      */
     visibleForegroundColorStyle?: Schema$ColorStyle;
   }
@@ -3308,11 +3308,11 @@ export namespace sheets_v4 {
    */
   export interface Schema$SortSpec {
     /**
-     * The background fill color to sort by. Mutually exclusive with sorting by text color. Requests to set this field fail with a 400 error if foreground color is also set.
+     * The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color.
      */
     backgroundColor?: Schema$Color;
     /**
-     * The background fill color to sort by. Mutually exclusive with sorting by text color. Requests to set this field fail with a 400 error if foreground color is also set. If background_color is also set, this field takes precedence.
+     * The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color, and must be an RGB-type color. If background_color is also set, this field takes precedence.
      */
     backgroundColorStyle?: Schema$ColorStyle;
     /**
@@ -3320,11 +3320,11 @@ export namespace sheets_v4 {
      */
     dimensionIndex?: number | null;
     /**
-     * The text color to sort by. Mutually exclusive with sorting by background fill color. Requests to set this field fail with a 400 error if background color is also set.
+     * The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color.
      */
     foregroundColor?: Schema$Color;
     /**
-     * The text color to sort by. Mutually exclusive with sorting by background fill color. Requests to set this field fail with a 400 error if background color is also set. If foreground_color is also set, this field takes precedence.
+     * The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color, and must be an RGB-type color. If foreground_color is also set, this field takes precedence.
      */
     foregroundColorStyle?: Schema$ColorStyle;
     /**

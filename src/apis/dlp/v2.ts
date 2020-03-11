@@ -523,6 +523,39 @@ export namespace dlp_v2 {
     conditions?: Schema$GooglePrivacyDlpV2Condition[];
   }
   /**
+   * Represents a container that may contain DLP findings. Examples of a container include a file, table, or database record.
+   */
+  export interface Schema$GooglePrivacyDlpV2Container {
+    /**
+     * A string representation of the full container name. Examples: - BigQuery: &#39;Project:DataSetId.TableId&#39; - Google Cloud Storage: &#39;gs://Bucket/folders/filename.txt&#39;
+     */
+    fullPath?: string | null;
+    /**
+     * Project where the finding was found. Can be different from the project that owns the finding.
+     */
+    projectId?: string | null;
+    /**
+     * The rest of the path after the root. Examples: - For BigQuery table `project_id:dataset_id.table_id`, the relative path is  `table_id` - Google Cloud Storage file `gs://bucket/folder/filename.txt`, the relative  path is `folder/filename.txt`
+     */
+    relativePath?: string | null;
+    /**
+     * The root of the container. Examples: - For BigQuery table `project_id:dataset_id.table_id`, the root is  `dataset_id` - For Google Cloud Storage file `gs://bucket/folder/filename.txt`, the root  is `gs://bucket`
+     */
+    rootPath?: string | null;
+    /**
+     * Container type, for example BigQuery or Google Cloud Storage.
+     */
+    type?: string | null;
+    /**
+     * Findings container modification timestamp, if applicable. For Google Cloud Storage contains last file modification timestamp. For BigQuery table contains last_modified_time property. For Datastore - not populated.
+     */
+    updateTime?: string | null;
+    /**
+     * Findings container version, if available (&quot;generation&quot; for Google Cloud Storage).
+     */
+    version?: string | null;
+  }
+  /**
    * Container structure for the content to inspect.
    */
   export interface Schema$GooglePrivacyDlpV2ContentItem {
@@ -1179,6 +1212,18 @@ export namespace dlp_v2 {
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;
     /**
+     * Time the job started that produced this finding.
+     */
+    jobCreateTime?: string | null;
+    /**
+     * The job that stored the finding.
+     */
+    jobName?: string | null;
+    /**
+     * The labels associated with this `Finding`.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.  No more than 10 labels can be associated with a given finding.  Example: &lt;code&gt;&quot;environment&quot; : &quot;production&quot;&lt;/code&gt; Example: &lt;code&gt;&quot;pipeline&quot; : &quot;etl&quot;&lt;/code&gt;
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Confidence of how likely it is that the `info_type` is correct.
      */
     likelihood?: string | null;
@@ -1187,6 +1232,10 @@ export namespace dlp_v2 {
      */
     location?: Schema$GooglePrivacyDlpV2Location;
     /**
+     * Resource name in format projects/{project}/locations/{location}/findings/{finding} Populated only when viewing persisted findings.
+     */
+    name?: string | null;
+    /**
      * The content that was found. Even if the content is not textual, it may be converted to a textual representation here. Provided if `include_quote` is true and the finding is less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes in length, the quote may be omitted.
      */
     quote?: string | null;
@@ -1194,6 +1243,14 @@ export namespace dlp_v2 {
      * Contains data parsed from quotes. Only populated if include_quote was set to true and a supported infoType was requested. Currently supported infoTypes: DATE, DATE_OF_BIRTH and TIME.
      */
     quoteInfo?: Schema$GooglePrivacyDlpV2QuoteInfo;
+    /**
+     * The job that stored the finding.
+     */
+    resourceName?: string | null;
+    /**
+     * Job trigger name, if applicable, for this finding.
+     */
+    triggerName?: string | null;
   }
   /**
    * Configuration to control the number of findings returned.
@@ -1204,7 +1261,7 @@ export namespace dlp_v2 {
      */
     maxFindingsPerInfoType?: Schema$GooglePrivacyDlpV2InfoTypeLimit[];
     /**
-     * Max number of findings that will be returned for each item scanned. When set within `InspectDataSourceRequest`, the maximum returned is 2000 regardless if this is set higher. When set within `InspectContentRequest`, this field is ignored.
+     * Max number of findings that will be returned for each item scanned. When set within `InspectJobConfig`, the maximum returned is 2000 regardless if this is set higher. When set within `InspectContentRequest`, this field is ignored.
      */
     maxFindingsPerItem?: number | null;
     /**
@@ -1212,6 +1269,10 @@ export namespace dlp_v2 {
      */
     maxFindingsPerRequest?: number | null;
   }
+  /**
+   * The request message for finishing a DLP hybrid job.
+   */
+  export interface Schema$GooglePrivacyDlpV2FinishDlpJobRequest {}
   /**
    * Buckets values based on fixed size ranges. The Bucketing transformation can provide all of this functionality, but requires more configuration. This message is provided as a convenience to the user for simple bucketing strategies.  The transformed value will be a hyphenated string of {lower_bound}-{upper_bound}, i.e if lower_bound = 10 and upper_bound = 20 all values that are within this bucket will be replaced with &quot;10-20&quot;.  This can be used on data of type: double, long.  If the bound Value type differs from the type of data being transformed, we will first attempt converting the type of the data to be transformed to match the type of the bound before comparing.  See https://cloud.google.com/dlp/docs/concepts-bucketing to learn more.
    */
@@ -1245,6 +1306,104 @@ export namespace dlp_v2 {
      * Proximity of the finding within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. Note that the finding itself will be included in the window, so that hotwords may be used to match substrings of the finding itself. For example, the certainty of a phone number regex &quot;\(\d{3}\) \d{3}-\d{4}&quot; could be adjusted upwards if the area code is known to be the local area code of a company office using the hotword regex &quot;\(xxx\)&quot;, where &quot;xxx&quot; is the area code in question.
      */
     proximity?: Schema$GooglePrivacyDlpV2Proximity;
+  }
+  /**
+   * An individual hybrid item to inspect. Will be stored temporarily during processing.
+   */
+  export interface Schema$GooglePrivacyDlpV2HybridContentItem {
+    /**
+     * Supplementary information that will be added to each finding.
+     */
+    findingDetails?: Schema$GooglePrivacyDlpV2HybridFindingDetails;
+    /**
+     * The item to inspect.
+     */
+    item?: Schema$GooglePrivacyDlpV2ContentItem;
+  }
+  /**
+   * Populate to associate additional data with each finding.
+   */
+  export interface Schema$GooglePrivacyDlpV2HybridFindingDetails {
+    /**
+     * Details about the container where the content being inspected is from.
+     */
+    containerDetails?: Schema$GooglePrivacyDlpV2Container;
+    /**
+     * Offset in bytes of the line, from the beginning of the file, where the finding  is located. Populate if the item being scanned is only part of a bigger item, such as a shard of a file and you want to track the absolute position of the finding.
+     */
+    fileOffset?: string | null;
+    /**
+     * Labels to represent user provided metadata about the data being inspected. If configured by the job, some key values may be required. The labels associated with `Finding`&#39;s produced by hybrid inspection.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.  No more than 10 labels can be associated with a given finding.  Example: &lt;code&gt;&quot;environment&quot; : &quot;production&quot;&lt;/code&gt; Example: &lt;code&gt;&quot;pipeline&quot; : &quot;etl&quot;&lt;/code&gt;
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Offset of the row for tables. Populate if the row(s) being scanned are part of a bigger dataset and you want to keep track of their absolute position.
+     */
+    rowOffset?: string | null;
+    /**
+     * If the container is a table, additional information to make findings meaningful such as the columns that are primary keys. If not known ahead of time, can also be set within each inspect hybrid call and the two will be merged. Note that identifying_fields will only be stored to BigQuery, and only if the BigQuery action has been included.
+     */
+    tableOptions?: Schema$GooglePrivacyDlpV2TableOptions;
+  }
+  /**
+   * Request to search for potentially sensitive info in a custom location.
+   */
+  export interface Schema$GooglePrivacyDlpV2HybridInspectDlpJobRequest {
+    /**
+     * The item to inspect.
+     */
+    hybridItem?: Schema$GooglePrivacyDlpV2HybridContentItem;
+  }
+  /**
+   * Request to search for potentially sensitive info in a custom location.
+   */
+  export interface Schema$GooglePrivacyDlpV2HybridInspectJobTriggerRequest {
+    /**
+     * The item to inspect.
+     */
+    hybridItem?: Schema$GooglePrivacyDlpV2HybridContentItem;
+  }
+  /**
+   * Quota exceeded errors will be thrown once quota has been met.
+   */
+  export interface Schema$GooglePrivacyDlpV2HybridInspectResponse {}
+  /**
+   * Statistics related to processing hybrid inspect requests.
+   */
+  export interface Schema$GooglePrivacyDlpV2HybridInspectStatistics {
+    /**
+     * The number of hybrid inspection requests aborted because the job ran out of quota or was ended before they could be processed.
+     */
+    abortedCount?: string | null;
+    /**
+     * The number of hybrid requests currently being processed. Only populated when called via method `getDlpJob`. A burst of traffic may cause hybrid inspect requests to be enqueued. Processing will take place as quickly as possible, but resource limitations may impact how long a request is enqueued for.
+     */
+    pendingCount?: string | null;
+    /**
+     * The number of hybrid inspection requests processed within this job.
+     */
+    processedCount?: string | null;
+  }
+  /**
+   * Configuration to control jobs where the content being inspected is outside of Google Cloud Platform.
+   */
+  export interface Schema$GooglePrivacyDlpV2HybridOptions {
+    /**
+     * A short description of where the data is coming from. Will be stored once in the job. 256 max length.
+     */
+    description?: string | null;
+    /**
+     * To organize findings, these labels will be added to each finding.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.  No more than 10 labels can be associated with a given finding.  Example: &lt;code&gt;&quot;environment&quot; : &quot;production&quot;&lt;/code&gt; Example: &lt;code&gt;&quot;pipeline&quot; : &quot;etl&quot;&lt;/code&gt;
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * These are labels that each inspection request must include within their &#39;finding_labels&#39; map. Request may contain others, but any missing one of these will be rejected.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  No more than 10 keys can be required.
+     */
+    requiredFindingLabelKeys?: string[] | null;
+    /**
+     * If the container is a table, additional information to make findings meaningful such as the columns that are primary keys.
+     */
+    tableOptions?: Schema$GooglePrivacyDlpV2TableOptions;
   }
   /**
    * Location of the finding within an image.
@@ -1930,6 +2089,10 @@ export namespace dlp_v2 {
     contentLocations?: Schema$GooglePrivacyDlpV2ContentLocation[];
   }
   /**
+   * Job trigger option for hybrid jobs. Jobs must be manually created and finished.
+   */
+  export interface Schema$GooglePrivacyDlpV2Manual {}
+  /**
    * Compute numerical stats over an individual column, including min, max, and quantiles.
    */
   export interface Schema$GooglePrivacyDlpV2NumericalStatsConfig {
@@ -1960,7 +2123,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2OutputStorageConfig {
     /**
-     * Schema used for writing the findings for Inspect jobs. This field is only used for Inspect and must be unspecified for Risk jobs. Columns are derived from the `Finding` object. If appending to an existing table, any columns from the predefined schema that are missing will be added. No columns in the existing table will be deleted.  If unspecified, then all available columns will be used for a new table or an (existing) table with no schema, and no changes will be made to an existing table that has a schema.
+     * Schema used for writing the findings for Inspect jobs. This field is only used for Inspect and must be unspecified for Risk jobs. Columns are derived from the `Finding` object. If appending to an existing table, any columns from the predefined schema that are missing will be added. No columns in the existing table will be deleted.  If unspecified, then all available columns will be used for a new table or an (existing) table with no schema, and no changes will be made to an existing table that has a schema. Only for use with external storage.
      */
     outputSchema?: string | null;
     /**
@@ -2370,6 +2533,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Result {
     /**
+     * Statistics related to the processing of hybrid inspect. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
+     */
+    hybridStats?: Schema$GooglePrivacyDlpV2HybridInspectStatistics;
+    /**
      * Statistics of how many instances of each info type were found during inspect job.
      */
     infoTypeStats?: Schema$GooglePrivacyDlpV2InfoTypeStats[];
@@ -2459,6 +2626,10 @@ export namespace dlp_v2 {
      * Google Cloud Datastore options.
      */
     datastoreOptions?: Schema$GooglePrivacyDlpV2DatastoreOptions;
+    /**
+     * Hybrid inspection options. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
+     */
+    hybridOptions?: Schema$GooglePrivacyDlpV2HybridOptions;
     timespanConfig?: Schema$GooglePrivacyDlpV2TimespanConfig;
   }
   /**
@@ -2487,6 +2658,10 @@ export namespace dlp_v2 {
      */
     description?: string | null;
     /**
+     * Store dictionary-based CustomInfoType.
+     */
+    dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
+    /**
      * Display name of the StoredInfoType (max 256 characters).
      */
     displayName?: string | null;
@@ -2494,6 +2669,10 @@ export namespace dlp_v2 {
      * StoredInfoType where findings are defined by a dictionary of phrases.
      */
     largeCustomDictionary?: Schema$GooglePrivacyDlpV2LargeCustomDictionaryConfig;
+    /**
+     * Store regular expression-based StoredInfoType.
+     */
+    regex?: Schema$GooglePrivacyDlpV2Regex;
   }
   /**
    * Statistics for a StoredInfoType.
@@ -2584,6 +2763,15 @@ export namespace dlp_v2 {
      * The zero-based index of the row where the finding is located.
      */
     rowIndex?: string | null;
+  }
+  /**
+   * Instructions regarding the table content being inspected.
+   */
+  export interface Schema$GooglePrivacyDlpV2TableOptions {
+    /**
+     * The columns that are the primary keys for table objects included in ContentItem. A copy of this cell&#39;s value will stored alongside alongside each finding so that the finding can be traced to the specific row it came from. No more than 3 may be provided.
+     */
+    identifyingFields?: Schema$GooglePrivacyDlpV2FieldId[];
   }
   /**
    * A column with a semantic tag attached.
@@ -2721,6 +2909,10 @@ export namespace dlp_v2 {
    * What event needs to occur for a new job to be started.
    */
   export interface Schema$GooglePrivacyDlpV2Trigger {
+    /**
+     * For use with hybrid jobs. Jobs must be manually created and finished. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
+     */
+    manual?: Schema$GooglePrivacyDlpV2Manual;
     /**
      * Create a job on a repeating basis based on the elapse of time.
      */
@@ -10143,6 +10335,78 @@ export namespace dlp_v2 {
     }
 
     /**
+     * dlp.projects.locations.dlpJobs.finish
+     * @desc Finish a running hybrid DlpJob. Triggers the finalization steps and running of any enabled actions that have not yet run. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
+     * @alias dlp.projects.locations.dlpJobs.finish
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The name of the DlpJob resource to be cancelled.
+     * @param {().GooglePrivacyDlpV2FinishDlpJobRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    finish(
+      params?: Params$Resource$Projects$Locations$Dlpjobs$Finish,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    finish(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Finish,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    finish(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Finish,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    finish(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    finish(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dlpjobs$Finish
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void | GaxiosPromise<Schema$GoogleProtobufEmpty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dlpjobs$Finish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dlpjobs$Finish;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:finish').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
      * dlp.projects.locations.dlpJobs.get
      * @desc Gets the latest state of a long-running DlpJob. See https://cloud.google.com/dlp/docs/inspecting-storage and https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
      * @alias dlp.projects.locations.dlpJobs.get
@@ -10212,6 +10476,98 @@ export namespace dlp_v2 {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
+      }
+    }
+
+    /**
+     * dlp.projects.locations.dlpJobs.hybridInspect
+     * @desc Inspect hybrid content and store findings to a job. To review the findings inspect the job. Inspection will occur asynchronously. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
+     * @alias dlp.projects.locations.dlpJobs.hybridInspect
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Resource name of the job to execute a hybrid inspect on, for example `projects/dlp-test-project/dlpJob/53234423`.
+     * @param {().GooglePrivacyDlpV2HybridInspectDlpJobRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    hybridInspect(
+      params?: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse>;
+    hybridInspect(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
+    ): void;
+    hybridInspect(
+      params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
+    ): void;
+    hybridInspect(
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
+    ): void;
+    hybridInspect(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
+    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:hybridInspect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
+          parameters
+        );
       }
     }
 
@@ -10362,6 +10718,23 @@ export namespace dlp_v2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Dlpjobs$Finish
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the DlpJob resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2FinishDlpJobRequest;
+  }
   export interface Params$Resource$Projects$Locations$Dlpjobs$Get
     extends StandardParameters {
     /**
@@ -10373,6 +10746,23 @@ export namespace dlp_v2 {
      * Required. The name of the DlpJob resource.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Resource name of the job to execute a hybrid inspect on, for example `projects/dlp-test-project/dlpJob/53234423`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2HybridInspectDlpJobRequest;
   }
   export interface Params$Resource$Projects$Locations$Dlpjobs$List
     extends StandardParameters {
@@ -11369,6 +11759,98 @@ export namespace dlp_v2 {
     }
 
     /**
+     * dlp.projects.locations.jobTriggers.hybridInspect
+     * @desc Inspect hybrid content and store findings to a trigger. The inspection will be processed asynchronously. To review the findings monitor the jobs within the trigger. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
+     * @alias dlp.projects.locations.jobTriggers.hybridInspect
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Resource name of the trigger to execute a hybrid inspect on, for example `projects/dlp-test-project/jobTriggers/53234423`.
+     * @param {().GooglePrivacyDlpV2HybridInspectJobTriggerRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    hybridInspect(
+      params?: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse>;
+    hybridInspect(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
+    ): void;
+    hybridInspect(
+      params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
+    ): void;
+    hybridInspect(
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
+    ): void;
+    hybridInspect(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
+      callback?: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
+    ): void | GaxiosPromise<Schema$GooglePrivacyDlpV2HybridInspectResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:hybridInspect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * dlp.projects.locations.jobTriggers.list
      * @desc Lists job triggers. See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
      * @alias dlp.projects.locations.jobTriggers.list
@@ -11612,6 +12094,23 @@ export namespace dlp_v2 {
      * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Resource name of the trigger to execute a hybrid inspect on, for example `projects/dlp-test-project/jobTriggers/53234423`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GooglePrivacyDlpV2HybridInspectJobTriggerRequest;
   }
   export interface Params$Resource$Projects$Locations$Jobtriggers$List
     extends StandardParameters {

@@ -14,33 +14,21 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {toolresults_v1} from './v1';
 import {toolresults_v1beta3} from './v1beta3';
 
 export const VERSIONS = {
-  v1: toolresults_v1.Toolresults,
   v1beta3: toolresults_v1beta3.Toolresults,
 };
 
-export function toolresults(version: 'v1'): toolresults_v1.Toolresults;
-export function toolresults(
-  options: toolresults_v1.Options
-): toolresults_v1.Toolresults;
 export function toolresults(
   version: 'v1beta3'
 ): toolresults_v1beta3.Toolresults;
 export function toolresults(
   options: toolresults_v1beta3.Options
 ): toolresults_v1beta3.Toolresults;
-export function toolresults<
-  T = toolresults_v1.Toolresults | toolresults_v1beta3.Toolresults
->(
+export function toolresults<T = toolresults_v1beta3.Toolresults>(
   this: GoogleConfigurable,
-  versionOrOptions:
-    | 'v1'
-    | toolresults_v1.Options
-    | 'v1beta3'
-    | toolresults_v1beta3.Options
+  versionOrOptions: 'v1beta3' | toolresults_v1beta3.Options
 ) {
   return getAPI<T>('toolresults', versionOrOptions, VERSIONS, this);
 }

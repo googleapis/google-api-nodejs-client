@@ -129,11 +129,24 @@ export namespace cloudidentity_v1beta1 {
     namespace?: string | null;
   }
   /**
-   * A group within the Cloud Identity Groups API.  A `Group` is a collection of entities, where each entity is either a user or another group.
+   * The response message for MembershipsService.GetMembershipGraph.
+   */
+  export interface Schema$GetMembershipGraphResponse {
+    /**
+     * The membership graph&#39;s path information represented as an adjacency list.
+     */
+    adjacencyList?: Schema$MembershipAdjacencyList[];
+    /**
+     * The resources representing each group in the adjacency list. Each group in this list can be correlated to a &#39;group&#39; of the MembershipAdjacencyList using the &#39;name&#39; of the Group resource.
+     */
+    groups?: Schema$Group[];
+  }
+  /**
+   * A group within the Cloud Identity Groups API.  A `Group` is a collection of entities, where each entity is either a user or another group or a service account.
    */
   export interface Schema$Group {
     /**
-     * Optional. Additional entity key aliases for a Group.
+     * Additional entity key aliases for a Group.
      */
     additionalGroupKeys?: Schema$EntityKey[];
     /**
@@ -241,6 +254,19 @@ export namespace cloudidentity_v1beta1 {
      * Output only. The time when the `Membership` was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Membership graph&#39;s path information as an adjacency list.
+   */
+  export interface Schema$MembershipAdjacencyList {
+    /**
+     * Each edge contains information about the member that belongs to this group.
+     */
+    edges?: Schema$Membership[];
+    /**
+     * Resource name of the group that the members belong to.
+     */
+    group?: string | null;
   }
   /**
    * A membership role within the Cloud Identity Groups API.  A `MembershipRole` defines the privileges granted to a `Membership`.

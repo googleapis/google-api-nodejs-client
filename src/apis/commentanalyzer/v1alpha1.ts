@@ -144,7 +144,7 @@ export namespace commentanalyzer_v1alpha1 {
      */
     languages?: string[] | null;
     /**
-     * Specification of requested attributes. The AttributeParameters serve as configuration for each associated attribute. The map keys are attribute names. The available attributes may be different on each RFE installation, and can be seen by calling ListAttributes (see above). For the prod installation, known as Perspective API, at blade:commentanalyzer-esf and commentanalyzer.googleapis.com, see go/checker-models (internal) and https://github.com/conversationai/perspectiveapi/blob/master/api_reference.md#models.
+     * Specification of requested attributes. The AttributeParameters serve as configuration for each associated attribute. The map keys are attribute names. The available attributes may be different on each RFE installation, and can be seen by calling ListAttributes (see above). For the prod installation, known as Perspective API, at blade:commentanalyzer-esf and commentanalyzer.googleapis.com, see go/checker-models (internal) and https://github.com/conversationai/perspectiveapi/blob/master/2-api/models.md#all-attribute-types.
      */
     requestedAttributes?: {[key: string]: Schema$AttributeParameters} | null;
     /**

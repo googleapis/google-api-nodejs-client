@@ -661,7 +661,7 @@ export namespace serviceusage_v1 {
      */
     billing?: Schema$Billing;
     /**
-     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
+     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions.  The latest config version is `3`.
      */
     configVersion?: number | null;
     /**
@@ -1348,7 +1348,7 @@ export namespace serviceusage_v1 {
    */
   export interface Schema$QuotaOverride {
     /**
-     * If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.  For example, an override on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the override is only applied to quota consumed in that region.  This map has the following restrictions: - Keys that are not defined in the limit&#39;s unit are not valid keys.   Any string appearing in {brackets} in the unit (besides {project} or   {user}) is a defined key. - &quot;project&quot; is not a valid key; the project is already specified in   the parent resource name. - &quot;user&quot; is not a valid key; the API does not support quota overrides   that apply only to a specific user. - If &quot;region&quot; appears as a key, its value must be a valid Cloud region. - If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. - If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then   all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the map.
+     * If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.  For example, an override on a limit with the unit 1/{project}/{region} could contain an entry with the key &quot;region&quot; and the value &quot;us-east-1&quot;; the override is only applied to quota consumed in that region.  This map has the following restrictions:  *   Keys that are not defined in the limit&#39;s unit are not valid keys.     Any string appearing in {brackets} in the unit (besides {project} or     {user}) is a defined key. *   &quot;project&quot; is not a valid key; the project is already specified in     the parent resource name. *   &quot;user&quot; is not a valid key; the API does not support quota overrides     that apply only to a specific user. *   If &quot;region&quot; appears as a key, its value must be a valid Cloud region. *   If &quot;zone&quot; appears as a key, its value must be a valid Cloud zone. *   If any valid key other than &quot;region&quot; or &quot;zone&quot; appears in the map, then     all valid keys other than &quot;region&quot; or &quot;zone&quot; must also appear in the     map.
      */
     dimensions?: {[key: string]: string} | null;
     /**

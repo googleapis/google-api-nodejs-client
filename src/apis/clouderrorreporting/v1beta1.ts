@@ -87,7 +87,7 @@ export namespace clouderrorreporting_v1beta1 {
   }
 
   /**
-   * Stackdriver Error Reporting API
+   * Error Reporting API
    *
    * Groups and counts similar errors from cloud services and applications, reports new errors, and provides access to error groups and their associated errors.
    *

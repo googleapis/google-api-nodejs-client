@@ -689,6 +689,10 @@ export namespace dataproc_v1beta2 {
      * Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
      */
     numInstances?: number | null;
+    /**
+     * Optional. Specifies the preemptibility of the instance group.
+     */
+    preemptibility?: string | null;
   }
   /**
    * A request to instantiate a workflow template.
@@ -715,6 +719,10 @@ export namespace dataproc_v1beta2 {
    * A Dataproc job resource.
    */
   export interface Schema$Job {
+    /**
+     * Output only. Indicates whether the job is completed. If the value is false, the job is still in progress. If true, the job is completed, and status.state field will indicate if it was successful, failed, or cancelled.
+     */
+    done?: boolean | null;
     /**
      * Output only. If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.
      */

@@ -190,7 +190,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CheckConsistencyRequest {
     /**
-     * The token created using GenerateConsistencyToken for the Table.
+     * Required. The token created using GenerateConsistencyToken for the Table.
      */
     consistencyToken?: string | null;
   }
@@ -212,15 +212,15 @@ export namespace bigtableadmin_v2 {
      */
     defaultStorageType?: string | null;
     /**
-     * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/&lt;project&gt;/locations/&lt;zone&gt;`.
+     * (`CreationOnly`) The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.
      */
     location?: string | null;
     /**
-     * (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;/clusters/a-z*`.
+     * Required. (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      */
     name?: string | null;
     /**
-     * The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
+     * Required. The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
      */
     serveNodes?: number | null;
     /**
@@ -272,15 +272,15 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CreateClusterRequest {
     /**
-     * The cluster to be created. Fields marked `OutputOnly` must be left blank.
+     * Required. The cluster to be created. Fields marked `OutputOnly` must be left blank.
      */
     cluster?: Schema$Cluster;
     /**
-     * The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
+     * Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      */
     clusterId?: string | null;
     /**
-     * The unique name of the instance in which to create the new cluster. Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
      */
     parent?: string | null;
   }
@@ -306,19 +306,19 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CreateInstanceRequest {
     /**
-     * The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most four clusters can be specified.
+     * Required. The clusters to be created within the instance, mapped by desired cluster ID, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`. Fields marked `OutputOnly` must be left blank. Currently, at most four clusters can be specified.
      */
     clusters?: {[key: string]: Schema$Cluster} | null;
     /**
-     * The instance to create. Fields marked `OutputOnly` must be left blank.
+     * Required. The instance to create. Fields marked `OutputOnly` must be left blank.
      */
     instance?: Schema$Instance;
     /**
-     * The ID to be used when referring to the new instance within its project, e.g., just `myinstance` rather than `projects/myproject/instances/myinstance`.
+     * Required. The ID to be used when referring to the new instance within its project, e.g., just `myinstance` rather than `projects/myproject/instances/myinstance`.
      */
     instanceId?: string | null;
     /**
-     * The unique name of the project in which to create the new instance. Values are of the form `projects/&lt;project&gt;`.
+     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
      */
     parent?: string | null;
   }
@@ -331,11 +331,11 @@ export namespace bigtableadmin_v2 {
      */
     initialSplits?: Schema$Split[];
     /**
-     * The Table to create.
+     * Required. The Table to create.
      */
     table?: Schema$Table;
     /**
-     * The name by which the new table should be referred to within the parent instance, e.g., `foobar` rather than `&lt;parent&gt;/tables/foobar`. Maximum 50 characters.
+     * Required. The name by which the new table should be referred to within the parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`. Maximum 50 characters.
      */
     tableId?: string | null;
   }
@@ -434,15 +434,15 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Instance {
     /**
-     * The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.
+     * Required. The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.
      */
     displayName?: string | null;
     /**
-     * Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
+     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics.  * Label keys must be between 1 and 63 characters long and must conform to   the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * (`OutputOnly`) The unique name of the instance. Values are of the form `projects/&lt;project&gt;/instances/a-z+[a-z0-9]`.
+     * Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      */
     name?: string | null;
     /**
@@ -450,7 +450,7 @@ export namespace bigtableadmin_v2 {
      */
     state?: string | null;
     /**
-     * The type of the instance. Defaults to `PRODUCTION`.
+     * Required. The type of the instance. Defaults to `PRODUCTION`.
      */
     type?: string | null;
   }
@@ -604,7 +604,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$ModifyColumnFamiliesRequest {
     /**
-     * Modifications to be atomically applied to the specified table&#39;s families. Entries are applied in order, meaning that earlier modifications can be masked by later ones (in the case of repeated updates to the same family, for example).
+     * Required. Modifications to be atomically applied to the specified table&#39;s families. Entries are applied in order, meaning that earlier modifications can be masked by later ones (in the case of repeated updates to the same family, for example).
      */
     modifications?: Schema$Modification[];
   }
@@ -642,11 +642,11 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$PartialUpdateInstanceRequest {
     /**
-     * The Instance which will (partially) replace the current value.
+     * Required. The Instance which will (partially) replace the current value.
      */
     instance?: Schema$Instance;
     /**
-     * The subset of Instance fields which should be replaced. Must be explicitly set.
+     * Required. The subset of Instance fields which should be replaced. Must be explicitly set.
      */
     updateMask?: string | null;
   }
@@ -1235,7 +1235,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The unique name of the project in which to create the new instance. Values are of the form `projects/<project>`.
+     * @param {string} params.parent Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
      * @param {().CreateInstanceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1311,7 +1311,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the instance to be deleted. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {string} params.name Required. The unique name of the instance to be deleted. Values are of the form `projects/{project}/instances/{instance}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1381,7 +1381,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the requested instance. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {string} params.name Required. The unique name of the requested instance. Values are of the form `projects/{project}/instances/{instance}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1526,7 +1526,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.pageToken DEPRECATED: This field is unused and ignored.
-     * @param {string} params.parent The unique name of the project for which a list of instances is requested. Values are of the form `projects/<project>`.
+     * @param {string} params.parent Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1603,8 +1603,8 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name (`OutputOnly`) The unique name of the instance. Values are of the form `projects/<project>/instances/a-z+[a-z0-9]`.
-     * @param {string=} params.updateMask The subset of Instance fields which should be replaced. Must be explicitly set.
+     * @param {string} params.name Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * @param {string=} params.updateMask Required. The subset of Instance fields which should be replaced. Must be explicitly set.
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1836,7 +1836,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name (`OutputOnly`) The unique name of the instance. Values are of the form `projects/<project>/instances/a-z+[a-z0-9]`.
+     * @param {string} params.name Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1909,7 +1909,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the project in which to create the new instance. Values are of the form `projects/<project>`.
+     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
      */
     parent?: string;
 
@@ -1926,7 +1926,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the instance to be deleted. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance to be deleted. Values are of the form `projects/{project}/instances/{instance}`.
      */
     name?: string;
   }
@@ -1938,7 +1938,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the requested instance. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the requested instance. Values are of the form `projects/{project}/instances/{instance}`.
      */
     name?: string;
   }
@@ -1971,7 +1971,7 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * The unique name of the project for which a list of instances is requested. Values are of the form `projects/<project>`.
+     * Required. The unique name of the project for which a list of instances is requested. Values are of the form `projects/{project}`.
      */
     parent?: string;
   }
@@ -1983,11 +1983,11 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * (`OutputOnly`) The unique name of the instance. Values are of the form `projects/<project>/instances/a-z+[a-z0-9]`.
+     * Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      */
     name?: string;
     /**
-     * The subset of Instance fields which should be replaced. Must be explicitly set.
+     * Required. The subset of Instance fields which should be replaced. Must be explicitly set.
      */
     updateMask?: string;
 
@@ -2038,7 +2038,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * (`OutputOnly`) The unique name of the instance. Values are of the form `projects/<project>/instances/a-z+[a-z0-9]`.
+     * Required. (`OutputOnly`) The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
      */
     name?: string;
 
@@ -2061,9 +2061,9 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.appProfileId The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
+     * @param {string=} params.appProfileId Required. The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      * @param {boolean=} params.ignoreWarnings If true, ignore safety checks when creating the app profile.
-     * @param {string} params.parent The unique name of the instance in which to create the new app profile. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {string} params.parent Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project}/instances/{instance}`.
      * @param {().AppProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2139,8 +2139,8 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.ignoreWarnings If true, ignore safety checks when deleting the app profile.
-     * @param {string} params.name The unique name of the app profile to be deleted. Values are of the form `projects/<project>/instances/<instance>/appProfiles/<app_profile>`.
+     * @param {boolean=} params.ignoreWarnings Required. If true, ignore safety checks when deleting the app profile.
+     * @param {string} params.name Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2210,7 +2210,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the requested app profile. Values are of the form `projects/<project>/instances/<instance>/appProfiles/<app_profile>`.
+     * @param {string} params.name Required. The unique name of the requested app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2284,7 +2284,7 @@ export namespace bigtableadmin_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
-     * @param {string} params.parent The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/<project>/instances/<instance>`. Use `<instance> = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     * @param {string} params.parent Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2363,7 +2363,7 @@ export namespace bigtableadmin_v2 {
      * @param {object} params Parameters for request
      * @param {boolean=} params.ignoreWarnings If true, ignore safety checks when updating the app profile.
      * @param {string} params.name (`OutputOnly`) The unique name of the app profile. Values are of the form `projects/<project>/instances/<instance>/appProfiles/_a-zA-Z0-9*`.
-     * @param {string=} params.updateMask The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
+     * @param {string=} params.updateMask Required. The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
      * @param {().AppProfile} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2438,7 +2438,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
+     * Required. The ID to be used when referring to the new app profile within its instance, e.g., just `myprofile` rather than `projects/myproject/instances/myinstance/appProfiles/myprofile`.
      */
     appProfileId?: string;
     /**
@@ -2446,7 +2446,7 @@ export namespace bigtableadmin_v2 {
      */
     ignoreWarnings?: boolean;
     /**
-     * The unique name of the instance in which to create the new app profile. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance in which to create the new app profile. Values are of the form `projects/{project}/instances/{instance}`.
      */
     parent?: string;
 
@@ -2463,11 +2463,11 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If true, ignore safety checks when deleting the app profile.
+     * Required. If true, ignore safety checks when deleting the app profile.
      */
     ignoreWarnings?: boolean;
     /**
-     * The unique name of the app profile to be deleted. Values are of the form `projects/<project>/instances/<instance>/appProfiles/<app_profile>`.
+     * Required. The unique name of the app profile to be deleted. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      */
     name?: string;
   }
@@ -2479,7 +2479,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the requested app profile. Values are of the form `projects/<project>/instances/<instance>/appProfiles/<app_profile>`.
+     * Required. The unique name of the requested app profile. Values are of the form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      */
     name?: string;
   }
@@ -2499,7 +2499,7 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/<project>/instances/<instance>`. Use `<instance> = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     * Required. The unique name of the instance for which a list of app profiles is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list AppProfiles for all Instances in a project, e.g., `projects/myproject/instances/-`.
      */
     parent?: string;
   }
@@ -2519,7 +2519,7 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
     /**
-     * The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
+     * Required. The subset of app profile fields which should be replaced. If unset, all fields will be replaced.
      */
     updateMask?: string;
 
@@ -2546,8 +2546,8 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
-     * @param {string} params.parent The unique name of the instance in which to create the new cluster. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {string=} params.clusterId Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
+     * @param {string} params.parent Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
      * @param {().Cluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2623,7 +2623,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the cluster to be deleted. Values are of the form `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * @param {string} params.name Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2693,7 +2693,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the requested cluster. Values are of the form `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * @param {string} params.name Required. The unique name of the requested cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2764,7 +2764,7 @@ export namespace bigtableadmin_v2 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.pageToken DEPRECATED: This field is unused and ignored.
-     * @param {string} params.parent The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/<project>/instances/<instance>`. Use `<instance> = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     * @param {string} params.parent Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2841,7 +2841,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/<project>/instances/<instance>/clusters/a-z*`.
+     * @param {string} params.name Required. (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      * @param {().Cluster} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2916,11 +2916,11 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
+     * Required. The ID to be used when referring to the new cluster within its instance, e.g., just `mycluster` rather than `projects/myproject/instances/myinstance/clusters/mycluster`.
      */
     clusterId?: string;
     /**
-     * The unique name of the instance in which to create the new cluster. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
      */
     parent?: string;
 
@@ -2937,7 +2937,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the cluster to be deleted. Values are of the form `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * Required. The unique name of the cluster to be deleted. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      */
     name?: string;
   }
@@ -2949,7 +2949,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the requested cluster. Values are of the form `projects/<project>/instances/<instance>/clusters/<cluster>`.
+     * Required. The unique name of the requested cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      */
     name?: string;
   }
@@ -2965,7 +2965,7 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/<project>/instances/<instance>`. Use `<instance> = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
+     * Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
      */
     parent?: string;
   }
@@ -2977,7 +2977,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/<project>/instances/<instance>/clusters/a-z*`.
+     * Required. (`OutputOnly`) The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
      */
     name?: string;
 
@@ -3140,6 +3140,89 @@ export namespace bigtableadmin_v2 {
         return createAPIRequest<Schema$Policy>(parameters);
       }
     }
+
+    /**
+     * bigtableadmin.projects.instances.clusters.backups.testIamPermissions
+     * @desc Returns permissions that the caller has on the specified table resource.
+     * @alias bigtableadmin.projects.instances.clusters.backups.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+      params?: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void | GaxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy
@@ -3176,6 +3259,23 @@ export namespace bigtableadmin_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
+  export interface Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
 
   export class Resource$Projects$Instances$Tables {
     context: APIRequestContext;
@@ -3190,7 +3290,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the Table for which to check replication consistency. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param {string} params.name Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      * @param {().CheckConsistencyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3270,7 +3370,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The unique name of the instance in which to create the table. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {string} params.parent Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project}/instances/{instance}`.
      * @param {().CreateTableRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3344,7 +3444,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the table to be deleted. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param {string} params.name Required. The unique name of the table to be deleted. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3414,7 +3514,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the table on which to drop a range of rows. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param {string} params.name Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      * @param {().DropRowRangeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3488,7 +3588,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the Table for which to create a consistency token. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param {string} params.name Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      * @param {().GenerateConsistencyTokenRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3573,7 +3673,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the requested table. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param {string} params.name Required. The unique name of the requested table. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      * @param {string=} params.view The view to be applied to the returned table's fields. Defaults to `SCHEMA_VIEW` if unspecified.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3720,7 +3820,7 @@ export namespace bigtableadmin_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Maximum number of results per page.  A page_size of zero lets the server choose the number of items to return. A page_size which is strictly positive will return at most that many items. A negative page_size will cause an error.  Following the first request, subsequent paginated calls are not required to pass a page_size. If a page_size is set in subsequent calls, it must match the page_size given in the first request.
      * @param {string=} params.pageToken The value of `next_page_token` returned by a previous call.
-     * @param {string} params.parent The unique name of the instance for which tables should be listed. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param {string} params.parent Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project}/instances/{instance}`.
      * @param {string=} params.view The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3796,7 +3896,7 @@ export namespace bigtableadmin_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The unique name of the table whose families should be modified. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param {string} params.name Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      * @param {().ModifyColumnFamiliesRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4029,7 +4129,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the Table for which to check replication consistency. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * Required. The unique name of the Table for which to check replication consistency. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
 
@@ -4046,7 +4146,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the instance in which to create the table. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance in which to create the table. Values are of the form `projects/{project}/instances/{instance}`.
      */
     parent?: string;
 
@@ -4063,7 +4163,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the table to be deleted. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * Required. The unique name of the table to be deleted. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
   }
@@ -4075,7 +4175,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the table on which to drop a range of rows. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * Required. The unique name of the table on which to drop a range of rows. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
 
@@ -4092,7 +4192,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the Table for which to create a consistency token. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
 
@@ -4109,7 +4209,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the requested table. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * Required. The unique name of the requested table. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
     /**
@@ -4150,7 +4250,7 @@ export namespace bigtableadmin_v2 {
      */
     pageToken?: string;
     /**
-     * The unique name of the instance for which tables should be listed. Values are of the form `projects/<project>/instances/<instance>`.
+     * Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project}/instances/{instance}`.
      */
     parent?: string;
     /**
@@ -4166,7 +4266,7 @@ export namespace bigtableadmin_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The unique name of the table whose families should be modified. Values are of the form `projects/<project>/instances/<instance>/tables/<table>`.
+     * Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.
      */
     name?: string;
 

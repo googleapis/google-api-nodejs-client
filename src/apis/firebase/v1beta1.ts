@@ -1698,7 +1698,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      * @param {().AndroidApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2068,7 +2068,7 @@ export namespace firebase_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
 
@@ -2642,7 +2642,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      * @param {().IosApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3006,7 +3006,7 @@ export namespace firebase_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
 
@@ -3094,7 +3094,7 @@ export namespace firebase_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * @param {string} params.parent The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      * @param {().WebApp} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3458,7 +3458,7 @@ export namespace firebase_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The parent Project for which to list Apps, in the format: <br><code>projects/<var>projectId</var></code>
+     * The parent Project in which to create an App, in the format: <br><code>projects/<var>projectId</var></code>
      */
     parent?: string;
 

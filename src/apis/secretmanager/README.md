@@ -2,7 +2,7 @@
 
 # secretmanager
 
-> Stores and manages access to application secrets. Provides convenience while improving security.
+> Stores API keys, passwords, certificates, and other sensitive data. Provides convenience while improving security.
 
 ## Installation
 

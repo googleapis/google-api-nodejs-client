@@ -411,13 +411,9 @@ export namespace accesscontextmanager_v1beta {
      */
     unrestrictedServices?: string[] | null;
     /**
-     * Beta. Configuration for within Perimeter allowed APIs.
+     * Beta. Configuration for APIs allowed within Perimeter.
      */
     vpcAccessibleServices?: Schema$VpcAccessibleServices;
-    /**
-     * Alpha. Configuration for within Perimeter allowed APIs. Deprecated. The field had been renamed to vpc_accessible_services
-     */
-    vpcServiceRestriction?: Schema$VpcServiceRestriction;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -440,19 +436,6 @@ export namespace accesscontextmanager_v1beta {
    * Specifies how APIs are allowed to communicate within the Service Perimeter.
    */
   export interface Schema$VpcAccessibleServices {
-    /**
-     * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
-     */
-    allowedServices?: string[] | null;
-    /**
-     * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in &#39;allowed_services&#39;.
-     */
-    enableRestriction?: boolean | null;
-  }
-  /**
-   * Alpha. Specifies how APIs are allowed to communicate within the Service Perimeter. This message is DEPRECATED and had been renamed to VpcAccessibleServices
-   */
-  export interface Schema$VpcServiceRestriction {
     /**
      * The list of APIs usable within the Service Perimeter. Must be empty unless &#39;enable_restriction&#39; is True.
      */

@@ -1180,7 +1180,7 @@ export namespace servicenetworking_v1 {
      */
     billing?: Schema$Billing;
     /**
-     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
+     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions.  The latest config version is `3`.
      */
     configVersion?: number | null;
     /**
