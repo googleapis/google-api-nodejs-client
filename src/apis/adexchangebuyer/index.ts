@@ -14,16 +14,24 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {adexchangebuyer_internal} from './internal';
 import {adexchangebuyer_v1_2} from './v1.2';
 import {adexchangebuyer_v1_3} from './v1.3';
 import {adexchangebuyer_v1_4} from './v1.4';
 
 export const VERSIONS = {
+  internal: adexchangebuyer_internal.Adexchangebuyer,
   'v1.2': adexchangebuyer_v1_2.Adexchangebuyer,
   'v1.3': adexchangebuyer_v1_3.Adexchangebuyer,
   'v1.4': adexchangebuyer_v1_4.Adexchangebuyer,
 };
 
+export function adexchangebuyer(
+  version: 'internal'
+): adexchangebuyer_internal.Adexchangebuyer;
+export function adexchangebuyer(
+  options: adexchangebuyer_internal.Options
+): adexchangebuyer_internal.Adexchangebuyer;
 export function adexchangebuyer(
   version: 'v1.2'
 ): adexchangebuyer_v1_2.Adexchangebuyer;
@@ -44,12 +52,15 @@ export function adexchangebuyer(
 ): adexchangebuyer_v1_4.Adexchangebuyer;
 export function adexchangebuyer<
   T =
+    | adexchangebuyer_internal.Adexchangebuyer
     | adexchangebuyer_v1_2.Adexchangebuyer
     | adexchangebuyer_v1_3.Adexchangebuyer
     | adexchangebuyer_v1_4.Adexchangebuyer
 >(
   this: GoogleConfigurable,
   versionOrOptions:
+    | 'internal'
+    | adexchangebuyer_internal.Options
     | 'v1.2'
     | adexchangebuyer_v1_2.Options
     | 'v1.3'

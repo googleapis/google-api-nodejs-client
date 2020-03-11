@@ -27,6 +27,7 @@ import * as adsensehost from './adsensehost';
 import * as alertcenter from './alertcenter';
 import * as analytics from './analytics';
 import * as analyticsreporting from './analyticsreporting';
+import * as android_video from './android_video';
 import * as androiddeviceprovisioning from './androiddeviceprovisioning';
 import * as androidenterprise from './androidenterprise';
 import * as androidmanagement from './androidmanagement';
@@ -44,6 +45,8 @@ import * as blogger from './blogger';
 import * as books from './books';
 import * as calendar from './calendar';
 import * as chat from './chat';
+import * as chromewebstore from './chromewebstore';
+import * as cih from './cih';
 import * as civicinfo from './civicinfo';
 import * as classroom from './classroom';
 import * as cloudasset from './cloudasset';
@@ -99,6 +102,8 @@ import * as firebasehosting from './firebasehosting';
 import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
 import * as fitness from './fitness';
+import * as fitness_internal from './fitness_internal';
+import * as fusiontables from './fusiontables';
 import * as games from './games';
 import * as gamesConfiguration from './gamesConfiguration';
 import * as gamesManagement from './gamesManagement';
@@ -203,6 +208,7 @@ export const APIS: APIList = {
   alertcenter: alertcenter.VERSIONS,
   analytics: analytics.VERSIONS,
   analyticsreporting: analyticsreporting.VERSIONS,
+  android_video: android_video.VERSIONS,
   androiddeviceprovisioning: androiddeviceprovisioning.VERSIONS,
   androidenterprise: androidenterprise.VERSIONS,
   androidmanagement: androidmanagement.VERSIONS,
@@ -220,6 +226,8 @@ export const APIS: APIList = {
   books: books.VERSIONS,
   calendar: calendar.VERSIONS,
   chat: chat.VERSIONS,
+  chromewebstore: chromewebstore.VERSIONS,
+  cih: cih.VERSIONS,
   civicinfo: civicinfo.VERSIONS,
   classroom: classroom.VERSIONS,
   cloudasset: cloudasset.VERSIONS,
@@ -275,6 +283,8 @@ export const APIS: APIList = {
   firebaserules: firebaserules.VERSIONS,
   firestore: firestore.VERSIONS,
   fitness: fitness.VERSIONS,
+  fitness_internal: fitness_internal.VERSIONS,
+  fusiontables: fusiontables.VERSIONS,
   games: games.VERSIONS,
   gamesConfiguration: gamesConfiguration.VERSIONS,
   gamesManagement: gamesManagement.VERSIONS,
@@ -375,6 +385,7 @@ export class GeneratedAPIs {
   alertcenter = alertcenter.alertcenter;
   analytics = analytics.analytics;
   analyticsreporting = analyticsreporting.analyticsreporting;
+  android_video = android_video.android_video;
   androiddeviceprovisioning =
     androiddeviceprovisioning.androiddeviceprovisioning;
   androidenterprise = androidenterprise.androidenterprise;
@@ -393,6 +404,8 @@ export class GeneratedAPIs {
   books = books.books;
   calendar = calendar.calendar;
   chat = chat.chat;
+  chromewebstore = chromewebstore.chromewebstore;
+  cih = cih.cih;
   civicinfo = civicinfo.civicinfo;
   classroom = classroom.classroom;
   cloudasset = cloudasset.cloudasset;
@@ -449,6 +462,8 @@ export class GeneratedAPIs {
   firebaserules = firebaserules.firebaserules;
   firestore = firestore.firestore;
   fitness = fitness.fitness;
+  fitness_internal = fitness_internal.fitness_internal;
+  fusiontables = fusiontables.fusiontables;
   games = games.games;
   gamesConfiguration = gamesConfiguration.gamesConfiguration;
   gamesManagement = gamesManagement.gamesManagement;

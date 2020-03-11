@@ -1054,14 +1054,11 @@ export namespace gamesConfiguration_v1configuration {
     resourceId?: string;
 
     /**
-<<<<<<< HEAD
-=======
      * Request body metadata
      */
     requestBody?: {};
 
     /**
->>>>>>> fix: allow an empty requestBody to be provided for APIs that support multipart uploads
      * Media metadata
      */
     media?: {
