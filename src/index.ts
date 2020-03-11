@@ -184,7 +184,10 @@ export {lifesciences_v2beta} from './apis/lifesciences/v2beta';
 export {logging_v2} from './apis/logging/v2';
 export {managedidentities_v1} from './apis/managedidentities/v1';
 export {managedidentities_v1alpha1} from './apis/managedidentities/v1alpha1';
+<<<<<<< HEAD
 export {managedidentities_v1beta1} from './apis/managedidentities/v1beta1';
+=======
+>>>>>>> fix: allow an empty requestBody to be provided for APIs that support multipart uploads
 export {manufacturers_v1} from './apis/manufacturers/v1';
 export {mirror_v1} from './apis/mirror/v1';
 export {ml_v1} from './apis/ml/v1';

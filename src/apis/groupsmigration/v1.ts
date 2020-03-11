@@ -209,6 +209,11 @@ export namespace groupsmigration_v1 {
     groupId?: string;
 
     /**
+     * Request body metadata
+     */
+    requestBody?: {};
+
+    /**
      * Media metadata
      */
     media?: {

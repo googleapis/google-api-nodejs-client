@@ -16,12 +16,18 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {managedidentities_v1} from './v1';
 import {managedidentities_v1alpha1} from './v1alpha1';
+<<<<<<< HEAD
 import {managedidentities_v1beta1} from './v1beta1';
+=======
+>>>>>>> fix: allow an empty requestBody to be provided for APIs that support multipart uploads
 
 export const VERSIONS = {
   v1: managedidentities_v1.Managedidentities,
   v1alpha1: managedidentities_v1alpha1.Managedidentities,
+<<<<<<< HEAD
   v1beta1: managedidentities_v1beta1.Managedidentities,
+=======
+>>>>>>> fix: allow an empty requestBody to be provided for APIs that support multipart uploads
 };
 
 export function managedidentities(
@@ -36,17 +42,23 @@ export function managedidentities(
 export function managedidentities(
   options: managedidentities_v1alpha1.Options
 ): managedidentities_v1alpha1.Managedidentities;
+<<<<<<< HEAD
 export function managedidentities(
   version: 'v1beta1'
 ): managedidentities_v1beta1.Managedidentities;
 export function managedidentities(
   options: managedidentities_v1beta1.Options
 ): managedidentities_v1beta1.Managedidentities;
+=======
+>>>>>>> fix: allow an empty requestBody to be provided for APIs that support multipart uploads
 export function managedidentities<
   T =
     | managedidentities_v1.Managedidentities
     | managedidentities_v1alpha1.Managedidentities
+<<<<<<< HEAD
     | managedidentities_v1beta1.Managedidentities
+=======
+>>>>>>> fix: allow an empty requestBody to be provided for APIs that support multipart uploads
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -54,8 +66,11 @@ export function managedidentities<
     | managedidentities_v1.Options
     | 'v1alpha1'
     | managedidentities_v1alpha1.Options
+<<<<<<< HEAD
     | 'v1beta1'
     | managedidentities_v1beta1.Options
+=======
+>>>>>>> fix: allow an empty requestBody to be provided for APIs that support multipart uploads
 ) {
   return getAPI<T>('managedidentities', versionOrOptions, VERSIONS, this);
 }

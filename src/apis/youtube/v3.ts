@@ -11157,6 +11157,11 @@ export namespace youtube_v3 {
     videoId?: string;
 
     /**
+     * Request body metadata
+     */
+    requestBody?: {};
+
+    /**
      * Media metadata
      */
     media?: {

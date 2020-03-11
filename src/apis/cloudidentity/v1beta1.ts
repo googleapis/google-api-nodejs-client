@@ -129,6 +129,7 @@ export namespace cloudidentity_v1beta1 {
     namespace?: string | null;
   }
   /**
+<<<<<<< HEAD
    * The response message for MembershipsService.GetMembershipGraph.
    */
   export interface Schema$GetMembershipGraphResponse {
@@ -142,6 +143,8 @@ export namespace cloudidentity_v1beta1 {
     groups?: Schema$Group[];
   }
   /**
+=======
+>>>>>>> fix: allow an empty requestBody to be provided for APIs that support multipart uploads
    * A group within the Cloud Identity Groups API.  A `Group` is a collection of entities, where each entity is either a user or another group or a service account.
    */
   export interface Schema$Group {

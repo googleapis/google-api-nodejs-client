@@ -9726,6 +9726,11 @@ export namespace analytics_v3 {
     webPropertyId?: string;
 
     /**
+     * Request body metadata
+     */
+    requestBody?: {};
+
+    /**
      * Media metadata
      */
     media?: {

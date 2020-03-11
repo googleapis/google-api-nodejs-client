@@ -142,6 +142,38 @@ describe('Media', () => {
     scope.done();
   });
 
+  // See: https://github.com/googleapis/google-api-nodejs-client/issues/1820
+  it('should post progress for uploads, for APIs with empty requestBody', async () => {
+    const scope = nock(Utils.baseUrl)
+      .post(
+        '/upload/youtube/v3/thumbnails/set?videoId=abc123&uploadType=multipart'
+      )
+      .reply(200);
+    const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
+    const fileSize = fs.statSync(fileName).size;
+    const google = new GoogleApis();
+    const youtube = google.youtube('v3');
+    const progressEvents = new Array<number>();
+    await youtube.thumbnails.set(
+      {
+        videoId: 'abc123',
+        requestBody: {},
+        media: {
+          mimeType: 'image/jpeg',
+          body: fs.createReadStream(fileName),
+        },
+      },
+      {
+        onUploadProgress: (evt: {bytesRead: number}) => {
+          progressEvents.push(evt.bytesRead);
+        },
+      }
+    );
+    assert(progressEvents.length > 0);
+    assert.strictEqual(progressEvents[0], fileSize);
+    scope.done();
+  });
+
   it('should post with uploadType=multipart if resource and media set', async () => {
     nock(Utils.baseUrl)
       .post('/upload/drive/v2/files?uploadType=multipart')
