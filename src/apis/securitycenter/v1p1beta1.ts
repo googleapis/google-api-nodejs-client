@@ -197,6 +197,51 @@ export namespace securitycenter_v1p1beta1 {
     title?: string | null;
   }
   /**
+   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
+   */
+  export interface Schema$Finding {
+    /**
+     * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: &quot;XSS_FLASH_INJECTION&quot;
+     */
+    category?: string | null;
+    /**
+     * The time at which the finding was created in Cloud SCC.
+     */
+    createTime?: string | null;
+    /**
+     * The time at which the event took place. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector.
+     */
+    eventTime?: string | null;
+    /**
+     * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
+     */
+    externalUri?: string | null;
+    /**
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}&quot;
+     */
+    name?: string | null;
+    /**
+     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/{organization_id}/sources/{source_id}&quot;
+     */
+    parent?: string | null;
+    /**
+     * For findings on Google Cloud Platform (GCP) resources, the full resource name of the GCP resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-GCP resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
+     */
+    securityMarks?: Schema$SecurityMarks;
+    /**
+     * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
+     */
+    sourceProperties?: {[key: string]: any} | null;
+    /**
+     * The state of the finding.
+     */
+    state?: string | null;
+  }
+  /**
    * Request message for `GetIamPolicy` method.
    */
   export interface Schema$GetIamPolicyRequest {
@@ -226,6 +271,19 @@ export namespace securitycenter_v1p1beta1 {
      * The state of an asset discovery run.
      */
     state?: string | null;
+  }
+  /**
+   * Cloud SCC&#39;s Notification
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1NotificationMessage {
+    /**
+     * If it&#39;s a Finding based notification config, this field will be populated.
+     */
+    finding?: Schema$Finding;
+    /**
+     * Name of the notification config that generated current notification.
+     */
+    notificationConfigName?: string | null;
   }
   /**
    * Cloud Security Command Center&#39;s (Cloud SCC) representation of a Google Cloud Platform (GCP) resource.  The Asset is a Cloud SCC resource that captures information about a single GCP resource. All modifications to an Asset are only within the context of Cloud SCC and don&#39;t affect the referenced GCP resource.
@@ -475,7 +533,7 @@ export namespace securitycenter_v1p1beta1 {
    */
   export interface Schema$GroupFindingsRequest {
     /**
-     * When compare_duration is set, the GroupResult&#39;s &quot;state_change&quot; attribute is updated to indicate whether the finding had its state changed, the finding&#39;s state remained unchanged, or if the finding was added during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don&#39;t affect the result. For example, the results aren&#39;t affected if the finding is made inactive and then active again.  Possible &quot;state_change&quot; values when compare_duration is specified:  * &quot;CHANGED&quot;:   indicates that the finding was present at the start of                  compare_duration, but changed its state at read_time. * &quot;UNCHANGED&quot;: indicates that the finding was present at the start of                  compare_duration and did not change state at read_time. * &quot;ADDED&quot;:     indicates that the finding was not present at the start                  of compare_duration, but was present at read_time.  If compare_duration is not specified, then the only possible state_change is &quot;UNUSED&quot;,  which will be the state_change set for all findings present at read_time.  If this field is set then `state_change` must be a specified field in `group_by`.
+     * When compare_duration is set, the GroupResult&#39;s &quot;state_change&quot; attribute is updated to indicate whether the finding had its state changed, the finding&#39;s state remained unchanged, or if the finding was added during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don&#39;t affect the result. For example, the results aren&#39;t affected if the finding is made inactive and then active again.  Possible &quot;state_change&quot; values when compare_duration is specified:  * &quot;CHANGED&quot;:   indicates that the finding was present and matched the given                  filter at the start of compare_duration, but changed its                  state at read_time. * &quot;UNCHANGED&quot;: indicates that the finding was present and matched the given                  filter at the start of compare_duration and did not change                  state at read_time. * &quot;ADDED&quot;:     indicates that the finding did not match the given filter or                  was not present at the start of compare_duration, but was                  present at read_time. * &quot;REMOVED&quot;:   indicates that the finding was present and matched the                  filter at the start of compare_duration, but did not match                  the filter at read_time.  If compare_duration is not specified, then the only possible state_change is &quot;UNUSED&quot;,  which will be the state_change set for all findings present at read_time.  If this field is set then `state_change` must be a specified field in `group_by`.
      */
     compareDuration?: string | null;
     /**
@@ -765,6 +823,19 @@ export namespace securitycenter_v1p1beta1 {
    * Request message for running asset discovery for an organization.
    */
   export interface Schema$RunAssetDiscoveryRequest {}
+  /**
+   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   */
+  export interface Schema$SecurityMarks {
+    /**
+     * Mutable user specified security marks belonging to the parent resource. Constraints are as follows:    * Keys and values are treated as case insensitive   * Keys must be between 1 - 256 characters (inclusive)   * Keys must be letters, numbers, underscores, or dashes   * Values have leading and trailing whitespace trimmed, remaining     characters must be between 1 - 4096 characters (inclusive)
+     */
+    marks?: {[key: string]: string} | null;
+    /**
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/{organization_id}/assets/{asset_id}/securityMarks&quot; &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks&quot;.
+     */
+    name?: string | null;
+  }
   /**
    * Request message for updating a finding&#39;s state.
    */
@@ -3176,7 +3247,7 @@ export namespace securitycenter_v1p1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.compareDuration When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present at the start of                  compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present at the start of                  compare_duration and did not change state at read_time. * "ADDED":     indicates that the finding was not present at the start                  of compare_duration, but was present at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
+     * @param {string=} params.compareDuration When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present and matched the given                  filter at the start of compare_duration, but changed its                  state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given                  filter at the start of compare_duration and did not change                  state at read_time. * "ADDED":     indicates that the finding did not match the given filter or                  was not present at the start of compare_duration, but was                  present at read_time. * "REMOVED":   indicates that the finding was present and matched the                  filter at the start of compare_duration, but did not match                  the filter at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      * @param {string=} params.fieldMask Optional. A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      * @param {string=} params.filter Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "event_time = \"2019-06-10T16:07:18-07:00\""     "event_time = 1560208038000"  security_marks.marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`  For example, `source_properties.size = 100` is a valid filter string.
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,source_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,source_properties.a_property" and " name     desc  ,   source_properties.a_property  " are equivalent.  The following fields are supported: name parent state category resource_name event_time source_properties security_marks.marks
@@ -3595,7 +3666,7 @@ export namespace securitycenter_v1p1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present at the start of                  compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present at the start of                  compare_duration and did not change state at read_time. * "ADDED":     indicates that the finding was not present at the start                  of compare_duration, but was present at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
+     * When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present and matched the given                  filter at the start of compare_duration, but changed its                  state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given                  filter at the start of compare_duration and did not change                  state at read_time. * "ADDED":     indicates that the finding did not match the given filter or                  was not present at the start of compare_duration, but was                  present at read_time. * "REMOVED":   indicates that the finding was present and matched the                  filter at the start of compare_duration, but did not match                  the filter at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      */
     compareDuration?: string;
     /**

@@ -372,7 +372,7 @@ export namespace pubsub_v1 {
      */
     maxMessages?: number | null;
     /**
-     * If this field set to true, the system will respond immediately even if it there are no messages available to return in the `Pull` response. Otherwise, the system may wait (for a bounded amount of time) until at least one message is available, rather than returning no messages.
+     * Optional. If this field set to true, the system will respond immediately even if it there are no messages available to return in the `Pull` response. Otherwise, the system may wait (for a bounded amount of time) until at least one message is available, rather than returning no messages. Warning: setting this field to `true` is discouraged because it adversely impacts the performance of `Pull` operations. We recommend that users do not set this field.
      */
     returnImmediately?: boolean | null;
   }
@@ -4929,7 +4929,7 @@ export namespace pubsub_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Maximum number of snapshot names to return.
      * @param {string=} params.pageToken The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
-     * @param {string} params.topic The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
+     * @param {string} params.topic Required. The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5020,7 +5020,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
+     * Required. The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
      */
     topic?: string;
   }

@@ -157,7 +157,7 @@ export namespace billingbudgets_v1beta1 {
      */
     name?: string | null;
     /**
-     * Required. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget.
+     * Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget.
      */
     thresholdRules?: Schema$GoogleCloudBillingBudgetsV1beta1ThresholdRule[];
   }
@@ -192,7 +192,7 @@ export namespace billingbudgets_v1beta1 {
      */
     creditTypesTreatment?: string | null;
     /**
-     * Optional. A set of projects of the form `projects/{project_id}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
+     * Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently.
      */
     projects?: string[] | null;
     /**
@@ -447,7 +447,7 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * billingbudgets.billingAccounts.budgets.get
-     * @desc Returns a budget.
+     * @desc Returns a budget.  WARNING: There are some fields exposed on the Google Cloud Console that aren’t available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
      * @alias billingbudgets.billingAccounts.budgets.get
      * @memberOf! ()
      *
@@ -536,7 +536,7 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * billingbudgets.billingAccounts.budgets.list
-     * @desc Returns a list of budgets for a billing account.
+     * @desc Returns a list of budgets for a billing account.  WARNING: There are some fields exposed on the Google Cloud Console that aren’t available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
      * @alias billingbudgets.billingAccounts.budgets.list
      * @memberOf! ()
      *
@@ -639,7 +639,7 @@ export namespace billingbudgets_v1beta1 {
 
     /**
      * billingbudgets.billingAccounts.budgets.patch
-     * @desc Updates a budget and returns the updated budget.
+     * @desc Updates a budget and returns the updated budget.  WARNING: There are some fields exposed on the Google Cloud Console that aren’t available on this API. Budget fields that are not exposed in this API will not be changed by this method.
      * @alias billingbudgets.billingAccounts.budgets.patch
      * @memberOf! ()
      *

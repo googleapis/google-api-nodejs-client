@@ -2,7 +2,7 @@
 
 # toolresults
 
-> API to publish and access results from developer tools.
+> Reads and publishes results from Firebase Test Lab.
 
 ## Installation
 

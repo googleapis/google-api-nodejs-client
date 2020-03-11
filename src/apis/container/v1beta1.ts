@@ -141,7 +141,7 @@ export namespace container_v1beta1 {
      */
     dnsCacheConfig?: Schema$DnsCacheConfig;
     /**
-     * Configuration for the GCE PD CSI driver. This option can only be enabled at cluster creation time.
+     * Configuration for the GCP Compute Persistent Disk CSI driver.
      */
     gcePersistentDiskCsiDriverConfig?: Schema$GcePersistentDiskCsiDriverConfig;
     /**
@@ -1197,7 +1197,7 @@ export namespace container_v1beta1 {
      */
     intValue?: string | null;
     /**
-     * Metric name, required. e.g., &quot;nodes total&quot;, &quot;percent done&quot;
+     * Required. Metric name, e.g., &quot;nodes total&quot;, &quot;percent done&quot;.
      */
     name?: string | null;
     /**
@@ -1478,7 +1478,7 @@ export namespace container_v1beta1 {
      */
     operationType?: string | null;
     /**
-     * [Output only] Progress information for an operation.
+     * Output only. [Output only] Progress information for an operation.
      */
     progress?: Schema$OperationProgress;
     /**
@@ -1494,7 +1494,7 @@ export namespace container_v1beta1 {
      */
     status?: string | null;
     /**
-     * If an error has occurred, a textual description of the error.
+     * Output only. If an error has occurred, a textual description of the error.
      */
     statusMessage?: string | null;
     /**
@@ -1630,7 +1630,7 @@ export namespace container_v1beta1 {
      */
     consumeReservationType?: string | null;
     /**
-     * Corresponds to the label key of reservation resource.
+     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify &quot;googleapis.com/reservation-name&quot; as the key and specify the name of your reservation as its value.
      */
     key?: string | null;
     /**
@@ -2245,7 +2245,7 @@ export namespace container_v1beta1 {
      */
     upgradeSettings?: Schema$UpgradeSettings;
     /**
-     * The desired image type for the node pool.
+     * The desired workload metadata config for the node pool.
      */
     workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
     /**
@@ -2325,11 +2325,19 @@ export namespace container_v1beta1 {
      * IAM Identity Namespace to attach all Kubernetes Service Accounts to.
      */
     identityNamespace?: string | null;
+    /**
+     * The workload pool to attach all Kubernetes service accounts to.
+     */
+    workloadPool?: string | null;
   }
   /**
    * WorkloadMetadataConfig defines the metadata configuration to expose to workloads on the node pool.
    */
   export interface Schema$WorkloadMetadataConfig {
+    /**
+     * Mode is the configuration for how to expose metadata to workloads running on the node pool.
+     */
+    mode?: string | null;
     /**
      * NodeMetadata is the configuration for how to expose metadata to the workloads running on the node.
      */

@@ -204,7 +204,7 @@ export namespace translate_v3 {
    */
   export interface Schema$GcsDestination {
     /**
-     * Required. There must be no files under &#39;output_uri_prefix&#39;. &#39;output_uri_prefix&#39; must end with &quot;/&quot; and start with &quot;gs://&quot;, otherwise an INVALID_ARGUMENT (400) error is returned.
+     * Required. The bucket used in &#39;output_uri_prefix&#39; must exist and there must be no files under &#39;output_uri_prefix&#39;. &#39;output_uri_prefix&#39; must end with &quot;/&quot; and start with &quot;gs://&quot;. One &#39;output_uri_prefix&#39; can only be used by one batch translation job at a time. Otherwise an INVALID_ARGUMENT (400) error is  returned.
      */
     outputUriPrefix?: string | null;
   }

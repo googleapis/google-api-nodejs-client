@@ -22,8 +22,8 @@ module.exports = {
     extensions: ['.ts', '.js', '.json'],
   },
   output: {
-    library: 'Androidmanagement',
-    filename: 'androidmanagement.min.js',
+    library: 'Networkmanagement',
+    filename: 'networkmanagement.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   node: {

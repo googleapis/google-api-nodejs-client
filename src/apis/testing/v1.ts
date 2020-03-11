@@ -301,6 +301,10 @@ export namespace testing_v1 {
      * Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;.
      */
     tags?: string[] | null;
+    /**
+     * URL of a thumbnail image of the device.
+     */
+    thumbnailUrl?: string | null;
   }
   /**
    * A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes.
@@ -689,7 +693,7 @@ export namespace testing_v1 {
     iosDevices?: Schema$IosDevice[];
   }
   /**
-   * A description of an iOS device tests may be run on. Next tag: 11
+   * A description of an iOS device tests may be run on. Next tag: 12
    */
   export interface Schema$IosModel {
     /**

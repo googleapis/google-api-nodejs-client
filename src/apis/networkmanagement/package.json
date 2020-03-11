@@ -1,7 +1,7 @@
 {
-  "name": "@google/androidmanagement",
+  "name": "@google/networkmanagement",
   "version": "0.1.0",
-  "description": "androidmanagement",
+  "description": "networkmanagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "keywords": [

@@ -136,9 +136,6 @@ export namespace file_v1beta1 {
      */
     name?: string | null;
   }
-  /**
-   * Instance represents the interface for SLM services to actuate the state of control plane resources.  Example Instance in JSON, where   consumer-project=snapchat,   producer-project=cloud-sql:  ```json Instance: {   &quot;name&quot;:   &quot;projects/snapchat/locations/us-east1/instances/prod-instance&quot;,   &quot;create_time&quot;: {     &quot;seconds&quot;: 1526406431,   },   &quot;labels&quot;: {     &quot;env&quot;: &quot;prod&quot;,     &quot;foo&quot;: &quot;bar&quot;   },   &quot;state&quot;: READY,   &quot;software_versions&quot;: {     &quot;software_update&quot;: &quot;cloud-sql-09-28-2018&quot;,   },   &quot;maintenance_policy_names&quot;: {     &quot;UpdatePolicy&quot;:     &quot;projects/snapchat/locations/us-east1/maintenancePolicies/prod-update-policy&quot;,   }   &quot;tenant_project_id&quot;: &quot;cloud-sql-test-tenant&quot;,   &quot;producer_metadata&quot;: {     &quot;cloud-sql-tier&quot;: &quot;basic&quot;,     &quot;cloud-sql-instance-size&quot;: &quot;1G&quot;,   },   &quot;provisioned_resources&quot;: [     {       &quot;resource-type&quot;: &quot;compute-instance&quot;,       &quot;resource-url&quot;:       &quot;https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1&quot;,     }   ],   &quot;maintenance_schedules&quot;: {     &quot;csa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     },     &quot;ncsa_rollout&quot;: {        &quot;start_time&quot;: {           &quot;seconds&quot;: 1526406431,        },        &quot;end_time&quot;: {           &quot;seconds&quot;: 1535406431,        },     }   },   &quot;consumer_defined_name&quot;: &quot;my-sql-instance1&quot;, } ```
-   */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
     /**
      * consumer_defined_name is the name that is set by the consumer. On the other hand Name field represents system-assigned id of an instance so consumers are not necessarily aware of it. consumer_defined_name is used for notification/UI purposes for consumer to recognize their instances.
@@ -174,12 +171,6 @@ export namespace file_v1beta1 {
      * Output only. The list of data plane resources provisioned for this instance, e.g. compute VMs. See go/get-instance-metadata.
      */
     provisionedResources?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource[];
-    /**
-     * The map between RolloutType and the corresponding RolloutMetadata. This is only mutated by rollout service. For actuation implementation, this information is pass-through for Rollout management. Producer shall not modify by itself. For update of a single entry in this map, the update field mask shall follow this sementics: go/advanced-field-masks
-     */
-    rolloutMetadata?: {
-      [key: string]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1RolloutMetadata;
-    } | null;
     /**
      * Link to the SLM instance template. Only populated when updating SLM instances via SSA&#39;s Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn&#39;t need to populate this field. Instead they should use software_versions.
      */
@@ -244,27 +235,6 @@ export namespace file_v1beta1 {
     nodeId?: string | null;
   }
   /**
-   * This message has been deprecated. NotificationMetadata is the notification state for an instance.
-   */
-  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationMetadata {
-    /**
-     * Whether the instance update has been rescheduled.
-     */
-    rescheduled?: boolean | null;
-    /**
-     * The scheduled end time for the maintenance window during which update can be performed on the instance.
-     */
-    scheduledEndTime?: string | null;
-    /**
-     * The scheduled start time for the maintenance window during which update can be performed on the instance.
-     */
-    scheduledStartTime?: string | null;
-    /**
-     * The target release to be applied to the instance.
-     */
-    targetRelease?: string | null;
-  }
-  /**
    * Describes provisioned dataplane resources.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource {
@@ -276,23 +246,6 @@ export namespace file_v1beta1 {
      * URL identifying the resource, e.g. &quot;https://www.googleapis.com/compute/v1/projects/...)&quot;.
      */
     resourceUrl?: string | null;
-  }
-  /**
-   * This message has been deprecated. RolloutMetadata for an actuation instance. It maps to a single RolloutType.
-   */
-  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1RolloutMetadata {
-    /**
-     * Instance level notification metadata.
-     */
-    notification?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NotificationMetadata;
-    /**
-     * The last Release that has been applied to the instance.
-     */
-    releaseName?: string | null;
-    /**
-     * The last rollout that has been applied to the instance.
-     */
-    rolloutName?: string | null;
   }
   /**
    * SloEligibility is a tuple containing eligibility value: true if an instance is eligible for SLO calculation or false if it should be excluded from all SLO-related calculations along with a user-defined reason.

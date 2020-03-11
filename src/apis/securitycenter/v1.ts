@@ -306,6 +306,19 @@ export namespace securitycenter_v1 {
     state?: string | null;
   }
   /**
+   * Cloud SCC&#39;s Notification
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1NotificationMessage {
+    /**
+     * If it&#39;s a Finding based notification config, this field will be populated.
+     */
+    finding?: Schema$Finding;
+    /**
+     * Name of the notification config that generated current notification.
+     */
+    notificationConfigName?: string | null;
+  }
+  /**
    * Cloud Security Command Center&#39;s (Cloud SCC) representation of a Google Cloud Platform (GCP) resource.  The Asset is a Cloud SCC resource that captures information about a single GCP resource. All modifications to an Asset are only within the context of Cloud SCC and don&#39;t affect the referenced GCP resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Asset {
@@ -553,7 +566,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GroupFindingsRequest {
     /**
-     * When compare_duration is set, the GroupResult&#39;s &quot;state_change&quot; attribute is updated to indicate whether the finding had its state changed, the finding&#39;s state remained unchanged, or if the finding was added during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don&#39;t affect the result. For example, the results aren&#39;t affected if the finding is made inactive and then active again.  Possible &quot;state_change&quot; values when compare_duration is specified:  * &quot;CHANGED&quot;:   indicates that the finding was present at the start of                  compare_duration, but changed its state at read_time. * &quot;UNCHANGED&quot;: indicates that the finding was present at the start of                  compare_duration and did not change state at read_time. * &quot;ADDED&quot;:     indicates that the finding was not present at the start                  of compare_duration, but was present at read_time.  If compare_duration is not specified, then the only possible state_change is &quot;UNUSED&quot;,  which will be the state_change set for all findings present at read_time.  If this field is set then `state_change` must be a specified field in `group_by`.
+     * When compare_duration is set, the GroupResult&#39;s &quot;state_change&quot; attribute is updated to indicate whether the finding had its state changed, the finding&#39;s state remained unchanged, or if the finding was added during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don&#39;t affect the result. For example, the results aren&#39;t affected if the finding is made inactive and then active again.  Possible &quot;state_change&quot; values when compare_duration is specified:  * &quot;CHANGED&quot;:   indicates that the finding was present and matched the given                  filter at the start of compare_duration, but changed its                  state at read_time. * &quot;UNCHANGED&quot;: indicates that the finding was present and matched the given                  filter at the start of compare_duration and did not change                  state at read_time. * &quot;ADDED&quot;:     indicates that the finding did not match the given filter or                  was not present at the start of compare_duration, but was                  present at read_time. * &quot;REMOVED&quot;:   indicates that the finding was present and matched the                  filter at the start of compare_duration, but did not match                  the filter at read_time.  If compare_duration is not specified, then the only possible state_change is &quot;UNUSED&quot;,  which will be the state_change set for all findings present at read_time.  If this field is set then `state_change` must be a specified field in `group_by`.
      */
     compareDuration?: string | null;
     /**
@@ -693,6 +706,19 @@ export namespace securitycenter_v1 {
     stateChange?: string | null;
   }
   /**
+   * Response message for listing notification configs.
+   */
+  export interface Schema$ListNotificationConfigsResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Notification configs belonging to the requested parent.
+     */
+    notificationConfigs?: Schema$NotificationConfig[];
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -717,6 +743,31 @@ export namespace securitycenter_v1 {
      * Sources belonging to the requested parent.
      */
     sources?: Schema$Source[];
+  }
+  /**
+   * Cloud Security Command Center (Cloud SCC) notification configs.  A notification config is a Cloud SCC resource that contains the configuration to send notifications for create/update events of findings, assets and etc.
+   */
+  export interface Schema$NotificationConfig {
+    /**
+     * The description of the notification config (max of 1024 characters).
+     */
+    description?: string | null;
+    /**
+     * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/notificationConfigs/notify_public_bucket&quot;.
+     */
+    name?: string | null;
+    /**
+     * The PubSub topic to send notifications to. Its format is &quot;projects/[project_id]/topics/[topic]&quot;.
+     */
+    pubsubTopic?: string | null;
+    /**
+     * Output only. The service account that needs &quot;pubsub.topics.publish&quot; permission to publish to the PubSub topic.
+     */
+    serviceAccount?: string | null;
+    /**
+     * The config for triggering streaming-based notifications.
+     */
+    streamingConfig?: Schema$StreamingConfig;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -921,6 +972,15 @@ export namespace securitycenter_v1 {
     message?: string | null;
   }
   /**
+   * The config for streaming-based notifications, which send each event as soon as it is detected.
+   */
+  export interface Schema$StreamingConfig {
+    /**
+     * Expression that defines the filter to apply across create/update events of assets or findings as specified by the event type. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource.  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.
+     */
+    filter?: string | null;
+  }
+  /**
    * Request message for `TestIamPermissions` method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -942,11 +1002,15 @@ export namespace securitycenter_v1 {
   export class Resource$Organizations {
     context: APIRequestContext;
     assets: Resource$Organizations$Assets;
+    notificationConfigs: Resource$Organizations$Notificationconfigs;
     operations: Resource$Organizations$Operations;
     sources: Resource$Organizations$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Organizations$Assets(this.context);
+      this.notificationConfigs = new Resource$Organizations$Notificationconfigs(
+        this.context
+      );
       this.operations = new Resource$Organizations$Operations(this.context);
       this.sources = new Resource$Organizations$Sources(this.context);
     }
@@ -1887,6 +1951,479 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityMarks;
+  }
+
+  export class Resource$Organizations$Notificationconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * securitycenter.organizations.notificationConfigs.create
+     * @desc Creates a notification config.
+     * @alias securitycenter.organizations.notificationConfigs.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.configId Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters, and contains alphanumeric characters, underscores or hyphens only.
+     * @param {string} params.parent Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]".
+     * @param {().NotificationConfig} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Organizations$Notificationconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    create(
+      params: Params$Resource$Organizations$Notificationconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Notificationconfigs$Create,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Notificationconfigs$Create
+        | BodyResponseCallback<Schema$NotificationConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>,
+      callback?: BodyResponseCallback<Schema$NotificationConfig>
+    ): void | GaxiosPromise<Schema$NotificationConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Notificationconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Notificationconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notificationConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+
+    /**
+     * securitycenter.organizations.notificationConfigs.delete
+     * @desc Deletes a notification config.
+     * @alias securitycenter.organizations.notificationConfigs.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Organizations$Notificationconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Notificationconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Notificationconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Notificationconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Notificationconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Notificationconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * securitycenter.organizations.notificationConfigs.get
+     * @desc Gets a notification config.
+     * @alias securitycenter.organizations.notificationConfigs.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Organizations$Notificationconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    get(
+      params: Params$Resource$Organizations$Notificationconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Notificationconfigs$Get,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Notificationconfigs$Get
+        | BodyResponseCallback<Schema$NotificationConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>,
+      callback?: BodyResponseCallback<Schema$NotificationConfig>
+    ): void | GaxiosPromise<Schema$NotificationConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Notificationconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Notificationconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+
+    /**
+     * securitycenter.organizations.notificationConfigs.list
+     * @desc Lists notification configs.
+     * @alias securitycenter.organizations.notificationConfigs.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     * @param {string=} params.pageToken The value returned by the last `ListNotificationConfigsResponse`; indicates that this is a continuation of a prior `ListNotificationConfigs` call, and that the system should return the next page of data.
+     * @param {string} params.parent Required. Name of the organization to list notification configs. Its format is "organizations/[organization_id]".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Organizations$Notificationconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNotificationConfigsResponse>;
+    list(
+      params: Params$Resource$Organizations$Notificationconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Notificationconfigs$List,
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Notificationconfigs$List
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNotificationConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListNotificationConfigsResponse>
+    ): void | GaxiosPromise<Schema$ListNotificationConfigsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Notificationconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Notificationconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notificationConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNotificationConfigsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListNotificationConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * securitycenter.organizations.notificationConfigs.patch
+     * @desc  Updates a notification config.
+     * @alias securitycenter.organizations.notificationConfigs.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/notificationConfigs/notify_public_bucket".
+     * @param {string=} params.updateMask The FieldMask to use when updating the notification config.  If empty all mutable fields will be updated.
+     * @param {().NotificationConfig} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Organizations$Notificationconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$NotificationConfig>;
+    patch(
+      params: Params$Resource$Organizations$Notificationconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$NotificationConfig>,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Notificationconfigs$Patch,
+      callback: BodyResponseCallback<Schema$NotificationConfig>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$NotificationConfig>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Notificationconfigs$Patch
+        | BodyResponseCallback<Schema$NotificationConfig>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationConfig>,
+      callback?: BodyResponseCallback<Schema$NotificationConfig>
+    ): void | GaxiosPromise<Schema$NotificationConfig> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Notificationconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Notificationconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$NotificationConfig>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Notificationconfigs$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must be between 1 and 128 characters, and contains alphanumeric characters, underscores or hyphens only.
+     */
+    configId?: string;
+    /**
+     * Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NotificationConfig;
+  }
+  export interface Params$Resource$Organizations$Notificationconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Notificationconfigs$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Notificationconfigs$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListNotificationConfigsResponse`; indicates that this is a continuation of a prior `ListNotificationConfigs` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the organization to list notification configs. Its format is "organizations/[organization_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Notificationconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id}/notificationConfigs/notify_public_bucket".
+     */
+    name?: string;
+    /**
+     * The FieldMask to use when updating the notification config.  If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NotificationConfig;
   }
 
   export class Resource$Organizations$Operations {
@@ -3802,7 +4339,7 @@ export namespace securitycenter_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.compareDuration When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present at the start of                  compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present at the start of                  compare_duration and did not change state at read_time. * "ADDED":     indicates that the finding was not present at the start                  of compare_duration, but was present at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
+     * @param {string=} params.compareDuration When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present and matched the given                  filter at the start of compare_duration, but changed its                  state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given                  filter at the start of compare_duration and did not change                  state at read_time. * "ADDED":     indicates that the finding did not match the given filter or                  was not present at the start of compare_duration, but was                  present at read_time. * "REMOVED":   indicates that the finding was present and matched the                  filter at the start of compare_duration, but did not match                  the filter at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      * @param {string=} params.fieldMask Optional. A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      * @param {string=} params.filter Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "event_time = \"2019-06-10T16:07:18-07:00\""     "event_time = 1560208038000"  security_marks.marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`  For example, `source_properties.size = 100` is a valid filter string.
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,source_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,source_properties.a_property" and " name     desc  ,   source_properties.a_property  " are equivalent.  The following fields are supported: name parent state category resource_name event_time source_properties security_marks.marks
@@ -4311,7 +4848,7 @@ export namespace securitycenter_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present at the start of                  compare_duration, but changed its state at read_time. * "UNCHANGED": indicates that the finding was present at the start of                  compare_duration and did not change state at read_time. * "ADDED":     indicates that the finding was not present at the start                  of compare_duration, but was present at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
+     * When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present and matched the given                  filter at the start of compare_duration, but changed its                  state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given                  filter at the start of compare_duration and did not change                  state at read_time. * "ADDED":     indicates that the finding did not match the given filter or                  was not present at the start of compare_duration, but was                  present at read_time. * "REMOVED":   indicates that the finding was present and matched the                  filter at the start of compare_duration, but did not match                  the filter at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      */
     compareDuration?: string;
     /**

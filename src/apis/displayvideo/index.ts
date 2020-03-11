@@ -14,23 +14,21 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {androidmanagement_v1} from './v1';
+import {displayvideo_v1} from './v1';
 
 export const VERSIONS = {
-  v1: androidmanagement_v1.Androidmanagement,
+  v1: displayvideo_v1.Displayvideo,
 };
 
-export function androidmanagement(
-  version: 'v1'
-): androidmanagement_v1.Androidmanagement;
-export function androidmanagement(
-  options: androidmanagement_v1.Options
-): androidmanagement_v1.Androidmanagement;
-export function androidmanagement<T = androidmanagement_v1.Androidmanagement>(
+export function displayvideo(version: 'v1'): displayvideo_v1.Displayvideo;
+export function displayvideo(
+  options: displayvideo_v1.Options
+): displayvideo_v1.Displayvideo;
+export function displayvideo<T = displayvideo_v1.Displayvideo>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | androidmanagement_v1.Options
+  versionOrOptions: 'v1' | displayvideo_v1.Options
 ) {
-  return getAPI<T>('androidmanagement', versionOrOptions, VERSIONS, this);
+  return getAPI<T>('displayvideo', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();

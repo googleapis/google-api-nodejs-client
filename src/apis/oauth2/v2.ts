@@ -99,72 +99,6 @@ export namespace oauth2_v2 {
     }
 
     /**
-     * oauth2.getCertForOpenIdConnect
-     * @alias oauth2.getCertForOpenIdConnect
-     * @memberOf! oauth2(v2)
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getCertForOpenIdConnect(
-      params?: Params$$Getcertforopenidconnect,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Jwk>;
-    getCertForOpenIdConnect(
-      params: Params$$Getcertforopenidconnect,
-      options: MethodOptions | BodyResponseCallback<Schema$Jwk>,
-      callback: BodyResponseCallback<Schema$Jwk>
-    ): void;
-    getCertForOpenIdConnect(
-      params: Params$$Getcertforopenidconnect,
-      callback: BodyResponseCallback<Schema$Jwk>
-    ): void;
-    getCertForOpenIdConnect(callback: BodyResponseCallback<Schema$Jwk>): void;
-    getCertForOpenIdConnect(
-      paramsOrCallback?:
-        | Params$$Getcertforopenidconnect
-        | BodyResponseCallback<Schema$Jwk>,
-      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Jwk>,
-      callback?: BodyResponseCallback<Schema$Jwk>
-    ): void | GaxiosPromise<Schema$Jwk> {
-      let params = (paramsOrCallback || {}) as Params$$Getcertforopenidconnect;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$$Getcertforopenidconnect;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/oauth2/v2/certs').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Jwk>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Jwk>(parameters);
-      }
-    }
-
-    /**
      * oauth2.tokeninfo
      * @alias oauth2.tokeninfo
      * @memberOf! oauth2(v2)
@@ -239,16 +173,6 @@ export namespace oauth2_v2 {
     }
   }
 
-  export interface Schema$Jwk {
-    keys?: Array<{
-      alg?: string;
-      e?: string;
-      kid?: string;
-      kty?: string;
-      n?: string;
-      use?: string;
-    }> | null;
-  }
   export interface Schema$Tokeninfo {
     /**
      * The access type granted with this token. It can be offline or online.
@@ -334,12 +258,6 @@ export namespace oauth2_v2 {
     verified_email?: boolean | null;
   }
 
-  export interface Params$$Getcertforopenidconnect extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
   export interface Params$$Tokeninfo extends StandardParameters {
     /**
      * Auth client or API Key for the request

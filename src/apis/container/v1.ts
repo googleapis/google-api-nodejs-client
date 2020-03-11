@@ -227,15 +227,15 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      */
     operationId?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -467,6 +467,10 @@ export namespace container_v1 {
      */
     verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
     /**
+     * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
+     */
+    workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
+    /**
      * [Output only] The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field is deprecated, use location instead.
      */
     zone?: string | null;
@@ -564,13 +568,17 @@ export namespace container_v1 {
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
+     * Configuration for Workload Identity.
+     */
+    desiredWorkloadIdentityConfig?: Schema$WorkloadIdentityConfig;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
    */
   export interface Schema$CompleteIPRotationRequest {
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -578,11 +586,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -608,11 +616,11 @@ export namespace container_v1 {
      */
     parent?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string | null;
   }
@@ -621,7 +629,7 @@ export namespace container_v1 {
    */
   export interface Schema$CreateNodePoolRequest {
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
     clusterId?: string | null;
     /**
@@ -633,11 +641,11 @@ export namespace container_v1 {
      */
     parent?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string | null;
   }
@@ -1007,6 +1015,27 @@ export namespace container_v1 {
     maxPodsPerNode?: string | null;
   }
   /**
+   * Progress metric is (string, int|float|string) pair.
+   */
+  export interface Schema$Metric {
+    /**
+     * For metrics with floating point value.
+     */
+    doubleValue?: number | null;
+    /**
+     * For metrics with integer value.
+     */
+    intValue?: string | null;
+    /**
+     * Required. Metric name, e.g., &quot;nodes total&quot;, &quot;percent done&quot;.
+     */
+    name?: string | null;
+    /**
+     * For metrics with custom values (ratios, visual progress, etc.).
+     */
+    stringValue?: string | null;
+  }
+  /**
    * NetworkConfig reports the relative names of network &amp; subnetwork.
    */
   export interface Schema$NetworkConfig {
@@ -1117,6 +1146,10 @@ export namespace container_v1 {
      * List of kubernetes taints to be applied to each node.  For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      */
     taints?: Schema$NodeTaint[];
+    /**
+     * The workload metadata configuration for this node.
+     */
+    workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
   }
   /**
    * NodeManagement defines the set of node management services turned on for the node pool.
@@ -1271,6 +1304,10 @@ export namespace container_v1 {
      */
     operationType?: string | null;
     /**
+     * Output only. [Output only] Progress information for an operation.
+     */
+    progress?: Schema$OperationProgress;
+    /**
      * Server-defined URL for the resource.
      */
     selfLink?: string | null;
@@ -1283,7 +1320,7 @@ export namespace container_v1 {
      */
     status?: string | null;
     /**
-     * If an error has occurred, a textual description of the error.
+     * Output only. If an error has occurred, a textual description of the error.
      */
     statusMessage?: string | null;
     /**
@@ -1294,6 +1331,27 @@ export namespace container_v1 {
      * The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation is taking place. This field is deprecated, use location instead.
      */
     zone?: string | null;
+  }
+  /**
+   * Information about operation (or operation stage) progress.
+   */
+  export interface Schema$OperationProgress {
+    /**
+     * Progress metric bundle, for example:   metrics: [{name: &quot;nodes done&quot;,     int_value: 15},             {name: &quot;nodes total&quot;,    int_value: 32}] or   metrics: [{name: &quot;progress&quot;,       double_value: 0.56},             {name: &quot;progress scale&quot;, double_value: 1.0}]
+     */
+    metrics?: Schema$Metric[];
+    /**
+     * A non-parameterized string describing an operation stage. Unset for single-stage operations.
+     */
+    name?: string | null;
+    /**
+     * Substages of an operation or a stage.
+     */
+    stages?: Schema$OperationProgress[];
+    /**
+     * Status of an operation stage. Unset for single-stage operations.
+     */
+    status?: string | null;
   }
   /**
    * Configuration options for private clusters.
@@ -1346,7 +1404,7 @@ export namespace container_v1 {
      */
     consumeReservationType?: string | null;
     /**
-     * Corresponds to the label key of reservation resource.
+     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify &quot;googleapis.com/reservation-name&quot; as the key and specify the name of your reservation as its value.
      */
     key?: string | null;
     /**
@@ -1393,7 +1451,7 @@ export namespace container_v1 {
    */
   export interface Schema$RollbackNodePoolUpgradeRequest {
     /**
-     * Required. Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1401,15 +1459,15 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1456,7 +1514,7 @@ export namespace container_v1 {
      */
     addonsConfig?: Schema$AddonsConfig;
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1464,11 +1522,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1477,7 +1535,7 @@ export namespace container_v1 {
    */
   export interface Schema$SetLabelsRequest {
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1489,7 +1547,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -1497,7 +1555,7 @@ export namespace container_v1 {
      */
     resourceLabels?: {[key: string]: string} | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1506,7 +1564,7 @@ export namespace container_v1 {
    */
   export interface Schema$SetLegacyAbacRequest {
     /**
-     * Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1518,11 +1576,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1531,7 +1589,7 @@ export namespace container_v1 {
    */
   export interface Schema$SetLocationsRequest {
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1543,11 +1601,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1556,7 +1614,7 @@ export namespace container_v1 {
    */
   export interface Schema$SetLoggingServiceRequest {
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1568,11 +1626,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1610,7 +1668,7 @@ export namespace container_v1 {
      */
     action?: string | null;
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1618,7 +1676,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -1626,7 +1684,7 @@ export namespace container_v1 {
      */
     update?: Schema$MasterAuth;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1635,7 +1693,7 @@ export namespace container_v1 {
    */
   export interface Schema$SetMonitoringServiceRequest {
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1647,11 +1705,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1660,7 +1718,7 @@ export namespace container_v1 {
    */
   export interface Schema$SetNetworkPolicyRequest {
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1672,11 +1730,11 @@ export namespace container_v1 {
      */
     networkPolicy?: Schema$NetworkPolicy;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1689,7 +1747,7 @@ export namespace container_v1 {
      */
     autoscaling?: Schema$NodePoolAutoscaling;
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1697,15 +1755,15 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1714,7 +1772,7 @@ export namespace container_v1 {
    */
   export interface Schema$SetNodePoolManagementRequest {
     /**
-     * Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1726,15 +1784,15 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1743,7 +1801,7 @@ export namespace container_v1 {
    */
   export interface Schema$SetNodePoolSizeRequest {
     /**
-     * Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1755,15 +1813,15 @@ export namespace container_v1 {
      */
     nodeCount?: number | null;
     /**
-     * Required. Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1794,7 +1852,7 @@ export namespace container_v1 {
    */
   export interface Schema$StartIPRotationRequest {
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1802,7 +1860,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -1810,7 +1868,7 @@ export namespace container_v1 {
      */
     rotateCredentials?: boolean | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1845,7 +1903,7 @@ export namespace container_v1 {
    */
   export interface Schema$UpdateClusterRequest {
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1853,7 +1911,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -1861,7 +1919,7 @@ export namespace container_v1 {
      */
     update?: Schema$ClusterUpdate;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1870,7 +1928,7 @@ export namespace container_v1 {
    */
   export interface Schema$UpdateMasterRequest {
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1882,11 +1940,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1895,7 +1953,7 @@ export namespace container_v1 {
    */
   export interface Schema$UpdateNodePoolRequest {
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
     /**
@@ -1911,7 +1969,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string | null;
     /**
@@ -1919,7 +1977,7 @@ export namespace container_v1 {
      */
     nodeVersion?: string | null;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -1927,7 +1985,11 @@ export namespace container_v1 {
      */
     upgradeSettings?: Schema$UpgradeSettings;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * The desired workload metadata config for the node pool.
+     */
+    workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
+    /**
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1994,6 +2056,24 @@ export namespace container_v1 {
      * Enables vertical pod autoscaling.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
+   */
+  export interface Schema$WorkloadIdentityConfig {
+    /**
+     * The workload pool to attach all Kubernetes service accounts to.
+     */
+    workloadPool?: string | null;
+  }
+  /**
+   * WorkloadMetadataConfig defines the metadata configuration to expose to workloads on the node pool.
+   */
+  export interface Schema$WorkloadMetadataConfig {
+    /**
+     * Mode is the configuration for how to expose metadata to workloads running on the node pool.
+     */
+    mode?: string | null;
   }
 
   export class Resource$Projects {
@@ -2264,8 +2344,8 @@ export namespace container_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name (project and location) of the server config to get, specified in the format 'projects/x/locations/x'.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2345,11 +2425,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -2674,10 +2754,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
      * @param {string} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2795,10 +2875,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
      * @param {string} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3038,8 +3118,8 @@ export namespace container_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4664,7 +4744,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
@@ -4672,11 +4752,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -4688,7 +4768,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
@@ -4696,11 +4776,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -4728,11 +4808,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -5129,11 +5209,11 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {string=} params.nodePoolId Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.nodePoolId Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5252,11 +5332,11 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {string=} params.nodePoolId Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.nodePoolId Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5372,10 +5452,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      * @param {string} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6103,7 +6183,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
@@ -6111,15 +6191,15 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -6131,7 +6211,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
@@ -6139,15 +6219,15 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -6159,7 +6239,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
     clusterId?: string;
     /**
@@ -6167,11 +6247,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -6584,9 +6664,9 @@ export namespace container_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
-     * @param {string=} params.operationId Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6706,8 +6786,8 @@ export namespace container_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string=} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6806,15 +6886,15 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      */
     operationId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -6830,11 +6910,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -6910,8 +6990,8 @@ export namespace container_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.name The name (project and location) of the server config to get, specified in the format 'projects/x/locations/x'.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6990,11 +7070,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -7078,9 +7158,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetAddonsConfigRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7217,9 +7297,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().CompleteIPRotationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7352,8 +7432,8 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      * @param {().CreateClusterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7485,10 +7565,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
      * @param {string=} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format 'projects/x/locations/x/clusters/x'.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7620,10 +7700,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
      * @param {string=} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format 'projects/x/locations/x/clusters/x'.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7757,9 +7837,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetLegacyAbacRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7889,8 +7969,8 @@ export namespace container_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.parent The parent (project and location) where the clusters will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8027,9 +8107,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetLocationsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8166,9 +8246,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetLoggingServiceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8305,9 +8385,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().UpdateMasterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8444,9 +8524,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetMonitoringServiceRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8583,9 +8663,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetLabelsRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8860,9 +8940,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetMasterAuthRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8999,9 +9079,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetNetworkPolicyRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9138,9 +9218,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().StartIPRotationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9278,9 +9358,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().UpdateClusterRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9357,15 +9437,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9382,15 +9462,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9407,11 +9487,11 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
 
@@ -9428,7 +9508,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
@@ -9436,11 +9516,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -9452,7 +9532,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
@@ -9460,11 +9540,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -9476,15 +9556,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9505,11 +9585,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -9521,15 +9601,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9546,15 +9626,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9571,15 +9651,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9596,15 +9676,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9621,15 +9701,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9671,15 +9751,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9696,15 +9776,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9721,15 +9801,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9746,15 +9826,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -9843,10 +9923,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetNodePoolAutoscalingRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9983,9 +10063,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      * @param {().CreateNodePoolRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10122,11 +10202,11 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10262,11 +10342,11 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format 'projects/x/locations/x/clusters/x/nodePools/x'.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10396,10 +10476,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      * @param {string=} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format 'projects/x/locations/x/clusters/x'.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -10541,10 +10621,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().RollbackNodePoolUpgradeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10685,10 +10765,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetNodePoolManagementRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10829,10 +10909,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().SetNodePoolSizeRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10973,10 +11053,10 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.clusterId Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.nodePoolId Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {().UpdateNodePoolRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11053,19 +11133,19 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11082,15 +11162,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
 
@@ -11107,7 +11187,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
@@ -11115,15 +11195,15 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -11135,7 +11215,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
@@ -11143,15 +11223,15 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -11163,7 +11243,7 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
     clusterId?: string;
     /**
@@ -11171,11 +11251,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -11187,19 +11267,19 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11216,19 +11296,19 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11245,19 +11325,19 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11274,19 +11354,19 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string;
     /**
-     * Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
      */
     nodePoolId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11367,9 +11447,9 @@ export namespace container_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.operationId Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      * @param {().CancelOperationRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11501,9 +11581,9 @@ export namespace container_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.name The name (project, location, operation id) of the operation to get. Specified in the format 'projects/x/locations/x/operations/x'.
-     * @param {string} params.operationId Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * @param {string} params.operationId Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11631,8 +11711,8 @@ export namespace container_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.parent The parent (project and location) where the operations will be listed. Specified in the format 'projects/x/locations/x'. Location "-" matches all zones and all regions.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     * @param {string} params.projectId Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * @param {string} params.zone Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11709,15 +11789,15 @@ export namespace container_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      */
     operationId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11738,15 +11818,15 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     * Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      */
     operationId?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -11762,11 +11842,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Required. Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }

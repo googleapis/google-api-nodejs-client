@@ -87,9 +87,9 @@ export namespace logging_v2 {
   }
 
   /**
-   * Stackdriver Logging API
+   * Cloud Logging API
    *
-   * Writes log entries and manages your Stackdriver Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the &lt;a href=https://cloud.google.com/logging/docs&gt;Stackdriver Logging documentation&lt;/a&gt;.
+   * Writes log entries and manages your Cloud Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the &lt;a href=https://cloud.google.com/logging/docs&gt;Cloud Logging documentation&lt;/a&gt;.
    *
    * @example
    * const {google} = require('googleapis');
@@ -176,11 +176,11 @@ export namespace logging_v2 {
      */
     kmsKeyName?: string | null;
     /**
-     * Output Only. The resource name of the CMEK settings.
+     * Output only. The resource name of the CMEK settings.
      */
     name?: string | null;
     /**
-     * Output Only. The service account that will be used by the Logs Router to access your Cloud KMS key.Before enabling CMEK for Logs Router, you must first assign the role roles/cloudkms.cryptoKeyEncrypterDecrypter to the service account that the Logs Router will use to access your Cloud KMS key. Use GetCmekSettings to obtain the service account ID.See Enabling CMEK for Logs Router for more information.
+     * Output only. The service account that will be used by the Logs Router to access your Cloud KMS key.Before enabling CMEK for Logs Router, you must first assign the role roles/cloudkms.cryptoKeyEncrypterDecrypter to the service account that the Logs Router will use to access your Cloud KMS key. Use GetCmekSettings to obtain the service account ID.See Enabling CMEK for Logs Router for more information.
      */
     serviceAccountId?: string | null;
   }
@@ -360,7 +360,7 @@ export namespace logging_v2 {
      */
     pageToken?: string | null;
     /**
-     * Deprecated. Use resource_names instead. One or more project identifiers or project numbers from which to retrieve log entries. Example: &quot;my-project-1A&quot;.
+     * Optional. Deprecated. Use resource_names instead. One or more project identifiers or project numbers from which to retrieve log entries. Example: &quot;my-project-1A&quot;.
      */
     projectIds?: string[] | null;
     /**
@@ -446,7 +446,7 @@ export namespace logging_v2 {
      */
     description?: string | null;
     /**
-     * The bucket lifecycle state.Output only.
+     * Output only. The bucket lifecycle state.
      */
     lifecycleState?: string | null;
     /**
@@ -483,11 +483,11 @@ export namespace logging_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the log to which this log entry belongs: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; A project number may optionally be used in place of PROJECT_ID. The project number is translated to its corresponding PROJECT_ID internally and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.
+     * Required. The resource name of the log to which this log entry belongs: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; A project number may be used in place of PROJECT_ID. The project number is translated to its corresponding PROJECT_ID internally and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.
      */
     logName?: string | null;
     /**
-     * Deprecated. Output only. Additional metadata about the monitored resource.Only k8s_container, k8s_pod, and k8s_node MonitoredResources have this field populated for GKE versions older than 1.12.6. For GKE versions 1.12.6 and above, the metadata field has been deprecated. The Kubernetes pod labels that used to be in metadata.userLabels will now be present in the labels field with a key prefix of k8s-pod/. The Stackdriver system labels that were present in the metadata.systemLabels field will no longer be available in the LogEntry.
+     * Output only. Deprecated. Additional metadata about the monitored resource.Only k8s_container, k8s_pod, and k8s_node MonitoredResources have this field populated for GKE versions older than 1.12.6. For GKE versions 1.12.6 and above, the metadata field has been deprecated. The Kubernetes pod labels that used to be in metadata.userLabels will now be present in the labels field with a key prefix of k8s-pod/. The Stackdriver system labels that were present in the metadata.systemLabels field will no longer be available in the LogEntry.
      */
     metadata?: Schema$MonitoredResourceMetadata;
     /**
@@ -515,7 +515,7 @@ export namespace logging_v2 {
      */
     sourceLocation?: Schema$LogEntrySourceLocation;
     /**
-     * Optional. The span ID within the trace associated with the log entry.For Trace spans, this is the same format that the Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such as &lt;code&gt;&quot;000000000000004a&quot;&lt;/code&gt;.
+     * Optional. The span ID within the trace associated with the log entry.For Trace spans, this is the same format that the Trace API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such as 000000000000004a.
      */
     spanId?: string | null;
     /**
@@ -693,10 +693,6 @@ export namespace logging_v2 {
      */
     disabled?: boolean | null;
     /**
-     * Do not use. This field is ignored.
-     */
-    endTime?: string | null;
-    /**
      * Optional. An advanced logs filter. The only exported log entries are those that are in the resource owning the sink and that match the filter. For example: logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND severity&gt;=ERROR
      */
     filter?: string | null;
@@ -712,10 +708,6 @@ export namespace logging_v2 {
      * Deprecated. The log entry format to use for this sink&#39;s exported log entries. The v2 format is used by default and cannot be changed.
      */
     outputVersionFormat?: string | null;
-    /**
-     * Do not use. This field is ignored.
-     */
-    startTime?: string | null;
     /**
      * Output only. The last update timestamp of the sink.This field may not be present for older sinks.
      */
@@ -1030,7 +1022,7 @@ export namespace logging_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. A default log resource name that is assigned to all log entries in entries that do not specify a value for log_name: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; [LOG_ID] must be URL-encoded. For example: &quot;projects/my-project-id/logs/syslog&quot; &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot; The permission &lt;code&gt;logging.logEntries.create&lt;/code&gt; is needed on each project, organization, billing account, or folder that is receiving new log entries, whether the resource is specified in &lt;code&gt;logName&lt;/code&gt; or in an individual log entry.
+     * Optional. A default log resource name that is assigned to all log entries in entries that do not specify a value for log_name: &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot; &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot; &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot; [LOG_ID] must be URL-encoded. For example: &quot;projects/my-project-id/logs/syslog&quot; &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot; The permission logging.logEntries.create is needed on each project, organization, billing account, or folder that is receiving new log entries, whether the resource is specified in logName or in an individual log entry.
      */
     logName?: string | null;
     /**
@@ -1043,7 +1035,7 @@ export namespace logging_v2 {
     resource?: Schema$MonitoredResource;
   }
   /**
-   * Result returned from WriteLogEntries. empty
+   * Result returned from WriteLogEntries.
    */
   export interface Schema$WriteLogEntriesResponse {}
 
@@ -1637,7 +1629,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1794,7 +1786,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      */
     parent?: string;
   }
@@ -3747,7 +3739,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3916,7 +3908,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      */
     parent?: string;
   }
@@ -4774,7 +4766,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4943,7 +4935,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      */
     parent?: string;
   }
@@ -6015,7 +6007,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6184,7 +6176,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      */
     parent?: string;
   }
@@ -7515,7 +7507,7 @@ export namespace logging_v2 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * @param {string} params.parent Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7684,7 +7676,7 @@ export namespace logging_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource is required, but supplying the character - in place of LOCATION_ID will return all buckets.
+     * Required. The parent resource whose buckets are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" Note: The locations portion of the resource must be specified, but supplying the character - in place of LOCATION_ID will return all buckets.
      */
     parent?: string;
   }
@@ -7905,7 +7897,7 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
+     * @param {string} params.parent Required. The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
      * @param {().LogMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7980,7 +7972,7 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param {string} params.metricName Required. The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8049,7 +8041,7 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param {string} params.metricName Required. The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8198,7 +8190,7 @@ export namespace logging_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.metricName The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+     * @param {string} params.metricName Required. The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
      * @param {().LogMetric} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -8272,7 +8264,7 @@ export namespace logging_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
+     * Required. The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
      */
     parent?: string;
 
@@ -8289,7 +8281,7 @@ export namespace logging_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * Required. The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      */
     metricName?: string;
   }
@@ -8301,7 +8293,7 @@ export namespace logging_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * Required. The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      */
     metricName?: string;
   }
@@ -8333,7 +8325,7 @@ export namespace logging_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
+     * Required. The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
      */
     metricName?: string;
 

@@ -142,6 +142,90 @@ export namespace recommender_v1beta1 {
     costProjection?: Schema$GoogleCloudRecommenderV1beta1CostProjection;
   }
   /**
+   * An insight along with the information used to derive the insight. The insight may have associated recomendations as well.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1Insight {
+    /**
+     * Recommendations derived from this insight.
+     */
+    associatedRecommendations?: Schema$GoogleCloudRecommenderV1beta1InsightRecommendationReference[];
+    /**
+     * Category being targeted by the insight.
+     */
+    category?: string | null;
+    /**
+     * A struct of custom fields to explain the insight. Example: &quot;grantedPermissionsCount&quot;: &quot;1000&quot;
+     */
+    content?: {[key: string]: any} | null;
+    /**
+     * Free-form human readable summary in English. The maximum length is 500 characters.
+     */
+    description?: string | null;
+    /**
+     * Fingerprint of the Insight. Provides optimistic locking when updating states.
+     */
+    etag?: string | null;
+    /**
+     * Insight subtype. Insight content schema will be stable for a given subtype.
+     */
+    insightSubtype?: string | null;
+    /**
+     * Timestamp of the latest data used to generate the insight.
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Name of the insight.  * A project insight is represented as   projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[insight_id]
+     */
+    name?: string | null;
+    /**
+     * Observation period that led to the insight. The source data used to generate the insight ends at last_refresh_time and begins at (last_refresh_time - observation_period).
+     */
+    observationPeriod?: string | null;
+    /**
+     * Information state and metadata.
+     */
+    stateInfo?: Schema$GoogleCloudRecommenderV1beta1InsightStateInfo;
+    /**
+     * Fully qualified resource names that this insight is targeting.
+     */
+    targetResources?: string[] | null;
+  }
+  /**
+   * Reference to an associated recommendation.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1InsightRecommendationReference {
+    /**
+     * Recommendation resource name, e.g. projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/recommendations/[RECOMMENDATION_ID]
+     */
+    recommendation?: string | null;
+  }
+  /**
+   * Information related to insight state.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1InsightStateInfo {
+    /**
+     * Insight state.
+     */
+    state?: string | null;
+    /**
+     * A map of metadata for the state, provided by user or automations systems.
+     */
+    stateMetadata?: {[key: string]: string} | null;
+  }
+  /**
+   * Response to the `ListInsights` method.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse {
+    /**
+     * The set of insights for the `parent` resource.
+     */
+    insights?: Schema$GoogleCloudRecommenderV1beta1Insight[];
+    /**
+     * A token that can be used to request the next page of results. This field is empty if there are no additional results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response to the `ListRecommendations` method.
    */
   export interface Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse {
@@ -153,6 +237,19 @@ export namespace recommender_v1beta1 {
      * The set of recommendations for the `parent` resource.
      */
     recommendations?: Schema$GoogleCloudRecommenderV1beta1Recommendation[];
+  }
+  /**
+   * Request for the `MarkInsightAccepted` method.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest {
+    /**
+     * Required. Fingerprint of the Insight. Provides optimistic locking.
+     */
+    etag?: string | null;
+    /**
+     * Optional. State properties user wish to include with this state.  Full replace of the current state_metadata.
+     */
+    stateMetadata?: {[key: string]: string} | null;
   }
   /**
    * Request for the `MarkRecommendationClaimed` Method.
@@ -258,6 +355,10 @@ export namespace recommender_v1beta1 {
      */
     additionalImpact?: Schema$GoogleCloudRecommenderV1beta1Impact[];
     /**
+     * Insights that led to this recommendation.
+     */
+    associatedInsights?: Schema$GoogleCloudRecommenderV1beta1RecommendationInsightReference[];
+    /**
      * Content of the recommendation describing recommended changes to resources.
      */
     content?: Schema$GoogleCloudRecommenderV1beta1RecommendationContent;
@@ -298,6 +399,15 @@ export namespace recommender_v1beta1 {
      * Operations to one or more Google Cloud resources grouped in such a way that, all operations within one group are expected to be performed atomically and in an order.
      */
     operationGroups?: Schema$GoogleCloudRecommenderV1beta1OperationGroup[];
+  }
+  /**
+   * Reference to an associated insight.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1RecommendationInsightReference {
+    /**
+     * Insight resource name, e.g. projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[INSIGHT_ID]
+     */
+    insight?: string | null;
   }
   /**
    * Information for state. Contains state and metadata.
@@ -350,13 +460,370 @@ export namespace recommender_v1beta1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    insightTypes: Resource$Projects$Locations$Insighttypes;
     recommenders: Resource$Projects$Locations$Recommenders;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.insightTypes = new Resource$Projects$Locations$Insighttypes(
+        this.context
+      );
       this.recommenders = new Resource$Projects$Locations$Recommenders(
         this.context
       );
     }
+  }
+
+  export class Resource$Projects$Locations$Insighttypes {
+    context: APIRequestContext;
+    insights: Resource$Projects$Locations$Insighttypes$Insights;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.insights = new Resource$Projects$Locations$Insighttypes$Insights(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Insighttypes$Insights {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * recommender.projects.locations.insightTypes.insights.get
+     * @desc Gets the requested insight. Requires the recommender.*.get IAM permission for the specified insight type.
+     * @alias recommender.projects.locations.insightTypes.insights.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Name of the insight.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>;
+    get(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
+    ): void;
+    get(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insighttypes$Insights$Get
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Insighttypes$Insights$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * recommender.projects.locations.insightTypes.insights.list
+     * @desc Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
+     * @alias recommender.projects.locations.insightTypes.insights.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request.  Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     * @param {string=} params.pageToken Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
+     * @param {string} params.parent Required. The container resource on which to execute the request. Acceptable formats:  1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",  LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insighttypes$Insights$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Insighttypes$Insights$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/insights').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+        >(parameters, callback);
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+        >(parameters);
+      }
+    }
+
+    /**
+     * recommender.projects.locations.insightTypes.insights.markAccepted
+     * @desc Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated.  MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight.
+     * @alias recommender.projects.locations.insightTypes.insights.markAccepted
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Name of the insight.
+     * @param {().GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    markAccepted(
+      params?: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>;
+    markAccepted(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
+    ): void;
+    markAccepted(
+      params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
+    ): void;
+    markAccepted(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
+    ): void;
+    markAccepted(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
+    ): void | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:markAccepted').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Name of the insight.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return from this request.  Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The container resource on which to execute the request. Acceptable formats:  1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",  LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Name of the insight.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest;
   }
 
   export class Resource$Projects$Locations$Recommenders {

@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# androidmanagement
+# gamesConfiguration
 
-> The Android Management API provides remote enterprise management of Android devices and apps.
+> The Publishing API for Google Play Game Services.
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/androidmanagement
+$ cd src/apis/gamesConfiguration
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/androidmanagement.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/gamesConfiguration.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/androidmanagement.min.js"></script>
+<script src="/path/to/gamesConfiguration.min.js"></script>
 <script>
-const { androidmanagement, auth } = Androidmanagement;
+const { gamesConfiguration, auth } = Gamesconfiguration;
 </script>
 ```
 

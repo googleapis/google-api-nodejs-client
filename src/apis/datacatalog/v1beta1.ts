@@ -418,6 +418,19 @@ export namespace datacatalog_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListEntryGroups.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse {
+    /**
+     * EntryGroup details.
+     */
+    entryGroups?: Schema$GoogleCloudDatacatalogV1beta1EntryGroup[];
+    /**
+     * Token to retrieve the next page of results. It is set to empty if no items remain in results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ListPolicyTags.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse {
@@ -520,21 +533,24 @@ export namespace datacatalog_v1beta1 {
      */
     query?: string | null;
     /**
-     * Required. The scope of this search request.
+     * Required. The scope of this search request. A `scope` that has empty `include_org_ids`, `include_project_ids` AND false `include_gcp_public_datasets` is considered invalid. Data Catalog will return an error in such a case.
      */
     scope?: Schema$GoogleCloudDatacatalogV1beta1SearchCatalogRequestScope;
   }
+  /**
+   * The criteria that select the subspace used for query matching.
+   */
   export interface Schema$GoogleCloudDatacatalogV1beta1SearchCatalogRequestScope {
     /**
      * If `true`, include Google Cloud Platform (GCP) public datasets in the search results. Info on GCP public datasets is available at https://cloud.google.com/public-datasets/. By default, GCP public datasets are excluded.
      */
     includeGcpPublicDatasets?: boolean | null;
     /**
-     * Data Catalog tries to automatically choose the right corpus of data to search through. You can ensure an organization is included by adding it to `include_org_ids`. You can ensure a project&#39;s org is included with `include_project_ids`. You must specify at least one organization using `include_org_ids` or `include_project_ids` in all search requests.  List of organization IDs to search within. To find your organization ID, follow instructions in https://cloud.google.com/resource-manager/docs/creating-managing-organization.
+     * The list of organization IDs to search within. To find your organization ID, follow instructions in https://cloud.google.com/resource-manager/docs/creating-managing-organization.
      */
     includeOrgIds?: string[] | null;
     /**
-     * List of project IDs to search within. To learn more about the distinction between project names/IDs/numbers, go to https://cloud.google.com/docs/overview/#projects.
+     * The list of project IDs to search within. To learn more about the distinction between project names/IDs/numbers, go to https://cloud.google.com/docs/overview/#projects.
      */
     includeProjectIds?: string[] | null;
   }
@@ -680,6 +696,10 @@ export namespace datacatalog_v1beta1 {
      */
     enumValue?: Schema$GoogleCloudDatacatalogV1beta1TagFieldEnumValue;
     /**
+     * Output only. The order of this field with respect to other fields in this tag. It can be set in Tag. For example, a higher value can indicate a more important field. The value can be negative. Multiple fields can have the same order, and field orders within a tag do not have to be sequential.
+     */
+    order?: number | null;
+    /**
      * Holds the value for a tag field with string type.
      */
     stringValue?: string | null;
@@ -732,6 +752,10 @@ export namespace datacatalog_v1beta1 {
      * Output only. The resource name of the tag template field in URL format. Example:  * projects/{project_id}/locations/{location}/tagTemplates/{tag_template}/fields/{field}  Note that this TagTemplateField may not actually be stored in the location in this name.
      */
     name?: string | null;
+    /**
+     * The order of this field with respect to other fields in this tag template.  A higher value indicates a more important field. The value can be negative. Multiple fields can have the same order, and field orders within a tag do not have to be sequential.
+     */
+    order?: number | null;
     /**
      * Required. The type of value this tag field can contain.
      */
@@ -1402,6 +1426,108 @@ export namespace datacatalog_v1beta1 {
     }
 
     /**
+     * datacatalog.projects.locations.entryGroups.list
+     * @desc Lists entry groups.
+     * @alias datacatalog.projects.locations.entryGroups.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size > 1000`.
+     * @param {string=} params.pageToken Optional. Token that specifies which page is requested. If empty, the first page is returned.
+     * @param {string} params.parent Required. The name of the location that contains the entry groups, which can be provided in URL format. Example:  * projects/{project_id}/locations/{location}
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Entrygroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Entrygroups$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Entrygroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/entryGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+        >(parameters, callback);
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+        >(parameters);
+      }
+    }
+
+    /**
      * datacatalog.projects.locations.entryGroups.patch
      * @desc Updates an EntryGroup. The user should enable the Data Catalog API in the project identified by the `entry_group.name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.entryGroups.patch
@@ -1716,6 +1842,26 @@ export namespace datacatalog_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size > 1000`.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token that specifies which page is requested. If empty, the first page is returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the location that contains the entry groups, which can be provided in URL format. Example:  * projects/{project_id}/locations/{location}
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Patch
     extends StandardParameters {

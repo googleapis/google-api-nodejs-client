@@ -129,11 +129,11 @@ export namespace cloudidentity_v1beta1 {
     namespace?: string | null;
   }
   /**
-   * A group within the Cloud Identity Groups API.  A `Group` is a collection of entities, where each entity is either a user or another group.
+   * A group within the Cloud Identity Groups API.  A `Group` is a collection of entities, where each entity is either a user or another group or a service account.
    */
   export interface Schema$Group {
     /**
-     * Optional. Additional entity key aliases for a Group.
+     * Additional entity key aliases for a Group.
      */
     additionalGroupKeys?: Schema$EntityKey[];
     /**

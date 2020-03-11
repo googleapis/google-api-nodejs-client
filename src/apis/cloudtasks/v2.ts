@@ -424,6 +424,10 @@ export namespace cloudtasks_v2 {
      */
     retryConfig?: Schema$RetryConfig;
     /**
+     * Configuration options for writing logs to [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this field is unset, then no logs are written.
+     */
+    stackdriverLoggingConfig?: Schema$StackdriverLoggingConfig;
+    /**
      * Output only. The state of the queue.  `state` can only be changed by called PauseQueue, ResumeQueue, or uploading [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref). UpdateQueue cannot be used to change `state`.
      */
     state?: string | null;
@@ -491,6 +495,15 @@ export namespace cloudtasks_v2 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  /**
+   * Configuration options for writing logs to [Stackdriver Logging](https://cloud.google.com/logging/docs/).
+   */
+  export interface Schema$StackdriverLoggingConfig {
+    /**
+     * Specifies the fraction of operations to write to [Stackdriver Logging](https://cloud.google.com/logging/docs/). This field may contain any value between 0.0 and 1.0, inclusive. 0.0 is the default and means that no operations are logged.
+     */
+    samplingRatio?: number | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details.  You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).

@@ -416,6 +416,8 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Training options used by this training run. These options are mutable for subsequent training runs. Default values are explicitly stored for options not specified in the input query of the first training run. For subsequent training runs, any option not explicitly specified in the input query will be copied from the previous training run.
      */
     trainingOptions?: {
+      lineSearchInitLearnRate?: number;
+      earlyStop?: boolean;
       l1Reg?: number;
       maxIteration?: string;
       learnRate?: number;
@@ -423,8 +425,6 @@ export namespace bigquery_v2 {
       l2Reg?: number;
       warmStart?: boolean;
       learnRateStrategy?: string;
-      lineSearchInitLearnRate?: number;
-      earlyStop?: boolean;
     } | null;
   }
   /**
@@ -617,12 +617,12 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
+      labels?: {[key: string]: string};
+      datasetReference?: Schema$DatasetReference;
       id?: string;
       location?: string;
       friendlyName?: string;
       kind?: string;
-      labels?: {[key: string]: string};
-      datasetReference?: Schema$DatasetReference;
     }> | null;
     /**
      * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -1400,15 +1400,15 @@ export namespace bigquery_v2 {
      * List of jobs that were requested.
      */
     jobs?: Array<{
+      statistics?: Schema$JobStatistics;
+      id?: string;
       configuration?: Schema$JobConfiguration;
       user_email?: string;
-      errorResult?: Schema$ErrorProto;
       kind?: string;
+      errorResult?: Schema$ErrorProto;
       jobReference?: Schema$JobReference;
       status?: Schema$JobStatus;
       state?: string;
-      statistics?: Schema$JobStatistics;
-      id?: string;
     }> | null;
     /**
      * The resource type of the response.
@@ -1473,7 +1473,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
+    reservationUsage?: Array<{slotMs?: string; name?: string}> | null;
     /**
      * [Output-only] Name of the primary reservation assigned to this job. Note that this could be different than reservations reported in the reservation usage field if parent reservations were used to execute this job.
      */
@@ -1551,7 +1551,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{slotMs?: string; name?: string}> | null;
+    reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
     /**
      * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
@@ -1750,9 +1750,9 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
      */
     modelOptions?: {
-      modelType?: string;
       labels?: string[];
       lossType?: string;
+      modelType?: string;
     } | null;
     /**
      * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
@@ -1803,11 +1803,11 @@ export namespace bigquery_v2 {
      * Projects to which you have at least READ access.
      */
     projects?: Array<{
-      numericId?: string;
-      kind?: string;
       id?: string;
       projectReference?: Schema$ProjectReference;
       friendlyName?: string;
+      numericId?: string;
+      kind?: string;
     }> | null;
     /**
      * The total number of projects in the list.
@@ -1843,9 +1843,9 @@ export namespace bigquery_v2 {
      * [Optional] The types of the fields of this struct, in order, if this is a struct.
      */
     structTypes?: Array<{
-      type?: Schema$QueryParameterType;
       name?: string;
       description?: string;
+      type?: Schema$QueryParameterType;
     }> | null;
     /**
      * [Required] The top level type of this field.
@@ -1992,7 +1992,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {interval?: string; start?: string; end?: string} | null;
+    range?: {start?: string; end?: string; interval?: string} | null;
   }
   /**
    * Evaluation metrics for regression and explicit feedback type matrix factorization models.
@@ -2393,6 +2393,11 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
+      id?: string;
+      tableReference?: Schema$TableReference;
+      friendlyName?: string;
+      timePartitioning?: Schema$TimePartitioning;
+      labels?: {[key: string]: string};
       clustering?: Schema$Clustering;
       type?: string;
       expirationTime?: string;
@@ -2400,11 +2405,6 @@ export namespace bigquery_v2 {
       view?: {useLegacySql?: boolean};
       creationTime?: string;
       rangePartitioning?: Schema$RangePartitioning;
-      id?: string;
-      tableReference?: Schema$TableReference;
-      friendlyName?: string;
-      timePartitioning?: Schema$TimePartitioning;
-      labels?: {[key: string]: string};
     }> | null;
     /**
      * The total number of tables in the dataset.

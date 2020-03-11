@@ -163,7 +163,7 @@ export namespace alertcenter_v1beta1 {
      */
     supersededAlerts?: string[] | null;
     /**
-     * Alert id superseding this alert. It is used to indicate that superseding alert is essentially extension of this alert and we found the relationship after creating both alerts.
+     * Alert ID superseding this alert. It is used to indicate that superseding alert is essentially extension of this alert and we found the relationship after creating both alerts.
      */
     supersedingAlert?: string | null;
     /**
@@ -346,7 +346,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchDeleteAlertsRequest {
     /**
-     * Required. list of alert ids.
+     * Required. list of alert IDs.
      */
     alertId?: string[] | null;
     /**
@@ -363,7 +363,7 @@ export namespace alertcenter_v1beta1 {
      */
     failedAlertStatus?: {[key: string]: Schema$Status} | null;
     /**
-     * The successful list of alert ids.
+     * The successful list of alert IDs.
      */
     successAlertIds?: string[] | null;
   }
@@ -372,7 +372,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchUndeleteAlertsRequest {
     /**
-     * Required. list of alert ids.
+     * Required. list of alert IDs.
      */
     alertId?: string[] | null;
     /**
@@ -389,7 +389,7 @@ export namespace alertcenter_v1beta1 {
      */
     failedAlertStatus?: {[key: string]: Schema$Status} | null;
     /**
-     * The successful list of alert ids.
+     * The successful list of alert IDs.
      */
     successAlertIds?: string[] | null;
   }
@@ -506,40 +506,6 @@ export namespace alertcenter_v1beta1 {
     takeoutRequestId?: string | null;
   }
   /**
-   * A Drive file
-   */
-  export interface Schema$DriveFile {
-    /**
-     * Abuse type of the file.
-     */
-    abuseType?: string | null;
-    /**
-     * The ID of the file.
-     */
-    id?: string | null;
-    /**
-     * The name of the file.
-     */
-    name?: string | null;
-    /**
-     * The number of recent downloads of the file. This is available for the following alert types:  *Drive malware sharing detected
-     */
-    numRecentDownload?: string | null;
-    /**
-     * The email address of the file owner.
-     */
-    owner?: string | null;
-  }
-  /**
-   * Alerts for suspicious Drive files or activities.
-   */
-  export interface Schema$DriveFileWarning {
-    /**
-     * List of files in the alert.
-     */
-    files?: Schema$DriveFile[];
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
    */
   export interface Schema$Empty {}
@@ -632,7 +598,7 @@ export namespace alertcenter_v1beta1 {
      */
     ipAddress?: string | null;
     /**
-     * Optional. The successful login time that is associated with the warning event. This will not be present for blocked login attempts.
+     * Optional. The successful login time that is associated with the warning event. This isn&#39;t present for blocked login attempts.
      */
     loginTime?: string | null;
   }
@@ -756,7 +722,7 @@ export namespace alertcenter_v1beta1 {
      */
     documentId?: string | null;
     /**
-     * Title of the resource, e.g. email subject, or document title.
+     * Title of the resource, for example email subject, or document title.
      */
     resourceTitle?: string | null;
   }

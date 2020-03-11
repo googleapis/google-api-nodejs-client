@@ -620,9 +620,9 @@ export namespace sql_v1beta4 {
      * Options for exporting data as SQL statements.
      */
     sqlExportOptions?: {
+      schemaOnly?: boolean;
       mysqlExportOptions?: {masterData?: number};
       tables?: string[];
-      schemaOnly?: boolean;
     } | null;
     /**
      * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form &lt;code&gt;gs: //bucketName/fileName&lt;/code&gt;. If the file already exists, the requests // succeeds, but the operation fails. If &lt;code&gt;fileType&lt;/code&gt; is // &lt;code&gt;SQL&lt;/code&gt; and the filename ends with .gz, the contents are // compressed.
@@ -717,7 +717,7 @@ export namespace sql_v1beta4 {
     /**
      * Options for importing data as CSV.
      */
-    csvImportOptions?: {columns?: string[]; table?: string} | null;
+    csvImportOptions?: {table?: string; columns?: string[]} | null;
     /**
      * The target database for the import. If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;SQL&lt;/code&gt;, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If &lt;code&gt;fileType&lt;/code&gt; is &lt;code&gt;CSV&lt;/code&gt;, one database must be specified.
      */
