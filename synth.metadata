@@ -1,11 +1,12 @@
 {
-  "updateTime": "2020-03-22T11:10:11.310345Z",
+  "updateTime": "2020-03-26T11:10:12.615300Z",
   "sources": [
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "7e98e1609c91082f4eeb63b530c6468aefd18cfd"
+        "sha": "e36822bfa0acb355502dab391b8ef9c4f30208d8",
+        "log": "e36822bfa0acb355502dab391b8ef9c4f30208d8\nchore(java): treat samples shared configuration dependency update as chore (#457)\n\n\n1b4cc80a7aaf164f6241937dd87f3bd1f4149e0c\nfix: do not run node 8 CI (#456)\n\n\nee4330a0e5f4b93978e8683fbda8e6d4148326b7\nchore(java_templates): mark version bumps of current library as a chore (#452)\n\nWith the samples/install-without-bom/pom.xml referencing the latest released library, we want to mark updates of this version as a chore for renovate bot.\na0d3133a5d45544a66345059eebf76933265c099\nfix(java): run mvn install with retry (#453)\n\n* fix(java): run mvn install with retry\n\n* fix invocation of command\n6a17abc7652e2fe563e1288c6e8c23fc260dda97\ndocs: document the release schedule we follow (#454)\n\n\n"
       }
     }
   ]
