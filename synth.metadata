@@ -1,12 +1,12 @@
 {
-  "updateTime": "2020-04-01T11:19:08.822362Z",
+  "updateTime": "2020-04-01T11:19:05.340961Z",
   "sources": [
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "1b4cc80a7aaf164f6241937dd87f3bd1f4149e0c",
-        "log": "1b4cc80a7aaf164f6241937dd87f3bd1f4149e0c\nfix: do not run node 8 CI (#456)\n\n\nee4330a0e5f4b93978e8683fbda8e6d4148326b7\nchore(java_templates): mark version bumps of current library as a chore (#452)\n\nWith the samples/install-without-bom/pom.xml referencing the latest released library, we want to mark updates of this version as a chore for renovate bot.\na0d3133a5d45544a66345059eebf76933265c099\nfix(java): run mvn install with retry (#453)\n\n* fix(java): run mvn install with retry\n\n* fix invocation of command\n6a17abc7652e2fe563e1288c6e8c23fc260dda97\ndocs: document the release schedule we follow (#454)\n\n\n"
+        "sha": "99820243d348191bc9c634f2b48ddf65096285ed",
+        "log": "99820243d348191bc9c634f2b48ddf65096285ed\nfix: update template files for Node.js libraries (#463)\n\n\n3cbe6bcd5623139ac9834c43818424ddca5430cb\nfix(ruby): remove dead troubleshooting link from generated auth guide (#462)\n\n\na003d8655d3ebec2bbbd5fc3898e91e152265c67\ndocs: remove \"install stable\" instructions (#461)\n\nThe package hasn't been released to PyPI in some time\nf5e8c88d9870d8aa4eb43fa0b39f07e02bfbe4df\nchore(python): add license headers to config files; make small tweaks to templates (#458)\n\n\ne36822bfa0acb355502dab391b8ef9c4f30208d8\nchore(java): treat samples shared configuration dependency update as chore (#457)\n\n\n1b4cc80a7aaf164f6241937dd87f3bd1f4149e0c\nfix: do not run node 8 CI (#456)\n\n\nee4330a0e5f4b93978e8683fbda8e6d4148326b7\nchore(java_templates): mark version bumps of current library as a chore (#452)\n\nWith the samples/install-without-bom/pom.xml referencing the latest released library, we want to mark updates of this version as a chore for renovate bot.\na0d3133a5d45544a66345059eebf76933265c099\nfix(java): run mvn install with retry (#453)\n\n* fix(java): run mvn install with retry\n\n* fix invocation of command\n6a17abc7652e2fe563e1288c6e8c23fc260dda97\ndocs: document the release schedule we follow (#454)\n\n\n"
       }
     }
   ]
