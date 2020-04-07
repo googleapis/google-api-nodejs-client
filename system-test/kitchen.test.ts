@@ -30,7 +30,8 @@ const spawnOpts: cp.SpawnSyncOptions = {stdio: 'inherit', shell: true};
  * Create a staging directory with temp fixtures used to test on a fresh application.
  */
 describe('kitchen sink', async () => {
-  it('should be able to use the d.ts', async () => {
+  it('should be able to use the d.ts', async function() {
+    this.retries(3);
     console.log(`${__filename} staging area: ${stagingPath}`);
     cp.spawnSync('npm', ['pack'], spawnOpts);
     const tarball = `${pkg.name}-${pkg.version}.tgz`;
@@ -46,7 +47,7 @@ describe('kitchen sink', async () => {
   /**
    * CLEAN UP - remove the staging directory when done.
    */
-  after('cleanup staging', async () => {
+  afterEach('cleanup staging', async () => {
     if (!keep) {
       stagingDir.removeCallback();
     }
