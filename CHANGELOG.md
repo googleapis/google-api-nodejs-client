@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [48.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v48.0.0...v48.0.1) (2020-04-07)
+
+
+### Bug Fixes
+
+* apache license URL ([#468](https://www.github.com/googleapis/google-api-nodejs-client/issues/468)) ([#2017](https://www.github.com/googleapis/google-api-nodejs-client/issues/2017)) ([05090da](https://www.github.com/googleapis/google-api-nodejs-client/commit/05090da6fd417af1a53be83b5d5e59c89ed48e7e))
+
 ## [48.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v47.0.0...v48.0.0) (2020-03-11)
 
 
