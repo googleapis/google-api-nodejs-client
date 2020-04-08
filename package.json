@@ -44,7 +44,7 @@
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=10"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.10",
