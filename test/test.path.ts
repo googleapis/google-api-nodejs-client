@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, beforeEach, before, after} from 'mocha';
 import {GaxiosResponse} from 'gaxios';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
@@ -155,16 +155,13 @@ describe('Path params', () => {
         nock(Utils.baseUrl)
           .get(p)
           .reply(200);
-        remoteDrive.files.get(
-          {fileId: '123abc'},
-          (err2: Error, res2: GaxiosResponse) => {
-            if (err2) {
-              return done(err2);
-            }
-            assert.strictEqual(Utils.getPath(res), p);
-            done();
+        remoteDrive.files.get({fileId: '123abc'}, (err2: Error) => {
+          if (err2) {
+            return done(err2);
           }
-        );
+          assert.strictEqual(Utils.getPath(res), p);
+          done();
+        });
       }
     );
   });
@@ -187,19 +184,16 @@ describe('Path params', () => {
         nock(Utils.baseUrl)
           .get(p)
           .reply(200);
-        remoteDrive.files.get(
-          {fileId: 'p@ram'},
-          (err2: Error, res2: GaxiosResponse) => {
-            if (err2) {
-              return done(err2);
-            }
-            const parm = Utils.getPath(res)
-              .split('/')
-              .pop();
-            assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
-            done();
+        remoteDrive.files.get({fileId: 'p@ram'}, (err2: Error) => {
+          if (err2) {
+            return done(err2);
           }
-        );
+          const parm = Utils.getPath(res)
+            .split('/')
+            .pop();
+          assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
+          done();
+        });
       }
     );
   });
@@ -250,7 +244,7 @@ describe('Path params', () => {
           .reply(200);
         remoteDrive.files.get(
           {fileId: '123abc', hello: 'world'},
-          (err2: Error, res2: GaxiosResponse) => {
+          (err2: Error) => {
             if (err2) {
               return done(err2);
             }

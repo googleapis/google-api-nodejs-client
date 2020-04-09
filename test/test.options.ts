@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, beforeEach, after} from 'mocha';
 import * as nock from 'nock';
 import {URL} from 'url';
 import {GoogleApis} from '../src';
@@ -85,7 +85,7 @@ describe('Options', () => {
     nock(Utils.baseUrl)
       .get('/drive/v2/files/123?myParam=123')
       .reply(200);
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res3 = await (d as any).files.get({fileId: '123'});
     // If the default param handling is broken, query might be undefined,
     // thus concealing the assertion message with some generic "cannot
@@ -189,7 +189,6 @@ describe('Options', () => {
     nock(rootUrl)
       .get('/drive/v3/files/woot')
       .reply(200);
-    const res2 = await drive.files.get({fileId}, {rootUrl});
     assert.strictEqual(
       res.config.url,
       'https://myrooturl.com/drive/v3/files/woot',

@@ -1,3 +1,6 @@
-node_modules/*
-samples/node_modules/*
-src/**/doc/*
+**/node_modules
+**/.coverage
+build/
+docs/
+protos/
+src/apis/

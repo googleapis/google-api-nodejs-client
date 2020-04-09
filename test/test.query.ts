@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, before, beforeEach, after} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {google, GoogleApis} from '../src';
@@ -82,7 +82,6 @@ describe('Query params', () => {
     nock(Utils.baseUrl)
       .get('/drive/v2/files/123')
       .reply(200);
-    const res2 = await remoteDrive.files.get({fileId: '123'});
     assert.strictEqual(Utils.getQs(res), null);
   });
 

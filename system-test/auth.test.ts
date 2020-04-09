@@ -14,6 +14,7 @@
 
 import {expect} from 'chai';
 import {google} from '../src';
+import {describe, it} from 'mocha';
 const compute = google.compute('v1');
 
 describe('google.auth', async () => {
@@ -32,6 +33,7 @@ describe('google.auth', async () => {
     });
 
     it('uses projectId from cached client', async () => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const authClient = await google.auth.getClient({
         projectId: 'foo-project-id',
       });

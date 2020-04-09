@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import * as cp from 'child_process';
+import {describe, it, afterEach} from 'mocha';
 import * as mv from 'mv';
 import {ncp} from 'ncp';
 import {promisify} from 'util';
@@ -23,6 +24,7 @@ const ncpp = promisify(ncp);
 const keep = !!process.env.GANC_KEEP_TEMPDIRS;
 const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
 const stagingPath = stagingDir.name;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require('../../package.json');
 const spawnOpts: cp.SpawnSyncOptions = {stdio: 'inherit', shell: true};
 

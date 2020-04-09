@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, beforeEach, before, after} from 'mocha';
 import {OAuth2Client} from 'google-auth-library';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
@@ -21,7 +21,7 @@ import {GoogleApis} from '../src';
 
 import {Utils} from './utils';
 
-const assertRejects = require('assert-rejects');
+import assertRejects = require('assert-rejects');
 
 const googleapis = new GoogleApis();
 
@@ -47,6 +47,7 @@ describe('JWT client', () => {
 
 describe('Compute client', () => {
   it('should create a computeclient', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const compute = new googleapis.auth.Compute();
   });
 });
@@ -156,6 +157,7 @@ describe('OAuth2 client', () => {
       REDIRECT_URI
     );
     oauth2client.credentials = {access_token: 'foo', refresh_token: ''};
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const scope = nock(Utils.baseUrl)
       .get('/blogger/v3/blogs/abc123/pages')
       .times(2)
@@ -166,6 +168,7 @@ describe('OAuth2 client', () => {
   });
 
   it('should refresh if access token is expired', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const scope = nock('https://oauth2.googleapis.com')
       .post('/token')
       .times(2)
@@ -264,6 +267,7 @@ describe('OAuth2 client', () => {
   });
 
   it('should refresh if have refresh token but no access token', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const scope = nock('https://oauth2.googleapis.com')
       .post('/token')
       .times(2)
@@ -316,6 +320,7 @@ describe('OAuth2 client', () => {
   describe('getToken()', () => {
     it('should return expiry_date', async () => {
       const now = new Date().getTime();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const scope = nock('https://oauth2.googleapis.com')
         .post('/token')
         .reply(200, {

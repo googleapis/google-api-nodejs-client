@@ -32,7 +32,7 @@ describe('customsearch samples', () => {
 
   it('should search', async () => {
     const scope = nock(baseUrl)
-      .get(`/customsearch/v1?cx=cx&q=q`)
+      .get('/customsearch/v1?cx=cx&q=q')
       .reply(200, {});
     const options = {cx: 'cx', q: 'q', auth: 'key'};
     const data = await samples.list.runSample(options);

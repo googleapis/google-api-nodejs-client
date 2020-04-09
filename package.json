@@ -1,7 +1,6 @@
 {
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "^5.6.1",
     "googleapis-common": "^3.2.0"
   },
   "files": [
@@ -19,11 +18,11 @@
     "docs": "node build/src/generator/docs",
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm link ../ && pwd && npm test",
-    "lint": "gts check && eslint 'samples/**/*.js'",
+    "lint": "gts check",
     "compile": "tsc -p .",
-    "build-tools": "tsc -p tsconfig.tools.json",
+    "build-tools": "tsc -p tsconfig.json",
     "clean": "gts clean",
-    "fix": "eslint --fix '**/*.js' && gts fix",
+    "fix": "gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
     "postgenerate": "npm run fix",
@@ -70,7 +69,9 @@
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "execa": "^4.0.0",
-    "gts": "^1.1.0",
+    "gaxios": "^3.0.2",
+    "google-auth-library": "^5.10.1",
+    "gts": "next",
     "js-green-licenses": "^1.0.0",
     "linkinator": "^2.0.0",
     "minimist": "^1.2.0",
@@ -86,6 +87,6 @@
     "rimraf": "^3.0.0",
     "server-destroy": "^1.0.1",
     "tmp": "^0.1.0",
-    "typescript": "3.6.4"
+    "typescript": "^3.8.3"
   }
 }

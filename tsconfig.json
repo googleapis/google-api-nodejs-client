@@ -1,6 +1,7 @@
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
+    "lib": ["es2018", "dom"],
     "rootDir": ".",
     "outDir": "build"
   },
@@ -13,6 +14,7 @@
   ],
   "exclude": [
     "node_modules",
-    "test/fixtures"
+    "test/fixtures",
+    "src/apis/**/*.ts"
   ]
 }

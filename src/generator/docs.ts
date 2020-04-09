@@ -18,6 +18,7 @@ import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import {promisify} from 'util';
 // there is a typings issue with p-queue and TypeScript 3.6.4.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {default: Q} = require('p-queue');
 
 const readdir = promisify(fs.readdir);

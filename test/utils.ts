@@ -17,11 +17,13 @@ import {GoogleApis} from '../src';
 
 export abstract class Utils {
   static getQs(res: GaxiosResponse) {
+    // eslint-disable-next-line node/no-deprecated-api
     const query = url.parse(res.config.url!).query;
     return query ? query.toString() : null;
   }
 
   static getPath(res: GaxiosResponse) {
+    // eslint-disable-next-line node/no-deprecated-api
     return url.parse(res.config.url!).path!;
   }
 
@@ -35,7 +37,7 @@ export abstract class Utils {
     );
   }
 
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static loadApi<T = any>(
     google: GoogleApis,
     name: string,
@@ -45,7 +47,7 @@ export abstract class Utils {
     return (google.discoverAPI(
       Utils.getDiscoveryUrl(name, version),
       options
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ) as any) as T;
   }
 

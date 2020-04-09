@@ -13,11 +13,11 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, before, beforeEach, after} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {AuthPlus} from '../src/googleapis';
-import {GoogleApis, google} from '../src';
+import {GoogleApis} from '../src';
 import {Utils} from './utils';
 
 async function testHeaders(drive: APIEndpoint) {
@@ -257,6 +257,7 @@ describe('Transporters', () => {
   });
 
   it('should return 304 responses as success', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const scope = nock(Utils.baseUrl)
       .get('/drive/v2/files')
       .reply(304);

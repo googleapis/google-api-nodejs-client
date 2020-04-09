@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, beforeEach, before, after} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {GoogleApis} from '../src';
@@ -112,7 +112,7 @@ describe('Clients', () => {
     nock.disableNetConnect();
     createNock('myParam=123');
     const res2 =
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       await (datastore2 as any).projects.lookup({
         projectId: 'test-project-id',
       });
@@ -133,7 +133,7 @@ describe('Clients', () => {
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
     const res = await datastore.projects.lookup(
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       {projectId: 'test-project-id', myParam: '456'} as any
     );
     // If the default param handling is broken, query might be undefined, thus
@@ -152,7 +152,7 @@ describe('Clients', () => {
     nock.disableNetConnect();
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res2 = await (datastore2 as any).projects.lookup({
       projectId: 'test-project-id',
       myParam: '456',
@@ -205,7 +205,7 @@ describe('Clients', () => {
 
     // No params given - only callback
     createNock('myParam=123');
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res3 = await (datastore2 as any).projects.lookup();
     // If the default param handling is broken, req or query might be
     // undefined, thus concealing the assertion message with some
