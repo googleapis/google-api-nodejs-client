@@ -428,7 +428,7 @@ export namespace androidpublisher_v3 {
      */
     defaultPrice?: Schema$Price;
     /**
-     * Grace period of the subscription, specified in ISO 8601 format. It will allow developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values = &quot;P3D&quot; (three days) and &quot;P7D&quot; (seven days)
+     * Grace period of the subscription, specified in ISO 8601 format. It will allow developers to give their subscribers a grace period when the payment for the new recurrence period is declined. Acceptable values = &quot;P3D&quot; (three days), &quot;P7D&quot; (seven days), &quot;P14D&quot; (fourteen days), and &quot;P30D&quot; (thirty days)
      */
     gracePeriod?: string | null;
     /**

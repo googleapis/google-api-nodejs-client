@@ -773,12 +773,12 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$UpdateDeviceMetadataRequest {
     /**
-     * Required. The metdata to attach to the device.
+     * Required. The metadata to attach to the device.
      */
     deviceMetadata?: Schema$DeviceMetadata;
   }
   /**
-   * Identifies metdata updates to one device.
+   * Identifies metadata updates to one device.
    */
   export interface Schema$UpdateMetadataArguments {
     /**

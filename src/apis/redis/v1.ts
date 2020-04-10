@@ -234,7 +234,7 @@ export namespace redis_v1 {
      */
     authorizedNetwork?: string | null;
     /**
-     * Optional. The connect mode of Redis instance. If not provided, default one will be used. Current default: DIRECT_PEERING.
+     * Optional. The network connect mode of the Redis instance. If not provided, the connect mode defaults to DIRECT_PEERING.
      */
     connectMode?: string | null;
     /**
@@ -278,11 +278,11 @@ export namespace redis_v1 {
      */
     port?: number | null;
     /**
-     * Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are:   Redis 3.2 and above:   *   maxmemory-policy  *   notify-keyspace-events   Redis 4.0 and above:   *   activedefrag  *   lfu-log-factor  *   lfu-decay-time
+     * Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are:   Redis version 3.2 and newer:   *   maxmemory-policy  *   notify-keyspace-events   Redis version 4.0 and newer:   *   activedefrag  *   lfu-decay-time  *   lfu-log-factor  *   maxmemory-gb   Redis version 5.0 and newer:   *   stream-node-max-bytes  *   stream-node-max-entries
      */
     redisConfigs?: {[key: string]: string} | null;
     /**
-     * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are:   *   `REDIS_4_0` for Redis 4.0 compatibility (default)  *   `REDIS_3_2` for Redis 3.2 compatibility
+     * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are:   *   `REDIS_3_2` for Redis 3.2 compatibility  *   `REDIS_4_0` for Redis 4.0 compatibility (default)  *   `REDIS_5_0` for Redis 5.0 compatibility
      */
     redisVersion?: string | null;
     /**
@@ -420,6 +420,15 @@ export namespace redis_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Request for UpgradeInstance.
+   */
+  export interface Schema$UpgradeInstanceRequest {
+    /**
+     * Required. Specifies the target version of Redis software to upgrade to.
+     */
+    redisVersion?: string | null;
   }
 
   export class Resource$Projects {
@@ -1220,6 +1229,81 @@ export namespace redis_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * redis.projects.locations.instances.upgrade
+     * @desc Upgrades Redis instance to the newer Redis version specified in the request.
+     * @alias redis.projects.locations.instances.upgrade
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     * @param {().UpgradeInstanceRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    upgrade(
+      params?: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgrade(callback: BodyResponseCallback<Schema$Operation>): void;
+    upgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Upgrade
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Upgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Upgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:upgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Create
@@ -1358,6 +1442,23 @@ export namespace redis_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Upgrade
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. Redis instance resource name using the form:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpgradeInstanceRequest;
   }
 
   export class Resource$Projects$Locations$Operations {

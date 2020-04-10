@@ -41,9 +41,21 @@ export namespace gamesConfiguration_v1configuration {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -61,19 +73,23 @@ export namespace gamesConfiguration_v1configuration {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
    * Google Play Game Services Publishing API
    *
-   * The Publishing API for Google Play Game Services.
+   * The Google Play Game Services Publishing API allows developers to configure their games in Game Services.
    *
    * @example
    * const {google} = require('googleapis');
@@ -108,11 +124,11 @@ export namespace gamesConfiguration_v1configuration {
   }
 
   /**
-   * This is a JSON template for an achievement configuration resource.
+   * An achievement configuration resource.
    */
   export interface Schema$AchievementConfiguration {
     /**
-     * The type of the achievement. Possible values are:   - &quot;STANDARD&quot; - Achievement is either locked or unlocked.  - &quot;INCREMENTAL&quot; - Achievement is incremental.
+     * The type of the achievement.
      */
     achievementType?: string | null;
     /**
@@ -124,11 +140,11 @@ export namespace gamesConfiguration_v1configuration {
      */
     id?: string | null;
     /**
-     * The initial state of the achievement. Possible values are:   - &quot;HIDDEN&quot; - Achievement is hidden.  - &quot;REVEALED&quot; - Achievement is revealed.  - &quot;UNLOCKED&quot; - Achievement is unlocked.
+     * The initial state of the achievement.
      */
     initialState?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfiguration.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#achievementConfiguration&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -136,7 +152,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     published?: Schema$AchievementConfigurationDetail;
     /**
-     * Steps to unlock. Only applicable to incremental achievements.
+     * Steps to unlock.  Only applicable to incremental achievements.
      */
     stepsToUnlock?: number | null;
     /**
@@ -145,7 +161,7 @@ export namespace gamesConfiguration_v1configuration {
     token?: string | null;
   }
   /**
-   * This is a JSON template for an achievement configuration detail.
+   * An achievement configuration detail.
    */
   export interface Schema$AchievementConfigurationDetail {
     /**
@@ -157,7 +173,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     iconUrl?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#achievementConfigurationDetail&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -174,7 +190,7 @@ export namespace gamesConfiguration_v1configuration {
     sortRank?: number | null;
   }
   /**
-   * This is a JSON template for a ListConfigurations response.
+   * A ListConfigurations response.
    */
   export interface Schema$AchievementConfigurationListResponse {
     /**
@@ -182,7 +198,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     items?: Schema$AchievementConfiguration[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementConfigurationListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#achievementConfigurationListResponse&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -191,7 +207,7 @@ export namespace gamesConfiguration_v1configuration {
     nextPageToken?: string | null;
   }
   /**
-   * This is a JSON template for a number affix resource.
+   * A number affix resource.
    */
   export interface Schema$GamesNumberAffixConfiguration {
     /**
@@ -220,7 +236,7 @@ export namespace gamesConfiguration_v1configuration {
     zero?: Schema$LocalizedStringBundle;
   }
   /**
-   * This is a JSON template for a number format resource.
+   * A number format resource.
    */
   export interface Schema$GamesNumberFormatConfiguration {
     /**
@@ -228,7 +244,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     currencyCode?: string | null;
     /**
-     * The formatting for the number. Possible values are:   - &quot;NUMERIC&quot; - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added. - &quot;TIME_DURATION&quot; - Numbers are formatted to hours, minutes and seconds. - &quot;CURRENCY&quot; - Numbers are formatted to currency according to locale.
+     * The formatting for the number.
      */
     numberFormatType?: string | null;
     /**
@@ -236,12 +252,12 @@ export namespace gamesConfiguration_v1configuration {
      */
     numDecimalPlaces?: number | null;
     /**
-     * An optional suffix for the NUMERIC format type. These strings follow the same  plural rules as all Android string resources.
+     * An optional suffix for the NUMERIC format type.  These strings follow the same &lt;a href=&quot;http://developer.android.com/guide/topics/resources/string-resource.html#Plurals&quot;&gt; plural rules&lt;/a&gt; as all Android string resources.
      */
     suffix?: Schema$GamesNumberAffixConfiguration;
   }
   /**
-   * This is a JSON template for an image configuration resource.
+   * An image configuration resource.
    */
   export interface Schema$ImageConfiguration {
     /**
@@ -249,7 +265,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     imageType?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#imageConfiguration.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#imageConfiguration&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -262,7 +278,7 @@ export namespace gamesConfiguration_v1configuration {
     url?: string | null;
   }
   /**
-   * This is a JSON template for an leaderboard configuration resource.
+   * An leaderboard configuration resource.
    */
   export interface Schema$LeaderboardConfiguration {
     /**
@@ -274,7 +290,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     id?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfiguration.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#leaderboardConfiguration&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -289,9 +305,6 @@ export namespace gamesConfiguration_v1configuration {
      * Minimum score that can be posted to this leaderboard.
      */
     scoreMin?: string | null;
-    /**
-     * The type of the leaderboard. Possible values are:   - &quot;LARGER_IS_BETTER&quot; - Larger scores posted are ranked higher.  - &quot;SMALLER_IS_BETTER&quot; - Smaller scores posted are ranked higher.
-     */
     scoreOrder?: string | null;
     /**
      * The token for this resource.
@@ -299,7 +312,7 @@ export namespace gamesConfiguration_v1configuration {
     token?: string | null;
   }
   /**
-   * This is a JSON template for a leaderboard configuration detail.
+   * A leaderboard configuration detail.
    */
   export interface Schema$LeaderboardConfigurationDetail {
     /**
@@ -307,7 +320,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     iconUrl?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#leaderboardConfigurationDetail&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -324,7 +337,7 @@ export namespace gamesConfiguration_v1configuration {
     sortRank?: number | null;
   }
   /**
-   * This is a JSON template for a ListConfigurations response.
+   * A ListConfigurations response.
    */
   export interface Schema$LeaderboardConfigurationListResponse {
     /**
@@ -332,7 +345,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     items?: Schema$LeaderboardConfiguration[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#leaderboardConfigurationListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#leaderboardConfigurationListResponse&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -341,11 +354,11 @@ export namespace gamesConfiguration_v1configuration {
     nextPageToken?: string | null;
   }
   /**
-   * This is a JSON template for a localized string resource.
+   * A localized string resource.
    */
   export interface Schema$LocalizedString {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#localizedString&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -358,11 +371,11 @@ export namespace gamesConfiguration_v1configuration {
     value?: string | null;
   }
   /**
-   * This is a JSON template for a localized string bundle resource.
+   * A localized string bundle resource.
    */
   export interface Schema$LocalizedStringBundle {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.
+     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#localizedStringBundle&lt;/code&gt;.
      */
     kind?: string | null;
     /**
@@ -610,7 +623,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
+     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified <code>maxResults</code>.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -692,84 +705,6 @@ export namespace gamesConfiguration_v1configuration {
         return createAPIRequest<Schema$AchievementConfigurationListResponse>(
           parameters
         );
-      }
-    }
-
-    /**
-     * gamesConfiguration.achievementConfigurations.patch
-     * @desc Update the metadata of the achievement configuration with the given ID. This method supports patch semantics.
-     * @alias gamesConfiguration.achievementConfigurations.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {().AchievementConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Achievementconfigurations$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AchievementConfiguration>;
-    patch(
-      params: Params$Resource$Achievementconfigurations$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
-      callback: BodyResponseCallback<Schema$AchievementConfiguration>
-    ): void;
-    patch(
-      params: Params$Resource$Achievementconfigurations$Patch,
-      callback: BodyResponseCallback<Schema$AchievementConfiguration>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$AchievementConfiguration>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Achievementconfigurations$Patch
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AchievementConfiguration>,
-      callback?: BodyResponseCallback<Schema$AchievementConfiguration>
-    ): void | GaxiosPromise<Schema$AchievementConfiguration> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Achievementconfigurations$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Achievementconfigurations$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/games/v1configuration/achievements/{achievementId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['achievementId'],
-        pathParams: ['achievementId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$AchievementConfiguration>(parameters);
       }
     }
 
@@ -905,30 +840,13 @@ export namespace gamesConfiguration_v1configuration {
      */
     applicationId?: string;
     /**
-     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
+     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified <code>maxResults</code>.
      */
     maxResults?: number;
     /**
      * The token returned by the previous request.
      */
     pageToken?: string;
-  }
-  export interface Params$Resource$Achievementconfigurations$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the achievement used by this method.
-     */
-    achievementId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AchievementConfiguration;
   }
   export interface Params$Resource$Achievementconfigurations$Update
     extends StandardParameters {
@@ -1313,7 +1231,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
+     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified <code>maxResults</code>.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1395,84 +1313,6 @@ export namespace gamesConfiguration_v1configuration {
         return createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
           parameters
         );
-      }
-    }
-
-    /**
-     * gamesConfiguration.leaderboardConfigurations.patch
-     * @desc Update the metadata of the leaderboard configuration with the given ID. This method supports patch semantics.
-     * @alias gamesConfiguration.leaderboardConfigurations.patch
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {().LeaderboardConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch(
-      params?: Params$Resource$Leaderboardconfigurations$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$LeaderboardConfiguration>;
-    patch(
-      params: Params$Resource$Leaderboardconfigurations$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
-      callback: BodyResponseCallback<Schema$LeaderboardConfiguration>
-    ): void;
-    patch(
-      params: Params$Resource$Leaderboardconfigurations$Patch,
-      callback: BodyResponseCallback<Schema$LeaderboardConfiguration>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$LeaderboardConfiguration>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Leaderboardconfigurations$Patch
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardConfiguration>,
-      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>
-    ): void | GaxiosPromise<Schema$LeaderboardConfiguration> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Leaderboardconfigurations$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Leaderboardconfigurations$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/games/v1configuration/leaderboards/{leaderboardId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['leaderboardId'],
-        pathParams: ['leaderboardId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
       }
     }
 
@@ -1608,30 +1448,13 @@ export namespace gamesConfiguration_v1configuration {
      */
     applicationId?: string;
     /**
-     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
+     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified <code>maxResults</code>.
      */
     maxResults?: number;
     /**
      * The token returned by the previous request.
      */
     pageToken?: string;
-  }
-  export interface Params$Resource$Leaderboardconfigurations$Patch
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * The ID of the leaderboard.
-     */
-    leaderboardId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$LeaderboardConfiguration;
   }
   export interface Params$Resource$Leaderboardconfigurations$Update
     extends StandardParameters {

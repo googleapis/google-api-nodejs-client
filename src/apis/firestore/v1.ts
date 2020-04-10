@@ -141,7 +141,7 @@ export namespace firestore_v1 {
      */
     newTransaction?: Schema$TransactionOptions;
     /**
-     * Reads documents as they were at the given time. This may not be older than 60 seconds.
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
      */
     readTime?: string | null;
     /**
@@ -1004,7 +1004,7 @@ export namespace firestore_v1 {
      */
     newTransaction?: Schema$TransactionOptions;
     /**
-     * Reads documents as they were at the given time. This may not be older than 60 seconds.
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
      */
     readTime?: string | null;
     /**
@@ -1244,6 +1244,10 @@ export namespace firestore_v1 {
      * The fields to update in this write.  This field can be set only when the operation is `update`. If the mask is not set for an `update` and the document exists, any existing data will be overwritten. If the mask is set and the document on the server has fields not covered by the mask, they are left unchanged. Fields referenced in the mask, but not present in the input document, are deleted from the document on the server. The field paths in this mask must not contain a reserved field name.
      */
     updateMask?: Schema$DocumentMask;
+    /**
+     * The transforms to perform after update.  This field can be set only when the operation is `update`. If present, this write is equivalent to performing `update` and `transform` to the same document atomically and in order.
+     */
+    updateTransforms?: Schema$FieldTransform[];
   }
   /**
    * The request for Firestore.Write.  The first request creates a stream, or resumes an existing one from a token.  When creating a new stream, the server replies with a response containing only an ID and a token, to use in the next request.  When resuming a stream, the server first streams any responses later than the given token, then a response containing only an up-to-date token, to use in the next request.
@@ -2659,7 +2663,7 @@ export namespace firestore_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.mask.fieldPaths The list of field paths in the mask. See Document.fields for a field path syntax reference.
      * @param {string} params.name Required. The resource name of the Document to get. In the format: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
-     * @param {string=} params.readTime Reads the version of the document at the given time. This may not be older than 60 seconds.
+     * @param {string=} params.readTime Reads the version of the document at the given time. This may not be older than 270 seconds.
      * @param {string=} params.transaction Reads the document in a transaction.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2735,7 +2739,7 @@ export namespace firestore_v1 {
      * @param {integer=} params.pageSize The maximum number of documents to return.
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous List request, if any.
      * @param {string} params.parent Required. The parent resource name. In the format: `projects/{project_id}/databases/{database_id}/documents` or `projects/{project_id}/databases/{database_id}/documents/{document_path}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
-     * @param {string=} params.readTime Reads documents as they were at the given time. This may not be older than 60 seconds.
+     * @param {string=} params.readTime Reads documents as they were at the given time. This may not be older than 270 seconds.
      * @param {boolean=} params.showMissing If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set.  Requests with `show_missing` may not specify `where` or `order_by`.
      * @param {string=} params.transaction Reads documents in a transaction.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3377,7 +3381,7 @@ export namespace firestore_v1 {
      */
     name?: string;
     /**
-     * Reads the version of the document at the given time. This may not be older than 60 seconds.
+     * Reads the version of the document at the given time. This may not be older than 270 seconds.
      */
     readTime?: string;
     /**
@@ -3417,7 +3421,7 @@ export namespace firestore_v1 {
      */
     parent?: string;
     /**
-     * Reads documents as they were at the given time. This may not be older than 60 seconds.
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
      */
     readTime?: string;
     /**

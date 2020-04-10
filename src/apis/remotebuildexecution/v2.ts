@@ -844,7 +844,7 @@ export namespace remotebuildexecution_v2 {
      */
     dockerPrep?: string | null;
     /**
-     * The timestamp when docker prepartion begins.
+     * The timestamp when docker preparation begins.
      */
     dockerPrepStartTime?: string | null;
     /**
@@ -1150,7 +1150,7 @@ export namespace remotebuildexecution_v2 {
      */
     workerConfig?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig;
     /**
-     * The desired number of workers in the worker pool. Must be a value between 0 and 1000.
+     * The desired number of workers in the worker pool. Must be a value between 0 and 15000.
      */
     workerCount?: string | null;
   }

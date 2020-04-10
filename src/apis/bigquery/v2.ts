@@ -416,15 +416,15 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Training options used by this training run. These options are mutable for subsequent training runs. Default values are explicitly stored for options not specified in the input query of the first training run. For subsequent training runs, any option not explicitly specified in the input query will be copied from the previous training run.
      */
     trainingOptions?: {
+      l1Reg?: number;
+      maxIteration?: string;
+      learnRate?: number;
+      minRelProgress?: number;
       l2Reg?: number;
       learnRateStrategy?: string;
       warmStart?: boolean;
       lineSearchInitLearnRate?: number;
       earlyStop?: boolean;
-      l1Reg?: number;
-      maxIteration?: string;
-      learnRate?: number;
-      minRelProgress?: number;
     } | null;
   }
   /**
@@ -617,12 +617,12 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
-      labels?: {[key: string]: string};
-      datasetReference?: Schema$DatasetReference;
       id?: string;
       location?: string;
       friendlyName?: string;
       kind?: string;
+      labels?: {[key: string]: string};
+      datasetReference?: Schema$DatasetReference;
     }> | null;
     /**
      * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -727,6 +727,10 @@ export namespace bigquery_v2 {
      * Populated for multi-class classification/classifier models.
      */
     multiClassClassificationMetrics?: Schema$MultiClassClassificationMetrics;
+    /**
+     * [Alpha] Populated for implicit feedback type matrix factorization models.
+     */
+    rankingMetrics?: Schema$RankingMetrics;
     /**
      * Populated for regression models and explicit feedback type matrix factorization models.
      */
@@ -1125,11 +1129,11 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JobConfigurationExtract {
     /**
-     * [Optional] The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE. The default value is NONE. DEFLATE and SNAPPY are only supported for Avro.
+     * [Optional] The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE. The default value is NONE. DEFLATE and SNAPPY are only supported for Avro. Not applicable when extracting models.
      */
     compression?: string | null;
     /**
-     * [Optional] The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON and AVRO. The default value is CSV. Tables with nested or repeated fields cannot be exported as CSV.
+     * [Optional] The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON or AVRO for tables and ML_TF_SAVED_MODEL or ML_XGBOOST_BOOSTER for models. The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV. The default value for models is ML_TF_SAVED_MODEL.
      */
     destinationFormat?: string | null;
     /**
@@ -1141,11 +1145,11 @@ export namespace bigquery_v2 {
      */
     destinationUris?: string[] | null;
     /**
-     * [Optional] Delimiter to use between fields in the exported data. Default is &#39;,&#39;
+     * [Optional] Delimiter to use between fields in the exported data. Default is &#39;,&#39;. Not applicable when extracting models.
      */
     fieldDelimiter?: string | null;
     /**
-     * [Optional] Whether to print out a header row in the results. Default is true.
+     * [Optional] Whether to print out a header row in the results. Default is true. Not applicable when extracting models.
      */
     printHeader?: boolean | null;
     /**
@@ -1157,7 +1161,7 @@ export namespace bigquery_v2 {
      */
     sourceTable?: Schema$TableReference;
     /**
-     * [Optional] If destinationFormat is set to &quot;AVRO&quot;, this flag indicates whether to enable extracting applicable column types (such as TIMESTAMP) to their corresponding AVRO logical types (timestamp-micros), instead of only using their raw types (avro-long).
+     * [Optional] If destinationFormat is set to &quot;AVRO&quot;, this flag indicates whether to enable extracting applicable column types (such as TIMESTAMP) to their corresponding AVRO logical types (timestamp-micros), instead of only using their raw types (avro-long). Not applicable when extracting models.
      */
     useAvroLogicalTypes?: boolean | null;
   }
@@ -1285,6 +1289,10 @@ export namespace bigquery_v2 {
      */
     clustering?: Schema$Clustering;
     /**
+     * Connection properties.
+     */
+    connectionProperties?: any[] | null;
+    /**
      * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
@@ -1400,15 +1408,15 @@ export namespace bigquery_v2 {
      * List of jobs that were requested.
      */
     jobs?: Array<{
+      jobReference?: Schema$JobReference;
+      status?: Schema$JobStatus;
+      state?: string;
       statistics?: Schema$JobStatistics;
       id?: string;
       configuration?: Schema$JobConfiguration;
       user_email?: string;
-      kind?: string;
       errorResult?: Schema$ErrorProto;
-      jobReference?: Schema$JobReference;
-      status?: Schema$JobStatus;
-      state?: string;
+      kind?: string;
     }> | null;
     /**
      * The resource type of the response.
@@ -1479,6 +1487,10 @@ export namespace bigquery_v2 {
      */
     reservation_id?: string | null;
     /**
+     * [Output-only] [Preview] Statistics for row-level security. Present only for query and extract jobs.
+     */
+    rowLevelSecurityStatistics?: Schema$RowLevelSecurityStatistics;
+    /**
      * [Output-only] Statistics for a child job of a script.
      */
     scriptStatistics?: Schema$ScriptStatistics;
@@ -1505,6 +1517,10 @@ export namespace bigquery_v2 {
      */
     cacheHit?: boolean | null;
     /**
+     * [Output-only] [Preview] The number of row access policies affected by a DDL statement. Present only for DROP ALL ROW ACCESS POLICIES queries.
+     */
+    ddlAffectedRowAccessPolicyCount?: string | null;
+    /**
      * The DDL operation performed, possibly dependent on the pre-existence of the DDL target. Possible values (new values might be added in the future): &quot;CREATE&quot;: The query created the DDL target. &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE IF NOT EXISTS while the table already exists, or the query is DROP TABLE IF EXISTS while the table does not exist. &quot;REPLACE&quot;: The query replaced the DDL target. Example case: the query is CREATE OR REPLACE TABLE, and the table already exists. &quot;DROP&quot;: The query deleted the DDL target.
      */
     ddlOperationPerformed?: string | null;
@@ -1513,7 +1529,11 @@ export namespace bigquery_v2 {
      */
     ddlTargetRoutine?: Schema$RoutineReference;
     /**
-     * The DDL target table. Present only for CREATE/DROP TABLE/VIEW queries.
+     * [Output-only] [Preview] The DDL target row access policy. Present only for CREATE/DROP ROW ACCESS POLICY queries.
+     */
+    ddlTargetRowAccessPolicy?: Schema$RowAccessPolicyReference;
+    /**
+     * [Output-only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries.
      */
     ddlTargetTable?: Schema$TableReference;
     /**
@@ -1868,6 +1888,10 @@ export namespace bigquery_v2 {
   }
   export interface Schema$QueryRequest {
     /**
+     * Connection properties.
+     */
+    connectionProperties?: any[] | null;
+    /**
      * [Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format &#39;datasetId.tableId&#39;.
      */
     defaultDataset?: Schema$DatasetReference;
@@ -1992,7 +2016,28 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {end?: string; interval?: string; start?: string} | null;
+    range?: {interval?: string; start?: string; end?: string} | null;
+  }
+  /**
+   * Evaluation metrics used by weighted-ALS models specified by feedback_type=implicit.
+   */
+  export interface Schema$RankingMetrics {
+    /**
+     * Determines the goodness of a ranking by computing the percentile rank from the predicted confidence and dividing it by the original rank.
+     */
+    averageRank?: number | null;
+    /**
+     * Calculates a precision per user for all the items by ranking them and then averages all the precisions across all the users.
+     */
+    meanAveragePrecision?: number | null;
+    /**
+     * Similar to the mean squared error computed in regression and explicit recommendation models except instead of computing the rating directly, the output from evaluate is computed against a preference which is 1 or 0 depending on if the rating exists or not.
+     */
+    meanSquaredError?: number | null;
+    /**
+     * A metric to determine the goodness of a ranking calculated from the predicted confidence by comparing it to an ideal rank measured by the original ratings.
+     */
+    normalizedDiscountedCumulativeGain?: number | null;
   }
   /**
    * Evaluation metrics for regression and explicit feedback type matrix factorization models.
@@ -2094,6 +2139,30 @@ export namespace bigquery_v2 {
      * Info describing predicted label distribution.
      */
     entries?: Schema$Entry[];
+  }
+  export interface Schema$RowAccessPolicyReference {
+    /**
+     * [Required] The ID of the dataset containing this row access policy.
+     */
+    datasetId?: string | null;
+    /**
+     * [Required] The ID of the row access policy. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 256 characters.
+     */
+    policyId?: string | null;
+    /**
+     * [Required] The ID of the project containing this row access policy.
+     */
+    projectId?: string | null;
+    /**
+     * [Required] The ID of the table containing this row access policy.
+     */
+    tableId?: string | null;
+  }
+  export interface Schema$RowLevelSecurityStatistics {
+    /**
+     * [Output-only] [Preview] Whether any accessed data was protected by row access policies.
+     */
+    rowLevelSecurityApplied?: boolean | null;
   }
   export interface Schema$ScriptStackFrame {
     /**
@@ -2393,6 +2462,11 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
+      id?: string;
+      tableReference?: Schema$TableReference;
+      friendlyName?: string;
+      timePartitioning?: Schema$TimePartitioning;
+      labels?: {[key: string]: string};
       clustering?: Schema$Clustering;
       type?: string;
       expirationTime?: string;
@@ -2400,11 +2474,6 @@ export namespace bigquery_v2 {
       view?: {useLegacySql?: boolean};
       creationTime?: string;
       rangePartitioning?: Schema$RangePartitioning;
-      id?: string;
-      tableReference?: Schema$TableReference;
-      friendlyName?: string;
-      timePartitioning?: Schema$TimePartitioning;
-      labels?: {[key: string]: string};
     }> | null;
     /**
      * The total number of tables in the dataset.
@@ -2454,6 +2523,10 @@ export namespace bigquery_v2 {
   }
   export interface Schema$TrainingOptions {
     /**
+     * Batch size for dnn models.
+     */
+    batchSize?: string | null;
+    /**
      * The column to split data with. This column won&#39;t be used as a feature. 1. When data_split_method is CUSTOM, the corresponding column should be boolean. The rows with true value tag are eval data, and the false are training data. 2. When data_split_method is SEQ, the first DATA_SPLIT_EVAL_FRACTION rows (from smallest to largest) in the corresponding column are used as training data, and the rest are eval data. It respects the order in Orderable data types: https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties
      */
     dataSplitColumn?: string | null;
@@ -2470,9 +2543,21 @@ export namespace bigquery_v2 {
      */
     distanceType?: string | null;
     /**
+     * Dropout probability for dnn models.
+     */
+    dropout?: number | null;
+    /**
      * Whether to stop early when the loss doesn&#39;t improve significantly any more (compared to min_relative_progress). Used only for iterative training algorithms.
      */
     earlyStop?: boolean | null;
+    /**
+     * Feedback type that specifies which algorithm to run for matrix factorization.
+     */
+    feedbackType?: string | null;
+    /**
+     * Hidden units for dnn models.
+     */
+    hiddenUnits?: string[] | null;
     /**
      * Specifies the initial learning rate for the line search learn rate strategy.
      */
@@ -2481,6 +2566,10 @@ export namespace bigquery_v2 {
      * Name of input label columns in training data.
      */
     inputLabelColumns?: string[] | null;
+    /**
+     * Item column specified for matrix factorization models.
+     */
+    itemColumn?: string | null;
     /**
      * The column used to provide the initial centroids for kmeans algorithm when kmeans_initialization_method is CUSTOM.
      */
@@ -2518,9 +2607,17 @@ export namespace bigquery_v2 {
      */
     maxIterations?: string | null;
     /**
+     * Maximum depth of a tree for boosted tree models.
+     */
+    maxTreeDepth?: string | null;
+    /**
      * When early_stop is true, stops training when accuracy improvement is less than &#39;min_relative_progress&#39;. Used only for iterative training algorithms.
      */
     minRelativeProgress?: number | null;
+    /**
+     * Minimum split loss for boosted tree models.
+     */
+    minSplitLoss?: number | null;
     /**
      * [Beta] Google Cloud Storage URI from which the model was imported. Only applicable for imported models.
      */
@@ -2530,9 +2627,25 @@ export namespace bigquery_v2 {
      */
     numClusters?: string | null;
     /**
+     * Num factors specified for matrix factorization models.
+     */
+    numFactors?: string | null;
+    /**
      * Optimization strategy for training linear regression models.
      */
     optimizationStrategy?: string | null;
+    /**
+     * Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.
+     */
+    subsample?: number | null;
+    /**
+     * User column specified for matrix factorization models.
+     */
+    userColumn?: string | null;
+    /**
+     * Hyperparameter for matrix factoration when implicit feedback type is specified.
+     */
+    walsAlpha?: number | null;
     /**
      * Whether to train a model from the last checkpoint.
      */

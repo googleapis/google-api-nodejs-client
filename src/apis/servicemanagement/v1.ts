@@ -224,7 +224,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$AuthProvider {
     /**
-     * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
+     * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, JWTs with audiences:   - &quot;https://[service.name]/[google.protobuf.Api.name]&quot;   - &quot;https://[service.name]/&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will accept JWTs with the following audiences:   -   https://library-example.googleapis.com/google.example.library.v1.LibraryService   - https://library-example.googleapis.com/  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
      */
     audiences?: string | null;
     /**
@@ -303,6 +303,10 @@ export namespace servicemanagement_v1 {
      * The protocol used for sending a request to the backend. The supported values are &quot;http/1.1&quot; and &quot;h2&quot;.  The default value is inferred from the scheme in the address field:     SCHEME        PROTOCOL    http://       http/1.1    https://      http/1.1    grpc://       h2    grpcs://      h2  For secure HTTP backends (https://) that support HTTP/2, set this field to &quot;h2&quot; for improved performance.  Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends.  See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
      */
     protocol?: string | null;
+    /**
+     * Unimplemented. Do not use.  The new name the selected proto elements should be renamed to.  The package, the service and the method can all be renamed. The backend server should implement the renamed proto. However, clients should call the original method, and ESF routes the traffic to the renamed method.  HTTP clients should call the URL mapped to the original method. gRPC and Stubby clients should call the original method with package name.  For legacy reasons, ESF allows Stubby clients to call with the short name (without the package name). However, for API Versioning(or multiple methods mapped to the same short name), all Stubby clients must call the method&#39;s full name with the package name, otherwise the first one (selector) wins.  If this `rename_to` is specified with a trailing `*`, the `selector` must be specified with a trailing `*` as well. The all element short names matched by the `*` in the selector will be kept in the `rename_to`.  For example,     rename_rules:     - selector: |-         google.example.library.v1.*       rename_to: google.example.library.*  The selector matches `google.example.library.v1.Library.CreateShelf` and `google.example.library.v1.Library.CreateBook`, they will be renamed to `google.example.library.Library.CreateShelf` and `google.example.library.Library.CreateBook`. It essentially renames the proto package name section of the matched proto service and methods.
+     */
+    renameTo?: string | null;
     /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
@@ -1399,7 +1403,7 @@ export namespace servicemanagement_v1 {
      */
     billing?: Schema$Billing;
     /**
-     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
+     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions.  The latest config version is `3`.
      */
     configVersion?: number | null;
     /**

@@ -174,7 +174,7 @@ export namespace recommender_v1beta1 {
      */
     lastRefreshTime?: string | null;
     /**
-     * Name of the insight.  * A project insight is represented as   projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[insight_id]
+     * Name of the insight.
      */
     name?: string | null;
     /**
@@ -269,7 +269,7 @@ export namespace recommender_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest {
     /**
-     * Fingerprint of the Recommendation. Provides optimistic locking.
+     * Required. Fingerprint of the Recommendation. Provides optimistic locking.
      */
     etag?: string | null;
     /**

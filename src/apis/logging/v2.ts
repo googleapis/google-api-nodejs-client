@@ -89,7 +89,7 @@ export namespace logging_v2 {
   /**
    * Cloud Logging API
    *
-   * Writes log entries and manages your Cloud Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the &lt;a href=https://cloud.google.com/logging/docs&gt;Cloud Logging documentation&lt;/a&gt;.
+   * Writes log entries and manages your Cloud Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the documentation at https://cloud.google.com/logging/docs.
    *
    * @example
    * const {google} = require('googleapis');
@@ -523,7 +523,7 @@ export namespace logging_v2 {
      */
     textPayload?: string | null;
     /**
-     * Optional. The time the event described by the log entry occurred. This time is used to compute the log entry&#39;s age and to enforce the logs retention period. If this field is omitted in a new log entry, then Logging assigns it the current time. Timestamps have nanosecond accuracy, but trailing zeros in the fractional seconds might be omitted when the timestamp is displayed.Incoming log entries should have timestamps that are no more than the logs retention period in the past, and no more than 24 hours in the future. Log entries outside those time boundaries will not be available when calling entries.list, but those log entries can still be exported with LogSinks.
+     * Optional. The time the event described by the log entry occurred. This time is used to compute the log entry&#39;s age and to enforce the logs retention period. If this field is omitted in a new log entry, then Logging assigns it the current time. Timestamps have nanosecond accuracy, but trailing zeros in the fractional seconds might be omitted when the timestamp is displayed.Incoming log entries must have timestamps that don&#39;t exceed the logs retention period in the past, and that don&#39;t exceed 24 hours in the future. Log entries outside those time boundaries aren&#39;t ingested by Logging.
      */
     timestamp?: string | null;
     /**

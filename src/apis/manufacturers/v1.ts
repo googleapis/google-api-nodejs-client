@@ -226,7 +226,7 @@ export namespace manufacturers_v1 {
     /**
      * Rich product content. For more information, see https://support.google.com/manufacturers/answer/9389865
      */
-    richContent?: string[] | null;
+    richProductContent?: string[] | null;
     /**
      * The scent of the product. For more information, see  https://support.google.com/manufacturers/answer/6124116#scent.
      */

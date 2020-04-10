@@ -752,6 +752,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.asynchronous If true, tries to run the query asynchronously. Only applicable when the frequency is ONE_TIME.
      * @param {().Query} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1042,6 +1043,7 @@ export namespace doubleclickbidmanager_v1_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.asynchronous If true, tries to run the query asynchronously.
      * @param {string} params.queryId Query ID to run.
      * @param {().RunQueryRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1115,6 +1117,11 @@ export namespace doubleclickbidmanager_v1_1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
+     * If true, tries to run the query asynchronously. Only applicable when the frequency is ONE_TIME.
+     */
+    asynchronous?: boolean;
+
+    /**
      * Request body metadata
      */
     requestBody?: Schema$Query;
@@ -1164,6 +1171,10 @@ export namespace doubleclickbidmanager_v1_1 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * If true, tries to run the query asynchronously.
+     */
+    asynchronous?: boolean;
     /**
      * Query ID to run.
      */

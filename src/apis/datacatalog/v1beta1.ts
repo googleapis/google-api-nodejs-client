@@ -239,7 +239,7 @@ export namespace datacatalog_v1beta1 {
     type?: string | null;
   }
   /**
-   * Entry Metadata.  A Data Catalog Entry resource represents another resource in Google Cloud Platform (such as a BigQuery dataset or a Cloud Pub/Sub topic), or outside of Google Cloud Platform. Clients can use the `linked_resource` field in the Entry resource to refer to the original resource ID of the source system.  An Entry resource contains resource details, such as its schema. An Entry can also be used to attach flexible metadata, such as a Tag.
+   * Entry Metadata.  A Data Catalog Entry resource represents another resource in Google Cloud Platform (such as a BigQuery dataset or a Pub/Sub topic), or outside of Google Cloud Platform. Clients can use the `linked_resource` field in the Entry resource to refer to the original resource ID of the source system.  An Entry resource contains resource details, such as its schema. An Entry can also be used to attach flexible metadata, such as a Tag.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1Entry {
     /**
@@ -263,7 +263,7 @@ export namespace datacatalog_v1beta1 {
      */
     gcsFilesetSpec?: Schema$GoogleCloudDatacatalogV1beta1GcsFilesetSpec;
     /**
-     * Output only. This field indicates the entry&#39;s source system that Data Catalog integrates with, such as BigQuery or Cloud Pub/Sub.
+     * Output only. This field indicates the entry&#39;s source system that Data Catalog integrates with, such as BigQuery or Pub/Sub.
      */
     integratedSystem?: string | null;
     /**
@@ -1354,7 +1354,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.getIamPolicy
-     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Cloud Pub/Sub and any external Google Cloud Platform resources synced to Cloud Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
      * @alias datacatalog.projects.locations.entryGroups.getIamPolicy
      * @memberOf! ()
      *
@@ -1619,7 +1619,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.setIamPolicy
-     * @desc Sets the access control policy for a resource. Replaces any existing policy. Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Cloud Pub/Sub and any external Google Cloud Platform resources synced to Cloud Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag     templates.   - `datacatalog.entries.setIamPolicy` to set policies on entries.   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+     * @desc Sets the access control policy for a resource. Replaces any existing policy. Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag     templates.   - `datacatalog.entries.setIamPolicy` to set policies on entries.   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
      * @alias datacatalog.projects.locations.entryGroups.setIamPolicy
      * @memberOf! ()
      *
@@ -1692,7 +1692,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.testIamPermissions
-     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Cloud Pub/Sub and any external Google Cloud Platform resources synced to Cloud Data Catalog.  A caller is not required to have Google IAM permission to make this request.
+     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  A caller is not required to have Google IAM permission to make this request.
      * @alias datacatalog.projects.locations.entryGroups.testIamPermissions
      * @memberOf! ()
      *
@@ -2165,7 +2165,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.getIamPolicy
-     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Cloud Pub/Sub and any external Google Cloud Platform resources synced to Cloud Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
      * @alias datacatalog.projects.locations.entryGroups.entries.getIamPolicy
      * @memberOf! ()
      *
@@ -2421,7 +2421,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.testIamPermissions
-     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Cloud Pub/Sub and any external Google Cloud Platform resources synced to Cloud Data Catalog.  A caller is not required to have Google IAM permission to make this request.
+     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  A caller is not required to have Google IAM permission to make this request.
      * @alias datacatalog.projects.locations.entryGroups.entries.testIamPermissions
      * @memberOf! ()
      *
@@ -3718,7 +3718,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.getIamPolicy
-     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Cloud Pub/Sub and any external Google Cloud Platform resources synced to Cloud Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+     * @desc Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag     templates.   - `datacatalog.entries.getIamPolicy` to get policies on entries.   - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
      * @alias datacatalog.projects.locations.tagTemplates.getIamPolicy
      * @memberOf! ()
      *
@@ -3881,7 +3881,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.setIamPolicy
-     * @desc Sets the access control policy for a resource. Replaces any existing policy. Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Cloud Pub/Sub and any external Google Cloud Platform resources synced to Cloud Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag     templates.   - `datacatalog.entries.setIamPolicy` to set policies on entries.   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+     * @desc Sets the access control policy for a resource. Replaces any existing policy. Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  Callers must have following Google IAM permission   - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag     templates.   - `datacatalog.entries.setIamPolicy` to set policies on entries.   - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
      * @alias datacatalog.projects.locations.tagTemplates.setIamPolicy
      * @memberOf! ()
      *
@@ -3954,7 +3954,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.testIamPermissions
-     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Cloud Pub/Sub and any external Google Cloud Platform resources synced to Cloud Data Catalog.  A caller is not required to have Google IAM permission to make this request.
+     * @desc Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error).  Supported resources are:   - Tag templates.   - Entries.   - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog.  A caller is not required to have Google IAM permission to make this request.
      * @alias datacatalog.projects.locations.tagTemplates.testIamPermissions
      * @memberOf! ()
      *

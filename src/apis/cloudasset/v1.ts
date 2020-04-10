@@ -120,33 +120,33 @@ export namespace cloudasset_v1 {
   }
 
   /**
-   * Cloud asset. This includes all Google Cloud Platform resources, Cloud IAM policies, and other non-GCP assets.
+   * An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a Cloud IAM policy.
    */
   export interface Schema$Asset {
     accessLevel?: Schema$GoogleIdentityAccesscontextmanagerV1AccessLevel;
     accessPolicy?: Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy;
     /**
-     * Asset&#39;s ancestry path in Cloud Resource Manager (CRM) hierarchy, represented as a list of relative resource names. Ancestry path starts with the closest CRM ancestor and ends at root. If the asset is a CRM project/folder/organization, this starts from the asset itself.  Example: [&quot;projects/123456789&quot;, &quot;folders/5432&quot;, &quot;organizations/1234&quot;]
+     * The ancestry path of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the asset is a project, folder, or organization, the ancestry path starts from the asset itself.  For example: `[&quot;projects/123456789&quot;, &quot;folders/5432&quot;, &quot;organizations/1234&quot;]`
      */
     ancestors?: string[] | null;
     /**
-     * Type of the asset. Example: &quot;compute.googleapis.com/Disk&quot;.
+     * The type of the asset. For example: &quot;compute.googleapis.com/Disk&quot;  See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
      */
     assetType?: string | null;
     /**
-     * Representation of the actual Cloud IAM policy set on a cloud resource. For each resource, there must be at most one Cloud IAM policy set on it.
+     * A representation of the Cloud IAM policy set on a Google Cloud resource. There can be a maximum of one Cloud IAM policy set on any given resource. In addition, Cloud IAM policies inherit their granted access scope from any policies set on parent resources in the resource hierarchy. Therefore, the effectively policy is the union of both the policy set on this resource and each policy set on all of the resource&#39;s ancestry resource levels in the hierarchy. See [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for more information.
      */
     iamPolicy?: Schema$Policy;
     /**
-     * The full name of the asset. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
+     * The full name of the asset. For example: &quot;//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1&quot;  See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
      */
     name?: string | null;
     /**
-     * Representation of the Cloud Organization Policy set on an asset. For each asset, there could be multiple Organization policies with different constraints.
+     * A representation of an [organization policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy). There can be more than one organization policy with different constraints set on a given resource.
      */
     orgPolicy?: Schema$GoogleCloudOrgpolicyV1Policy[];
     /**
-     * Representation of the resource.
+     * A representation of the resource.
      */
     resource?: Schema$Resource;
     servicePerimeter?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter;
@@ -191,11 +191,11 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$BigQueryDestination {
     /**
-     * Required. The BigQuery dataset in format &quot;projects/projectId/datasets/datasetId&quot;, to which the snapshot result should be exported. If this dataset does not exist, the export call returns an error.
+     * Required. The BigQuery dataset in format &quot;projects/projectId/datasets/datasetId&quot;, to which the snapshot result should be exported. If this dataset does not exist, the export call returns an INVALID_ARGUMENT error.
      */
     dataset?: string | null;
     /**
-     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is not set and the destination table already exists, the export call returns an error.
+     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is `FALSE` or unset and the destination table already exists, the export call returns an INVALID_ARGUMEMT error.
      */
     force?: boolean | null;
     /**
@@ -254,7 +254,7 @@ export namespace cloudasset_v1 {
      */
     outputConfig?: Schema$OutputConfig;
     /**
-     * Timestamp to take an asset snapshot. This can only be set to a timestamp between 2018-10-02 UTC (inclusive) and the current time. If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
      */
     readTime?: string | null;
   }
@@ -280,7 +280,7 @@ export namespace cloudasset_v1 {
     title?: string | null;
   }
   /**
-   * An asset feed used to export asset updates to a destinations. An asset feed filter controls what updates are exported. The asset feed must be created within a project, organization, or folder. Supported destinations are: Cloud Pub/Sub topics.
+   * An asset feed used to export asset updates to a destinations. An asset feed filter controls what updates are exported. The asset feed must be created within a project, organization, or folder. Supported destinations are: Pub/Sub topics.
    */
   export interface Schema$Feed {
     /**
@@ -309,7 +309,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$FeedOutputConfig {
     /**
-     * Destination on Cloud Pubsub.
+     * Destination on Pub/Sub.
      */
     pubsubDestination?: Schema$PubsubDestination;
   }
@@ -406,10 +406,6 @@ export namespace cloudasset_v1 {
      */
     basic?: Schema$GoogleIdentityAccesscontextmanagerV1BasicLevel;
     /**
-     * Output only. Time the `AccessLevel` was created in UTC.
-     */
-    createTime?: string | null;
-    /**
      * A `CustomLevel` written in the Common Expression Language.
      */
     custom?: Schema$GoogleIdentityAccesscontextmanagerV1CustomLevel;
@@ -418,26 +414,22 @@ export namespace cloudasset_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length of the `short_name` component is 50 characters.
      */
     name?: string | null;
     /**
      * Human readable title. Must be unique within the Policy.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `AccessLevel` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
    * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use Google Cloud services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy {
     /**
-     * Output only. Time the `AccessPolicy` was created in UTC.
+     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Polices will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
      */
-    createTime?: string | null;
+    etag?: string | null;
     /**
      * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      */
@@ -450,10 +442,6 @@ export namespace cloudasset_v1 {
      * Required. Human readable title. Does not affect behavior.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `AccessPolicy` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
@@ -557,10 +545,6 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter {
     /**
-     * Output only. Time the `ServicePerimeter` was created in UTC.
-     */
-    createTime?: string | null;
-    /**
      * Description of the `ServicePerimeter` and its use. Does not affect behavior.
      */
     description?: string | null;
@@ -585,10 +569,6 @@ export namespace cloudasset_v1 {
      */
     title?: string | null;
     /**
-     * Output only. Time the `ServicePerimeter` was updated in UTC.
-     */
-    updateTime?: string | null;
-    /**
      * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists  for all Service Perimeters, and that spec is identical to the status for those Service Perimeters. When this flag is set, it inhibits the generation of the implicit spec, thereby allowing the user to explicitly provide a configuration (&quot;spec&quot;) to use in a dry-run version of the Service Perimeter. This allows the user to test changes to the enforced config (&quot;status&quot;) without actually enforcing them. This testing is done through analyzing the differences between currently enforced and suggested restrictions. use_explicit_dry_run_spec must bet set to True if any of the fields in the spec are set to non-default values.
      */
     useExplicitDryRunSpec?: boolean | null;
@@ -610,7 +590,7 @@ export namespace cloudasset_v1 {
      */
     restrictedServices?: string[] | null;
     /**
-     * Configuration for within Perimeter allowed APIs.
+     * Configuration for APIs allowed within Perimeter.
      */
     vpcAccessibleServices?: Schema$GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices;
   }
@@ -693,40 +673,40 @@ export namespace cloudasset_v1 {
     version?: number | null;
   }
   /**
-   * A Cloud Pubsub destination.
+   * A Pub/Sub destination.
    */
   export interface Schema$PubsubDestination {
     /**
-     * The name of the Cloud Pub/Sub topic to publish to. For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
+     * The name of the Pub/Sub topic to publish to. For example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      */
     topic?: string | null;
   }
   /**
-   * Representation of a cloud resource.
+   * A representation of a Google Cloud resource.
    */
   export interface Schema$Resource {
     /**
-     * The content of the resource, in which some sensitive fields are scrubbed away and may not be present.
+     * The content of the resource, in which some sensitive fields are removed and may not be present.
      */
     data?: {[key: string]: any} | null;
     /**
-     * The URL of the discovery document containing the resource&#39;s JSON schema. For example: `&quot;https://www.googleapis.com/discovery/v1/apis/compute/v1/rest&quot;`. It will be left unspecified for resources without a discovery-based API, such as Cloud Bigtable.
+     * The URL of the discovery document containing the resource&#39;s JSON schema. For example: &quot;https://www.googleapis.com/discovery/v1/apis/compute/v1/rest&quot;  This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
      */
     discoveryDocumentUri?: string | null;
     /**
-     * The JSON schema name listed in the discovery document. Example: &quot;Project&quot;. It will be left unspecified for resources (such as Cloud Bigtable) without a discovery-based API.
+     * The JSON schema name listed in the discovery document. For example: &quot;Project&quot;  This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
      */
     discoveryName?: string | null;
     /**
-     * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.  For GCP assets, it is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). For example: `&quot;//cloudresourcemanager.googleapis.com/projects/my_project_123&quot;`.  For third-party assets, it is up to the users to define.
+     * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.  For Google Cloud assets, this value is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). For example: &quot;//cloudresourcemanager.googleapis.com/projects/my_project_123&quot;  For third-party assets, this field may be set differently.
      */
     parent?: string | null;
     /**
-     * The REST URL for accessing the resource. An HTTP GET operation using this URL returns the resource itself. Example: `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123`. It will be left unspecified for resources without a REST API.
+     * The REST URL for accessing the resource. An HTTP `GET` request using this URL returns the resource itself. For example: &quot;https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123&quot;  This value is unspecified for resources without a REST API.
      */
     resourceUrl?: string | null;
     /**
-     * The API version. Example: &quot;v1&quot;.
+     * The API version. For example: &quot;v1&quot;
      */
     version?: string | null;
   }
@@ -748,15 +728,15 @@ export namespace cloudasset_v1 {
     message?: string | null;
   }
   /**
-   * Temporal asset. In addition to the asset, the temporal asset includes the status of the asset and valid from and to time of it.
+   * An asset in Google Cloud and its temporal metadata, including the time window when it was observed and its status during that window.
    */
   export interface Schema$TemporalAsset {
     /**
-     * Asset.
+     * An asset in Google Cloud.
      */
     asset?: Schema$Asset;
     /**
-     * If the asset is deleted or not.
+     * Whether the asset has been deleted or not.
      */
     deleted?: boolean | null;
     /**
@@ -765,11 +745,11 @@ export namespace cloudasset_v1 {
     window?: Schema$TimeWindow;
   }
   /**
-   * A time window of (start_time, end_time].
+   * A time window specified by its &quot;start_time&quot; and &quot;end_time&quot;.
    */
   export interface Schema$TimeWindow {
     /**
-     * End time of the time window (inclusive). Current timestamp if not specified.
+     * End time of the time window (inclusive). If not specified, the current timestamp is used instead.
      */
     endTime?: string | null;
     /**
@@ -1319,7 +1299,7 @@ export namespace cloudasset_v1 {
      * @param {string=} params.assetNames A list of the full names of the assets. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) and [Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more info.  The request becomes a no-op if the asset name list is empty, and the max size of the asset name list is 100 in one request.
      * @param {string=} params.contentType Optional. The content type.
      * @param {string} params.parent Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). Current timestamp if not specified.
+     * @param {string=} params.readTimeWindow.endTime End time of the time window (inclusive). If not specified, the current timestamp is used instead.
      * @param {string=} params.readTimeWindow.startTime Start time of the time window (exclusive).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1491,7 +1471,7 @@ export namespace cloudasset_v1 {
      */
     parent?: string;
     /**
-     * End time of the time window (inclusive). Current timestamp if not specified.
+     * End time of the time window (inclusive). If not specified, the current timestamp is used instead.
      */
     'readTimeWindow.endTime'?: string;
     /**

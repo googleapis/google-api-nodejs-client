@@ -126,10 +126,6 @@ export namespace accesscontextmanager_v1 {
      */
     basic?: Schema$BasicLevel;
     /**
-     * Output only. Time the `AccessLevel` was created in UTC.
-     */
-    createTime?: string | null;
-    /**
      * A `CustomLevel` written in the Common Expression Language.
      */
     custom?: Schema$CustomLevel;
@@ -138,26 +134,22 @@ export namespace accesscontextmanager_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and &#39;_&#39;. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length of the `short_name` component is 50 characters.
      */
     name?: string | null;
     /**
      * Human readable title. Must be unique within the Policy.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `AccessLevel` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
    * `AccessPolicy` is a container for `AccessLevels` (which define the necessary attributes to use Google Cloud services) and `ServicePerimeters` (which define regions of services able to freely pass data within a perimeter). An access policy is globally visible within an organization, and the restrictions it specifies apply to all projects within an organization.
    */
   export interface Schema$AccessPolicy {
     /**
-     * Output only. Time the `AccessPolicy` was created in UTC.
+     * Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Polices will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.
      */
-    createTime?: string | null;
+    etag?: string | null;
     /**
      * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`
      */
@@ -170,10 +162,6 @@ export namespace accesscontextmanager_v1 {
      * Required. Human readable title. Does not affect behavior.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `AccessPolicy` was updated in UTC.
-     */
-    updateTime?: string | null;
   }
   /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
@@ -445,10 +433,6 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$ServicePerimeter {
     /**
-     * Output only. Time the `ServicePerimeter` was created in UTC.
-     */
-    createTime?: string | null;
-    /**
      * Description of the `ServicePerimeter` and its use. Does not affect behavior.
      */
     description?: string | null;
@@ -472,10 +456,6 @@ export namespace accesscontextmanager_v1 {
      * Human readable title. Must be unique within the Policy.
      */
     title?: string | null;
-    /**
-     * Output only. Time the `ServicePerimeter` was updated in UTC.
-     */
-    updateTime?: string | null;
     /**
      * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists  for all Service Perimeters, and that spec is identical to the status for those Service Perimeters. When this flag is set, it inhibits the generation of the implicit spec, thereby allowing the user to explicitly provide a configuration (&quot;spec&quot;) to use in a dry-run version of the Service Perimeter. This allows the user to test changes to the enforced config (&quot;status&quot;) without actually enforcing them. This testing is done through analyzing the differences between currently enforced and suggested restrictions. use_explicit_dry_run_spec must bet set to True if any of the fields in the spec are set to non-default values.
      */
@@ -1311,7 +1291,7 @@ export namespace accesscontextmanager_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     * @param {string} params.name Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length of the `short_name` component is 50 characters.
      * @param {string=} params.updateMask Required. Mask to control which fields get updated. Must be non-empty.
      * @param {().AccessLevel} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1532,7 +1512,7 @@ export namespace accesscontextmanager_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length of the `short_name` component is 50 characters.
      */
     name?: string;
     /**
@@ -1647,7 +1627,7 @@ export namespace accesscontextmanager_v1 {
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.create
-     * @desc Create an Service Perimeter. The longrunning operation from this RPC will have a successful status once the Service Perimeter has propagated to long-lasting storage. Service Perimeters containing errors will result in an error response for the first error encountered.
+     * @desc Create a Service Perimeter. The longrunning operation from this RPC will have a successful status once the Service Perimeter has propagated to long-lasting storage. Service Perimeters containing errors will result in an error response for the first error encountered.
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.create
      * @memberOf! ()
      *
@@ -1723,7 +1703,7 @@ export namespace accesscontextmanager_v1 {
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.delete
-     * @desc Delete an Service Perimeter by resource name. The longrunning operation from this RPC will have a successful status once the Service Perimeter has been removed from long-lasting storage.
+     * @desc Delete a Service Perimeter by resource name. The longrunning operation from this RPC will have a successful status once the Service Perimeter has been removed from long-lasting storage.
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.delete
      * @memberOf! ()
      *
@@ -1795,7 +1775,7 @@ export namespace accesscontextmanager_v1 {
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.get
-     * @desc Get an Service Perimeter by resource name.
+     * @desc Get a Service Perimeter by resource name.
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.get
      * @memberOf! ()
      *
@@ -1953,7 +1933,7 @@ export namespace accesscontextmanager_v1 {
 
     /**
      * accesscontextmanager.accessPolicies.servicePerimeters.patch
-     * @desc Update an Service Perimeter. The longrunning operation from this RPC will have a successful status once the changes to the Service Perimeter have propagated to long-lasting storage. Service Perimeter containing errors will result in an error response for the first error encountered.
+     * @desc Update a Service Perimeter. The longrunning operation from this RPC will have a successful status once the changes to the Service Perimeter have propagated to long-lasting storage. Service Perimeter containing errors will result in an error response for the first error encountered.
      * @alias accesscontextmanager.accessPolicies.servicePerimeters.patch
      * @memberOf! ()
      *

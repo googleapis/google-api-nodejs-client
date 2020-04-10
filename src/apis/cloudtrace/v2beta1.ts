@@ -89,7 +89,7 @@ export namespace cloudtrace_v2beta1 {
   /**
    * Cloud Trace API
    *
-   * Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.
+   * Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.
    *
    * @example
    * const {google} = require('googleapis');
@@ -154,7 +154,7 @@ export namespace cloudtrace_v2beta1 {
      */
     outputConfig?: Schema$OutputConfig;
     /**
-     * Output only. A service account name for exporting the data. This field is set by sinks.create and sinks.update. The service account will need to be granted write access to the destination specified in the output configuration, see [Granting access for a resource](/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). To create tables and write data this account will need the dataEditor role. Read more about roles in the [BigQuery documentation](https://cloud.google.com/bigquery/docs/access-control#permissions_and_roles). E.g.:     &quot;service-00000001@00000002.iam.gserviceaccount.com&quot;
+     * Output only. A service account name for exporting the data. This field is set by sinks.create and sinks.update. The service account will need to be granted write access to the destination specified in the output configuration, see [Granting access for a resource](/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). To create tables and write data this account will need the dataEditor role. Read more about roles in the [BigQuery documentation](https://cloud.google.com/bigquery/docs/access-control). E.g.:     &quot;service-00000001@00000002.iam.gserviceaccount.com&quot;
      */
     writerIdentity?: string | null;
   }
