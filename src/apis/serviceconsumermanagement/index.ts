@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {serviceconsumermanagement_v1} from './v1';
+import {serviceconsumermanagement_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
   v1: serviceconsumermanagement_v1.Serviceconsumermanagement,
+  v1beta1: serviceconsumermanagement_v1beta1.Serviceconsumermanagement,
 };
 
 export function serviceconsumermanagement(
@@ -26,11 +28,23 @@ export function serviceconsumermanagement(
 export function serviceconsumermanagement(
   options: serviceconsumermanagement_v1.Options
 ): serviceconsumermanagement_v1.Serviceconsumermanagement;
+export function serviceconsumermanagement(
+  version: 'v1beta1'
+): serviceconsumermanagement_v1beta1.Serviceconsumermanagement;
+export function serviceconsumermanagement(
+  options: serviceconsumermanagement_v1beta1.Options
+): serviceconsumermanagement_v1beta1.Serviceconsumermanagement;
 export function serviceconsumermanagement<
-  T = serviceconsumermanagement_v1.Serviceconsumermanagement
+  T =
+    | serviceconsumermanagement_v1.Serviceconsumermanagement
+    | serviceconsumermanagement_v1beta1.Serviceconsumermanagement
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | serviceconsumermanagement_v1.Options
+  versionOrOptions:
+    | 'v1'
+    | serviceconsumermanagement_v1.Options
+    | 'v1beta1'
+    | serviceconsumermanagement_v1beta1.Options
 ) {
   return getAPI<T>(
     'serviceconsumermanagement',

@@ -118,29 +118,29 @@ export namespace homegraph_v1 {
   }
 
   /**
-   * Third-party partner&#39;s device ID for one device.
+   * Third-party device ID for one device.
    */
   export interface Schema$AgentDeviceId {
     /**
-     * Third-party partner&#39;s device ID.
+     * Third-party device ID.
      */
     id?: string | null;
   }
   /**
-   * Identifies a device in the third party or first party system.
+   * Alternate third-party device ID.
    */
   export interface Schema$AgentOtherDeviceId {
     /**
-     * The agent&#39;s ID. Generally it is the agent&#39;s AoG project id.
+     * Project ID for your smart home Action.
      */
     agentId?: string | null;
     /**
-     * Device ID defined by the agent. The device_id must be unique.
+     * Unique third-party device ID.
      */
     deviceId?: string | null;
   }
   /**
-   * Third-party partner&#39;s device definition.
+   * Third-party device definition.
    */
   export interface Schema$Device {
     /**
@@ -148,7 +148,7 @@ export namespace homegraph_v1 {
      */
     attributes?: {[key: string]: any} | null;
     /**
-     * Custom JSON data provided by the manufacturer and attached to QUERY and EXECUTE requests in AoG.
+     * Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query) and [EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute) intent.
      */
     customData?: {[key: string]: any} | null;
     /**
@@ -156,39 +156,39 @@ export namespace homegraph_v1 {
      */
     deviceInfo?: Schema$DeviceInfo;
     /**
-     * Third-party partner&#39;s device ID.
+     * Third-party device ID.
      */
     id?: string | null;
     /**
-     * Name of the device given by the third party. This includes names given to the device via third party device manufacturer&#39;s app, model names for the device, etc.
+     * Names given to this device by your smart home Action.
      */
     name?: Schema$DeviceNames;
     /**
-     * Indicates whether the device is capable of sending notifications. This field will be set by the agent (partner) on an incoming SYNC. If a device is not capable of generating notifications, the partner should set this flag to false. If a partner is not capable of calling ReportStateAndNotification to send notifications to Google, the partner should set this flag to false. If there is a user setting in the partner app to enable notifications and it is turned off, the partner should set this flag to false.
+     * Indicates whether your smart home Action will report notifications to Google for this device via ReportStateAndNotification.  If your smart home Action enables users to control device notifications, you should update this field and call RequestSyncDevices.
      */
     notificationSupportedByAgent?: boolean | null;
     /**
-     * IDs of other devices associated with this device. This is used to represent a device group (e.g. bonded zone) or &quot;facets&quot; synced through different flows (e.g. Google Nest Hub Max with a Nest Camera).  This may also be used to pass in alternate IDs used to identify a cloud synced device for local execution (i.e. local verification). If used for local verification, this field is synced from the cloud.
+     * Alternate IDs associated with this device. This is used to identify cloud synced devices enabled for [local execution](https://developers.google.com/assistant/smarthome/concepts/local).
      */
     otherDeviceIds?: Schema$AgentOtherDeviceId[];
     /**
-     * If the third-party partner&#39;s cloud configuration includes placing devices in rooms, the name of the room can be provided here.
+     * Suggested name for the room where this device is installed. Google attempts to use this value during user setup.
      */
     roomHint?: string | null;
     /**
-     * As in roomHint, for structures that users set up in the partner&#39;s system.
+     * Suggested name for the structure where this device is installed. Google attempts to use this value during user setup.
      */
     structureHint?: string | null;
     /**
-     * Traits supported by the device.
+     * Traits supported by the device. See [device traits](https://developers.google.com/assistant/smarthome/traits).
      */
     traits?: string[] | null;
     /**
-     * Hardware type of the device (e.g. light, outlet, etc).
+     * Hardware type of the device. See [device types](https://developers.google.com/assistant/smarthome/guides).
      */
     type?: string | null;
     /**
-     * Indicates whether the state of this device is being reported to Google through ReportStateAndNotification call.
+     * Indicates whether your smart home Action will report state of this device to Google via ReportStateAndNotification.
      */
     willReportState?: boolean | null;
   }
@@ -214,11 +214,11 @@ export namespace homegraph_v1 {
     swVersion?: string | null;
   }
   /**
-   * Different names for the device.
+   * Identifiers used to describe the device.
    */
   export interface Schema$DeviceNames {
     /**
-     * List of names provided by the partner rather than the user, often manufacturer names, SKUs, etc.
+     * List of names provided by the manufacturer rather than the user, such as serial numbers, SKUs, etc.
      */
     defaultNames?: string[] | null;
     /**
@@ -235,7 +235,7 @@ export namespace homegraph_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call. This should be the same format as the Actions on Google `action.devices.QUERY` [request](/actions/smarthome/create-app#actiondevicesquery) with the exception of the extra `agent_user_id` and no `intent` and `customData` fields.
+   * Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call.
    */
   export interface Schema$QueryRequest {
     /**
@@ -243,7 +243,7 @@ export namespace homegraph_v1 {
      */
     agentUserId?: string | null;
     /**
-     * Required. Inputs containing third-party partner&#39;s device IDs for which to get the device states.
+     * Required. Inputs containing third-party device IDs for which to get the device states.
      */
     inputs?: Schema$QueryRequestInput[];
     /**
@@ -256,7 +256,7 @@ export namespace homegraph_v1 {
    */
   export interface Schema$QueryRequestInput {
     /**
-     * Payload containing third-party partner&#39;s device IDs.
+     * Payload containing third-party device IDs.
      */
     payload?: Schema$QueryRequestPayload;
   }
@@ -265,12 +265,12 @@ export namespace homegraph_v1 {
    */
   export interface Schema$QueryRequestPayload {
     /**
-     * Third-party partner&#39;s device IDs for which to get the device states.
+     * Third-party device IDs for which to get the device states.
      */
     devices?: Schema$AgentDeviceId[];
   }
   /**
-   * Response type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call. This should follow the same format as the Actions on Google `action.devices.QUERY` [response](/actions/smarthome/create-app#actiondevicesquery). # Example  ```json {   &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;,   &quot;payload&quot;: {     &quot;devices&quot;: {       &quot;123&quot;: {         &quot;on&quot;: true,         &quot;online&quot;: true       },       &quot;456&quot;: {         &quot;on&quot;: true,         &quot;online&quot;: true,         &quot;brightness&quot;: 80,         &quot;color&quot;: {           &quot;name&quot;: &quot;cerulean&quot;,           &quot;spectrumRGB&quot;: 31655         }       }     }   } } ```
+   * Response type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call. This should follow the same format as the Google smart home `action.devices.QUERY` [response](https://developers.google.com/assistant/smarthome/reference/intent/query). # Example  ```json {   &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;,   &quot;payload&quot;: {     &quot;devices&quot;: {       &quot;123&quot;: {         &quot;on&quot;: true,         &quot;online&quot;: true       },       &quot;456&quot;: {         &quot;on&quot;: true,         &quot;online&quot;: true,         &quot;brightness&quot;: 80,         &quot;color&quot;: {           &quot;name&quot;: &quot;cerulean&quot;,           &quot;spectrumRGB&quot;: 31655         }       }     }   } } ```
    */
   export interface Schema$QueryResponse {
     /**
@@ -296,16 +296,16 @@ export namespace homegraph_v1 {
    */
   export interface Schema$ReportStateAndNotificationDevice {
     /**
-     * Notifications metadata for devices.
+     * Notifications metadata for devices. See the **Device NOTIFICATIONS** section of the individual trait [reference guides](https://developers.google.com/assistant/smarthome/traits).
      */
     notifications?: {[key: string]: any} | null;
     /**
-     * States of devices to update.
+     * States of devices to update. See the **Device STATES** section of the individual trait [reference guides](https://developers.google.com/assistant/smarthome/traits).
      */
     states?: {[key: string]: any} | null;
   }
   /**
-   * Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include States, Notifications, or both. This request uses globally unique flattened state names instead of namespaces based on traits to align with the existing QUERY and EXECUTE APIs implemented by 90+ Smart Home partners. States and notifications are defined per `device_id` (for example, &quot;123&quot; and &quot;456&quot; in the following example). # Example ```json {   &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;,   &quot;agentUserId&quot;: &quot;1234&quot;,   &quot;payload&quot;: {     &quot;devices&quot;: {       &quot;states&quot;: {         &quot;123&quot;: {           &quot;on&quot;: true         },         &quot;456&quot;: {           &quot;on&quot;: true,           &quot;brightness&quot;: 10         }       },     }   } } ```
+   * Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, or both. States and notifications are defined per `device_id` (for example, &quot;123&quot; and &quot;456&quot; in the following example). # Example  ```json {   &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;,   &quot;agentUserId&quot;: &quot;1234&quot;,   &quot;payload&quot;: {     &quot;devices&quot;: {       &quot;states&quot;: {         &quot;123&quot;: {           &quot;on&quot;: true         },         &quot;456&quot;: {           &quot;on&quot;: true,           &quot;brightness&quot;: 10         }       },     }   } } ```
    */
   export interface Schema$ReportStateAndNotificationRequest {
     /**
@@ -321,7 +321,7 @@ export namespace homegraph_v1 {
      */
     followUpToken?: string | null;
     /**
-     * Required. State of devices to update and notification metadata for devices. For example, if a user turns a light on manually, a state update should be sent so that the information is always the current status of the device. Notifications are independent from the state and its piece of the payload should contain everything necessary to notify the user. Although it may be related to a state change, it does not need to be. For example, if a device can turn on/off and change temperature, the states reported would include both &quot;on&quot; and &quot;70 degrees&quot; but the 3p may choose not to send any notification for that, or to only say that the &quot;the room is heating up&quot;, keeping state and notification independent.
+     * Required. State of devices to update and notification metadata for devices.
      */
     payload?: Schema$StateAndNotificationPayload;
     /**
@@ -343,16 +343,16 @@ export namespace homegraph_v1 {
    */
   export interface Schema$RequestSyncDevicesRequest {
     /**
-     * Required. Third-party user ID issued by agent&#39;s third-party identity provider.
+     * Required. Third-party user ID.
      */
     agentUserId?: string | null;
     /**
-     * Optional. If set, the request will be added to a queue and a response will be returned immediately. The queue allows for de-duplication of simultaneous requests.
+     * Optional. If set, the request will be added to a queue and a response will be returned immediately. This enables concurrent requests for the given `agent_user_id`, but the caller will not receive any error responses.
      */
     async?: boolean | null;
   }
   /**
-   * Response type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call. Intentionally empty upon success. An HTTP response code is returned with more details upon failure.
+   * Response type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call.  Intentionally empty upon success. An HTTP response code is returned with more details upon failure.
    */
   export interface Schema$RequestSyncDevicesResponse {}
   /**
@@ -365,7 +365,7 @@ export namespace homegraph_v1 {
     devices?: Schema$ReportStateAndNotificationDevice;
   }
   /**
-   * Request type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Actions on Google `action.devices.SYNC` [request](/actions/smarthome/create-app#actiondevicessync) with the exception of the extra `agent_user_id` and no `intent` field.
+   * Request type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call.
    */
   export interface Schema$SyncRequest {
     /**
@@ -378,7 +378,7 @@ export namespace homegraph_v1 {
     requestId?: string | null;
   }
   /**
-   * Response type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Actions on Google `action.devices.SYNC` [response](/actions/smarthome/create-app#actiondevicessync). # Example  ```json {   &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;,   &quot;payload&quot;: {     &quot;agentUserId&quot;: &quot;1836.15267389&quot;,     &quot;devices&quot;: [{       &quot;id&quot;: &quot;123&quot;,       &quot;type&quot;: &quot;action.devices.types.OUTLET&quot;,       &quot;traits&quot;: [         &quot;action.devices.traits.OnOff&quot;       ],       &quot;name&quot;: {         &quot;defaultNames&quot;: [&quot;My Outlet 1234&quot;],         &quot;name&quot;: &quot;Night light&quot;,         &quot;nicknames&quot;: [&quot;wall plug&quot;]       },       &quot;willReportState&quot;: false,       &quot;deviceInfo&quot;: {         &quot;manufacturer&quot;: &quot;lights-out-inc&quot;,         &quot;model&quot;: &quot;hs1234&quot;,         &quot;hwVersion&quot;: &quot;3.2&quot;,         &quot;swVersion&quot;: &quot;11.4&quot;       },       &quot;customData&quot;: {         &quot;fooValue&quot;: 74,         &quot;barValue&quot;: true,         &quot;bazValue&quot;: &quot;foo&quot;       }     }]   } } ```
+   * Response type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Google smart home `action.devices.SYNC` [response](https://developers.google.com/assistant/smarthome/reference/intent/sync). # Example  ```json {   &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;,   &quot;payload&quot;: {     &quot;agentUserId&quot;: &quot;1836.15267389&quot;,     &quot;devices&quot;: [{       &quot;id&quot;: &quot;123&quot;,       &quot;type&quot;: &quot;action.devices.types.OUTLET&quot;,       &quot;traits&quot;: [         &quot;action.devices.traits.OnOff&quot;       ],       &quot;name&quot;: {         &quot;defaultNames&quot;: [&quot;My Outlet 1234&quot;],         &quot;name&quot;: &quot;Night light&quot;,         &quot;nicknames&quot;: [&quot;wall plug&quot;]       },       &quot;willReportState&quot;: false,       &quot;deviceInfo&quot;: {         &quot;manufacturer&quot;: &quot;lights-out-inc&quot;,         &quot;model&quot;: &quot;hs1234&quot;,         &quot;hwVersion&quot;: &quot;3.2&quot;,         &quot;swVersion&quot;: &quot;11.4&quot;       },       &quot;customData&quot;: {         &quot;fooValue&quot;: 74,         &quot;barValue&quot;: true,         &quot;bazValue&quot;: &quot;foo&quot;       }     }]   } } ```
    */
   export interface Schema$SyncResponse {
     /**
@@ -412,7 +412,7 @@ export namespace homegraph_v1 {
 
     /**
      * homegraph.agentUsers.delete
-     * @desc Unlinks an agent user from Google. As a result, all data related to this user will be deleted.  Here is how the agent user is created in Google:  1.  When a user opens their Google Home App, they can begin linking a 3p     partner. 2.  User is guided through the OAuth process. 3.  After entering the 3p credentials, Google gets the 3p OAuth token and     uses it to make a Sync call to the 3p partner and gets back all of the     user's data, including `agent_user_id` and devices. 4.  Google creates the agent user and stores a mapping from the     `agent_user_id` -> Google ID mapping. Google also     stores all of the user's devices under that Google ID.  The mapping from `agent_user_id` to Google ID is many to many, since one Google user can have multiple 3p accounts, and multiple Google users can map to one `agent_user_id` (e.g., a husband and wife share one Nest account username/password).  The third-party user's identity is passed in as `agent_user_id`. The agent is identified by the JWT signed by the partner's service account.  Note: Special characters (except "/") in `agent_user_id` must be URL-encoded.
+     * @desc Unlinks the given third-party user from your smart home Action. All data related to this user will be deleted.  For more details on how users link their accounts, see [fulfillment and authentication](https://developers.google.com/assistant/smarthome/concepts/fulfillment-authentication).  The third-party user's identity is passed in via the `agent_user_id` (see DeleteAgentUserRequest). This request must be authorized using service account credentials from your Actions console project.
      * @alias homegraph.agentUsers.delete
      * @memberOf! ()
      *
@@ -506,7 +506,7 @@ export namespace homegraph_v1 {
 
     /**
      * homegraph.devices.query
-     * @desc Gets the device states for the devices in QueryRequest. The third-party user's identity is passed in as `agent_user_id`. The agent is identified by the JWT signed by the third-party partner's service account.
+     * @desc Gets the current states in Home Graph for the given set of the third-party user's devices.  The third-party user's identity is passed in via the `agent_user_id` (see QueryRequest). This request must be authorized using service account credentials from your Actions console project.
      * @alias homegraph.devices.query
      * @memberOf! ()
      *
@@ -576,7 +576,7 @@ export namespace homegraph_v1 {
 
     /**
      * homegraph.devices.reportStateAndNotification
-     * @desc Reports device state and optionally sends device notifications. Called by an agent when the device state of a third-party changes or the agent wants to send a notification about the device. See [Implement Report State](/actions/smarthome/report-state) for more information. This method updates a predefined set of states for a device, which all devices have according to their prescribed traits (for example, a light will have the [OnOff](/actions/smarthome/traits/onoff) trait that reports the state `on` as a boolean value). A new state may not be created and an INVALID_ARGUMENT code will be thrown if so. It also optionally takes in a list of Notifications that may be created, which are associated to this state change.  The third-party user's identity is passed in as `agent_user_id`. The agent is identified by the JWT signed by the partner's service account.
+     * @desc Reports device state and optionally sends device notifications. Called by your smart home Action when the state of a third-party device changes or you need to send a notification about the device. See [Implement Report State](https://developers.google.com/assistant/smarthome/develop/report-state) for more information.  This method updates the device state according to its declared [traits](https://developers.google.com/assistant/smarthome/concepts/devices-traits). Publishing a new state value outside of these traits will result in an `INVALID_ARGUMENT` error response.  The third-party user's identity is passed in via the `agent_user_id` (see ReportStateAndNotificationRequest). This request must be authorized using service account credentials from your Actions console project.
      * @alias homegraph.devices.reportStateAndNotification
      * @memberOf! ()
      *
@@ -659,7 +659,7 @@ export namespace homegraph_v1 {
 
     /**
      * homegraph.devices.requestSync
-     * @desc Requests a `SYNC` call from Google to a 3p partner's home control agent for a user.   The third-party user's identity is passed in as `agent_user_id` (see RequestSyncDevicesRequest) and forwarded back to the agent. The agent is identified by the API key or JWT signed by the partner's service account.
+     * @desc Requests Google to send an `action.devices.SYNC` [intent](https://developers.google.com/assistant/smarthome/reference/intent/sync) to your smart home Action to update device metadata for the given user.   The third-party user's identity is passed via the `agent_user_id` (see RequestSyncDevicesRequest). This request must be authorized using service account credentials from your Actions console project.
      * @alias homegraph.devices.requestSync
      * @memberOf! ()
      *
@@ -740,7 +740,7 @@ export namespace homegraph_v1 {
 
     /**
      * homegraph.devices.sync
-     * @desc Gets all the devices associated with the given third-party user. The third-party user's identity is passed in as `agent_user_id`. The agent is identified by the JWT signed by the third-party partner's service account.
+     * @desc Gets all the devices associated with the given third-party user.  The third-party user's identity is passed in via the `agent_user_id` (see SyncRequest). This request must be authorized using service account credentials from your Actions console project.
      * @alias homegraph.devices.sync
      * @memberOf! ()
      *

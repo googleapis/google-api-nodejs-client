@@ -926,7 +926,11 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     environment?: string | null;
     /**
-     * The list of formats on which to filter; may be empty. The filters represented by multiple formats are ORed together (i.e., if non-empty, results must match any one of the formats).
+     * Creative format bidded on or allowed to bid on, can be empty.
+     */
+    format?: string | null;
+    /**
+     * Creative formats bidded on or allowed to bid on, can be empty. Although this field is a list, it can only be populated with a single item. A HTTP 400 bad request error will be returned in the response if you specify multiple items.
      */
     formats?: string[] | null;
     /**

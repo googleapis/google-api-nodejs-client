@@ -251,6 +251,10 @@ export namespace storage_v1 {
      * The bucket&#39;s website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the Static Website Examples for more information.
      */
     website?: {mainPageSuffix?: string; notFoundPage?: string} | null;
+    /**
+     * The zone or zones from which the bucket is intended to use zonal quota. Requests for data from outside the specified affinities are still allowed but won’t be able to use zonal quota. The zone or zones need to be within the bucket location otherwise the requests will fail with a 400 Bad Request response.
+     */
+    zone_affinity?: string[] | null;
   }
   /**
    * An access-control entry.
@@ -6932,12 +6936,14 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which to look for objects.
      * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {string=} params.endOffset Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      * @param {boolean=} params.includeTrailingDelimiter If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
      * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
+     * @param {string=} params.startOffset Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7772,12 +7778,14 @@ export namespace storage_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of the bucket in which to look for objects.
      * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
+     * @param {string=} params.endOffset Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      * @param {boolean=} params.includeTrailingDelimiter If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
      * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
+     * @param {string=} params.startOffset Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
      * @param {().Channel} params.requestBody Request body data
@@ -8177,6 +8185,10 @@ export namespace storage_v1 {
      */
     delimiter?: string;
     /**
+     * Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     */
+    endOffset?: string;
+    /**
      * If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      */
     includeTrailingDelimiter?: boolean;
@@ -8200,6 +8212,10 @@ export namespace storage_v1 {
      * The project to be billed for this request if the target bucket is requester-pays bucket.
      */
     provisionalUserProject?: string;
+    /**
+     * Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     */
+    startOffset?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -8493,6 +8509,10 @@ export namespace storage_v1 {
      */
     delimiter?: string;
     /**
+     * Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     */
+    endOffset?: string;
+    /**
      * If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      */
     includeTrailingDelimiter?: boolean;
@@ -8516,6 +8536,10 @@ export namespace storage_v1 {
      * The project to be billed for this request if the target bucket is requester-pays bucket.
      */
     provisionalUserProject?: string;
+    /**
+     * Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
+     */
+    startOffset?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */

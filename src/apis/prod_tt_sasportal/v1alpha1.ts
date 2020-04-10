@@ -157,7 +157,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalCreateSignedDeviceRequest {
     /**
-     * Required. JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the [Device].
+     * Required. JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the [Device]. The user_id field must be set.
      */
     encodedDevice?: string | null;
     /**
@@ -270,7 +270,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     updateTime?: string | null;
     /**
-     * Output only. The identifier of a device user.
+     * The identifier of a device user.
      */
     userId?: string | null;
   }
@@ -564,7 +564,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalSignDeviceRequest {
     /**
-     * Required. The device to sign. The device fields name, fcc_id and serial_number must be set.
+     * Required. The device to sign. The device fields name, fcc_id and serial_number must be set. The user_id field must be set.
      */
     device?: Schema$SasPortalDevice;
   }
@@ -612,7 +612,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalUpdateSignedDeviceRequest {
     /**
-     * Required. The JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the device.
+     * Required. The JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the device. The user_id field must be set.
      */
     encodedDevice?: string | null;
     /**
@@ -1879,8 +1879,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
   export class Resource$Customers$Nodes {
     context: APIRequestContext;
+    nodes: Resource$Customers$Nodes$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.nodes = new Resource$Customers$Nodes$Nodes(this.context);
     }
 
     /**
@@ -2436,6 +2438,211 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$SasPortalNode;
+  }
+
+  export class Resource$Customers$Nodes$Nodes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * prod_tt_sasportal.customers.nodes.nodes.create
+     * @desc Creates a new node.
+     * @alias prod_tt_sasportal.customers.nodes.nodes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The parent resource name where the node is to be created.
+     * @param {().SasPortalNode} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Customers$Nodes$Nodes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalNode>;
+    create(
+      params: Params$Resource$Customers$Nodes$Nodes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
+      callback: BodyResponseCallback<Schema$SasPortalNode>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Nodes$Nodes$Create,
+      callback: BodyResponseCallback<Schema$SasPortalNode>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SasPortalNode>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Nodes$Create
+        | BodyResponseCallback<Schema$SasPortalNode>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>,
+      callback?: BodyResponseCallback<Schema$SasPortalNode>
+    ): void | GaxiosPromise<Schema$SasPortalNode> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Nodes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Nodes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/nodes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SasPortalNode>(parameters);
+      }
+    }
+
+    /**
+     * prod_tt_sasportal.customers.nodes.nodes.list
+     * @desc Lists nodes.
+     * @alias prod_tt_sasportal.customers.nodes.nodes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of nodes to return in the response.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
+     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Customers$Nodes$Nodes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    list(
+      params: Params$Resource$Customers$Nodes$Nodes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Nodes$Nodes$List,
+      callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Nodes$Nodes$List
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+      callback?: BodyResponseCallback<Schema$SasPortalListNodesResponse>
+    ): void | GaxiosPromise<Schema$SasPortalListNodesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Nodes$Nodes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Nodes$Nodes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/nodes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListNodesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Nodes$Nodes$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The parent resource name where the node is to be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalNode;
+  }
+  export interface Params$Resource$Customers$Nodes$Nodes$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The maximum number of nodes to return in the response.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name, for example, "nodes/1".
+     */
+    parent?: string;
   }
 
   export class Resource$Installer {
@@ -3600,8 +3807,12 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
   export class Resource$Nodes$Nodes {
     context: APIRequestContext;
+    devices: Resource$Nodes$Nodes$Devices;
+    nodes: Resource$Nodes$Nodes$Nodes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.devices = new Resource$Nodes$Nodes$Devices(this.context);
+      this.nodes = new Resource$Nodes$Nodes$Nodes(this.context);
     }
 
     /**
@@ -4151,6 +4362,618 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$SasPortalNode;
+  }
+
+  export class Resource$Nodes$Nodes$Devices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * prod_tt_sasportal.nodes.nodes.devices.bulk
+     * @desc Creates a device under a node or customer. Returned devices are unordered.
+     * @alias prod_tt_sasportal.nodes.nodes.devices.bulk
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the parent resource.
+     * @param {().SasPortalBulkCreateDeviceRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    bulk(
+      params?: Params$Resource$Nodes$Nodes$Devices$Bulk,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse>;
+    bulk(
+      params: Params$Resource$Nodes$Nodes$Devices$Bulk,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+    ): void;
+    bulk(
+      params: Params$Resource$Nodes$Nodes$Devices$Bulk,
+      callback: BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+    ): void;
+    bulk(
+      callback: BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+    ): void;
+    bulk(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Nodes$Devices$Bulk
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>,
+      callback?: BodyResponseCallback<Schema$SasPortalBulkCreateDeviceResponse>
+    ): void | GaxiosPromise<Schema$SasPortalBulkCreateDeviceResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Nodes$Devices$Bulk;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Nodes$Devices$Bulk;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices:bulk').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * prod_tt_sasportal.nodes.nodes.devices.create
+     * @desc Creates a device under a node or customer.
+     * @alias prod_tt_sasportal.nodes.nodes.devices.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the parent resource.
+     * @param {().SasPortalDevice} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Nodes$Nodes$Devices$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDevice>;
+    create(
+      params: Params$Resource$Nodes$Nodes$Devices$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    create(
+      params: Params$Resource$Nodes$Nodes$Devices$Create,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SasPortalDevice>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Nodes$Devices$Create
+        | BodyResponseCallback<Schema$SasPortalDevice>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>,
+      callback?: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Nodes$Devices$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Nodes$Devices$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SasPortalDevice>(parameters);
+      }
+    }
+
+    /**
+     * prod_tt_sasportal.nodes.nodes.devices.createSigned
+     * @desc Creates a signed device under a node or customer.
+     * @alias prod_tt_sasportal.nodes.nodes.devices.createSigned
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The name of the parent resource.
+     * @param {().SasPortalCreateSignedDeviceRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    createSigned(
+      params?: Params$Resource$Nodes$Nodes$Devices$Createsigned,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalDevice>;
+    createSigned(
+      params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalDevice>,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    createSigned(
+      params: Params$Resource$Nodes$Nodes$Devices$Createsigned,
+      callback: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void;
+    createSigned(callback: BodyResponseCallback<Schema$SasPortalDevice>): void;
+    createSigned(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Nodes$Devices$Createsigned
+        | BodyResponseCallback<Schema$SasPortalDevice>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalDevice>,
+      callback?: BodyResponseCallback<Schema$SasPortalDevice>
+    ): void | GaxiosPromise<Schema$SasPortalDevice> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Nodes$Devices$Createsigned;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Nodes$Devices$Createsigned;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices:createSigned').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalDevice>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SasPortalDevice>(parameters);
+      }
+    }
+
+    /**
+     * prod_tt_sasportal.nodes.nodes.devices.list
+     * @desc Lists devices under a node or customer.
+     * @alias prod_tt_sasportal.nodes.nodes.devices.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
+     * @param {integer=} params.pageSize The maximum number of devices to return in the response.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     * @param {string} params.parent Required. The name of the parent resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Nodes$Nodes$Devices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListDevicesResponse>;
+    list(
+      params: Params$Resource$Nodes$Nodes$Devices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Nodes$Nodes$Devices$List,
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Nodes$Devices$List
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListDevicesResponse>,
+      callback?: BodyResponseCallback<Schema$SasPortalListDevicesResponse>
+    ): void | GaxiosPromise<Schema$SasPortalListDevicesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Nodes$Devices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Nodes$Devices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/devices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListDevicesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListDevicesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodes$Nodes$Devices$Bulk
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalBulkCreateDeviceRequest;
+  }
+  export interface Params$Resource$Nodes$Nodes$Devices$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalDevice;
+  }
+  export interface Params$Resource$Nodes$Nodes$Devices$Createsigned
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalCreateSignedDeviceRequest;
+  }
+  export interface Params$Resource$Nodes$Nodes$Devices$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
+     */
+    filter?: string;
+    /**
+     * The maximum number of devices to return in the response.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Nodes$Nodes$Nodes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * prod_tt_sasportal.nodes.nodes.nodes.create
+     * @desc Creates a new node.
+     * @alias prod_tt_sasportal.nodes.nodes.nodes.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Required. The parent resource name where the node is to be created.
+     * @param {().SasPortalNode} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Nodes$Nodes$Nodes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalNode>;
+    create(
+      params: Params$Resource$Nodes$Nodes$Nodes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalNode>,
+      callback: BodyResponseCallback<Schema$SasPortalNode>
+    ): void;
+    create(
+      params: Params$Resource$Nodes$Nodes$Nodes$Create,
+      callback: BodyResponseCallback<Schema$SasPortalNode>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SasPortalNode>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Nodes$Nodes$Create
+        | BodyResponseCallback<Schema$SasPortalNode>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalNode>,
+      callback?: BodyResponseCallback<Schema$SasPortalNode>
+    ): void | GaxiosPromise<Schema$SasPortalNode> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Nodes$Nodes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Nodes$Nodes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/nodes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalNode>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$SasPortalNode>(parameters);
+      }
+    }
+
+    /**
+     * prod_tt_sasportal.nodes.nodes.nodes.list
+     * @desc Lists nodes.
+     * @alias prod_tt_sasportal.nodes.nodes.nodes.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize The maximum number of nodes to return in the response.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
+     * @param {string} params.parent Required. The parent resource name, for example, "nodes/1".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Nodes$Nodes$Nodes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalListNodesResponse>;
+    list(
+      params: Params$Resource$Nodes$Nodes$Nodes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+      callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Nodes$Nodes$Nodes$List,
+      callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$SasPortalListNodesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Nodes$Nodes$Nodes$List
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SasPortalListNodesResponse>,
+      callback?: BodyResponseCallback<Schema$SasPortalListNodesResponse>
+    ): void | GaxiosPromise<Schema$SasPortalListNodesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Nodes$Nodes$Nodes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Nodes$Nodes$Nodes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/nodes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalListNodesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Nodes$Nodes$Nodes$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The parent resource name where the node is to be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalNode;
+  }
+  export interface Params$Resource$Nodes$Nodes$Nodes$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The maximum number of nodes to return in the response.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name, for example, "nodes/1".
+     */
+    parent?: string;
   }
 
   export class Resource$Policies {

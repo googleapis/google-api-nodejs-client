@@ -159,6 +159,10 @@ export namespace healthcare_v1beta1 {
     role?: string | null;
   }
   /**
+   * The request message for Operations.CancelOperation.
+   */
+  export interface Schema$CancelOperationRequest {}
+  /**
    * Mask a string by replacing its characters with a fixed character.
    */
   export interface Schema$CharacterMaskConfig {
@@ -391,6 +395,10 @@ export namespace healthcare_v1beta1 {
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1DicomGcsDestination;
   }
   /**
+   * Returns additional information in regards to a completed DICOM store export.
+   */
+  export interface Schema$ExportDicomDataResponse {}
+  /**
    * Request to export resources.
    */
   export interface Schema$ExportResourcesRequest {
@@ -447,6 +455,10 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$FhirStore {
     /**
+     * If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`.
+     */
+    defaultSearchHandlingStrict?: boolean | null;
+    /**
      * Whether to disable referential integrity in this FHIR store. This field is immutable after FHIR store creation. The default value is false, meaning that the API enforces referential integrity and fails the requests that result in inconsistent state in the FHIR store. When this field is set to true, the API skips referential integrity checks. Consequently, operations that rely on references, such as GetPatientEverything, do not return all the results if broken references exist.
      */
     disableReferentialIntegrity?: boolean | null;
@@ -471,9 +483,38 @@ export namespace healthcare_v1beta1 {
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
+     * A list of streaming configs that configure the destinations of streaming export for every resource mutation in this FHIR store. Each store is allowed to have up to 10 streaming configs. After a new config is added, the next resource mutation is streamed to the new location in addition to the existing ones. When a location is removed from the list, the server stops streaming to that location. Before adding a new config, you must add the required [`bigquery.dataEditor`](https://cloud.google.com/bigquery/docs/access-control#bigquery.dataEditor) role to your project&#39;s **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/iam/docs/service-accounts). Some lag (typically on the order of dozens of seconds) is expected before the results show up in the streaming destination.
+     */
+    streamConfigs?: Schema$StreamConfig[];
+    /**
      * The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. An empty value is treated as STU3.
      */
     version?: string | null;
+  }
+  /**
+   * A (sub) field of a type.
+   */
+  export interface Schema$Field {
+    /**
+     * The maximum number of times this field can be repeated. 0 or -1 means unbounded.
+     */
+    maxOccurs?: number | null;
+    /**
+     * The minimum number of times this field must be present/repeated.
+     */
+    minOccurs?: number | null;
+    /**
+     * The name of the field. For example, &quot;PID-1&quot; or just &quot;1&quot;.
+     */
+    name?: string | null;
+    /**
+     * The HL7v2 table this field refers to. For example, PID-15 (Patient&#39;s Primary Language) usually refers to table &quot;0296&quot;.
+     */
+    table?: string | null;
+    /**
+     * The type of this field. A Type with this name must be defined in an Hl7TypesConfig.
+     */
+    type?: string | null;
   }
   /**
    * Specifies FHIR paths to match, and how to handle de-identification of matching fields.
@@ -528,7 +569,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1DicomGcsDestination {
     /**
-     * MIME types supported by DICOM spec. Each file is written in the following format: `.../{study_id}/{series_id}/{instance_id}[/{frame_number}].{extension}` The frame_number component exists only for multi-frame instances.  Refer to the DICOM conformance statement for permissible MIME types: https://cloud.google.com/healthcare/docs/dicom#retrieve_transaction  The following extensions are used for output files:   application/dicom -&gt; .dcm   image/jpeg -&gt; .jpg   image/png -&gt; .png  If unspecified, the instances are exported in their original DICOM format.
+     * MIME types supported by DICOM spec. Each file is written in the following format: `.../{study_id}/{series_id}/{instance_id}[/{frame_number}].{extension}` The frame_number component exists only for multi-frame instances.  Supported MIME types are consistent with supported formats in DICOMweb: https://cloud.google.com/healthcare/docs/dicom#retrieve_transaction. Specifically, the following are supported:    - application/dicom; transfer-syntax=1.2.840.10008.1.2.1     (uncompressed DICOM)   - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.50     (DICOM with embedded JPEG Baseline)   - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.90     (DICOM with embedded JPEG 2000 Lossless Only)   - application/dicom; transfer-syntax=1.2.840.10008.1.2.4.91     (DICOM with embedded JPEG 2000)h   - application/dicom; transfer-syntax=*     (DICOM with no transcoding)   - application/octet-stream; transfer-syntax=1.2.840.10008.1.2.1     (raw uncompressed PixelData)   - application/octet-stream; transfer-syntax=*     (raw PixelData in whatever format it was uploaded in)   - image/jpeg; transfer-syntax=1.2.840.10008.1.2.4.50     (Consumer JPEG)   - image/png  The following extensions are used for output files:   - application/dicom -&gt; .dcm  - image/jpeg -&gt; .jpg  - image/png -&gt; .png  - application/octet-stream -&gt; no extension  If unspecified, the instances are exported in the original DICOM format they were uploaded in.
      */
     mimeType?: string | null;
     /**
@@ -649,6 +690,52 @@ export namespace healthcare_v1beta1 {
     inputSize?: string | null;
   }
   /**
+   * Construct representing a logical group or a segment.
+   */
+  export interface Schema$GroupOrSegment {
+    group?: Schema$SchemaGroup;
+    segment?: Schema$SchemaSegment;
+  }
+  /**
+   * Root config message for HL7v2 schema. This contains a schema structure of groups and segments, and filters that determine which messages to apply the schema structure to.
+   */
+  export interface Schema$Hl7SchemaConfig {
+    /**
+     * Map from each HL7v2 message type and trigger event pair, such as ADT_A04, to its schema configuration root group.
+     */
+    messageSchemaConfigs?: {[key: string]: Schema$SchemaGroup} | null;
+    /**
+     * Each VersionSource is tested and only if they all match is the schema used for the message.
+     */
+    version?: Schema$VersionSource[];
+  }
+  /**
+   * Root config for HL7v2 datatype definitions for a specific HL7v2 version.
+   */
+  export interface Schema$Hl7TypesConfig {
+    /**
+     * The HL7v2 type definitions.
+     */
+    type?: Schema$Type[];
+    /**
+     * The version selectors that this config applies to. A message must match ALL version sources to apply.
+     */
+    version?: Schema$VersionSource[];
+  }
+  /**
+   * Specifies where and whether to send notifications upon changes to a data store.
+   */
+  export interface Schema$Hl7V2NotificationConfig {
+    /**
+     * Restricts notifications sent for messages matching a filter. If this is empty, all messages are matched. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  Fields/functions available for filtering are:  *  `message_type`, from the MSH-9.1 field. For example, `NOT message_type = &quot;ADT&quot;`. *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset&#39;s time_zone, from the MSH-7 segment. For example, `send_date &lt; &quot;2017-01-02&quot;`. *  `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time &lt; &quot;2017-01-02T00:00:00-05:00&quot;`. *  `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = &quot;ABC&quot;`. *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId(&quot;123456&quot;, &quot;MRN&quot;)`. *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels.&quot;priority&quot;=&quot;high&quot;`. The operator `:*` can be used to assert the existence of a label. For example, `labels.&quot;priority&quot;:*`.
+     */
+    filter?: string | null;
+    /**
+     * The [Cloud Pubsub](https://cloud.google.com/pubsub/docs/) topic that notifications of changes are published on. Supplied by the client. The notification is a `PubsubMessage` with the following fields:  *  `PubsubMessage.Data` contains the resource name. *  `PubsubMessage.MessageId` is the ID of this notification. It is guaranteed to be unique within the topic. *  `PubsubMessage.PublishTime` is the time at which the message was published.  Note that notifications are only sent if the topic is non-empty. [Topic names](https://cloud.google.com/pubsub/docs/overview#names) must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Pubsub topic. Not having adequate permissions causes the calls that send notifications to fail.  If a notification cannot be published to Cloud Pub/Sub, errors will be logged to Stackdriver (see [Viewing logs](/healthcare/docs/how- tos/stackdriver-logging)).
+     */
+    pubsubTopic?: string | null;
+  }
+  /**
    * Represents an HL7v2 store.
    */
   export interface Schema$Hl7V2Store {
@@ -664,6 +751,10 @@ export namespace healthcare_v1beta1 {
      * The notification destination all messages (both Ingest &amp; Create) are published on. Only the message name is sent as part of the notification. If this is unset, no notifications are sent. Supplied by the client.
      */
     notificationConfig?: Schema$NotificationConfig;
+    /**
+     * A list of notification configs. Each configuration uses a filter to determine whether to publish a message (both Ingest &amp; Create) on the corresponding notification destination. Only the message name is sent as part of the notification. Supplied by the client.
+     */
+    notificationConfigs?: Schema$Hl7V2NotificationConfig[];
     /**
      * The configuration for the parser. It determines how the server parses the messages.
      */
@@ -717,6 +808,10 @@ export namespace healthcare_v1beta1 {
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1beta1DicomGcsSource;
   }
+  /**
+   * Returns additional information in regards to a completed DICOM store import.
+   */
+  export interface Schema$ImportDicomDataResponse {}
   /**
    * Request to import resources.
    */
@@ -855,10 +950,6 @@ export namespace healthcare_v1beta1 {
      */
     hl7V2Messages?: Schema$Message[];
     /**
-     * Deprecated. Use `hl7_v2_messages` instead. The returned message names. Won&#39;t be more values than the value of page_size in the request.
-     */
-    messages?: string[] | null;
-    /**
      * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
@@ -918,7 +1009,7 @@ export namespace healthcare_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The message type and trigger event for this message. MSH-9.
+     * The message type for this message. MSH-9.1.
      */
     messageType?: string | null;
     /**
@@ -933,6 +1024,10 @@ export namespace healthcare_v1beta1 {
      * All patient IDs listed in the PID-2, PID-3, and PID-4 segments of this message.
      */
     patientIds?: Schema$PatientId[];
+    /**
+     * The parsed version of the raw message data schematized according to this store&#39;s schemas and type definitions.
+     */
+    schematizedData?: Schema$SchematizedData;
     /**
      * The hospital that this message came from. MSH-4.
      */
@@ -984,6 +1079,10 @@ export namespace healthcare_v1beta1 {
      * The name of the API method that initiated the operation.
      */
     apiMethodName?: string | null;
+    /**
+     * Specifies if cancellation was requested for the operation.
+     */
+    cancelRequested?: boolean | null;
     counter?: Schema$ProgressCounter;
     /**
      * The time at which the operation was created by the API.
@@ -993,9 +1092,13 @@ export namespace healthcare_v1beta1 {
      * The time at which execution was completed.
      */
     endTime?: string | null;
+    /**
+     * A link to audit and error logs in the log viewer. Error logs are generated only by some operations, listed at https://cloud.google.com/healthcare/docs/how-tos/stackdriver-logging.
+     */
+    logsUrl?: string | null;
   }
   /**
-   * The content of a HL7v2 message in a structured format.
+   * The content of an HL7v2 message in a structured format.
    */
   export interface Schema$ParsedData {
     segments?: Schema$Segment[];
@@ -1009,7 +1112,11 @@ export namespace healthcare_v1beta1 {
      */
     allowNullHeader?: boolean | null;
     /**
-     * Byte(s) to use as the segment terminator. If this is unset, &#39;\r&#39; is used as segment terminator.
+     * Schemas used to parse messages in this store, if schematized parsing is desired.
+     */
+    schema?: Schema$SchemaPackage;
+    /**
+     * Byte(s) to use as the segment terminator. If this is unset, &#39;\r&#39; is used as segment terminator, matching the HL7 version 2 specification.
      */
     segmentTerminator?: string | null;
   }
@@ -1065,11 +1172,11 @@ export namespace healthcare_v1beta1 {
     success?: string | null;
   }
   /**
-   * Define how to redact sensitive values. Default behaviour is erase. For example, &quot;My name is Jake.&quot; becomes &quot;My name is .&quot;
+   * Define how to redact sensitive values. Default behaviour is erase. For example, &quot;My name is Jane.&quot; becomes &quot;My name is .&quot;
    */
   export interface Schema$RedactConfig {}
   /**
-   * When using the INSPECT_AND_TRANSFORM action, each match is replaced with the name of the info_type. For example, &quot;My name is Jake&quot; becomes &quot;My name is [PERSON_NAME].&quot; The TRANSFORM action is equivalent to redacting.
+   * When using the INSPECT_AND_TRANSFORM action, each match is replaced with the name of the info_type. For example, &quot;My name is Jane&quot; becomes &quot;My name is [PERSON_NAME].&quot; The TRANSFORM action is equivalent to redacting.
    */
   export interface Schema$ReplaceWithInfoTypeConfig {}
   /**
@@ -1093,6 +1200,82 @@ export namespace healthcare_v1beta1 {
      * Specifies the output schema type. If unspecified, the default is `LOSSLESS`.
      */
     schemaType?: string | null;
+  }
+  /**
+   * An HL7v2 logical group construct.
+   */
+  export interface Schema$SchemaGroup {
+    /**
+     * True indicates that this is a choice group, meaning that only one of its segments can exist in a given message.
+     */
+    choice?: boolean | null;
+    /**
+     * The maximum number of times this group can be repeated. 0 or -1 means unbounded.
+     */
+    maxOccurs?: number | null;
+    /**
+     * Nested groups and/or segments.
+     */
+    members?: Schema$GroupOrSegment[];
+    /**
+     * The minimum number of times this group must be present/repeated.
+     */
+    minOccurs?: number | null;
+    /**
+     * The name of this group. For example, &quot;ORDER_DETAIL&quot;.
+     */
+    name?: string | null;
+  }
+  /**
+   * A schema package contains a set of schemas and type definitions.
+   */
+  export interface Schema$SchemaPackage {
+    /**
+     * Flag to ignore all min_occurs restrictions in the schema. This means that incoming messages can omit any group, segment, field, component, or subcomponent.
+     */
+    ignoreMinOccurs?: boolean | null;
+    /**
+     * Schema configs that are layered based on their VersionSources that match the incoming message. Schema configs present in higher indices override those in lower indices with the same message type and trigger event if their VersionSources all match an incoming message.
+     */
+    schemas?: Schema$Hl7SchemaConfig[];
+    /**
+     * Determines how messages that don&#39;t parse successfully are handled.
+     */
+    schematizedParsingType?: string | null;
+    /**
+     * Schema type definitions that are layered based on their VersionSources that match the incoming message. Type definitions present in higher indices override those in lower indices with the same type name if their VersionSources all match an incoming message.
+     */
+    types?: Schema$Hl7TypesConfig[];
+  }
+  /**
+   * An HL7v2 Segment.
+   */
+  export interface Schema$SchemaSegment {
+    /**
+     * The maximum number of times this segment can be present in this group. 0 or -1 means unbounded.
+     */
+    maxOccurs?: number | null;
+    /**
+     * The minimum number of times this segment can be present in this group.
+     */
+    minOccurs?: number | null;
+    /**
+     * The Segment type. For example, &quot;PID&quot;.
+     */
+    type?: string | null;
+  }
+  /**
+   * The content of an HL7v2 message in a structured format as specified by a schema.
+   */
+  export interface Schema$SchematizedData {
+    /**
+     * JSON output of the parser.
+     */
+    data?: string | null;
+    /**
+     * The error output of the parser.
+     */
+    error?: string | null;
   }
   /**
    * Request to search the resources in the specified FHIR store.
@@ -1151,6 +1334,19 @@ export namespace healthcare_v1beta1 {
     message?: string | null;
   }
   /**
+   * This structure contains configuration for streaming FHIR export.
+   */
+  export interface Schema$StreamConfig {
+    /**
+     * The destination BigQuery structure that contains both the dataset location and corresponding schema config.  The output is organized in one table per resource type. The server reuses the existing tables (if any) that are named after the resource types, e.g. &quot;Patient&quot;, &quot;Observation&quot;. When there is no existing table for a given resource type, the server attempts to create one.  When a table schema doesn&#39;t align with the schema config, either because of existing incompatible schema or out of band incompatible modification, the server does not stream in new data.  One resolution in this case is to delete the incompatible table and let the server recreate one, though the newly created table only contains data after the table recreation.  BigQuery imposes a 1 MB limit on streaming insert row size, therefore any resource mutation that generates more than 1 MB of BigQuery data will not be streamed.  Results are appended to the corresponding BigQuery tables. Different versions of the same resource are distinguishable by the meta.versionId and meta.lastUpdated columns. The operation (CREATE/UPDATE/DELETE) that results in the new version is recorded in the meta.tag.  The tables contain all historical resource versions since streaming was enabled. For query convenience, the server also creates one view per table of the same name containing only the current resource version.  If a resource mutation cannot be streamed to BigQuery, errors will be logged to Stackdriver (see [Viewing logs](/healthcare/docs/how- tos/stackdriver-logging)).
+     */
+    bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination;
+    /**
+     * Supply a FHIR resource type (such as &quot;Patient&quot; or &quot;Observation&quot;). See https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server treats an empty list as an intent to stream all the supported resource types in this FHIR store.
+     */
+    resourceTypes?: string[] | null;
+  }
+  /**
    * List of tags to be filtered.
    */
   export interface Schema$TagFilterList {
@@ -1182,6 +1378,36 @@ export namespace healthcare_v1beta1 {
      * The transformations to apply to the detected data.
      */
     transformations?: Schema$InfoTypeTransformation[];
+  }
+  /**
+   * A type definition for some HL7v2 type (incl. Segments and Datatypes).
+   */
+  export interface Schema$Type {
+    /**
+     * The (sub) fields this type has (if not primitive).
+     */
+    fields?: Schema$Field[];
+    /**
+     * The name of this type. This would be the segment or datatype name. For example, &quot;PID&quot; or &quot;XPN&quot;.
+     */
+    name?: string | null;
+    /**
+     * If this is a primitive type then this field is the type of the primitive For example, STRING. Leave unspecified for composite types.
+     */
+    primitive?: string | null;
+  }
+  /**
+   * Describes a selector for extracting and matching an MSH field to a value.
+   */
+  export interface Schema$VersionSource {
+    /**
+     * The field to extract from the MSH segment. For example, &quot;3.1&quot; or &quot;18[1].1&quot;.
+     */
+    mshField?: string | null;
+    /**
+     * The value to match with the field. For example, &quot;My Application Name&quot; or &quot;2.3&quot;.
+     */
+    value?: string | null;
   }
 
   export class Resource$Projects {
@@ -1647,7 +1873,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.deidentify
-     * @desc Creates a new dataset containing de-identified data from the source dataset. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifySummary. If errors occur, error details field type is DeidentifyErrorDetails. Errors are also logged to Stackdriver Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging).
+     * @desc Creates a new dataset containing de-identified data from the source dataset. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifySummary. If errors occur, error details field type is DeidentifyErrorDetails. The LRO result may still be successful if de-identification fails for some DICOM instances. The new de-identified dataset will not contain these failed resources. Failed resource totals are tracked in DeidentifySummary.failure_resource_count. Error details are also logged to Stackdriver Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging).
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -3217,7 +3443,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.deidentify
-     * @desc De-identifies data from the source store and writes it to the destination store. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifyDicomStoreSummary. If errors occur, error details field type is DeidentifyErrorDetails. Errors are also logged to Stackdriver (see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging)).
+     * @desc De-identifies data from the source store and writes it to the destination store. The metadata field type is OperationMetadata. If the request is successful, the response field type is DeidentifyDicomStoreSummary. If errors occur, error details field type is DeidentifyErrorDetails. The LRO result may still be successful if de-identification fails for some DICOM instances. The output DICOM store will not contain these failed resources. Failed resource totals are tracked in DeidentifySummary.failure_resource_count. Error details are also logged to Stackdriver (see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging)).
      * @alias healthcare.projects.locations.datasets.dicomStores.deidentify
      * @memberOf! ()
      *
@@ -3404,7 +3630,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.dicomStores.export
-     * @desc Exports data to the specified destination by copying it from the DICOM store. The metadata field type is OperationMetadata.
+     * @desc Exports data to the specified destination by copying it from the DICOM store. Errors are also logged to Stackdriver Logging. For more information, see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging). The metadata field type is OperationMetadata.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8129,7 +8355,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.import
-     * @desc Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data.  Every resource in the input must contain a client-supplied ID, and will be stored using that ID regardless of the enable_update_create setting on the FHIR store.  The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity.  If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once.  The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store will contain exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and will count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients.  If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back.  The location and format of the input data is specified by the parameters below. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation.  This method returns an Operation that can be used to track the status of the import by calling GetOperation.  Immediate fatal errors appear in the error field, errors are also logged to Stackdriver (see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @desc Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data.  Every resource in the input must contain a client-supplied ID, and will be stored using that ID regardless of the enable_update_create setting on the FHIR store.  The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity.  The import process does not trigger PubSub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store.  If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once.  The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store will contain exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and will count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients.  If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back.  The location and format of the input data is specified by the parameters below. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation.  This method returns an Operation that can be used to track the status of the import by calling GetOperation.  Immediate fatal errors appear in the error field, errors are also logged to Stackdriver (see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -8514,6 +8740,79 @@ export namespace healthcare_v1beta1 {
         createAPIRequest<Schema$FhirStore>(parameters, callback);
       } else {
         return createAPIRequest<Schema$FhirStore>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.search
+     * @desc Searches for resources in the given FHIR store according to criteria specified as query parameters.  Implements the FHIR standard search interaction ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](http://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](http://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/search.html), [R4](http://hl7.org/implement/standards/fhir/R4/search.html)).  Supports three methods of search defined by the specification:  *  `GET [base]?[parameters]` to search across all resources. *  `GET [base]/[type]?[parameters]` to search resources of a specified type. *  `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method.  The `GET` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters.  On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.  The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](http://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](http://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page.  Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`.  Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`.  The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` will contain pagination links.  Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases.  Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results.
+     * @alias healthcare.projects.locations.datasets.fhirStores.search
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.parent Name of the FHIR store to retrieve resources from.
+     * @param {string=} params.resourceType The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    search(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    search(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Search,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    search(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Search
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/fhir').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
       }
     }
 
@@ -8931,6 +9230,22 @@ export namespace healthcare_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$FhirStore;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Search
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Name of the FHIR store to retrieve resources from.
+     */
+    parent?: string;
+    /**
+     * The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     */
+    resourceType?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy
     extends StandardParameters {
@@ -10082,7 +10397,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.patch
-     * @desc Updates part of an existing resource by applying the operations specified in a [JSON Patch](http://jsonpatch.com/) document.  Implements the FHIR standard patch interaction ([STU3](http://hl7.org/implement/standards/fhir/STU3/http.html#patch), [R4](http://hl7.org/implement/standards/fhir/R4/http.html#patch)]).  DSTU2 doesn't define a patch method, but the server supports it in the same way it supports STU3.  The request body must contain a JSON Patch document, and the request headers must contain `Content-Type: application/json-patch+json`.  On success, the response body will contain a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @desc Updates part of an existing resource by applying the operations specified in a [JSON Patch](http://jsonpatch.com/) document.  Implements the FHIR standard patch interaction ([STU3](http://hl7.org/implement/standards/fhir/STU3/http.html#patch), [R4](http://hl7.org/implement/standards/fhir/R4/http.html#patch)).  DSTU2 doesn't define a patch method, but the server supports it in the same way it supports STU3.  The request body must contain a JSON Patch document, and the request headers must contain `Content-Type: application/json-patch+json`.  On success, the response body will contain a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -12886,12 +13201,12 @@ export namespace healthcare_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  Fields/functions available for filtering are:  *  `message_type`, from the MSH-9 segment. For example, `NOT message_type = "ADT"`. *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. *  `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. *  `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.  Limitations on conjunctions:  *  Negation on the patient ID function or the labels field is not supported. For example, these queries are invalid: `NOT PatientId("123456", "MRN")`, `NOT labels."tag1":*`, `NOT labels."tag2"="val2"`. *  Conjunction of multiple patient ID functions is not supported, for example this query is invalid: `PatientId("123456", "MRN") AND PatientId("456789", "MRN")`. *  Conjunction of multiple labels fields is also not supported, for example this query is invalid: `labels."tag1":* AND labels."tag2"="val2"`. *  Conjunction of one patient ID function, one labels field and conditions on other fields is supported. For example, this query is valid: `PatientId("123456", "MRN") AND labels."tag1":* AND message_type = "ADT"`.
+     * @param {string=} params.filter Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  Fields/functions available for filtering are:  *  `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. *  `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. *  `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
      * @param {string=} params.orderBy Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order  Fields available for ordering are:  *  `send_time`
      * @param {integer=} params.pageSize Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
      * @param {string=} params.pageToken The next_page_token value returned from the previous List request, if any.
      * @param {string} params.parent Name of the HL7v2 store to retrieve messages from.
-     * @param {string=} params.view Specifies the parts of the Message to return in the response. When unspecified, equivalent to BASIC.
+     * @param {string=} params.view Specifies the parts of the Message to return in the response. When unspecified, equivalent to BASIC. Setting this to anything other than BASIC with a `page_size` larger than the default can generate a large response, which impacts the performance of this method.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13155,7 +13470,7 @@ export namespace healthcare_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  Fields/functions available for filtering are:  *  `message_type`, from the MSH-9 segment. For example, `NOT message_type = "ADT"`. *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. *  `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. *  `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.  Limitations on conjunctions:  *  Negation on the patient ID function or the labels field is not supported. For example, these queries are invalid: `NOT PatientId("123456", "MRN")`, `NOT labels."tag1":*`, `NOT labels."tag2"="val2"`. *  Conjunction of multiple patient ID functions is not supported, for example this query is invalid: `PatientId("123456", "MRN") AND PatientId("456789", "MRN")`. *  Conjunction of multiple labels fields is also not supported, for example this query is invalid: `labels."tag1":* AND labels."tag2"="val2"`. *  Conjunction of one patient ID function, one labels field and conditions on other fields is supported. For example, this query is valid: `PatientId("123456", "MRN") AND labels."tag1":* AND message_type = "ADT"`.
+     * Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings  Fields/functions available for filtering are:  *  `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. *  `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. *  `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. *  `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. *  `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. *  `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
      */
     filter?: string;
     /**
@@ -13175,7 +13490,7 @@ export namespace healthcare_v1beta1 {
      */
     parent?: string;
     /**
-     * Specifies the parts of the Message to return in the response. When unspecified, equivalent to BASIC.
+     * Specifies the parts of the Message to return in the response. When unspecified, equivalent to BASIC. Setting this to anything other than BASIC with a `page_size` larger than the default can generate a large response, which impacts the performance of this method.
      */
     view?: string;
   }
@@ -13205,6 +13520,79 @@ export namespace healthcare_v1beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.operations.cancel
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @alias healthcare.projects.locations.datasets.operations.cancel
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {().CancelOperationRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel(
+      params?: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Datasets$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>
+    ): void | GaxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
     /**
@@ -13463,6 +13851,23 @@ export namespace healthcare_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datasets$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Operations$Get
     extends StandardParameters {
     /**

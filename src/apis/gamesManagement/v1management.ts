@@ -281,6 +281,10 @@ export namespace gamesManagement_v1management {
      */
     experienceInfo?: Schema$GamesPlayerExperienceInfoResource;
     /**
+     * The friend status of the given player, relative to the requester. This is unset if the player is not sharing their friends list with the game.
+     */
+    friendStatus?: string | null;
+    /**
      * Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#player.
      */
     kind?: string | null;

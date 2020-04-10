@@ -2325,7 +2325,7 @@ export namespace androidmanagement_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.
      * @param {string=} params.wipeDataFlags Optional flags that control the device wiping behavior.
-     * @param {string=} params.wipeReasonMessage Optional short message displayed to the user before wiping the work profile on personal devices. This has no effect on company owned devices. The maximum message length is 200 characters.
+     * @param {string=} params.wipeReasonMessage Optional. A short message displayed to the user before wiping the work profile on personal devices. This has no effect on company owned devices. The maximum message length is 200 characters.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2700,7 +2700,7 @@ export namespace androidmanagement_v1 {
      */
     wipeDataFlags?: string[];
     /**
-     * Optional short message displayed to the user before wiping the work profile on personal devices. This has no effect on company owned devices. The maximum message length is 200 characters.
+     * Optional. A short message displayed to the user before wiping the work profile on personal devices. This has no effect on company owned devices. The maximum message length is 200 characters.
      */
     wipeReasonMessage?: string;
   }

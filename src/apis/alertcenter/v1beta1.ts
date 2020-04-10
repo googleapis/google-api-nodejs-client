@@ -159,7 +159,7 @@ export namespace alertcenter_v1beta1 {
      */
     query?: string | null;
     /**
-     * List of alert ids superseded by this alert. It is used to indicate that this alert is essentially extension of superseded alerts and we found the relationship after creating these alerts.
+     * List of alert IDs superseded by this alert. It is used to indicate that this alert is essentially extension of superseded alerts and we found the relationship after creating these alerts.
      */
     supersededAlerts?: string[] | null;
     /**

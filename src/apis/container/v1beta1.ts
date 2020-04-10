@@ -368,7 +368,7 @@ export namespace container_v1beta1 {
      */
     enableKubernetesAlpha?: boolean | null;
     /**
-     * Enable the ability to use Cloud TPUs in this cluster.
+     * Enable the ability to use Cloud TPUs in this cluster. This field is deprecated, use tpu_config.enabled instead.
      */
     enableTpu?: boolean | null;
     /**
@@ -412,7 +412,7 @@ export namespace container_v1beta1 {
      */
     locations?: string[] | null;
     /**
-     * The logging service the cluster should use to write logs. Currently available options:  * `logging.googleapis.com` - the Google Cloud Logging service. * `none` - no logs will be exported from the cluster. * if left as an empty string,`logging.googleapis.com` will be used.
+     * The logging service the cluster should use to write logs. Currently available options:  * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer   available as of GKE 1.15). * `none` - no logs will be exported from the cluster.  If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     loggingService?: string | null;
     /**
@@ -432,7 +432,7 @@ export namespace container_v1beta1 {
      */
     masterIpv4CidrBlock?: string | null;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options:  * `monitoring.googleapis.com` - the Google Cloud Monitoring service. * `none` - no metrics will be exported from the cluster. * if left as an empty string, `monitoring.googleapis.com` will be used.
+     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no   longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster.  If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -512,9 +512,9 @@ export namespace container_v1beta1 {
      */
     subnetwork?: string | null;
     /**
-     * Cluster tier settings.
+     * Configuration for Cloud TPU support;
      */
-    tierSettings?: Schema$TierSettings;
+    tpuConfig?: Schema$TpuConfig;
     /**
      * [Output only] The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`).
      */
@@ -603,7 +603,7 @@ export namespace container_v1beta1 {
      */
     desiredLocations?: string[] | null;
     /**
-     * The logging service the cluster should use to write metrics. Currently available options:  * &quot;logging.googleapis.com/kubernetes&quot; - the Google Cloud Logging service with Kubernetes-native resource model * &quot;logging.googleapis.com&quot; - the Google Cloud Logging service * &quot;none&quot; - no logs will be exported from the cluster
+     * The logging service the cluster should use to write logs. Currently available options:  * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer   available as of GKE 1.15). * `none` - no logs will be exported from the cluster.  If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     desiredLoggingService?: string | null;
     /**
@@ -615,7 +615,7 @@ export namespace container_v1beta1 {
      */
     desiredMasterVersion?: string | null;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - the Google Cloud Monitoring service with Kubernetes-native resource model * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
+     * The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no   longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster.  If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     desiredMonitoringService?: string | null;
     /**
@@ -650,6 +650,10 @@ export namespace container_v1beta1 {
      * Configuration for Shielded Nodes.
      */
     desiredShieldedNodes?: Schema$ShieldedNodes;
+    /**
+     * The desired Cloud TPU configuration.
+     */
+    desiredTpuConfig?: Schema$TpuConfig;
     /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
@@ -775,24 +779,11 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * FeatureConfig is the configuration for a specific feature including the definition of the feature as well as the tier in which it resides.
-   */
-  export interface Schema$FeatureConfig {
-    /**
-     * The feature that is being configured with this value.
-     */
-    feature?: string | null;
-    /**
-     * The tier in which the configured feature resides.
-     */
-    tier?: string | null;
-  }
-  /**
-   * Configuration for the GCE PD CSI driver. This option can only be enabled at cluster creation time.
+   * Configuration for the Compute Engine PD CSI driver. This option can only be enabled at cluster creation time.
    */
   export interface Schema$GcePersistentDiskCsiDriverConfig {
     /**
-     * Whether the GCE PD CSI driver is enabled for this cluster.
+     * Whether the Compute Engine PD CSI driver is enabled for this cluster.
      */
     enabled?: boolean | null;
   }
@@ -939,7 +930,7 @@ export namespace container_v1beta1 {
      */
     subnetworkName?: string | null;
     /**
-     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size.  This field is only applicable when `use_ip_aliases` is true.  If unspecified, the range will use the default size.  Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask.  Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size.  This field is only applicable when `use_ip_aliases` is true.  If unspecified, the range will use the default size.  Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask.  Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. This field is deprecated, use cluster.tpu_config.ipv4_cidr_block instead.
      */
     tpuIpv4CidrBlock?: string | null;
     /**
@@ -1537,26 +1528,9 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
-   * PremiumConfig is the configuration for all premium features and tiers.
-   */
-  export interface Schema$PremiumConfig {
-    /**
-     * The features that GKE provides.
-     */
-    features?: Schema$FeatureConfig[];
-    /**
-     * The tiers that are part of the premium offering.
-     */
-    tiers?: Schema$TierConfig[];
-  }
-  /**
    * Configuration options for private clusters.
    */
   export interface Schema$PrivateClusterConfig {
-    /**
-     * Whether to enable route sharing over the network peering.
-     */
-    enablePeeringRouteSharing?: boolean | null;
     /**
      * Whether the master&#39;s internal IP address is used as the cluster endpoint.
      */
@@ -1727,10 +1701,6 @@ export namespace container_v1beta1 {
      */
     defaultImageType?: string | null;
     /**
-     * Premium configuration for service.
-     */
-    premiumConfig?: Schema$PremiumConfig;
-    /**
      * List of valid image types.
      */
     validImageTypes?: string[] | null;
@@ -1856,7 +1826,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The logging service the cluster should use to write metrics. Currently available options:  * &quot;logging.googleapis.com&quot; - the Google Cloud Logging service * &quot;none&quot; - no metrics will be exported from the cluster
+     * Required. The logging service the cluster should use to write logs. Currently available options:  * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer   available as of GKE 1.15). * `none` - no logs will be exported from the cluster.  If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     loggingService?: string | null;
     /**
@@ -1935,7 +1905,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com&quot; - the Google Cloud Monitoring service * &quot;none&quot; - no metrics will be exported from the cluster
+     * Required. The monitoring service the cluster should use to write metrics. Currently available options:  * &quot;monitoring.googleapis.com/kubernetes&quot; - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no   longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster.  If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -2124,28 +2094,6 @@ export namespace container_v1beta1 {
     message?: string | null;
   }
   /**
-   * TierConfig is the configuration for a tier offering.  For example the GKE standard or advanced offerings which contain different levels of functionality and possibly cost.
-   */
-  export interface Schema$TierConfig {
-    /**
-     * The tier from which the tier being configured inherits.  The configured tier will inherit all the features from its parent tier.
-     */
-    parent?: string | null;
-    /**
-     * The tier that is being configured with this value.
-     */
-    tier?: string | null;
-  }
-  /**
-   * Cluster tier settings.
-   */
-  export interface Schema$TierSettings {
-    /**
-     * Cluster tier.
-     */
-    tier?: string | null;
-  }
-  /**
    * Represents an arbitrary window of time.
    */
   export interface Schema$TimeWindow {
@@ -2157,6 +2105,23 @@ export namespace container_v1beta1 {
      * The time that the window first starts.
      */
     startTime?: string | null;
+  }
+  /**
+   * Configuration for Cloud TPU.
+   */
+  export interface Schema$TpuConfig {
+    /**
+     * Whether Cloud TPU integration is enabled or not.
+     */
+    enabled?: boolean | null;
+    /**
+     * IPv4 CIDR block reserved for Cloud TPU in the VPC.
+     */
+    ipv4CidrBlock?: string | null;
+    /**
+     * Whether to use service networking for Cloud TPU or not.
+     */
+    useServiceNetworking?: boolean | null;
   }
   /**
    * UpdateClusterRequest updates the settings of a cluster.
@@ -3301,7 +3266,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.locations.clusters.setLocations
-     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.update) instead.
+     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update) instead.
      * @alias container.projects.locations.clusters.setLocations
      * @memberOf! ()
      *
@@ -6278,7 +6243,7 @@ export namespace container_v1beta1 {
 
     /**
      * container.projects.zones.clusters.locations
-     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.update) instead.
+     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update) instead.
      * @alias container.projects.zones.clusters.locations
      * @memberOf! ()
      *

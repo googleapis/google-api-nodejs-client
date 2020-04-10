@@ -137,7 +137,7 @@ export namespace videointelligence_v1beta2 {
      */
     inputContent?: string | null;
     /**
-     * Input video location. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris). A video URI may include wildcards in `object-id`, and thus identify multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` should be unset.
+     * Input video location. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints). A video URI may include wildcards in `object-id`, and thus identify multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` should be unset.
      */
     inputUri?: string | null;
     /**
@@ -145,7 +145,7 @@ export namespace videointelligence_v1beta2 {
      */
     locationId?: string | null;
     /**
-     * Optional. Location where the output (in JSON format) should be stored. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](/storage/docs/reference-uris).
+     * Optional. Location where the output (in JSON format) should be stored. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints).
      */
     outputUri?: string | null;
     /**
@@ -161,6 +161,40 @@ export namespace videointelligence_v1beta2 {
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
      */
     annotationResults?: Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults[];
+  }
+  /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     */
+    name?: string | null;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string | null;
+  }
+  /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, i.e. left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1beta2_NormalizedVertex;
   }
   /**
    * Detected entity from video analysis.
@@ -281,6 +315,23 @@ export namespace videointelligence_v1beta2 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+  }
+  /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1beta2_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1beta2_Track[];
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
@@ -518,6 +569,48 @@ export namespace videointelligence_v1beta2 {
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
   }
   /**
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1beta2_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1beta2_DetectedLandmark[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1beta2_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1beta2_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number | null;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1beta2_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
@@ -566,6 +659,10 @@ export namespace videointelligence_v1beta2 {
      * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LogoRecognitionAnnotation[];
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -693,6 +790,40 @@ export namespace videointelligence_v1beta2 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults[];
   }
   /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     */
+    name?: string | null;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string | null;
+  }
+  /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, i.e. left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_Entity {
@@ -777,6 +908,23 @@ export namespace videointelligence_v1beta2 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+  }
+  /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p1beta1_Track[];
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
@@ -933,6 +1081,48 @@ export namespace videointelligence_v1beta2 {
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
   }
   /**
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedLandmark[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number | null;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1p1beta1_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
@@ -981,6 +1171,10 @@ export namespace videointelligence_v1beta2 {
      * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LogoRecognitionAnnotation[];
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -1075,6 +1269,40 @@ export namespace videointelligence_v1beta2 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationResults[];
   }
   /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     */
+    name?: string | null;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string | null;
+  }
+  /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, i.e. left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_Entity {
@@ -1159,6 +1387,23 @@ export namespace videointelligence_v1beta2 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
+  }
+  /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1p2beta1_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p2beta1_Track[];
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
@@ -1315,6 +1560,48 @@ export namespace videointelligence_v1beta2 {
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
   }
   /**
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedLandmark[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number | null;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1p2beta1_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress {
@@ -1363,6 +1650,10 @@ export namespace videointelligence_v1beta2 {
      * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LogoRecognitionAnnotation[];
     /**
      * Annotations for list of objects detected and tracked in video.
      */
@@ -2060,6 +2351,40 @@ export namespace videointelligence_v1beta2 {
     annotationResults?: Schema$GoogleCloudVideointelligenceV1_VideoAnnotationResults[];
   }
   /**
+   * A generic detected attribute represented by name in string format.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_DetectedAttribute {
+    /**
+     * Detected attribute confidence. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     */
+    name?: string | null;
+    /**
+     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     */
+    value?: string | null;
+  }
+  /**
+   * A generic detected landmark represented by name in string format and a 2D location.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_DetectedLandmark {
+    /**
+     * The confidence score of the detected landmark. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
+     * The name of this landmark, i.e. left_hand, right_shoulder.
+     */
+    name?: string | null;
+    /**
+     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     */
+    point?: Schema$GoogleCloudVideointelligenceV1_NormalizedVertex;
+  }
+  /**
    * Detected entity from video analysis.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_Entity {
@@ -2144,6 +2469,23 @@ export namespace videointelligence_v1beta2 {
      * Video segment where a label was detected.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
+  }
+  /**
+   * Annotation corresponding to one detected, tracked and recognized logo class.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_LogoRecognitionAnnotation {
+    /**
+     * Entity category information to specify the logo class that all the logo tracks within this LogoRecognitionAnnotation are recognized as.
+     */
+    entity?: Schema$GoogleCloudVideointelligenceV1_Entity;
+    /**
+     * All video segments where the recognized logo appears. There might be multiple instances of the same logo class appearing in one VideoSegment.
+     */
+    segments?: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
+    /**
+     * All logo tracks where the recognized logo appears. Each track corresponds to one logo instance appearing in consecutive frames.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1_Track[];
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to the original image. Range: [0, 1].
@@ -2300,6 +2642,48 @@ export namespace videointelligence_v1beta2 {
     segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
   }
   /**
+   * For tracking related features. An object at time_offset with attributes, and located with normalized_bounding_box.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_TimestampedObject {
+    /**
+     * Optional. The attributes of the object in the bounding box.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1_DetectedAttribute[];
+    /**
+     * Optional. The detected landmarks.
+     */
+    landmarks?: Schema$GoogleCloudVideointelligenceV1_DetectedLandmark[];
+    /**
+     * Normalized Bounding box in a frame, where the object is located.
+     */
+    normalizedBoundingBox?: Schema$GoogleCloudVideointelligenceV1_NormalizedBoundingBox;
+    /**
+     * Time-offset, relative to the beginning of the video, corresponding to the video frame for this object.
+     */
+    timeOffset?: string | null;
+  }
+  /**
+   * A track of an object instance.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_Track {
+    /**
+     * Optional. Attributes in the track level.
+     */
+    attributes?: Schema$GoogleCloudVideointelligenceV1_DetectedAttribute[];
+    /**
+     * Optional. The confidence score of the tracked object.
+     */
+    confidence?: number | null;
+    /**
+     * Video segment of a track.
+     */
+    segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
+    /**
+     * The object with timestamp and attributes per frame in the track.
+     */
+    timestampedObjects?: Schema$GoogleCloudVideointelligenceV1_TimestampedObject[];
+  }
+  /**
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
@@ -2348,6 +2732,10 @@ export namespace videointelligence_v1beta2 {
      * Video file location in [Cloud Storage](https://cloud.google.com/storage/).
      */
     inputUri?: string | null;
+    /**
+     * Annotations for list of logos detected, tracked and recognized in video.
+     */
+    logoRecognitionAnnotations?: Schema$GoogleCloudVideointelligenceV1_LogoRecognitionAnnotation[];
     /**
      * Annotations for list of objects detected and tracked in video.
      */

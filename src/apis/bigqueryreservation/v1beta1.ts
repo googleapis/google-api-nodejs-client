@@ -137,6 +137,19 @@ export namespace bigqueryreservation_v1beta1 {
     state?: string | null;
   }
   /**
+   * Auto scaling settings and current situation. System will create a dedicated FLEX capacity commitment to hold the slots for auto-scale. Users won&#39;t be able to manage it,to avoid conflicts. Scale-up will happen, if there are always pending tasks for the past 10 minutes. Scale-down will happen, if the system knows that scale-up won&#39;t be triggered again. Note this is an alpha feature.
+   */
+  export interface Schema$Autoscale {
+    /**
+     * Output only. The slot capacity added to this reservation when autoscale happens. Will be between [0, max_slots].
+     */
+    currentSlots?: string | null;
+    /**
+     * Number of slots to be scaled when needed.
+     */
+    maxSlots?: string | null;
+  }
+  /**
    * Represents a BI Reservation.
    */
   export interface Schema$BiReservation {
@@ -174,7 +187,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     plan?: string | null;
     /**
-     * The plan this capacity commitment is converted to after commitment_end_time passes. Once the plan is changed, committed period is extended according to commitment plan. Only applicable for MONTHLY and ANNUAL commitments.
+     * The plan this capacity commitment is converted to after commitment_end_time passes. Once the plan is changed, committed period is extended according to commitment plan. Only applicable for ANNUAL commitments.
      */
     renewalPlan?: string | null;
     /**
@@ -185,6 +198,15 @@ export namespace bigqueryreservation_v1beta1 {
      * Output only. State of the commitment.
      */
     state?: string | null;
+  }
+  /**
+   * The metadata for operation returned from ReservationService.CreateSlotPool.
+   */
+  export interface Schema$CreateSlotPoolMetadata {
+    /**
+     * Resource name of the slot pool that is being created. E.g., projects/myproject/locations/us-central1/reservations/foo/slotPools/123
+     */
+    slotPool?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance:      service Foo {       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON representation for `Empty` is empty JSON object `{}`.
@@ -252,6 +274,10 @@ export namespace bigqueryreservation_v1beta1 {
    */
   export interface Schema$Reservation {
     /**
+     * The configuration parameters for the auto scaling feature. Note this is an alpha feature.
+     */
+    autoscale?: Schema$Autoscale;
+    /**
      * If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the slot capacity specified above at most.
      */
     ignoreIdleSlots?: boolean | null;
@@ -315,15 +341,6 @@ export namespace bigqueryreservation_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
-  }
-  /**
-   * The request for ReservationService.UpgradeCapacityCommitmentPlan.
-   */
-  export interface Schema$UpgradeCapacityCommitmentPlanRequest {
-    /**
-     * New capacity commitment plan.
-     */
-    plan?: string | null;
   }
 
   export class Resource$Projects {
@@ -1031,7 +1048,7 @@ export namespace bigqueryreservation_v1beta1 {
 
     /**
      * bigqueryreservation.projects.locations.capacityCommitments.patch
-     * @desc Updates an existing capacity commitment.  Only renewal_plan field can be updated.
+     * @desc Updates an existing capacity commitment.  Only plan and renewal_plan fields can be updated. Plan can only be changed to a plan of a longer commitment period. Attempting to change to a plan with shorter commitment period will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
      * @alias bigqueryreservation.projects.locations.capacityCommitments.patch
      * @memberOf! ()
      *
@@ -1187,84 +1204,6 @@ export namespace bigqueryreservation_v1beta1 {
         );
       }
     }
-
-    /**
-     * bigqueryreservation.projects.locations.capacityCommitments.upgradeCapacityCommitmentPlan
-     * @desc Replaces an existing commitment with a new commitment of a different plan. Plan can only be changed to a plan of a longer commitment period. New commitment start is set to a current time. Attempting to change to a plan with shorter commitment period will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
-     * @alias bigqueryreservation.projects.locations.capacityCommitments.upgradeCapacityCommitmentPlan
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.capacityCommitment Required. The resource name e.g.,:   projects/myproject/locations/US/capacityCommitments/123
-     * @param {().UpgradeCapacityCommitmentPlanRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    upgradeCapacityCommitmentPlan(
-      params?: Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$CapacityCommitment>;
-    upgradeCapacityCommitmentPlan(
-      params: Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan,
-      options: MethodOptions | BodyResponseCallback<Schema$CapacityCommitment>,
-      callback: BodyResponseCallback<Schema$CapacityCommitment>
-    ): void;
-    upgradeCapacityCommitmentPlan(
-      params: Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan,
-      callback: BodyResponseCallback<Schema$CapacityCommitment>
-    ): void;
-    upgradeCapacityCommitmentPlan(
-      callback: BodyResponseCallback<Schema$CapacityCommitment>
-    ): void;
-    upgradeCapacityCommitmentPlan(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan
-        | BodyResponseCallback<Schema$CapacityCommitment>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CapacityCommitment>,
-      callback?: BodyResponseCallback<Schema$CapacityCommitment>
-    ): void | GaxiosPromise<Schema$CapacityCommitment> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1beta1/{+capacityCommitment}:upgradeCapacityCommitmentPlan'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['capacityCommitment'],
-        pathParams: ['capacityCommitment'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$CapacityCommitment>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$CapacityCommitment>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Create
@@ -1386,23 +1325,6 @@ export namespace bigqueryreservation_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$SplitCapacityCommitmentRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Capacitycommitments$Upgradecapacitycommitmentplan
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. The resource name e.g.,:   projects/myproject/locations/US/capacityCommitments/123
-     */
-    capacityCommitment?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$UpgradeCapacityCommitmentPlanRequest;
   }
 
   export class Resource$Projects$Locations$Reservations {

@@ -148,6 +148,10 @@ export namespace speech_v1 {
      * Time when the request was received.
      */
     startTime?: string | null;
+    /**
+     * The URI of the audio file being transcribed. Empty if the audio was sent as byte content.
+     */
+    uri?: string | null;
   }
   /**
    * The top-level message sent by the client for the `LongRunningRecognize` method.

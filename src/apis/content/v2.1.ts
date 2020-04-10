@@ -93,6 +93,7 @@ export namespace content_v2_1 {
     datafeeds: Resource$Datafeeds;
     datafeedstatuses: Resource$Datafeedstatuses;
     liasettings: Resource$Liasettings;
+    localinventory: Resource$Localinventory;
     orderinvoices: Resource$Orderinvoices;
     orderreports: Resource$Orderreports;
     orderreturns: Resource$Orderreturns;
@@ -118,6 +119,7 @@ export namespace content_v2_1 {
       this.datafeeds = new Resource$Datafeeds(this.context);
       this.datafeedstatuses = new Resource$Datafeedstatuses(this.context);
       this.liasettings = new Resource$Liasettings(this.context);
+      this.localinventory = new Resource$Localinventory(this.context);
       this.orderinvoices = new Resource$Orderinvoices(this.context);
       this.orderreports = new Resource$Orderreports(this.context);
       this.orderreturns = new Resource$Orderreturns(this.context);
@@ -156,7 +158,7 @@ export namespace content_v2_1 {
      */
     googleMyBusinessLink?: Schema$AccountGoogleMyBusinessLink;
     /**
-     * Merchant Center account ID.
+     * Required for update. Merchant Center account ID.
      */
     id?: string | null;
     /**
@@ -164,7 +166,7 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * Display name for the account.
+     * Required. Display name for the account.
      */
     name?: string | null;
     /**
@@ -212,7 +214,7 @@ export namespace content_v2_1 {
      */
     adsId?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the Ads account. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in Google Ads or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
+     * Status of the link between this Merchant Center account and the Ads account. Upon retrieval, it represents the actual status of the link and can be either active if it was approved in Google Ads or pending if it&#39;s pending approval. Upon insertion, it represents the intended status of the link. Re-uploading a link with status active when it&#39;s still pending or with status pending when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status inactive is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.  Acceptable values are:   - &quot;active&quot;  - &quot;pending&quot;
      */
     status?: string | null;
   }
@@ -250,7 +252,7 @@ export namespace content_v2_1 {
      */
     gmbEmail?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the GMB account.
+     * Status of the link between this Merchant Center account and the GMB account.  Acceptable values are:   - &quot;active&quot;  - &quot;pending&quot;
      */
     status?: string | null;
   }
@@ -315,7 +317,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry.
+     * The method of the batch entry.  Acceptable values are:   - &quot;claimWebsite&quot;  - &quot;delete&quot;  - &quot;get&quot;  - &quot;insert&quot;  - &quot;link&quot;  - &quot;update&quot;
      */
     method?: string | null;
     /**
@@ -325,7 +327,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
     /**
-     * Action to perform for this link. The &quot;request&quot; action is only available to select merchants.
+     * Action to perform for this link. The &quot;request&quot; action is only available to select merchants.  Acceptable values are:   - &quot;approve&quot;  - &quot;remove&quot;  - &quot;request&quot;
      */
     action?: string | null;
     /**
@@ -333,7 +335,7 @@ export namespace content_v2_1 {
      */
     linkedAccountId?: string | null;
     /**
-     * Type of the link between the two accounts.
+     * Type of the link between the two accounts.  Acceptable values are:   - &quot;channelPartner&quot;  - &quot;eCommercePlatform&quot;
      */
     linkType?: string | null;
     /**
@@ -374,7 +376,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsLinkRequest {
     /**
-     * Action to perform for this link. The &quot;request&quot; action is only available to select merchants.
+     * Action to perform for this link. The &quot;request&quot; action is only available to select merchants.  Acceptable values are:   - &quot;approve&quot;  - &quot;remove&quot;  - &quot;request&quot;
      */
     action?: string | null;
     /**
@@ -382,7 +384,7 @@ export namespace content_v2_1 {
      */
     linkedAccountId?: string | null;
     /**
-     * Type of the link between the two accounts.
+     * Type of the link between the two accounts.  Acceptable values are:   - &quot;channelPartner&quot;  - &quot;eCommercePlatform&quot;
      */
     linkType?: string | null;
     /**
@@ -468,7 +470,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * Severity of the issue.
+     * Severity of the issue.  Acceptable values are:   - &quot;critical&quot;  - &quot;error&quot;  - &quot;suggestion&quot;
      */
     severity?: string | null;
     /**
@@ -503,7 +505,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method (get).
+     * The method of the batch entry.  Acceptable values are:   - &quot;get&quot;
      */
     method?: string | null;
   }
@@ -581,7 +583,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountStatusProducts {
     /**
-     * The channel the data applies to.
+     * The channel the data applies to.  Acceptable values are:   - &quot;local&quot;  - &quot;online&quot;
      */
     channel?: string | null;
     /**
@@ -624,7 +626,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$AccountTax {
     /**
-     * The ID of the account to which these account tax settings belong.
+     * Required. The ID of the account to which these account tax settings belong.
      */
     accountId?: string | null;
     /**
@@ -662,6 +664,9 @@ export namespace content_v2_1 {
      * The ID of the managing account.
      */
     merchantId?: string | null;
+    /**
+     * The method of the batch entry.  Acceptable values are:   - &quot;get&quot;  - &quot;update&quot;
+     */
     method?: string | null;
   }
   export interface Schema$AccounttaxCustomBatchResponse {
@@ -715,7 +720,7 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * State (or province) is which the tax is applicable, described by its location ID (also called criteria ID).
+     * Required. State (or province) is which the tax is applicable, described by its location ID (also called criteria ID).
      */
     locationId?: string | null;
     /**
@@ -839,7 +844,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * Code of the return reason.
+     * Code of the return reason.  Acceptable values are:   - &quot;betterPriceFound&quot;  - &quot;changedMind&quot;  - &quot;damagedOrDefectiveItem&quot;  - &quot;didNotMatchDescription&quot;  - &quot;doesNotFit&quot;  - &quot;expiredItem&quot;  - &quot;incorrectItemReceived&quot;  - &quot;noLongerNeeded&quot;  - &quot;notSpecified&quot;  - &quot;orderedWrongItem&quot;  - &quot;other&quot;  - &quot;qualityNotExpected&quot;  - &quot;receivedTooLate&quot;  - &quot;undeliverable&quot;
      */
     reasonCode?: string | null;
   }
@@ -866,7 +871,7 @@ export namespace content_v2_1 {
      */
     attributeLanguage?: string | null;
     /**
-     * The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.
+     * Required. The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.  Acceptable values are:   - &quot;local products&quot;  - &quot;product inventory&quot;  - &quot;products&quot;
      */
     contentType?: string | null;
     /**
@@ -874,7 +879,7 @@ export namespace content_v2_1 {
      */
     fetchSchedule?: Schema$DatafeedFetchSchedule;
     /**
-     * The filename of the feed. All feeds must have a unique file name.
+     * Required. The filename of the feed. All feeds must have a unique file name.
      */
     fileName?: string | null;
     /**
@@ -882,7 +887,7 @@ export namespace content_v2_1 {
      */
     format?: Schema$DatafeedFormat;
     /**
-     * The ID of the data feed.
+     * Required for update. The ID of the data feed.
      */
     id?: string | null;
     /**
@@ -890,7 +895,7 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * A descriptive name of the data feed.
+     * Required for insert. A descriptive name of the data feed.
      */
     name?: string | null;
     /**
@@ -935,21 +940,21 @@ export namespace content_v2_1 {
      */
     username?: string | null;
     /**
-     * The day of the week the feed file should be fetched.
+     * The day of the week the feed file should be fetched.  Acceptable values are:   - &quot;monday&quot;  - &quot;tuesday&quot;  - &quot;wednesday&quot;  - &quot;thursday&quot;  - &quot;friday&quot;  - &quot;saturday&quot;  - &quot;sunday&quot;
      */
     weekday?: string | null;
   }
   export interface Schema$DatafeedFormat {
     /**
-     * Delimiter for the separation of values in a delimiter-separated values feed. If not specified, the delimiter will be auto-detected. Ignored for non-DSV data feeds.
+     * Delimiter for the separation of values in a delimiter-separated values feed. If not specified, the delimiter will be auto-detected. Ignored for non-DSV data feeds.  Acceptable values are:   - &quot;pipe&quot;  - &quot;tab&quot;  - &quot;tilde&quot;
      */
     columnDelimiter?: string | null;
     /**
-     * Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected.
+     * Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected.  Acceptable values are:   - &quot;latin-1&quot;  - &quot;utf-16be&quot;  - &quot;utf-16le&quot;  - &quot;utf-8&quot;  - &quot;windows-1252&quot;
      */
     fileEncoding?: string | null;
     /**
-     * Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds.
+     * Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds.  Acceptable values are:   - &quot;normal character&quot;  - &quot;value quoting&quot;
      */
     quotingMode?: string | null;
   }
@@ -979,6 +984,9 @@ export namespace content_v2_1 {
      * The ID of the managing account.
      */
     merchantId?: string | null;
+    /**
+     * The method of the batch entry.  Acceptable values are:   - &quot;delete&quot;  - &quot;fetchNow&quot;  - &quot;get&quot;  - &quot;insert&quot;  - &quot;update&quot;
+     */
     method?: string | null;
   }
   export interface Schema$DatafeedsCustomBatchResponse {
@@ -1062,7 +1070,7 @@ export namespace content_v2_1 {
      */
     lastUploadDate?: string | null;
     /**
-     * The processing status of the feed.
+     * The processing status of the feed.  Acceptable values are:   - &quot;&quot;failure&quot;: The feed could not be processed or all items had errors.&quot;  - &quot;in progress&quot;: The feed is being processed.  - &quot;none&quot;: The feed has not yet been processed. For example, a feed that has never been uploaded will have this processing status.  - &quot;success&quot;: The feed was processed successfully, though some items might have had errors.
      */
     processingStatus?: string | null;
     /**
@@ -1121,6 +1129,9 @@ export namespace content_v2_1 {
      * The ID of the managing account.
      */
     merchantId?: string | null;
+    /**
+     * The method of the batch entry.  Acceptable values are:   - &quot;get&quot;
+     */
     method?: string | null;
   }
   export interface Schema$DatafeedstatusesCustomBatchResponse {
@@ -1365,7 +1376,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * The holiday type. Always present.
+     * The holiday type. Always present.  Acceptable values are:   - &quot;Christmas&quot;  - &quot;Easter&quot;  - &quot;Father&#39;s Day&quot;  - &quot;Halloween&quot;  - &quot;Independence Day (USA)&quot;  - &quot;Mother&#39;s Day&quot;  - &quot;Thanksgiving&quot;  - &quot;Valentine&#39;s Day&quot;
      */
     type?: string | null;
   }
@@ -1395,13 +1406,13 @@ export namespace content_v2_1 {
      */
     totalAmount?: Schema$Amount;
     /**
-     * [required] Type of the additional charge.
+     * [required] Type of the additional charge.  Acceptable values are:   - &quot;shipping&quot;
      */
     type?: string | null;
   }
   export interface Schema$LiaAboutPageSettings {
     /**
-     * The status of the verification process for the About page.
+     * The status of the verification process for the About page.  Acceptable values are:   - &quot;active&quot;  - &quot;inactive&quot;  - &quot;pending&quot;
      */
     status?: string | null;
     /**
@@ -1415,7 +1426,7 @@ export namespace content_v2_1 {
      */
     about?: Schema$LiaAboutPageSettings;
     /**
-     * CLDR country code (e.g. &quot;US&quot;).
+     * Required. CLDR country code (e.g. &quot;US&quot;).
      */
     country?: string | null;
     /**
@@ -1449,11 +1460,11 @@ export namespace content_v2_1 {
      */
     inventoryVerificationContactName?: string | null;
     /**
-     * The status of the verification contact.
+     * The status of the verification contact.  Acceptable values are:   - &quot;active&quot;  - &quot;inactive&quot;  - &quot;pending&quot;
      */
     inventoryVerificationContactStatus?: string | null;
     /**
-     * The status of the inventory verification process.
+     * The status of the inventory verification process.  Acceptable values are:   - &quot;active&quot;  - &quot;inactive&quot;  - &quot;pending&quot;
      */
     status?: string | null;
   }
@@ -1463,7 +1474,7 @@ export namespace content_v2_1 {
      */
     shippingCostPolicyUrl?: string | null;
     /**
-     * The status of the ?On display to order? feature.
+     * The status of the ?On display to order? feature.  Acceptable values are:   - &quot;active&quot;  - &quot;inactive&quot;  - &quot;pending&quot;
      */
     status?: string | null;
   }
@@ -1533,6 +1544,9 @@ export namespace content_v2_1 {
      * The ID of the managing account.
      */
     merchantId?: string | null;
+    /**
+     * The method of the batch entry.  Acceptable values are:   - &quot;get&quot;  - &quot;getAccessibleGmbAccounts&quot;  - &quot;requestGmbAccess&quot;  - &quot;requestInventoryVerification&quot;  - &quot;setInventoryVerificationContact&quot;  - &quot;update&quot;
+     */
     method?: string | null;
     /**
      * The ID of POS data provider. Required only for SetPosProvider.
@@ -1650,13 +1664,116 @@ export namespace content_v2_1 {
   }
   export interface Schema$LinkService {
     /**
-     * Service provided to or by the linked account.
+     * Service provided to or by the linked account.  Acceptable values are:   - &quot;shoppingActionsOrderManagement&quot;  - &quot;shoppingActionsProductManagement&quot;  - &quot;shoppingAdsProductManagement&quot;
      */
     service?: string | null;
     /**
-     * Status of the link
+     * Status of the link  Acceptable values are:   - &quot;active&quot;  - &quot;inactive&quot;  - &quot;pending&quot;
      */
     status?: string | null;
+  }
+  /**
+   * Local inventory resource. For accepted attribute values, see the local product inventory feed specification.
+   */
+  export interface Schema$LocalInventory {
+    /**
+     * Availability of the product.
+     */
+    availability?: string | null;
+    /**
+     * In-store product location.
+     */
+    instoreProductLocation?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#localInventory&quot;.
+     */
+    kind?: string | null;
+    /**
+     * Supported pickup method for this offer. Unless the value is &quot;not supported&quot;, this field must be submitted together with pickupSla.
+     */
+    pickupMethod?: string | null;
+    /**
+     * Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with pickupMethod.
+     */
+    pickupSla?: string | null;
+    /**
+     * Price of the product.
+     */
+    price?: Schema$Price;
+    /**
+     * Quantity of the product. Must be nonnegative.
+     */
+    quantity?: number | null;
+    /**
+     * Sale price of the product. Mandatory if sale_price_effective_date is defined.
+     */
+    salePrice?: Schema$Price;
+    /**
+     * A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates may be specified as &#39;null&#39; if undecided.
+     */
+    salePriceEffectiveDate?: string | null;
+    /**
+     * Required. Store code of this local inventory resource.
+     */
+    storeCode?: string | null;
+  }
+  export interface Schema$LocalinventoryCustomBatchRequest {
+    /**
+     * The request entries to be processed in the batch.
+     */
+    entries?: Schema$LocalinventoryCustomBatchRequestEntry[];
+  }
+  /**
+   * Batch entry encoding a single local inventory update request.
+   */
+  export interface Schema$LocalinventoryCustomBatchRequestEntry {
+    /**
+     * An entry ID, unique within the batch request.
+     */
+    batchId?: number | null;
+    /**
+     * Local inventory of the product.
+     */
+    localInventory?: Schema$LocalInventory;
+    /**
+     * The ID of the managing account.
+     */
+    merchantId?: string | null;
+    /**
+     * Method of the batch request entry.  Acceptable values are:   - &quot;insert&quot;
+     */
+    method?: string | null;
+    /**
+     * The ID of the product for which to update local inventory.
+     */
+    productId?: string | null;
+  }
+  export interface Schema$LocalinventoryCustomBatchResponse {
+    /**
+     * The result of the execution of the batch requests.
+     */
+    entries?: Schema$LocalinventoryCustomBatchResponseEntry[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#localinventoryCustomBatchResponse&quot;.
+     */
+    kind?: string | null;
+  }
+  /**
+   * Batch entry encoding a single local inventory update response.
+   */
+  export interface Schema$LocalinventoryCustomBatchResponseEntry {
+    /**
+     * The ID of the request entry this entry responds to.
+     */
+    batchId?: number | null;
+    /**
+     * A list of errors defined if and only if the request failed.
+     */
+    errors?: Schema$Errors;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;content#localinventoryCustomBatchResponseEntry&quot;.
+     */
+    kind?: string | null;
   }
   export interface Schema$LocationIdSet {
     /**
@@ -1729,7 +1846,7 @@ export namespace content_v2_1 {
      */
     returnShipmentIds?: string[] | null;
     /**
-     * State of the item.
+     * State of the item.  Acceptable values are:   - &quot;canceled&quot;  - &quot;new&quot;  - &quot;received&quot;  - &quot;refunded&quot;  - &quot;rejected&quot;
      */
     state?: string | null;
   }
@@ -1779,7 +1896,7 @@ export namespace content_v2_1 {
      */
     netTaxAmount?: Schema$Price;
     /**
-     * The status of the payment.
+     * The status of the payment.  Acceptable values are:   - &quot;paymentCaptured&quot;  - &quot;paymentRejected&quot;  - &quot;paymentSecured&quot;  - &quot;pendingAuthorization&quot;
      */
     paymentStatus?: string | null;
     /**
@@ -1811,11 +1928,11 @@ export namespace content_v2_1 {
      */
     shippingCostTax?: Schema$Price;
     /**
-     * The status of the order.
+     * The status of the order.  Acceptable values are:   - &quot;canceled&quot;  - &quot;delivered&quot;  - &quot;inProgress&quot;  - &quot;partiallyDelivered&quot;  - &quot;partiallyReturned&quot;  - &quot;partiallyShipped&quot;  - &quot;pendingShipment&quot;  - &quot;returned&quot;  - &quot;shipped&quot;
      */
     status?: string | null;
     /**
-     * The party responsible for collecting and remitting taxes.
+     * The party responsible for collecting and remitting taxes.  Acceptable values are:   - &quot;marketplaceFacilitator&quot;  - &quot;merchant&quot;
      */
     taxCollector?: string | null;
   }
@@ -1855,7 +1972,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderCancellation {
     /**
-     * The actor that created the cancellation.
+     * The actor that created the cancellation.  Acceptable values are:   - &quot;customer&quot;  - &quot;googleBot&quot;  - &quot;googleCustomerService&quot;  - &quot;googlePayments&quot;  - &quot;googleSabre&quot;  - &quot;merchant&quot;
      */
     actor?: string | null;
     /**
@@ -1867,7 +1984,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads.
+     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads.  Acceptable values are:   - &quot;autoPostInternal&quot;  - &quot;autoPostInvalidBillingAddress&quot;  - &quot;autoPostNoInventory&quot;  - &quot;autoPostPriceError&quot;  - &quot;autoPostUndeliverableShippingAddress&quot;  - &quot;couponAbuse&quot;  - &quot;customerCanceled&quot;  - &quot;customerInitiatedCancel&quot;  - &quot;customerSupportRequested&quot;  - &quot;failToPushOrderGoogleError&quot;  - &quot;failToPushOrderMerchantError&quot;  - &quot;failToPushOrderMerchantFulfillmentError&quot;  - &quot;failToPushOrderToMerchant&quot;  - &quot;failToPushOrderToMerchantOutOfStock&quot;  - &quot;invalidCoupon&quot;  - &quot;malformedShippingAddress&quot;  - &quot;merchantDidNotShipOnTime&quot;  - &quot;noInventory&quot;  - &quot;orderTimeout&quot;  - &quot;other&quot;  - &quot;paymentAbuse&quot;  - &quot;paymentDeclined&quot;  - &quot;priceError&quot;  - &quot;returnRefundAbuse&quot;  - &quot;shippingPriceError&quot;  - &quot;taxError&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;
      */
     reason?: string | null;
     /**
@@ -1905,7 +2022,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderCustomerMarketingRightsInfo {
     /**
-     * Last known customer selection regarding marketing preferences. In certain cases this selection might not be known, so this field would be empty. If a customer selected granted in their most recent order, they can be subscribed to marketing emails. Customers who have chosen denied must not be subscribed, or must be unsubscribed if already opted-in.
+     * Last known customer selection regarding marketing preferences. In certain cases this selection might not be known, so this field would be empty. If a customer selected granted in their most recent order, they can be subscribed to marketing emails. Customers who have chosen denied must not be subscribed, or must be unsubscribed if already opted-in.  Acceptable values are:   - &quot;denied&quot;  - &quot;granted&quot;
      */
     explicitMarketingPreference?: string | null;
     /**
@@ -1951,7 +2068,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderinvoicesCreateChargeInvoiceResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -1983,7 +2100,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderinvoicesCreateRefundInvoiceResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -1997,7 +2114,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * [required] Reason for the refund.
+     * [required] Reason for the refund.  Acceptable values are:   - &quot;adjustment&quot;  - &quot;autoPostInternal&quot;  - &quot;autoPostInvalidBillingAddress&quot;  - &quot;autoPostNoInventory&quot;  - &quot;autoPostPriceError&quot;  - &quot;autoPostUndeliverableShippingAddress&quot;  - &quot;couponAbuse&quot;  - &quot;courtesyAdjustment&quot;  - &quot;customerCanceled&quot;  - &quot;customerDiscretionaryReturn&quot;  - &quot;customerInitiatedMerchantCancel&quot;  - &quot;customerSupportRequested&quot;  - &quot;deliveredLateByCarrier&quot;  - &quot;deliveredTooLate&quot;  - &quot;expiredItem&quot;  - &quot;failToPushOrderGoogleError&quot;  - &quot;failToPushOrderMerchantError&quot;  - &quot;failToPushOrderMerchantFulfillmentError&quot;  - &quot;failToPushOrderToMerchant&quot;  - &quot;failToPushOrderToMerchantOutOfStock&quot;  - &quot;feeAdjustment&quot;  - &quot;invalidCoupon&quot;  - &quot;lateShipmentCredit&quot;  - &quot;malformedShippingAddress&quot;  - &quot;merchantDidNotShipOnTime&quot;  - &quot;noInventory&quot;  - &quot;orderTimeout&quot;  - &quot;other&quot;  - &quot;paymentAbuse&quot;  - &quot;paymentDeclined&quot;  - &quot;priceAdjustment&quot;  - &quot;priceError&quot;  - &quot;productArrivedDamaged&quot;  - &quot;productNotAsDescribed&quot;  - &quot;promoReallocation&quot;  - &quot;qualityNotAsExpected&quot;  - &quot;returnRefundAbuse&quot;  - &quot;shippingCostAdjustment&quot;  - &quot;shippingPriceError&quot;  - &quot;taxAdjustment&quot;  - &quot;taxError&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;  - &quot;wrongProductShipped&quot;
      */
     reason?: string | null;
   }
@@ -2007,7 +2124,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * [required] Reason for the return.
+     * [required] Reason for the return.  Acceptable values are:   - &quot;customerDiscretionaryReturn&quot;  - &quot;customerInitiatedMerchantCancel&quot;  - &quot;deliveredTooLate&quot;  - &quot;expiredItem&quot;  - &quot;invalidCoupon&quot;  - &quot;malformedShippingAddress&quot;  - &quot;other&quot;  - &quot;productArrivedDamaged&quot;  - &quot;productNotAsDescribed&quot;  - &quot;qualityNotAsExpected&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;  - &quot;wrongProductShipped&quot;
      */
     reason?: string | null;
   }
@@ -2095,7 +2212,7 @@ export namespace content_v2_1 {
      */
     taxAdjustment?: Schema$Price;
     /**
-     * Type of this adjustment.
+     * Type of this adjustment.  Acceptable values are:   - &quot;promotion&quot;
      */
     type?: string | null;
   }
@@ -2105,7 +2222,7 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * Condition or state of the item.
+     * Condition or state of the item.  Acceptable values are:   - &quot;new&quot;  - &quot;refurbished&quot;  - &quot;used&quot;
      */
     condition?: string | null;
     /**
@@ -2183,33 +2300,33 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderLineItemReturnInfo {
     /**
-     * How many days later the item can be returned.
+     * Required. How many days later the item can be returned.
      */
     daysToReturn?: number | null;
     /**
-     * Whether the item is returnable.
+     * Required. Whether the item is returnable.
      */
     isReturnable?: boolean | null;
     /**
-     * URL of the item return policy.
+     * Required. URL of the item return policy.
      */
     policyUrl?: string | null;
   }
   export interface Schema$OrderLineItemShippingDetails {
     /**
-     * The delivery by date, in ISO 8601 format.
+     * Required. The delivery by date, in ISO 8601 format.
      */
     deliverByDate?: string | null;
     /**
-     * Details of the shipping method.
+     * Required. Details of the shipping method.
      */
     method?: Schema$OrderLineItemShippingDetailsMethod;
     /**
-     * The ship by date, in ISO 8601 format.
+     * Required. The ship by date, in ISO 8601 format.
      */
     shipByDate?: string | null;
     /**
-     * Type of shipment. Indicates whether deliveryDetails or pickupDetails is applicable for this shipment.
+     * Type of shipment. Indicates whether deliveryDetails or pickupDetails is applicable for this shipment.  Acceptable values are:   - &quot;delivery&quot;  - &quot;pickup&quot;
      */
     type?: string | null;
   }
@@ -2219,15 +2336,15 @@ export namespace content_v2_1 {
      */
     carrier?: string | null;
     /**
-     * Maximum transit time.
+     * Required. Maximum transit time.
      */
     maxDaysInTransit?: number | null;
     /**
-     * The name of the shipping method.
+     * Required. The name of the shipping method.
      */
     methodName?: string | null;
     /**
-     * Minimum transit time.
+     * Required. Minimum transit time.
      */
     minDaysInTransit?: number | null;
   }
@@ -2279,11 +2396,11 @@ export namespace content_v2_1 {
      */
     endTime?: string | null;
     /**
-     * The party funding the promotion. Only merchant is supported for orders.createtestorder.
+     * Required. The party funding the promotion. Only merchant is supported for orders.createtestorder.  Acceptable values are:   - &quot;google&quot;  - &quot;merchant&quot;
      */
     funder?: string | null;
     /**
-     * This field is used to identify promotions within merchants&#39; own systems.
+     * Required. This field is used to identify promotions within merchants&#39; own systems.
      */
     merchantPromotionId?: string | null;
     /**
@@ -2299,7 +2416,7 @@ export namespace content_v2_1 {
      */
     startTime?: string | null;
     /**
-     * The category of the promotion. Only moneyOff is supported for orders.createtestorder.
+     * Required. The category of the promotion. Only moneyOff is supported for orders.createtestorder.  Acceptable values are:   - &quot;buyMGetMoneyOff&quot;  - &quot;buyMGetNMoneyOff&quot;  - &quot;buyMGetNPercentOff&quot;  - &quot;buyMGetPercentOff&quot;  - &quot;freeGift&quot;  - &quot;freeGiftWithItemId&quot;  - &quot;freeGiftWithValue&quot;  - &quot;freeShippingOvernight&quot;  - &quot;freeShippingStandard&quot;  - &quot;freeShippingTwoDay&quot;  - &quot;moneyOff&quot;  - &quot;percentOff&quot;  - &quot;rewardPoints&quot;  - &quot;salePrice&quot;
      */
     subtype?: string | null;
     /**
@@ -2307,11 +2424,11 @@ export namespace content_v2_1 {
      */
     taxValue?: Schema$Price;
     /**
-     * The title of the promotion.
+     * Required. The title of the promotion.
      */
     title?: string | null;
     /**
-     * The scope of the promotion. Only product is supported for orders.createtestorder.
+     * Required. The scope of the promotion. Only product is supported for orders.createtestorder.  Acceptable values are:   - &quot;product&quot;  - &quot;shipping&quot;
      */
     type?: string | null;
   }
@@ -2321,7 +2438,7 @@ export namespace content_v2_1 {
      */
     lineItemId?: string | null;
     /**
-     * Offer ID of a product. Only for orders.createtestorder.
+     * Required. Offer ID of a product. Only for orders.createtestorder.
      */
     offerId?: string | null;
     /**
@@ -2335,7 +2452,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderRefund {
     /**
-     * The actor that created the refund.
+     * The actor that created the refund.  Acceptable values are:   - &quot;customer&quot;  - &quot;googleBot&quot;  - &quot;googleCustomerService&quot;  - &quot;googlePayments&quot;  - &quot;googleSabre&quot;  - &quot;merchant&quot;
      */
     actor?: string | null;
     /**
@@ -2347,7 +2464,7 @@ export namespace content_v2_1 {
      */
     creationDate?: string | null;
     /**
-     * The reason for the refund.
+     * The reason for the refund.  Acceptable values are:   - &quot;adjustment&quot;  - &quot;autoPostInternal&quot;  - &quot;autoPostInvalidBillingAddress&quot;  - &quot;autoPostNoInventory&quot;  - &quot;autoPostPriceError&quot;  - &quot;autoPostUndeliverableShippingAddress&quot;  - &quot;couponAbuse&quot;  - &quot;courtesyAdjustment&quot;  - &quot;customerCanceled&quot;  - &quot;customerDiscretionaryReturn&quot;  - &quot;customerInitiatedMerchantCancel&quot;  - &quot;customerSupportRequested&quot;  - &quot;deliveredLateByCarrier&quot;  - &quot;deliveredTooLate&quot;  - &quot;expiredItem&quot;  - &quot;failToPushOrderGoogleError&quot;  - &quot;failToPushOrderMerchantError&quot;  - &quot;failToPushOrderMerchantFulfillmentError&quot;  - &quot;failToPushOrderToMerchant&quot;  - &quot;failToPushOrderToMerchantOutOfStock&quot;  - &quot;feeAdjustment&quot;  - &quot;invalidCoupon&quot;  - &quot;lateShipmentCredit&quot;  - &quot;malformedShippingAddress&quot;  - &quot;merchantDidNotShipOnTime&quot;  - &quot;noInventory&quot;  - &quot;orderTimeout&quot;  - &quot;other&quot;  - &quot;paymentAbuse&quot;  - &quot;paymentDeclined&quot;  - &quot;priceAdjustment&quot;  - &quot;priceError&quot;  - &quot;productArrivedDamaged&quot;  - &quot;productNotAsDescribed&quot;  - &quot;promoReallocation&quot;  - &quot;qualityNotAsExpected&quot;  - &quot;returnRefundAbuse&quot;  - &quot;shippingCostAdjustment&quot;  - &quot;shippingPriceError&quot;  - &quot;taxAdjustment&quot;  - &quot;taxError&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;  - &quot;wrongProductShipped&quot;
      */
     reason?: string | null;
     /**
@@ -2448,7 +2565,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderReturn {
     /**
-     * The actor that created the refund.
+     * The actor that created the refund.  Acceptable values are:   - &quot;customer&quot;  - &quot;googleBot&quot;  - &quot;googleCustomerService&quot;  - &quot;googlePayments&quot;  - &quot;googleSabre&quot;  - &quot;merchant&quot;
      */
     actor?: string | null;
     /**
@@ -2460,7 +2577,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return.
+     * The reason for the return.  Acceptable values are:   - &quot;customerDiscretionaryReturn&quot;  - &quot;customerInitiatedMerchantCancel&quot;  - &quot;deliveredTooLate&quot;  - &quot;expiredItem&quot;  - &quot;invalidCoupon&quot;  - &quot;malformedShippingAddress&quot;  - &quot;other&quot;  - &quot;productArrivedDamaged&quot;  - &quot;productNotAsDescribed&quot;  - &quot;qualityNotAsExpected&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;  - &quot;wrongProductShipped&quot;
      */
     reason?: string | null;
     /**
@@ -2487,7 +2604,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersAcknowledgeResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2519,7 +2636,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the cancellation.
+     * The reason for the cancellation.  Acceptable values are:   - &quot;customerInitiatedCancel&quot;  - &quot;invalidCoupon&quot;  - &quot;malformedShippingAddress&quot;  - &quot;noInventory&quot;  - &quot;other&quot;  - &quot;priceError&quot;  - &quot;shippingPriceError&quot;  - &quot;taxError&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;
      */
     reason?: string | null;
     /**
@@ -2529,7 +2646,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelLineItemResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2543,7 +2660,7 @@ export namespace content_v2_1 {
      */
     operationId?: string | null;
     /**
-     * The reason for the cancellation.
+     * The reason for the cancellation.  Acceptable values are:   - &quot;customerInitiatedCancel&quot;  - &quot;invalidCoupon&quot;  - &quot;malformedShippingAddress&quot;  - &quot;noInventory&quot;  - &quot;other&quot;  - &quot;priceError&quot;  - &quot;shippingPriceError&quot;  - &quot;taxError&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;
      */
     reason?: string | null;
     /**
@@ -2553,7 +2670,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2563,7 +2680,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelTestOrderByCustomerRequest {
     /**
-     * The reason for the cancellation.
+     * The reason for the cancellation.  Acceptable values are:   - &quot;changedMind&quot;  - &quot;orderedWrongItem&quot;  - &quot;other&quot;
      */
     reason?: string | null;
   }
@@ -2579,7 +2696,7 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * The test order template to use. Specify as an alternative to testOrder as a shortcut for retrieving a template and then creating an order using that template.
+     * The test order template to use. Specify as an alternative to testOrder as a shortcut for retrieving a template and then creating an order using that template.  Acceptable values are:   - &quot;template1&quot;  - &quot;template1a&quot;  - &quot;template1b&quot;  - &quot;template2&quot;  - &quot;template3&quot;
      */
     templateName?: string | null;
     /**
@@ -2629,7 +2746,7 @@ export namespace content_v2_1 {
      */
     carrier?: string | null;
     /**
-     * The ID of the shipment. This is assigned by the merchant and is unique to each shipment.
+     * Required. The ID of the shipment. This is assigned by the merchant and is unique to each shipment.
      */
     shipmentId?: string | null;
     /**
@@ -2683,7 +2800,7 @@ export namespace content_v2_1 {
      */
     shipmentGroupId?: string | null;
     /**
-     * The status of the shipment.
+     * The status of the shipment.  Acceptable values are:   - &quot;delivered&quot;  - &quot;readyForPickup&quot;  - &quot;shipped&quot;  - &quot;undeliverable&quot;
      */
     status?: string | null;
     /**
@@ -2727,7 +2844,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return.
+     * The reason for the return.  Acceptable values are:   - &quot;customerDiscretionaryReturn&quot;  - &quot;customerInitiatedMerchantCancel&quot;  - &quot;deliveredTooLate&quot;  - &quot;expiredItem&quot;  - &quot;invalidCoupon&quot;  - &quot;malformedShippingAddress&quot;  - &quot;other&quot;  - &quot;productArrivedDamaged&quot;  - &quot;productNotAsDescribed&quot;  - &quot;qualityNotAsExpected&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;  - &quot;wrongProductShipped&quot;
      */
     reason?: string | null;
     /**
@@ -2741,7 +2858,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersInStoreRefundLineItemResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2778,7 +2895,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return.
+     * The reason for the return.  Acceptable values are:   - &quot;damagedOrUsed&quot;  - &quot;missingComponent&quot;  - &quot;notEligible&quot;  - &quot;other&quot;  - &quot;outOfReturnWindow&quot;
      */
     reason?: string | null;
     /**
@@ -2788,7 +2905,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersRejectReturnLineItemResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2818,7 +2935,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return.
+     * The reason for the return.  Acceptable values are:   - &quot;customerDiscretionaryReturn&quot;  - &quot;customerInitiatedMerchantCancel&quot;  - &quot;deliveredTooLate&quot;  - &quot;expiredItem&quot;  - &quot;invalidCoupon&quot;  - &quot;malformedShippingAddress&quot;  - &quot;other&quot;  - &quot;productArrivedDamaged&quot;  - &quot;productNotAsDescribed&quot;  - &quot;qualityNotAsExpected&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;  - &quot;wrongProductShipped&quot;
      */
     reason?: string | null;
     /**
@@ -2832,7 +2949,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersReturnRefundLineItemResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2857,7 +2974,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersSetLineItemMetadataResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2885,7 +3002,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersShipLineItemsResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2917,7 +3034,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateLineItemShippingDetailsResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2937,7 +3054,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateMerchantOrderIdResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -2963,7 +3080,7 @@ export namespace content_v2_1 {
      */
     shipmentId?: string | null;
     /**
-     * New status for the shipment. Not updated if missing.
+     * New status for the shipment. Not updated if missing.  Acceptable values are:   - &quot;delivered&quot;  - &quot;undeliverable&quot;
      */
     status?: string | null;
     /**
@@ -2973,7 +3090,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateShipmentResponse {
     /**
-     * The status of the execution.
+     * The status of the execution.  Acceptable values are:   - &quot;duplicate&quot;  - &quot;executed&quot;
      */
     executionStatus?: string | null;
     /**
@@ -3024,6 +3141,9 @@ export namespace content_v2_1 {
      * The ID of the POS data provider.
      */
     merchantId?: string | null;
+    /**
+     * The method of the batch entry.  Acceptable values are:   - &quot;delete&quot;  - &quot;get&quot;  - &quot;insert&quot;  - &quot;inventory&quot;  - &quot;sale&quot;
+     */
     method?: string | null;
     /**
      * The sale information to submit. Set this only if the method is sale.
@@ -3107,7 +3227,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$PosInventory {
     /**
-     * The two-letter ISO 639-1 language code for the item.
+     * Required. The two-letter ISO 639-1 language code for the item.
      */
     contentLanguage?: string | null;
     /**
@@ -3115,7 +3235,7 @@ export namespace content_v2_1 {
      */
     gtin?: string | null;
     /**
-     * A unique identifier for the item.
+     * Required. A unique identifier for the item.
      */
     itemId?: string | null;
     /**
@@ -3123,29 +3243,29 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * The current price of the item.
+     * Required. The current price of the item.
      */
     price?: Schema$Price;
     /**
-     * The available quantity of the item.
+     * Required. The available quantity of the item.
      */
     quantity?: string | null;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
-     * The CLDR territory code for the item.
+     * Required. The CLDR territory code for the item.
      */
     targetCountry?: string | null;
     /**
-     * The inventory timestamp, in ISO 8601 format.
+     * Required. The inventory timestamp, in ISO 8601 format.
      */
     timestamp?: string | null;
   }
   export interface Schema$PosInventoryRequest {
     /**
-     * The two-letter ISO 639-1 language code for the item.
+     * Required. The two-letter ISO 639-1 language code for the item.
      */
     contentLanguage?: string | null;
     /**
@@ -3153,33 +3273,33 @@ export namespace content_v2_1 {
      */
     gtin?: string | null;
     /**
-     * A unique identifier for the item.
+     * Required. A unique identifier for the item.
      */
     itemId?: string | null;
     /**
-     * The current price of the item.
+     * Required. The current price of the item.
      */
     price?: Schema$Price;
     /**
-     * The available quantity of the item.
+     * Required. The available quantity of the item.
      */
     quantity?: string | null;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
-     * The CLDR territory code for the item.
+     * Required. The CLDR territory code for the item.
      */
     targetCountry?: string | null;
     /**
-     * The inventory timestamp, in ISO 8601 format.
+     * Required. The inventory timestamp, in ISO 8601 format.
      */
     timestamp?: string | null;
   }
   export interface Schema$PosInventoryResponse {
     /**
-     * The two-letter ISO 639-1 language code for the item.
+     * Required. The two-letter ISO 639-1 language code for the item.
      */
     contentLanguage?: string | null;
     /**
@@ -3187,7 +3307,7 @@ export namespace content_v2_1 {
      */
     gtin?: string | null;
     /**
-     * A unique identifier for the item.
+     * Required. A unique identifier for the item.
      */
     itemId?: string | null;
     /**
@@ -3195,23 +3315,23 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * The current price of the item.
+     * Required. The current price of the item.
      */
     price?: Schema$Price;
     /**
-     * The available quantity of the item.
+     * Required. The available quantity of the item.
      */
     quantity?: string | null;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
-     * The CLDR territory code for the item.
+     * Required. The CLDR territory code for the item.
      */
     targetCountry?: string | null;
     /**
-     * The inventory timestamp, in ISO 8601 format.
+     * Required. The inventory timestamp, in ISO 8601 format.
      */
     timestamp?: string | null;
   }
@@ -3227,7 +3347,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$PosSale {
     /**
-     * The two-letter ISO 639-1 language code for the item.
+     * Required. The two-letter ISO 639-1 language code for the item.
      */
     contentLanguage?: string | null;
     /**
@@ -3235,7 +3355,7 @@ export namespace content_v2_1 {
      */
     gtin?: string | null;
     /**
-     * A unique identifier for the item.
+     * Required. A unique identifier for the item.
      */
     itemId?: string | null;
     /**
@@ -3243,11 +3363,11 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * The price of the item.
+     * Required. The price of the item.
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items returned.
+     * Required. The relative change of the available quantity. Negative for items returned.
      */
     quantity?: string | null;
     /**
@@ -3255,21 +3375,21 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
-     * The CLDR territory code for the item.
+     * Required. The CLDR territory code for the item.
      */
     targetCountry?: string | null;
     /**
-     * The inventory timestamp, in ISO 8601 format.
+     * Required. The inventory timestamp, in ISO 8601 format.
      */
     timestamp?: string | null;
   }
   export interface Schema$PosSaleRequest {
     /**
-     * The two-letter ISO 639-1 language code for the item.
+     * Required. The two-letter ISO 639-1 language code for the item.
      */
     contentLanguage?: string | null;
     /**
@@ -3277,15 +3397,15 @@ export namespace content_v2_1 {
      */
     gtin?: string | null;
     /**
-     * A unique identifier for the item.
+     * Required. A unique identifier for the item.
      */
     itemId?: string | null;
     /**
-     * The price of the item.
+     * Required. The price of the item.
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items returned.
+     * Required. The relative change of the available quantity. Negative for items returned.
      */
     quantity?: string | null;
     /**
@@ -3293,21 +3413,21 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
-     * The CLDR territory code for the item.
+     * Required. The CLDR territory code for the item.
      */
     targetCountry?: string | null;
     /**
-     * The inventory timestamp, in ISO 8601 format.
+     * Required. The inventory timestamp, in ISO 8601 format.
      */
     timestamp?: string | null;
   }
   export interface Schema$PosSaleResponse {
     /**
-     * The two-letter ISO 639-1 language code for the item.
+     * Required. The two-letter ISO 639-1 language code for the item.
      */
     contentLanguage?: string | null;
     /**
@@ -3315,7 +3435,7 @@ export namespace content_v2_1 {
      */
     gtin?: string | null;
     /**
-     * A unique identifier for the item.
+     * Required. A unique identifier for the item.
      */
     itemId?: string | null;
     /**
@@ -3323,11 +3443,11 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * The price of the item.
+     * Required. The price of the item.
      */
     price?: Schema$Price;
     /**
-     * The relative change of the available quantity. Negative for items returned.
+     * Required. The relative change of the available quantity. Negative for items returned.
      */
     quantity?: string | null;
     /**
@@ -3335,15 +3455,15 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant&#39;s store. Either a storeCode inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
-     * The CLDR territory code for the item.
+     * Required. The CLDR territory code for the item.
      */
     targetCountry?: string | null;
     /**
-     * The inventory timestamp, in ISO 8601 format.
+     * Required. The inventory timestamp, in ISO 8601 format.
      */
     timestamp?: string | null;
   }
@@ -3356,11 +3476,11 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * The street address of the store.
+     * Required. The street address of the store.
      */
     storeAddress?: string | null;
     /**
-     * A store identifier that is unique for the given merchant.
+     * Required. A store identifier that is unique for the given merchant.
      */
     storeCode?: string | null;
   }
@@ -3439,7 +3559,7 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * The item&#39;s channel (online or local).
+     * Required. The item&#39;s channel (online or local).  Acceptable values are:   - &quot;local&quot;  - &quot;online&quot;
      */
     channel?: string | null;
     /**
@@ -3451,7 +3571,7 @@ export namespace content_v2_1 {
      */
     condition?: string | null;
     /**
-     * The two-letter ISO 639-1 language code for the item.
+     * Required. The two-letter ISO 639-1 language code for the item.
      */
     contentLanguage?: string | null;
     /**
@@ -3603,7 +3723,7 @@ export namespace content_v2_1 {
      */
     multipack?: string | null;
     /**
-     * A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details. Note: Content API methods that operate on products take the REST ID of the product, not this identifier.
+     * Required. A unique identifier for the item. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. Only valid unicode characters are accepted. See the products feed specification for details. Note: Content API methods that operate on products take the REST ID of the product, not this identifier.
      */
     offerId?: string | null;
     /**
@@ -3671,11 +3791,11 @@ export namespace content_v2_1 {
      */
     sizeType?: string | null;
     /**
-     * The source of the offer, i.e., how the offer was created.
+     * The source of the offer, i.e., how the offer was created.  Acceptable values are:   - &quot;api&quot;  - &quot;crawl&quot;  - &quot;feed&quot;
      */
     source?: string | null;
     /**
-     * The CLDR territory code for the item.
+     * Required. The CLDR territory code for the item.
      */
     targetCountry?: string | null;
     /**
@@ -3739,6 +3859,9 @@ export namespace content_v2_1 {
      * The ID of the managing account.
      */
     merchantId?: string | null;
+    /**
+     * The method of the batch entry.  Acceptable values are:   - &quot;delete&quot;  - &quot;get&quot;  - &quot;insert&quot;
+     */
     method?: string | null;
     /**
      * The product to insert. Only required if the method is insert.
@@ -3912,6 +4035,9 @@ export namespace content_v2_1 {
      * The ID of the managing account.
      */
     merchantId?: string | null;
+    /**
+     * The method of the batch entry.  Acceptable values are:   - &quot;get&quot;
+     */
     method?: string | null;
     /**
      * The ID of the product whose status to get.
@@ -4089,7 +4215,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * Code of the refund reason.
+     * Code of the refund reason.  Acceptable values are:   - &quot;adjustment&quot;  - &quot;autoPostInternal&quot;  - &quot;autoPostInvalidBillingAddress&quot;  - &quot;autoPostNoInventory&quot;  - &quot;autoPostPriceError&quot;  - &quot;autoPostUndeliverableShippingAddress&quot;  - &quot;couponAbuse&quot;  - &quot;courtesyAdjustment&quot;  - &quot;customerCanceled&quot;  - &quot;customerDiscretionaryReturn&quot;  - &quot;customerInitiatedMerchantCancel&quot;  - &quot;customerSupportRequested&quot;  - &quot;deliveredLateByCarrier&quot;  - &quot;deliveredTooLate&quot;  - &quot;expiredItem&quot;  - &quot;failToPushOrderGoogleError&quot;  - &quot;failToPushOrderMerchantError&quot;  - &quot;failToPushOrderMerchantFulfillmentError&quot;  - &quot;failToPushOrderToMerchant&quot;  - &quot;failToPushOrderToMerchantOutOfStock&quot;  - &quot;feeAdjustment&quot;  - &quot;invalidCoupon&quot;  - &quot;lateShipmentCredit&quot;  - &quot;malformedShippingAddress&quot;  - &quot;merchantDidNotShipOnTime&quot;  - &quot;noInventory&quot;  - &quot;orderTimeout&quot;  - &quot;other&quot;  - &quot;paymentAbuse&quot;  - &quot;paymentDeclined&quot;  - &quot;priceAdjustment&quot;  - &quot;priceError&quot;  - &quot;productArrivedDamaged&quot;  - &quot;productNotAsDescribed&quot;  - &quot;promoReallocation&quot;  - &quot;qualityNotAsExpected&quot;  - &quot;returnRefundAbuse&quot;  - &quot;shippingCostAdjustment&quot;  - &quot;shippingPriceError&quot;  - &quot;taxAdjustment&quot;  - &quot;taxError&quot;  - &quot;undeliverableShippingAddress&quot;  - &quot;unsupportedPoBoxAddress&quot;  - &quot;wrongProductShipped&quot;
      */
     reasonCode?: string | null;
   }
@@ -4144,6 +4270,9 @@ export namespace content_v2_1 {
      * The ID of the managing account.
      */
     merchantId?: string | null;
+    /**
+     * Method of the batch request entry.  Acceptable values are:   - &quot;insert&quot;
+     */
     method?: string | null;
     /**
      * The ID of the product for which to update price and availability.
@@ -4190,11 +4319,11 @@ export namespace content_v2_1 {
    */
   export interface Schema$ReturnAddress {
     /**
-     * The address.
+     * Required. The address.
      */
     address?: Schema$ReturnAddressAddress;
     /**
-     * The country of sale where the return address is applicable.
+     * Required. The country of sale where the return address is applicable.
      */
     country?: string | null;
     /**
@@ -4202,11 +4331,11 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * The user-defined label of the return address. For the default address, use the label &quot;default&quot;.
+     * Required. The user-defined label of the return address. For the default address, use the label &quot;default&quot;.
      */
     label?: string | null;
     /**
-     * The merchant&#39;s contact phone number regarding the return.
+     * Required. The merchant&#39;s contact phone number regarding the return.
      */
     phoneNumber?: string | null;
     /**
@@ -4255,6 +4384,9 @@ export namespace content_v2_1 {
      * The Merchant Center account ID.
      */
     merchantId?: string | null;
+    /**
+     * Method of the batch request entry.  Acceptable values are:   - &quot;delete&quot;  - &quot;get&quot;  - &quot;insert&quot;
+     */
     method?: string | null;
     /**
      * The return address to submit. Set this only if the method is insert.
@@ -4309,7 +4441,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$ReturnPolicy {
     /**
-     * The country of sale where the return policy is applicable.
+     * Required. The country of sale where the return policy is applicable.
      */
     country?: string | null;
     /**
@@ -4317,11 +4449,11 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * The user-defined label of the return policy. For the default policy, use the label &quot;default&quot;.
+     * Required. The user-defined label of the return policy. For the default policy, use the label &quot;default&quot;.
      */
     label?: string | null;
     /**
-     * The name of the policy as shown in Merchant Center.
+     * Required. The name of the policy as shown in Merchant Center.
      */
     name?: string | null;
     /**
@@ -4329,7 +4461,7 @@ export namespace content_v2_1 {
      */
     nonFreeReturnReasons?: string[] | null;
     /**
-     * The policy.
+     * Required. The policy.
      */
     policy?: Schema$ReturnPolicyPolicy;
     /**
@@ -4356,6 +4488,9 @@ export namespace content_v2_1 {
      * The Merchant Center account ID.
      */
     merchantId?: string | null;
+    /**
+     * Method of the batch request entry.  Acceptable values are:   - &quot;delete&quot;  - &quot;get&quot;  - &quot;insert&quot;
+     */
     method?: string | null;
     /**
      * The return policy to submit. Set this only if the method is insert.
@@ -4403,7 +4538,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ReturnPolicyPolicy {
     /**
-     * Last day for returning the items. In ISO 8601 format. When specifying the return window like this, set the policy type to &quot;lastReturnDate&quot;. Use this for seasonal overrides only.
+     * Required. Last day for returning the items. In ISO 8601 format. When specifying the return window like this, set the policy type to &quot;lastReturnDate&quot;. Use this for seasonal overrides only.
      */
     lastReturnDate?: string | null;
     /**
@@ -4411,25 +4546,25 @@ export namespace content_v2_1 {
      */
     numberOfDays?: string | null;
     /**
-     * Policy type. Use &quot;lastReturnDate&quot; for seasonal overrides only. Note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics or non-returnable items such as food, perishables, and living things. A policy of less than 30 days can only be applied to those items.
+     * Policy type. Use &quot;lastReturnDate&quot; for seasonal overrides only. Note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics or non-returnable items such as food, perishables, and living things. A policy of less than 30 days can only be applied to those items.  Acceptable values are:   - &quot;lastReturnDate&quot;  - &quot;lifetimeReturns&quot;  - &quot;noReturns&quot;  - &quot;numberOfDaysAfterDelivery&quot;
      */
     type?: string | null;
   }
   export interface Schema$ReturnPolicySeasonalOverride {
     /**
-     * Last day on which the override applies. In ISO 8601 format.
+     * Required. Last day on which the override applies. In ISO 8601 format.
      */
     endDate?: string | null;
     /**
-     * The name of the seasonal override as shown in Merchant Center.
+     * Required. The name of the seasonal override as shown in Merchant Center.
      */
     name?: string | null;
     /**
-     * The policy which is in effect during that time.
+     * Required. The policy which is in effect during that time.
      */
     policy?: Schema$ReturnPolicyPolicy;
     /**
-     * First day on which the override applies. In ISO 8601 format.
+     * Required. First day on which the override applies. In ISO 8601 format.
      */
     startDate?: string | null;
   }
@@ -4443,7 +4578,7 @@ export namespace content_v2_1 {
      */
     deliveryDate?: string | null;
     /**
-     * Type of the return method.
+     * Type of the return method.  Acceptable values are:   - &quot;byMail&quot;  - &quot;contactCustomerSupport&quot;  - &quot;returnless&quot;
      */
     returnMethodType?: string | null;
     /**
@@ -4459,7 +4594,7 @@ export namespace content_v2_1 {
      */
     shippingDate?: string | null;
     /**
-     * State of the shipment.
+     * State of the shipment.  Acceptable values are:   - &quot;completed&quot;  - &quot;new&quot;  - &quot;shipped&quot;  - &quot;undeliverable&quot;
      */
     state?: string | null;
   }
@@ -4487,7 +4622,7 @@ export namespace content_v2_1 {
      */
     deliveryTime?: Schema$DeliveryTime;
     /**
-     * Eligibility for this service.
+     * Eligibility for this service.  Acceptable values are:   - &quot;All scenarios&quot;  - &quot;All scenarios except Shopping Actions&quot;  - &quot;Shopping Actions&quot;
      */
     eligibility?: string | null;
     /**
@@ -4507,7 +4642,7 @@ export namespace content_v2_1 {
      */
     rateGroups?: Schema$RateGroup[];
     /**
-     * Type of locations this service ships orders to.
+     * Type of locations this service ships orders to.  Acceptable values are:   - &quot;delivery&quot;  - &quot;pickup&quot;
      */
     shipmentType?: string | null;
   }
@@ -4545,7 +4680,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ShipmentTrackingInfo {
     /**
-     * The shipping carrier that handles the package.
+     * The shipping carrier that handles the package.  Acceptable values are:   - &quot;boxtal&quot;  - &quot;bpost&quot;  - &quot;chronopost&quot;  - &quot;colisPrive&quot;  - &quot;colissimo&quot;  - &quot;cxt&quot;  - &quot;deliv&quot;  - &quot;dhl&quot;  - &quot;dpd&quot;  - &quot;dynamex&quot;  - &quot;eCourier&quot;  - &quot;easypost&quot;  - &quot;efw&quot;  - &quot;fedex&quot;  - &quot;fedexSmartpost&quot;  - &quot;geodis&quot;  - &quot;gls&quot;  - &quot;googleCourier&quot;  - &quot;gsx&quot;  - &quot;jdLogistics&quot;  - &quot;laPoste&quot;  - &quot;lasership&quot;  - &quot;manual&quot;  - &quot;mpx&quot;  - &quot;onTrac&quot;  - &quot;other&quot;  - &quot;tnt&quot;  - &quot;uds&quot;  - &quot;ups&quot;  - &quot;usps&quot;
      */
     carrier?: string | null;
     /**
@@ -4592,6 +4727,9 @@ export namespace content_v2_1 {
      * The ID of the managing account.
      */
     merchantId?: string | null;
+    /**
+     * The method of the batch entry.  Acceptable values are:   - &quot;get&quot;  - &quot;update&quot;
+     */
     method?: string | null;
     /**
      * The account shipping settings to update. Only defined if the method is update.
@@ -4698,27 +4836,27 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * Line items that are ordered. At least one line item must be provided.
+     * Required. Line items that are ordered. At least one line item must be provided.
      */
     lineItems?: Schema$TestOrderLineItem[];
     /**
-     * Determines if test order must be pulled by merchant or pushed to merchant via push integration.
+     * Determines if test order must be pulled by merchant or pushed to merchant via push integration.  Acceptable values are:   - &quot;checkoutIntegration&quot;  - &quot;merchantPull&quot;
      */
     notificationMode?: string | null;
     /**
-     * The billing address.
+     * Required. The billing address.  Acceptable values are:   - &quot;dwight&quot;  - &quot;jim&quot;  - &quot;pam&quot;
      */
     predefinedBillingAddress?: string | null;
     /**
-     * Identifier of one of the predefined delivery addresses for the delivery.
+     * Required. Identifier of one of the predefined delivery addresses for the delivery.  Acceptable values are:   - &quot;dwight&quot;  - &quot;jim&quot;  - &quot;pam&quot;
      */
     predefinedDeliveryAddress?: string | null;
     /**
-     * Email address of the customer.
+     * Required. Email address of the customer.  Acceptable values are:   - &quot;pog.dwight.schrute@gmail.com&quot;  - &quot;pog.jim.halpert@gmail.com&quot;  - &quot;penpog.pam.beesly@gmail.comding&quot;
      */
     predefinedEmail?: string | null;
     /**
-     * Identifier of one of the predefined pickup details. Required for orders containing line items with shipping type pickup.
+     * Identifier of one of the predefined pickup details. Required for orders containing line items with shipping type pickup.  Acceptable values are:   - &quot;dwight&quot;  - &quot;jim&quot;  - &quot;pam&quot;
      */
     predefinedPickupDetails?: string | null;
     /**
@@ -4726,43 +4864,43 @@ export namespace content_v2_1 {
      */
     promotions?: Schema$OrderPromotion[];
     /**
-     * The price of shipping for all items. Shipping tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied. Note that shipping is not taxed in certain states.
+     * Required. The price of shipping for all items. Shipping tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied. Note that shipping is not taxed in certain states.
      */
     shippingCost?: Schema$Price;
     /**
-     * The requested shipping option.
+     * Required. The requested shipping option.  Acceptable values are:   - &quot;economy&quot;  - &quot;expedited&quot;  - &quot;oneDay&quot;  - &quot;sameDay&quot;  - &quot;standard&quot;  - &quot;twoDay&quot;
      */
     shippingOption?: string | null;
   }
   export interface Schema$TestOrderLineItem {
     /**
-     * Product data from the time of the order placement.
+     * Required. Product data from the time of the order placement.
      */
     product?: Schema$TestOrderLineItemProduct;
     /**
-     * Number of items ordered.
+     * Required. Number of items ordered.
      */
     quantityOrdered?: number | null;
     /**
-     * Details of the return policy for the line item.
+     * Required. Details of the return policy for the line item.
      */
     returnInfo?: Schema$OrderLineItemReturnInfo;
     /**
-     * Details of the requested shipping for the line item.
+     * Required. Details of the requested shipping for the line item.
      */
     shippingDetails?: Schema$OrderLineItemShippingDetails;
   }
   export interface Schema$TestOrderLineItemProduct {
     /**
-     * Brand of the item.
+     * Required. Brand of the item.
      */
     brand?: string | null;
     /**
-     * Condition or state of the item.
+     * Required. Condition or state of the item.  Acceptable values are:   - &quot;new&quot;
      */
     condition?: string | null;
     /**
-     * The two-letter ISO 639-1 language code for the item.
+     * Required. The two-letter ISO 639-1 language code for the item.  Acceptable values are:   - &quot;en&quot;  - &quot;fr&quot;
      */
     contentLanguage?: string | null;
     /**
@@ -4774,7 +4912,7 @@ export namespace content_v2_1 {
      */
     gtin?: string | null;
     /**
-     * URL of an image of the item.
+     * Required. URL of an image of the item.
      */
     imageLink?: string | null;
     /**
@@ -4786,19 +4924,19 @@ export namespace content_v2_1 {
      */
     mpn?: string | null;
     /**
-     * An identifier of the item.
+     * Required. An identifier of the item.
      */
     offerId?: string | null;
     /**
-     * The price for the product. Tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied.
+     * Required. The price for the product. Tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied.
      */
     price?: Schema$Price;
     /**
-     * The CLDR territory code of the target country of the product.
+     * Required. The CLDR territory code of the target country of the product.
      */
     targetCountry?: string | null;
     /**
-     * The title of the product.
+     * Required. The title of the product.
      */
     title?: string | null;
     /**
@@ -4850,7 +4988,7 @@ export namespace content_v2_1 {
      */
     additionalChargeAmount?: Schema$Amount;
     /**
-     * [required] Type of the additional charge.
+     * [required] Type of the additional charge.  Acceptable values are:   - &quot;shipping&quot;
      */
     type?: string | null;
   }
@@ -4864,7 +5002,7 @@ export namespace content_v2_1 {
      */
     taxName?: string | null;
     /**
-     * [required] Type of the tax.
+     * [required] Type of the tax.  Acceptable values are:   - &quot;otherFee&quot;  - &quot;otherFeeTax&quot;  - &quot;sales&quot;
      */
     taxType?: string | null;
   }
@@ -4895,11 +5033,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$Weight {
     /**
-     * The weight unit.
+     * Required. The weight unit.  Acceptable values are:   - &quot;kg&quot;  - &quot;lb&quot;
      */
     unit?: string | null;
     /**
-     * The weight represented as a number.
+     * Required. The weight represented as a number.
      */
     value?: string | null;
   }
@@ -8583,6 +8721,206 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$LiaSettings;
+  }
+
+  export class Resource$Localinventory {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * content.localinventory.custombatch
+     * @desc Updates local inventory for multiple products or stores in a single request.
+     * @alias content.localinventory.custombatch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().LocalinventoryCustomBatchRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch(
+      params?: Params$Resource$Localinventory$Custombatch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LocalinventoryCustomBatchResponse>;
+    custombatch(
+      params: Params$Resource$Localinventory$Custombatch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LocalinventoryCustomBatchResponse>,
+      callback: BodyResponseCallback<Schema$LocalinventoryCustomBatchResponse>
+    ): void;
+    custombatch(
+      params: Params$Resource$Localinventory$Custombatch,
+      callback: BodyResponseCallback<Schema$LocalinventoryCustomBatchResponse>
+    ): void;
+    custombatch(
+      callback: BodyResponseCallback<Schema$LocalinventoryCustomBatchResponse>
+    ): void;
+    custombatch(
+      paramsOrCallback?:
+        | Params$Resource$Localinventory$Custombatch
+        | BodyResponseCallback<Schema$LocalinventoryCustomBatchResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LocalinventoryCustomBatchResponse>,
+      callback?: BodyResponseCallback<Schema$LocalinventoryCustomBatchResponse>
+    ): void | GaxiosPromise<Schema$LocalinventoryCustomBatchResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Localinventory$Custombatch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Localinventory$Custombatch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/localinventory/batch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LocalinventoryCustomBatchResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$LocalinventoryCustomBatchResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * content.localinventory.insert
+     * @desc Update the local inventory of a product in your Merchant Center account.
+     * @alias content.localinventory.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
+     * @param {string} params.productId The REST ID of the product for which to update local inventory.
+     * @param {().LocalInventory} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(
+      params?: Params$Resource$Localinventory$Insert,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LocalInventory>;
+    insert(
+      params: Params$Resource$Localinventory$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$LocalInventory>,
+      callback: BodyResponseCallback<Schema$LocalInventory>
+    ): void;
+    insert(
+      params: Params$Resource$Localinventory$Insert,
+      callback: BodyResponseCallback<Schema$LocalInventory>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$LocalInventory>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Localinventory$Insert
+        | BodyResponseCallback<Schema$LocalInventory>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LocalInventory>,
+      callback?: BodyResponseCallback<Schema$LocalInventory>
+    ): void | GaxiosPromise<Schema$LocalInventory> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Localinventory$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Localinventory$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/products/{productId}/localinventory'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LocalInventory>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$LocalInventory>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Localinventory$Custombatch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LocalinventoryCustomBatchRequest;
+  }
+  export interface Params$Resource$Localinventory$Insert
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The ID of the account that contains the product. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The REST ID of the product for which to update local inventory.
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LocalInventory;
   }
 
   export class Resource$Orderinvoices {

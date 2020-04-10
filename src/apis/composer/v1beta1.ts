@@ -387,14 +387,22 @@ export namespace composer_v1beta1 {
      */
     enablePrivateEndpoint?: boolean | null;
     /**
-     * The IP range in CIDR notation to use for the hosted master network. This range is used for assigning internal IP addresses to the cluster master or set of masters and to the internal load balancer virtual IP. This range must not overlap with any other ranges in use within the cluster&#39;s network. If left blank, the default value of &#39;172.16.0.0/28&#39; is used.
+     * Optional. The CIDR block from which IPv4 range for GKE master will be reserved. If left blank, the default value of &#39;172.16.0.0/23&#39; is used.
      */
     masterIpv4CidrBlock?: string | null;
+    /**
+     * Output only. The IP range in CIDR notation to use for the hosted master network. This range is used for assigning internal IP addresses to the cluster master or set of masters and to the internal load balancer virtual IP. This range must not overlap with any other ranges in use within the cluster&#39;s network.
+     */
+    masterIpv4ReservedRange?: string | null;
   }
   /**
    * The configuration information for configuring a Private IP Cloud Composer environment.
    */
   export interface Schema$PrivateEnvironmentConfig {
+    /**
+     * Optional. The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from web_server_ipv4_cidr_block
+     */
+    cloudSqlIpv4CidrBlock?: string | null;
     /**
      * Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is true, `use_ip_aliases` must be true.
      */
@@ -403,6 +411,14 @@ export namespace composer_v1beta1 {
      * Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
+     * Optional. The CIDR block from which IP range for web server will be reserved. Needs to be disjoint from private_cluster_config.master_ipv4_cidr_block and cloud_sql_ipv4_cidr_block.
+     */
+    webServerIpv4CidrBlock?: string | null;
+    /**
+     * Output only. The IP range reserved for the tenant project&#39;s App Engine VMs.
+     */
+    webServerIpv4ReservedRange?: string | null;
   }
   /**
    * Specifies the selection and configuration of software inside the environment.

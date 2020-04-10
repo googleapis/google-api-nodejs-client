@@ -681,11 +681,11 @@ export namespace sheets_v4 {
      */
     requests?: Schema$Request[];
     /**
-     * True if grid data should be returned. Meaningful only if if include_spreadsheet_in_response is &#39;true&#39;. This parameter is ignored if a field mask was set in the request.
+     * True if grid data should be returned. Meaningful only if include_spreadsheet_in_response is &#39;true&#39;. This parameter is ignored if a field mask was set in the request.
      */
     responseIncludeGridData?: boolean | null;
     /**
-     * Limits the ranges included in the response spreadsheet. Meaningful only if include_spreadsheet_response is &#39;true&#39;.
+     * Limits the ranges included in the response spreadsheet. Meaningful only if include_spreadsheet_in_response is &#39;true&#39;.
      */
     responseRanges?: string[] | null;
   }
@@ -3159,7 +3159,7 @@ export namespace sheets_v4 {
      */
     conditionalFormats?: Schema$ConditionalFormatRule[];
     /**
-     * Data in the grid, if this is a grid sheet. The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D).
+     * Data in the grid, if this is a grid sheet.  The number of GridData objects returned is dependent on the number of ranges requested on this sheet. For example, if this is representing `Sheet1`, and the spreadsheet was requested with ranges `Sheet1!A1:C10` and `Sheet1!D15:E20`, then the first GridData will have a startRow/startColumn of `0`, while the second one will have `startRow 14` (zero-based row 15), and `startColumn 3` (zero-based column D).
      */
     data?: Schema$GridData[];
     /**

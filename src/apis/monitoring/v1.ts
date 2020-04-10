@@ -87,9 +87,9 @@ export namespace monitoring_v1 {
   }
 
   /**
-   * Stackdriver Monitoring API
+   * Cloud Monitoring API
    *
-   * Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Stackdriver Monitoring documentation.
+   * Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Cloud Monitoring documentation.
    *
    * @example
    * const {google} = require('googleapis');
@@ -116,7 +116,7 @@ export namespace monitoring_v1 {
   }
 
   /**
-   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example &quot;the 95% latency across the average of all tasks in a cluster&quot;. This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Aggregating Time Series.
+   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example &quot;the 95% latency across the average of all tasks in a cluster&quot;. This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Filtering and aggregation (https://cloud.google.com/monitoring/api/v3/aggregation).
    */
   export interface Schema$Aggregation {
     /**
@@ -189,7 +189,7 @@ export namespace monitoring_v1 {
      */
     columnLayout?: Schema$ColumnLayout;
     /**
-     * The mutable, human-readable name.
+     * Required. The mutable, human-readable name.
      */
     displayName?: string | null;
     /**
@@ -201,7 +201,7 @@ export namespace monitoring_v1 {
      */
     gridLayout?: Schema$GridLayout;
     /**
-     * The resource name of the dashboard.
+     * Immutable. The resource name of the dashboard.
      */
     name?: string | null;
     /**
@@ -226,7 +226,7 @@ export namespace monitoring_v1 {
      */
     plotType?: string | null;
     /**
-     * Fields for querying time series data from the Stackdriver metrics API.
+     * Required. Fields for querying time series data from the Stackdriver metrics API.
      */
     timeSeriesQuery?: Schema$TimeSeriesQuery;
   }
@@ -366,7 +366,7 @@ export namespace monitoring_v1 {
      */
     aggregation?: Schema$Aggregation;
     /**
-     * Required. The monitoring filter that identifies the metric types, resources, and projects to query.
+     * Required. The monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies the metric types, resources, and projects to query.
      */
     filter?: string | null;
   }
@@ -409,7 +409,7 @@ export namespace monitoring_v1 {
      */
     thresholds?: Schema$Threshold[];
     /**
-     * Fields for querying time series data from the Stackdriver metrics API.
+     * Required. Fields for querying time series data from the Stackdriver metrics API.
      */
     timeSeriesQuery?: Schema$TimeSeriesQuery;
   }
@@ -440,7 +440,7 @@ export namespace monitoring_v1 {
      */
     minAlignmentPeriod?: string | null;
     /**
-     * The type of sparkchart to show in this chartView.
+     * Required. The type of sparkchart to show in this chartView.
      */
     sparkChartType?: string | null;
   }
@@ -479,7 +479,7 @@ export namespace monitoring_v1 {
     value?: number | null;
   }
   /**
-   * A filter that defines a subset of time series data that is displayed in a widget. Time series data is fetched using the ListTimeSeries method.
+   * A filter that defines a subset of time series data that is displayed in a widget. Time series data is fetched using the ListTimeSeries (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) method.
    */
   export interface Schema$TimeSeriesFilter {
     /**
@@ -487,13 +487,17 @@ export namespace monitoring_v1 {
      */
     aggregation?: Schema$Aggregation;
     /**
-     * Required. The monitoring filter that identifies the metric types, resources, and projects to query.
+     * Required. The monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies the metric types, resources, and projects to query.
      */
     filter?: string | null;
     /**
      * Ranking based time series filter.
      */
     pickTimeSeriesFilter?: Schema$PickTimeSeriesFilter;
+    /**
+     * Apply a second aggregation after aggregation is applied.
+     */
+    secondaryAggregation?: Schema$Aggregation;
   }
   /**
    * A pair of time series filters that define a ratio computation. The output time series is the pair-wise division of each aligned element from the numerator and denominator time series.
@@ -529,7 +533,11 @@ export namespace monitoring_v1 {
      */
     timeSeriesFilterRatio?: Schema$TimeSeriesFilterRatio;
     /**
-     * The unit of data contained in fetched time series. If non-empty, this unit will override any unit that accompanies fetched data. The format is the same as the unit field in MetricDescriptor.
+     * A query used to fetch time series.
+     */
+    timeSeriesQueryLanguage?: string | null;
+    /**
+     * The unit of data contained in fetched time series. If non-empty, this unit will override any unit that accompanies fetched data. The format is the same as the unit (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors) field in MetricDescriptor.
      */
     unitOverride?: string | null;
   }
@@ -596,7 +604,7 @@ export namespace monitoring_v1 {
      */
     chartOptions?: Schema$ChartOptions;
     /**
-     * The data displayed in this chart.
+     * Required. The data displayed in this chart.
      */
     dataSets?: Schema$DataSet[];
     /**
@@ -932,7 +940,7 @@ export namespace monitoring_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the dashboard.
+     * @param {string} params.name Immutable. The resource name of the dashboard.
      * @param {().Dashboard} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1067,7 +1075,7 @@ export namespace monitoring_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The resource name of the dashboard.
+     * Immutable. The resource name of the dashboard.
      */
     name?: string;
 

@@ -148,6 +148,32 @@ export namespace storagetransfer_v1 {
     bucketName?: string | null;
   }
   /**
+   * An AzureBlobStorageData resource can be a data source, but not a data sink. An AzureBlobStorageData resource represents one Azure container. The storage account determines the [Azure endpoint](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account#storage-account-endpoints). In an AzureBlobStorageData resource, a blobs&#39;s name is the [Azure Blob Storage blob&#39;s key name](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#blob-names).
+   */
+  export interface Schema$AzureBlobStorageData {
+    /**
+     * Required. Credentials used to authenticate API requests to Azure.
+     */
+    azureCredentials?: Schema$AzureCredentials;
+    /**
+     * Required. The container to transfer from the Azure Storage account.
+     */
+    container?: string | null;
+    /**
+     * Required. The name of the Azure Storage account.
+     */
+    storageAccount?: string | null;
+  }
+  /**
+   * Azure credentials
+   */
+  export interface Schema$AzureCredentials {
+    /**
+     * Required. Azure shared access signature. (see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
+     */
+    sasToken?: string | null;
+  }
+  /**
    * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent:  * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date  Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
@@ -252,6 +278,23 @@ export namespace storagetransfer_v1 {
     transferJobs?: Schema$TransferJob[];
   }
   /**
+   * Specification to configure notifications published to Cloud Pub/Sub. Notifications will be published to the customer-provided topic using the following `PubsubMessage.attributes`:  * `&quot;eventType&quot;`: one of the EventType values * `&quot;payloadFormat&quot;`: one of the PayloadFormat values * `&quot;projectId&quot;`: the project_id of the `TransferOperation` * `&quot;transferJobName&quot;`: the transfer_job_name of the `TransferOperation` * `&quot;transferOperationName&quot;`: the name of the `TransferOperation`  The `PubsubMessage.data` will contain a TransferOperation resource formatted according to the specified `PayloadFormat`.
+   */
+  export interface Schema$NotificationConfig {
+    /**
+     * Event types for which a notification is desired. If empty, send notifications for all event types.
+     */
+    eventTypes?: string[] | null;
+    /**
+     * Required. The desired format of the notification message payloads.
+     */
+    payloadFormat?: string | null;
+    /**
+     * Required. The `Topic.name` of the Cloud Pub/Sub topic to which to publish notifications. Must be of the format: `projects/{project}/topics/{topic}`. Not matching this format will result in an INVALID_ARGUMENT error.
+     */
+    pubsubTopic?: string | null;
+  }
+  /**
    * Conditions that determine which objects will be transferred. Applies only to S3 and Cloud Storage objects.  The &quot;last modification time&quot; refers to the time of the last change to the object&#39;s content or metadata — specifically, this is the `updated` property of Cloud Storage objects and the `LastModified` field of S3 objects.
    */
   export interface Schema$ObjectConditions {
@@ -263,6 +306,14 @@ export namespace storagetransfer_v1 {
      * If `include_prefixes` is specified, objects that satisfy the object conditions must have names that start with one of the `include_prefixes` and that do not start with any of the exclude_prefixes. If `include_prefixes` is not specified, all objects except those that have names starting with one of the `exclude_prefixes` must satisfy the object conditions.  Requirements:    * Each include-prefix and exclude-prefix can contain any sequence of     Unicode characters, to a max length of 1024 bytes when UTF8-encoded,     and must not contain Carriage Return or Line Feed characters.  Wildcard     matching and regular expression matching are not supported.    * Each include-prefix and exclude-prefix must omit the leading slash.     For example, to include the `requests.gz` object in a transfer from     `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the include     prefix as `logs/y=2015/requests.gz`.    * None of the include-prefix or the exclude-prefix values can be empty,     if specified.    * Each include-prefix must include a distinct portion of the object     namespace. No include-prefix may be a prefix of another     include-prefix.    * Each exclude-prefix must exclude a distinct portion of the object     namespace. No exclude-prefix may be a prefix of another     exclude-prefix.    * If `include_prefixes` is specified, then each exclude-prefix must start     with the value of a path explicitly included by `include_prefixes`.  The max size of `include_prefixes` is 1000.
      */
     includePrefixes?: string[] | null;
+    /**
+     * If specified, only objects with a &quot;last modification time&quot; before this timestamp and objects that don&#39;t have a &quot;last modification time&quot; will be transferred.
+     */
+    lastModifiedBefore?: string | null;
+    /**
+     * If specified, only objects with a &quot;last modification time&quot; on or after this timestamp and objects that don&#39;t have a &quot;last modification time&quot; are transferred.  The `last_modified_since` and `last_modified_before` fields can be used together for chunked data processing. For example, consider a script that processes each day&#39;s worth of data at a time. For that you&#39;d set each of the fields as follows:  *  `last_modified_since` to the start of the day  *  `last_modified_before` to the end of the day
+     */
+    lastModifiedSince?: string | null;
     /**
      * If specified, only objects with a &quot;last modification time&quot; on or after `NOW` - `max_time_elapsed_since_last_modification` and objects that don&#39;t have a &quot;last modification time&quot; are transferred.  For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
      */
@@ -450,9 +501,13 @@ export namespace storagetransfer_v1 {
      */
     lastModificationTime?: string | null;
     /**
-     * A unique name (within the transfer project) assigned when the job is created. If this field is left empty in a CreateTransferJobRequest, Storage Transfer Service will assign a unique name. Otherwise, the supplied name is used as the unique name for this job.  This name must start with `&quot;transferJobs/&quot;` prefix and end with a letter or a number, and should be no more than 128 characters. Example of a valid format : `&quot;transferJobs/[A-Za-z0-9-._~]*[A-Za-z0-9]$&quot;`  **Note:** If the supplied name is already in use, the creation request results in an ALREADY_EXISTS error and the transfer job will not be created.  Invalid job names will return an INVALID_ARGUMENT error and the job will not be created.
+     * A unique name (within the transfer project) assigned when the job is created.  If this field is empty in a CreateTransferJobRequest, Storage Transfer Service will assign a unique name. Otherwise, the specified name is used as the unique name for this job.  If the specified name is in use by a job, the creation request fails with an ALREADY_EXISTS error.  This name must start with `&quot;transferJobs/&quot;` prefix and end with a letter or a number, and should be no more than 128 characters. Example: `&quot;transferJobs/[A-Za-z0-9-._~]*[A-Za-z0-9]$&quot;`  Invalid job names will fail with an INVALID_ARGUMENT error.
      */
     name?: string | null;
+    /**
+     * Notification configuration.
+     */
+    notificationConfig?: Schema$NotificationConfig;
     /**
      * The ID of the Google Cloud Platform Project that owns the job.
      */
@@ -490,6 +545,10 @@ export namespace storagetransfer_v1 {
      * A globally unique ID assigned by the system.
      */
     name?: string | null;
+    /**
+     * Notification configuration.
+     */
+    notificationConfig?: Schema$NotificationConfig;
     /**
      * The ID of the Google Cloud Platform Project that owns the operation.
      */
@@ -537,6 +596,10 @@ export namespace storagetransfer_v1 {
      */
     awsS3DataSource?: Schema$AwsS3Data;
     /**
+     * An Azure Blob Storage data source.
+     */
+    azureBlobStorageDataSource?: Schema$AzureBlobStorageData;
+    /**
      * A Cloud Storage data sink.
      */
     gcsDataSink?: Schema$GcsData;
@@ -566,11 +629,11 @@ export namespace storagetransfer_v1 {
      */
     projectId?: string | null;
     /**
-     * Required. The job to update. `transferJob` is expected to specify only three fields: description, transfer_spec, and status.  An `UpdateTransferJobRequest` that specifies other fields will be rejected with the error INVALID_ARGUMENT.
+     * Required. The job to update. `transferJob` is expected to specify only four fields: description, transfer_spec, notification_config, and status.  An `UpdateTransferJobRequest` that specifies other fields will be rejected with the error INVALID_ARGUMENT.
      */
     transferJob?: Schema$TransferJob;
     /**
-     * The field mask of the fields in `transferJob` that are to be updated in this request.  Fields in `transferJob` that can be updated are: description, transfer_spec, and status.  To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields will be rejected with the error INVALID_ARGUMENT.
+     * The field mask of the fields in `transferJob` that are to be updated in this request.  Fields in `transferJob` that can be updated are: description, transfer_spec, notification_config, and status.  To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields will be rejected with the error INVALID_ARGUMENT.
      */
     updateTransferJobFieldMask?: string | null;
   }

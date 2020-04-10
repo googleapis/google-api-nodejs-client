@@ -131,7 +131,7 @@ export namespace clouddebugger_v2 {
     name?: string | null;
   }
   /**
-   * Represents the breakpoint specification, status and results.
+   * ------------------------------------------------------------------------------ ## Breakpoint (the resource)  Represents the breakpoint specification, status and results.
    */
   export interface Schema$Breakpoint {
     /**

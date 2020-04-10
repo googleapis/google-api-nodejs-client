@@ -2084,7 +2084,7 @@ export namespace cloudresourcemanager_v1 {
      * @param {object} params Parameters for request
      * @param {integer=} params.pageSize The maximum number of items to return. This is a suggestion for the server.
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous List request, if any.
-     * @param {string=} params.parent Required. The name of the resource to list all attached Liens. For example, `projects/1234`.
+     * @param {string=} params.parent Required. The name of the resource to list all attached Liens. For example, `projects/1234`.  (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2197,7 +2197,7 @@ export namespace cloudresourcemanager_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the resource to list all attached Liens. For example, `projects/1234`.
+     * Required. The name of the resource to list all attached Liens. For example, `projects/1234`.  (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.
      */
     parent?: string;
   }

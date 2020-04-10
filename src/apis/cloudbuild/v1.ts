@@ -205,6 +205,10 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string | null;
     /**
+     * TTL in queue for this build. If provided and the build is enqueued longer than this value, the build will expire and the build status will be `EXPIRED`.  The TTL starts ticking from create_time.
+     */
+    queueTtl?: string | null;
+    /**
      * Output only. Results of the build.
      */
     results?: Schema$Results;
@@ -413,7 +417,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string | null;
     /**
-     * Substitutions data for Build resource.
+     * Substitutions for Build resource. The keys must match the following regular expression: `^_[A-Z0-9_]+$`.The keys cannot conflict with the keys in bindings.
      */
     substitutions?: {[key: string]: string} | null;
     /**

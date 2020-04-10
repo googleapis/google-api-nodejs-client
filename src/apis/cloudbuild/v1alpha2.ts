@@ -203,6 +203,10 @@ export namespace cloudbuild_v1alpha2 {
      */
     projectId?: string | null;
     /**
+     * TTL in queue for this build. If provided and the build is enqueued longer than this value, the build will expire and the build status will be `EXPIRED`.  The TTL starts ticking from create_time.
+     */
+    queueTtl?: string | null;
+    /**
      * Output only. Results of the build.
      */
     results?: Schema$Results;
