@@ -41,9 +41,21 @@ export namespace customsearch_v1 {
 
   interface StandardParameters {
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -61,17 +73,21 @@ export namespace customsearch_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * CustomSearch API
+   * Custom Search API
    *
    * Searches over a website or collection of websites
    *
@@ -88,6 +104,7 @@ export namespace customsearch_v1 {
   export class Customsearch {
     context: APIRequestContext;
     cse: Resource$Cse;
+    siterestrict: Resource$Siterestrict;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -96,117 +113,283 @@ export namespace customsearch_v1 {
       };
 
       this.cse = new Resource$Cse(this.context);
+      this.siterestrict = new Resource$Siterestrict(this.context);
     }
   }
 
-  export interface Schema$Context {
-    facets?: Array<
-      Array<{anchor?: string; label?: string; label_with_op?: string}>
-    > | null;
-    title?: string | null;
-  }
+  /**
+   * Promotion result.
+   */
   export interface Schema$Promotion {
+    /**
+     * An array of block objects for this promotion. See Google WebSearch Protocol reference for more information.
+     */
     bodyLines?: Array<{
-      htmlTitle?: string;
-      link?: string;
       title?: string;
+      htmlTitle?: string;
       url?: string;
+      link?: string;
     }> | null;
+    /**
+     * An abridged version of this search&#39;s result URL, e.g. www.example.com.
+     */
     displayLink?: string | null;
+    /**
+     * The title of the promotion, in HTML.
+     */
     htmlTitle?: string | null;
+    /**
+     * Image belonging to a promotion.
+     */
     image?: {height?: number; source?: string; width?: number} | null;
+    /**
+     * The URL of the promotion.
+     */
     link?: string | null;
+    /**
+     * The title of the promotion.
+     */
     title?: string | null;
   }
-  export interface Schema$Query {
-    count?: number | null;
-    cr?: string | null;
-    cx?: string | null;
-    dateRestrict?: string | null;
-    disableCnTwTranslation?: string | null;
-    exactTerms?: string | null;
-    excludeTerms?: string | null;
-    fileType?: string | null;
-    filter?: string | null;
-    gl?: string | null;
-    googleHost?: string | null;
-    highRange?: string | null;
-    hl?: string | null;
-    hq?: string | null;
-    imgColorType?: string | null;
-    imgDominantColor?: string | null;
-    imgSize?: string | null;
-    imgType?: string | null;
-    inputEncoding?: string | null;
-    language?: string | null;
-    linkSite?: string | null;
-    lowRange?: string | null;
-    orTerms?: string | null;
-    outputEncoding?: string | null;
-    relatedSite?: string | null;
-    rights?: string | null;
-    safe?: string | null;
-    searchTerms?: string | null;
-    searchType?: string | null;
-    siteSearch?: string | null;
-    siteSearchFilter?: string | null;
-    sort?: string | null;
-    startIndex?: number | null;
-    startPage?: number | null;
-    title?: string | null;
-    totalResults?: string | null;
-  }
+  /**
+   * A custom search result.
+   */
   export interface Schema$Result {
+    /**
+     * Indicates the ID of Google&#39;s cached version of the search result.
+     */
     cacheId?: string | null;
+    /**
+     * An abridged version of this search result’s URL, e.g. www.example.com.
+     */
     displayLink?: string | null;
+    /**
+     * The file format of the search result.
+     */
     fileFormat?: string | null;
+    /**
+     * The URL displayed after the snippet for each search result.
+     */
     formattedUrl?: string | null;
+    /**
+     * The HTML-formatted URL displayed after the snippet for each search result.
+     */
     htmlFormattedUrl?: string | null;
+    /**
+     * The snippet of the search result, in HTML.
+     */
     htmlSnippet?: string | null;
+    /**
+     * The title of the search result, in HTML.
+     */
     htmlTitle?: string | null;
+    /**
+     * Image belonging to a custom search result.
+     */
     image?: {
-      byteSize?: number;
-      contextLink?: string;
-      height?: number;
-      thumbnailHeight?: number;
       thumbnailLink?: string;
       thumbnailWidth?: number;
+      height?: number;
+      byteSize?: number;
+      contextLink?: string;
       width?: number;
+      thumbnailHeight?: number;
     } | null;
+    /**
+     * A unique identifier for the type of current object. For this API, it is customsearch#result.
+     */
     kind?: string | null;
+    /**
+     * Encapsulates all information about refinement labels.
+     */
     labels?: Array<{
+      name?: string;
       displayName?: string;
       label_with_op?: string;
-      name?: string;
     }> | null;
+    /**
+     * The full URL to which the search result is pointing, e.g. http://www.example.com/foo/bar.
+     */
     link?: string | null;
+    /**
+     * The MIME type of the search result.
+     */
     mime?: string | null;
-    pagemap?: {[key: string]: Array<{[key: string]: any}>} | null;
+    /**
+     * Contains PageMap information for this search result.
+     */
+    pagemap?: {[key: string]: any} | null;
+    /**
+     * The snippet of the search result, in plain text.
+     */
     snippet?: string | null;
+    /**
+     * The title of the search result, in plain text.
+     */
     title?: string | null;
   }
+  /**
+   * Response to a custom search request.
+   */
   export interface Schema$Search {
-    context?: Schema$Context;
+    /**
+     * Metadata and refinements associated with the given search engine.
+     */
+    context?: {[key: string]: any} | null;
+    /**
+     * The current set of custom search results.
+     */
     items?: Schema$Result[];
+    /**
+     * Unique identifier for the type of current object. For this API, it is customsearch#search.
+     */
     kind?: string | null;
+    /**
+     * The set of promotions. Present only if the custom search engine&#39;s configuration files define any promotions for the given query.
+     */
     promotions?: Schema$Promotion[];
-    queries?: {[key: string]: Schema$Query[]} | null;
+    /**
+     * Query metadata for the previous, current, and next pages of results.
+     */
+    queries?: {
+      request?: Array<{
+        relatedSite?: string;
+        siteSearch?: string;
+        excludeTerms?: string;
+        exactTerms?: string;
+        imgType?: string;
+        totalResults?: string;
+        filter?: string;
+        startIndex?: number;
+        highRange?: string;
+        hl?: string;
+        gl?: string;
+        cr?: string;
+        startPage?: number;
+        imgSize?: string;
+        disableCnTwTranslation?: string;
+        title?: string;
+        orTerms?: string;
+        count?: number;
+        dateRestrict?: string;
+        rights?: string;
+        cx?: string;
+        lowRange?: string;
+        inputEncoding?: string;
+        imgDominantColor?: string;
+        imgColorType?: string;
+        language?: string;
+        safe?: string;
+        siteSearchFilter?: string;
+        outputEncoding?: string;
+        sort?: string;
+        linkSite?: string;
+        searchTerms?: string;
+        hq?: string;
+        searchType?: string;
+        fileType?: string;
+        googleHost?: string;
+      }>;
+      nextPage?: Array<{
+        cx?: string;
+        lowRange?: string;
+        inputEncoding?: string;
+        imgDominantColor?: string;
+        imgColorType?: string;
+        safe?: string;
+        language?: string;
+        siteSearchFilter?: string;
+        outputEncoding?: string;
+        sort?: string;
+        linkSite?: string;
+        searchTerms?: string;
+        hq?: string;
+        searchType?: string;
+        fileType?: string;
+        googleHost?: string;
+        relatedSite?: string;
+        siteSearch?: string;
+        excludeTerms?: string;
+        exactTerms?: string;
+        imgType?: string;
+        totalResults?: string;
+        filter?: string;
+        startIndex?: number;
+        highRange?: string;
+        hl?: string;
+        gl?: string;
+        cr?: string;
+        startPage?: number;
+        imgSize?: string;
+        disableCnTwTranslation?: string;
+        title?: string;
+        orTerms?: string;
+        count?: number;
+        dateRestrict?: string;
+        rights?: string;
+      }>;
+      previousPage?: Array<{
+        excludeTerms?: string;
+        exactTerms?: string;
+        totalResults?: string;
+        imgType?: string;
+        filter?: string;
+        startIndex?: number;
+        highRange?: string;
+        gl?: string;
+        hl?: string;
+        cr?: string;
+        startPage?: number;
+        imgSize?: string;
+        disableCnTwTranslation?: string;
+        title?: string;
+        orTerms?: string;
+        dateRestrict?: string;
+        count?: number;
+        rights?: string;
+        cx?: string;
+        lowRange?: string;
+        inputEncoding?: string;
+        imgDominantColor?: string;
+        imgColorType?: string;
+        safe?: string;
+        language?: string;
+        siteSearchFilter?: string;
+        outputEncoding?: string;
+        sort?: string;
+        linkSite?: string;
+        searchTerms?: string;
+        hq?: string;
+        fileType?: string;
+        searchType?: string;
+        googleHost?: string;
+        relatedSite?: string;
+        siteSearch?: string;
+      }>;
+    } | null;
+    /**
+     * Metadata about a search operation.
+     */
     searchInformation?: {
-      formattedSearchTime?: string;
-      formattedTotalResults?: string;
       searchTime?: number;
       totalResults?: string;
+      formattedTotalResults?: string;
+      formattedSearchTime?: string;
     } | null;
+    /**
+     * Spell correction information for a query.
+     */
     spelling?: {correctedQuery?: string; htmlCorrectedQuery?: string} | null;
-    url?: {template?: string; type?: string} | null;
+    /**
+     * OpenSearch template and URL.
+     */
+    url?: {type?: string; template?: string} | null;
   }
 
   export class Resource$Cse {
     context: APIRequestContext;
-    siterestrict: Resource$Cse$Siterestrict;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.siterestrict = new Resource$Cse$Siterestrict(this.context);
     }
 
     /**
@@ -223,28 +406,28 @@ export namespace customsearch_v1 {
      * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain
      * @param {string=} params.excludeTerms Identifies a word or phrase that should not appear in any documents in the search results
      * @param {string=} params.fileType Returns images of a specified type. Some of the allowed values are: bmp, gif, png, jpg, svg, pdf, ...
-     * @param {string=} params.filter Controls turning on or off the duplicate content filter.
+     * @param {string=} params.filter Controls turning on (1) or off (0) the duplicate content filter.
      * @param {string=} params.gl Geolocation of end user.
      * @param {string=} params.googlehost The local Google domain to use to perform the search.
      * @param {string=} params.highRange Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
      * @param {string=} params.hl Sets the user interface language.
-     * @param {string=} params.hq Appends the extra query terms to the query.
-     * @param {string=} params.imgColorType Returns black and white, grayscale, or color images: mono, gray, and color.
+     * @param {string=} params.hq Appends the extra hidden query terms to the query.
+     * @param {string=} params.imgColorType Returns black and white, grayscale, transparent-background or color images: mono, gray, trans, and color.
      * @param {string=} params.imgDominantColor Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
      * @param {string=} params.imgSize Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
-     * @param {string=} params.imgType Returns images of a type, which can be one of: clipart, face, lineart, news, and photo.
+     * @param {string=} params.imgType Returns images of a type, which can be one of: clipart, face, lineart, stock, photo, and animated.
      * @param {string=} params.linkSite Specifies that all search results should contain a link to a particular URL
      * @param {string=} params.lowRange Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
      * @param {string=} params.lr The language restriction for the search results
      * @param {integer=} params.num Number of search results to return
      * @param {string=} params.orTerms Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms
-     * @param {string} params.q Query
+     * @param {string=} params.q Query
      * @param {string=} params.relatedSite Specifies that all search results should be pages that are related to the specified URL
-     * @param {string=} params.rights Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these.
-     * @param {string=} params.safe Search safety level
+     * @param {string=} params.rights Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these. See https://wiki.creativecommons.org/wiki/CC_Search_integration for typical combinations.
+     * @param {string=} params.safe Search safety level (active, off) (high, medium are same as active)
      * @param {string=} params.searchType Specifies the search type: image.
      * @param {string=} params.siteSearch Specifies all search results should be pages from a given site
-     * @param {string=} params.siteSearchFilter Controls whether to include or exclude results from the site named in the as_sitesearch parameter
+     * @param {string=} params.siteSearchFilter Controls whether to include (i) or exclude (e) results from the site named in the siteSearch parameter
      * @param {string=} params.sort The sort expression to apply to the results
      * @param {integer=} params.start The index of the first result to return
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -286,7 +469,7 @@ export namespace customsearch_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://customsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -296,7 +479,7 @@ export namespace customsearch_v1 {
           options
         ),
         params,
-        requiredParams: ['q'],
+        requiredParams: [],
         pathParams: [],
         context: this.context,
       };
@@ -343,7 +526,7 @@ export namespace customsearch_v1 {
      */
     fileType?: string;
     /**
-     * Controls turning on or off the duplicate content filter.
+     * Controls turning on (1) or off (0) the duplicate content filter.
      */
     filter?: string;
     /**
@@ -363,11 +546,11 @@ export namespace customsearch_v1 {
      */
     hl?: string;
     /**
-     * Appends the extra query terms to the query.
+     * Appends the extra hidden query terms to the query.
      */
     hq?: string;
     /**
-     * Returns black and white, grayscale, or color images: mono, gray, and color.
+     * Returns black and white, grayscale, transparent-background or color images: mono, gray, trans, and color.
      */
     imgColorType?: string;
     /**
@@ -379,7 +562,7 @@ export namespace customsearch_v1 {
      */
     imgSize?: string;
     /**
-     * Returns images of a type, which can be one of: clipart, face, lineart, news, and photo.
+     * Returns images of a type, which can be one of: clipart, face, lineart, stock, photo, and animated.
      */
     imgType?: string;
     /**
@@ -411,11 +594,11 @@ export namespace customsearch_v1 {
      */
     relatedSite?: string;
     /**
-     * Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these.
+     * Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these. See https://wiki.creativecommons.org/wiki/CC_Search_integration for typical combinations.
      */
     rights?: string;
     /**
-     * Search safety level
+     * Search safety level (active, off) (high, medium are same as active)
      */
     safe?: string;
     /**
@@ -427,7 +610,7 @@ export namespace customsearch_v1 {
      */
     siteSearch?: string;
     /**
-     * Controls whether to include or exclude results from the site named in the as_sitesearch parameter
+     * Controls whether to include (i) or exclude (e) results from the site named in the siteSearch parameter
      */
     siteSearchFilter?: string;
     /**
@@ -440,7 +623,7 @@ export namespace customsearch_v1 {
     start?: number;
   }
 
-  export class Resource$Cse$Siterestrict {
+  export class Resource$Siterestrict {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -460,28 +643,28 @@ export namespace customsearch_v1 {
      * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain
      * @param {string=} params.excludeTerms Identifies a word or phrase that should not appear in any documents in the search results
      * @param {string=} params.fileType Returns images of a specified type. Some of the allowed values are: bmp, gif, png, jpg, svg, pdf, ...
-     * @param {string=} params.filter Controls turning on or off the duplicate content filter.
+     * @param {string=} params.filter Controls turning on (1) or off (0) the duplicate content filter.
      * @param {string=} params.gl Geolocation of end user.
      * @param {string=} params.googlehost The local Google domain to use to perform the search.
      * @param {string=} params.highRange Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
      * @param {string=} params.hl Sets the user interface language.
-     * @param {string=} params.hq Appends the extra query terms to the query.
-     * @param {string=} params.imgColorType Returns black and white, grayscale, or color images: mono, gray, and color.
+     * @param {string=} params.hq Appends the extra hidden query terms to the query.
+     * @param {string=} params.imgColorType Returns black and white, grayscale, transparent-background or color images: mono, gray, trans, and color.
      * @param {string=} params.imgDominantColor Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
      * @param {string=} params.imgSize Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
-     * @param {string=} params.imgType Returns images of a type, which can be one of: clipart, face, lineart, news, and photo.
+     * @param {string=} params.imgType Returns images of a type, which can be one of: clipart, face, lineart, stock, photo, and animated.
      * @param {string=} params.linkSite Specifies that all search results should contain a link to a particular URL
      * @param {string=} params.lowRange Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
      * @param {string=} params.lr The language restriction for the search results
      * @param {integer=} params.num Number of search results to return
      * @param {string=} params.orTerms Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms
-     * @param {string} params.q Query
+     * @param {string=} params.q Query
      * @param {string=} params.relatedSite Specifies that all search results should be pages that are related to the specified URL
-     * @param {string=} params.rights Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these.
-     * @param {string=} params.safe Search safety level
+     * @param {string=} params.rights Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these. See https://wiki.creativecommons.org/wiki/CC_Search_integration for typical combinations.
+     * @param {string=} params.safe Search safety level (active, off) (high, medium are same as active)
      * @param {string=} params.searchType Specifies the search type: image.
      * @param {string=} params.siteSearch Specifies all search results should be pages from a given site
-     * @param {string=} params.siteSearchFilter Controls whether to include or exclude results from the site named in the as_sitesearch parameter
+     * @param {string=} params.siteSearchFilter Controls whether to include (i) or exclude (e) results from the site named in the siteSearch parameter
      * @param {string=} params.sort The sort expression to apply to the results
      * @param {integer=} params.start The index of the first result to return
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -489,33 +672,33 @@ export namespace customsearch_v1 {
      * @return {object} Request object
      */
     list(
-      params?: Params$Resource$Cse$Siterestrict$List,
+      params?: Params$Resource$Siterestrict$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Search>;
     list(
-      params: Params$Resource$Cse$Siterestrict$List,
+      params: Params$Resource$Siterestrict$List,
       options: MethodOptions | BodyResponseCallback<Schema$Search>,
       callback: BodyResponseCallback<Schema$Search>
     ): void;
     list(
-      params: Params$Resource$Cse$Siterestrict$List,
+      params: Params$Resource$Siterestrict$List,
       callback: BodyResponseCallback<Schema$Search>
     ): void;
     list(callback: BodyResponseCallback<Schema$Search>): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Cse$Siterestrict$List
+        | Params$Resource$Siterestrict$List
         | BodyResponseCallback<Schema$Search>,
       optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$Search>,
       callback?: BodyResponseCallback<Schema$Search>
     ): void | GaxiosPromise<Schema$Search> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Cse$Siterestrict$List;
+        {}) as Params$Resource$Siterestrict$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Cse$Siterestrict$List;
+        params = {} as Params$Resource$Siterestrict$List;
         options = {};
       }
 
@@ -524,7 +707,7 @@ export namespace customsearch_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://customsearch.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -537,7 +720,7 @@ export namespace customsearch_v1 {
           options
         ),
         params,
-        requiredParams: ['q'],
+        requiredParams: [],
         pathParams: [],
         context: this.context,
       };
@@ -549,7 +732,7 @@ export namespace customsearch_v1 {
     }
   }
 
-  export interface Params$Resource$Cse$Siterestrict$List
+  export interface Params$Resource$Siterestrict$List
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -585,7 +768,7 @@ export namespace customsearch_v1 {
      */
     fileType?: string;
     /**
-     * Controls turning on or off the duplicate content filter.
+     * Controls turning on (1) or off (0) the duplicate content filter.
      */
     filter?: string;
     /**
@@ -605,11 +788,11 @@ export namespace customsearch_v1 {
      */
     hl?: string;
     /**
-     * Appends the extra query terms to the query.
+     * Appends the extra hidden query terms to the query.
      */
     hq?: string;
     /**
-     * Returns black and white, grayscale, or color images: mono, gray, and color.
+     * Returns black and white, grayscale, transparent-background or color images: mono, gray, trans, and color.
      */
     imgColorType?: string;
     /**
@@ -621,7 +804,7 @@ export namespace customsearch_v1 {
      */
     imgSize?: string;
     /**
-     * Returns images of a type, which can be one of: clipart, face, lineart, news, and photo.
+     * Returns images of a type, which can be one of: clipart, face, lineart, stock, photo, and animated.
      */
     imgType?: string;
     /**
@@ -653,11 +836,11 @@ export namespace customsearch_v1 {
      */
     relatedSite?: string;
     /**
-     * Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these.
+     * Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these. See https://wiki.creativecommons.org/wiki/CC_Search_integration for typical combinations.
      */
     rights?: string;
     /**
-     * Search safety level
+     * Search safety level (active, off) (high, medium are same as active)
      */
     safe?: string;
     /**
@@ -669,7 +852,7 @@ export namespace customsearch_v1 {
      */
     siteSearch?: string;
     /**
-     * Controls whether to include or exclude results from the site named in the as_sitesearch parameter
+     * Controls whether to include (i) or exclude (e) results from the site named in the siteSearch parameter
      */
     siteSearchFilter?: string;
     /**

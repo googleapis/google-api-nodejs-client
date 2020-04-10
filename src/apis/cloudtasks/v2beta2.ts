@@ -1264,6 +1264,7 @@ export namespace cloudtasks_v2beta2 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Required. The resource name of the queue. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     * @param {string=} params.readMask Optional. Read mask is used for a more granular control over what the API returns. By it includes all fields in Queue except for stats.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2425,6 +2426,10 @@ export namespace cloudtasks_v2beta2 {
      * Required. The resource name of the queue. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns. By it includes all fields in Queue except for stats.
+     */
+    readMask?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Getiampolicy
     extends StandardParameters {

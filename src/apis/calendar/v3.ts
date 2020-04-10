@@ -295,7 +295,7 @@ export namespace calendar_v3 {
   }
   export interface Schema$CalendarNotification {
     /**
-     * The method used to deliver the notification. Possible values are:   - &quot;email&quot; - Notifications are sent via email.  - &quot;sms&quot; - Deprecated. Once this feature is shutdown, the API will no longer return notifications using this method. Any newly added SMS notifications will be ignored. See  Google Calendar SMS notifications to be removed for more information. Notifications are sent via SMS. This value is read-only and is ignored on inserts and updates. SMS notifications are only available for G Suite customers.   Required when adding a notification.
+     * The method used to deliver the notification. The possible value is:   - &quot;email&quot; - Notifications are sent via email.   Required when adding a notification.
      */
     method?: string | null;
     /**
@@ -769,7 +769,7 @@ export namespace calendar_v3 {
   }
   export interface Schema$EventReminder {
     /**
-     * The method used by this reminder. Possible values are:   - &quot;email&quot; - Reminders are sent via email.  - &quot;sms&quot; - Deprecated. Once this feature is shutdown, the API will no longer return reminders using this method. Any newly added SMS reminders will be ignored. See  Google Calendar SMS notifications to be removed for more information. Reminders are sent via SMS. These are only available for G Suite customers. Requests to set SMS reminders for other account types are ignored.  - &quot;popup&quot; - Reminders are sent via a UI popup.   Required when adding a reminder.
+     * The method used by this reminder. Possible values are:   - &quot;email&quot; - Reminders are sent via email.  - &quot;popup&quot; - Reminders are sent via a UI popup.   Required when adding a reminder.
      */
     method?: string | null;
     /**

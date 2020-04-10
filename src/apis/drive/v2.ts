@@ -1105,6 +1105,10 @@ export namespace drive_v2 {
      */
     sharingUser?: Schema$User;
     /**
+     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to application/vnd.google-apps.shortcut.
+     */
+    shortcutDetails?: {targetId?: string; targetMimeType?: string} | null;
+    /**
      * The list of spaces which contain the file. Supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
      */
     spaces?: string[] | null;

@@ -232,7 +232,7 @@ export namespace adsense_v1_4 {
     /**
      * The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
      */
-    headers?: Array<{currency?: string; name?: string; type?: string}> | null;
+    headers?: Array<{type?: string; currency?: string; name?: string}> | null;
     /**
      * Kind this is, in this case adsense#report.
      */
@@ -264,10 +264,10 @@ export namespace adsense_v1_4 {
      */
     colors?: {
       background?: string;
+      url?: string;
+      title?: string;
       border?: string;
       text?: string;
-      title?: string;
-      url?: string;
     } | null;
     /**
      * The style of the corners in the ad (deprecated: never populated, ignored).
@@ -291,9 +291,9 @@ export namespace adsense_v1_4 {
      * Settings specific to content ads (AFC) and highend mobile content ads (AFMC - deprecated).
      */
     contentAdsSettings?: {
+      type?: string;
       backupOption?: {color?: string; type?: string; url?: string};
       size?: string;
-      type?: string;
     } | null;
     /**
      * Custom style information specific to this ad unit.
@@ -303,10 +303,10 @@ export namespace adsense_v1_4 {
      * Settings specific to feed ads (AFF) - deprecated.
      */
     feedAdsSettings?: {
-      adPosition?: string;
       frequency?: number;
       minimumWordCount?: number;
       type?: string;
+      adPosition?: string;
     } | null;
     /**
      * Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
@@ -320,10 +320,10 @@ export namespace adsense_v1_4 {
      * Settings specific to WAP mobile content ads (AFMC) - deprecated.
      */
     mobileContentAdsSettings?: {
-      markupLanguage?: string;
       scriptingLanguage?: string;
-      size?: string;
       type?: string;
+      markupLanguage?: string;
+      size?: string;
     } | null;
     /**
      * Name of this ad unit.
@@ -413,10 +413,10 @@ export namespace adsense_v1_4 {
      * The targeting information of this custom channel, if activated.
      */
     targetingInfo?: {
+      siteLanguage?: string;
       adsAppearOn?: string;
       description?: string;
       location?: string;
-      siteLanguage?: string;
     } | null;
   }
   export interface Schema$CustomChannels {

@@ -87,9 +87,9 @@ export namespace securitycenter_v1p1alpha1 {
   }
 
   /**
-   * Cloud Security Command Center API
+   * Security Command Center API
    *
-   * Cloud Security Command Center API provides access to temporal views of assets and findings within an organization.
+   * Security Command Center API provides access to temporal views of assets and findings within an organization.
    *
    * @example
    * const {google} = require('googleapis');
@@ -120,7 +120,7 @@ export namespace securitycenter_v1p1alpha1 {
    */
   export interface Schema$Empty {}
   /**
-   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
+   * Security Command Center finding.  A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.  When adding a new field hidden behind a visibility label, ensure it is also hidden from Notifications: http://google3/java/com/google/cloud/security/riskdashboard/notification/actions/streaming/FindingTranslator.java?l=26
    */
   export interface Schema$Finding {
     /**
@@ -128,7 +128,7 @@ export namespace securitycenter_v1p1alpha1 {
      */
     category?: string | null;
     /**
-     * The time at which the finding was created in Cloud SCC.
+     * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
     /**
@@ -136,7 +136,7 @@ export namespace securitycenter_v1p1alpha1 {
      */
     eventTime?: string | null;
     /**
-     * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
+     * The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
      */
     externalUri?: string | null;
     /**
@@ -148,7 +148,7 @@ export namespace securitycenter_v1p1alpha1 {
      */
     parent?: string | null;
     /**
-     * For findings on Google Cloud Platform (GCP) resources, the full resource name of the GCP resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-GCP resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
+     * For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
     resourceName?: string | null;
     /**
@@ -191,15 +191,15 @@ export namespace securitycenter_v1p1alpha1 {
     notificationConfigName?: string | null;
   }
   /**
-   * Cloud Security Command Center&#39;s (Cloud SCC) representation of a Google Cloud Platform (GCP) resource.  The Asset is a Cloud SCC resource that captures information about a single GCP resource. All modifications to an Asset are only within the context of Cloud SCC and don&#39;t affect the referenced GCP resource.
+   * Security Command Center representation of a Google Cloud resource.  The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don&#39;t affect the referenced Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Asset {
     /**
-     * The time at which the asset was created in Cloud SCC.
+     * The time at which the asset was created in Security Command Center.
      */
     createTime?: string | null;
     /**
-     * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
+     * Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user.
      */
     iamPolicy?: Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy;
     /**
@@ -207,11 +207,11 @@ export namespace securitycenter_v1p1alpha1 {
      */
     name?: string | null;
     /**
-     * Resource managed properties. These properties are managed and defined by the GCP resource and cannot be modified by the user.
+     * Resource managed properties. These properties are managed and defined by the Google Cloud resource and cannot be modified by the user.
      */
     resourceProperties?: {[key: string]: any} | null;
     /**
-     * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
+     * Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.
      */
     securityCenterProperties?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties;
     /**
@@ -224,7 +224,7 @@ export namespace securitycenter_v1p1alpha1 {
     updateTime?: string | null;
   }
   /**
-   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
+   * Security Command Center finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Finding {
     /**
@@ -232,7 +232,7 @@ export namespace securitycenter_v1p1alpha1 {
      */
     category?: string | null;
     /**
-     * The time at which the finding was created in Cloud SCC.
+     * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
     /**
@@ -240,7 +240,7 @@ export namespace securitycenter_v1p1alpha1 {
      */
     eventTime?: string | null;
     /**
-     * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
+     * The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
      */
     externalUri?: string | null;
     /**
@@ -252,7 +252,7 @@ export namespace securitycenter_v1p1alpha1 {
      */
     parent?: string | null;
     /**
-     * For findings on Google Cloud Platform (GCP) resources, the full resource name of the GCP resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-GCP resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
+     * For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
     resourceName?: string | null;
     /**
@@ -269,16 +269,16 @@ export namespace securitycenter_v1p1alpha1 {
     state?: string | null;
   }
   /**
-   * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
+   * Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy {
     /**
-     * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/reference/rest/v1p1beta1/Policy for format details.
+     * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/docs/reference/rest/v1/Policy for format details.
      */
     policyBlob?: string | null;
   }
   /**
-   * Cloud SCC&#39;s Notification
+   * Security Command Center&#39;s Notification
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1NotificationMessage {
     /**
@@ -308,7 +308,7 @@ export namespace securitycenter_v1p1alpha1 {
     state?: string | null;
   }
   /**
-   * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
+   * Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties {
     /**
@@ -316,7 +316,7 @@ export namespace securitycenter_v1p1alpha1 {
      */
     resourceDisplayName?: string | null;
     /**
-     * The full resource name of the GCP resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * The full resource name of the Google Cloud resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     resourceName?: string | null;
     /**
@@ -340,12 +340,12 @@ export namespace securitycenter_v1p1alpha1 {
      */
     resourceProjectDisplayName?: string | null;
     /**
-     * The type of the GCP resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Cloud SCC and/or the producer of the resource and is immutable after create time.
+     * The type of the Google Cloud resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Security Command Center and/or the producer of the resource and is immutable after create time.
      */
     resourceType?: string | null;
   }
   /**
-   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   * User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks {
     /**
@@ -422,7 +422,7 @@ export namespace securitycenter_v1p1alpha1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   * User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.
    */
   export interface Schema$SecurityMarks {
     /**

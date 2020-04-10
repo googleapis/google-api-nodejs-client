@@ -578,6 +578,19 @@ export namespace toolresults_v1beta3 {
     clusters?: Schema$ScreenshotCluster[];
   }
   /**
+   * Response message for AccessibilityService.ListStepAccessibilityClusters.
+   */
+  export interface Schema$ListStepAccessibilityClustersResponse {
+    /**
+     * A sequence of accessibility suggestions, grouped into clusters. Within the sequence, clusters that belong to the same SuggestionCategory should be adjacent. Within each category, clusters should be ordered by their SuggestionPriority (ERRORs first). The categories should be ordered by their highest priority cluster.
+     */
+    clusters?: Schema$SuggestionClusterProto[];
+    /**
+     * A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef  Always presents.
+     */
+    name?: string | null;
+  }
+  /**
    * Response message for StepService.List.
    */
   export interface Schema$ListStepsResponse {
@@ -807,6 +820,27 @@ export namespace toolresults_v1beta3 {
     xunitXmlFiles?: Schema$FileReference[];
   }
   /**
+   * A rectangular region.
+   */
+  export interface Schema$RegionProto {
+    /**
+     * The height, in pixels. Always set.
+     */
+    heightPx?: number | null;
+    /**
+     * The left side of the rectangle, in pixels. Always set.
+     */
+    leftPx?: number | null;
+    /**
+     * The top of the rectangle, in pixels. Always set.
+     */
+    topPx?: number | null;
+    /**
+     * The width, in pixels. Always set.
+     */
+    widthPx?: number | null;
+  }
+  /**
    * The storage for test results.
    */
   export interface Schema$ResultsStorage {
@@ -818,6 +852,15 @@ export namespace toolresults_v1beta3 {
      * The path to the Xunit XML file.
      */
     xunitXmlFile?: Schema$FileReference;
+  }
+  /**
+   * IMPORTANT: It is unsafe to accept this message from an untrusted source, since it&#39;s trivial for an attacker to forge serialized messages that don&#39;t fulfill the type&#39;s safety contract -- for example, it could contain attacker controlled script. A system which receives a SafeHtmlProto implicitly trusts the producer of the SafeHtmlProto. So, it&#39;s generally safe to return this message in RPC responses, but generally unsafe to accept it in RPC requests.
+   */
+  export interface Schema$SafeHtmlProto {
+    /**
+     * IMPORTANT: Never set or read this field, even from tests, it is private. See documentation at the top of .proto file for programming language packages with which to create or read this message.
+     */
+    privateDoNotAccessOrElseSafeHtmlWrappedValue?: string | null;
   }
   export interface Schema$Screen {
     /**
@@ -997,6 +1040,61 @@ export namespace toolresults_v1beta3 {
      * If a native process other than the app crashed.
      */
     otherNativeCrash?: boolean | null;
+  }
+  /**
+   * A set of similar suggestions that we suspect are closely related.  This proto and most of the nested protos are branched from foxandcrown.prelaunchreport.service.SuggestionClusterProto, replacing PLR&#39;s dependencies with FTL&#39;s.
+   */
+  export interface Schema$SuggestionClusterProto {
+    /**
+     * Category in which these types of suggestions should appear. Always set.
+     */
+    category?: string | null;
+    /**
+     * A sequence of suggestions. All of the suggestions within a cluster must have the same SuggestionPriority and belong to the same SuggestionCategory. Suggestions with the same screenshot URL should be adjacent.
+     */
+    suggestions?: Schema$SuggestionProto[];
+  }
+  export interface Schema$SuggestionProto {
+    /**
+     * Reference to a help center article concerning this type of suggestion. Always set.
+     */
+    helpUrl?: string | null;
+    /**
+     * Message, in the user&#39;s language, explaining the suggestion, which may contain markup. Always set.
+     */
+    longMessage?: Schema$SafeHtmlProto;
+    /**
+     * Relative importance of a suggestion. Always set.
+     */
+    priority?: string | null;
+    /**
+     * A somewhat human readable identifier of the source view, if it does not have a resource_name. This is a path within the accessibility hierarchy, an element with resource name; similar to an XPath.
+     */
+    pseudoResourceId?: string | null;
+    /**
+     * Region within the screenshot that is relevant to this suggestion. Optional.
+     */
+    region?: Schema$RegionProto;
+    /**
+     * Reference to a view element, identified by its resource name, if it has one.
+     */
+    resourceName?: string | null;
+    /**
+     * ID of the screen for the suggestion. It is used for getting the corresponding screenshot path. For example, screen_id &quot;1&quot; corresponds to &quot;1.png&quot; file in GCS. Always set.
+     */
+    screenId?: string | null;
+    /**
+     * Relative importance of a suggestion as compared with other suggestions that have the same priority and category. This is a meaningless value that can be used to order suggestions that are in the same category and have the same priority. The larger values have higher priority (i.e., are more important). Optional.
+     */
+    secondaryPriority?: number | null;
+    /**
+     * Concise message, in the user&#39;s language, representing the suggestion, which may contain markup. Always set.
+     */
+    shortMessage?: Schema$SafeHtmlProto;
+    /**
+     * General title for the suggestion, in the user&#39;s language, without markup. Always set.
+     */
+    title?: string | null;
   }
   export interface Schema$TestCase {
     /**
@@ -2607,6 +2705,97 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
+     * toolresults.projects.histories.executions.steps.accessibilityClusters
+     * @desc Lists accessibility clusters for a given Step  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if the locale format is incorrect - NOT_FOUND - if the containing Step does not exist
+     * @alias toolresults.projects.histories.executions.steps.accessibilityClusters
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.locale The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details.  Required.
+     * @param {string} params.name A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    accessibilityClusters(
+      params?: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListStepAccessibilityClustersResponse>;
+    accessibilityClusters(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>,
+      callback: BodyResponseCallback<
+        Schema$ListStepAccessibilityClustersResponse
+      >
+    ): void;
+    accessibilityClusters(
+      params: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
+      callback: BodyResponseCallback<
+        Schema$ListStepAccessibilityClustersResponse
+      >
+    ): void;
+    accessibilityClusters(
+      callback: BodyResponseCallback<
+        Schema$ListStepAccessibilityClustersResponse
+      >
+    ): void;
+    accessibilityClusters(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters
+        | BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>,
+      callback?: BodyResponseCallback<
+        Schema$ListStepAccessibilityClustersResponse
+      >
+    ): void | GaxiosPromise<Schema$ListStepAccessibilityClustersResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/toolresults/v1beta3/{+name}:accessibilityClusters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListStepAccessibilityClustersResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListStepAccessibilityClustersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * toolresults.projects.histories.executions.steps.create
      * @desc Creates a Step.  The returned Step will have the id set.  May return any of the following canonical error codes:  - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
      * @alias toolresults.projects.histories.executions.steps.create
@@ -3068,6 +3257,22 @@ export namespace toolresults_v1beta3 {
     }
   }
 
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details.  Required.
+     */
+    locale?: string;
+    /**
+     * A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef  Required.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Create
     extends StandardParameters {
     /**

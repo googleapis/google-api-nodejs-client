@@ -144,6 +144,10 @@ export namespace speech_v2beta1 {
      * Output only. Time when the request was received.
      */
     startTime?: string | null;
+    /**
+     * The URI of the audio file being transcribed. Empty if the audio was sent as byte content.
+     */
+    uri?: string | null;
   }
   /**
    * The only message returned to the client by the `LongRunningRecognize` method. It contains the result as zero or more sequential SpeechRecognitionResult messages. It is included in the `result.response` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.

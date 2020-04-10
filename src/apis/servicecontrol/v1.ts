@@ -405,7 +405,7 @@ export namespace servicecontrol_v1 {
      */
     serviceConfigId?: string | null;
     /**
-     * Unimplemented. The current service rollout id used to process the request.
+     * The current service rollout id used to process the request.
      */
     serviceRolloutId?: string | null;
   }
@@ -981,7 +981,7 @@ export namespace servicecontrol_v1 {
      */
     serviceConfigId?: string | null;
     /**
-     * Unimplemented. The current service rollout id used to process the request.
+     * The current service rollout id used to process the request.
      */
     serviceRolloutId?: string | null;
   }

@@ -189,7 +189,7 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$AuthProvider {
     /**
-     * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience &quot;https://Service_name/API_name&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience &quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
+     * The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, JWTs with audiences:   - &quot;https://[service.name]/[google.protobuf.Api.name]&quot;   - &quot;https://[service.name]/&quot; will be accepted. For example, if no audiences are in the setting, LibraryService API will accept JWTs with the following audiences:   -   https://library-example.googleapis.com/google.example.library.v1.LibraryService   - https://library-example.googleapis.com/  Example:      audiences: bookstore_android.apps.googleusercontent.com,                bookstore_web.apps.googleusercontent.com
      */
     audiences?: string | null;
     /**
@@ -269,6 +269,10 @@ export namespace serviceusage_v1beta1 {
      */
     protocol?: string | null;
     /**
+     * Unimplemented. Do not use.  The new name the selected proto elements should be renamed to.  The package, the service and the method can all be renamed. The backend server should implement the renamed proto. However, clients should call the original method, and ESF routes the traffic to the renamed method.  HTTP clients should call the URL mapped to the original method. gRPC and Stubby clients should call the original method with package name.  For legacy reasons, ESF allows Stubby clients to call with the short name (without the package name). However, for API Versioning(or multiple methods mapped to the same short name), all Stubby clients must call the method&#39;s full name with the package name, otherwise the first one (selector) wins.  If this `rename_to` is specified with a trailing `*`, the `selector` must be specified with a trailing `*` as well. The all element short names matched by the `*` in the selector will be kept in the `rename_to`.  For example,     rename_rules:     - selector: |-         google.example.library.v1.*       rename_to: google.example.library.*  The selector matches `google.example.library.v1.Library.CreateShelf` and `google.example.library.v1.Library.CreateBook`, they will be renamed to `google.example.library.Library.CreateShelf` and `google.example.library.Library.CreateBook`. It essentially renames the proto package name section of the matched proto service and methods.
+     */
+    renameTo?: string | null;
+    /**
      * Selects the methods to which this rule applies.  Refer to selector for syntax details.
      */
     selector?: string | null;
@@ -334,6 +338,56 @@ export namespace serviceusage_v1beta1 {
      * The monitored resource type. The type must be defined in Service.monitored_resources section.
      */
     monitoredResource?: string | null;
+  }
+  /**
+   * Consumer quota settings for a quota limit.
+   */
+  export interface Schema$ConsumerQuotaLimit {
+    /**
+     * Whether admin overrides are allowed on this limit
+     */
+    allowsAdminOverrides?: boolean | null;
+    /**
+     * Whether this limit is precise or imprecise.
+     */
+    isPrecise?: boolean | null;
+    /**
+     * The name of the parent metric of this limit.  An example name would be: `compute.googleapis.com/cpus`
+     */
+    metric?: string | null;
+    /**
+     * The resource name of the quota limit.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`  The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
+     */
+    name?: string | null;
+    /**
+     * Summary of the enforced quota buckets, organized by quota dimension, ordered from least specific to most specific (for example, the global default bucket, with no quota dimensions, will always appear first).
+     */
+    quotaBuckets?: Schema$QuotaBucket[];
+    /**
+     * The limit unit.  An example unit would be `1/{project}/{region}` Note that `{project}` and `{region}` are not placeholders in this example; the literal characters `{` and `}` occur in the string.
+     */
+    unit?: string | null;
+  }
+  /**
+   * Consumer quota settings for a quota metric.
+   */
+  export interface Schema$ConsumerQuotaMetric {
+    /**
+     * The consumer quota for each quota limit defined on the metric.
+     */
+    consumerQuotaLimits?: Schema$ConsumerQuotaLimit[];
+    /**
+     * The display name of the metric.  An example name would be: &quot;CPUs&quot;
+     */
+    displayName?: string | null;
+    /**
+     * The name of the metric.  An example name would be: `compute.googleapis.com/cpus`
+     */
+    metric?: string | null;
+    /**
+     * The resource name of the quota settings on this metric for this consumer.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus  The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
+     */
+    name?: string | null;
   }
   /**
    * `Context` defines which contexts an API requests.  Example:      context:       rules:       - selector: &quot;*&quot;         requested:         - google.rpc.context.ProjectContext         - google.rpc.context.OriginContext  The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`.  Available context types are defined in package `google.rpc.context`.  This also provides mechanism to whitelist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext-&lt;extension_id&gt;-bin” and “x-goog-ext-&lt;extension_id&gt;-jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file:  Example:      context:       rules:        - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot;          allowed_request_extensions:          - google.foo.v1.NewExtension          allowed_response_extensions:          - google.foo.v1.NewExtension  You can also specify extension ID instead of fully qualified extension name here.
@@ -917,6 +971,24 @@ export namespace serviceusage_v1beta1 {
     selector?: string | null;
   }
   /**
+   * Response message for ImportAdminOverrides
+   */
+  export interface Schema$ImportAdminOverridesResponse {
+    /**
+     * The overrides that were created from the imported data.
+     */
+    overrides?: Schema$QuotaOverride[];
+  }
+  /**
+   * Response message for ImportConsumerOverrides
+   */
+  export interface Schema$ImportConsumerOverridesResponse {
+    /**
+     * The overrides that were created from the imported data.
+     */
+    overrides?: Schema$QuotaOverride[];
+  }
+  /**
    * Specifies a location to extract JWT from an API request.
    */
   export interface Schema$JwtLocation {
@@ -949,6 +1021,45 @@ export namespace serviceusage_v1beta1 {
      * The type of data that can be assigned to the label.
      */
     valueType?: string | null;
+  }
+  /**
+   * Response message for ListAdminOverrides.
+   */
+  export interface Schema$ListAdminOverridesResponse {
+    /**
+     * Token identifying which result to start with; returned by a previous list call.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Admin overrides on this limit.
+     */
+    overrides?: Schema$QuotaOverride[];
+  }
+  /**
+   * Response message for ListConsumerOverrides.
+   */
+  export interface Schema$ListConsumerOverridesResponse {
+    /**
+     * Token identifying which result to start with; returned by a previous list call.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Consumer overrides on this limit.
+     */
+    overrides?: Schema$QuotaOverride[];
+  }
+  /**
+   * Response message for ListConsumerQuotaMetrics
+   */
+  export interface Schema$ListConsumerQuotaMetricsResponse {
+    /**
+     * Quota settings for the consumer, organized by quota metric.
+     */
+    metrics?: Schema$ConsumerQuotaMetric[];
+    /**
+     * Token identifying which result to start with; returned by a previous list call.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1290,6 +1401,35 @@ export namespace serviceusage_v1beta1 {
     metricRules?: Schema$MetricRule[];
   }
   /**
+   * A quota bucket is a quota provisioning unit for a specific set of dimensions.
+   */
+  export interface Schema$QuotaBucket {
+    /**
+     * Admin override on this quota bucket.
+     */
+    adminOverride?: Schema$QuotaOverride;
+    /**
+     * Consumer override on this quota bucket.
+     */
+    consumerOverride?: Schema$QuotaOverride;
+    /**
+     * The default limit of this quota bucket, as specified by the service configuration.
+     */
+    defaultLimit?: string | null;
+    /**
+     * The dimensions of this quota bucket.  If this map is empty, this is the global bucket, which is the default quota value applied to all requests that do not have a more specific override.  If this map is nonempty, the default limit, effective limit, and quota overrides apply only to requests that have the dimensions given in the map.  For example, if the map has key &quot;region&quot; and value &quot;us-east-1&quot;, then the specified effective limit is only effective in that region, and the specified overrides apply only in that region.
+     */
+    dimensions?: {[key: string]: string} | null;
+    /**
+     * The effective limit of this quota bucket. Equal to default_limit if there are no overrides.
+     */
+    effectiveLimit?: string | null;
+    /**
+     * Producer override on this quota bucket.
+     */
+    producerOverride?: Schema$QuotaOverride;
+  }
+  /**
    * `QuotaLimit` defines a specific limit that applies over a specified duration for a limit type. There can be at most one limit for a duration and limit type combination defined within a `QuotaGroup`.
    */
   export interface Schema$QuotaLimit {
@@ -1343,6 +1483,10 @@ export namespace serviceusage_v1beta1 {
      */
     dimensions?: {[key: string]: string} | null;
     /**
+     * The name of the metric to which this override applies.  An example name would be: `compute.googleapis.com/cpus`
+     */
+    metric?: string | null;
+    /**
      * The resource name of the override. This name is generated by the server when the override is created.  Example names would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d` `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`  The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
      */
     name?: string | null;
@@ -1350,6 +1494,10 @@ export namespace serviceusage_v1beta1 {
      * The overriding quota limit value. Can be any nonnegative integer, or -1 (unlimited quota).
      */
     overrideValue?: string | null;
+    /**
+     * The limit unit of the limit to which this override applies.  An example unit would be: `1/{project}/{region}` Note that `{project}` and `{region}` are not placeholders in this example; the literal characters `{` and `}` occur in the string.
+     */
+    unit?: string | null;
   }
   /**
    * A service that is available for use by the consumer.
@@ -1756,8 +1904,12 @@ export namespace serviceusage_v1beta1 {
 
   export class Resource$Services {
     context: APIRequestContext;
+    consumerQuotaMetrics: Resource$Services$Consumerquotametrics;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.consumerQuotaMetrics = new Resource$Services$Consumerquotametrics(
+        this.context
+      );
     }
 
     /**
@@ -2212,5 +2364,1111 @@ export namespace serviceusage_v1beta1 {
      * Parent to search for services on.  An example name would be: `projects/123` where `123` is the project number (not project ID).
      */
     parent?: string;
+  }
+
+  export class Resource$Services$Consumerquotametrics {
+    context: APIRequestContext;
+    limits: Resource$Services$Consumerquotametrics$Limits;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.limits = new Resource$Services$Consumerquotametrics$Limits(
+        this.context
+      );
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.get
+     * @desc Retrieves a summary of quota information for a specific quota metric
+     * @alias serviceusage.services.consumerQuotaMetrics.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the quota limit.  An example name would be: projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests
+     * @param {string=} params.view Specifies the level of detail for quota information in the response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Services$Consumerquotametrics$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConsumerQuotaMetric>;
+    get(
+      params: Params$Resource$Services$Consumerquotametrics$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConsumerQuotaMetric>,
+      callback: BodyResponseCallback<Schema$ConsumerQuotaMetric>
+    ): void;
+    get(
+      params: Params$Resource$Services$Consumerquotametrics$Get,
+      callback: BodyResponseCallback<Schema$ConsumerQuotaMetric>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ConsumerQuotaMetric>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Get
+        | BodyResponseCallback<Schema$ConsumerQuotaMetric>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConsumerQuotaMetric>,
+      callback?: BodyResponseCallback<Schema$ConsumerQuotaMetric>
+    ): void | GaxiosPromise<Schema$ConsumerQuotaMetric> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConsumerQuotaMetric>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ConsumerQuotaMetric>(parameters);
+      }
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.list
+     * @desc Retrieves a summary of all quota information visible to the service consumer, organized by service metric. Each metric includes information about all of its defined limits. Each limit includes the limit configuration (quota unit, preciseness, default value), the current effective limit value, and all of the overrides applied to the limit.
+     * @alias serviceusage.services.consumerQuotaMetrics.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Requested size of the next page of data.
+     * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
+     * @param {string} params.parent Parent of the quotas resource.  Some example names would be: projects/123/services/serviceconsumermanagement.googleapis.com folders/345/services/serviceconsumermanagement.googleapis.com organizations/456/services/serviceconsumermanagement.googleapis.com
+     * @param {string=} params.view Specifies the level of detail for quota information in the response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Services$Consumerquotametrics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConsumerQuotaMetricsResponse>;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConsumerQuotaMetricsResponse>,
+      callback: BodyResponseCallback<Schema$ListConsumerQuotaMetricsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$List,
+      callback: BodyResponseCallback<Schema$ListConsumerQuotaMetricsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListConsumerQuotaMetricsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$List
+        | BodyResponseCallback<Schema$ListConsumerQuotaMetricsResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConsumerQuotaMetricsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConsumerQuotaMetricsResponse>
+    ): void | GaxiosPromise<Schema$ListConsumerQuotaMetricsResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consumerQuotaMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConsumerQuotaMetricsResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListConsumerQuotaMetricsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Consumerquotametrics$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The resource name of the quota limit.  An example name would be: projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests
+     */
+    name?: string;
+    /**
+     * Specifies the level of detail for quota information in the response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Requested size of the next page of data.
+     */
+    pageSize?: number;
+    /**
+     * Token identifying which result to start with; returned by a previous list call.
+     */
+    pageToken?: string;
+    /**
+     * Parent of the quotas resource.  Some example names would be: projects/123/services/serviceconsumermanagement.googleapis.com folders/345/services/serviceconsumermanagement.googleapis.com organizations/456/services/serviceconsumermanagement.googleapis.com
+     */
+    parent?: string;
+    /**
+     * Specifies the level of detail for quota information in the response.
+     */
+    view?: string;
+  }
+
+  export class Resource$Services$Consumerquotametrics$Limits {
+    context: APIRequestContext;
+    adminOverrides: Resource$Services$Consumerquotametrics$Limits$Adminoverrides;
+    consumerOverrides: Resource$Services$Consumerquotametrics$Limits$Consumeroverrides;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.adminOverrides = new Resource$Services$Consumerquotametrics$Limits$Adminoverrides(
+        this.context
+      );
+      this.consumerOverrides = new Resource$Services$Consumerquotametrics$Limits$Consumeroverrides(
+        this.context
+      );
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.get
+     * @desc Retrieves a summary of quota information for a specific quota limit.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource name of the quota limit.  Use the quota limit resource name returned by previous ListConsumerQuotaMetrics and GetConsumerQuotaMetric API calls.
+     * @param {string=} params.view Specifies the level of detail for quota information in the response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConsumerQuotaLimit>;
+    get(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConsumerQuotaLimit>,
+      callback: BodyResponseCallback<Schema$ConsumerQuotaLimit>
+    ): void;
+    get(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Get,
+      callback: BodyResponseCallback<Schema$ConsumerQuotaLimit>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ConsumerQuotaLimit>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Get
+        | BodyResponseCallback<Schema$ConsumerQuotaLimit>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConsumerQuotaLimit>,
+      callback?: BodyResponseCallback<Schema$ConsumerQuotaLimit>
+    ): void | GaxiosPromise<Schema$ConsumerQuotaLimit> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConsumerQuotaLimit>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ConsumerQuotaLimit>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Get
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The resource name of the quota limit.  Use the quota limit resource name returned by previous ListConsumerQuotaMetrics and GetConsumerQuotaMetric API calls.
+     */
+    name?: string;
+    /**
+     * Specifies the level of detail for quota information in the response.
+     */
+    view?: string;
+  }
+
+  export class Resource$Services$Consumerquotametrics$Limits$Adminoverrides {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.create
+     * @desc Creates an admin override. An admin override is applied by an administrator of a parent folder or parent organization of the consumer receiving the override. An admin override is intended to limit the amount of quota the consumer can use out of the total quota pool allocated to all children of the folder or organization.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.force Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     * @param {string} params.parent The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     * @param {().QuotaOverride} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/adminOverrides').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.delete
+     * @desc Deletes an admin override.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.force Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     * @param {string} params.name The resource name of the override to delete.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.list
+     * @desc Lists all admin overrides on this limit.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Requested size of the next page of data.
+     * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
+     * @param {string} params.parent The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdminOverridesResponse>;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdminOverridesResponse>,
+      callback: BodyResponseCallback<Schema$ListAdminOverridesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List,
+      callback: BodyResponseCallback<Schema$ListAdminOverridesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAdminOverridesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List
+        | BodyResponseCallback<Schema$ListAdminOverridesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdminOverridesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAdminOverridesResponse>
+    ): void | GaxiosPromise<Schema$ListAdminOverridesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/adminOverrides').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdminOverridesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdminOverridesResponse>(parameters);
+      }
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.patch
+     * @desc Updates an admin override.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.adminOverrides.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.force Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     * @param {string} params.name The resource name of the override to update.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d`
+     * @param {string=} params.updateMask Update only the specified fields of the override. If unset, all fields will be updated.
+     * @param {().QuotaOverride} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QuotaOverride;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * The resource name of the override to delete.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Requested size of the next page of data.
+     */
+    pageSize?: number;
+    /**
+     * Token identifying which result to start with; returned by a previous list call.
+     */
+    pageToken?: string;
+    /**
+     * The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * The resource name of the override to update.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d`
+     */
+    name?: string;
+    /**
+     * Update only the specified fields of the override. If unset, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QuotaOverride;
+  }
+
+  export class Resource$Services$Consumerquotametrics$Limits$Consumeroverrides {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.create
+     * @desc Creates a consumer override. A consumer override is applied to the consumer on its own authority to limit its own quota usage. Consumer overrides cannot be used to grant more quota than would be allowed by admin overrides, producer overrides, or the default limit of the service.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.create
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.force Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     * @param {string} params.parent The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     * @param {().QuotaOverride} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consumerOverrides').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.delete
+     * @desc Deletes a consumer override.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.force Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     * @param {string} params.name The resource name of the override to delete.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.list
+     * @desc Lists all consumer overrides on this limit.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Requested size of the next page of data.
+     * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
+     * @param {string} params.parent The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListConsumerOverridesResponse>;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConsumerOverridesResponse>,
+      callback: BodyResponseCallback<Schema$ListConsumerOverridesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List,
+      callback: BodyResponseCallback<Schema$ListConsumerOverridesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListConsumerOverridesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List
+        | BodyResponseCallback<Schema$ListConsumerOverridesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListConsumerOverridesResponse>,
+      callback?: BodyResponseCallback<Schema$ListConsumerOverridesResponse>
+    ): void | GaxiosPromise<Schema$ListConsumerOverridesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/consumerOverrides').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListConsumerOverridesResponse>(
+          parameters,
+          callback
+        );
+      } else {
+        return createAPIRequest<Schema$ListConsumerOverridesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.patch
+     * @desc Updates a consumer override.
+     * @alias serviceusage.services.consumerQuotaMetrics.limits.consumerOverrides.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.force Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     * @param {string} params.name The resource name of the override to update.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`
+     * @param {string=} params.updateMask Update only the specified fields of the override. If unset, all fields will be updated.
+     * @param {().QuotaOverride} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+      params?: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Create
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QuotaOverride;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Delete
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * The resource name of the override to delete.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Requested size of the next page of data.
+     */
+    pageSize?: number;
+    /**
+     * Token identifying which result to start with; returned by a previous list call.
+     */
+    pageToken?: string;
+    /**
+     * The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Limits$Consumeroverrides$Patch
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean;
+    /**
+     * The resource name of the override to update.  An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`
+     */
+    name?: string;
+    /**
+     * Update only the specified fields of the override. If unset, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QuotaOverride;
   }
 }

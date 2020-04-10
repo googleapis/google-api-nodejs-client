@@ -196,10 +196,10 @@ export namespace adsensehost_v4_1 {
      * The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
      */
     colors?: {
-      background?: string;
+      title?: string;
       border?: string;
       text?: string;
-      title?: string;
+      background?: string;
       url?: string;
     } | null;
     /**
@@ -224,9 +224,9 @@ export namespace adsensehost_v4_1 {
      * Settings specific to content ads (AFC) and highend mobile content ads (AFMC - deprecated).
      */
     contentAdsSettings?: {
-      backupOption?: {color?: string; type?: string; url?: string};
       size?: string;
       type?: string;
+      backupOption?: {url?: string; color?: string; type?: string};
     } | null;
     /**
      * Custom style information specific to this ad unit.
@@ -244,10 +244,10 @@ export namespace adsensehost_v4_1 {
      * Settings specific to WAP mobile content ads (AFMC - deprecated).
      */
     mobileContentAdsSettings?: {
-      markupLanguage?: string;
       scriptingLanguage?: string;
-      size?: string;
       type?: string;
+      markupLanguage?: string;
+      size?: string;
     } | null;
     /**
      * Name of this ad unit.
@@ -1800,6 +1800,7 @@ export namespace adsensehost_v4_1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.callbackUrl The URL to redirect the user to once association is completed. It receives a token parameter that can then be used to retrieve the associated account.
      * @param {string} params.productCode Products to associate with the user.
      * @param {string=} params.userLocale The preferred locale of the user.
      * @param {string=} params.websiteLocale The locale of the user's hosted website.
@@ -1950,6 +1951,10 @@ export namespace adsensehost_v4_1 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The URL to redirect the user to once association is completed. It receives a token parameter that can then be used to retrieve the associated account.
+     */
+    callbackUrl?: string;
     /**
      * Products to associate with the user.
      */

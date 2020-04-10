@@ -1183,6 +1183,10 @@ export namespace games_v1 {
      */
     experienceInfo?: Schema$PlayerExperienceInfo;
     /**
+     * The friend status of the given player, relative to the requester. This is unset if the player is not sharing their friends list with the game.
+     */
+    friendStatus?: string | null;
+    /**
      * Uniquely identifies the type of this resource. Value is always the fixed string games#player.
      */
     kind?: string | null;
@@ -1513,6 +1517,10 @@ export namespace games_v1 {
    * This is a JSON template for profile settings
    */
   export interface Schema$ProfileSettings {
+    /**
+     * Whether the player&#39;s friends list is visible to the game.
+     */
+    friendsListVisibility?: string | null;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed string games#profileSettings.
      */

@@ -14,19 +14,27 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {osconfig_v1} from './v1';
 import {osconfig_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: osconfig_v1.Osconfig,
   v1beta: osconfig_v1beta.Osconfig,
 };
 
+export function osconfig(version: 'v1'): osconfig_v1.Osconfig;
+export function osconfig(options: osconfig_v1.Options): osconfig_v1.Osconfig;
 export function osconfig(version: 'v1beta'): osconfig_v1beta.Osconfig;
 export function osconfig(
   options: osconfig_v1beta.Options
 ): osconfig_v1beta.Osconfig;
-export function osconfig<T = osconfig_v1beta.Osconfig>(
+export function osconfig<T = osconfig_v1.Osconfig | osconfig_v1beta.Osconfig>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta' | osconfig_v1beta.Options
+  versionOrOptions:
+    | 'v1'
+    | osconfig_v1.Options
+    | 'v1beta'
+    | osconfig_v1beta.Options
 ) {
   return getAPI<T>('osconfig', versionOrOptions, VERSIONS, this);
 }

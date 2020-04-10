@@ -1875,6 +1875,10 @@ export namespace dfareporting_v3_4 {
      */
     name?: string | null;
     /**
+     * Online behavioral advertising icon to be added to the creative. Applicable to the following creative types: all INSTREAM_VIDEO.
+     */
+    obaIcon?: Schema$ObaIcon;
+    /**
      * Override CSS value for rich media creatives. Applicable to the following creative types: all RICH_MEDIA.
      */
     overrideCss?: string | null;
@@ -2198,13 +2202,21 @@ export namespace dfareporting_v3_4 {
      */
     assetIdentifier?: Schema$CreativeAssetId;
     /**
-     * List of detected click tags for assets. This is a read-only auto-generated field.
+     * List of detected click tags for assets. This is a read-only, auto-generated field. This field is empty for a rich media asset.
      */
     clickTags?: Schema$ClickTag[];
+    /**
+     * List of counter events configured for the asset. This is a read-only, auto-generated field and only applicable to a rich media asset.
+     */
+    counterCustomEvents?: Schema$CreativeCustomEvent[];
     /**
      * List of feature dependencies for the creative asset that are detected by Campaign Manager. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field.
      */
     detectedFeatures?: string[] | null;
+    /**
+     * List of exit events configured for the asset. This is a read-only, auto-generated field and only applicable to a rich media asset.
+     */
+    exitCustomEvents?: Schema$CreativeCustomEvent[];
     /**
      * Numeric ID of the asset. This is a read-only, auto-generated field.
      */
@@ -2217,6 +2229,14 @@ export namespace dfareporting_v3_4 {
      * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeAssetMetadata&quot;.
      */
     kind?: string | null;
+    /**
+     * True if the uploaded asset is a rich media asset. This is a read-only, auto-generated field.
+     */
+    richMedia?: boolean | null;
+    /**
+     * List of timer events configured for the asset. This is a read-only, auto-generated field and only applicable to a rich media asset.
+     */
+    timerCustomEvents?: Schema$CreativeCustomEvent[];
     /**
      * Rules validated during code generation that generated a warning. This is a read-only, auto-generated field.  Possible values are: - &quot;ADMOB_REFERENCED&quot; - &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot; - &quot;ASSET_INVALID&quot; - &quot;CLICK_TAG_HARD_CODED&quot; - &quot;CLICK_TAG_INVALID&quot; - &quot;CLICK_TAG_IN_GWD&quot; - &quot;CLICK_TAG_MISSING&quot; - &quot;CLICK_TAG_MORE_THAN_ONE&quot; - &quot;CLICK_TAG_NON_TOP_LEVEL&quot; - &quot;COMPONENT_UNSUPPORTED_DCM&quot; - &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot; - &quot;EXTERNAL_FILE_REFERENCED&quot; - &quot;FILE_DETAIL_EMPTY&quot; - &quot;FILE_TYPE_INVALID&quot; - &quot;GWD_PROPERTIES_INVALID&quot; - &quot;HTML5_FEATURE_UNSUPPORTED&quot; - &quot;LINKED_FILE_NOT_FOUND&quot; - &quot;MAX_FLASH_VERSION_11&quot; - &quot;MRAID_REFERENCED&quot; - &quot;NOT_SSL_COMPLIANT&quot; - &quot;ORPHANED_ASSET&quot; - &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; - &quot;ZIP_INVALID&quot;
      */
@@ -2607,15 +2627,19 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$CustomEvent {
     /**
-     * Annotate a click event.
+     * Annotate an impression. This field is mutually exclusive with insertEvent and annotateImpressionEvent. This or insertEvent and annotateImpressionEvent is a required field.
      */
     annotateClickEvent?: Schema$CustomEventClickAnnotation;
+    /**
+     * Annotate an impression. This field is mutually exclusive with insertEvent and annotateClickEvent. This or insertEvent and annotateClickEvent is a required field.
+     */
+    annotateImpressionEvent?: Schema$CustomEventImpressionAnnotation;
     /**
      * Custom variables associated with the event.
      */
     customVariables?: Schema$CustomVariable[];
     /**
-     * The type of event. If INSERT, the fields in insertEvent need to be populated. If ANNOTATE_CLICK, the fields in annotateClickEvent need to be populated. A custom event cannot have both insertEvent and annotateClickEvent populated.
+     * The type of event. If INSERT, the fields in insertEvent need to be populated. If ANNOTATE, the fields in either annotateClickEvent or annotateImpressionEvent need to be populated.
      */
     eventType?: string | null;
     /**
@@ -2623,7 +2647,7 @@ export namespace dfareporting_v3_4 {
      */
     floodlightConfigurationId?: string | null;
     /**
-     * Insert custom event.
+     * Annotate an impression. This field is mutually exclusive with annotateClickEvent and annotateImpressionEvent. This or annotateClickEvent and annotateImpressionEvent is a required field.
      */
     insertEvent?: Schema$CustomEventInsert;
     /**
@@ -2668,6 +2692,19 @@ export namespace dfareporting_v3_4 {
      * A description of the error.
      */
     message?: string | null;
+  }
+  /**
+   * Annotate an impression.
+   */
+  export interface Schema$CustomEventImpressionAnnotation {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventImpressionAnnotation&quot;.
+     */
+    kind?: string | null;
+    /**
+     * The path impression ID. Use this field to annotate the impression associated with the pathImpressionId.
+     */
+    pathImpressionId?: string | null;
   }
   /**
    * Custom event to be inserted.
@@ -3323,12 +3360,9 @@ export namespace dfareporting_v3_4 {
    * Represents a File resource. A file contains the metadata for a report run. It shows the status of the run and holds the URLs to the generated report data if the run is finished and the status is &quot;REPORT_AVAILABLE&quot;.
    */
   export interface Schema$File {
-    /**
-     * The date range for which the file has report data. The date range will always be the absolute date range for which the report is run.
-     */
     dateRange?: Schema$DateRange;
     /**
-     * The eTag of this response for caching purposes.
+     * Etag of this resource.
      */
     etag?: string | null;
     /**
@@ -3344,7 +3378,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * The kind of resource this is, in this case dfareporting#file.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#file&quot;.
      */
     kind?: string | null;
     /**
@@ -3364,20 +3398,14 @@ export namespace dfareporting_v3_4 {
      */
     urls?: {apiUrl?: string; browserUrl?: string} | null;
   }
-  /**
-   * Represents the list of File resources.
-   */
   export interface Schema$FileList {
     /**
-     * The eTag of this response for caching purposes.
+     * Etag of this resource.
      */
     etag?: string | null;
-    /**
-     * The files returned in this response.
-     */
     items?: Schema$File[];
     /**
-     * The kind of list this is, in this case dfareporting#fileList.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#fileList&quot;.
      */
     kind?: string | null;
     /**
@@ -4270,6 +4298,43 @@ export namespace dfareporting_v3_4 {
      * Mobile carrier collection.
      */
     mobileCarriers?: Schema$MobileCarrier[];
+  }
+  /**
+   * Online Behavioral Advertiser icon.
+   */
+  export interface Schema$ObaIcon {
+    /**
+     * URL to redirect to when an OBA icon is clicked.
+     */
+    iconClickThroughUrl?: string | null;
+    /**
+     * URL to track click when an OBA icon is clicked.
+     */
+    iconClickTrackingUrl?: string | null;
+    /**
+     * URL to track view when an OBA icon is clicked.
+     */
+    iconViewTrackingUrl?: string | null;
+    /**
+     * Identifies the industry initiative that the icon supports. For example, AdChoices.
+     */
+    program?: string | null;
+    /**
+     * OBA icon resource URL. Campaign Manager only supports image and JavaScript icons. Learn more
+     */
+    resourceUrl?: string | null;
+    /**
+     * OBA icon size.
+     */
+    size?: Schema$Size;
+    /**
+     * OBA icon x coordinate position. Accepted values are left or right.
+     */
+    xPosition?: string | null;
+    /**
+     * OBA icon y coordinate position. Accepted values are top or bottom.
+     */
+    yPosition?: string | null;
   }
   /**
    * Object Filter.
@@ -6439,7 +6504,7 @@ export namespace dfareporting_v3_4 {
     variableType?: string | null;
   }
   /**
-   * Represents a UserProfile resource.
+   * A UserProfile resource lets you list all DFA user profiles that are associated with a Google user account. The profile_id needs to be specified in other API requests.
    */
   export interface Schema$UserProfile {
     /**
@@ -6451,11 +6516,11 @@ export namespace dfareporting_v3_4 {
      */
     accountName?: string | null;
     /**
-     * The eTag of this response for caching purposes.
+     * Etag of this resource.
      */
     etag?: string | null;
     /**
-     * The kind of resource this is, in this case dfareporting#userProfile.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userProfile&quot;.
      */
     kind?: string | null;
     /**
@@ -6480,7 +6545,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$UserProfileList {
     /**
-     * The eTag of this response for caching purposes.
+     * Etag of this resource.
      */
     etag?: string | null;
     /**
@@ -6488,7 +6553,7 @@ export namespace dfareporting_v3_4 {
      */
     items?: Schema$UserProfile[];
     /**
-     * The kind of list this is, in this case dfareporting#userProfileList.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userProfileList&quot;.
      */
     kind?: string | null;
   }
@@ -24081,13 +24146,13 @@ export namespace dfareporting_v3_4 {
 
     /**
      * dfareporting.reports.files.get
-     * @desc Retrieves a report file. This method supports media download.
+     * @desc Retrieves a report file by its report ID and file ID. This method supports media download.
      * @alias dfareporting.reports.files.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the report file.
-     * @param {string} params.profileId The DFA profile ID.
+     * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -24162,8 +24227,8 @@ export namespace dfareporting_v3_4 {
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-     * @param {string} params.profileId The DFA profile ID.
-     * @param {string} params.reportId The ID of the parent report.
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {string} params.reportId The ID of the report.
      * @param {string=} params.sortField The field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24243,7 +24308,7 @@ export namespace dfareporting_v3_4 {
      */
     fileId?: string;
     /**
-     * The DFA profile ID.
+     * The DFA user profile ID.
      */
     profileId?: string;
     /**
@@ -24267,11 +24332,11 @@ export namespace dfareporting_v3_4 {
      */
     pageToken?: string;
     /**
-     * The DFA profile ID.
+     * The DFA user profile ID.
      */
     profileId?: string;
     /**
-     * The ID of the parent report.
+     * The ID of the report.
      */
     reportId?: string;
     /**

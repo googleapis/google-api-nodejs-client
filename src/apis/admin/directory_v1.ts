@@ -99,7 +99,6 @@ export namespace admin_directory_v1 {
     notifications: Resource$Notifications;
     orgunits: Resource$Orgunits;
     privileges: Resource$Privileges;
-    resolvedAppAccessSettings: Resource$Resolvedappaccesssettings;
     resources: Resource$Resources;
     roleAssignments: Resource$Roleassignments;
     roles: Resource$Roles;
@@ -126,9 +125,6 @@ export namespace admin_directory_v1 {
       this.notifications = new Resource$Notifications(this.context);
       this.orgunits = new Resource$Orgunits(this.context);
       this.privileges = new Resource$Privileges(this.context);
-      this.resolvedAppAccessSettings = new Resource$Resolvedappaccesssettings(
-        this.context
-      );
       this.resources = new Resource$Resources(this.context);
       this.roleAssignments = new Resource$Roleassignments(this.context);
       this.roles = new Resource$Roles(this.context);
@@ -180,43 +176,6 @@ export namespace admin_directory_v1 {
      * Kind of resource this is.
      */
     kind?: string | null;
-  }
-  /**
-   * JSON template for App Access Collections Resource object in Directory API.
-   */
-  export interface Schema$AppAccessCollections {
-    /**
-     * List of blocked api access buckets.
-     */
-    blockedApiAccessBuckets?: string[] | null;
-    /**
-     * Boolean to indicate whether to enforce app access settings on Android Drive or not.
-     */
-    enforceSettingsForAndroidDrive?: boolean | null;
-    /**
-     * Error message provided by the Admin that will be shown to the user when an app is blocked.
-     */
-    errorMessage?: string | null;
-    /**
-     * ETag of the resource.
-     */
-    etag?: string | null;
-    /**
-     * Identifies the resource as an app access collection. Value: admin#directory#appaccesscollection
-     */
-    kind?: string | null;
-    /**
-     * Unique ID of app access collection. (Readonly)
-     */
-    resourceId?: string | null;
-    /**
-     * Resource name given by the customer while creating/updating. Should be unique under given customer.
-     */
-    resourceName?: string | null;
-    /**
-     * Boolean that indicates whether to trust domain owned apps.
-     */
-    trustDomainOwnedApps?: boolean | null;
   }
   /**
    * The template that returns individual ASP (Access Code) data.
@@ -1692,46 +1651,6 @@ export namespace admin_directory_v1 {
      * The type of the API resource. This is always admin#directory#tokenList.
      */
     kind?: string | null;
-  }
-  /**
-   * JSON template for Trusted App Ids Resource object in Directory API.
-   */
-  export interface Schema$TrustedAppId {
-    /**
-     * Android package name.
-     */
-    androidPackageName?: string | null;
-    /**
-     * SHA1 signature of the app certificate.
-     */
-    certificateHashSHA1?: string | null;
-    /**
-     * SHA256 signature of the app certificate.
-     */
-    certificateHashSHA256?: string | null;
-    etag?: string | null;
-    /**
-     * Identifies the resource as a trusted AppId.
-     */
-    kind?: string | null;
-  }
-  /**
-   * JSON template for Trusted Apps response object of a user in Directory API.
-   */
-  export interface Schema$TrustedApps {
-    /**
-     * ETag of the resource.
-     */
-    etag?: string | null;
-    /**
-     * Identifies the resource as trusted apps response.
-     */
-    kind?: string | null;
-    nextPageToken?: string | null;
-    /**
-     * Trusted Apps list.
-     */
-    trustedApps?: Schema$TrustedAppId[];
   }
   /**
    * JSON template for User object in Directory API.
@@ -7340,177 +7259,6 @@ export namespace admin_directory_v1 {
      * Immutable ID of the G Suite account.
      */
     customer?: string;
-  }
-
-  export class Resource$Resolvedappaccesssettings {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * directory.resolvedAppAccessSettings.GetSettings
-     * @desc Retrieves resolved app access settings of the logged in user.
-     * @alias directory.resolvedAppAccessSettings.GetSettings
-     * @memberOf! ()
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    GetSettings(
-      params?: Params$Resource$Resolvedappaccesssettings$Getsettings,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AppAccessCollections>;
-    GetSettings(
-      params: Params$Resource$Resolvedappaccesssettings$Getsettings,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AppAccessCollections>,
-      callback: BodyResponseCallback<Schema$AppAccessCollections>
-    ): void;
-    GetSettings(
-      params: Params$Resource$Resolvedappaccesssettings$Getsettings,
-      callback: BodyResponseCallback<Schema$AppAccessCollections>
-    ): void;
-    GetSettings(
-      callback: BodyResponseCallback<Schema$AppAccessCollections>
-    ): void;
-    GetSettings(
-      paramsOrCallback?:
-        | Params$Resource$Resolvedappaccesssettings$Getsettings
-        | BodyResponseCallback<Schema$AppAccessCollections>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AppAccessCollections>,
-      callback?: BodyResponseCallback<Schema$AppAccessCollections>
-    ): void | GaxiosPromise<Schema$AppAccessCollections> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Resolvedappaccesssettings$Getsettings;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Resolvedappaccesssettings$Getsettings;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/admin/directory/v1/resolvedappaccesssettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AppAccessCollections>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$AppAccessCollections>(parameters);
-      }
-    }
-
-    /**
-     * directory.resolvedAppAccessSettings.ListTrustedApps
-     * @desc Retrieves the list of apps trusted by the admin of the logged in user.
-     * @alias directory.resolvedAppAccessSettings.ListTrustedApps
-     * @memberOf! ()
-     *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    ListTrustedApps(
-      params?: Params$Resource$Resolvedappaccesssettings$Listtrustedapps,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TrustedApps>;
-    ListTrustedApps(
-      params: Params$Resource$Resolvedappaccesssettings$Listtrustedapps,
-      options: MethodOptions | BodyResponseCallback<Schema$TrustedApps>,
-      callback: BodyResponseCallback<Schema$TrustedApps>
-    ): void;
-    ListTrustedApps(
-      params: Params$Resource$Resolvedappaccesssettings$Listtrustedapps,
-      callback: BodyResponseCallback<Schema$TrustedApps>
-    ): void;
-    ListTrustedApps(callback: BodyResponseCallback<Schema$TrustedApps>): void;
-    ListTrustedApps(
-      paramsOrCallback?:
-        | Params$Resource$Resolvedappaccesssettings$Listtrustedapps
-        | BodyResponseCallback<Schema$TrustedApps>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TrustedApps>,
-      callback?: BodyResponseCallback<Schema$TrustedApps>
-    ): void | GaxiosPromise<Schema$TrustedApps> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Resolvedappaccesssettings$Listtrustedapps;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Resolvedappaccesssettings$Listtrustedapps;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/admin/directory/v1/trustedapps').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TrustedApps>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$TrustedApps>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Resolvedappaccesssettings$Getsettings
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-  }
-  export interface Params$Resource$Resolvedappaccesssettings$Listtrustedapps
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
   }
 
   export class Resource$Resources {

@@ -2167,7 +2167,7 @@ export namespace dfareporting_v3_3 {
      */
     assetIdentifier?: Schema$CreativeAssetId;
     /**
-     * List of detected click tags for assets. This is a read-only auto-generated field.
+     * List of detected click tags for assets. This is a read-only, auto-generated field. This field is empty for a rich media asset.
      */
     clickTags?: Schema$ClickTag[];
     /**
@@ -3107,12 +3107,9 @@ export namespace dfareporting_v3_3 {
    * Represents a File resource. A file contains the metadata for a report run. It shows the status of the run and holds the URLs to the generated report data if the run is finished and the status is &quot;REPORT_AVAILABLE&quot;.
    */
   export interface Schema$File {
-    /**
-     * The date range for which the file has report data. The date range will always be the absolute date range for which the report is run.
-     */
     dateRange?: Schema$DateRange;
     /**
-     * The eTag of this response for caching purposes.
+     * Etag of this resource.
      */
     etag?: string | null;
     /**
@@ -3128,7 +3125,7 @@ export namespace dfareporting_v3_3 {
      */
     id?: string | null;
     /**
-     * The kind of resource this is, in this case dfareporting#file.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#file&quot;.
      */
     kind?: string | null;
     /**
@@ -3148,20 +3145,14 @@ export namespace dfareporting_v3_3 {
      */
     urls?: {apiUrl?: string; browserUrl?: string} | null;
   }
-  /**
-   * Represents the list of File resources.
-   */
   export interface Schema$FileList {
     /**
-     * The eTag of this response for caching purposes.
+     * Etag of this resource.
      */
     etag?: string | null;
-    /**
-     * The files returned in this response.
-     */
     items?: Schema$File[];
     /**
-     * The kind of list this is, in this case dfareporting#fileList.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#fileList&quot;.
      */
     kind?: string | null;
     /**
@@ -6227,7 +6218,7 @@ export namespace dfareporting_v3_3 {
     variableType?: string | null;
   }
   /**
-   * Represents a UserProfile resource.
+   * A UserProfile resource lets you list all DFA user profiles that are associated with a Google user account. The profile_id needs to be specified in other API requests.
    */
   export interface Schema$UserProfile {
     /**
@@ -6239,11 +6230,11 @@ export namespace dfareporting_v3_3 {
      */
     accountName?: string | null;
     /**
-     * The eTag of this response for caching purposes.
+     * Etag of this resource.
      */
     etag?: string | null;
     /**
-     * The kind of resource this is, in this case dfareporting#userProfile.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userProfile&quot;.
      */
     kind?: string | null;
     /**
@@ -6268,7 +6259,7 @@ export namespace dfareporting_v3_3 {
    */
   export interface Schema$UserProfileList {
     /**
-     * The eTag of this response for caching purposes.
+     * Etag of this resource.
      */
     etag?: string | null;
     /**
@@ -6276,7 +6267,7 @@ export namespace dfareporting_v3_3 {
      */
     items?: Schema$UserProfile[];
     /**
-     * The kind of list this is, in this case dfareporting#userProfileList.
+     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userProfileList&quot;.
      */
     kind?: string | null;
   }
@@ -23853,13 +23844,13 @@ export namespace dfareporting_v3_3 {
 
     /**
      * dfareporting.reports.files.get
-     * @desc Retrieves a report file. This method supports media download.
+     * @desc Retrieves a report file by its report ID and file ID. This method supports media download.
      * @alias dfareporting.reports.files.get
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the report file.
-     * @param {string} params.profileId The DFA profile ID.
+     * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -23934,8 +23925,8 @@ export namespace dfareporting_v3_3 {
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-     * @param {string} params.profileId The DFA profile ID.
-     * @param {string} params.reportId The ID of the parent report.
+     * @param {string} params.profileId The DFA user profile ID.
+     * @param {string} params.reportId The ID of the report.
      * @param {string=} params.sortField The field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24015,7 +24006,7 @@ export namespace dfareporting_v3_3 {
      */
     fileId?: string;
     /**
-     * The DFA profile ID.
+     * The DFA user profile ID.
      */
     profileId?: string;
     /**
@@ -24039,11 +24030,11 @@ export namespace dfareporting_v3_3 {
      */
     pageToken?: string;
     /**
-     * The DFA profile ID.
+     * The DFA user profile ID.
      */
     profileId?: string;
     /**
-     * The ID of the parent report.
+     * The ID of the report.
      */
     reportId?: string;
     /**

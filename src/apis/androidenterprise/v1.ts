@@ -226,6 +226,9 @@ export namespace androidenterprise_v1 {
    * Represents the list of app restrictions available to be pre-configured for the product.
    */
   export interface Schema$AppRestrictionsSchema {
+    /**
+     * Deprecated.
+     */
     kind?: string | null;
     /**
      * The set of restrictions that make up this schema.
@@ -1320,6 +1323,9 @@ export namespace androidenterprise_v1 {
      * An opaque token that will be required, along with the Enterprise Token, for obtaining the enterprise resource from CompleteSignup.
      */
     completionToken?: string | null;
+    /**
+     * Deprecated.
+     */
     kind?: string | null;
     /**
      * A URL under which the Admin can sign up for an enterprise. The page pointed to cannot be rendered in an iframe.
