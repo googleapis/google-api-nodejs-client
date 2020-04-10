@@ -682,6 +682,10 @@ export namespace drive_v3 {
      */
     sharingUser?: Schema$User;
     /**
+     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to application/vnd.google-apps.shortcut.
+     */
+    shortcutDetails?: {targetId?: string; targetMimeType?: string} | null;
+    /**
      * The size of the file&#39;s content in bytes. This is only applicable to files with binary content in Google Drive.
      */
     size?: string | null;

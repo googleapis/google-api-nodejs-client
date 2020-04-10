@@ -55,8 +55,6 @@ import * as cloudfunctions from './cloudfunctions';
 import * as cloudidentity from './cloudidentity';
 import * as cloudiot from './cloudiot';
 import * as cloudkms from './cloudkms';
-import * as cloudprivatecatalog from './cloudprivatecatalog';
-import * as cloudprivatecatalogproducer from './cloudprivatecatalogproducer';
 import * as cloudprofiler from './cloudprofiler';
 import * as cloudresourcemanager from './cloudresourcemanager';
 import * as cloudscheduler from './cloudscheduler';
@@ -102,6 +100,7 @@ import * as fitness from './fitness';
 import * as games from './games';
 import * as gamesConfiguration from './gamesConfiguration';
 import * as gamesManagement from './gamesManagement';
+import * as gameservices from './gameservices';
 import * as genomics from './genomics';
 import * as gmail from './gmail';
 import * as groupsmigration from './groupsmigration';
@@ -122,7 +121,7 @@ import * as lifesciences from './lifesciences';
 import * as logging from './logging';
 import * as managedidentities from './managedidentities';
 import * as manufacturers from './manufacturers';
-import * as mirror from './mirror';
+import * as memcache from './memcache';
 import * as ml from './ml';
 import * as monitoring from './monitoring';
 import * as networkmanagement from './networkmanagement';
@@ -136,7 +135,6 @@ import * as plus from './plus';
 import * as policytroubleshooter from './policytroubleshooter';
 import * as poly from './poly';
 import * as prod_tt_sasportal from './prod_tt_sasportal';
-import * as proximitybeacon from './proximitybeacon';
 import * as pubsub from './pubsub';
 import * as recommender from './recommender';
 import * as redis from './redis';
@@ -152,6 +150,7 @@ import * as secretmanager from './secretmanager';
 import * as securitycenter from './securitycenter';
 import * as serviceconsumermanagement from './serviceconsumermanagement';
 import * as servicecontrol from './servicecontrol';
+import * as servicedirectory from './servicedirectory';
 import * as servicemanagement from './servicemanagement';
 import * as servicenetworking from './servicenetworking';
 import * as serviceusage from './serviceusage';
@@ -231,8 +230,6 @@ export const APIS: APIList = {
   cloudidentity: cloudidentity.VERSIONS,
   cloudiot: cloudiot.VERSIONS,
   cloudkms: cloudkms.VERSIONS,
-  cloudprivatecatalog: cloudprivatecatalog.VERSIONS,
-  cloudprivatecatalogproducer: cloudprivatecatalogproducer.VERSIONS,
   cloudprofiler: cloudprofiler.VERSIONS,
   cloudresourcemanager: cloudresourcemanager.VERSIONS,
   cloudscheduler: cloudscheduler.VERSIONS,
@@ -278,6 +275,7 @@ export const APIS: APIList = {
   games: games.VERSIONS,
   gamesConfiguration: gamesConfiguration.VERSIONS,
   gamesManagement: gamesManagement.VERSIONS,
+  gameservices: gameservices.VERSIONS,
   genomics: genomics.VERSIONS,
   gmail: gmail.VERSIONS,
   groupsmigration: groupsmigration.VERSIONS,
@@ -298,7 +296,7 @@ export const APIS: APIList = {
   logging: logging.VERSIONS,
   managedidentities: managedidentities.VERSIONS,
   manufacturers: manufacturers.VERSIONS,
-  mirror: mirror.VERSIONS,
+  memcache: memcache.VERSIONS,
   ml: ml.VERSIONS,
   monitoring: monitoring.VERSIONS,
   networkmanagement: networkmanagement.VERSIONS,
@@ -312,7 +310,6 @@ export const APIS: APIList = {
   policytroubleshooter: policytroubleshooter.VERSIONS,
   poly: poly.VERSIONS,
   prod_tt_sasportal: prod_tt_sasportal.VERSIONS,
-  proximitybeacon: proximitybeacon.VERSIONS,
   pubsub: pubsub.VERSIONS,
   recommender: recommender.VERSIONS,
   redis: redis.VERSIONS,
@@ -328,6 +325,7 @@ export const APIS: APIList = {
   securitycenter: securitycenter.VERSIONS,
   serviceconsumermanagement: serviceconsumermanagement.VERSIONS,
   servicecontrol: servicecontrol.VERSIONS,
+  servicedirectory: servicedirectory.VERSIONS,
   servicemanagement: servicemanagement.VERSIONS,
   servicenetworking: servicenetworking.VERSIONS,
   serviceusage: serviceusage.VERSIONS,
@@ -404,9 +402,6 @@ export class GeneratedAPIs {
   cloudidentity = cloudidentity.cloudidentity;
   cloudiot = cloudiot.cloudiot;
   cloudkms = cloudkms.cloudkms;
-  cloudprivatecatalog = cloudprivatecatalog.cloudprivatecatalog;
-  cloudprivatecatalogproducer =
-    cloudprivatecatalogproducer.cloudprivatecatalogproducer;
   cloudprofiler = cloudprofiler.cloudprofiler;
   cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
   cloudscheduler = cloudscheduler.cloudscheduler;
@@ -452,6 +447,7 @@ export class GeneratedAPIs {
   games = games.games;
   gamesConfiguration = gamesConfiguration.gamesConfiguration;
   gamesManagement = gamesManagement.gamesManagement;
+  gameservices = gameservices.gameservices;
   genomics = genomics.genomics;
   gmail = gmail.gmail;
   groupsmigration = groupsmigration.groupsmigration;
@@ -472,7 +468,7 @@ export class GeneratedAPIs {
   logging = logging.logging;
   managedidentities = managedidentities.managedidentities;
   manufacturers = manufacturers.manufacturers;
-  mirror = mirror.mirror;
+  memcache = memcache.memcache;
   ml = ml.ml;
   monitoring = monitoring.monitoring;
   networkmanagement = networkmanagement.networkmanagement;
@@ -486,7 +482,6 @@ export class GeneratedAPIs {
   policytroubleshooter = policytroubleshooter.policytroubleshooter;
   poly = poly.poly;
   prod_tt_sasportal = prod_tt_sasportal.prod_tt_sasportal;
-  proximitybeacon = proximitybeacon.proximitybeacon;
   pubsub = pubsub.pubsub;
   recommender = recommender.recommender;
   redis = redis.redis;
@@ -503,6 +498,7 @@ export class GeneratedAPIs {
   serviceconsumermanagement =
     serviceconsumermanagement.serviceconsumermanagement;
   servicecontrol = servicecontrol.servicecontrol;
+  servicedirectory = servicedirectory.servicedirectory;
   servicemanagement = servicemanagement.servicemanagement;
   servicenetworking = servicenetworking.servicenetworking;
   serviceusage = serviceusage.serviceusage;

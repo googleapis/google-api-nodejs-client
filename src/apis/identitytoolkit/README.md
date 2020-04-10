@@ -2,7 +2,7 @@
 
 # identitytoolkit
 
-> Help the third party sites to implement federated login.
+> The Google Identity Toolkit API lets you use open standards to verify a user&#39;s identity.
 
 ## Installation
 

@@ -577,7 +577,7 @@ export namespace osconfig_v1beta {
     zypper?: Schema$ZypperSettings;
   }
   /**
-   * Patch deployments are configurations that individual patch jobs use to complete a patch. These configurations include instance filter, package repository settings, and a schedule.
+   * Patch deployments are configurations that individual patch jobs use to complete a patch. These configurations include instance filter, package repository settings, and a schedule. For more information about creating and managing patch deployments, see [Scheduling patch jobs](/compute/docs/os-patch-management/schedule-patch-jobs).
    */
   export interface Schema$PatchDeployment {
     /**
@@ -656,7 +656,7 @@ export namespace osconfig_v1beta {
     labels?: {[key: string]: string} | null;
   }
   /**
-   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.
+   * A high level representation of a patch job that is either in progress or has completed.  Instances details are not included in the job. To paginate through instance details, use ListPatchJobInstanceDetails.  For more information about patch jobs, see [Creating patch jobs](/compute/docs/os-patch-management/create-patch-job).
    */
   export interface Schema$PatchJob {
     /**
@@ -717,7 +717,7 @@ export namespace osconfig_v1beta {
     updateTime?: string | null;
   }
   /**
-   * Patch details for a VM instance.
+   * Patch details for a VM instance. For more information about reviewing VM instance details, see [Listing all VM instance details for a specific patch job](/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details).
    */
   export interface Schema$PatchJobInstanceDetails {
     /**

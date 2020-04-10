@@ -87,9 +87,9 @@ export namespace securitycenter_v1p1beta1 {
   }
 
   /**
-   * Cloud Security Command Center API
+   * Security Command Center API
    *
-   * Cloud Security Command Center API provides access to temporal views of assets and findings within an organization.
+   * Security Command Center API provides access to temporal views of assets and findings within an organization.
    *
    * @example
    * const {google} = require('googleapis');
@@ -197,7 +197,7 @@ export namespace securitycenter_v1p1beta1 {
     title?: string | null;
   }
   /**
-   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
+   * Security Command Center finding.  A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.  When adding a new field hidden behind a visibility label, ensure it is also hidden from Notifications: http://google3/java/com/google/cloud/security/riskdashboard/notification/actions/streaming/FindingTranslator.java?l=26
    */
   export interface Schema$Finding {
     /**
@@ -205,7 +205,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     category?: string | null;
     /**
-     * The time at which the finding was created in Cloud SCC.
+     * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
     /**
@@ -213,7 +213,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     eventTime?: string | null;
     /**
-     * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
+     * The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
      */
     externalUri?: string | null;
     /**
@@ -225,7 +225,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     parent?: string | null;
     /**
-     * For findings on Google Cloud Platform (GCP) resources, the full resource name of the GCP resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-GCP resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
+     * For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
     resourceName?: string | null;
     /**
@@ -286,15 +286,15 @@ export namespace securitycenter_v1p1beta1 {
     notificationConfigName?: string | null;
   }
   /**
-   * Cloud Security Command Center&#39;s (Cloud SCC) representation of a Google Cloud Platform (GCP) resource.  The Asset is a Cloud SCC resource that captures information about a single GCP resource. All modifications to an Asset are only within the context of Cloud SCC and don&#39;t affect the referenced GCP resource.
+   * Security Command Center representation of a Google Cloud resource.  The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don&#39;t affect the referenced Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Asset {
     /**
-     * The time at which the asset was created in Cloud SCC.
+     * The time at which the asset was created in Security Command Center.
      */
     createTime?: string | null;
     /**
-     * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
+     * Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user.
      */
     iamPolicy?: Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy;
     /**
@@ -302,11 +302,11 @@ export namespace securitycenter_v1p1beta1 {
      */
     name?: string | null;
     /**
-     * Resource managed properties. These properties are managed and defined by the GCP resource and cannot be modified by the user.
+     * Resource managed properties. These properties are managed and defined by the Google Cloud resource and cannot be modified by the user.
      */
     resourceProperties?: {[key: string]: any} | null;
     /**
-     * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
+     * Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.
      */
     securityCenterProperties?: Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties;
     /**
@@ -319,7 +319,7 @@ export namespace securitycenter_v1p1beta1 {
     updateTime?: string | null;
   }
   /**
-   * Cloud Security Command Center (Cloud SCC) finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Cloud SCC for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
+   * Security Command Center finding.  A finding is a record of assessment data (security, risk, health or privacy) ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Finding {
     /**
@@ -327,7 +327,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     category?: string | null;
     /**
-     * The time at which the finding was created in Cloud SCC.
+     * The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
     /**
@@ -335,7 +335,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     eventTime?: string | null;
     /**
-     * The URI that, if available, points to a web page outside of Cloud SCC where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
+     * The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
      */
     externalUri?: string | null;
     /**
@@ -347,7 +347,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     parent?: string | null;
     /**
-     * For findings on Google Cloud Platform (GCP) resources, the full resource name of the GCP resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-GCP resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
+     * For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
     resourceName?: string | null;
     /**
@@ -364,16 +364,16 @@ export namespace securitycenter_v1p1beta1 {
     state?: string | null;
   }
   /**
-   * IAM Policy information associated with the GCP resource described by the Cloud SCC asset. This information is managed and defined by the GCP resource and cannot be modified by the user.
+   * Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1IamPolicy {
     /**
-     * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/reference/rest/v1p1beta1/Policy for format details.
+     * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/docs/reference/rest/v1/Policy for format details.
      */
     policyBlob?: string | null;
   }
   /**
-   * Cloud SCC&#39;s Notification
+   * Security Command Center&#39;s Notification
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1NotificationMessage {
     /**
@@ -403,7 +403,7 @@ export namespace securitycenter_v1p1beta1 {
     state?: string | null;
   }
   /**
-   * Cloud SCC managed properties. These properties are managed by Cloud SCC and cannot be modified by the user.
+   * Security Command Center managed properties. These properties are managed by Security Command Center and cannot be modified by the user.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityCenterProperties {
     /**
@@ -411,7 +411,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     resourceDisplayName?: string | null;
     /**
-     * The full resource name of the GCP resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * The full resource name of the Google Cloud resource this asset represents. This field is immutable after create time. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     resourceName?: string | null;
     /**
@@ -435,12 +435,12 @@ export namespace securitycenter_v1p1beta1 {
      */
     resourceProjectDisplayName?: string | null;
     /**
-     * The type of the GCP resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Cloud SCC and/or the producer of the resource and is immutable after create time.
+     * The type of the Google Cloud resource. Examples include: APPLICATION, PROJECT, and ORGANIZATION. This is a case insensitive field defined by Security Command Center and/or the producer of the resource and is immutable after create time.
      */
     resourceType?: string | null;
   }
   /**
-   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   * User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks {
     /**
@@ -487,7 +487,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     compareDuration?: string | null;
     /**
-     * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * update_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;update_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;update_time = 1560208038000&quot;  * create_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;create_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;create_time = 1560208038000&quot;  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_name_display_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_parent_display_name: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_project_display_name: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.
+     * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * update_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;update_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;update_time = 1560208038000&quot;  * create_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;create_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;create_time = 1560208038000&quot;  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_name_display_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_parent_display_name: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_project_display_name: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.  Use a partial match on the empty string to filter based on a property existing: &quot;resource_properties.my_property : \&quot;\&quot;&quot;  Use a negated partial match on the empty string to filter based on a property not existing: &quot;-resource_properties.my_property : \&quot;\&quot;&quot;
      */
     filter?: string | null;
     /**
@@ -537,7 +537,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     compareDuration?: string | null;
     /**
-     * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * parent: `=`, `:` * resource_name: `=`, `:` * state: `=`, `:` * category: `=`, `:` * external_uri: `=`, `:` * event_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;event_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;event_time = 1560208038000&quot;  * security_marks.marks: `=`, `:` * source_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`  For example, `source_properties.size = 100` is a valid filter string.
+     * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `&lt;field&gt; &lt;operator&gt; &lt;value&gt;` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `&gt;`, `&lt;`, `&gt;=`, `&lt;=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  * name: `=` * parent: `=`, `:` * resource_name: `=`, `:` * state: `=`, `:` * category: `=`, `:` * external_uri: `=`, `:` * event_time: `=`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     &quot;event_time = \&quot;2019-06-10T16:07:18-07:00\&quot;&quot;     &quot;event_time = 1560208038000&quot;  * security_marks.marks: `=`, `:` * source_properties: `=`, `:`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`  For example, `source_properties.size = 100` is a valid filter string.  Use a partial match on the empty string to filter based on a property existing: &quot;source_properties.my_property : \&quot;\&quot;&quot;  Use a negated partial match on the empty string to filter based on a property not existing: &quot;-source_properties.my_property : \&quot;\&quot;&quot;
      */
     filter?: string | null;
     /**
@@ -703,7 +703,7 @@ export namespace securitycenter_v1p1beta1 {
     sources?: Schema$Source[];
   }
   /**
-   * Cloud Security Command Center (Cloud SCC) notification configs.  A notification config is a Cloud SCC resource that contains the configuration to send notifications for create/update events of findings, assets and etc.
+   * Security Command Center notification configs.  A notification config is a Security Command Center resource that contains the configuration to send notifications for create/update events of findings, assets and etc.
    */
   export interface Schema$NotificationConfig {
     /**
@@ -719,11 +719,11 @@ export namespace securitycenter_v1p1beta1 {
      */
     name?: string | null;
     /**
-     * The PubSub topic to send notifications to. Its format is &quot;projects/[project_id]/topics/[topic]&quot;.
+     * The Pub/Sub topic to send notifications to. Its format is &quot;projects/[project_id]/topics/[topic]&quot;.
      */
     pubsubTopic?: string | null;
     /**
-     * Output only. The service account that needs &quot;pubsub.topics.publish&quot; permission to publish to the PubSub topic.
+     * Output only. The service account that needs &quot;pubsub.topics.publish&quot; permission to publish to the Pub/Sub topic.
      */
     serviceAccount?: string | null;
     /**
@@ -757,7 +757,7 @@ export namespace securitycenter_v1p1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * User specified settings that are attached to the Cloud Security Command Center (Cloud SCC) organization.
+   * User specified settings that are attached to the Security Command Center organization.
    */
   export interface Schema$OrganizationSettings {
     /**
@@ -795,7 +795,7 @@ export namespace securitycenter_v1p1beta1 {
     version?: number | null;
   }
   /**
-   * Information related to the Google Cloud Platform (GCP) resource that is associated with this finding.
+   * Information related to the Google Cloud resource that is associated with this finding.
    */
   export interface Schema$Resource {
     /**
@@ -824,7 +824,7 @@ export namespace securitycenter_v1p1beta1 {
    */
   export interface Schema$RunAssetDiscoveryRequest {}
   /**
-   * User specified security marks that are attached to the parent Cloud Security Command Center (Cloud SCC) resource. Security marks are scoped within a Cloud SCC organization -- they can be modified and viewed by all users who have proper permissions on the organization.
+   * User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.
    */
   export interface Schema$SecurityMarks {
     /**
@@ -863,11 +863,11 @@ export namespace securitycenter_v1p1beta1 {
     updateMask?: string | null;
   }
   /**
-   * Cloud Security Command Center&#39;s (Cloud SCC) finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, etc.
+   * Security Command Center finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, etc.
    */
   export interface Schema$Source {
     /**
-     * The description of the source (max of 1024 characters). Example: &quot;Cloud Security Scanner is a web security scanner for common vulnerabilities in App Engine applications. It can automatically scan and detect four common vulnerabilities, including cross-site-scripting (XSS), Flash injection, mixed content (HTTP in HTTPS), and outdated/insecure libraries.&quot;
+     * The description of the source (max of 1024 characters). Example: &quot;Web Security Scanner is a web security scanner for common vulnerabilities in App Engine applications. It can automatically scan and detect four common vulnerabilities, including cross-site-scripting (XSS), Flash injection, mixed content (HTTP in HTTPS), and outdated/insecure libraries.&quot;
      */
     description?: string | null;
     /**
@@ -1220,7 +1220,7 @@ export namespace securitycenter_v1p1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.compareDuration When compare_duration is set, the ListAssetsResult's "state_change" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again.  Possible "state_change" values when compare_duration is specified:  * "ADDED":   indicates that the asset was not present at the start of                compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of                compare_duration, but not present at read_time. * "ACTIVE":  indicates that the asset was present at both the                start and the end of the time period defined by                compare_duration and read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED",  which will be the state_change set for all assets present at read_time.
      * @param {string=} params.fieldMask Optional. A field mask to specify the ListAssetsResult fields to be listed in the response. An empty field mask will list all fields.
-     * @param {string=} params.filter Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following are the allowed field and operator combinations:  * name: `=` * update_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "update_time = \"2019-06-10T16:07:18-07:00\""     "update_time = 1560208038000"  * create_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "create_time = \"2019-06-10T16:07:18-07:00\""     "create_time = 1560208038000"  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_display_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_parent_display_name: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_project_display_name: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.
+     * @param {string=} params.filter Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following are the allowed field and operator combinations:  * name: `=` * update_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "update_time = \"2019-06-10T16:07:18-07:00\""     "update_time = 1560208038000"  * create_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "create_time = \"2019-06-10T16:07:18-07:00\""     "create_time = 1560208038000"  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_display_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_parent_display_name: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_project_display_name: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.  Use a partial match on the empty string to filter based on a property existing: "resource_properties.my_property : \"\""  Use a negated partial match on the empty string to filter based on a property not existing: "-resource_properties.my_property : \"\""
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,resource_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,resource_properties.a_property" and " name     desc  ,   resource_properties.a_property  " are equivalent.  The following fields are supported: name update_time resource_properties security_marks.marks security_center_properties.resource_name security_center_properties.resource_display_name security_center_properties.resource_parent security_center_properties.resource_parent_display_name security_center_properties.resource_project security_center_properties.resource_project_display_name security_center_properties.resource_type
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      * @param {string=} params.pageToken The value returned by the last `ListAssetsResponse`; indicates that this is a continuation of a prior `ListAssets` call, and that the system should return the next page of data.
@@ -1502,7 +1502,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     fieldMask?: string;
     /**
-     * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following are the allowed field and operator combinations:  * name: `=` * update_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "update_time = \"2019-06-10T16:07:18-07:00\""     "update_time = 1560208038000"  * create_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "create_time = \"2019-06-10T16:07:18-07:00\""     "create_time = 1560208038000"  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_display_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_parent_display_name: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_project_display_name: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.
+     * Expression that defines the filter to apply across assets. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the Asset resource. Examples include:  * name * security_center_properties.resource_name * resource_properties.a_property * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following are the allowed field and operator combinations:  * name: `=` * update_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "update_time = \"2019-06-10T16:07:18-07:00\""     "update_time = 1560208038000"  * create_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "create_time = \"2019-06-10T16:07:18-07:00\""     "create_time = 1560208038000"  * iam_policy.policy_blob: `=`, `:` * resource_properties: `=`, `:`, `>`, `<`, `>=`, `<=` * security_marks.marks: `=`, `:` * security_center_properties.resource_name: `=`, `:` * security_center_properties.resource_display_name: `=`, `:` * security_center_properties.resource_type: `=`, `:` * security_center_properties.resource_parent: `=`, `:` * security_center_properties.resource_parent_display_name: `=`, `:` * security_center_properties.resource_project: `=`, `:` * security_center_properties.resource_project_display_name: `=`, `:` * security_center_properties.resource_owners: `=`, `:`  For example, `resource_properties.size = 100` is a valid filter string.  Use a partial match on the empty string to filter based on a property existing: "resource_properties.my_property : \"\""  Use a negated partial match on the empty string to filter based on a property not existing: "-resource_properties.my_property : \"\""
      */
     filter?: string;
     /**
@@ -3249,7 +3249,7 @@ export namespace securitycenter_v1p1beta1 {
      * @param {object} params Parameters for request
      * @param {string=} params.compareDuration When compare_duration is set, the ListFindingsResult's "state_change" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time.  The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again.  Possible "state_change" values when compare_duration is specified:  * "CHANGED":   indicates that the finding was present and matched the given                  filter at the start of compare_duration, but changed its                  state at read_time. * "UNCHANGED": indicates that the finding was present and matched the given                  filter at the start of compare_duration and did not change                  state at read_time. * "ADDED":     indicates that the finding did not match the given filter or                  was not present at the start of compare_duration, but was                  present at read_time. * "REMOVED":   indicates that the finding was present and matched the                  filter at the start of compare_duration, but did not match                  the filter at read_time.  If compare_duration is not specified, then the only possible state_change is "UNUSED", which will be the state_change set for all findings present at read_time.
      * @param {string=} params.fieldMask Optional. A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
-     * @param {string=} params.filter Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "event_time = \"2019-06-10T16:07:18-07:00\""     "event_time = 1560208038000"  security_marks.marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`  For example, `source_properties.size = 100` is a valid filter string.
+     * @param {string=} params.filter Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "event_time = \"2019-06-10T16:07:18-07:00\""     "event_time = 1560208038000"  security_marks.marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`  For example, `source_properties.size = 100` is a valid filter string.  Use a partial match on the empty string to filter based on a property existing: "source_properties.my_property : \"\""  Use a negated partial match on the empty string to filter based on a property not existing: "-source_properties.my_property : \"\""
      * @param {string=} params.orderBy Expression that defines what fields and order to use for sorting. The string value should follow SQL syntax: comma separated list of fields. For example: "name,resource_properties.a_property". The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be appended to the field name. For example: "name desc,source_properties.a_property". Redundant space characters in the syntax are insignificant. "name desc,source_properties.a_property" and " name     desc  ,   source_properties.a_property  " are equivalent.  The following fields are supported: name parent state category resource_name event_time source_properties security_marks.marks
      * @param {integer=} params.pageSize The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      * @param {string=} params.pageToken The value returned by the last `ListFindingsResponse`; indicates that this is a continuation of a prior `ListFindings` call, and that the system should return the next page of data.
@@ -3674,7 +3674,7 @@ export namespace securitycenter_v1p1beta1 {
      */
     fieldMask?: string;
     /**
-     * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "event_time = \"2019-06-10T16:07:18-07:00\""     "event_time = 1560208038000"  security_marks.marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`  For example, `source_properties.size = 100` is a valid filter string.
+     * Expression that defines the filter to apply across findings. The expression is a list of one or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`.  Restrictions have the form `<field> <operator> <value>` and may have a `-` character in front of them to indicate negation. Examples include:   * name  * source_properties.a_property  * security_marks.marks.marka  The supported operators are:  * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings.  The supported value types are:  * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.  The following field and operator combinations are supported:  name: `=` parent: `=`, `:` resource_name: `=`, `:` state: `=`, `:` category: `=`, `:` external_uri: `=`, `:` event_time: `=`, `>`, `<`, `>=`, `<=`    Usage: This should be milliseconds since epoch or an RFC3339 string.   Examples:     "event_time = \"2019-06-10T16:07:18-07:00\""     "event_time = 1560208038000"  security_marks.marks: `=`, `:` source_properties: `=`, `:`, `>`, `<`, `>=`, `<=`  For example, `source_properties.size = 100` is a valid filter string.  Use a partial match on the empty string to filter based on a property existing: "source_properties.my_property : \"\""  Use a negated partial match on the empty string to filter based on a property not existing: "-source_properties.my_property : \"\""
      */
     filter?: string;
     /**

@@ -177,6 +177,10 @@ export namespace composer_v1 {
      */
     nodeCount?: number | null;
     /**
+     * The configuration used for the Private IP Cloud Composer environment.
+     */
+    privateEnvironmentConfig?: Schema$PrivateEnvironmentConfig;
+    /**
      * The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
@@ -197,6 +201,31 @@ export namespace composer_v1 {
      * supported python versions
      */
     supportedPythonVersions?: string[] | null;
+  }
+  /**
+   * Configuration for controlling how IPs are allocated in the GKE cluster running the Apache Airflow software.
+   */
+  export interface Schema$IPAllocationPolicy {
+    /**
+     * Optional. The IP address range used to allocate IP addresses to pods in the GKE cluster.  This field is applicable only when `use_ip_aliases` is true.  Set to blank to have GKE choose a range with the default size.  Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific netmask.  Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     */
+    clusterIpv4CidrBlock?: string | null;
+    /**
+     * Optional. The name of the GKE cluster&#39;s secondary range used to allocate IP addresses to pods.  This field is applicable only when `use_ip_aliases` is true.
+     */
+    clusterSecondaryRangeName?: string | null;
+    /**
+     * Optional. The IP address range of the services IP addresses in this GKE cluster.  This field is applicable only when `use_ip_aliases` is true.  Set to blank to have GKE choose a range with the default size.  Set to /netmask (e.g. `/14`) to have GKE choose a range with a specific netmask.  Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     */
+    servicesIpv4CidrBlock?: string | null;
+    /**
+     * Optional. The name of the services&#39; secondary range used to allocate IP addresses to the GKE cluster.  This field is applicable only when `use_ip_aliases` is true.
+     */
+    servicesSecondaryRangeName?: string | null;
+    /**
+     * Optional. Whether or not to enable Alias IPs in the GKE cluster. If `true`, a VPC-native cluster is created.
+     */
+    useIpAliases?: boolean | null;
   }
   /**
    * The environments in a project and location.
@@ -245,6 +274,10 @@ export namespace composer_v1 {
      * Optional. The disk size in GB used for node VMs. Minimum size is 20GB. If unspecified, defaults to 100GB. Cannot be updated.
      */
     diskSizeGb?: number | null;
+    /**
+     * Optional. The configuration for controlling how IPs are allocated in the GKE cluster.
+     */
+    ipAllocationPolicy?: Schema$IPAllocationPolicy;
     /**
      * Optional. The Compute Engine [zone](/compute/docs/regions-zones) in which to deploy the VMs used to run the Apache Airflow software, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: &quot;projects/{projectId}/zones/{zoneId}&quot;.  This `location` must belong to the enclosing environment&#39;s project and location. If both this field and `nodeConfig.machineType` are specified, `nodeConfig.machineType` must belong to this `location`; if both are unspecified, the service will pick a zone in the Compute Engine region corresponding to the Cloud Composer location, and propagate that choice to both fields. If only one field (`location` or `nodeConfig.machineType`) is specified, the location information from the specified field will be propagated to the unspecified field.
      */
@@ -327,6 +360,48 @@ export namespace composer_v1 {
      * Output only. The current operation state.
      */
     state?: string | null;
+  }
+  /**
+   * Configuration options for the private GKE cluster in a Cloud Composer environment.
+   */
+  export interface Schema$PrivateClusterConfig {
+    /**
+     * Optional. If `true`, access to the public endpoint of the GKE cluster is denied.
+     */
+    enablePrivateEndpoint?: boolean | null;
+    /**
+     * Optional. The CIDR block from which IPv4 range for GKE master will be reserved. If left blank, the default value of &#39;172.16.0.0/23&#39; is used.
+     */
+    masterIpv4CidrBlock?: string | null;
+    /**
+     * Output only. The IP range in CIDR notation to use for the hosted master network. This range is used for assigning internal IP addresses to the GKE cluster master or set of masters and to the internal load balancer virtual IP. This range must not overlap with any other ranges in use within the cluster&#39;s network.
+     */
+    masterIpv4ReservedRange?: string | null;
+  }
+  /**
+   * The configuration information for configuring a Private IP Cloud Composer environment.
+   */
+  export interface Schema$PrivateEnvironmentConfig {
+    /**
+     * Optional. The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from `web_server_ipv4_cidr_block`.
+     */
+    cloudSqlIpv4CidrBlock?: string | null;
+    /**
+     * Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true.
+     */
+    enablePrivateEnvironment?: boolean | null;
+    /**
+     * Optional. Configuration for the private GKE cluster for a Private IP Cloud Composer environment.
+     */
+    privateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
+     * Optional. The CIDR block from which IP range for web server will be reserved. Needs to be disjoint from `private_cluster_config.master_ipv4_cidr_block` and `cloud_sql_ipv4_cidr_block`.
+     */
+    webServerIpv4CidrBlock?: string | null;
+    /**
+     * Output only. The IP range reserved for the tenant project&#39;s App Engine VMs.
+     */
+    webServerIpv4ReservedRange?: string | null;
   }
   /**
    * Specifies the selection and configuration of software inside the environment.

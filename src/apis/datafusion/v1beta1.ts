@@ -116,6 +116,15 @@ export namespace datafusion_v1beta1 {
   }
 
   /**
+   * Identifies Data Fusion accelerators for an instance.
+   */
+  export interface Schema$Accelerator {
+    /**
+     * The type of an accelator for a CDF instance.
+     */
+    acceleratorType?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:      {       &quot;audit_configs&quot;: [         {           &quot;service&quot;: &quot;allServices&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,               &quot;exempted_members&quot;: [                 &quot;user:jose@example.com&quot;               ]             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {               &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]         },         {           &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;           &quot;audit_log_configs&quot;: [             {               &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {               &quot;log_type&quot;: &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [                 &quot;user:aliya@example.com&quot;               ]             }           ]         }       ]     }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -188,9 +197,13 @@ export namespace datafusion_v1beta1 {
     title?: string | null;
   }
   /**
-   * Represents a Data Fusion instance.
+   * Represents a Data Fusion instance. Next available ID: 23
    */
   export interface Schema$Instance {
+    /**
+     * List of accelerators enabled for this CDF instance.
+     */
+    accelerators?: Schema$Accelerator[];
     /**
      * Output only. Endpoint on which the REST APIs is accessible.
      */
@@ -204,7 +217,7 @@ export namespace datafusion_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * An optional description of this instance.
+     * Optional. An optional description of this instance.
      */
     description?: string | null;
     /**

@@ -581,7 +581,7 @@ export namespace pubsub_v1 {
      */
     topic?: Schema$Topic;
     /**
-     * Required. Indicates which fields in the provided topic to update. Must be specified and non-empty. Note that if `update_mask` contains &quot;message_storage_policy&quot; then the new value will be determined based on the policy configured at the project or organization level. The `message_storage_policy` must not be set in the `topic` provided above.
+     * Required. Indicates which fields in the provided topic to update. Must be specified and non-empty. Note that if `update_mask` contains &quot;message_storage_policy&quot; but the `message_storage_policy` is not set in the `topic` provided above, then the updated value is determined by the policy configured at the project or organization level.
      */
     updateMask?: string | null;
   }

@@ -280,6 +280,10 @@ export namespace dataproc_v1beta2 {
      */
     gceClusterConfig?: Schema$GceClusterConfig;
     /**
+     * Optional. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
+     */
+    gkeClusterConfig?: Schema$GkeClusterConfig;
+    /**
      * Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node&#39;s &lt;code&gt;role&lt;/code&gt; metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1beta2/instance/attributes/dataproc-role) if [[ &quot;${ROLE}&quot; == &#39;Master&#39; ]]; then   ... master specific actions ... else   ... worker specific actions ... fi
      */
     initializationActions?: Schema$NodeInitializationAction[];
@@ -567,6 +571,15 @@ export namespace dataproc_v1beta2 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * The GKE config for this cluster.
+   */
+  export interface Schema$GkeClusterConfig {
+    /**
+     * Optional. A target for the deployment.
+     */
+    namespacedGkeDeploymentTarget?: Schema$NamespacedGkeDeploymentTarget;
+  }
+  /**
    * A Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
    */
   export interface Schema$HadoopJob {
@@ -670,7 +683,7 @@ export namespace dataproc_v1beta2 {
      */
     instanceNames?: string[] | null;
     /**
-     * Optional. Specifies that this instance group contains preemptible instances.
+     * Output only. Specifies that this instance group contains preemptible instances.
      */
     isPreemptible?: boolean | null;
     /**
@@ -690,7 +703,7 @@ export namespace dataproc_v1beta2 {
      */
     numInstances?: number | null;
     /**
-     * Optional. Specifies the preemptibility of the instance group.
+     * Optional. Specifies the preemptibility of the instance group.The default value for master and worker groups is NON_PREEMPTIBLE. This default cannot be changed.The default value for secondary instances is PREEMPTIBLE.
      */
     preemptibility?: string | null;
   }
@@ -775,6 +788,27 @@ export namespace dataproc_v1beta2 {
      * Output only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
      */
     yarnApplications?: Schema$YarnApplication[];
+  }
+  /**
+   * Job Operation metadata.
+   */
+  export interface Schema$JobMetadata {
+    /**
+     * Output only. The job id.
+     */
+    jobId?: string | null;
+    /**
+     * Output only. Operation type.
+     */
+    operationType?: string | null;
+    /**
+     * Output only. Job submission time.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. Most recent job status.
+     */
+    status?: Schema$JobStatus;
   }
   /**
    * Dataproc job config.
@@ -1023,6 +1057,19 @@ export namespace dataproc_v1beta2 {
     instanceTemplateName?: string | null;
   }
   /**
+   * A full, namespace-isolated deployment target for an existing GKE cluster.
+   */
+  export interface Schema$NamespacedGkeDeploymentTarget {
+    /**
+     * Optional. A namespace within the GKE cluster to deploy into.
+     */
+    clusterNamespace?: string | null;
+    /**
+     * Optional. The target GKE cluster to deploy to. Format: &#39;projects/{project}/locations/{location}/clusters/{cluster_id}&#39;
+     */
+    targetGkeCluster?: string | null;
+  }
+  /**
    * Specifies an executable to run on a fully configured node and a timeout period for executable completion.
    */
   export interface Schema$NodeInitializationAction {
@@ -1075,12 +1122,20 @@ export namespace dataproc_v1beta2 {
      * Optional. The optional list of prerequisite job step_ids. If not specified, the job will start at the beginning of workflow.
      */
     prerequisiteStepIds?: string[] | null;
+    /**
+     * Presto job
+     */
+    prestoJob?: Schema$PrestoJob;
     pysparkJob?: Schema$PySparkJob;
     /**
      * Optional. Job scheduling configuration.
      */
     scheduling?: Schema$JobScheduling;
     sparkJob?: Schema$SparkJob;
+    /**
+     * Spark R job
+     */
+    sparkRJob?: Schema$SparkRJob;
     sparkSqlJob?: Schema$SparkSqlJob;
     /**
      * Required. The step id. The id must be unique among all jobs within the template.The step id is used as prefix for job id, as job goog-dataproc-workflow-step-id label, and in prerequisiteStepIds field from other steps.The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
@@ -1386,6 +1441,19 @@ export namespace dataproc_v1beta2 {
     scriptVariables?: {[key: string]: string} | null;
   }
   /**
+   * A request to start a cluster.
+   */
+  export interface Schema$StartClusterRequest {
+    /**
+     * Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     */
+    clusterUuid?: string | null;
+    /**
+     * Optional. A unique id used to identify the request. If the server receives two StartClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string | null;
+  }
+  /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1401,6 +1469,19 @@ export namespace dataproc_v1beta2 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * A request to stop a cluster.
+   */
+  export interface Schema$StopClusterRequest {
+    /**
+     * Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     */
+    clusterUuid?: string | null;
+    /**
+     * Optional. A unique id used to identify the request. If the server receives two StopClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string | null;
   }
   /**
    * A request to submit a job.
@@ -2682,7 +2763,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.locations.workflowTemplates.instantiate
-     * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata. Also see Using WorkflowMetadata.On successful completion, Operation.response will be Empty.
+     * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#workflowmetadata). Also see Using WorkflowMetadata (https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).On successful completion, Operation.response will be Empty.
      * @alias dataproc.projects.locations.workflowTemplates.instantiate
      * @memberOf! ()
      *
@@ -2757,7 +2838,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.locations.workflowTemplates.instantiateInline
-     * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata. Also see Using WorkflowMetadata.On successful completion, Operation.response will be Empty.
+     * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata). Also see Using WorkflowMetadata (https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).On successful completion, Operation.response will be Empty.
      * @alias dataproc.projects.locations.workflowTemplates.instantiateInline
      * @memberOf! ()
      *
@@ -4088,7 +4169,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.clusters.create
-     * @desc Creates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata.
+     * @desc Creates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      * @alias dataproc.projects.regions.clusters.create
      * @memberOf! ()
      *
@@ -4165,7 +4246,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.clusters.delete
-     * @desc Deletes a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata.
+     * @desc Deletes a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      * @alias dataproc.projects.regions.clusters.delete
      * @memberOf! ()
      *
@@ -4243,7 +4324,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.clusters.diagnose
-     * @desc Gets cluster diagnostic information. The returned Operation.metadata will be ClusterOperationMetadata. After the operation completes, Operation.response contains Empty.
+     * @desc Gets cluster diagnostic information. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata). After the operation completes, Operation.response contains Empty.
      * @alias dataproc.projects.regions.clusters.diagnose
      * @memberOf! ()
      *
@@ -4467,7 +4548,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.clusters.list
-     * @desc Lists all regions/{region}/clusters in a project.
+     * @desc Lists all regions/{region}/clusters in a project alphabetically.
      * @alias dataproc.projects.regions.clusters.list
      * @memberOf! ()
      *
@@ -4547,7 +4628,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.clusters.patch
-     * @desc Updates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata.
+     * @desc Updates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      * @alias dataproc.projects.regions.clusters.patch
      * @memberOf! ()
      *
@@ -4695,6 +4776,160 @@ export namespace dataproc_v1beta2 {
         createAPIRequest<Schema$Policy>(parameters, callback);
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.clusters.start
+     * @desc Starts a cluster in a project.
+     * @alias dataproc.projects.regions.clusters.start
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.clusterName Required. The cluster name.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
+     * @param {().StartClusterRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    start(
+      params?: Params$Resource$Projects$Regions$Clusters$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    start(
+      params: Params$Resource$Projects$Regions$Clusters$Start,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Regions$Clusters$Start,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Start
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Start;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}:start'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'region', 'clusterName'],
+        pathParams: ['clusterName', 'projectId', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * dataproc.projects.regions.clusters.stop
+     * @desc Stops a cluster in a project.
+     * @alias dataproc.projects.regions.clusters.stop
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.clusterName Required. The cluster name.
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project the cluster belongs to.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
+     * @param {().StopClusterRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    stop(
+      params?: Params$Resource$Projects$Regions$Clusters$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    stop(
+      params: Params$Resource$Projects$Regions$Clusters$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Regions$Clusters$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Stop
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}:stop'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'region', 'clusterName'],
+        pathParams: ['clusterName', 'projectId', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -4977,6 +5212,56 @@ export namespace dataproc_v1beta2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
+  export interface Params$Resource$Projects$Regions$Clusters$Start
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project the cluster belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Dataproc region in which to handle the request.
+     */
+    region?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartClusterRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Stop
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project the cluster belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Dataproc region in which to handle the request.
+     */
+    region?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopClusterRequest;
+  }
   export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions
     extends StandardParameters {
     /**
@@ -5003,7 +5288,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.jobs.cancel
-     * @desc Starts a job cancellation request. To access the job resource after cancellation, call regions/{region}/jobs.list or regions/{region}/jobs.get.
+     * @desc Starts a job cancellation request. To access the job resource after cancellation, call regions/{region}/jobs.list (https://cloud.google.com/dataproc/docs/reference/rest/v1beta2/projects.regions.jobs/list) or regions/{region}/jobs.get (https://cloud.google.com/dataproc/docs/reference/rest/v1beta2/projects.regions.jobs/get).
      * @alias dataproc.projects.regions.jobs.cancel
      * @memberOf! ()
      *
@@ -5600,6 +5885,82 @@ export namespace dataproc_v1beta2 {
     }
 
     /**
+     * dataproc.projects.regions.jobs.submitAsOperation
+     * @desc Submits job to a cluster.
+     * @alias dataproc.projects.regions.jobs.submitAsOperation
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId Required. The ID of the Google Cloud Platform project that the job belongs to.
+     * @param {string} params.region Required. The Dataproc region in which to handle the request.
+     * @param {().SubmitJobRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    submitAsOperation(
+      params?: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    submitAsOperation(
+      params: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    submitAsOperation(
+      params: Params$Resource$Projects$Regions$Jobs$Submitasoperation,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    submitAsOperation(callback: BodyResponseCallback<Schema$Operation>): void;
+    submitAsOperation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Jobs$Submitasoperation
+        | BodyResponseCallback<Schema$Operation>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>
+    ): void | GaxiosPromise<Schema$Operation> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Jobs$Submitasoperation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Submitasoperation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/projects/{projectId}/regions/{region}/jobs:submitAsOperation'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'region'],
+        pathParams: ['projectId', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * dataproc.projects.regions.jobs.testIamPermissions
      * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias dataproc.projects.regions.jobs.testIamPermissions
@@ -5846,6 +6207,27 @@ export namespace dataproc_v1beta2 {
     requestBody?: Schema$SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Submit
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Dataproc region in which to handle the request.
+     */
+    region?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SubmitJobRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Submitasoperation
     extends StandardParameters {
     /**
      * Auth client or API Key for the request
@@ -6816,7 +7198,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.workflowTemplates.instantiate
-     * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata. Also see Using WorkflowMetadata.On successful completion, Operation.response will be Empty.
+     * @desc Instantiates a template and begins execution.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#workflowmetadata). Also see Using WorkflowMetadata (https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).On successful completion, Operation.response will be Empty.
      * @alias dataproc.projects.regions.workflowTemplates.instantiate
      * @memberOf! ()
      *
@@ -6891,7 +7273,7 @@ export namespace dataproc_v1beta2 {
 
     /**
      * dataproc.projects.regions.workflowTemplates.instantiateInline
-     * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata. Also see Using WorkflowMetadata.On successful completion, Operation.response will be Empty.
+     * @desc Instantiates a template and begins execution.This method is equivalent to executing the sequence CreateWorkflowTemplate, InstantiateWorkflowTemplate, DeleteWorkflowTemplate.The returned Operation can be used to track execution of workflow by polling operations.get. The Operation will complete when entire workflow is finished.The running workflow can be aborted via operations.cancel. This will cause any inflight jobs to be cancelled and workflow-owned clusters to be deleted.The Operation.metadata will be WorkflowMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata). Also see Using WorkflowMetadata (https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).On successful completion, Operation.response will be Empty.
      * @alias dataproc.projects.regions.workflowTemplates.instantiateInline
      * @memberOf! ()
      *

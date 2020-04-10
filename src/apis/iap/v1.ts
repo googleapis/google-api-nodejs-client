@@ -118,6 +118,15 @@ export namespace iap_v1 {
   }
 
   /**
+   * Custom content configuration for access denied page. IAP allows customers to define a custom URI to use as the error page when access is denied to users. If IAP prevents access to this page, the default IAP error page will be displayed instead.
+   */
+  export interface Schema$AccessDeniedPageSettings {
+    /**
+     * The URI to be redirected to when access is denied.
+     */
+    accessDeniedPageUri?: string | null;
+  }
+  /**
    * Access related settings for IAP protected apps.
    */
   export interface Schema$AccessSettings {
@@ -133,11 +142,19 @@ export namespace iap_v1 {
      * Settings to configure IAP&#39;s OAuth behavior.
      */
     oauthSettings?: Schema$OAuthSettings;
+    /**
+     * Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY.
+     */
+    policyDelegationSettings?: Schema$PolicyDelegationSettings;
   }
   /**
    * Wrapper over application specific settings for IAP.
    */
   export interface Schema$ApplicationSettings {
+    /**
+     * Customization for Access Denied page.
+     */
+    accessDeniedPageSettings?: Schema$AccessDeniedPageSettings;
     /**
      * Settings to configure IAP&#39;s behavior for a CSM mesh.
      */
@@ -342,9 +359,59 @@ export namespace iap_v1 {
     version?: number | null;
   }
   /**
+   * PolicyDelegationConfig allows google-internal teams to use IAP for apps hosted in a tenant project. Using these settings, the app can delegate permission check to happen against the linked customer project. This is only ever supposed to be used by google internal teams, hence the restriction on the proto.
+   */
+  export interface Schema$PolicyDelegationSettings {
+    /**
+     * Permission to check in IAM.
+     */
+    iamPermission?: string | null;
+    /**
+     * The DNS name of the service (e.g. &quot;resourcemanager.googleapis.com&quot;). This should be the domain name part of the full resource names (see https://aip.dev/122#full-resource-names), which is usually the same as IamServiceSpec.service of the service where the resource type is defined.
+     */
+    iamServiceName?: string | null;
+    /**
+     * Policy name to be checked
+     */
+    policyName?: Schema$PolicyName;
+    /**
+     * IAM resource to check permission on
+     */
+    resource?: Schema$Resource;
+  }
+  export interface Schema$PolicyName {
+    id?: string | null;
+    /**
+     * For Cloud IAM: The location of the Policy. Must be empty or &quot;global&quot; for Policies owned by global IAM.  Must name a region from prodspec/cloud-iam-cloudspec for Regional IAM Policies, see http://go/iam-faq#where-is-iam-currently-deployed.  For Local IAM: This field should be set to &quot;local&quot;.
+     */
+    region?: string | null;
+    /**
+     * Valid values for type might be &#39;gce&#39;, &#39;gcs&#39;, &#39;project&#39;, &#39;account&#39; etc.
+     */
+    type?: string | null;
+  }
+  /**
    * The request sent to ResetIdentityAwareProxyClientSecret.
    */
   export interface Schema$ResetIdentityAwareProxyClientSecretRequest {}
+  export interface Schema$Resource {
+    /**
+     * The service defined labels of the resource on which the conditions will be evaluated. The semantics - including the key names - are vague to IAM. If the effective condition has a reference to a `resource.labels[foo]` construct, IAM consults with this map to retrieve the values associated with `foo` key for Conditions evaluation. If the provided key is not found in the labels map, the condition would evaluate to false.  This field is in limited use. If your intended use case is not expected to express resource.labels attribute in IAM Conditions, leave this field empty. Before planning on using this attribute please: * Read go/iam-conditions-labels-comm and ensure your service can meet the   data availability and management requirements. * Talk to iam-conditions-eng@ about your use case.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Name of the resource on which conditions will be evaluated. Must use the Relative Resource Name of the resource, which is the URI path of the resource without the leading &quot;/&quot;. Examples are &quot;projects/_/buckets/[BUCKET-ID]&quot; for storage buckets or &quot;projects/[PROJECT-ID]/global/firewalls/[FIREWALL-ID]&quot; for a firewall.  This field is required for evaluating conditions with rules on resource names. For a `list` permission check, the resource.name value must be set to the parent resource. If the parent resource is a project, this field should be left unset.
+     */
+    name?: string | null;
+    /**
+     * The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as &#39;cloudresourcemanager.googleapis.com&#39; according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml
+     */
+    service?: string | null;
+    /**
+     * The public resource type name of the resource on which conditions will be evaluated. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as &#39;cloudresourcemanager.googleapis.com/Project&#39; according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml For details see go/iam-conditions-integration-guide.
+     */
+    type?: string | null;
+  }
   /**
    * Request message for `SetIamPolicy` method.
    */

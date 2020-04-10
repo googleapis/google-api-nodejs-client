@@ -282,7 +282,7 @@ export namespace language_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * The name of the category representing the document, from the [predefined taxonomy](/natural-language/docs/categories).
+     * The name of the category representing the document, from the [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      */
     name?: string | null;
   }
@@ -334,7 +334,7 @@ export namespace language_v1beta2 {
      */
     gcsContentUri?: string | null;
     /**
-     * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted.&lt;br&gt; [Language Support](/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
+     * The language of the document (if not specified, the language is automatically detected). Both ISO and BCP-47 language codes are accepted.&lt;br&gt; [Language Support](https://cloud.google.com/natural-language/docs/languages) lists currently supported languages for each API method. If the language (either specified by the caller or automatically detected) is not supported by the called API method, an `INVALID_ARGUMENT` error is returned.
      */
     language?: string | null;
     /**
@@ -397,7 +397,7 @@ export namespace language_v1beta2 {
    */
   export interface Schema$Features {
     /**
-     * Classify the full document into categories. If this is true, the API will use the default model which classifies into a [predefined taxonomy](/natural-language/docs/categories).
+     * Classify the full document into categories. If this is true, the API will use the default model which classifies into a [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
      */
     classifyText?: boolean | null;
     /**

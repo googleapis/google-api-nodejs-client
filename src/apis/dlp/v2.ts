@@ -448,7 +448,7 @@ export namespace dlp_v2 {
      */
     filesLimitPercent?: number | null;
     /**
-     * List of file type groups to include in the scan. If empty, all files are scanned and available data format processors are applied. In addition, the binary content of the selected files is always scanned as well.
+     * List of file type groups to include in the scan. If empty, all files are scanned and available data format processors are applied. In addition, the binary content of the selected files is always scanned as well. Images are scanned only as binary if the specified region does not support image inspection and no file_types were specified. Image inspection is restricted to &#39;global&#39;, &#39;us&#39;, &#39;asia&#39;, and &#39;europe&#39;.
      */
     fileTypes?: string[] | null;
     sampleMethod?: string | null;
@@ -596,6 +596,10 @@ export namespace dlp_v2 {
      * Location within an image&#39;s pixels.
      */
     imageLocation?: Schema$GooglePrivacyDlpV2ImageLocation;
+    /**
+     * Location within the metadata for inspected content.
+     */
+    metadataLocation?: Schema$GooglePrivacyDlpV2MetadataLocation;
     /**
      * Location within a row or record of a database table.
      */
@@ -1563,7 +1567,7 @@ export namespace dlp_v2 {
      */
     item?: Schema$GooglePrivacyDlpV2ContentItem;
     /**
-     * The geographic location to process content inspection. Reserved for future extensions.
+     * The geographic location to process content inspection. Reserved for future extensions. When inspecting images location is restricted to &#39;global&#39;, &#39;us&#39;, &#39;asia&#39;, and &#39;europe&#39;.
      */
     locationId?: string | null;
   }
@@ -2084,6 +2088,10 @@ export namespace dlp_v2 {
      */
     codepointRange?: Schema$GooglePrivacyDlpV2Range;
     /**
+     * Information about the container where this finding occurred, if available.
+     */
+    container?: Schema$GooglePrivacyDlpV2Container;
+    /**
      * List of nested objects pointing to the precise location of the finding within the file or record.
      */
     contentLocations?: Schema$GooglePrivacyDlpV2ContentLocation[];
@@ -2092,6 +2100,19 @@ export namespace dlp_v2 {
    * Job trigger option for hybrid jobs. Jobs must be manually created and finished.
    */
   export interface Schema$GooglePrivacyDlpV2Manual {}
+  /**
+   * Metadata Location
+   */
+  export interface Schema$GooglePrivacyDlpV2MetadataLocation {
+    /**
+     * Storage metadata.
+     */
+    storageLabel?: Schema$GooglePrivacyDlpV2StorageMetadataLabel;
+    /**
+     * Type of metadata containing the finding.
+     */
+    type?: string | null;
+  }
   /**
    * Compute numerical stats over an individual column, including min, max, and quantiles.
    */
@@ -2426,7 +2447,7 @@ export namespace dlp_v2 {
      */
     inspectConfig?: Schema$GooglePrivacyDlpV2InspectConfig;
     /**
-     * The geographic location to process the request. Reserved for future extensions.
+     * The geographic location to process the request. Reserved for future extensions. Location is restricted to &#39;global&#39;, &#39;us&#39;, &#39;asia&#39;, and &#39;europe&#39;.
      */
     locationId?: string | null;
   }
@@ -2631,6 +2652,12 @@ export namespace dlp_v2 {
      */
     hybridOptions?: Schema$GooglePrivacyDlpV2HybridOptions;
     timespanConfig?: Schema$GooglePrivacyDlpV2TimespanConfig;
+  }
+  /**
+   * Storage metadata label to indicate which metadata entry contains findings.
+   */
+  export interface Schema$GooglePrivacyDlpV2StorageMetadataLabel {
+    key?: string | null;
   }
   /**
    * StoredInfoType resource message that contains information about the current version and any pending updates.
@@ -9314,7 +9341,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to process content inspection. Reserved for future extensions.
+     * @param {string} params.locationId The geographic location to process content inspection. Reserved for future extensions. When inspecting images location is restricted to 'global', 'us', 'asia', and 'europe'.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id.
      * @param {().GooglePrivacyDlpV2InspectContentRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9530,7 +9557,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to process content inspection. Reserved for future extensions.
+     * The geographic location to process content inspection. Reserved for future extensions. When inspecting images location is restricted to 'global', 'us', 'asia', and 'europe'.
      */
     locationId?: string;
     /**
@@ -10814,7 +10841,7 @@ export namespace dlp_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.locationId The geographic location to process the request. Reserved for future extensions.
+     * @param {string} params.locationId The geographic location to process the request. Reserved for future extensions. Location is restricted to 'global', 'us', 'asia', and 'europe'.
      * @param {string} params.parent The parent resource name, for example projects/my-project-id.
      * @param {().GooglePrivacyDlpV2RedactImageRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10908,7 +10935,7 @@ export namespace dlp_v2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The geographic location to process the request. Reserved for future extensions.
+     * The geographic location to process the request. Reserved for future extensions. Location is restricted to 'global', 'us', 'asia', and 'europe'.
      */
     locationId?: string;
     /**

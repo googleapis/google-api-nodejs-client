@@ -329,7 +329,7 @@ export namespace run_v1 {
      */
     name?: string | null;
     /**
-     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default &quot;0.0.0.0&quot; address inside a container will be accessible from the network.
+     * (Optional)  List of ports to expose from the container. Only a single port can be specified. The specified ports must be listening on all interfaces (0.0.0.0) within the container to be accessible.  If omitted, a port number will be chosen and passed to the container through the PORT environment variable for the container to listen on.
      */
     ports?: Schema$ContainerPort[];
     /**
@@ -362,11 +362,11 @@ export namespace run_v1 {
     workingDir?: string | null;
   }
   /**
-   * Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  ContainerPort represents a network port in a single container.
+   * ContainerPort represents a network port in a single container.
    */
   export interface Schema$ContainerPort {
     /**
-     * (Optional)  Cloud Run fully managed: supported  Cloud Run for Anthos: supported  Port number the container listens on. This must be a valid port number, 0 &lt; x &lt; 65536.
+     * (Optional)  Port number the container listens on. This must be a valid port number, 0 &lt; x &lt; 65536.
      */
     containerPort?: number | null;
     /**
@@ -374,7 +374,7 @@ export namespace run_v1 {
      */
     name?: string | null;
     /**
-     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  Protocol for port. Must be TCP. Defaults to &quot;TCP&quot;.
+     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  Protocol for port. Must be &quot;TCP&quot;. Defaults to &quot;TCP&quot;.
      */
     protocol?: string | null;
   }
@@ -546,23 +546,6 @@ export namespace run_v1 {
      * type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types common to all resources include: * &quot;Ready&quot;: True when the Resource is ready.
      */
     type?: string | null;
-  }
-  /**
-   * Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  Handler defines a specific action that should be taken
-   */
-  export interface Schema$Handler {
-    /**
-     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  One and only one of the following should be specified. Exec specifies the action to take.
-     */
-    exec?: Schema$ExecAction;
-    /**
-     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  HTTPGet specifies the http request to perform.
-     */
-    httpGet?: Schema$HTTPGetAction;
-    /**
-     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported
-     */
-    tcpSocket?: Schema$TCPSocketAction;
   }
   /**
    * Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  HTTPGetAction describes an action based on HTTP Get requests.
@@ -989,13 +972,17 @@ export namespace run_v1 {
    */
   export interface Schema$Probe {
     /**
+     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  One and only one of the following should be specified. Exec specifies the action to take.  A field inlined from the Handler message.
+     */
+    exec?: Schema$ExecAction;
+    /**
      * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
      */
     failureThreshold?: number | null;
     /**
-     * Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  The action taken to determine the health of a container
+     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  HTTPGet specifies the http request to perform.  A field inlined from the Handler message.
      */
-    handler?: Schema$Handler;
+    httpGet?: Schema$HTTPGetAction;
     /**
      * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      */
@@ -1008,6 +995,10 @@ export namespace run_v1 {
      * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1.
      */
     successThreshold?: number | null;
+    /**
+     * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported  A field inlined from the Handler message.
+     */
+    tcpSocket?: Schema$TCPSocketAction;
     /**
      * (Optional)  Cloud Run fully managed: not supported  Cloud Run for Anthos: supported  Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      */

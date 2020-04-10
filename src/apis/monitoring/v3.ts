@@ -87,9 +87,9 @@ export namespace monitoring_v3 {
   }
 
   /**
-   * Stackdriver Monitoring API
+   * Cloud Monitoring API
    *
-   * Manages your Stackdriver Monitoring data and configurations. Most projects must be associated with a Stackdriver account, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Stackdriver Monitoring documentation.
+   * Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Cloud Monitoring documentation.
    *
    * @example
    * const {google} = require('googleapis');
@@ -120,7 +120,7 @@ export namespace monitoring_v3 {
   }
 
   /**
-   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example &quot;the 95% latency across the average of all tasks in a cluster&quot;. This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Aggregating Time Series.
+   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example &quot;the 95% latency across the average of all tasks in a cluster&quot;. This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Filtering and aggregation (https://cloud.google.com/monitoring/api/v3/aggregation).
    */
   export interface Schema$Aggregation {
     /**
@@ -141,7 +141,7 @@ export namespace monitoring_v3 {
     perSeriesAligner?: string | null;
   }
   /**
-   * A description of the conditions under which some aspect of your system is considered to be &quot;unhealthy&quot; and the ways to notify people or services about this state. For an overview of alert policies, see Introduction to Alerting.
+   * A description of the conditions under which some aspect of your system is considered to be &quot;unhealthy&quot; and the ways to notify people or services about this state. For an overview of alert policies, see Introduction to Alerting (https://cloud.google.com/monitoring/alerts/).
    */
   export interface Schema$AlertPolicy {
     /**
@@ -384,6 +384,10 @@ export namespace monitoring_v3 {
      */
     conditionThreshold?: Schema$MetricThreshold;
     /**
+     * A condition that uses the Monitoring Query Language to define alerts. If set, no other conditions can be present.
+     */
+    conditionTimeSeriesQueryLanguage?: Schema$TimeSeriesQueryLanguageCondition;
+    /**
      * A short name or phrase used to identify the condition in dashboards, notifications, and incidents. To avoid confusion, don&#39;t use the same display name for multiple conditions in the same policy.
      */
     displayName?: string | null;
@@ -470,11 +474,11 @@ export namespace monitoring_v3 {
    */
   export interface Schema$Distribution {
     /**
-     * Required in the Stackdriver Monitoring API v3. The values for each bucket specified in bucket_options. The sum of the values in bucketCounts must equal the value in the count field of the Distribution object. The order of the bucket counts follows the numbering schemes described for the three bucket types. The underflow bucket has number 0; the finite buckets, if any, have numbers 1 through N-2; and the overflow bucket has number N-1. The size of bucket_counts must not be greater than N. If the size is less than N, then the remaining buckets are assigned values of zero.
+     * Required in the Cloud Monitoring API v3. The values for each bucket specified in bucket_options. The sum of the values in bucketCounts must equal the value in the count field of the Distribution object. The order of the bucket counts follows the numbering schemes described for the three bucket types. The underflow bucket has number 0; the finite buckets, if any, have numbers 1 through N-2; and the overflow bucket has number N-1. The size of bucket_counts must not be greater than N. If the size is less than N, then the remaining buckets are assigned values of zero.
      */
     bucketCounts?: string[] | null;
     /**
-     * Required in the Stackdriver Monitoring API v3. Defines the histogram bucket boundaries.
+     * Required in the Cloud Monitoring API v3. Defines the histogram bucket boundaries.
      */
     bucketOptions?: Schema$BucketOptions;
     /**
@@ -490,7 +494,7 @@ export namespace monitoring_v3 {
      */
     mean?: number | null;
     /**
-     * If specified, contains the range of the population values. The field must not be present if the count is zero. This field is presently ignored by the Stackdriver Monitoring API v3.
+     * If specified, contains the range of the population values. The field must not be present if the count is zero. This field is presently ignored by the Cloud Monitoring API v3.
      */
     range?: Schema$Range;
     /**
@@ -778,6 +782,23 @@ export namespace monitoring_v3 {
     valueType?: string | null;
   }
   /**
+   * A label value.
+   */
+  export interface Schema$LabelValue {
+    /**
+     * A bool label value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * An int64 label value.
+     */
+    int64Value?: string | null;
+    /**
+     * A string label value.
+     */
+    stringValue?: string | null;
+  }
+  /**
    * Parameters for a latency threshold SLI.
    */
   export interface Schema$LatencyCriteria {
@@ -1006,7 +1027,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$MetricAbsence {
     /**
-     * Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
+     * Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It is advisable to use the ListTimeSeries method when debugging this field.
      */
     aggregations?: Schema$Aggregation[];
     /**
@@ -1014,7 +1035,7 @@ export namespace monitoring_v3 {
      */
     duration?: string | null;
     /**
-     * A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
+     * A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
      */
     filter?: string | null;
     /**
@@ -1106,7 +1127,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$MetricThreshold {
     /**
-     * Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request. It is advisable to use the ListTimeSeries method when debugging this field.
+     * Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resrouces). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It is advisable to use the ListTimeSeries method when debugging this field.
      */
     aggregations?: Schema$Aggregation[];
     /**
@@ -1126,7 +1147,7 @@ export namespace monitoring_v3 {
      */
     duration?: string | null;
     /**
-     * A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
+     * A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that call is useful to verify the time series that will be retrieved / processed) and must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length.
      */
     filter?: string | null;
     /**
@@ -1316,6 +1337,57 @@ export namespace monitoring_v3 {
     value?: Schema$TypedValue;
   }
   /**
+   * A point&#39;s value columns and time interval. Each point has one or more point values corresponding to the entries in point_descriptors field in the TimeSeriesDescriptor associated with this object.
+   */
+  export interface Schema$PointData {
+    /**
+     * The time interval associated with the point.
+     */
+    timeInterval?: Schema$TimeInterval;
+    /**
+     * The values that make up the point.
+     */
+    values?: Schema$TypedValue[];
+  }
+  /**
+   * The QueryTimeSeries request.
+   */
+  export interface Schema$QueryTimeSeriesRequest {
+    /**
+     * A positive number that is the maximum number of time_series_data to return.
+     */
+    pageSize?: number | null;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     */
+    pageToken?: string | null;
+    /**
+     * Required. The query in the monitoring query language format. The default time zone is in UTC.
+     */
+    query?: string | null;
+  }
+  /**
+   * The QueryTimeSeries response.
+   */
+  export interface Schema$QueryTimeSeriesResponse {
+    /**
+     * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Query execution errors that may have caused the time series data returned to be incomplete. The available data will be available in the response.
+     */
+    partialErrors?: Schema$Status[];
+    /**
+     * The time series data.
+     */
+    timeSeriesData?: Schema$TimeSeriesData[];
+    /**
+     * The descriptor for the time series data.
+     */
+    timeSeriesDescriptor?: Schema$TimeSeriesDescriptor;
+  }
+  /**
    * The range of the population values.
    */
   export interface Schema$Range {
@@ -1359,7 +1431,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$SendNotificationChannelVerificationCodeRequest {}
   /**
-   * A Service is a discrete, autonomous, and network-accessible unit, designed to solve an individual concern (Wikipedia (https://en.wikipedia.org/wiki/Service-orientation)). In Stackdriver Monitoring, a Service acts as the root resource under which operational aspects of the service are accessible.
+   * A Service is a discrete, autonomous, and network-accessible unit, designed to solve an individual concern (Wikipedia (https://en.wikipedia.org/wiki/Service-orientation)). In Cloud Monitoring, a Service acts as the root resource under which operational aspects of the service are accessible.
    */
   export interface Schema$Service {
     /**
@@ -1387,7 +1459,7 @@ export namespace monitoring_v3 {
      */
     meshIstio?: Schema$MeshIstio;
     /**
-     * Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID}
+     * Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
     name?: string | null;
     /**
@@ -1535,6 +1607,45 @@ export namespace monitoring_v3 {
      * The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field.
      */
     valueType?: string | null;
+  }
+  /**
+   * Represents the values of a time series associated with a TimeSeriesDescriptor.
+   */
+  export interface Schema$TimeSeriesData {
+    /**
+     * The values of the labels in the time series identifier, given in the same order as the label_descriptors field of the TimeSeriesDescriptor associated with this object. Each value must have a value of the type given in the corresponding entry of label_descriptors.
+     */
+    labelValues?: Schema$LabelValue[];
+    /**
+     * The points in the time series.
+     */
+    pointData?: Schema$PointData[];
+  }
+  /**
+   * A descriptor for the labels and points in a timeseries.
+   */
+  export interface Schema$TimeSeriesDescriptor {
+    /**
+     * Descriptors for the labels.
+     */
+    labelDescriptors?: Schema$LabelDescriptor[];
+    /**
+     * Descriptors for the point data value columns.
+     */
+    pointDescriptors?: Schema$ValueDescriptor[];
+  }
+  /**
+   * A condition type that allows alert policies to be defined using Monitoring Query Language.
+   */
+  export interface Schema$TimeSeriesQueryLanguageCondition {
+    /**
+     * Monitoring Query Language query that generates time series data and describes a condition for alerting on that data.
+     */
+    query?: string | null;
+    /**
+     * A short explanation of what the query represents. For example:&quot;Error ratio exceeds 15% for &gt;5% of servers in &gt;2 regions&quot;
+     */
+    summary?: string | null;
   }
   /**
    * A TimeSeriesRatio specifies two TimeSeries to use for computing the good_service / total_service ratio. The specified TimeSeries must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. The TimeSeriesRatio must specify exactly two of good, bad, and total, and the relationship good_service + bad_service = total_service will be assumed.
@@ -1689,6 +1800,23 @@ export namespace monitoring_v3 {
      * A broad region category in which the IP address is located.
      */
     region?: string | null;
+  }
+  /**
+   * A descriptor for the value columns in a data point.
+   */
+  export interface Schema$ValueDescriptor {
+    /**
+     * The value key.
+     */
+    key?: string | null;
+    /**
+     * The value stream kind.
+     */
+    metricKind?: string | null;
+    /**
+     * The value type.
+     */
+    valueType?: string | null;
   }
   /**
    * The VerifyNotificationChannel request.
@@ -3459,7 +3587,7 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.metricDescriptors.get
-     * @desc Gets a single metric descriptor. This method does not require a Stackdriver account.
+     * @desc Gets a single metric descriptor. This method does not require a Workspace.
      * @example
      * * // PRE-REQUISITES:
      * // ---------------
@@ -3571,7 +3699,7 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.metricDescriptors.list
-     * @desc Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
+     * @desc Lists metric descriptors that match a filter. This method does not require a Workspace.
      * @example
      * * // PRE-REQUISITES:
      * // ---------------
@@ -3776,7 +3904,7 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.monitoredResourceDescriptors.get
-     * @desc Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
+     * @desc Gets a single monitored resource descriptor. This method does not require a Workspace.
      * @example
      * * // PRE-REQUISITES:
      * // ---------------
@@ -3895,7 +4023,7 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.monitoredResourceDescriptors.list
-     * @desc Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
+     * @desc Lists monitored resource descriptors that match a filter. This method does not require a Workspace.
      * @example
      * * // PRE-REQUISITES:
      * // ---------------
@@ -5184,7 +5312,7 @@ export namespace monitoring_v3 {
 
     /**
      * monitoring.projects.timeSeries.list
-     * @desc Lists time series that match a filter. This method does not require a Stackdriver account.
+     * @desc Lists time series that match a filter. This method does not require a Workspace.
      * @example
      * * // PRE-REQUISITES:
      * // ---------------
@@ -5314,6 +5442,83 @@ export namespace monitoring_v3 {
         return createAPIRequest<Schema$ListTimeSeriesResponse>(parameters);
       }
     }
+
+    /**
+     * monitoring.projects.timeSeries.query
+     * @desc Queries time series using the time series query language. This method does not require a Workspace.
+     * @alias monitoring.projects.timeSeries.query
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * @param {().QueryTimeSeriesRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    query(
+      params?: Params$Resource$Projects$Timeseries$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$QueryTimeSeriesResponse>;
+    query(
+      params: Params$Resource$Projects$Timeseries$Query,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryTimeSeriesResponse>,
+      callback: BodyResponseCallback<Schema$QueryTimeSeriesResponse>
+    ): void;
+    query(
+      params: Params$Resource$Projects$Timeseries$Query,
+      callback: BodyResponseCallback<Schema$QueryTimeSeriesResponse>
+    ): void;
+    query(callback: BodyResponseCallback<Schema$QueryTimeSeriesResponse>): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Timeseries$Query
+        | BodyResponseCallback<Schema$QueryTimeSeriesResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryTimeSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$QueryTimeSeriesResponse>
+    ): void | GaxiosPromise<Schema$QueryTimeSeriesResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Timeseries$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Timeseries$Query;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}/timeSeries:query').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryTimeSeriesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$QueryTimeSeriesResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Timeseries$Create
@@ -5388,6 +5593,23 @@ export namespace monitoring_v3 {
      * Required. Specifies which information is returned about the time series.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Timeseries$Query
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryTimeSeriesRequest;
   }
 
   export class Resource$Projects$Uptimecheckconfigs {
@@ -6082,7 +6304,7 @@ export namespace monitoring_v3 {
      * @param {string=} params.filter A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` - `cluster_istio.location` - `cluster_istio.cluster_name` - `cluster_istio.service_namespace` - `cluster_istio.service_name` identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", and "CLUSTER_ISTIO".
      * @param {integer=} params.pageSize A non-negative number that is the maximum number of results to return. When 0, use default page size.
      * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {string} params.parent Required. Resource name of the parent containing the listed services, either a project or Stackdriver Account (workspace). The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID]
+     * @param {string} params.parent Required. Resource name of the parent containing the listed services, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6157,7 +6379,7 @@ export namespace monitoring_v3 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID}
+     * @param {string} params.name Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      * @param {string=} params.updateMask A set of field paths defining which fields to use for the update.
      * @param {().Service} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6282,7 +6504,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent containing the listed services, either a project or Stackdriver Account (workspace). The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID]
+     * Required. Resource name of the parent containing the listed services, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
   }
@@ -6293,7 +6515,7 @@ export namespace monitoring_v3 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID}
+     * Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      */
     name?: string;
     /**
@@ -6544,7 +6766,7 @@ export namespace monitoring_v3 {
      * @param {string=} params.filter A filter specifying what ServiceLevelObjectives to return.
      * @param {integer=} params.pageSize A non-negative number that is the maximum number of results to return. When 0, use default page size.
      * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {string} params.parent Required. Resource name of the parent Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     * @param {string} params.parent Required. Resource name of the parent containing the listed SLOs, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      * @param {string=} params.view View of the ServiceLevelObjectives to return. If DEFAULT, return each ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6766,7 +6988,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     * Required. Resource name of the parent containing the listed SLOs, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      */
     parent?: string;
     /**
