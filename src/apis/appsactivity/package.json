@@ -32,7 +32,7 @@
     "googleapis-common": "^3.0.0"
   },
   "devDependencies": {
-    "gts": "^1.0.0",
+    "gts": "^2.0.0",
     "null-loader": "^3.0.0",
     "ts-loader": "^6.0.4",
     "typedoc": "^0.17.0",
