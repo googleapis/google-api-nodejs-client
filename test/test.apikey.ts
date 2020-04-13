@@ -50,13 +50,14 @@ async function testKeyParam(drive: APIEndpoint) {
 }
 
 async function testAuthKey(blogger: APIEndpoint) {
-  nock(Utils.baseUrl)
+  const req = nock(Utils.baseUrl)
     .get('/blogger/v3/blogs/abc123/pages?key=YOUR%20API%20KEY')
     .reply(200);
   const res = await blogger.pages.list({
     auth: 'YOUR API KEY',
     blogId: 'abc123',
   });
+  req.done();
   assert.strictEqual(
     Utils.getQs(res)!.indexOf('key=YOUR%20API%20KEY') > -1,
     true
@@ -72,18 +73,22 @@ describe('API key', () => {
 
   before(async () => {
     nock.cleanAll();
+    nock.disableNetConnect();
+    nock(Utils.baseUrl)
+      .get('/discovery/v1/apis/drive/v2/rest')
+      .reply(200, Utils.getDiscoveryFixture('drive'));
+    nock(Utils.baseUrl)
+      .get('/discovery/v1/apis/blogger/v3/rest')
+      .reply(200, Utils.getDiscoveryFixture('blogger'));
     const google = new GoogleApis();
-    nock.enableNetConnect();
     [remoteDrive, remoteBlogger] = await Promise.all([
       Utils.loadApi(google, 'drive', 'v2'),
       Utils.loadApi(google, 'blogger', 'v3'),
     ]);
-    nock.disableNetConnect();
   });
 
   beforeEach(() => {
     nock.cleanAll();
-    nock.disableNetConnect();
     const google = new GoogleApis();
     const OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URL');

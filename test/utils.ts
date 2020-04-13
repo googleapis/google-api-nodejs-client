@@ -14,6 +14,8 @@
 import {GaxiosResponse} from 'gaxios';
 import * as url from 'url';
 import {GoogleApis} from '../src';
+import {readFileSync} from 'fs';
+import {resolve} from 'path';
 
 export abstract class Utils {
   static getQs(res: GaxiosResponse) {
@@ -32,6 +34,15 @@ export abstract class Utils {
       '/' +
       version +
       '/rest'
+    );
+  }
+
+  static getDiscoveryFixture(name: string): string {
+    return JSON.parse(
+      readFileSync(
+        resolve(process.cwd(), `./test/fixtures/discovery/${name}.json`),
+        'utf8'
+      )
     );
   }
 
