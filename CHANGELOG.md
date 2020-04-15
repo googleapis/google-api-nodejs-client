@@ -4,6 +4,29 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [49.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v48.0.0...v49.0.0) (2020-04-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* regenerate the API (#2028)
+* **dep:** deprecate node 8 (#2021)
+
+### Features
+
+* regenerate the API ([#2028](https://www.github.com/googleapis/google-api-nodejs-client/issues/2028)) ([fea414a](https://www.github.com/googleapis/google-api-nodejs-client/commit/fea414a450e5702f71c84f40b3e1ab8981ab997e))
+
+
+### Bug Fixes
+
+* apache license URL ([#468](https://www.github.com/googleapis/google-api-nodejs-client/issues/468)) ([#2017](https://www.github.com/googleapis/google-api-nodejs-client/issues/2017)) ([05090da](https://www.github.com/googleapis/google-api-nodejs-client/commit/05090da6fd417af1a53be83b5d5e59c89ed48e7e))
+* **deps:** update common and auth ([#2038](https://www.github.com/googleapis/google-api-nodejs-client/issues/2038)) ([73d284b](https://www.github.com/googleapis/google-api-nodejs-client/commit/73d284be28a7fdbd6c1b43adc6eee765ea4cad73))
+
+
+### Miscellaneous Chores
+
+* **dep:** deprecate node 8 ([#2021](https://www.github.com/googleapis/google-api-nodejs-client/issues/2021)) ([48a4f05](https://www.github.com/googleapis/google-api-nodejs-client/commit/48a4f051ecb42c592540716284fa6d00d4a9d375))
+
 ## [48.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v47.0.0...v48.0.0) (2020-03-11)
 
 
