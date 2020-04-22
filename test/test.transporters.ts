@@ -122,34 +122,44 @@ async function testBodyDelete(drive: APIEndpoint) {
   assert.strictEqual(res.config.body, undefined);
 }
 
-function testResponseError(drive: APIEndpoint, cb: (err?: Error) => void) {
-  drive.files.list({q: 'hello'}, (err: NodeJS.ErrnoException) => {
-    assert(err instanceof Error);
-    assert.strictEqual(err.message, 'Error!');
-    assert.strictEqual(err.code, 400);
-    cb();
-  });
-}
-
-function testNotObjectError(oauth2: APIEndpoint, cb: (err?: Error) => void) {
-  oauth2.tokeninfo({access_token: 'hello'}, (err: NodeJS.ErrnoException) => {
-    assert(err instanceof Error);
-    assert.strictEqual(err.message, 'invalid_grant');
-    assert.strictEqual(err.code, '400');
-    cb();
-  });
-}
-
-function testBackendError(blogger: APIEndpoint, cb: (err?: Error) => void) {
-  const obj = {longUrl: 'http://google.com/'};
-  blogger.posts.publish(
-    {resource: obj, blogId: 'abc123', postId: 'abc123'},
-    (err: NodeJS.ErrnoException, result: {}) => {
+async function testResponseError(drive: APIEndpoint) {
+  await assert.rejects(
+    drive.files.list({q: 'hello'}),
+    (err: NodeJS.ErrnoException) => {
       assert(err instanceof Error);
+      assert.strictEqual(err.message, 'Error!');
+      assert.strictEqual(err.code, 400);
+      return true;
+    }
+  );
+}
+
+async function testNotObjectError(oauth2: APIEndpoint) {
+  await assert.rejects(
+    oauth2.tokeninfo({access_token: 'hello'}),
+    (err: NodeJS.ErrnoException) => {
+      assert(err instanceof Error);
+      assert.strictEqual(err.message, 'invalid_grant');
+      assert.strictEqual(err.code, '400');
+      return true;
+    }
+  );
+}
+
+async function testBackendError(blogger: APIEndpoint) {
+  const obj = {longUrl: 'http://google.com/'};
+  await assert.rejects(
+    blogger.posts.publish({
+      resource: obj,
+      blogId: 'abc123',
+      postId: 'abc123',
+    }),
+    (err: NodeJS.ErrnoException) => {
+      assert(err instanceof Error);
+      console.log(err);
       assert.strictEqual(Number(err.code), 500);
       assert.strictEqual(err.message, 'There was an error!');
-      assert.strictEqual(result, undefined);
-      cb();
+      return true;
     }
   );
 }
@@ -207,23 +217,19 @@ describe('Transporters', () => {
     await testBodyDelete(remoteDrive);
   });
 
-  it('should return errors within response body as instances of Error', done => {
+  it('should return errors within response body as instances of Error', async () => {
     const scope = nock(Utils.baseUrl)
       .get('/drive/v2/files?q=hello')
       .times(2)
       // Simulate an error returned via response body from
       // Google's API endpoint
       .reply(400, {error: {code: 400, message: 'Error!'}});
-
-    testResponseError(localDrive, () => {
-      testResponseError(remoteDrive, () => {
-        scope.done();
-        done();
-      });
-    });
+    await testResponseError(localDrive);
+    await testResponseError(remoteDrive);
+    scope.done();
   });
 
-  it('should return error message correctly when error is not an object', done => {
+  it('should return error message correctly when error is not an object', async () => {
     const scope = nock(Utils.baseUrl)
       .post('/oauth2/v2/tokeninfo?access_token=hello')
       .times(2)
@@ -233,27 +239,19 @@ describe('Transporters', () => {
         error: 'invalid_grant',
         error_description: 'Code was already redeemed.',
       });
-
-    testNotObjectError(localOauth2, () => {
-      testNotObjectError(remoteOauth2, () => {
-        scope.done();
-        done();
-      });
-    });
+    await testNotObjectError(localOauth2);
+    await testNotObjectError(remoteOauth2);
+    scope.done();
   });
 
-  it('should return 5xx responses as errors', done => {
-    const scope = nock(Utils.baseUrl)
-      .post('/blogger/v3/blogs/abc123/posts/abc123/publish')
+  it('should return 5xx responses as errors', async () => {
+    const scope = nock('https://blogger.googleapis.com')
+      .post('/v3/blogs/abc123/posts/abc123/publish')
       .times(2)
       .reply(500, 'There was an error!');
-
-    testBackendError(localBlogger, () => {
-      testBackendError(remoteBlogger, () => {
-        scope.done();
-        done();
-      });
-    });
+    await testBackendError(localBlogger);
+    await testBackendError(remoteBlogger);
+    scope.done();
   });
 
   it('should return 304 responses as success', async () => {
@@ -262,27 +260,24 @@ describe('Transporters', () => {
       .reply(304);
     const res = await localDrive.files.list();
     assert.strictEqual(res.status, 304);
+    scope.done();
   });
 
-  it('should handle 5xx responses that include errors', done => {
-    const scope = nock(Utils.baseUrl)
-      .post('/blogger/v3/blogs/abc123/posts/abc123/publish')
+  it('should handle 5xx responses that include errors', async () => {
+    const scope = nock('https://blogger.googleapis.com')
+      .post('/v3/blogs/abc123/posts/abc123/publish')
       .times(2)
       .reply(500, {
         error: {message: 'There was an error!'},
       });
-
-    testBackendError(localBlogger, () => {
-      testBackendError(remoteBlogger, () => {
-        scope.done();
-        done();
-      });
-    });
+    await testBackendError(localBlogger);
+    await testBackendError(remoteBlogger);
+    scope.done();
   });
 
-  it('should handle a Backend Error', done => {
-    const scope = nock(Utils.baseUrl)
-      .post('/blogger/v3/blogs/abc123/posts/abc123/publish')
+  it('should handle a Backend Error', async () => {
+    const scope = nock('https://blogger.googleapis.com')
+      .post('/v3/blogs/abc123/posts/abc123/publish')
       .times(2)
       .reply(500, {
         error: {
@@ -297,13 +292,9 @@ describe('Transporters', () => {
           message: 'There was an error!',
         },
       });
-
-    testBackendError(localBlogger, () => {
-      testBackendError(remoteBlogger, () => {
-        scope.done();
-        done();
-      });
-    });
+    await testBackendError(localBlogger);
+    await testBackendError(remoteBlogger);
+    scope.done();
   });
 
   after(() => {

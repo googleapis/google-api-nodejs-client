@@ -168,7 +168,7 @@ export namespace homegraph_v1 {
      */
     notificationSupportedByAgent?: boolean | null;
     /**
-     * Alternate IDs associated with this device. This is used to identify cloud synced devices enabled for [local execution](https://developers.google.com/assistant/smarthome/concepts/local).
+     * Alternate IDs associated with this device. This is used to identify cloud synced devices enabled for [local fulfillment](https://developers.google.com/assistant/smarthome/concepts/local).
      */
     otherDeviceIds?: Schema$AgentOtherDeviceId[];
     /**

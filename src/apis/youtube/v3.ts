@@ -2012,6 +2012,7 @@ export namespace youtube_v3 {
      * This setting indicates whether auto start is enabled for this broadcast.
      */
     enableAutoStart?: boolean | null;
+    enableAutoStop?: boolean | null;
     /**
      * This setting indicates whether HTTP POST closed captioning is enabled for this broadcast. The ingestion URL of the closed captions is returned through the liveStreams API. This is mutually exclusive with using the closed_captions_type property, and is equivalent to setting closed_captions_type to CLOSED_CAPTIONS_HTTP_POST.
      */

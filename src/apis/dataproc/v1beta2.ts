@@ -675,7 +675,7 @@ export namespace dataproc_v1beta2 {
      */
     diskConfig?: Schema$DiskConfig;
     /**
-     * Optional. The Compute Engine image resource used for cluster instances. It can be specified or may be inferred from SoftwareConfig.image_version.
+     * Optional. The Compute Engine image resource used for cluster instances.The URI can represent an image or image family.Image examples: https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id] projects/[project_id]/global/images/[image-id] image-idImage family examples. Dataproc will use the most recent image from the family: https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name] projects/[project_id]/global/images/family/[custom-image-family-name]If the URI is unspecified, it will be inferred from SoftwareConfig.image_version or the system default.
      */
     imageUri?: string | null;
     /**
@@ -744,7 +744,13 @@ export namespace dataproc_v1beta2 {
      * Output only. A URI pointing to the location of the stdout of the job&#39;s driver program.
      */
     driverOutputResourceUri?: string | null;
+    /**
+     * Optional. Job is a Hadoop job.
+     */
     hadoopJob?: Schema$HadoopJob;
+    /**
+     * Optional. Job is a Hive job.
+     */
     hiveJob?: Schema$HiveJob;
     /**
      * Output only. A UUID that uniquely identifies a job within the project over time. This is in contrast to a user-settable reference.job_id that may be reused over time.
@@ -754,12 +760,21 @@ export namespace dataproc_v1beta2 {
      * Optional. The labels to associate with this job. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Job is a Pig job.
+     */
     pigJob?: Schema$PigJob;
     /**
      * Required. Job information, including how, when, and where to run the job.
      */
     placement?: Schema$JobPlacement;
+    /**
+     * Optional. Job is a Presto job.
+     */
     prestoJob?: Schema$PrestoJob;
+    /**
+     * Optional. Job is a PySpark job.
+     */
     pysparkJob?: Schema$PySparkJob;
     /**
      * Optional. The fully qualified reference to the job, which can be used to obtain the equivalent REST path of the job resource. If this property is not specified when a job is created, the server generates a &lt;code&gt;job_id&lt;/code&gt;.
@@ -769,8 +784,17 @@ export namespace dataproc_v1beta2 {
      * Optional. Job scheduling configuration.
      */
     scheduling?: Schema$JobScheduling;
+    /**
+     * Optional. Job is a Spark job.
+     */
     sparkJob?: Schema$SparkJob;
+    /**
+     * Optional. Job is a SparkR job.
+     */
     sparkRJob?: Schema$SparkRJob;
+    /**
+     * Optional. Job is a SparkSql job.
+     */
     sparkSqlJob?: Schema$SparkSqlJob;
     /**
      * Output only. The job status. Additional application-specific status information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and &lt;code&gt;yarn_applications&lt;/code&gt; fields.
@@ -887,7 +911,7 @@ export namespace dataproc_v1beta2 {
      */
     crossRealmTrustSharedPasswordUri?: string | null;
     /**
-     * Optional. Flag to indicate whether to Kerberize the cluster.
+     * Optional. Flag to indicate whether to Kerberize the cluster (default: false). Set this field to true to enable Kerberos on a cluster.
      */
     enableKerberos?: boolean | null;
     /**
@@ -1206,7 +1230,7 @@ export namespace dataproc_v1beta2 {
     version?: number | null;
   }
   /**
-   * A Dataproc job for running Presto (https://prestosql.io/) queries
+   * A Dataproc job for running Presto (https://prestosql.io/) queries. IMPORTANT: The Dataproc Presto Optional Component must be enabled when the cluster is created to submit a Presto job to the cluster.
    */
   export interface Schema$PrestoJob {
     /**

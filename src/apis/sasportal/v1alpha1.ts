@@ -302,6 +302,10 @@ export namespace sasportal_v1alpha1 {
      * State of the grant.
      */
     state?: string | null;
+    /**
+     * If the grant is suspended, the reason(s) for suspension.
+     */
+    suspensionReason?: string[] | null;
   }
   /**
    * Information about the model of the device.
@@ -404,6 +408,10 @@ export namespace sasportal_v1alpha1 {
      * If an external antenna is used, the antenna model is optionally provided in this field. The string has a maximum length of 128 octets.
      */
     antennaModel?: string | null;
+    /**
+     * If present, this parameter specifies whether the CBSD is a CPE-CBSD or not.
+     */
+    cpeCbsdIndication?: boolean | null;
     /**
      * This parameter is the maximum device EIRP in units of dBm/10MHz and is an integer with a value between -127 and +47 (dBm/10 MHz) inclusive. If not included, SAS interprets it as maximum allowable EIRP in units of dBm/10MHz for device category.
      */
@@ -1315,7 +1323,7 @@ export namespace sasportal_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response.
+     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
      * @param {string} params.parent Required. The name of the parent resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1779,7 +1787,7 @@ export namespace sasportal_v1alpha1 {
      */
     filter?: string;
     /**
-     * The maximum number of devices to return in the response.
+     * The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      */
     pageSize?: number;
     /**
@@ -3223,7 +3231,7 @@ export namespace sasportal_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response.
+     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
      * @param {string} params.parent Required. The name of the parent resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3687,7 +3695,7 @@ export namespace sasportal_v1alpha1 {
      */
     filter?: string;
     /**
-     * The maximum number of devices to return in the response.
+     * The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      */
     pageSize?: number;
     /**
@@ -4573,7 +4581,7 @@ export namespace sasportal_v1alpha1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter The filter expression. The filter should have one of the following formats: "sn=123454" or "display_name=MyDevice". sn corresponds to serial_number of the device. The filter is case insensitive.
-     * @param {integer=} params.pageSize The maximum number of devices to return in the response.
+     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      * @param {string=} params.pageToken A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.
      * @param {string} params.parent Required. The name of the parent resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4715,7 +4723,7 @@ export namespace sasportal_v1alpha1 {
      */
     filter?: string;
     /**
-     * The maximum number of devices to return in the response.
+     * The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].
      */
     pageSize?: number;
     /**

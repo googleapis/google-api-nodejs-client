@@ -1139,10 +1139,10 @@ export namespace identitytoolkit_v3 {
      * The user&#39;s profiles at the associated IdPs.
      */
     providerUserInfo?: Array<{
+      displayName?: string;
       federatedId?: string;
       providerId?: string;
       photoUrl?: string;
-      displayName?: string;
     }> | null;
     /**
      * If idToken is STS id token, then this field will be refresh token.
@@ -1255,7 +1255,6 @@ export namespace identitytoolkit_v3 {
      * The IDP of the user.
      */
     providerUserInfo?: Array<{
-      rawId?: string;
       photoUrl?: string;
       email?: string;
       federatedId?: string;
@@ -1263,6 +1262,7 @@ export namespace identitytoolkit_v3 {
       screenName?: string;
       displayName?: string;
       phoneNumber?: string;
+      rawId?: string;
     }> | null;
     /**
      * The user&#39;s plain text password.

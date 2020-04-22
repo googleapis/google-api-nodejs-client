@@ -884,7 +884,7 @@ export namespace androidpublisher_v3 {
     controls?: Schema$Control[];
     countryTargeting?: Schema$CountryTargeting;
     /**
-     * In-app update priority of the release. All newly added APKs in the release will be considered at this priority. in_app_update_priority can take values between [0, 5]. 5 is the highest priority. Default priority is 0. See https://developer.android.com/guide/playcore/in-app-updates.
+     * In-app update priority of the release. All newly added APKs in the release will be considered at this priority. in_app_update_priority can take values between [0, 5]. 5 is the highest priority. Default priority is 0. in_app_update_priority can not be updated once the release is rolled out. See https://developer.android.com/guide/playcore/in-app-updates.
      */
     inAppUpdatePriority?: number | null;
     /**
@@ -2036,7 +2036,7 @@ export namespace androidpublisher_v3 {
 
     /**
      * androidpublisher.edits.deobfuscationfiles.upload
-     * @desc Uploads the deobfuscation file of the specified APK. If a deobfuscation file already exists, it will be replaced.
+     * @desc Uploads the deobfuscation file of the specified APK. If a deobfuscation or symbolication file already exists, it will be replaced. See https://developer.android.com/studio/build/shrink-code to learn more about deobfuscation files.
      * @alias androidpublisher.edits.deobfuscationfiles.upload
      * @memberOf! ()
      *
@@ -2044,7 +2044,7 @@ export namespace androidpublisher_v3 {
      * @param {integer} params.apkVersionCode The version code of the APK whose deobfuscation file is being uploaded.
      * @param {string} params.deobfuscationFileType
      * @param {string} params.editId Unique identifier for this edit.
-     * @param {string} params.packageName Unique identifier of the Android app for which the deobfuscatiuon files are being uploaded; for example, "com.spiffygame".
+     * @param {string} params.packageName Unique identifier of the Android app for which the deobfuscation files are being uploaded; for example, "com.spiffygame".
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
@@ -2158,7 +2158,7 @@ export namespace androidpublisher_v3 {
      */
     editId?: string;
     /**
-     * Unique identifier of the Android app for which the deobfuscatiuon files are being uploaded; for example, "com.spiffygame".
+     * Unique identifier of the Android app for which the deobfuscation files are being uploaded; for example, "com.spiffygame".
      */
     packageName?: string;
 

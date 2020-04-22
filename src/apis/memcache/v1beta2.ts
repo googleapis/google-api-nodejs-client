@@ -214,31 +214,31 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GoogleCloudMemcacheV1beta2OperationMetadata {
     /**
-     * API version used to start the operation.
+     * Output only. API version used to start the operation.
      */
     apiVersion?: string | null;
     /**
-     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
-     * Time when the operation was created.
+     * Output only. Time when the operation was created.
      */
     createTime?: string | null;
     /**
-     * Time when the operation finished running.
+     * Output only. Time when the operation finished running.
      */
     endTime?: string | null;
     /**
-     * Human-readable status of the operation, if any.
+     * Output only. Human-readable status of the operation, if any.
      */
     statusDetail?: string | null;
     /**
-     * Server-defined resource path for the target of the operation.
+     * Output only. Server-defined resource path for the target of the operation.
      */
     target?: string | null;
     /**
-     * Name of the verb executed by the operation.
+     * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
   }
@@ -1081,7 +1081,7 @@ export namespace memcache_v1beta2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Memcached instance resource name in the format:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     * @param {string} params.name Required. Memcached instance resource name in the format:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1717,7 +1717,7 @@ export namespace memcache_v1beta2 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Memcached instance resource name in the format:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     * Required. Memcached instance resource name in the format:     `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
      */
     name?: string;
   }

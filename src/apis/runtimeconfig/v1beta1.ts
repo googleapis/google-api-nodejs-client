@@ -778,7 +778,7 @@ export namespace runtimeconfig_v1beta1 {
 
     /**
      * runtimeconfig.projects.configs.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @alias runtimeconfig.projects.configs.setIamPolicy
      * @memberOf! ()
      *
@@ -852,7 +852,7 @@ export namespace runtimeconfig_v1beta1 {
 
     /**
      * runtimeconfig.projects.configs.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias runtimeconfig.projects.configs.testIamPermissions
      * @memberOf! ()
      *
@@ -1220,7 +1220,7 @@ export namespace runtimeconfig_v1beta1 {
 
     /**
      * runtimeconfig.projects.configs.operations.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias runtimeconfig.projects.configs.operations.testIamPermissions
      * @memberOf! ()
      *
@@ -1637,7 +1637,7 @@ export namespace runtimeconfig_v1beta1 {
 
     /**
      * runtimeconfig.projects.configs.variables.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias runtimeconfig.projects.configs.variables.testIamPermissions
      * @memberOf! ()
      *
@@ -2295,7 +2295,7 @@ export namespace runtimeconfig_v1beta1 {
 
     /**
      * runtimeconfig.projects.configs.waiters.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias runtimeconfig.projects.configs.waiters.testIamPermissions
      * @memberOf! ()
      *

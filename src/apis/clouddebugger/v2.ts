@@ -139,6 +139,10 @@ export namespace clouddebugger_v2 {
      */
     action?: string | null;
     /**
+     * The deadline for the breakpoint to stay in CANARY_ACTIVE state. The value is meaningless when the breakpoint is not in CANARY_ACTIVE state.
+     */
+    canaryExpireTime?: string | null;
+    /**
      * Condition that triggers the breakpoint. The condition is a compound boolean expression composed using expressions in a programming language at the source location.
      */
     condition?: string | null;
@@ -186,6 +190,10 @@ export namespace clouddebugger_v2 {
      * The stack at breakpoint time, where stack_frames[0] represents the most recently entered function.
      */
     stackFrames?: Schema$StackFrame[];
+    /**
+     * The current state of the breakpoint.
+     */
+    state?: string | null;
     /**
      * Breakpoint status.  The status includes an error flag and a human readable message. This field is usually unset. The message can be either informational or an error message. Regardless, clients should always display the text message back to the user.  Error status indicates complete failure of the breakpoint.  Example (non-final state): `Still loading symbols...`  Examples (final state):  *   `Invalid line number` referring to location *   `Field f not found in class C` referring to condition
      */
@@ -254,6 +262,10 @@ export namespace clouddebugger_v2 {
      * Version ID of the agent. Schema: `domain/language-platform/vmajor.minor` (for example `google.com/java-gcp/v1.1`).
      */
     agentVersion?: string | null;
+    /**
+     * Used when setting breakpoint canary for this debuggee.
+     */
+    canaryMode?: string | null;
     /**
      * Human readable description of the debuggee. Including a human-readable project name, environment name and version information is recommended.
      */
@@ -437,6 +449,10 @@ export namespace clouddebugger_v2 {
    * Response for registering a debuggee.
    */
   export interface Schema$RegisterDebuggeeResponse {
+    /**
+     * A unique ID generated for the agent. Each RegisterDebuggee request will generate a new agent ID.
+     */
+    agentId?: string | null;
     /**
      * Debuggee resource. The field `id` is guaranteed to be set (in addition to the echoed fields). If the field `is_disabled` is set to `true`, the agent should disable itself by removing all breakpoints and detaching from the application. It should however continue to poll `RegisterDebuggee` until reenabled.
      */
@@ -801,6 +817,7 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.agentId Identifies the agent. This is the ID returned in the RegisterDebuggee response.
      * @param {string} params.debuggeeId Required. Identifies the debuggee.
      * @param {boolean=} params.successOnTimeout If set to `true` (recommended), returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired.  If set to `false` (deprecated), returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired.
      * @param {string=} params.waitToken A token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server-selected timeout has expired. The value should be set from the `next_wait_token` field in the last response. The initial value should be set to `"init"`.
@@ -1026,6 +1043,10 @@ export namespace clouddebugger_v2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * Identifies the agent. This is the ID returned in the RegisterDebuggee response.
+     */
+    agentId?: string;
     /**
      * Required. Identifies the debuggee.
      */
@@ -1664,6 +1685,7 @@ export namespace clouddebugger_v2 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.canaryOption The canary option set by the user upon setting breakpoint.
      * @param {string=} params.clientVersion Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param {string} params.debuggeeId Required. ID of the debuggee where the breakpoint is to be set.
      * @param {().Breakpoint} params.requestBody Request body data
@@ -1819,6 +1841,10 @@ export namespace clouddebugger_v2 {
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
+    /**
+     * The canary option set by the user upon setting breakpoint.
+     */
+    canaryOption?: string;
     /**
      * Required. The client version making the call. Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      */

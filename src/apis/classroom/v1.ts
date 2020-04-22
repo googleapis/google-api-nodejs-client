@@ -150,7 +150,7 @@ export namespace classroom_v1 {
      */
     id?: string | null;
     /**
-     * Identifiers of students with access to the announcement. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field will be able to see the announcement.
+     * Identifiers of students with access to the announcement. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field can see the announcement.
      */
     individualStudentsOptions?: Schema$IndividualStudentsOptions;
     /**
@@ -188,7 +188,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$AssignmentSubmission {
     /**
-     * Attachments added by the student. Drive files that correspond to materials with a share mode of STUDENT_COPY may not exist yet if the student has not accessed the assignment in Classroom.  Some attachment metadata is only populated if the requesting user has permission to access it. Identifier and alternate_link fields are always available, but others (e.g. title) may not be.
+     * Attachments added by the student. Drive files that correspond to materials with a share mode of STUDENT_COPY may not exist yet if the student has not accessed the assignment in Classroom.  Some attachment metadata is only populated if the requesting user has permission to access it. Identifier and alternate_link fields are always available, but others (for example, title) may not be.
      */
     attachments?: Schema$Attachment[];
   }
@@ -368,7 +368,7 @@ export namespace classroom_v1 {
      */
     assignment?: Schema$Assignment;
     /**
-     * Whether this course work item is associated with the Developer Console project making the request.  See google.classroom.Work.CreateCourseWork for more details.  Read-only.
+     * Whether this course work item is associated with the Developer Console project making the request.  See CreateCourseWork for more details.  Read-only.
      */
     associatedWithDeveloper?: boolean | null;
     /**
@@ -400,7 +400,7 @@ export namespace classroom_v1 {
      */
     id?: string | null;
     /**
-     * Identifiers of students with access to the coursework. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field will be assigned the coursework.
+     * Identifiers of students with access to the coursework. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field are assigned the coursework.
      */
     individualStudentsOptions?: Schema$IndividualStudentsOptions;
     /**
@@ -833,7 +833,7 @@ export namespace classroom_v1 {
      */
     form?: Schema$Form;
     /**
-     * Link material. On creation, will be upgraded to a more appropriate type if possible, and this will be reflected in the response.
+     * Link material. On creation, this is upgraded to a more appropriate type if possible, and this is reflected in the response.
      */
     link?: Schema$Link;
     /**
@@ -846,7 +846,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$ModifyAnnouncementAssigneesRequest {
     /**
-     * Mode of the announcement describing whether it will be accessible by all students or specified individual students.
+     * Mode of the announcement describing whether it is accessible by all students or specified individual students.
      */
     assigneeMode?: string | null;
     /**
@@ -881,11 +881,11 @@ export namespace classroom_v1 {
    */
   export interface Schema$ModifyIndividualStudentsOptions {
     /**
-     * Ids of students to be added as having access to this coursework/announcement.
+     * IDs of students to be added as having access to this coursework/announcement.
      */
     addStudentIds?: string[] | null;
     /**
-     * Ids of students to be removed from having access to this coursework/announcement.
+     * IDs of students to be removed from having access to this coursework/announcement.
      */
     removeStudentIds?: string[] | null;
   }
@@ -980,7 +980,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$StateHistory {
     /**
-     * The teacher or student who made the change
+     * The teacher or student who made the change.
      */
     actorUserId?: string | null;
     /**
@@ -1022,15 +1022,15 @@ export namespace classroom_v1 {
      */
     alternateLink?: string | null;
     /**
-     * Optional grade. If unset, no grade was set. This value must be non-negative. Decimal (i.e. non-integer) values are allowed, but will be rounded to two decimal places.  This may be modified only by course teachers.
+     * Optional grade. If unset, no grade was set. This value must be non-negative. Decimal (that is, non-integer) values are allowed, but are rounded to two decimal places.  This may be modified only by course teachers.
      */
     assignedGrade?: number | null;
     /**
-     * Submission content when course_work_type is ASSIGNMENT.  Students can modify this content using google.classroom.Work.ModifyAttachments.
+     * Submission content when course_work_type is ASSIGNMENT.  Students can modify this content using ModifyAttachments.
      */
     assignmentSubmission?: Schema$AssignmentSubmission;
     /**
-     * Whether this student submission is associated with the Developer Console project making the request.  See google.classroom.Work.CreateCourseWork for more details.  Read-only.
+     * Whether this student submission is associated with the Developer Console project making the request.  See CreateCourseWork for more details.  Read-only.
      */
     associatedWithDeveloper?: boolean | null;
     /**
@@ -1050,7 +1050,7 @@ export namespace classroom_v1 {
      */
     creationTime?: string | null;
     /**
-     * Optional pending grade. If unset, no grade was set. This value must be non-negative. Decimal (i.e. non-integer) values are allowed, but will be rounded to two decimal places.  This is only visible to and modifiable by course teachers.
+     * Optional pending grade. If unset, no grade was set. This value must be non-negative. Decimal (that is, non-integer) values are allowed, but are rounded to two decimal places.  This is only visible to and modifiable by course teachers.
      */
     draftGrade?: number | null;
     /**
@@ -1146,7 +1146,7 @@ export namespace classroom_v1 {
      */
     courseId?: string | null;
     /**
-     * The name of the topic, generated by the user. Leading and trailing whitespaces, if any, will be trimmed. Also, multiple consecutive whitespaces will be collapsed into one inside the name. The result must be a non-empty string. Topic names are case sensitive, and must be no longer than 100 characters.
+     * The name of the topic, generated by the user. Leading and trailing whitespaces, if any, are trimmed. Also, multiple consecutive whitespaces are collapsed into one inside the name. The result must be a non-empty string. Topic names are case sensitive, and must be no longer than 100 characters.
      */
     name?: string | null;
     /**
@@ -1187,7 +1187,7 @@ export namespace classroom_v1 {
      */
     photoUrl?: string | null;
     /**
-     * Represents whether a G Suite for Education user&#39;s domain administrator has explicitly verified them as being a teacher. If the user is not a member of a G Suite for Education domain, than this field will always be false.  Read-only
+     * Represents whether a G Suite for Education user&#39;s domain administrator has explicitly verified them as being a teacher. If the user is not a member of a G Suite for Education domain, than this field is always false.  Read-only
      */
     verifiedTeacher?: boolean | null;
   }
@@ -2435,7 +2435,7 @@ export namespace classroom_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the announcement.
-     * @param {string=} params.updateMask Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
+     * @param {string=} params.updateMask Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error is returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
      * @param {().Announcement} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2617,7 +2617,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
+     * Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error is returned.  The following fields may be specified by teachers:  * `text` * `state` * `scheduled_time`
      */
     updateMask?: string;
 
@@ -3024,7 +3024,7 @@ export namespace classroom_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the course work.
-     * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode` * `topic_id`
+     * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error is returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode` * `topic_id`
      * @param {().CourseWork} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3207,7 +3207,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode` * `topic_id`
+     * Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error is returned.  The following fields may be specified by teachers:  * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode` * `topic_id`
      */
     updateMask?: string;
 
@@ -5020,7 +5020,7 @@ export namespace classroom_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      * @param {string} params.id Identifier of the topic.
-     * @param {string=} params.updateMask Mask that identifies which fields on the topic to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Topic object. If a field that does not support empty values is included in the update mask and not set in the Topic object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified:  * `name`
+     * @param {string=} params.updateMask Mask that identifies which fields on the topic to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Topic object. If a field that does not support empty values is included in the update mask and not set in the Topic object, an `INVALID_ARGUMENT` error is returned.  The following fields may be specified:  * `name`
      * @param {().Topic} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -5172,7 +5172,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the topic to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Topic object. If a field that does not support empty values is included in the update mask and not set in the Topic object, an `INVALID_ARGUMENT` error will be returned.  The following fields may be specified:  * `name`
+     * Mask that identifies which fields on the topic to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Topic object. If a field that does not support empty values is included in the update mask and not set in the Topic object, an `INVALID_ARGUMENT` error is returned.  The following fields may be specified:  * `name`
      */
     updateMask?: string;
 
@@ -6058,10 +6058,10 @@ export namespace classroom_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.invitedEmailAddress If specified, only results with the specified `invited_email_address` will be returned.
+     * @param {string=} params.invitedEmailAddress If specified, only results with the specified `invited_email_address` are returned.
      * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum.  The server may return fewer than the specified number of results.
      * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned.  The list request must be otherwise identical to the one that resulted in this token.
-     * @param {string=} params.states If specified, only results with the specified `state` values will be returned. Otherwise, results with a `state` of `PENDING` will be returned.
+     * @param {string=} params.states If specified, only results with the specified `state` values are returned. Otherwise, results with a `state` of `PENDING` are returned.
      * @param {string} params.studentId The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following:  * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for   all students that the requesting user is permitted to view guardian   invitations.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6146,7 +6146,7 @@ export namespace classroom_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.invitationId The `id` field of the `GuardianInvitation` to be modified.
      * @param {string} params.studentId The ID of the student whose guardian invitation is to be modified.
-     * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid:  * `state`  When set in a query parameter, this field should be specified as  `updateMask=<field1>,<field2>,...`
+     * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields are valid:  * `state`  When set in a query parameter, this field should be specified as  `updateMask=<field1>,<field2>,...`
      * @param {().GuardianInvitation} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -6256,7 +6256,7 @@ export namespace classroom_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * If specified, only results with the specified `invited_email_address` will be returned.
+     * If specified, only results with the specified `invited_email_address` are returned.
      */
     invitedEmailAddress?: string;
     /**
@@ -6268,7 +6268,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
     /**
-     * If specified, only results with the specified `state` values will be returned. Otherwise, results with a `state` of `PENDING` will be returned.
+     * If specified, only results with the specified `state` values are returned. Otherwise, results with a `state` of `PENDING` are returned.
      */
     states?: string[];
     /**
@@ -6292,7 +6292,7 @@ export namespace classroom_v1 {
      */
     studentId?: string;
     /**
-     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid:  * `state`  When set in a query parameter, this field should be specified as  `updateMask=<field1>,<field2>,...`
+     * Mask that identifies which fields on the course to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields are valid:  * `state`  When set in a query parameter, this field should be specified as  `updateMask=<field1>,<field2>,...`
      */
     updateMask?: string;
 

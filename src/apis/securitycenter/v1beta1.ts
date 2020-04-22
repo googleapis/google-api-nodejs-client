@@ -230,7 +230,7 @@ export namespace securitycenter_v1beta1 {
     title?: string | null;
   }
   /**
-   * Security Command Center finding.  A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.  When adding a new field hidden behind a visibility label, ensure it is also hidden from Notifications: http://google3/java/com/google/cloud/security/riskdashboard/notification/actions/streaming/FindingTranslator.java?l=26
+   * Security Command Center finding.  A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.
    */
   export interface Schema$Finding {
     /**

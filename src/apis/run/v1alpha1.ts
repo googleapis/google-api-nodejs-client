@@ -1578,17 +1578,13 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$Probe {
     /**
-     * One and only one of the following should be specified. Exec specifies the action to take.  A field inlined from the Handler message.
-     */
-    exec?: Schema$ExecAction;
-    /**
      * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. +optional
      */
     failureThreshold?: number | null;
     /**
-     * HTTPGet specifies the http request to perform.  A field inlined from the Handler message.
+     * The action taken to determine the health of a container
      */
-    httpGet?: Schema$HTTPGetAction;
+    handler?: Schema$Handler;
     /**
      * Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes +optional
      */
@@ -1601,10 +1597,6 @@ export namespace run_v1alpha1 {
      * Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness. Minimum value is 1. +optional
      */
     successThreshold?: number | null;
-    /**
-     * TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported  A field inlined from the Handler message.
-     */
-    tcpSocket?: Schema$TCPSocketAction;
     /**
      * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes +optional
      */
@@ -2180,7 +2172,7 @@ export namespace run_v1alpha1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }

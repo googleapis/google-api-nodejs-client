@@ -149,7 +149,7 @@ export namespace speech_v1 {
      */
     startTime?: string | null;
     /**
-     * The URI of the audio file being transcribed. Empty if the audio was sent as byte content.
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent as byte content.
      */
     uri?: string | null;
   }
@@ -226,7 +226,7 @@ export namespace speech_v1 {
      */
     diarizationConfig?: Schema$SpeakerDiarizationConfig;
     /**
-     * If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. Note: This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.
+     * If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses.
      */
     enableAutomaticPunctuation?: boolean | null;
     /**

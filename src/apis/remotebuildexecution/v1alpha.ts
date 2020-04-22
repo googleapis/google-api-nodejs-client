@@ -795,15 +795,19 @@ export namespace remotebuildexecution_v1alpha {
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest {
     /**
-     * Whether to enable Stackdriver logging for this instance.
+     * Specifies the instance to update.
+     */
+    instance?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance;
+    /**
+     * Deprecated, use instance.logging_enabled instead. Whether to enable Stackdriver logging for this instance.
      */
     loggingEnabled?: boolean | null;
     /**
-     * Name of the instance to update. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
+     * Deprecated, use instance.Name instead. Name of the instance to update. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
      */
     name?: string | null;
     /**
-     * The fields to update.
+     * The update mask applies to instance. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If an empty update_mask is provided, only the non-default valued field in the worker pool field will be updated. Note that in order to update a field to the default value (zero, false, empty string) an explicit update_mask must be provided.
      */
     updateMask?: string | null;
   }

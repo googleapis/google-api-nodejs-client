@@ -94,6 +94,7 @@ import * as file from './file';
 import * as firebase from './firebase';
 import * as firebasedynamiclinks from './firebasedynamiclinks';
 import * as firebasehosting from './firebasehosting';
+import * as firebaseml from './firebaseml';
 import * as firebaserules from './firebaserules';
 import * as firestore from './firestore';
 import * as fitness from './fitness';
@@ -269,6 +270,7 @@ export const APIS: APIList = {
   firebase: firebase.VERSIONS,
   firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
   firebasehosting: firebasehosting.VERSIONS,
+  firebaseml: firebaseml.VERSIONS,
   firebaserules: firebaserules.VERSIONS,
   firestore: firestore.VERSIONS,
   fitness: fitness.VERSIONS,
@@ -441,6 +443,7 @@ export class GeneratedAPIs {
   firebase = firebase.firebase;
   firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
   firebasehosting = firebasehosting.firebasehosting;
+  firebaseml = firebaseml.firebaseml;
   firebaserules = firebaserules.firebaserules;
   firestore = firestore.firestore;
   fitness = fitness.fitness;

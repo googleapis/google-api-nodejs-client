@@ -184,6 +184,8 @@ export namespace storage_v1 {
         condition?: {
           age?: number;
           createdBefore?: string;
+          customTimeBefore?: string;
+          daysSinceCustomTime?: number;
           isLive?: boolean;
           matchesPattern?: string;
           matchesStorageClass?: string[];
@@ -252,9 +254,13 @@ export namespace storage_v1 {
      */
     website?: {mainPageSuffix?: string; notFoundPage?: string} | null;
     /**
-     * The zone or zones from which the bucket is intended to use zonal quota. Requests for data from outside the specified affinities are still allowed but won’t be able to use zonal quota. The zone or zones need to be within the bucket location otherwise the requests will fail with a 400 Bad Request response.
+     * The zone or zones from which the bucket is intended to use zonal quota. Requests for data from outside the specified affinities are still allowed but won&#39;t be able to use zonal quota. The zone or zones need to be within the bucket location otherwise the requests will fail with a 400 Bad Request response.
      */
-    zone_affinity?: string[] | null;
+    zoneAffinity?: string[] | null;
+    /**
+     * If set, objects placed in this bucket are required to be separated by disaster domain.
+     */
+    zoneSeparation?: boolean | null;
   }
   /**
    * An access-control entry.
@@ -602,6 +608,10 @@ export namespace storage_v1 {
       encryptionAlgorithm?: string;
       keySha256?: string;
     } | null;
+    /**
+     * A timestamp in RFC 3339 format specified by the user for an object.
+     */
+    customTime?: string | null;
     /**
      * HTTP 1.1 Entity tag for the object.
      */
@@ -6244,6 +6254,7 @@ export namespace storage_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string=} params.destinationKmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
@@ -7907,6 +7918,10 @@ export namespace storage_v1 {
      * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
     destinationBucket?: string;
+    /**
+     * Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
+     */
+    destinationKmsKeyName?: string;
     /**
      * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
      */

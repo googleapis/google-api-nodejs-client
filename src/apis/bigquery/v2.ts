@@ -187,15 +187,15 @@ export namespace bigquery_v2 {
    */
   export interface Schema$ArimaFittingMetrics {
     /**
-     * AIC
+     * AIC.
      */
     aic?: number | null;
     /**
-     * log-likelihood
+     * Log-likelihood.
      */
     logLikelihood?: number | null;
     /**
-     * variance.
+     * Variance.
      */
     variance?: number | null;
   }
@@ -212,9 +212,21 @@ export namespace bigquery_v2 {
      */
     arimaFittingMetrics?: Schema$ArimaFittingMetrics;
     /**
+     * Whether Arima model fitted with drift or not. It is always false when d is not 1.
+     */
+    hasDrift?: boolean | null;
+    /**
      * Non-seasonal order.
      */
     nonSeasonalOrder?: Schema$ArimaOrder;
+    /**
+     * Seasonal periods. Repeated because multiple periods are supported for one time series.
+     */
+    seasonalPeriods?: string[] | null;
+    /**
+     * The id to indicate different time series.
+     */
+    timeSeriesId?: string | null;
   }
   /**
    * Arima order, can be used for both non-seasonal and seasonal parts.
@@ -519,6 +531,16 @@ export namespace bigquery_v2 {
      */
     rows?: Schema$Row[];
   }
+  export interface Schema$ConnectionProperty {
+    /**
+     * [Required] Name of the connection property to set.
+     */
+    key?: string | null;
+    /**
+     * [Required] Value of the connection property.
+     */
+    value?: string | null;
+  }
   export interface Schema$CsvOptions {
     /**
      * [Optional] Indicates if BigQuery should accept rows that are missing trailing optional columns. If true, BigQuery treats missing trailing columns as null values. If false, records with missing trailing columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false.
@@ -550,13 +572,13 @@ export namespace bigquery_v2 {
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
+      specialGroup?: string;
       role?: string;
       view?: Schema$TableReference;
       groupByEmail?: string;
-      userByEmail?: string;
       domain?: string;
+      userByEmail?: string;
       iamMember?: string;
-      specialGroup?: string;
     }> | null;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds since the epoch.
@@ -617,12 +639,12 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
-      id?: string;
-      location?: string;
-      friendlyName?: string;
       kind?: string;
       labels?: {[key: string]: string};
       datasetReference?: Schema$DatasetReference;
+      id?: string;
+      location?: string;
+      friendlyName?: string;
     }> | null;
     /**
      * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -889,10 +911,6 @@ export namespace bigquery_v2 {
      * [Optional] Additional options if sourceFormat is set to GOOGLE_SHEETS.
      */
     googleSheetsOptions?: Schema$GoogleSheetsOptions;
-    /**
-     * [Optional, Trusted Tester] Deprecated, do not use. Please set hivePartitioningOptions instead.
-     */
-    hivePartitioningMode?: string | null;
     /**
      * [Optional, Trusted Tester] Options to configure hive partitioning support.
      */
@@ -1207,10 +1225,6 @@ export namespace bigquery_v2 {
      */
     fieldDelimiter?: string | null;
     /**
-     * [Optional, Trusted Tester] Deprecated, do not use. Please set hivePartitioningOptions instead.
-     */
-    hivePartitioningMode?: string | null;
-    /**
      * [Optional, Trusted Tester] Options to configure hive partitioning support.
      */
     hivePartitioningOptions?: Schema$HivePartitioningOptions;
@@ -1291,7 +1305,7 @@ export namespace bigquery_v2 {
     /**
      * Connection properties.
      */
-    connectionProperties?: any[] | null;
+    connectionProperties?: Schema$ConnectionProperty[];
     /**
      * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
@@ -1481,7 +1495,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{slotMs?: string; name?: string}> | null;
+    reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
     /**
      * [Output-only] Name of the primary reservation assigned to this job. Note that this could be different than reservations reported in the reservation usage field if parent reservations were used to execute this job.
      */
@@ -1571,7 +1585,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Job resource usage breakdown by reservation.
      */
-    reservationUsage?: Array<{slotMs?: string; name?: string}> | null;
+    reservationUsage?: Array<{name?: string; slotMs?: string}> | null;
     /**
      * [Output-only] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
      */
@@ -1770,9 +1784,9 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
      */
     modelOptions?: {
+      modelType?: string;
       labels?: string[];
       lossType?: string;
-      modelType?: string;
     } | null;
     /**
      * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
@@ -1823,11 +1837,11 @@ export namespace bigquery_v2 {
      * Projects to which you have at least READ access.
      */
     projects?: Array<{
-      id?: string;
-      projectReference?: Schema$ProjectReference;
       friendlyName?: string;
       numericId?: string;
       kind?: string;
+      id?: string;
+      projectReference?: Schema$ProjectReference;
     }> | null;
     /**
      * The total number of projects in the list.
@@ -1863,9 +1877,9 @@ export namespace bigquery_v2 {
      * [Optional] The types of the fields of this struct, in order, if this is a struct.
      */
     structTypes?: Array<{
-      type?: Schema$QueryParameterType;
       name?: string;
       description?: string;
+      type?: Schema$QueryParameterType;
     }> | null;
     /**
      * [Required] The top level type of this field.
@@ -1890,7 +1904,7 @@ export namespace bigquery_v2 {
     /**
      * Connection properties.
      */
-    connectionProperties?: any[] | null;
+    connectionProperties?: Schema$ConnectionProperty[];
     /**
      * [Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format &#39;datasetId.tableId&#39;.
      */
@@ -2462,18 +2476,18 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
-      id?: string;
-      tableReference?: Schema$TableReference;
-      friendlyName?: string;
-      timePartitioning?: Schema$TimePartitioning;
-      labels?: {[key: string]: string};
-      clustering?: Schema$Clustering;
-      type?: string;
-      expirationTime?: string;
-      kind?: string;
       view?: {useLegacySql?: boolean};
       creationTime?: string;
       rangePartitioning?: Schema$RangePartitioning;
+      id?: string;
+      tableReference?: Schema$TableReference;
+      timePartitioning?: Schema$TimePartitioning;
+      friendlyName?: string;
+      labels?: {[key: string]: string};
+      type?: string;
+      clustering?: Schema$Clustering;
+      expirationTime?: string;
+      kind?: string;
     }> | null;
     /**
      * The total number of tables in the dataset.

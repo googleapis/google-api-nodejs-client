@@ -133,7 +133,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$Attributes {
     /**
-     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: &quot;my-instance&quot;     &quot;/http/user_agent&quot;: &quot;&quot;     &quot;/http/request_bytes&quot;: 300     &quot;abc.com/myattribute&quot;: true
+     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example:      &quot;/instance_id&quot;: { &quot;string_value&quot;: { &quot;value&quot;: &quot;my-instance&quot; } }     &quot;/http/request_bytes&quot;: { &quot;int_value&quot;: 300 }     &quot;abc.com/myattribute&quot;: { &quot;bool_value&quot;: false }
      */
     attributeMap?: {[key: string]: Schema$AttributeValue} | null;
     /**
