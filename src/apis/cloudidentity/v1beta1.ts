@@ -120,45 +120,9 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$AndroidAttributes {
     /**
-     * Baseband version of Android device.
-     */
-    basebandVersion?: string | null;
-    /**
-     * Device bootloader version. Example: 0.6.7.
-     */
-    bootloaderVersion?: string | null;
-    /**
-     * Build number of Android device.
-     */
-    buildNumber?: string | null;
-    /**
-     * Whether developer options is enabled on device.
-     */
-    enabledDeveloperOptions?: boolean | null;
-    /**
      * Whether applications from unknown sources can be installed on device.
      */
     enabledUnknownSources?: boolean | null;
-    /**
-     * Whether adb (USB debugging) is enabled on device.
-     */
-    enabledUsbDebugging?: boolean | null;
-    /**
-     * Device encryption state.
-     */
-    encryptionState?: string | null;
-    /**
-     * Device hardware. Example: Sprout.
-     */
-    hardware?: string | null;
-    /**
-     * Kernel version of Android device.
-     */
-    kernelVersion?: string | null;
-    /**
-     * Domain name for Google accounts on device. Type for other accounts on device. Will only be populated if |ownership_privilege| is |PROFILE_OWNER| or |DEVICE_OWNER|. Does not include the account signed in to the device policy app if that account&#39;s domain has only one account. Examples: &quot;com.example&quot;, &quot;xyz.com&quot;.
-     */
-    otherAccounts?: string[] | null;
     /**
      * Whether this account is on an owner/primary profile. For phones, only true for owner profiles. Android 4+ devices can have secondary or restricted user profiles.
      */
@@ -167,10 +131,6 @@ export namespace cloudidentity_v1beta1 {
      * Ownership privileges on device.
      */
     ownershipPrivilege?: string | null;
-    /**
-     * OS security patch update time on device.
-     */
-    securityPatchTime?: string | null;
     /**
      * Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the &quot;Enforce Work Profile&quot; policy.
      */
@@ -213,6 +173,76 @@ export namespace cloudidentity_v1beta1 {
     deviceUser?: Schema$DeviceUser;
   }
   /**
+   * Resource representing ClientState and supports updates from API users
+   */
+  export interface Schema$ClientState {
+    /**
+     * The caller can specify asset tags for this resource
+     */
+    assetTags?: string[] | null;
+    /**
+     * The compliance state of the resource as specified by the API client.
+     */
+    complianceState?: string | null;
+    /**
+     * Output only. The time the client state data was created.
+     */
+    createTime?: string | null;
+    /**
+     * This field may be used to store a unique identifier for the API resource within which these CustomAttributes are a field.
+     */
+    customId?: string | null;
+    /**
+     * The token that needs to be passed back for concurrency control in updates. Token needs to be passed back in UpdateRequest
+     */
+    etag?: string | null;
+    /**
+     * The Health score of the resource
+     */
+    healthScore?: string | null;
+    /**
+     * The map of key-value attributes stored by callers specific to a device. The total serialized length of this map may not exceed 10KB. No limit is placed on the number of attributes in a map.
+     */
+    keyValuePairs?: {[key: string]: Schema$CustomAttributeValue} | null;
+    /**
+     * Output only. The time the client state data was last updated.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * The management state of the resource as specified by the API client.
+     */
+    managed?: string | null;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data.
+     */
+    name?: string | null;
+    /**
+     * The owner of the ClientState
+     */
+    ownerType?: string | null;
+    /**
+     * A descriptive cause of the health score.
+     */
+    scoreReason?: string | null;
+  }
+  /**
+   * Additional custom attribute values may be one of these types
+   */
+  export interface Schema$CustomAttributeValue {
+    /**
+     * Represents a boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Represents a double value.
+     */
+    numberValue?: number | null;
+    /**
+     * Represents a string value.
+     */
+    stringValue?: string | null;
+  }
+  /**
    * Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.
    */
   export interface Schema$Device {
@@ -225,9 +255,21 @@ export namespace cloudidentity_v1beta1 {
      */
     assetTag?: string | null;
     /**
+     * Output only. Baseband version of the device.
+     */
+    basebandVersion?: string | null;
+    /**
+     * Output only. Device bootloader version. Example: 0.6.7.
+     */
+    bootloaderVersion?: string | null;
+    /**
      * Output only. Device brand. Example: Samsung.
      */
     brand?: string | null;
+    /**
+     * Output only. Build number of the device.
+     */
+    buildNumber?: string | null;
     /**
      * Output only. Represents whether the Device is compromised.
      */
@@ -241,9 +283,25 @@ export namespace cloudidentity_v1beta1 {
      */
     deviceType?: string | null;
     /**
+     * Output only. Whether developer options is enabled on device.
+     */
+    enabledDeveloperOptions?: boolean | null;
+    /**
+     * Output only. Whether USB debugging is enabled on device.
+     */
+    enabledUsbDebugging?: boolean | null;
+    /**
+     * Output only. Device encryption state.
+     */
+    encryptionState?: string | null;
+    /**
      * Output only. IMEI number of device if GSM device; empty otherwise.
      */
     imei?: string | null;
+    /**
+     * Output only. Kernel version of the device.
+     */
+    kernelVersion?: string | null;
     /**
      * Most recent time when device synced with this service.
      */
@@ -277,6 +335,10 @@ export namespace cloudidentity_v1beta1 {
      */
     osVersion?: string | null;
     /**
+     * Output only. Domain name for Google accounts on device. Type for other accounts on device. On Android, will only be populated if |ownership_privilege| is |PROFILE_OWNER| or |DEVICE_OWNER|. Does not include the account signed in to the device policy app if that account&#39;s domain has only one account. Examples: &quot;com.example&quot;, &quot;xyz.com&quot;.
+     */
+    otherAccounts?: string[] | null;
+    /**
      * Whether the device is owned by the company or an individual
      */
     ownerType?: string | null;
@@ -284,6 +346,10 @@ export namespace cloudidentity_v1beta1 {
      * Output only. OS release version. Example: 6.0.
      */
     releaseVersion?: string | null;
+    /**
+     * Output only. OS security patch update time on device.
+     */
+    securityPatchTime?: string | null;
     /**
      * Serial Number of device. Example: HT82V1A01076.
      */

@@ -1,8 +1,8 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# secretmanager
+# firebaseml
 
-> Stores sensitive data such as API keys, passwords, and certificates. Provides convenience while improving security.
+> Access custom machine learning models hosted via Firebase ML.
 
 ## Installation
 
@@ -19,17 +19,17 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/secretmanager
+$ cd src/apis/firebaseml
 $ npm install
 $ npm run webpack
 ```
 
-The generated bundle will be written to `dist/secretmanager.min.js`. Use it from your HTML file:
+The generated bundle will be written to `dist/firebaseml.min.js`. Use it from your HTML file:
 
 ```html
-<script src="/path/to/secretmanager.min.js"></script>
+<script src="/path/to/firebaseml.min.js"></script>
 <script>
-const { secretmanager, auth } = Secretmanager;
+const { firebaseml, auth } = Firebaseml;
 </script>
 ```
 

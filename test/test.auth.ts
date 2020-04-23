@@ -161,13 +161,13 @@ describe('OAuth2 client', () => {
       REDIRECT_URI
     );
     oauth2client.credentials = {access_token: 'foo', refresh_token: ''};
-    const scope = nock(Utils.baseUrl)
-      .get('/blogger/v3/blogs/abc123/pages')
+    const scope = nock('https://blogger.googleapis.com')
+      .get('/v3/blogs/abc123/pages')
       .times(2)
       .reply(200);
-
     await testNoBearer(localBlogger, oauth2client);
     await testNoBearer(remoteBlogger, oauth2client);
+    scope.done();
   });
 
   it('should refresh if access token is expired', async () => {

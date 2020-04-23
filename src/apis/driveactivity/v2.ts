@@ -660,7 +660,7 @@ export namespace driveactivity_v2 {
      */
     ancestorName?: string | null;
     /**
-     * Details on how to consolidate related actions that make up the activity. If not set, then related actions will not be consolidated.
+     * Details on how to consolidate related actions that make up the activity. If not set, then related actions are not consolidated.
      */
     consolidationStrategy?: Schema$ConsolidationStrategy;
     /**
@@ -672,7 +672,7 @@ export namespace driveactivity_v2 {
      */
     itemName?: string | null;
     /**
-     * The requested number of activity to return. If not set, a default value will be used.
+     * The requested number of activities to return. If not set, a default value is used.
      */
     pageSize?: number | null;
     /**

@@ -122,13 +122,13 @@ export namespace customsearch_v1 {
    */
   export interface Schema$Promotion {
     /**
-     * An array of block objects for this promotion. See Google WebSearch Protocol reference for more information.
+     * An array of block objects for this promotion. See [Google WebSearch Protocol reference](https://developers.google.com/custom-search/docs/xml_results) for more information.
      */
     bodyLines?: Array<{
-      title?: string;
-      htmlTitle?: string;
       url?: string;
       link?: string;
+      title?: string;
+      htmlTitle?: string;
     }> | null;
     /**
      * An abridged version of this search&#39;s result URL, e.g. www.example.com.
@@ -196,11 +196,11 @@ export namespace customsearch_v1 {
       thumbnailHeight?: number;
     } | null;
     /**
-     * A unique identifier for the type of current object. For this API, it is customsearch#result.
+     * A unique identifier for the type of current object. For this API, it is `customsearch#result.`
      */
     kind?: string | null;
     /**
-     * Encapsulates all information about refinement labels.
+     * Encapsulates all information about [refinement labels](https://developers.google.com/custom-search/docs/xml_results).
      */
     labels?: Array<{
       name?: string;
@@ -216,7 +216,7 @@ export namespace customsearch_v1 {
      */
     mime?: string | null;
     /**
-     * Contains PageMap information for this search result.
+     * Contains [PageMap](https://developers.google.com/custom-search/docs/structured_data#pagemaps) information for this search result.
      */
     pagemap?: {[key: string]: any} | null;
     /**
@@ -233,7 +233,7 @@ export namespace customsearch_v1 {
    */
   export interface Schema$Search {
     /**
-     * Metadata and refinements associated with the given search engine.
+     * Metadata and refinements associated with the given search engine, including:  * The name of the search engine that was used for the query.  *   A set of [facet objects](https://developers.google.com/custom-search/docs/refinements#create) (refinements) you can use for refining a search.
      */
     context?: {[key: string]: any} | null;
     /**
@@ -245,39 +245,54 @@ export namespace customsearch_v1 {
      */
     kind?: string | null;
     /**
-     * The set of promotions. Present only if the custom search engine&#39;s configuration files define any promotions for the given query.
+     * The set of [promotions](https://developers.google.com/custom-search/docs/promotions). Present only if the custom search engine&#39;s configuration files define any promotions for the given query.
      */
     promotions?: Schema$Promotion[];
     /**
      * Query metadata for the previous, current, and next pages of results.
      */
     queries?: {
-      request?: Array<{
+      previousPage?: Array<{
+        cx?: string;
+        lowRange?: string;
+        inputEncoding?: string;
+        imgDominantColor?: string;
+        imgColorType?: string;
+        safe?: string;
+        language?: string;
+        siteSearchFilter?: string;
+        outputEncoding?: string;
+        sort?: string;
+        linkSite?: string;
+        searchTerms?: string;
+        hq?: string;
+        fileType?: string;
+        searchType?: string;
+        googleHost?: string;
         relatedSite?: string;
         siteSearch?: string;
         excludeTerms?: string;
         exactTerms?: string;
-        imgType?: string;
         totalResults?: string;
+        imgType?: string;
         filter?: string;
         startIndex?: number;
         highRange?: string;
-        hl?: string;
         gl?: string;
-        cr?: string;
-        startPage?: number;
+        hl?: string;
         imgSize?: string;
+        startPage?: number;
+        cr?: string;
         disableCnTwTranslation?: string;
         title?: string;
         orTerms?: string;
         count?: number;
         dateRestrict?: string;
         rights?: string;
-        cx?: string;
-        lowRange?: string;
-        inputEncoding?: string;
-        imgDominantColor?: string;
+      }>;
+      request?: Array<{
         imgColorType?: string;
+        imgDominantColor?: string;
         language?: string;
         safe?: string;
         siteSearchFilter?: string;
@@ -289,19 +304,31 @@ export namespace customsearch_v1 {
         searchType?: string;
         fileType?: string;
         googleHost?: string;
+        relatedSite?: string;
+        siteSearch?: string;
+        excludeTerms?: string;
+        exactTerms?: string;
+        imgType?: string;
+        totalResults?: string;
+        filter?: string;
+        startIndex?: number;
+        highRange?: string;
+        gl?: string;
+        hl?: string;
+        imgSize?: string;
+        startPage?: number;
+        cr?: string;
+        disableCnTwTranslation?: string;
+        title?: string;
+        orTerms?: string;
+        count?: number;
+        dateRestrict?: string;
+        rights?: string;
+        cx?: string;
+        lowRange?: string;
+        inputEncoding?: string;
       }>;
       nextPage?: Array<{
-        cx?: string;
-        lowRange?: string;
-        inputEncoding?: string;
-        imgDominantColor?: string;
-        imgColorType?: string;
-        safe?: string;
-        language?: string;
-        siteSearchFilter?: string;
-        outputEncoding?: string;
-        sort?: string;
-        linkSite?: string;
         searchTerms?: string;
         hq?: string;
         searchType?: string;
@@ -327,44 +354,17 @@ export namespace customsearch_v1 {
         count?: number;
         dateRestrict?: string;
         rights?: string;
-      }>;
-      previousPage?: Array<{
-        excludeTerms?: string;
-        exactTerms?: string;
-        totalResults?: string;
-        imgType?: string;
-        filter?: string;
-        startIndex?: number;
-        highRange?: string;
-        gl?: string;
-        hl?: string;
-        cr?: string;
-        startPage?: number;
-        imgSize?: string;
-        disableCnTwTranslation?: string;
-        title?: string;
-        orTerms?: string;
-        dateRestrict?: string;
-        count?: number;
-        rights?: string;
         cx?: string;
         lowRange?: string;
         inputEncoding?: string;
         imgDominantColor?: string;
         imgColorType?: string;
-        safe?: string;
         language?: string;
+        safe?: string;
         siteSearchFilter?: string;
         outputEncoding?: string;
         sort?: string;
         linkSite?: string;
-        searchTerms?: string;
-        hq?: string;
-        fileType?: string;
-        searchType?: string;
-        googleHost?: string;
-        relatedSite?: string;
-        siteSearch?: string;
       }>;
     } | null;
     /**
@@ -383,7 +383,7 @@ export namespace customsearch_v1 {
     /**
      * OpenSearch template and URL.
      */
-    url?: {type?: string; template?: string} | null;
+    url?: {template?: string; type?: string} | null;
   }
 
   export class Resource$Cse {
@@ -399,37 +399,37 @@ export namespace customsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.c2coff Turns off the translation between zh-CN and zh-TW.
-     * @param {string=} params.cr Country restrict(s).
-     * @param {string=} params.cx The custom search engine ID to scope this search query
-     * @param {string=} params.dateRestrict Specifies all search results are from a time period
-     * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain
-     * @param {string=} params.excludeTerms Identifies a word or phrase that should not appear in any documents in the search results
-     * @param {string=} params.fileType Returns images of a specified type. Some of the allowed values are: bmp, gif, png, jpg, svg, pdf, ...
-     * @param {string=} params.filter Controls turning on (1) or off (0) the duplicate content filter.
-     * @param {string=} params.gl Geolocation of end user.
-     * @param {string=} params.googlehost The local Google domain to use to perform the search.
-     * @param {string=} params.highRange Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
-     * @param {string=} params.hl Sets the user interface language.
-     * @param {string=} params.hq Appends the extra hidden query terms to the query.
-     * @param {string=} params.imgColorType Returns black and white, grayscale, transparent-background or color images: mono, gray, trans, and color.
-     * @param {string=} params.imgDominantColor Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
-     * @param {string=} params.imgSize Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
-     * @param {string=} params.imgType Returns images of a type, which can be one of: clipart, face, lineart, stock, photo, and animated.
-     * @param {string=} params.linkSite Specifies that all search results should contain a link to a particular URL
-     * @param {string=} params.lowRange Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
-     * @param {string=} params.lr The language restriction for the search results
-     * @param {integer=} params.num Number of search results to return
-     * @param {string=} params.orTerms Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms
+     * @param {string=} params.c2coff Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/xml_results#chineseSearch).  The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are:  * `1`: Disabled  * `0`: Enabled (default)
+     * @param {string=} params.cr Restricts search results to documents originating in a particular country. You may use [Boolean operators](https://developers.google.com/custom-search/docs/xml_results_appendices#booleanOperators) in the cr parameter's value.  Google Search determines the country of a document by analyzing:  * the top-level domain (TLD) of the document's URL  * the geographic location of the Web server's IP address  See the [Country Parameter Values](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCollections) page for a list of valid values for this parameter.
+     * @param {string=} params.cx The custom search engine ID to use for this request.
+     * @param {string=} params.dateRestrict Restricts results to URLs based on date. Supported values include:  * `d[number]`: requests results from the specified number of past days.  * `w[number]`: requests results from the specified number of past weeks.  * `m[number]`: requests results from the specified number of past months.  * `y[number]`: requests results from the specified number of past years.
+     * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain.
+     * @param {string=} params.excludeTerms Identifies a word or phrase that should not appear in any documents in the search results.
+     * @param {string=} params.fileType Restricts results to files of a specified extension. A list of file types indexable by Google can be found in Search Console [Help Center](https://support.google.com/webmasters/answer/35287).
+     * @param {string=} params.filter Controls turning on or off the duplicate content filter.  * See [Automatic Filtering](https://developers.google.com/custom-search/docs/xml_results#automaticFiltering) for more information about Google's search results filters. Note that host crowding filtering applies only to multi-site searches.  * By default, Google applies filtering to all search results to improve the quality of those results.  Acceptable values are:  * `0`: Turns off duplicate content filter.  * `1`: Turns on duplicate content filter.
+     * @param {string=} params.gl Geolocation of end user.  * The `gl` parameter value is a two-letter country code. The `gl` parameter boosts search results whose country of origin matches the parameter value. See the [Country Codes](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCodes) page for a list of valid values.  * Specifying a `gl` parameter value should lead to more relevant results. This is particularly true for international customers and, even more specifically, for customers in English- speaking countries other than the United States.
+     * @param {string=} params.googlehost **Deprecated**. Use the `gl` parameter for a similar effect.  The local Google domain (for example, google.com, google.de, or google.fr) to use to perform the search.
+     * @param {string=} params.highRange Specifies the ending value for a search range.  * Use `lowRange` and `highRange` to append an inclusive search range of `lowRange...highRange` to the query.
+     * @param {string=} params.hl Sets the user interface language.  * Explicitly setting this parameter improves the performance and the quality of your search results.  * See the [Interface Languages](https://developers.google.com/custom-search/docs/xml_results#wsInterfaceLanguages) section of [Internationalizing Queries and Results Presentation](https://developers.google.com/custom-search/docs/xml_results#wsInternationalizing) for more information, and (Supported Interface Languages)[https://developers.google.com/custom-search/docs/xml_results_appendices#interfaceLanguages] for a list of supported languages.
+     * @param {string=} params.hq Appends the specified query terms to the query, as if they were combined with a logical AND operator.
+     * @param {string=} params.imgColorType Returns black and white, grayscale, transparent, or color images. Acceptable values are:  * `"color"`  * `"gray"`  * `"mono"`: black and white  * `"trans"`: transparent background
+     * @param {string=} params.imgDominantColor Returns images of a specific dominant color. Acceptable values are:  * `"black"`  * `"blue"`  * `"brown"`  * `"gray"`  * `"green"`  * `"orange"`  * `"pink"`  * `"purple"`  * `"red"`  * `"teal"`  * `"white"`  * `"yellow"`
+     * @param {string=} params.imgSize Returns images of a specified size. Acceptable values are:  * `"huge"`  * `"icon"`  * `"large"`  * `"medium"`  * `"small"`  * `"xlarge"`  * `"xxlarge"`
+     * @param {string=} params.imgType Returns images of a type. Acceptable values are:  * `"clipart"`  * `"face"`  * `"lineart"`  * `"stock"`  * `"photo"`  * `"animated"`
+     * @param {string=} params.linkSite Specifies that all search results should contain a link to a particular URL.
+     * @param {string=} params.lowRange Specifies the starting value for a search range. Use `lowRange` and `highRange` to append an inclusive search range of `lowRange...highRange` to the query.
+     * @param {string=} params.lr Restricts the search to documents written in a particular language (e.g., `lr=lang_ja`).  Acceptable values are:  * `"lang_ar"`: Arabic  * `"lang_bg"`: Bulgarian  * `"lang_ca"`: Catalan  * `"lang_cs"`: Czech  * `"lang_da"`: Danish  * `"lang_de"`: German  * `"lang_el"`: Greek  * `"lang_en"`: English  * `"lang_es"`: Spanish  * `"lang_et"`: Estonian  * `"lang_fi"`: Finnish  * `"lang_fr"`: French  * `"lang_hr"`: Croatian  * `"lang_hu"`: Hungarian  * `"lang_id"`: Indonesian  * `"lang_is"`: Icelandic  * `"lang_it"`: Italian  * `"lang_iw"`: Hebrew  * `"lang_ja"`: Japanese  * `"lang_ko"`: Korean  * `"lang_lt"`: Lithuanian  * `"lang_lv"`: Latvian  * `"lang_nl"`: Dutch  * `"lang_no"`: Norwegian  * `"lang_pl"`: Polish  * `"lang_pt"`: Portuguese  * `"lang_ro"`: Romanian  * `"lang_ru"`: Russian  * `"lang_sk"`: Slovak  * `"lang_sl"`: Slovenian  * `"lang_sr"`: Serbian  * `"lang_sv"`: Swedish  * `"lang_tr"`: Turkish  * `"lang_zh-CN"`: Chinese (Simplified)  * `"lang_zh-TW"`: Chinese (Traditional)
+     * @param {integer=} params.num Number of search results to return.  * Valid values are integers between 1 and 10, inclusive.
+     * @param {string=} params.orTerms Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms.
      * @param {string=} params.q Query
-     * @param {string=} params.relatedSite Specifies that all search results should be pages that are related to the specified URL
-     * @param {string=} params.rights Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these. See https://wiki.creativecommons.org/wiki/CC_Search_integration for typical combinations.
-     * @param {string=} params.safe Search safety level (active, off) (high, medium are same as active)
-     * @param {string=} params.searchType Specifies the search type: image.
-     * @param {string=} params.siteSearch Specifies all search results should be pages from a given site
-     * @param {string=} params.siteSearchFilter Controls whether to include (i) or exclude (e) results from the site named in the siteSearch parameter
-     * @param {string=} params.sort The sort expression to apply to the results
-     * @param {integer=} params.start The index of the first result to return
+     * @param {string=} params.relatedSite Specifies that all search results should be pages that are related to the specified URL.
+     * @param {string=} params.rights Filters based on licensing. Supported values include: `cc_publicdomain`, `cc_attribute`, `cc_sharealike`, `cc_noncommercial`, `cc_nonderived` and combinations of these. See [typical combinations](https://wiki.creativecommons.org/wiki/CC_Search_integration).
+     * @param {string=} params.safe Search safety level. Acceptable values are:  * `"active"`: Enables SafeSearch filtering.  * `"off"`: Disables SafeSearch filtering. (default)
+     * @param {string=} params.searchType Specifies the search type: `image`. If unspecified, results are limited to webpages.  Acceptable values are:  * `"image"`: custom image search.
+     * @param {string=} params.siteSearch Specifies a given site which should always be included or excluded from results (see `siteSearchFilter` parameter, below).
+     * @param {string=} params.siteSearchFilter Controls whether to include or exclude results from the site named in the `siteSearch` parameter.  Acceptable values are:  * `"e"`: exclude  * `"i"`: include
+     * @param {string=} params.sort The sort expression to apply to the results.
+     * @param {integer=} params.start The index of the first result to return. The default number of results per page is 10, so `&start=11` would start at the top of the second page of results. **Note**: The JSON API will never return more than 100 results, even if more than 100 documents match the query, so setting the sum of `start + num` to a number greater than 100 will produce an error. Also note that the maximum value for `num` is 10.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -498,91 +498,91 @@ export namespace customsearch_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Turns off the translation between zh-CN and zh-TW.
+     * Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/xml_results#chineseSearch).  The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are:  * `1`: Disabled  * `0`: Enabled (default)
      */
     c2coff?: string;
     /**
-     * Country restrict(s).
+     * Restricts search results to documents originating in a particular country. You may use [Boolean operators](https://developers.google.com/custom-search/docs/xml_results_appendices#booleanOperators) in the cr parameter's value.  Google Search determines the country of a document by analyzing:  * the top-level domain (TLD) of the document's URL  * the geographic location of the Web server's IP address  See the [Country Parameter Values](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCollections) page for a list of valid values for this parameter.
      */
     cr?: string;
     /**
-     * The custom search engine ID to scope this search query
+     * The custom search engine ID to use for this request.
      */
     cx?: string;
     /**
-     * Specifies all search results are from a time period
+     * Restricts results to URLs based on date. Supported values include:  * `d[number]`: requests results from the specified number of past days.  * `w[number]`: requests results from the specified number of past weeks.  * `m[number]`: requests results from the specified number of past months.  * `y[number]`: requests results from the specified number of past years.
      */
     dateRestrict?: string;
     /**
-     * Identifies a phrase that all documents in the search results must contain
+     * Identifies a phrase that all documents in the search results must contain.
      */
     exactTerms?: string;
     /**
-     * Identifies a word or phrase that should not appear in any documents in the search results
+     * Identifies a word or phrase that should not appear in any documents in the search results.
      */
     excludeTerms?: string;
     /**
-     * Returns images of a specified type. Some of the allowed values are: bmp, gif, png, jpg, svg, pdf, ...
+     * Restricts results to files of a specified extension. A list of file types indexable by Google can be found in Search Console [Help Center](https://support.google.com/webmasters/answer/35287).
      */
     fileType?: string;
     /**
-     * Controls turning on (1) or off (0) the duplicate content filter.
+     * Controls turning on or off the duplicate content filter.  * See [Automatic Filtering](https://developers.google.com/custom-search/docs/xml_results#automaticFiltering) for more information about Google's search results filters. Note that host crowding filtering applies only to multi-site searches.  * By default, Google applies filtering to all search results to improve the quality of those results.  Acceptable values are:  * `0`: Turns off duplicate content filter.  * `1`: Turns on duplicate content filter.
      */
     filter?: string;
     /**
-     * Geolocation of end user.
+     * Geolocation of end user.  * The `gl` parameter value is a two-letter country code. The `gl` parameter boosts search results whose country of origin matches the parameter value. See the [Country Codes](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCodes) page for a list of valid values.  * Specifying a `gl` parameter value should lead to more relevant results. This is particularly true for international customers and, even more specifically, for customers in English- speaking countries other than the United States.
      */
     gl?: string;
     /**
-     * The local Google domain to use to perform the search.
+     * **Deprecated**. Use the `gl` parameter for a similar effect.  The local Google domain (for example, google.com, google.de, or google.fr) to use to perform the search.
      */
     googlehost?: string;
     /**
-     * Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
+     * Specifies the ending value for a search range.  * Use `lowRange` and `highRange` to append an inclusive search range of `lowRange...highRange` to the query.
      */
     highRange?: string;
     /**
-     * Sets the user interface language.
+     * Sets the user interface language.  * Explicitly setting this parameter improves the performance and the quality of your search results.  * See the [Interface Languages](https://developers.google.com/custom-search/docs/xml_results#wsInterfaceLanguages) section of [Internationalizing Queries and Results Presentation](https://developers.google.com/custom-search/docs/xml_results#wsInternationalizing) for more information, and (Supported Interface Languages)[https://developers.google.com/custom-search/docs/xml_results_appendices#interfaceLanguages] for a list of supported languages.
      */
     hl?: string;
     /**
-     * Appends the extra hidden query terms to the query.
+     * Appends the specified query terms to the query, as if they were combined with a logical AND operator.
      */
     hq?: string;
     /**
-     * Returns black and white, grayscale, transparent-background or color images: mono, gray, trans, and color.
+     * Returns black and white, grayscale, transparent, or color images. Acceptable values are:  * `"color"`  * `"gray"`  * `"mono"`: black and white  * `"trans"`: transparent background
      */
     imgColorType?: string;
     /**
-     * Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
+     * Returns images of a specific dominant color. Acceptable values are:  * `"black"`  * `"blue"`  * `"brown"`  * `"gray"`  * `"green"`  * `"orange"`  * `"pink"`  * `"purple"`  * `"red"`  * `"teal"`  * `"white"`  * `"yellow"`
      */
     imgDominantColor?: string;
     /**
-     * Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
+     * Returns images of a specified size. Acceptable values are:  * `"huge"`  * `"icon"`  * `"large"`  * `"medium"`  * `"small"`  * `"xlarge"`  * `"xxlarge"`
      */
     imgSize?: string;
     /**
-     * Returns images of a type, which can be one of: clipart, face, lineart, stock, photo, and animated.
+     * Returns images of a type. Acceptable values are:  * `"clipart"`  * `"face"`  * `"lineart"`  * `"stock"`  * `"photo"`  * `"animated"`
      */
     imgType?: string;
     /**
-     * Specifies that all search results should contain a link to a particular URL
+     * Specifies that all search results should contain a link to a particular URL.
      */
     linkSite?: string;
     /**
-     * Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
+     * Specifies the starting value for a search range. Use `lowRange` and `highRange` to append an inclusive search range of `lowRange...highRange` to the query.
      */
     lowRange?: string;
     /**
-     * The language restriction for the search results
+     * Restricts the search to documents written in a particular language (e.g., `lr=lang_ja`).  Acceptable values are:  * `"lang_ar"`: Arabic  * `"lang_bg"`: Bulgarian  * `"lang_ca"`: Catalan  * `"lang_cs"`: Czech  * `"lang_da"`: Danish  * `"lang_de"`: German  * `"lang_el"`: Greek  * `"lang_en"`: English  * `"lang_es"`: Spanish  * `"lang_et"`: Estonian  * `"lang_fi"`: Finnish  * `"lang_fr"`: French  * `"lang_hr"`: Croatian  * `"lang_hu"`: Hungarian  * `"lang_id"`: Indonesian  * `"lang_is"`: Icelandic  * `"lang_it"`: Italian  * `"lang_iw"`: Hebrew  * `"lang_ja"`: Japanese  * `"lang_ko"`: Korean  * `"lang_lt"`: Lithuanian  * `"lang_lv"`: Latvian  * `"lang_nl"`: Dutch  * `"lang_no"`: Norwegian  * `"lang_pl"`: Polish  * `"lang_pt"`: Portuguese  * `"lang_ro"`: Romanian  * `"lang_ru"`: Russian  * `"lang_sk"`: Slovak  * `"lang_sl"`: Slovenian  * `"lang_sr"`: Serbian  * `"lang_sv"`: Swedish  * `"lang_tr"`: Turkish  * `"lang_zh-CN"`: Chinese (Simplified)  * `"lang_zh-TW"`: Chinese (Traditional)
      */
     lr?: string;
     /**
-     * Number of search results to return
+     * Number of search results to return.  * Valid values are integers between 1 and 10, inclusive.
      */
     num?: number;
     /**
-     * Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms
+     * Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms.
      */
     orTerms?: string;
     /**
@@ -590,35 +590,35 @@ export namespace customsearch_v1 {
      */
     q?: string;
     /**
-     * Specifies that all search results should be pages that are related to the specified URL
+     * Specifies that all search results should be pages that are related to the specified URL.
      */
     relatedSite?: string;
     /**
-     * Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these. See https://wiki.creativecommons.org/wiki/CC_Search_integration for typical combinations.
+     * Filters based on licensing. Supported values include: `cc_publicdomain`, `cc_attribute`, `cc_sharealike`, `cc_noncommercial`, `cc_nonderived` and combinations of these. See [typical combinations](https://wiki.creativecommons.org/wiki/CC_Search_integration).
      */
     rights?: string;
     /**
-     * Search safety level (active, off) (high, medium are same as active)
+     * Search safety level. Acceptable values are:  * `"active"`: Enables SafeSearch filtering.  * `"off"`: Disables SafeSearch filtering. (default)
      */
     safe?: string;
     /**
-     * Specifies the search type: image.
+     * Specifies the search type: `image`. If unspecified, results are limited to webpages.  Acceptable values are:  * `"image"`: custom image search.
      */
     searchType?: string;
     /**
-     * Specifies all search results should be pages from a given site
+     * Specifies a given site which should always be included or excluded from results (see `siteSearchFilter` parameter, below).
      */
     siteSearch?: string;
     /**
-     * Controls whether to include (i) or exclude (e) results from the site named in the siteSearch parameter
+     * Controls whether to include or exclude results from the site named in the `siteSearch` parameter.  Acceptable values are:  * `"e"`: exclude  * `"i"`: include
      */
     siteSearchFilter?: string;
     /**
-     * The sort expression to apply to the results
+     * The sort expression to apply to the results.
      */
     sort?: string;
     /**
-     * The index of the first result to return
+     * The index of the first result to return. The default number of results per page is 10, so `&start=11` would start at the top of the second page of results. **Note**: The JSON API will never return more than 100 results, even if more than 100 documents match the query, so setting the sum of `start + num` to a number greater than 100 will produce an error. Also note that the maximum value for `num` is 10.
      */
     start?: number;
   }
@@ -636,37 +636,37 @@ export namespace customsearch_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.c2coff Turns off the translation between zh-CN and zh-TW.
-     * @param {string=} params.cr Country restrict(s).
-     * @param {string=} params.cx The custom search engine ID to scope this search query
-     * @param {string=} params.dateRestrict Specifies all search results are from a time period
-     * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain
-     * @param {string=} params.excludeTerms Identifies a word or phrase that should not appear in any documents in the search results
-     * @param {string=} params.fileType Returns images of a specified type. Some of the allowed values are: bmp, gif, png, jpg, svg, pdf, ...
-     * @param {string=} params.filter Controls turning on (1) or off (0) the duplicate content filter.
-     * @param {string=} params.gl Geolocation of end user.
-     * @param {string=} params.googlehost The local Google domain to use to perform the search.
-     * @param {string=} params.highRange Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
-     * @param {string=} params.hl Sets the user interface language.
-     * @param {string=} params.hq Appends the extra hidden query terms to the query.
-     * @param {string=} params.imgColorType Returns black and white, grayscale, transparent-background or color images: mono, gray, trans, and color.
-     * @param {string=} params.imgDominantColor Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
-     * @param {string=} params.imgSize Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
-     * @param {string=} params.imgType Returns images of a type, which can be one of: clipart, face, lineart, stock, photo, and animated.
-     * @param {string=} params.linkSite Specifies that all search results should contain a link to a particular URL
-     * @param {string=} params.lowRange Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
-     * @param {string=} params.lr The language restriction for the search results
-     * @param {integer=} params.num Number of search results to return
-     * @param {string=} params.orTerms Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms
+     * @param {string=} params.c2coff Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/xml_results#chineseSearch).  The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are:  * `1`: Disabled  * `0`: Enabled (default)
+     * @param {string=} params.cr Restricts search results to documents originating in a particular country. You may use [Boolean operators](https://developers.google.com/custom-search/docs/xml_results_appendices#booleanOperators) in the cr parameter's value.  Google Search determines the country of a document by analyzing:  * the top-level domain (TLD) of the document's URL  * the geographic location of the Web server's IP address  See the [Country Parameter Values](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCollections) page for a list of valid values for this parameter.
+     * @param {string=} params.cx The custom search engine ID to use for this request.
+     * @param {string=} params.dateRestrict Restricts results to URLs based on date. Supported values include:  * `d[number]`: requests results from the specified number of past days.  * `w[number]`: requests results from the specified number of past weeks.  * `m[number]`: requests results from the specified number of past months.  * `y[number]`: requests results from the specified number of past years.
+     * @param {string=} params.exactTerms Identifies a phrase that all documents in the search results must contain.
+     * @param {string=} params.excludeTerms Identifies a word or phrase that should not appear in any documents in the search results.
+     * @param {string=} params.fileType Restricts results to files of a specified extension. A list of file types indexable by Google can be found in Search Console [Help Center](https://support.google.com/webmasters/answer/35287).
+     * @param {string=} params.filter Controls turning on or off the duplicate content filter.  * See [Automatic Filtering](https://developers.google.com/custom-search/docs/xml_results#automaticFiltering) for more information about Google's search results filters. Note that host crowding filtering applies only to multi-site searches.  * By default, Google applies filtering to all search results to improve the quality of those results.  Acceptable values are:  * `0`: Turns off duplicate content filter.  * `1`: Turns on duplicate content filter.
+     * @param {string=} params.gl Geolocation of end user.  * The `gl` parameter value is a two-letter country code. The `gl` parameter boosts search results whose country of origin matches the parameter value. See the [Country Codes](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCodes) page for a list of valid values.  * Specifying a `gl` parameter value should lead to more relevant results. This is particularly true for international customers and, even more specifically, for customers in English- speaking countries other than the United States.
+     * @param {string=} params.googlehost **Deprecated**. Use the `gl` parameter for a similar effect.  The local Google domain (for example, google.com, google.de, or google.fr) to use to perform the search.
+     * @param {string=} params.highRange Specifies the ending value for a search range.  * Use `lowRange` and `highRange` to append an inclusive search range of `lowRange...highRange` to the query.
+     * @param {string=} params.hl Sets the user interface language.  * Explicitly setting this parameter improves the performance and the quality of your search results.  * See the [Interface Languages](https://developers.google.com/custom-search/docs/xml_results#wsInterfaceLanguages) section of [Internationalizing Queries and Results Presentation](https://developers.google.com/custom-search/docs/xml_results#wsInternationalizing) for more information, and (Supported Interface Languages)[https://developers.google.com/custom-search/docs/xml_results_appendices#interfaceLanguages] for a list of supported languages.
+     * @param {string=} params.hq Appends the specified query terms to the query, as if they were combined with a logical AND operator.
+     * @param {string=} params.imgColorType Returns black and white, grayscale, transparent, or color images. Acceptable values are:  * `"color"`  * `"gray"`  * `"mono"`: black and white  * `"trans"`: transparent background
+     * @param {string=} params.imgDominantColor Returns images of a specific dominant color. Acceptable values are:  * `"black"`  * `"blue"`  * `"brown"`  * `"gray"`  * `"green"`  * `"orange"`  * `"pink"`  * `"purple"`  * `"red"`  * `"teal"`  * `"white"`  * `"yellow"`
+     * @param {string=} params.imgSize Returns images of a specified size. Acceptable values are:  * `"huge"`  * `"icon"`  * `"large"`  * `"medium"`  * `"small"`  * `"xlarge"`  * `"xxlarge"`
+     * @param {string=} params.imgType Returns images of a type. Acceptable values are:  * `"clipart"`  * `"face"`  * `"lineart"`  * `"stock"`  * `"photo"`  * `"animated"`
+     * @param {string=} params.linkSite Specifies that all search results should contain a link to a particular URL.
+     * @param {string=} params.lowRange Specifies the starting value for a search range. Use `lowRange` and `highRange` to append an inclusive search range of `lowRange...highRange` to the query.
+     * @param {string=} params.lr Restricts the search to documents written in a particular language (e.g., `lr=lang_ja`).  Acceptable values are:  * `"lang_ar"`: Arabic  * `"lang_bg"`: Bulgarian  * `"lang_ca"`: Catalan  * `"lang_cs"`: Czech  * `"lang_da"`: Danish  * `"lang_de"`: German  * `"lang_el"`: Greek  * `"lang_en"`: English  * `"lang_es"`: Spanish  * `"lang_et"`: Estonian  * `"lang_fi"`: Finnish  * `"lang_fr"`: French  * `"lang_hr"`: Croatian  * `"lang_hu"`: Hungarian  * `"lang_id"`: Indonesian  * `"lang_is"`: Icelandic  * `"lang_it"`: Italian  * `"lang_iw"`: Hebrew  * `"lang_ja"`: Japanese  * `"lang_ko"`: Korean  * `"lang_lt"`: Lithuanian  * `"lang_lv"`: Latvian  * `"lang_nl"`: Dutch  * `"lang_no"`: Norwegian  * `"lang_pl"`: Polish  * `"lang_pt"`: Portuguese  * `"lang_ro"`: Romanian  * `"lang_ru"`: Russian  * `"lang_sk"`: Slovak  * `"lang_sl"`: Slovenian  * `"lang_sr"`: Serbian  * `"lang_sv"`: Swedish  * `"lang_tr"`: Turkish  * `"lang_zh-CN"`: Chinese (Simplified)  * `"lang_zh-TW"`: Chinese (Traditional)
+     * @param {integer=} params.num Number of search results to return.  * Valid values are integers between 1 and 10, inclusive.
+     * @param {string=} params.orTerms Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms.
      * @param {string=} params.q Query
-     * @param {string=} params.relatedSite Specifies that all search results should be pages that are related to the specified URL
-     * @param {string=} params.rights Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these. See https://wiki.creativecommons.org/wiki/CC_Search_integration for typical combinations.
-     * @param {string=} params.safe Search safety level (active, off) (high, medium are same as active)
-     * @param {string=} params.searchType Specifies the search type: image.
-     * @param {string=} params.siteSearch Specifies all search results should be pages from a given site
-     * @param {string=} params.siteSearchFilter Controls whether to include (i) or exclude (e) results from the site named in the siteSearch parameter
-     * @param {string=} params.sort The sort expression to apply to the results
-     * @param {integer=} params.start The index of the first result to return
+     * @param {string=} params.relatedSite Specifies that all search results should be pages that are related to the specified URL.
+     * @param {string=} params.rights Filters based on licensing. Supported values include: `cc_publicdomain`, `cc_attribute`, `cc_sharealike`, `cc_noncommercial`, `cc_nonderived` and combinations of these. See [typical combinations](https://wiki.creativecommons.org/wiki/CC_Search_integration).
+     * @param {string=} params.safe Search safety level. Acceptable values are:  * `"active"`: Enables SafeSearch filtering.  * `"off"`: Disables SafeSearch filtering. (default)
+     * @param {string=} params.searchType Specifies the search type: `image`. If unspecified, results are limited to webpages.  Acceptable values are:  * `"image"`: custom image search.
+     * @param {string=} params.siteSearch Specifies a given site which should always be included or excluded from results (see `siteSearchFilter` parameter, below).
+     * @param {string=} params.siteSearchFilter Controls whether to include or exclude results from the site named in the `siteSearch` parameter.  Acceptable values are:  * `"e"`: exclude  * `"i"`: include
+     * @param {string=} params.sort The sort expression to apply to the results.
+     * @param {integer=} params.start The index of the first result to return. The default number of results per page is 10, so `&start=11` would start at the top of the second page of results. **Note**: The JSON API will never return more than 100 results, even if more than 100 documents match the query, so setting the sum of `start + num` to a number greater than 100 will produce an error. Also note that the maximum value for `num` is 10.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -740,91 +740,91 @@ export namespace customsearch_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Turns off the translation between zh-CN and zh-TW.
+     * Enables or disables [Simplified and Traditional Chinese Search](https://developers.google.com/custom-search/docs/xml_results#chineseSearch).  The default value for this parameter is 0 (zero), meaning that the feature is enabled. Supported values are:  * `1`: Disabled  * `0`: Enabled (default)
      */
     c2coff?: string;
     /**
-     * Country restrict(s).
+     * Restricts search results to documents originating in a particular country. You may use [Boolean operators](https://developers.google.com/custom-search/docs/xml_results_appendices#booleanOperators) in the cr parameter's value.  Google Search determines the country of a document by analyzing:  * the top-level domain (TLD) of the document's URL  * the geographic location of the Web server's IP address  See the [Country Parameter Values](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCollections) page for a list of valid values for this parameter.
      */
     cr?: string;
     /**
-     * The custom search engine ID to scope this search query
+     * The custom search engine ID to use for this request.
      */
     cx?: string;
     /**
-     * Specifies all search results are from a time period
+     * Restricts results to URLs based on date. Supported values include:  * `d[number]`: requests results from the specified number of past days.  * `w[number]`: requests results from the specified number of past weeks.  * `m[number]`: requests results from the specified number of past months.  * `y[number]`: requests results from the specified number of past years.
      */
     dateRestrict?: string;
     /**
-     * Identifies a phrase that all documents in the search results must contain
+     * Identifies a phrase that all documents in the search results must contain.
      */
     exactTerms?: string;
     /**
-     * Identifies a word or phrase that should not appear in any documents in the search results
+     * Identifies a word or phrase that should not appear in any documents in the search results.
      */
     excludeTerms?: string;
     /**
-     * Returns images of a specified type. Some of the allowed values are: bmp, gif, png, jpg, svg, pdf, ...
+     * Restricts results to files of a specified extension. A list of file types indexable by Google can be found in Search Console [Help Center](https://support.google.com/webmasters/answer/35287).
      */
     fileType?: string;
     /**
-     * Controls turning on (1) or off (0) the duplicate content filter.
+     * Controls turning on or off the duplicate content filter.  * See [Automatic Filtering](https://developers.google.com/custom-search/docs/xml_results#automaticFiltering) for more information about Google's search results filters. Note that host crowding filtering applies only to multi-site searches.  * By default, Google applies filtering to all search results to improve the quality of those results.  Acceptable values are:  * `0`: Turns off duplicate content filter.  * `1`: Turns on duplicate content filter.
      */
     filter?: string;
     /**
-     * Geolocation of end user.
+     * Geolocation of end user.  * The `gl` parameter value is a two-letter country code. The `gl` parameter boosts search results whose country of origin matches the parameter value. See the [Country Codes](https://developers.google.com/custom-search/docs/xml_results_appendices#countryCodes) page for a list of valid values.  * Specifying a `gl` parameter value should lead to more relevant results. This is particularly true for international customers and, even more specifically, for customers in English- speaking countries other than the United States.
      */
     gl?: string;
     /**
-     * The local Google domain to use to perform the search.
+     * **Deprecated**. Use the `gl` parameter for a similar effect.  The local Google domain (for example, google.com, google.de, or google.fr) to use to perform the search.
      */
     googlehost?: string;
     /**
-     * Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
+     * Specifies the ending value for a search range.  * Use `lowRange` and `highRange` to append an inclusive search range of `lowRange...highRange` to the query.
      */
     highRange?: string;
     /**
-     * Sets the user interface language.
+     * Sets the user interface language.  * Explicitly setting this parameter improves the performance and the quality of your search results.  * See the [Interface Languages](https://developers.google.com/custom-search/docs/xml_results#wsInterfaceLanguages) section of [Internationalizing Queries and Results Presentation](https://developers.google.com/custom-search/docs/xml_results#wsInternationalizing) for more information, and (Supported Interface Languages)[https://developers.google.com/custom-search/docs/xml_results_appendices#interfaceLanguages] for a list of supported languages.
      */
     hl?: string;
     /**
-     * Appends the extra hidden query terms to the query.
+     * Appends the specified query terms to the query, as if they were combined with a logical AND operator.
      */
     hq?: string;
     /**
-     * Returns black and white, grayscale, transparent-background or color images: mono, gray, trans, and color.
+     * Returns black and white, grayscale, transparent, or color images. Acceptable values are:  * `"color"`  * `"gray"`  * `"mono"`: black and white  * `"trans"`: transparent background
      */
     imgColorType?: string;
     /**
-     * Returns images of a specific dominant color: red, orange, yellow, green, teal, blue, purple, pink, white, gray, black and brown.
+     * Returns images of a specific dominant color. Acceptable values are:  * `"black"`  * `"blue"`  * `"brown"`  * `"gray"`  * `"green"`  * `"orange"`  * `"pink"`  * `"purple"`  * `"red"`  * `"teal"`  * `"white"`  * `"yellow"`
      */
     imgDominantColor?: string;
     /**
-     * Returns images of a specified size, where size can be one of: icon, small, medium, large, xlarge, xxlarge, and huge.
+     * Returns images of a specified size. Acceptable values are:  * `"huge"`  * `"icon"`  * `"large"`  * `"medium"`  * `"small"`  * `"xlarge"`  * `"xxlarge"`
      */
     imgSize?: string;
     /**
-     * Returns images of a type, which can be one of: clipart, face, lineart, stock, photo, and animated.
+     * Returns images of a type. Acceptable values are:  * `"clipart"`  * `"face"`  * `"lineart"`  * `"stock"`  * `"photo"`  * `"animated"`
      */
     imgType?: string;
     /**
-     * Specifies that all search results should contain a link to a particular URL
+     * Specifies that all search results should contain a link to a particular URL.
      */
     linkSite?: string;
     /**
-     * Creates a range in form as_nlo value..as_nhi value and attempts to append it to query
+     * Specifies the starting value for a search range. Use `lowRange` and `highRange` to append an inclusive search range of `lowRange...highRange` to the query.
      */
     lowRange?: string;
     /**
-     * The language restriction for the search results
+     * Restricts the search to documents written in a particular language (e.g., `lr=lang_ja`).  Acceptable values are:  * `"lang_ar"`: Arabic  * `"lang_bg"`: Bulgarian  * `"lang_ca"`: Catalan  * `"lang_cs"`: Czech  * `"lang_da"`: Danish  * `"lang_de"`: German  * `"lang_el"`: Greek  * `"lang_en"`: English  * `"lang_es"`: Spanish  * `"lang_et"`: Estonian  * `"lang_fi"`: Finnish  * `"lang_fr"`: French  * `"lang_hr"`: Croatian  * `"lang_hu"`: Hungarian  * `"lang_id"`: Indonesian  * `"lang_is"`: Icelandic  * `"lang_it"`: Italian  * `"lang_iw"`: Hebrew  * `"lang_ja"`: Japanese  * `"lang_ko"`: Korean  * `"lang_lt"`: Lithuanian  * `"lang_lv"`: Latvian  * `"lang_nl"`: Dutch  * `"lang_no"`: Norwegian  * `"lang_pl"`: Polish  * `"lang_pt"`: Portuguese  * `"lang_ro"`: Romanian  * `"lang_ru"`: Russian  * `"lang_sk"`: Slovak  * `"lang_sl"`: Slovenian  * `"lang_sr"`: Serbian  * `"lang_sv"`: Swedish  * `"lang_tr"`: Turkish  * `"lang_zh-CN"`: Chinese (Simplified)  * `"lang_zh-TW"`: Chinese (Traditional)
      */
     lr?: string;
     /**
-     * Number of search results to return
+     * Number of search results to return.  * Valid values are integers between 1 and 10, inclusive.
      */
     num?: number;
     /**
-     * Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms
+     * Provides additional search terms to check for in a document, where each document in the search results must contain at least one of the additional search terms.
      */
     orTerms?: string;
     /**
@@ -832,35 +832,35 @@ export namespace customsearch_v1 {
      */
     q?: string;
     /**
-     * Specifies that all search results should be pages that are related to the specified URL
+     * Specifies that all search results should be pages that are related to the specified URL.
      */
     relatedSite?: string;
     /**
-     * Filters based on licensing. Supported values include: cc_publicdomain, cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and combinations of these. See https://wiki.creativecommons.org/wiki/CC_Search_integration for typical combinations.
+     * Filters based on licensing. Supported values include: `cc_publicdomain`, `cc_attribute`, `cc_sharealike`, `cc_noncommercial`, `cc_nonderived` and combinations of these. See [typical combinations](https://wiki.creativecommons.org/wiki/CC_Search_integration).
      */
     rights?: string;
     /**
-     * Search safety level (active, off) (high, medium are same as active)
+     * Search safety level. Acceptable values are:  * `"active"`: Enables SafeSearch filtering.  * `"off"`: Disables SafeSearch filtering. (default)
      */
     safe?: string;
     /**
-     * Specifies the search type: image.
+     * Specifies the search type: `image`. If unspecified, results are limited to webpages.  Acceptable values are:  * `"image"`: custom image search.
      */
     searchType?: string;
     /**
-     * Specifies all search results should be pages from a given site
+     * Specifies a given site which should always be included or excluded from results (see `siteSearchFilter` parameter, below).
      */
     siteSearch?: string;
     /**
-     * Controls whether to include (i) or exclude (e) results from the site named in the siteSearch parameter
+     * Controls whether to include or exclude results from the site named in the `siteSearch` parameter.  Acceptable values are:  * `"e"`: exclude  * `"i"`: include
      */
     siteSearchFilter?: string;
     /**
-     * The sort expression to apply to the results
+     * The sort expression to apply to the results.
      */
     sort?: string;
     /**
-     * The index of the first result to return
+     * The index of the first result to return. The default number of results per page is 10, so `&start=11` would start at the top of the second page of results. **Note**: The JSON API will never return more than 100 results, even if more than 100 documents match the query, so setting the sum of `start + num` to a number greater than 100 will produce an error. Also note that the maximum value for `num` is 10.
      */
     start?: number;
   }

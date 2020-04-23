@@ -379,7 +379,7 @@ export namespace calendar_v3 {
      */
     conferenceId?: string | null;
     /**
-     * The conference solution, such as Hangouts or Hangouts Meet. Unset for a conference with a failed create request. Either conferenceSolution and at least one entryPoint, or createRequest is required.
+     * The conference solution, such as Hangouts or Google Meet. Unset for a conference with a failed create request. Either conferenceSolution and at least one entryPoint, or createRequest is required.
      */
     conferenceSolution?: Schema$ConferenceSolution;
     /**
@@ -446,7 +446,7 @@ export namespace calendar_v3 {
   }
   export interface Schema$CreateConferenceRequest {
     /**
-     * The conference solution, such as Hangouts or Hangouts Meet.
+     * The conference solution, such as Hangouts or Google Meet.
      */
     conferenceSolutionKey?: Schema$ConferenceSolutionKey;
     /**
@@ -532,7 +532,7 @@ export namespace calendar_v3 {
      */
     colorId?: string | null;
     /**
-     * The conference-related information, such as details of a Hangouts Meet conference. To create new conference details use the createRequest field. To persist your changes, remember to set the conferenceDataVersion request parameter to 1 for all event modification requests.
+     * The conference-related information, such as details of a Google Meet conference. To create new conference details use the createRequest field. To persist your changes, remember to set the conferenceDataVersion request parameter to 1 for all event modification requests.
      */
     conferenceData?: Schema$ConferenceData;
     /**

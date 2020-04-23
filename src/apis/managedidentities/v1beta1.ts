@@ -1747,7 +1747,7 @@ export namespace managedidentities_v1beta1 {
 
     /**
      * managedidentities.projects.locations.global.domains.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.  Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @alias managedidentities.projects.locations.global.domains.setIamPolicy
      * @memberOf! ()
      *
@@ -1821,7 +1821,7 @@ export namespace managedidentities_v1beta1 {
 
     /**
      * managedidentities.projects.locations.global.domains.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @alias managedidentities.projects.locations.global.domains.testIamPermissions
      * @memberOf! ()
      *

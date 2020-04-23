@@ -146,6 +146,18 @@ export namespace containeranalysis_v1beta1 {
     names?: string[] | null;
   }
   /**
+   * Defines a hash object for use in Materials and Products.
+   */
+  export interface Schema$ArtifactHashes {
+    sha256?: string | null;
+  }
+  /**
+   * Defines an object to declare an in-toto artifact rule
+   */
+  export interface Schema$ArtifactRule {
+    artifactRule?: string[] | null;
+  }
+  /**
    * Occurrence that represents a single &quot;attestation&quot;. The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for look-up (how to find this attestation if you already know the authority and artifact to be verified) and intent (which authority was this attestation intended to sign for).
    */
   export interface Schema$Attestation {
@@ -320,6 +332,12 @@ export namespace containeranalysis_v1beta1 {
      * Required. Signature of the related `BuildProvenance`. In JSON, this is base-64 encoded.
      */
     signature?: string | null;
+  }
+  /**
+   * Defines an object for the byproducts field in in-toto links. The suggested fields are &quot;stderr&quot;, &quot;stdout&quot;, and &quot;return-value&quot;.
+   */
+  export interface Schema$ByProducts {
+    customValues?: {[key: string]: string} | null;
   }
   /**
    * A CloudRepoSourceContext denotes a particular revision in a Google Cloud Source Repo.
@@ -570,6 +588,12 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
+   * Defines an object for the environment field in in-toto links. The suggested fields are &quot;variables&quot;, &quot;filesystem&quot;, and &quot;workdir&quot;.
+   */
+  export interface Schema$Environment {
+    customValues?: {[key: string]: string} | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):      title: &quot;Summary size limit&quot;     description: &quot;Determines if a summary is less than 100 chars&quot;     expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):      title: &quot;Requestor is owner&quot;     description: &quot;Determines if requestor is the document owner&quot;     expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):      title: &quot;Public documents&quot;     description: &quot;Determine whether the document should be publicly visible&quot;     expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):      title: &quot;Notification string&quot;     description: &quot;Create a notification string with a timestamp.&quot;     expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -680,7 +704,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$GetIamPolicyRequest {
     /**
-     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`.
      */
     options?: Schema$GetPolicyOptions;
   }
@@ -758,6 +782,24 @@ export namespace containeranalysis_v1beta1 {
      * Required. Immutable. The child image derived from the base image.
      */
     derivedImage?: Schema$Derived;
+  }
+  export interface Schema$GrafeasV1beta1IntotoArtifact {
+    hashes?: Schema$ArtifactHashes;
+    resourceUri?: string | null;
+  }
+  /**
+   * This corresponds to a signed in-toto link - it is made up of one or more signatures and the in-toto link itself. This is used for occurrences of a Grafeas in-toto note.
+   */
+  export interface Schema$GrafeasV1beta1IntotoDetails {
+    signatures?: Schema$GrafeasV1beta1IntotoSignature[];
+    signed?: Schema$Link;
+  }
+  /**
+   * A signature object consists of the KeyID used and the signature itself.
+   */
+  export interface Schema$GrafeasV1beta1IntotoSignature {
+    keyid?: string | null;
+    sig?: string | null;
   }
   /**
    * Details of a package occurrence.
@@ -840,6 +882,32 @@ export namespace containeranalysis_v1beta1 {
      */
     name?: string | null;
   }
+  /**
+   * This contains the fields corresponding to the definition of a software supply chain step in an in-toto layout. This information goes into a Grafeas note.
+   */
+  export interface Schema$InToto {
+    /**
+     * This field contains the expected command used to perform the step.
+     */
+    expectedCommand?: string[] | null;
+    /**
+     * The following fields contain in-toto artifact rules identifying the artifacts that enter this supply chain step, and exit the supply chain step, i.e. materials and products of the step.
+     */
+    expectedMaterials?: Schema$ArtifactRule[];
+    expectedProducts?: Schema$ArtifactRule[];
+    /**
+     * This field contains the public keys that can be used to verify the signatures on the step metadata.
+     */
+    signingKeys?: Schema$SigningKey[];
+    /**
+     * This field identifies the name of the step in the supply chain.
+     */
+    stepName?: string | null;
+    /**
+     * This field contains a value that indicates the minimum number of keys that need to be used to sign the step&#39;s in-toto link.
+     */
+    threshold?: string | null;
+  }
   export interface Schema$KnowledgeBase {
     /**
      * The KB name (generally of the form KB[0-9]+ i.e. KB123456).
@@ -862,6 +930,31 @@ export namespace containeranalysis_v1beta1 {
      * Required. The recovered Dockerfile directive used to construct this layer.
      */
     directive?: string | null;
+  }
+  /**
+   * This corresponds to an in-toto link.
+   */
+  export interface Schema$Link {
+    /**
+     * ByProducts are data generated as part of a software supply chain step, but are not the actual result of the step.
+     */
+    byproducts?: Schema$ByProducts;
+    /**
+     * This field contains the full command executed for the step. This can also be empty if links are generated for operations that aren&#39;t directly mapped to a specific command. Each term in the command is an independent string in the list. An example of a command in the in-toto metadata field is: &quot;command&quot;: [&quot;git&quot;, &quot;clone&quot;, &quot;https://github.com/in-toto/demo-project.git&quot;]
+     */
+    command?: string[] | null;
+    /**
+     * This is a field that can be used to capture information about the environment. It is suggested for this field to contain information that details environment variables, filesystem information, and the present working directory. The recommended structure of this field is: &quot;environment&quot;: {   &quot;custom_values&quot;: {     &quot;variables&quot;: &quot;&lt;ENV&gt;&quot;,     &quot;filesystem&quot;: &quot;&lt;FS&gt;&quot;,     &quot;workdir&quot;: &quot;&lt;CWD&gt;&quot;,     &quot;&lt;ANY OTHER RELEVANT FIELDS&gt;&quot;: &quot;...&quot;   } }
+     */
+    environment?: Schema$Environment;
+    /**
+     * Materials are the supply chain artifacts that go into the step and are used for the operation performed. The key of the map is the path of the artifact and the structure contains the recorded hash information. An example is: &quot;materials&quot;: [   {     &quot;resource_uri&quot;: &quot;foo/bar&quot;,     &quot;hashes&quot;: {       &quot;sha256&quot;: &quot;ebebf...&quot;,       &lt;OTHER HASH ALGORITHMS&gt;: &lt;HASH VALUE&gt;     }   } ]
+     */
+    materials?: Schema$GrafeasV1beta1IntotoArtifact[];
+    /**
+     * Products are the supply chain artifacts generated as a result of the step. The structure is identical to that of materials.
+     */
+    products?: Schema$GrafeasV1beta1IntotoArtifact[];
   }
   /**
    * Response for listing occurrences for a note.
@@ -965,6 +1058,10 @@ export namespace containeranalysis_v1beta1 {
      */
     expirationTime?: string | null;
     /**
+     * A note describing an in-toto link.
+     */
+    intoto?: Schema$InToto;
+    /**
      * Output only. The type of analysis. This field can be used as a filter in list requests.
      */
     kind?: string | null;
@@ -1033,6 +1130,10 @@ export namespace containeranalysis_v1beta1 {
      * Describes the installation of a package on the linked resource.
      */
     installation?: Schema$GrafeasV1beta1PackageDetails;
+    /**
+     * Describes a specific in-toto link.
+     */
+    intoto?: Schema$GrafeasV1beta1IntotoDetails;
     /**
      * Output only. This explicitly denotes which of the occurrence details are specified. This field can be used as a filter in list requests.
      */
@@ -1228,6 +1329,27 @@ export namespace containeranalysis_v1beta1 {
      * The content of the signature, an opaque bytestring. The payload that this signature verifies MUST be unambiguously provided with the Signature during verification. A wrapper message might provide the payload explicitly. Alternatively, a message might have a canonical serialization that can always be unambiguously computed to derive the payload.
      */
     signature?: string | null;
+  }
+  /**
+   * This defines the format used to record keys used in the software supply chain. An in-toto link is attested using one or more keys defined in the in-toto layout. An example of this is: {   &quot;key_id&quot;: &quot;776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b0...&quot;,   &quot;key_type&quot;: &quot;rsa&quot;,   &quot;public_key_value&quot;: &quot;-----BEGIN PUBLIC KEY-----x/MIIBojANBgkqhkiG9w0B...&quot;,   &quot;key_scheme&quot;: &quot;rsassa-pss-sha256&quot; } The format for in-toto&#39;s key definition can be found in section 4.2 of the in-toto specification.
+   */
+  export interface Schema$SigningKey {
+    /**
+     * key_id is an identifier for the signing key.
+     */
+    keyId?: string | null;
+    /**
+     * This field contains the corresponding signature scheme. Eg: &quot;rsassa-pss-sha256&quot;.
+     */
+    keyScheme?: string | null;
+    /**
+     * This field identifies the specific signing method. Eg: &quot;rsa&quot;, &quot;ed25519&quot;, and &quot;ecdsa&quot;.
+     */
+    keyType?: string | null;
+    /**
+     * This field contains the actual public key.
+     */
+    publicKeyValue?: string | null;
   }
   /**
    * Source describes the location of the source used for the build.

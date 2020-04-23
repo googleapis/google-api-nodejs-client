@@ -1224,7 +1224,7 @@ export namespace dlp_v2 {
      */
     jobName?: string | null;
     /**
-     * The labels associated with this `Finding`.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.  No more than 10 labels can be associated with a given finding.  Example: &lt;code&gt;&quot;environment&quot; : &quot;production&quot;&lt;/code&gt; Example: &lt;code&gt;&quot;pipeline&quot; : &quot;etl&quot;&lt;/code&gt;
+     * The labels associated with this `Finding`.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.  No more than 10 labels can be associated with a given finding.  Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1337,7 +1337,7 @@ export namespace dlp_v2 {
      */
     fileOffset?: string | null;
     /**
-     * Labels to represent user provided metadata about the data being inspected. If configured by the job, some key values may be required. The labels associated with `Finding`&#39;s produced by hybrid inspection.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.  No more than 10 labels can be associated with a given finding.  Example: &lt;code&gt;&quot;environment&quot; : &quot;production&quot;&lt;/code&gt; Example: &lt;code&gt;&quot;pipeline&quot; : &quot;etl&quot;&lt;/code&gt;
+     * Labels to represent user provided metadata about the data being inspected. If configured by the job, some key values may be required. The labels associated with `Finding`&#39;s produced by hybrid inspection.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.  No more than 10 labels can be associated with a given finding.  Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1397,11 +1397,11 @@ export namespace dlp_v2 {
      */
     description?: string | null;
     /**
-     * To organize findings, these labels will be added to each finding.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?.  No more than 10 labels can be associated with a given finding.  Example: &lt;code&gt;&quot;environment&quot; : &quot;production&quot;&lt;/code&gt; Example: &lt;code&gt;&quot;pipeline&quot; : &quot;etl&quot;&lt;/code&gt;
+     * To organize findings, these labels will be added to each finding.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.  No more than 10 labels can be associated with a given finding.  Examples: * `&quot;environment&quot; : &quot;production&quot;` * `&quot;pipeline&quot; : &quot;etl&quot;`
      */
     labels?: {[key: string]: string} | null;
     /**
-     * These are labels that each inspection request must include within their &#39;finding_labels&#39; map. Request may contain others, but any missing one of these will be rejected.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?.  No more than 10 keys can be required.
+     * These are labels that each inspection request must include within their &#39;finding_labels&#39; map. Request may contain others, but any missing one of these will be rejected.  Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.  No more than 10 keys can be required.
      */
     requiredFindingLabelKeys?: string[] | null;
     /**
@@ -1440,7 +1440,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InfoType {
     /**
-     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. InfoType names should conform to the pattern [a-zA-Z0-9_]{1,64}.
+     * Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type. InfoType names should conform to the pattern `[a-zA-Z0-9_]{1,64}`.
      */
     name?: string | null;
   }

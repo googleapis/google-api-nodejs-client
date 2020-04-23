@@ -384,10 +384,6 @@ export namespace monitoring_v3 {
      */
     conditionThreshold?: Schema$MetricThreshold;
     /**
-     * A condition that uses the Monitoring Query Language to define alerts. If set, no other conditions can be present.
-     */
-    conditionTimeSeriesQueryLanguage?: Schema$TimeSeriesQueryLanguageCondition;
-    /**
      * A short name or phrase used to identify the condition in dashboards, notifications, and incidents. To avoid confusion, don&#39;t use the same display name for multiple conditions in the same policy.
      */
     displayName?: string | null;
@@ -1633,19 +1629,6 @@ export namespace monitoring_v3 {
      * Descriptors for the point data value columns.
      */
     pointDescriptors?: Schema$ValueDescriptor[];
-  }
-  /**
-   * A condition type that allows alert policies to be defined using Monitoring Query Language.
-   */
-  export interface Schema$TimeSeriesQueryLanguageCondition {
-    /**
-     * Monitoring Query Language query that generates time series data and describes a condition for alerting on that data.
-     */
-    query?: string | null;
-    /**
-     * A short explanation of what the query represents. For example:&quot;Error ratio exceeds 15% for &gt;5% of servers in &gt;2 regions&quot;
-     */
-    summary?: string | null;
   }
   /**
    * A TimeSeriesRatio specifies two TimeSeries to use for computing the good_service / total_service ratio. The specified TimeSeries must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. The TimeSeriesRatio must specify exactly two of good, bad, and total, and the relationship good_service + bad_service = total_service will be assumed.

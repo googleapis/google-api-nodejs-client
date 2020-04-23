@@ -166,7 +166,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GetIamPolicyRequest {
     /**
-     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`.
      */
     options?: Schema$GetPolicyOptions;
   }
@@ -529,7 +529,7 @@ export namespace datacatalog_v1beta1 {
      */
     pageToken?: string | null;
     /**
-     * Required. The query string in search query syntax. The query must be non-empty.  Query strings can be simple as &quot;x&quot; or more qualified as:  * name:x * column:x * description:y  Note: Query tokens need to have a minimum of 3 characters for substring matching to work correctly. See [Data Catalog Search Syntax](/data-catalog/docs/how-to/search-reference) for more information.
+     * Required. The query string in search query syntax. The query must be non-empty.  Query strings can be simple as &quot;x&quot; or more qualified as:  * name:x * column:x * description:y  Note: Query tokens need to have a minimum of 3 characters for substring matching to work correctly. See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.
      */
     query?: string | null;
     /**
@@ -649,7 +649,7 @@ export namespace datacatalog_v1beta1 {
     groupedEntry?: string | null;
   }
   /**
-   * Tags are used to attach custom metadata to Data Catalog resources. Tags conform to the specifications within their tag template.  See [Data Catalog IAM](/data-catalog/docs/concepts/iam) for information on the permissions needed to create or view tags.
+   * Tags are used to attach custom metadata to Data Catalog resources. Tags conform to the specifications within their tag template.  See [Data Catalog IAM](https://cloud.google.com/data-catalog/docs/concepts/iam) for information on the permissions needed to create or view tags.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1Tag {
     /**
@@ -718,7 +718,7 @@ export namespace datacatalog_v1beta1 {
     displayName?: string | null;
   }
   /**
-   * A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to GCP resources. [Tag template roles](/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template (see, for example, the [TagTemplate User](/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources.
+   * A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to GCP resources. [Tag template roles](https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. See, for example, the [TagTemplate User](https://cloud.google.com/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1TagTemplate {
     /**
@@ -844,7 +844,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.catalog.search
-     * @desc Searches Data Catalog for multiple resources like entries, tags that match a query.  This is a custom method (https://cloud.google.com/apis/design/custom_methods) and does not return the complete resource, only the resource identifier and high level fields. Clients can subsequentally call `Get` methods.  Note that Data Catalog search queries do not guarantee full recall. Query results that match your query may not be returned, even in subsequent result pages. Also note that results returned (and not returned) can vary across repeated search queries.  See [Data Catalog Search Syntax](/data-catalog/docs/how-to/search-reference) for more information.
+     * @desc Searches Data Catalog for multiple resources like entries, tags that match a query.  This is a custom method (https://cloud.google.com/apis/design/custom_methods) and does not return the complete resource, only the resource identifier and high level fields. Clients can subsequentally call `Get` methods.  Note that Data Catalog search queries do not guarantee full recall. Query results that match your query may not be returned, even in subsequent result pages. Also note that results returned (and not returned) can vary across repeated search queries.  See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.
      * @alias datacatalog.catalog.search
      * @memberOf! ()
      *
@@ -966,7 +966,7 @@ export namespace datacatalog_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string=} params.linkedResource The full name of the Google Cloud Platform resource the Data Catalog entry represents. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Full names are case-sensitive.  Examples:   * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId  * //pubsub.googleapis.com/projects/projectId/topics/topicId
-     * @param {string=} params.sqlResource The SQL name of the entry. SQL names are case-sensitive.  Examples:    * `cloud_pubsub.project_id.topic_id`   * ``pubsub.project_id.`topic.id.with.dots` ``   * `bigquery.table.project_id.dataset_id.table_id`   * `bigquery.dataset.project_id.dataset_id`   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`  `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     * @param {string=} params.sqlResource The SQL name of the entry. SQL names are case-sensitive.  Examples:    * `pubsub.project_id.topic_id`   * ``pubsub.project_id.`topic.id.with.dots` ``   * `bigquery.table.project_id.dataset_id.table_id`   * `bigquery.dataset.project_id.dataset_id`   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`  `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1053,7 +1053,7 @@ export namespace datacatalog_v1beta1 {
      */
     linkedResource?: string;
     /**
-     * The SQL name of the entry. SQL names are case-sensitive.  Examples:    * `cloud_pubsub.project_id.topic_id`   * ``pubsub.project_id.`topic.id.with.dots` ``   * `bigquery.table.project_id.dataset_id.table_id`   * `bigquery.dataset.project_id.dataset_id`   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`  `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     * The SQL name of the entry. SQL names are case-sensitive.  Examples:    * `pubsub.project_id.topic_id`   * ``pubsub.project_id.`topic.id.with.dots` ``   * `bigquery.table.project_id.dataset_id.table_id`   * `bigquery.dataset.project_id.dataset_id`   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`  `*_id`s shoud satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
      */
     sqlResource?: string;
   }
@@ -1102,7 +1102,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.create
-     * @desc A maximum of 10,000 entry groups may be created per organization across all locations.  Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc A maximum of 10,000 entry groups may be created per organization across all locations.  Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.entryGroups.create
      * @memberOf! ()
      *
@@ -1195,7 +1195,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.delete
-     * @desc Deletes an EntryGroup. Only entry groups that do not contain entries can be deleted. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Deletes an EntryGroup. Only entry groups that do not contain entries can be deleted. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.entryGroups.delete
      * @memberOf! ()
      *
@@ -1529,7 +1529,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.patch
-     * @desc Updates an EntryGroup. The user should enable the Data Catalog API in the project identified by the `entry_group.name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Updates an EntryGroup. The user should enable the Data Catalog API in the project identified by the `entry_group.name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.entryGroups.patch
      * @memberOf! ()
      *
@@ -1931,7 +1931,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.create
-     * @desc Creates an entry. Only entries of 'FILESET' type or user-specified type can be created.  Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).  A maximum of 100,000 entries may be created per entry group.
+     * @desc Creates an entry. Only entries of 'FILESET' type or user-specified type can be created.  Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).  A maximum of 100,000 entries may be created per entry group.
      * @alias datacatalog.projects.locations.entryGroups.entries.create
      * @memberOf! ()
      *
@@ -2016,7 +2016,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.delete
-     * @desc Deletes an existing entry. Only entries created through CreateEntry method can be deleted. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Deletes an existing entry. Only entries created through CreateEntry method can be deleted. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.entryGroups.entries.delete
      * @memberOf! ()
      *
@@ -2339,7 +2339,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.patch
-     * @desc Updates an existing entry. Users should enable the Data Catalog API in the project identified by the `entry.name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Updates an existing entry. Users should enable the Data Catalog API in the project identified by the `entry.name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.entryGroups.entries.patch
      * @memberOf! ()
      *
@@ -2635,7 +2635,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.entries.tags.create
-     * @desc Creates a tag on an Entry. Note: The project identified by the `parent` parameter for the [tag](/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template](/data-catalog/docs/reference/rest/v1beta1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be from the same organization.
+     * @desc Creates a tag on an Entry. Note: The project identified by the `parent` parameter for the [tag](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be from the same organization.
      * @alias datacatalog.projects.locations.entryGroups.entries.tags.create
      * @memberOf! ()
      *
@@ -3049,7 +3049,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.entryGroups.tags.create
-     * @desc Creates a tag on an Entry. Note: The project identified by the `parent` parameter for the [tag](/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template](/data-catalog/docs/reference/rest/v1beta1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be from the same organization.
+     * @desc Creates a tag on an Entry. Note: The project identified by the `parent` parameter for the [tag](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be from the same organization.
      * @alias datacatalog.projects.locations.entryGroups.tags.create
      * @memberOf! ()
      *
@@ -3467,12 +3467,12 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.create
-     * @desc Creates a tag template. The user should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project](/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Creates a tag template. The user should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.tagTemplates.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the project and the template location [region](/compute/docs/regions-zones/#available). NOTE: Currently, only the `us-central1 region` is supported.  Example:  * projects/{project_id}/locations/us-central1
+     * @param {string} params.parent Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions.  Example:  * projects/{project_id}/locations/us-central1
      * @param {string=} params.tagTemplateId Required. The id of the tag template to create.
      * @param {().GoogleCloudDatacatalogV1beta1TagTemplate} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3560,7 +3560,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.delete
-     * @desc Deletes a tag template and all tags using the template. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Deletes a tag template and all tags using the template. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.tagTemplates.delete
      * @memberOf! ()
      *
@@ -3791,7 +3791,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.patch
-     * @desc Updates a tag template. This method cannot be used to update the fields of a template. The tag template fields are represented as separate resources and should be updated using their own create/update/delete methods. Users should enable the Data Catalog API in the project identified by the `tag_template.name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Updates a tag template. This method cannot be used to update the fields of a template. The tag template fields are represented as separate resources and should be updated using their own create/update/delete methods. Users should enable the Data Catalog API in the project identified by the `tag_template.name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.tagTemplates.patch
      * @memberOf! ()
      *
@@ -4043,7 +4043,7 @@ export namespace datacatalog_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the project and the template location [region](/compute/docs/regions-zones/#available). NOTE: Currently, only the `us-central1 region` is supported.  Example:  * projects/{project_id}/locations/us-central1
+     * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions.  Example:  * projects/{project_id}/locations/us-central1
      */
     parent?: string;
     /**
@@ -4165,12 +4165,12 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.fields.create
-     * @desc Creates a field in a tag template. The user should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project](/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Creates a field in a tag template. The user should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.tagTemplates.fields.create
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the project and the template location [region](/compute/docs/regions-zones/#available). NOTE: Currently, only the `us-central1 region` is supported.  Example:  * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
+     * @param {string} params.parent Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).  Example:  * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      * @param {string=} params.tagTemplateFieldId Required. The ID of the tag template field to create. Field ids can contain letters (both uppercase and lowercase), numbers (0-9), underscores (_) and dashes (-). Field IDs must be at least 1 character long and at most 128 characters long. Field IDs must also be unique within their template.
      * @param {().GoogleCloudDatacatalogV1beta1TagTemplateField} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4266,7 +4266,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.fields.delete
-     * @desc Deletes a field in a tag template and all uses of that field. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Deletes a field in a tag template and all uses of that field. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.tagTemplates.fields.delete
      * @memberOf! ()
      *
@@ -4336,7 +4336,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.fields.patch
-     * @desc Updates a field in a tag template. This method cannot be used to update the field type. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Updates a field in a tag template. This method cannot be used to update the field type. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.tagTemplates.fields.patch
      * @memberOf! ()
      *
@@ -4434,7 +4434,7 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * datacatalog.projects.locations.tagTemplates.fields.rename
-     * @desc Renames a field in a tag template. The user should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project](/data-catalog/docs/concepts/resource-project) for more information).
+     * @desc Renames a field in a tag template. The user should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
      * @alias datacatalog.projects.locations.tagTemplates.fields.rename
      * @memberOf! ()
      *
@@ -4541,7 +4541,7 @@ export namespace datacatalog_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The name of the project and the template location [region](/compute/docs/regions-zones/#available). NOTE: Currently, only the `us-central1 region` is supported.  Example:  * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
+     * Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).  Example:  * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      */
     parent?: string;
     /**

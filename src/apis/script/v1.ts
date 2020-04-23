@@ -217,7 +217,7 @@ export namespace script_v1 {
    */
   export interface Schema$ExecuteStreamResponse {
     /**
-     * The result of the execution. TODO (johnlattin): Add debugging and logging.
+     * The result of the execution.
      */
     result?: Schema$ScriptExecutionResult;
   }
@@ -486,7 +486,7 @@ export namespace script_v1 {
     processes?: Schema$GoogleAppsScriptTypeProcess[];
   }
   /**
-   * `ListValue` is a wrapper around a repeated field of values. Based on LustValue at: google3/apps/maestro/api/struct.proto?q=message%5c%20ListValue
+   * `ListValue` is a wrapper around a repeated field of values.
    */
   export interface Schema$ListValue {
     /**
@@ -592,11 +592,11 @@ export namespace script_v1 {
     updateTime?: string | null;
   }
   /**
-   * The result of an execution Based on ScriptExecutionResult at: google3/apps/maestro/api/frontend_execution_common.proto?q=message%5c%20ScriptExecutionResult
+   * The result of an execution.
    */
   export interface Schema$ScriptExecutionResult {
     /**
-     * The returned value of the execution. TODO (johnlattin): Add HtmlResponse TODO (johnlattin): Add ExceptionResponse TODO (johlnattin): Add TextResponse
+     * The returned value of the execution.
      */
     returnValue?: Schema$Value;
   }
@@ -631,7 +631,7 @@ export namespace script_v1 {
     message?: string | null;
   }
   /**
-   * `Struct` represents a structured data value, consisting of fields which map to dynamically typed values. Based on Struct at: google3/apps/maestro/api/struct.proto?q=message%5c%20Struct
+   * `Struct` represents a structured data value, consisting of fields which map to dynamically typed values.
    */
   export interface Schema$Struct {
     /**
@@ -649,7 +649,7 @@ export namespace script_v1 {
     deploymentConfig?: Schema$DeploymentConfig;
   }
   /**
-   * `Value` represents a dynamically typed value which is the outcome of an executed script Based on Value at: google3/apps/maestro/api/struct.proto?q=message%5c%20Value
+   * `Value` represents a dynamically typed value which is the outcome of an executed script.
    */
   export interface Schema$Value {
     /**

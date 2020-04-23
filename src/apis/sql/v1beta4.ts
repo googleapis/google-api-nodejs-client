@@ -709,9 +709,9 @@ export namespace sql_v1beta4 {
      */
     bakImportOptions?: {
       encryptionOptions?: {
-        pvkPassword?: string;
         certPath?: string;
         pvkPath?: string;
+        pvkPassword?: string;
       };
     } | null;
     /**

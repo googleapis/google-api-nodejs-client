@@ -1224,11 +1224,11 @@ export namespace slides_v1 {
      */
     locale?: string | null;
     /**
-     * The slide masters in the presentation. A slide master contains all common page elements and the common properties for a set of layouts. They serve three purposes:  - Placeholder shapes on a master contain the default text styles and shape   properties of all placeholder shapes on pages that use that master. - The master page properties define the common page properties inherited by   its layouts. - Any other shapes on the master slide will appear on all slides using that   master, regardless of their layout.
+     * The slide masters in the presentation. A slide master contains all common page elements and the common properties for a set of layouts. They serve three purposes:  - Placeholder shapes on a master contain the default text styles and shape   properties of all placeholder shapes on pages that use that master. - The master page properties define the common page properties inherited by   its layouts. - Any other shapes on the master slide appear on all slides using that   master, regardless of their layout.
      */
     masters?: Schema$Page[];
     /**
-     * The notes master in the presentation. It serves three purposes:  - Placeholder shapes on a notes master contain the default text styles and   shape properties of all placeholder shapes on notes pages. Specifically,   a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a   `BODY` placeholder shape contains the speaker notes. - The notes master page properties define the common page properties   inherited by all notes pages. - Any other shapes on the notes master will appear on all notes pages.  The notes master is read-only.
+     * The notes master in the presentation. It serves three purposes:  - Placeholder shapes on a notes master contain the default text styles and   shape properties of all placeholder shapes on notes pages. Specifically,   a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a   `BODY` placeholder shape contains the speaker notes. - The notes master page properties define the common page properties   inherited by all notes pages. - Any other shapes on the notes master appears on all notes pages.  The notes master is read-only.
      */
     notesMaster?: Schema$Page;
     /**
@@ -2943,7 +2943,7 @@ export namespace slides_v1 {
      * @param {object} params Parameters for request
      * @param {string} params.pageObjectId The object ID of the page whose thumbnail to retrieve.
      * @param {string} params.presentationId The ID of the presentation to retrieve.
-     * @param {string=} params.thumbnailProperties.mimeType The optional mime type of the thumbnail image.  If you don't specify the mime type, the default mime type will be PNG.
+     * @param {string=} params.thumbnailProperties.mimeType The optional mime type of the thumbnail image.  If you don't specify the mime type, the mime type defaults to PNG.
      * @param {string=} params.thumbnailProperties.thumbnailSize The optional thumbnail image size.  If you don't specify the size, the server chooses a default size of the image.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3044,7 +3044,7 @@ export namespace slides_v1 {
      */
     presentationId?: string;
     /**
-     * The optional mime type of the thumbnail image.  If you don't specify the mime type, the default mime type will be PNG.
+     * The optional mime type of the thumbnail image.  If you don't specify the mime type, the mime type defaults to PNG.
      */
     'thumbnailProperties.mimeType'?: string;
     /**

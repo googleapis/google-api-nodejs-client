@@ -8355,7 +8355,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.import
-     * @desc Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data.  Every resource in the input must contain a client-supplied ID, and will be stored using that ID regardless of the enable_update_create setting on the FHIR store.  The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity.  The import process does not trigger PubSub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store.  If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once.  The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store will contain exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and will count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients.  If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back.  The location and format of the input data is specified by the parameters below. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation.  This method returns an Operation that can be used to track the status of the import by calling GetOperation.  Immediate fatal errors appear in the error field, errors are also logged to Stackdriver (see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * @desc Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data.  Every resource in the input must contain a client-supplied ID, and will be stored using that ID regardless of the enable_update_create setting on the FHIR store.  The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity.  The import process does not trigger Cloud Pub/Sub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store.  If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once.  The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store will contain exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and will count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients.  If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back.  The location and format of the input data is specified by the parameters below. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation.  This method returns an Operation that can be used to track the status of the import by calling GetOperation.  Immediate fatal errors appear in the error field, errors are also logged to Stackdriver (see [Viewing logs](/healthcare/docs/how-tos/stackdriver-logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -9387,6 +9387,160 @@ export namespace healthcare_v1beta1 {
         options: Object.assign(
           {
             url: (rootUrl + '/v1beta1/{+name}/fhir/metadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.fhir.ConceptMap-search-translate
+     * @desc Translates a code from one value set to another by searching for appropriate concept maps.  Implements the FHIR standard $translate operation ([DSTU2](https://www.hl7.org/fhir/DSTU2/operation-conceptmap-translate.html), [STU3](https://www.hl7.org/fhir/STU3/operation-conceptmap-translate.html), [R4](https://www.hl7.org/fhir/R4/operation-conceptmap-translate.html)).  On success, the response body contains a JSON-encoded representation of a FHIR Parameters resource, which includes the translation result. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.ConceptMap-search-translate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.code The code to translate.
+     * @param {string=} params.conceptMapVersion The version of the concept map to use. If unset, the most current version is used.
+     * @param {string} params.parent The name for the FHIR store containing the concept map(s) to use for the translation.
+     * @param {string=} params.source The source value set of the concept map to be used. If unset, target is used to search for concept maps.
+     * @param {string=} params.system The system for the code to be translated.
+     * @param {string=} params.target The target value set of the concept map to be used. If unset, source is used to search for concept maps.
+     * @param {string=} params.url The canonical url of the concept map to use. If unset, the source and target is used to search for concept maps.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    ConceptMapSearchTranslate(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmapsearchtranslate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    ConceptMapSearchTranslate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmapsearchtranslate,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ConceptMapSearchTranslate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmapsearchtranslate,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ConceptMapSearchTranslate(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ConceptMapSearchTranslate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmapsearchtranslate
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmapsearchtranslate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmapsearchtranslate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/fhir/ConceptMap/$translate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * healthcare.projects.locations.datasets.fhirStores.fhir.ConceptMap-translate
+     * @desc Translates a code from one value set to another using a concept map.  Implements the FHIR standard $translate operation ([DSTU2](https://www.hl7.org/fhir/DSTU2/operation-conceptmap-translate.html), [STU3](https://www.hl7.org/fhir/STU3/operation-conceptmap-translate.html), [R4](https://www.hl7.org/fhir/R4/operation-conceptmap-translate.html)).  On success, the response body contains a JSON-encoded representation of a FHIR Parameters resource, which includes the translation result. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @alias healthcare.projects.locations.datasets.fhirStores.fhir.ConceptMap-translate
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.code The code to translate.
+     * @param {string=} params.conceptMapVersion The version of the concept map to use. If unset, the most current version is used.
+     * @param {string} params.name The URL for the concept map to use for the translation.
+     * @param {string=} params.system The system for the code to be translated.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    ConceptMapTranslate(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmaptranslate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    ConceptMapTranslate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmaptranslate,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ConceptMapTranslate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmaptranslate,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ConceptMapTranslate(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    ConceptMapTranslate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmaptranslate
+        | BodyResponseCallback<Schema$HttpBody>,
+      optionsOrCallback?: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback?: BodyResponseCallback<Schema$HttpBody>
+    ): void | GaxiosPromise<Schema$HttpBody> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmaptranslate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmaptranslate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/$translate').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -10518,7 +10672,7 @@ export namespace healthcare_v1beta1 {
 
     /**
      * healthcare.projects.locations.datasets.fhirStores.fhir.Patient-everything
-     * @desc On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @desc Retrieves all the resources directly referenced by a patient, as well as all of the resources in the patient compartment.  Implements the FHIR extended operation Patient-everything ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/patient-operations.html#everything), [STU3](http://hl7.org/implement/standards/fhir/STU3/patient-operations.html#everything), [R4](http://hl7.org/implement/standards/fhir/R4/patient-operations.html#everything)).  On success, the response body will contain a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store will contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -11239,6 +11393,66 @@ export namespace healthcare_v1beta1 {
      * Name of the FHIR store to retrieve the capabilities for.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmapsearchtranslate
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The code to translate.
+     */
+    code?: string;
+    /**
+     * The version of the concept map to use. If unset, the most current version is used.
+     */
+    conceptMapVersion?: string;
+    /**
+     * The name for the FHIR store containing the concept map(s) to use for the translation.
+     */
+    parent?: string;
+    /**
+     * The source value set of the concept map to be used. If unset, target is used to search for concept maps.
+     */
+    source?: string;
+    /**
+     * The system for the code to be translated.
+     */
+    system?: string;
+    /**
+     * The target value set of the concept map to be used. If unset, source is used to search for concept maps.
+     */
+    target?: string;
+    /**
+     * The canonical url of the concept map to use. If unset, the source and target is used to search for concept maps.
+     */
+    url?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conceptmaptranslate
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The code to translate.
+     */
+    code?: string;
+    /**
+     * The version of the concept map to use. If unset, the most current version is used.
+     */
+    conceptMapVersion?: string;
+    /**
+     * The URL for the concept map to use for the translation.
+     */
+    name?: string;
+    /**
+     * The system for the code to be translated.
+     */
+    system?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Conditionaldelete
     extends StandardParameters {

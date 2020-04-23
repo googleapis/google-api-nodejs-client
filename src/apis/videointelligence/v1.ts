@@ -146,7 +146,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
      */
     name?: string | null;
     /**
@@ -163,7 +163,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of this landmark, i.e. left_hand, right_shoulder.
+     * The name of this landmark, for example, left_hand, right_shoulder.
      */
     name?: string | null;
     /**
@@ -176,7 +176,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -215,7 +215,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1beta2_Entity[];
     /**
@@ -368,7 +368,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1beta2_WordInfo[];
   }
@@ -475,7 +475,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
@@ -487,7 +487,7 @@ export namespace videointelligence_v1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
     /**
@@ -532,11 +532,11 @@ export namespace videointelligence_v1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -625,7 +625,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
      */
     name?: string | null;
     /**
@@ -642,7 +642,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of this landmark, i.e. left_hand, right_shoulder.
+     * The name of this landmark, for example, left_hand, right_shoulder.
      */
     name?: string | null;
     /**
@@ -655,7 +655,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -694,7 +694,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity[];
     /**
@@ -847,7 +847,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p1beta1_WordInfo[];
   }
@@ -954,7 +954,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
@@ -966,7 +966,7 @@ export namespace videointelligence_v1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
     /**
@@ -1011,11 +1011,11 @@ export namespace videointelligence_v1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -1104,7 +1104,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
      */
     name?: string | null;
     /**
@@ -1121,7 +1121,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of this landmark, i.e. left_hand, right_shoulder.
+     * The name of this landmark, for example, left_hand, right_shoulder.
      */
     name?: string | null;
     /**
@@ -1134,7 +1134,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -1173,7 +1173,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1p2beta1_Entity[];
     /**
@@ -1326,7 +1326,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p2beta1_WordInfo[];
   }
@@ -1433,7 +1433,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
@@ -1445,7 +1445,7 @@ export namespace videointelligence_v1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
     /**
@@ -1490,11 +1490,11 @@ export namespace videointelligence_v1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p2beta1_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1622,7 +1622,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
      */
     name?: string | null;
     /**
@@ -1639,7 +1639,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of this landmark, i.e. left_hand, right_shoulder.
+     * The name of this landmark, for example, left_hand, right_shoulder.
      */
     name?: string | null;
     /**
@@ -1652,7 +1652,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -1704,7 +1704,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1p3beta1_Entity[];
     /**
@@ -1849,7 +1849,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_PersonDetectionAnnotation {
     /**
-     * The trackes that a person is detected.
+     * The detected tracks of a person.
      */
     tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
   }
@@ -1879,7 +1879,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1p3beta1_WordInfo[];
   }
@@ -1905,7 +1905,7 @@ export namespace videointelligence_v1 {
      */
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults;
     /**
-     * Cloud Storage URI that stores annotation results of one streaming session. It is a directory that can hold multiple files in JSON format. Example uri format: gs://bucket_id/object_id/cloud_project_name-session_id
+     * Google Cloud Storage(GCS) URI that stores annotation results of one streaming session in JSON format. It is the annotation_result_storage_directory from the request followed by &#39;/cloud_project_number-session_id&#39;.
      */
     annotationResultsUri?: string | null;
     /**
@@ -2024,7 +2024,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
@@ -2036,7 +2036,7 @@ export namespace videointelligence_v1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
     /**
@@ -2093,11 +2093,11 @@ export namespace videointelligence_v1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1p3beta1_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -2177,19 +2177,19 @@ export namespace videointelligence_v1 {
      */
     features?: string[] | null;
     /**
-     * The video data bytes. If unset, the input video(s) should be specified via `input_uri`. If set, `input_uri` should be unset.
+     * The video data bytes. If unset, the input video(s) should be specified via the `input_uri`. If set, `input_uri` must be unset.
      */
     inputContent?: string | null;
     /**
-     * Input video location. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints). A video URI may include wildcards in `object-id`, and thus identify multiple videos. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` should be unset.
+     * Input video location. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported. URIs must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints). To identify multiple videos, a video URI may include wildcards in the `object-id`. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` must be unset.
      */
     inputUri?: string | null;
     /**
-     * Optional. Cloud region where annotation should take place. Supported cloud regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region is specified, a region will be determined based on video file location.
+     * Optional. Cloud region where annotation should take place. Supported cloud regions are: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region is specified, the region will be determined based on video file location.
      */
     locationId?: string | null;
     /**
-     * Optional. Location where the output (in JSON format) should be stored. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported, which must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints).
+     * Optional. Location where the output (in JSON format) should be stored. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported. These must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints).
      */
     outputUri?: string | null;
     /**
@@ -2215,7 +2215,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc. A full list of supported type names will be provided in the document.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open. A full list of supported type names will be provided in the document.
      */
     name?: string | null;
     /**
@@ -2232,7 +2232,7 @@ export namespace videointelligence_v1 {
      */
     confidence?: number | null;
     /**
-     * The name of this landmark, i.e. left_hand, right_shoulder.
+     * The name of this landmark, for example, left_hand, right_shoulder.
      */
     name?: string | null;
     /**
@@ -2245,7 +2245,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_Entity {
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      */
     description?: string | null;
     /**
@@ -2293,7 +2293,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_LabelAnnotation {
     /**
-     * Common categories for the detected entity. E.g. when the label is `Terrier` the category is likely `dog`. And in some cases there might be more than one categories e.g. `Terrier` could also be a `pet`.
+     * Common categories for the detected entity. For example, when the label is `Terrier`, the category is likely `dog`. And in some cases there might be more than one categories e.g., `Terrier` could also be a `pet`.
      */
     categoryEntities?: Schema$GoogleCloudVideointelligenceV1_Entity[];
     /**
@@ -2314,7 +2314,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_LabelDetectionConfig {
     /**
-     * The confidence threshold we perform filtering on the labels from frame-level detection. If not set, it is set to 0.4 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: for best results please follow the default threshold. We will update the default threshold everytime when we release a new model.
+     * The confidence threshold we perform filtering on the labels from frame-level detection. If not set, it is set to 0.4 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: For best results, follow the default threshold. We will update the default threshold everytime when we release a new model.
      */
     frameConfidenceThreshold?: number | null;
     /**
@@ -2326,11 +2326,11 @@ export namespace videointelligence_v1 {
      */
     model?: string | null;
     /**
-     * Whether the video has been shot from a stationary (i.e. non-moving) camera. When set to true, might improve detection accuracy for moving objects. Should be used with `SHOT_AND_FRAME_MODE` enabled.
+     * Whether the video has been shot from a stationary (i.e., non-moving) camera. When set to true, might improve detection accuracy for moving objects. Should be used with `SHOT_AND_FRAME_MODE` enabled.
      */
     stationaryCamera?: boolean | null;
     /**
-     * The confidence threshold we perform filtering on the labels from video-level and shot-level detections. If not set, it is set to 0.3 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: for best results please follow the default threshold. We will update the default threshold everytime when we release a new model.
+     * The confidence threshold we perform filtering on the labels from video-level and shot-level detections. If not set, it&#39;s set to 0.3 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: For best results, follow the default threshold. We will update the default threshold everytime when we release a new model.
      */
     videoConfidenceThreshold?: number | null;
   }
@@ -2498,7 +2498,7 @@ export namespace videointelligence_v1 {
      */
     transcript?: string | null;
     /**
-     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio.
+     * Output only. A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is set to true, you will see all the words from the beginning of the audio.
      */
     words?: Schema$GoogleCloudVideointelligenceV1_WordInfo[];
   }
@@ -2532,7 +2532,7 @@ export namespace videointelligence_v1 {
      */
     enableAutomaticPunctuation?: boolean | null;
     /**
-     * Optional. If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: When this is true, we send all the words from the beginning of the audio for the top alternative in every consecutive responses. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time.
+     * Optional. If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: When this is true, we send all the words from the beginning of the audio for the top alternative in every consecutive response. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time.
      */
     enableSpeakerDiarization?: boolean | null;
     /**
@@ -2659,7 +2659,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
     /**
-     * Specifies which feature is being tracked if the request contains more than one features.
+     * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
     /**
@@ -2671,7 +2671,7 @@ export namespace videointelligence_v1 {
      */
     progressPercent?: number | null;
     /**
-     * Specifies which segment is being tracked if the request contains more than one segments.
+     * Specifies which segment is being tracked if the request contains more than one segment.
      */
     segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
     /**
@@ -2716,11 +2716,11 @@ export namespace videointelligence_v1 {
      */
     segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
     /**
-     * Topical label annotations on video level or user specified segment level. There is exactly one element for each unique label.
+     * Topical label annotations on video level or user-specified segment level. There is exactly one element for each unique label.
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**

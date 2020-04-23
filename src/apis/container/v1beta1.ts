@@ -141,7 +141,7 @@ export namespace container_v1beta1 {
      */
     dnsCacheConfig?: Schema$DnsCacheConfig;
     /**
-     * Configuration for the GCP Compute Persistent Disk CSI driver.
+     * Configuration for the Compute Engine Persistent Disk CSI driver.
      */
     gcePersistentDiskCsiDriverConfig?: Schema$GcePersistentDiskCsiDriverConfig;
     /**
@@ -1540,6 +1540,10 @@ export namespace container_v1beta1 {
      */
     enablePrivateNodes?: boolean | null;
     /**
+     * Controls master global access settings.
+     */
+    masterGlobalAccessConfig?: Schema$PrivateClusterMasterGlobalAccessConfig;
+    /**
      * The IP range in CIDR notation to use for the hosted master network. This range will be used for assigning internal IP addresses to the master or set of masters, as well as the ILB VIP. This range must not overlap with any other ranges in use within the cluster&#39;s network.
      */
     masterIpv4CidrBlock?: string | null;
@@ -1555,6 +1559,15 @@ export namespace container_v1beta1 {
      * Output only. The external IP address of this cluster&#39;s master endpoint.
      */
     publicEndpoint?: string | null;
+  }
+  /**
+   * Configuration for controlling master global access settings.
+   */
+  export interface Schema$PrivateClusterMasterGlobalAccessConfig {
+    /**
+     * Whenever master is accessible globally or not.
+     */
+    enabled?: boolean | null;
   }
   /**
    * Represents an arbitrary window of time that recurs.

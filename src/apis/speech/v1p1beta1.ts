@@ -120,6 +120,32 @@ export namespace speech_v1p1beta1 {
   }
 
   /**
+   * An item of the class.
+   */
+  export interface Schema$ClassItem {
+    /**
+     * The class item&#39;s value.
+     */
+    value?: string | null;
+  }
+  /**
+   * A set of words or phrases that represents a common concept likely to appear in your audio, for example a list of passenger ship names. CustomClass items can be substituted into placeholders that you set in PhraseSet phrases.
+   */
+  export interface Schema$CustomClass {
+    /**
+     * If this custom class is a resource, the custom_class_id is the resource id of the CustomClass.
+     */
+    customClassId?: string | null;
+    /**
+     * A collection of class items.
+     */
+    items?: Schema$ClassItem[];
+    /**
+     * The resource name of the custom class.
+     */
+    name?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -149,7 +175,7 @@ export namespace speech_v1p1beta1 {
      */
     startTime?: string | null;
     /**
-     * The URI of the audio file being transcribed. Empty if the audio was sent as byte content.
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent as byte content.
      */
     uri?: string | null;
   }
@@ -201,6 +227,36 @@ export namespace speech_v1p1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * A phrases containing words and phrase &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content).  List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. &quot;i was born in january&quot;, &quot;i was born in febuary&quot;, ...), use the pre-built $MONTH class improves the likelihood of correctly transcribing audio that includes months (e.g. &quot;i was born in $month&quot;). To refer to pre-built classes, use the class&#39; symbol prepended with $ e.g. $MONTH. To refer to custom classes that were defined inline in the request, set the class&#39;s `custom_class_id` to a string unique to all class resources and inline classes. Then use the class&#39; id wrapped in ${...} e.g. &quot;${my-months}&quot;. To refer to custom classes resources, use the class&#39; id wrapped in ${} (e.g. ${my-months}).
+   */
+  export interface Schema$Phrase {
+    /**
+     * Hint Boost. Overrides the boost set at the phrase set level. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 and 20. We recommend using a binary search approach to finding the optimal value for your use case. Speech recognition will skip PhraseSets with a boost value of 0.
+     */
+    boost?: number | null;
+    /**
+     * The phrase itself.
+     */
+    value?: string | null;
+  }
+  /**
+   * Provides &quot;hints&quot; to the speech recognizer to favor specific words and phrases in the results.
+   */
+  export interface Schema$PhraseSet {
+    /**
+     * Hint Boost. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 (exclusive) and 20. We recommend using a binary search approach to finding the optimal value for your use case. Speech recognition will skip PhraseSets with a boost value of 0.
+     */
+    boost?: number | null;
+    /**
+     * The resource name of the phrase set.
+     */
+    name?: string | null;
+    /**
+     * A list of word and phrases.
+     */
+    phrases?: Schema$Phrase[];
+  }
+  /**
    * Contains audio data in the encoding specified in the `RecognitionConfig`. Either `content` or `uri` must be supplied. Supplying both or neither returns google.rpc.Code.INVALID_ARGUMENT. See [content limits](https://cloud.google.com/speech-to-text/quotas#content).
    */
   export interface Schema$RecognitionAudio {
@@ -218,6 +274,10 @@ export namespace speech_v1p1beta1 {
    */
   export interface Schema$RecognitionConfig {
     /**
+     * Speech adaptation configuration improves the accuracy of speech recognition. When speech adaptation is set it supersedes the `speech_contexts` field. For more information, see the [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength) documentation.
+     */
+    adaptation?: Schema$SpeechAdaptation;
+    /**
      * A list of up to 3 additional [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags, listing possible alternative languages of the supplied audio. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes. If alternative languages are listed, recognition result will contain recognition in the most likely language detected including the main language_code. The recognition result will include the language tag of the language detected in the audio. Note: This feature is only supported for Voice Command and Voice Search use cases and performance may vary for other use cases (e.g., phone call transcription).
      */
     alternativeLanguageCodes?: string[] | null;
@@ -234,7 +294,7 @@ export namespace speech_v1p1beta1 {
      */
     diarizationSpeakerCount?: number | null;
     /**
-     * If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. Note: This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.
+     * If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses.
      */
     enableAutomaticPunctuation?: boolean | null;
     /**
@@ -373,6 +433,19 @@ export namespace speech_v1p1beta1 {
      * Output only. Unused.
      */
     speakerTag?: number | null;
+  }
+  /**
+   * Speech adaptation configuration.
+   */
+  export interface Schema$SpeechAdaptation {
+    /**
+     * A collection of custom classes. To specify the classes inline, leave the class&#39; `name` blank and fill in the rest of its fields, giving it a unique `custom_class_id`. Refer to the inline defined class in phrase hints by its `custom_class_id`.
+     */
+    customClasses?: Schema$CustomClass[];
+    /**
+     * A collection of phrase sets. To specify the hints inline, leave the phrase set&#39;s `name` blank and fill in the rest of its fields. Any phrase set can use any custom class.
+     */
+    phraseSets?: Schema$PhraseSet[];
   }
   /**
    * Provides &quot;hints&quot; to the speech recognizer to favor specific words and phrases in the results.
