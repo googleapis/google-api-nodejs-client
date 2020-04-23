@@ -241,7 +241,7 @@ export namespace cloudresourcemanager_v2 {
    */
   export interface Schema$GetIamPolicyRequest {
     /**
-     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`.
      */
     options?: Schema$GetPolicyOptions;
   }
@@ -378,7 +378,7 @@ export namespace cloudresourcemanager_v2 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }

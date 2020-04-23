@@ -134,7 +134,7 @@ export namespace ml_v1 {
   }
   export interface Schema$GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig {
     /**
-     * True if measurement.elapsed_time is used as the x-axis of each Trials Decay Curve. Otherwise, Measurement.steps will be used as the x-axis.
+     * If true, measurement.elapsed_time is used as the x-axis of each Trials Decay Curve. Otherwise, Measurement.steps will be used as the x-axis.
      */
     useElapsedTime?: boolean | null;
   }
@@ -143,7 +143,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig {
     /**
-     * True if median automated stopping rule applies on measurement.use_elapsed_time. it means that elapsed_time field of latest measurement of current trial is used to compute median objective value for each completed trials.
+     * If true, the median automated stopping rule applies to measurement.use_elapsed_time, which means the elapsed_time field of the current trial&#39;s latest measurement is used to compute the median objective value for each completed trial.
      */
     useElapsedTime?: boolean | null;
   }
@@ -286,7 +286,7 @@ export namespace ml_v1 {
     type?: string | null;
   }
   /**
-   * A message representing a parameter to be tuned.
+   * A message representing a parameter to be tuned. Contains the name of the parameter and the suggested value to use for this trial.
    */
   export interface Schema$GoogleCloudMlV1_Trial_Parameter {
     /**
@@ -381,7 +381,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__CheckTrialEarlyStoppingStateMetatdata {
     /**
-     * The time operation was submitted.
+     * The time at which the operation was submitted.
      */
     createTime?: string | null;
     /**
@@ -389,7 +389,7 @@ export namespace ml_v1 {
      */
     study?: string | null;
     /**
-     * The Trial name.
+     * The trial name.
      */
     trial?: string | null;
   }
@@ -402,7 +402,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__CheckTrialEarlyStoppingStateResponse {
     /**
-     * The time operation processing completed.
+     * The time at which operation processing completed.
      */
     endTime?: string | null;
     /**
@@ -410,7 +410,7 @@ export namespace ml_v1 {
      */
     shouldStop?: boolean | null;
     /**
-     * The time operation was started.
+     * The time at which the operation was started.
      */
     startTime?: string | null;
   }
@@ -423,7 +423,7 @@ export namespace ml_v1 {
      */
     finalMeasurement?: Schema$GoogleCloudMlV1__Measurement;
     /**
-     * Optional. A human readable reason why the Trial was infeasible. This should only be provided if `trial_infeasible` is true.
+     * Optional. A human readable reason why the trial was infeasible. This should only be provided if `trial_infeasible` is true.
      */
     infeasibleReason?: string | null;
     /**
@@ -442,7 +442,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__EncryptionConfig {
     /**
-     * The Cloud KMS resource identifier of the customer managed encryption key used to protect a resource, such as a training job. Has the form: `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
+     * The Cloud KMS resource identifier of the customer-managed encryption key used to protect a resource, such as a training job. It has the following format: `projects/{PROJECT_ID}/locations/{REGION}/keyRings/{KEY_RING_NAME}/cryptoKeys/{KEY_NAME}`
      */
     kmsKeyName?: string | null;
   }
@@ -668,7 +668,7 @@ export namespace ml_v1 {
   }
   export interface Schema$GoogleCloudMlV1__ListStudiesResponse {
     /**
-     * The Studies associated with the project.
+     * The studies associated with the project.
      */
     studies?: Schema$GoogleCloudMlV1__Study[];
   }
@@ -711,11 +711,11 @@ export namespace ml_v1 {
     nodes?: number | null;
   }
   /**
-   * A message representing a Measurement.
+   * A message representing a measurement.
    */
   export interface Schema$GoogleCloudMlV1__Measurement {
     /**
-     * Time that the Trial has been running at the point of this Measurement.
+     * Output only. Time that the trial has been running at the point of this measurement.
      */
     elapsedTime?: string | null;
     /**
@@ -979,7 +979,7 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__Study {
     /**
-     * Output only. Time that the study was created.
+     * Output only. Time at which the study was created.
      */
     createTime?: string | null;
     /**
@@ -1011,6 +1011,9 @@ export namespace ml_v1 {
      * Configuration for automated stopping of unpromising Trials.
      */
     automatedStoppingConfig?: Schema$GoogleCloudMlV1__AutomatedStoppingConfig;
+    /**
+     * Metric specs for the study.
+     */
     metrics?: Schema$GoogleCloudMlV1_StudyConfig_MetricSpec[];
     /**
      * Required. The set of parameters to tune.
@@ -1056,11 +1059,11 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__SuggestTrialsResponse {
     /**
-     * The time operation processing completed.
+     * The time at which operation processing completed.
      */
     endTime?: string | null;
     /**
-     * The time operation was started.
+     * The time at which the operation was started.
      */
     startTime?: string | null;
     /**
@@ -1068,7 +1071,7 @@ export namespace ml_v1 {
      */
     studyState?: string | null;
     /**
-     * A list of Trials.
+     * A list of trials.
      */
     trials?: Schema$GoogleCloudMlV1__Trial[];
   }
@@ -1077,15 +1080,15 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__TrainingInput {
     /**
-     * Optional. Arguments passed to the training. - If it is a python package training:   It will be passed as command line argument to the program. - If it is a custom container training,   It will be passed as an argument to the custom container   image.
+     * Optional. Command-line arguments passed to the training application when it starts. If your job uses a custom container, then the arguments are passed to the container&#39;s &lt;a class=&quot;external&quot; target=&quot;_blank&quot; href=&quot;https://docs.docker.com/engine/reference/builder/#entrypoint&quot;&gt; `ENTRYPOINT`&lt;/a&gt; command.
      */
     args?: string[] | null;
     /**
-     * Custom encryption key options for a training job. If this is set, then all resources created by the training job will be encrypted with the provided encryption key.
+     * Optional. Options for using customer-managed encryption keys (CMEK) to protect resources created by a training job, instead of using Google&#39;s default encryption. If this is set, then all resources created by the training job will be encrypted with the customer-managed encryption key that you specify.  [Learn how and when to use CMEK with AI Platform Training](/ai-platform/training/docs/cmek).
      */
     encryptionConfig?: Schema$GoogleCloudMlV1__EncryptionConfig;
     /**
-     * Optional. The configuration for evaluators.  You should only set `evaluatorConfig.acceleratorConfig` if `evaluatorType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu)  Set `evaluatorConfig.imageUri` only if you build a custom image for your evaluator. If `evaluatorConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri` . Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers).
+     * Optional. The configuration for evaluators.  You should only set `evaluatorConfig.acceleratorConfig` if `evaluatorType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu)  Set `evaluatorConfig.imageUri` only if you build a custom image for your evaluator. If `evaluatorConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers).
      */
     evaluatorConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
@@ -1117,7 +1120,7 @@ export namespace ml_v1 {
      */
     packageUris?: string[] | null;
     /**
-     * Optional. The configuration for parameter servers.  You should only set `parameterServerConfig.acceleratorConfig` if `parameterServerType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu)  Set `parameterServerConfig.imageUri` only if you build a custom image for your parameter server. If `parameterServerConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri` . Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers).
+     * Optional. The configuration for parameter servers.  You should only set `parameterServerConfig.acceleratorConfig` if `parameterServerType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu)  Set `parameterServerConfig.imageUri` only if you build a custom image for your parameter server. If `parameterServerConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers).
      */
     parameterServerConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
@@ -1157,7 +1160,7 @@ export namespace ml_v1 {
      */
     useChiefInTfConfig?: boolean | null;
     /**
-     * Optional. The configuration for workers.  You should only set `workerConfig.acceleratorConfig` if `workerType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu)  Set `workerConfig.imageUri` only if you build a custom image for your worker. If `workerConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri` . Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers).
+     * Optional. The configuration for workers.  You should only set `workerConfig.acceleratorConfig` if `workerType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu)  Set `workerConfig.imageUri` only if you build a custom image for your worker. If `workerConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers).
      */
     workerConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
@@ -1203,7 +1206,7 @@ export namespace ml_v1 {
     trials?: Schema$GoogleCloudMlV1__HyperparameterOutput[];
   }
   /**
-   * A message representing a Trial.
+   * A message representing a trial.
    */
   export interface Schema$GoogleCloudMlV1__Trial {
     /**
@@ -1211,15 +1214,15 @@ export namespace ml_v1 {
      */
     clientId?: string | null;
     /**
-     * Output only. Time the Trial&#39;s status changed to COMPLETED.
+     * Output only. Time at which the trial&#39;s status changed to COMPLETED.
      */
     endTime?: string | null;
     /**
-     * The final Measurement containing the objective value.
+     * The final measurement containing the objective value.
      */
     finalMeasurement?: Schema$GoogleCloudMlV1__Measurement;
     /**
-     * Output only. A human readable string describing why the Trial is infeasible. This should only be set if trial_infeasible is true.
+     * Output only. A human readable string describing why the trial is infeasible. This should only be set if trial_infeasible is true.
      */
     infeasibleReason?: string | null;
     /**
@@ -1231,11 +1234,11 @@ export namespace ml_v1 {
      */
     name?: string | null;
     /**
-     * The parameters of the Trial.
+     * The parameters of the trial.
      */
     parameters?: Schema$GoogleCloudMlV1_Trial_Parameter[];
     /**
-     * Output only. Time the Trial was started.
+     * Output only. Time at which the trial was started.
      */
     startTime?: string | null;
     /**
@@ -1243,7 +1246,7 @@ export namespace ml_v1 {
      */
     state?: string | null;
     /**
-     * Output only. True if the parameters in this trial should not be attempted again.
+     * Output only. If true, the parameters in this trial are not attempted again.
      */
     trialInfeasible?: boolean | null;
   }
@@ -3382,7 +3385,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.addMeasurement
-     * @desc Adds a measurement of the objective metrics to a Trial. This measurement is assumed to have been taken before the Trial is complete.
+     * @desc Adds a measurement of the objective metrics to a trial. This measurement is assumed to have been taken before the trial is complete.
      * @alias ml.projects.locations.studies.trials.addMeasurement
      * @memberOf! ()
      *
@@ -3461,7 +3464,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.checkEarlyStoppingState
-     * @desc Checks whether a trial should stop or not.
+     * @desc Checks  whether a trial should stop or not. Returns a long-running operation. When the operation is successful, it will contain a CheckTrialEarlyStoppingStateResponse.
      * @alias ml.projects.locations.studies.trials.checkEarlyStoppingState
      * @memberOf! ()
      *
@@ -3545,12 +3548,12 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.complete
-     * @desc Marks a Trial as complete.
+     * @desc Marks a trial as complete.
      * @alias ml.projects.locations.studies.trials.complete
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The trial name.
+     * @param {string} params.name Required. The trial name.metat
      * @param {().GoogleCloudMlV1__CompleteTrialRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3624,7 +3627,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.create
-     * @desc Adds a user provided trial to a Study.
+     * @desc Adds a user provided trial to a study.
      * @alias ml.projects.locations.studies.trials.create
      * @memberOf! ()
      *
@@ -3701,7 +3704,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.delete
-     * @desc Deletes a Trial.
+     * @desc Deletes a trial.
      * @alias ml.projects.locations.studies.trials.delete
      * @memberOf! ()
      *
@@ -3774,7 +3777,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.get
-     * @desc Gets a Trial.
+     * @desc Gets a trial.
      * @alias ml.projects.locations.studies.trials.get
      * @memberOf! ()
      *
@@ -3847,7 +3850,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.list
-     * @desc Lists the trials associated with a Study.
+     * @desc Lists the trials associated with a study.
      * @alias ml.projects.locations.studies.trials.list
      * @memberOf! ()
      *
@@ -4006,7 +4009,7 @@ export namespace ml_v1 {
 
     /**
      * ml.projects.locations.studies.trials.suggest
-     * @desc Returns a long-running operation associated with the generation of trial suggestions.
+     * @desc Adds one or more trials to a study, with parameter values suggested by AI Platform Optimizer. Returns a long-running operation associated with the generation of trial suggestions. When this long-running operation succeeds, it will contain a SuggestTrialsResponse.
      * @alias ml.projects.locations.studies.trials.suggest
      * @memberOf! ()
      *
@@ -4131,7 +4134,7 @@ export namespace ml_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * Required. The trial name.
+     * Required. The trial name.metat
      */
     name?: string;
 

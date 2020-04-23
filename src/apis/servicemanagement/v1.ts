@@ -1941,7 +1941,7 @@ export namespace servicemanagement_v1 {
 
     /**
      * servicemanagement.services.create
-     * @desc Creates a new managed service. Please note one producer project can own no more than 20 services.  Operation<response: ManagedService>
+     * @desc Creates a new managed service.  A managed service is immutable, and is subject to mandatory 30-day data retention. You cannot move a service or recreate it within 30 days after deletion.  One producer project can own no more than 500 services. For security and reliability purposes, a production service should be hosted in a dedicated producer project.  Operation<response: ManagedService>
      * @alias servicemanagement.services.create
      * @memberOf! ()
      *

@@ -50,8 +50,8 @@ async function testKeyParam(drive: APIEndpoint) {
 }
 
 async function testAuthKey(blogger: APIEndpoint) {
-  const req = nock(Utils.baseUrl)
-    .get('/blogger/v3/blogs/abc123/pages?key=YOUR%20API%20KEY')
+  const req = nock('https://blogger.googleapis.com')
+    .get('/v3/blogs/abc123/pages?key=YOUR%20API%20KEY')
     .reply(200);
   const res = await blogger.pages.list({
     auth: 'YOUR API KEY',

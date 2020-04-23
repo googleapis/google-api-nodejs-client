@@ -311,7 +311,7 @@ export namespace file_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The description of the instance (2048 characters or less).
+     * The description of the instance (2048 characters or less).
      */
     description?: string | null;
     /**
@@ -737,8 +737,8 @@ export namespace file_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.instanceId The name of the instance to create. The name must be unique for the specified project and location.
-     * @param {string} params.parent The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
+     * @param {string=} params.instanceId Required. The ID of the instance to create. The ID must be unique within the specified project and location.  This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * @param {string} params.parent Required. The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -813,7 +813,7 @@ export namespace file_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}
+     * @param {string} params.name Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -884,7 +884,7 @@ export namespace file_v1beta1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.
+     * @param {string} params.name Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -957,7 +957,7 @@ export namespace file_v1beta1 {
      * @param {string=} params.orderBy Sort results. Supported values are "name", "name desc" or "" (unsorted).
      * @param {integer=} params.pageSize The maximum number of items to return.
      * @param {string=} params.pageToken The next_page_token value to use if there are additional results to retrieve for this list request.
-     * @param {string} params.parent The project and location for which to retrieve instance information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location} value.
+     * @param {string} params.parent Required. The project and location for which to retrieve instance information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location} value.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1034,7 +1034,7 @@ export namespace file_v1beta1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
-     * @param {string=} params.updateMask Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields:  * "description" * "file_shares" * "labels"
+     * @param {string=} params.updateMask Required. Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields:  * "description" * "file_shares" * "labels"
      * @param {().Instance} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1108,11 +1108,11 @@ export namespace file_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The name of the instance to create. The name must be unique for the specified project and location.
+     * Required. The ID of the instance to create. The ID must be unique within the specified project and location.  This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      */
     instanceId?: string;
     /**
-     * The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
+     * Required. The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
      */
     parent?: string;
 
@@ -1129,7 +1129,7 @@ export namespace file_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}
+     * Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}
      */
     name?: string;
   }
@@ -1141,7 +1141,7 @@ export namespace file_v1beta1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.
+     * Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.
      */
     name?: string;
   }
@@ -1169,7 +1169,7 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The project and location for which to retrieve instance information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location} value.
+     * Required. The project and location for which to retrieve instance information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location} value.
      */
     parent?: string;
   }
@@ -1185,7 +1185,7 @@ export namespace file_v1beta1 {
      */
     name?: string;
     /**
-     * Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields:  * "description" * "file_shares" * "labels"
+     * Required. Mask of fields to update.  At least one path must be supplied in this field.  The elements of the repeated paths field may only include these fields:  * "description" * "file_shares" * "labels"
      */
     updateMask?: string;
 

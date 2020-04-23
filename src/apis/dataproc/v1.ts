@@ -239,7 +239,7 @@ export namespace dataproc_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
+     * Output only. Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
      */
     metrics?: Schema$ClusterMetrics;
     /**
@@ -645,7 +645,7 @@ export namespace dataproc_v1 {
      */
     diskConfig?: Schema$DiskConfig;
     /**
-     * Optional. The Compute Engine image resource used for cluster instances. It can be specified or may be inferred from SoftwareConfig.image_version.
+     * Optional. The Compute Engine image resource used for cluster instances.The URI can represent an image or image family.Image examples: https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id] projects/[project_id]/global/images/[image-id] image-idImage family examples. Dataproc will use the most recent image from the family: https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name] projects/[project_id]/global/images/family/[custom-image-family-name]If the URI is unspecified, it will be inferred from SoftwareConfig.image_version or the system default.
      */
     imageUri?: string | null;
     /**
@@ -873,7 +873,7 @@ export namespace dataproc_v1 {
      */
     crossRealmTrustSharedPasswordUri?: string | null;
     /**
-     * Optional. Flag to indicate whether to Kerberize the cluster.
+     * Optional. Flag to indicate whether to Kerberize the cluster (default: false). Set this field to true to enable Kerberos on a cluster.
      */
     enableKerberos?: boolean | null;
     /**
@@ -1179,7 +1179,7 @@ export namespace dataproc_v1 {
     version?: number | null;
   }
   /**
-   * A Dataproc job for running Presto (https://prestosql.io/) queries
+   * A Dataproc job for running Presto (https://prestosql.io/) queries. IMPORTANT: The Dataproc Presto Optional Component must be enabled when the cluster is created to submit a Presto job to the cluster.
    */
   export interface Schema$PrestoJob {
     /**

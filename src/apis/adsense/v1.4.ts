@@ -232,7 +232,7 @@ export namespace adsense_v1_4 {
     /**
      * The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
      */
-    headers?: Array<{type?: string; currency?: string; name?: string}> | null;
+    headers?: Array<{name?: string; type?: string; currency?: string}> | null;
     /**
      * Kind this is, in this case adsense#report.
      */
@@ -263,11 +263,11 @@ export namespace adsense_v1_4 {
      * The colors which are included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
      */
     colors?: {
+      text?: string;
       background?: string;
       url?: string;
       title?: string;
       border?: string;
-      text?: string;
     } | null;
     /**
      * The style of the corners in the ad (deprecated: never populated, ignored).
@@ -292,7 +292,7 @@ export namespace adsense_v1_4 {
      */
     contentAdsSettings?: {
       type?: string;
-      backupOption?: {color?: string; type?: string; url?: string};
+      backupOption?: {type?: string; url?: string; color?: string};
       size?: string;
     } | null;
     /**
@@ -303,10 +303,10 @@ export namespace adsense_v1_4 {
      * Settings specific to feed ads (AFF) - deprecated.
      */
     feedAdsSettings?: {
-      frequency?: number;
-      minimumWordCount?: number;
       type?: string;
       adPosition?: string;
+      frequency?: number;
+      minimumWordCount?: number;
     } | null;
     /**
      * Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
@@ -413,10 +413,10 @@ export namespace adsense_v1_4 {
      * The targeting information of this custom channel, if activated.
      */
     targetingInfo?: {
-      siteLanguage?: string;
       adsAppearOn?: string;
       description?: string;
       location?: string;
+      siteLanguage?: string;
     } | null;
   }
   export interface Schema$CustomChannels {

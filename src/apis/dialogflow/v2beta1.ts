@@ -374,7 +374,7 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string | null;
     /**
-     * Optional. The collection of parameters associated with this context.  Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs:  -   MapKey type: string -   MapKey value: parameter name -   MapValue type:     -   If parameter&#39;s entity type is a composite entity: map     -   Else: string -   MapValue value:     -   If parameter&#39;s entity type is a composite entity:         map from composite entity property names to property values     -   Else: parameter value
+     * Optional. The collection of parameters associated with this context.  Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs:  -   MapKey type: string -   MapKey value: parameter name -   MapValue type:     -   If parameter&#39;s entity type is a composite entity: map     -   Else: string or number, depending on parameter value type -   MapValue value:     -   If parameter&#39;s entity type is a composite entity:         map from composite entity property names to property values     -   Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -517,6 +517,31 @@ export namespace dialogflow_v2beta1 {
     value?: string | null;
   }
   /**
+   * Represents an agent environment.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1Environment {
+    /**
+     * Optional. The agent version loaded into this environment. Format: `projects/&lt;Project ID&gt;/agent/versions/&lt;Version ID&gt;`.
+     */
+    agentVersion?: string | null;
+    /**
+     * Optional. The developer-provided description for this environment. The maximum length is 500 characters. If exceeded, the request is rejected.
+     */
+    description?: string | null;
+    /**
+     * Output only. The unique identifier of this agent environment. Format: `projects/&lt;Project ID&gt;/agent/environments/&lt;Environment ID&gt;`. For Environment ID, &quot;-&quot; is reserved for &#39;draft&#39; environment.
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of this environment. This field is read-only, i.e., it cannot be set by create and update methods.
+     */
+    state?: string | null;
+    /**
+     * Output only. The last update time of this environment. This field is read-only, i.e., it cannot be set by create and update methods.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Events allow for matching intents by event name instead of the natural language input. For instance, input `&lt;event: { name: &quot;welcome_event&quot;, parameters: { name: &quot;Sam&quot; } }&gt;` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `&quot;Hello #welcome_event.name! What can I do for you today?&quot;`.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EventInput {
@@ -529,7 +554,7 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string | null;
     /**
-     * The collection of parameters associated with the event.
+     * The collection of parameters associated with the event.  Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs:  -   MapKey type: string -   MapKey value: parameter name -   MapValue type:     -   If parameter&#39;s entity type is a composite entity: map     -   Else: string or number, depending on parameter value type -   MapValue value:     -   If parameter&#39;s entity type is a composite entity:         map from composite entity property names to property values     -   Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -1653,6 +1678,19 @@ export namespace dialogflow_v2beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response message for Environments.ListEnvironments.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse {
+    /**
+     * The list of agent environments. There will be a maximum number of items returned based on the page_size field in the request.
+     */
+    environments?: Schema$GoogleCloudDialogflowV2beta1Environment[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Intents.ListIntents.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ListIntentsResponse {
@@ -1832,7 +1870,7 @@ export namespace dialogflow_v2beta1 {
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
-     * The collection of extracted parameters.
+     * The collection of extracted parameters.  Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs:  -   MapKey type: string -   MapKey value: parameter name -   MapValue type:     -   If parameter&#39;s entity type is a composite entity: map     -   Else: string or number, depending on parameter value type -   MapValue value:     -   If parameter&#39;s entity type is a composite entity:         map from composite entity property names to property values     -   Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -2121,7 +2159,7 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string | null;
     /**
-     * Optional. The collection of parameters associated with this context.  Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs:  -   MapKey type: string -   MapKey value: parameter name -   MapValue type:     -   If parameter&#39;s entity type is a composite entity: map     -   Else: string -   MapValue value:     -   If parameter&#39;s entity type is a composite entity:         map from composite entity property names to property values     -   Else: parameter value
+     * Optional. The collection of parameters associated with this context.  Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs:  -   MapKey type: string -   MapKey value: parameter name -   MapValue type:     -   If parameter&#39;s entity type is a composite entity: map     -   Else: string or number, depending on parameter value type -   MapValue value:     -   If parameter&#39;s entity type is a composite entity:         map from composite entity property names to property values     -   Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -2201,7 +2239,7 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string | null;
     /**
-     * The collection of parameters associated with the event.
+     * The collection of parameters associated with the event.  Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs:  -   MapKey type: string -   MapKey value: parameter name -   MapValue type:     -   If parameter&#39;s entity type is a composite entity: map     -   Else: string or number, depending on parameter value type -   MapValue value:     -   If parameter&#39;s entity type is a composite entity:         map from composite entity property names to property values     -   Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -2963,7 +3001,7 @@ export namespace dialogflow_v2beta1 {
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2Context[];
     /**
-     * The collection of extracted parameters.
+     * The collection of extracted parameters.  Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs:  -   MapKey type: string -   MapKey value: parameter name -   MapValue type:     -   If parameter&#39;s entity type is a composite entity: map     -   Else: string or number, depending on parameter value type -   MapValue value:     -   If parameter&#39;s entity type is a composite entity:         map from composite entity property names to property values     -   Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -5387,6 +5425,129 @@ export namespace dialogflow_v2beta1 {
       this.context = context;
       this.users = new Resource$Projects$Agent$Environments$Users(this.context);
     }
+
+    /**
+     * dialogflow.projects.agent.environments.list
+     * @desc Returns the list of all non-draft environments of the specified agent.
+     * @alias dialogflow.projects.agent.environments.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The agent to list all environments from. Format: `projects/<Project ID>/agent`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Agent$Environments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+    >;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Agent$Environments$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agent$Environments$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agent$Environments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agent$Environments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/environments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+        >(parameters, callback);
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Agent$Environments$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The agent to list all environments from. Format: `projects/<Project ID>/agent`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Agent$Environments$Users {
@@ -13080,6 +13241,129 @@ export namespace dialogflow_v2beta1 {
         this.context
       );
     }
+
+    /**
+     * dialogflow.projects.locations.agent.environments.list
+     * @desc Returns the list of all non-draft environments of the specified agent.
+     * @alias dialogflow.projects.locations.agent.environments.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request.
+     * @param {string} params.parent Required. The agent to list all environments from. Format: `projects/<Project ID>/agent`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+      params?: Params$Resource$Projects$Locations$Agent$Environments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Environments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+      >
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agent$Environments$List,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+      >
+    ): void;
+    list(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+      >
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agent$Environments$List
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+          >,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+          >,
+      callback?: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+      >
+    ): void | GaxiosPromise<
+      Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+    > {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agent$Environments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agent$Environments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/environments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+        >(parameters, callback);
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2beta1ListEnvironmentsResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agent$Environments$List
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The agent to list all environments from. Format: `projects/<Project ID>/agent`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Agent$Environments$Users {

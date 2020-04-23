@@ -937,9 +937,11 @@ export namespace genomics_v2alpha1 {
   export class Resource$Projects {
     context: APIRequestContext;
     operations: Resource$Projects$Operations;
+    workers: Resource$Projects$Workers;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Projects$Operations(this.context);
+      this.workers = new Resource$Projects$Workers(this.context);
     }
   }
 
@@ -1374,6 +1376,106 @@ export namespace genomics_v2alpha1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Workers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * genomics.projects.workers.checkIn
+     * @desc The worker uses this method to retrieve the assigned operation and provide periodic status updates.
+     * @alias genomics.projects.workers.checkIn
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.id The worker id, assigned when it was created.
+     * @param {().CheckInRequest} params.requestBody Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    checkIn(
+      params?: Params$Resource$Projects$Workers$Checkin,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckInResponse>;
+    checkIn(
+      params: Params$Resource$Projects$Workers$Checkin,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckInResponse>,
+      callback: BodyResponseCallback<Schema$CheckInResponse>
+    ): void;
+    checkIn(
+      params: Params$Resource$Projects$Workers$Checkin,
+      callback: BodyResponseCallback<Schema$CheckInResponse>
+    ): void;
+    checkIn(callback: BodyResponseCallback<Schema$CheckInResponse>): void;
+    checkIn(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Workers$Checkin
+        | BodyResponseCallback<Schema$CheckInResponse>,
+      optionsOrCallback?:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckInResponse>,
+      callback?: BodyResponseCallback<Schema$CheckInResponse>
+    ): void | GaxiosPromise<Schema$CheckInResponse> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Workers$Checkin;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Workers$Checkin;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/{+id}:checkIn').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckInResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$CheckInResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Workers$Checkin
+    extends StandardParameters {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
+
+    /**
+     * The worker id, assigned when it was created.
+     */
+    id?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckInRequest;
   }
 
   export class Resource$Workers {

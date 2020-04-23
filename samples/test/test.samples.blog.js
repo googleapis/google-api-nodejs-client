@@ -23,7 +23,7 @@ const samples = {
   post: require('../blogger/insert'),
 };
 
-const baseUrl = 'https://www.googleapis.com';
+const baseUrl = 'https://blogger.googleapis.com';
 
 for (const p in samples) {
   if (samples[p]) {
@@ -38,7 +38,7 @@ describe('blogger samples', () => {
 
   it('should insert a blog post', async () => {
     const scope = nock(baseUrl)
-      .post(`/blogger/v3/blogs/4340475495955554224/posts`)
+      .post(`/v3/blogs/4340475495955554224/posts`)
       .reply(200, {});
     const data = await samples.post.runSample();
     assert(data);

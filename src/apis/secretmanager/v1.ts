@@ -89,7 +89,7 @@ export namespace secretmanager_v1 {
   /**
    * Secret Manager API
    *
-   * Stores API keys, passwords, certificates, and other sensitive data. Provides convenience while improving security.
+   * Stores sensitive data such as API keys, passwords, and certificates. Provides convenience while improving security.
    *
    * @example
    * const {google} = require('googleapis');
@@ -396,7 +396,7 @@ export namespace secretmanager_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: paths: &quot;bindings, etag&quot; This field is only used by Cloud IAM.
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used:  `paths: &quot;bindings, etag&quot;`
      */
     updateMask?: string | null;
   }
@@ -725,7 +725,7 @@ export namespace secretmanager_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.parent Required. The resource name of the project to associate with the Secret, in the format `projects/x`.
-     * @param {string=} params.secretId Required. This must be unique within the project.
+     * @param {string=} params.secretId Required. This must be unique within the project.  A secret ID is a string with a maximum length of 255 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore (`_`) characters.
      * @param {().Secret} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1342,7 +1342,7 @@ export namespace secretmanager_v1 {
      */
     parent?: string;
     /**
-     * Required. This must be unique within the project.
+     * Required. This must be unique within the project.  A secret ID is a string with a maximum length of 255 characters and can contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and underscore (`_`) characters.
      */
     secretId?: string;
 

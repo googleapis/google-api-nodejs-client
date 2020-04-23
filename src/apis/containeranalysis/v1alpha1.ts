@@ -558,7 +558,7 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$GetIamPolicyRequest {
     /**
-     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`. This field is only used by Cloud IAM.
+     * OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`.
      */
     options?: Schema$GetPolicyOptions;
   }
