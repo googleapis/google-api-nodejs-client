@@ -19,18 +19,19 @@
     "docs": "node build/src/generator/docs",
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm link ../ && pwd && npm test",
-    "lint": "gts check && eslint 'samples/**/*.js'",
+    "lint": "gts check",
     "compile": "tsc -p .",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
-    "fix": "eslint --fix '**/*.js' && gts fix",
+    "fix": "gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
     "postgenerate": "npm run fix",
     "docs-test": "linkinator docs",
     "predocs-test": "npm run docs",
     "submit-prs": "node build/src/generator/synth.js",
-    "prelint": "cd samples; npm link ../; npm i"
+    "prelint": "cd samples; npm link ../; npm install",
+    "precompile": "gts clean"
   },
   "author": "Google Inc.",
   "keywords": [
