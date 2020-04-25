@@ -84,7 +84,7 @@
     "p-queue": "^6.0.0",
     "rimraf": "^3.0.0",
     "server-destroy": "^1.0.1",
-    "tmp": "^0.1.0",
+    "tmp": "^0.2.0",
     "typescript": "3.6.4"
   }
 }
