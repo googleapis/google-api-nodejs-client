@@ -13,15 +13,20 @@
 
 'use strict';
 
+const path = require('path');
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const gmail = google.gmail({
-  version: 'v1',
-  auth: sampleClient.oAuth2Client,
-});
+const gmail = google.gmail('v1');
 
 async function runSample(action, messageId, labelId) {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: 'https://www.googleapis.com/auth/gmail.modify',
+  });
+  google.options({auth});
+
   if (action === 'add') {
     const res = await gmail.users.messages.modify({
       userId: 'me',
@@ -47,25 +52,12 @@ async function runSample(action, messageId, labelId) {
 
 if (module === require.main) {
   if (process.argv.length !== 5) {
-    showUsage();
+    throw new Error('USAGE: node labels.js <add|remove> <messageId> <labelId>');
   }
   const [action, messageId, labelId] = process.argv.slice(2);
   console.log(`action: ${action}`);
   console.log(`messageId: ${messageId}`);
   console.log(`labelId: ${labelId}`);
-
-  const scopes = ['https://www.googleapis.com/auth/gmail.modify'];
-  sampleClient
-    .authenticate(scopes)
-    .then(() => runSample(action, messageId, labelId))
-    .catch(console.error);
+  runSample(action, messageId, labelId).catch(console.error);
 }
-
-function showUsage() {
-  throw new Error('USAGE: node labels.js <add|remove> <messageId> <labelId>');
-}
-
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

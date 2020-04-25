@@ -14,10 +14,23 @@
 'use strict';
 
 const {google} = require('googleapis');
+const path = require('path');
+const {authenticate} = require('@google-cloud/local-auth');
+
 const drive = google.drive('v3');
-const sampleClient = require('./sampleclient');
 
 async function runSamples() {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: [
+      'https://www.googleapis.com/auth/drive.metadata',
+      'https://www.googleapis.com/auth/drive.photos',
+      'https://www.googleapis.com/auth/drive',
+    ],
+  });
+  google.options({auth});
+
   // insertion example
   let res = await drive.files.insert({
     requestBody: {
@@ -28,7 +41,6 @@ async function runSamples() {
       mimeType: 'text/plain',
       body: 'Hello World updated with metadata',
     },
-    auth: sampleClient.oAuth2Client,
   });
   console.log(res.data);
 
@@ -39,7 +51,6 @@ async function runSamples() {
       mimeType: 'text/plain',
       body: 'Hello World updated with metadata',
     },
-    auth: sampleClient.oAuth2Client,
   });
   console.log(res.data);
 
@@ -53,18 +64,8 @@ async function runSamples() {
       mimeType: 'text/plain',
       body: 'Hello World updated with metadata',
     },
-    auth: sampleClient.oAuth2Client,
   });
   console.log(res.data);
 }
 
-const scopes = [
-  'https://www.googleapis.com/auth/drive.metadata',
-  'https://www.googleapis.com/auth/drive.photos',
-  'https://www.googleapis.com/auth/drive',
-];
-
-sampleClient
-  .authenticate(scopes)
-  .then(client => runSamples(client))
-  .catch(console.error);
+runSamples().catch(console.error);

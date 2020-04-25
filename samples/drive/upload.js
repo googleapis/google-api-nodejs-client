@@ -14,17 +14,21 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const readline = require('readline');
-
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const drive = google.drive({
-  version: 'v3',
-  auth: sampleClient.oAuth2Client,
-});
+const drive = google.drive('v3');
 
 async function runSample(fileName) {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: 'https://www.googleapis.com/auth/drive.file',
+  });
+  google.options({auth});
+
   const fileSize = fs.statSync(fileName).size;
   const res = await drive.files.create(
     {
@@ -53,15 +57,6 @@ async function runSample(fileName) {
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
   const fileName = process.argv[2];
-  const scopes = ['https://www.googleapis.com/auth/drive.file'];
-  sampleClient
-    .authenticate(scopes)
-    .then(() => runSample(fileName))
-    .catch(console.error);
+  runSample(fileName).catch(console.error);
 }
-
-// export functions for testing purposes
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

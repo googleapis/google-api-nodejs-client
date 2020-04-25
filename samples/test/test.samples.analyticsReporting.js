@@ -16,29 +16,30 @@
 const assert = require('assert');
 const {describe, it, afterEach} = require('mocha');
 const nock = require('nock');
+const proxyquire = require('proxyquire');
+const {google} = require('googleapis');
 
 nock.disableNetConnect();
-
-const samples = {
-  batchGet: require('../analyticsReporting/batchGet'),
-};
-
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
-}
 
 const baseUrl = 'https://analyticsreporting.googleapis.com';
 
 describe('analyticsReporting samples', () => {
+  const batchGet = proxyquire('../analyticsReporting/batchGet', {
+    '@google-cloud/local-auth': {
+      authenticate: async () => {
+        const client = new google.auth.OAuth2();
+        client.credentials = {access_token: 'not-a-token'};
+      },
+    },
+  });
+
   afterEach(() => {
     nock.cleanAll();
   });
 
   it('should batchGet', async () => {
     const scope = nock(baseUrl).post('/v4/reports:batchGet').reply(200, {});
-    const data = await samples.batchGet.runSample();
+    const data = await batchGet();
     assert(data);
     scope.done();
   });
