@@ -13,7 +13,7 @@
 
 'use strict';
 
-const {assert} = require('chai');
+const assert = require('assert');
 const execa = require('execa');
 const {describe, it} = require('mocha');
 

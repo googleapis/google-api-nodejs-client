@@ -35,7 +35,7 @@ async function runSample() {
     userId: 'me',
     requestBody: {
       // Replace with `projects/${PROJECT_ID}/topics/${TOPIC_NAME}`
-      topicName: `projects/el-gato/topics/gmail`,
+      topicName: 'projects/el-gato/topics/gmail',
     },
   });
   console.log(res.data);
@@ -50,10 +50,7 @@ const scopes = [
 ];
 
 if (module === require.main) {
-  sampleClient
-    .authenticate(scopes)
-    .then(runSample)
-    .catch(console.error);
+  sampleClient.authenticate(scopes).then(runSample).catch(console.error);
 }
 
 module.exports = {

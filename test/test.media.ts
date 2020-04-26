@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, before, beforeEach, after} from 'mocha';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
@@ -460,7 +460,7 @@ describe('Media', () => {
       media,
     });
     assert.strictEqual(typeof res.data, 'object');
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     assert.strictEqual((res.data as any).hello, 'world');
     assert.strictEqual(typeof res, 'object');
     requestBody = {
@@ -476,7 +476,7 @@ describe('Media', () => {
       media,
     });
     assert.strictEqual(typeof res2.data, 'object');
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     assert.strictEqual((res2.data as any).hello, 'world');
     assert.strictEqual(typeof res2, 'object');
   });

@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, before, beforeEach, after} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {drive_v2, GoogleApis} from '../src';
@@ -117,10 +117,7 @@ describe('drive:v2', () => {
 
   describe('.files.list()', () => {
     it('should not return missing param error', async () => {
-      nock(Utils.baseUrl)
-        .get('/drive/v2/files?q=hello')
-        .times(2)
-        .reply(200);
+      nock(Utils.baseUrl).get('/drive/v2/files?q=hello').times(2).reply(200);
       await localDrive.files.list({q: 'hello'});
       await remoteDrive.files.list({q: 'hello'});
     });

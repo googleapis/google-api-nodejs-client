@@ -26,10 +26,9 @@ import {
 import * as mkdirp from 'mkdirp';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
-import * as url from 'url';
+import {URL} from 'url';
 import * as util from 'util';
-// there is a typings issue with p-queue and TypeScript 3.6.4.
-const {default: Q} = require('p-queue');
+import Q from 'p-queue';
 
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
@@ -100,13 +99,14 @@ function getType(item: SchemaItem): string {
       return 'number';
     case 'object':
       return getObjectType(item);
-    case 'array':
+    case 'array': {
       const innerType = getType(item.items!);
       if (isSimpleType(innerType)) {
         return `${innerType}[]`;
       } else {
         return `Array<${innerType}>`;
       }
+    }
     default:
       return item.type!;
   }
@@ -237,7 +237,7 @@ export class Generator {
     const queue = new Q({concurrency: 10});
     console.log(`Generating ${apis.length} APIs...`);
     queue.addAll(
-      apis.map((api: {[key: string]: string}) => {
+      apis.map(api => {
         return async () => {
           this.log('Generating API for %s...', api.id);
           this.logResult(
@@ -246,7 +246,7 @@ export class Generator {
           );
           try {
             await this.generateAPI(api.discoveryRestUrl);
-            this.logResult(api.discoveryRestUrl, `GenerateAPI call success!`);
+            this.logResult(api.discoveryRestUrl, 'GenerateAPI call success!');
           } catch (e) {
             this.logResult(
               api.discoveryRestUrl,
@@ -344,17 +344,18 @@ export class Generator {
   ) {
     if (schema.methods) {
       for (const methodName in schema.methods) {
+        // eslint-disable-next-line no-prototype-builtins
         if (schema.methods.hasOwnProperty(methodName)) {
           const methodSchema = schema.methods[methodName];
           methodSchema.sampleUrl = apiPath + '.' + methodName + '.frag.json';
           tasks.push(async () => {
-            this.logResult(apiDiscoveryUrl, `Making fragment request...`);
+            this.logResult(apiDiscoveryUrl, 'Making fragment request...');
             this.logResult(apiDiscoveryUrl, methodSchema.sampleUrl);
             try {
               const res = await this.request<FragmentResponse>({
                 url: methodSchema.sampleUrl,
               });
-              this.logResult(apiDiscoveryUrl, `Fragment request complete.`);
+              this.logResult(apiDiscoveryUrl, 'Fragment request complete.');
               if (
                 res.data &&
                 res.data.codeFragment &&
@@ -385,6 +386,7 @@ export class Generator {
     }
     if (schema.resources) {
       for (const resourceName in schema.resources) {
+        // eslint-disable-next-line no-prototype-builtins
         if (schema.resources.hasOwnProperty(resourceName)) {
           this.getFragmentsForSchema(
             apiDiscoveryUrl,
@@ -402,7 +404,7 @@ export class Generator {
    * @param apiDiscoveryUri URL or filename of discovery doc for API
    */
   async generateAPI(apiDiscoveryUrl: string) {
-    const parts = url.parse(apiDiscoveryUrl);
+    const parts = new URL(apiDiscoveryUrl);
     if (apiDiscoveryUrl && !parts.protocol) {
       this.log('Reading from file ' + apiDiscoveryUrl);
       const file = await util.promisify(fs.readFile)(apiDiscoveryUrl, {
@@ -410,7 +412,7 @@ export class Generator {
       });
       await this.generate(apiDiscoveryUrl, JSON.parse(file));
     } else {
-      this.logResult(apiDiscoveryUrl, `Starting discovery doc request...`);
+      this.logResult(apiDiscoveryUrl, 'Starting discovery doc request...');
       this.logResult(apiDiscoveryUrl, apiDiscoveryUrl);
       const res = await this.request<Schema>({url: apiDiscoveryUrl});
       await this.generate(apiDiscoveryUrl, res.data);
@@ -418,7 +420,7 @@ export class Generator {
   }
 
   private async generate(apiDiscoveryUrl: string, schema: Schema) {
-    this.logResult(apiDiscoveryUrl, `Discovery doc request complete.`);
+    this.logResult(apiDiscoveryUrl, 'Discovery doc request complete.');
     const tasks = new Array<() => Promise<void>>();
     this.getFragmentsForSchema(
       apiDiscoveryUrl,
@@ -434,15 +436,15 @@ export class Generator {
       schema.name,
       schema.version + '.ts'
     );
-    this.logResult(apiDiscoveryUrl, `Generating templates...`);
-    this.logResult(apiDiscoveryUrl, `Step 1...`);
+    this.logResult(apiDiscoveryUrl, 'Generating templates...');
+    this.logResult(apiDiscoveryUrl, 'Step 1...');
     await Promise.all(tasks.map(t => t()));
-    this.logResult(apiDiscoveryUrl, `Step 2...`);
+    this.logResult(apiDiscoveryUrl, 'Step 2...');
     const contents = this.env.render(API_TEMPLATE, {api: schema});
     await mkdirp(path.dirname(exportFilename));
-    this.logResult(apiDiscoveryUrl, `Step 3...`);
+    this.logResult(apiDiscoveryUrl, 'Step 3...');
     await writeFile(exportFilename, contents, {encoding: 'utf8'});
-    this.logResult(apiDiscoveryUrl, `Template generation complete.`);
+    this.logResult(apiDiscoveryUrl, 'Template generation complete.');
     return exportFilename;
   }
 }

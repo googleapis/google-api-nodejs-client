@@ -41,7 +41,7 @@ describe('gmail samples', () => {
 
   it('should list emails', async () => {
     const scope = nock(baseUrl)
-      .get(`/gmail/v1/users/me/messages`)
+      .get('/gmail/v1/users/me/messages')
       .reply(200, {});
     const data = await samples.list.runSample();
     assert(data);
@@ -60,11 +60,9 @@ describe('gmail samples', () => {
   });
 
   it('should add a user watch', async () => {
-    const scope = nock(baseUrl)
-      .post(`/gmail/v1/users/me/watch`)
-      .reply(200, {
-        data: true,
-      });
+    const scope = nock(baseUrl).post('/gmail/v1/users/me/watch').reply(200, {
+      data: true,
+    });
     const data = await samples.watch.runSample();
     assert(data);
     scope.done();

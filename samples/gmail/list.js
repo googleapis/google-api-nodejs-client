@@ -29,10 +29,7 @@ async function runSample() {
 
 if (module === require.main) {
   const scopes = ['https://www.googleapis.com/auth/gmail.readonly'];
-  sampleClient
-    .authenticate(scopes)
-    .then(runSample)
-    .catch(console.error);
+  sampleClient.authenticate(scopes).then(runSample).catch(console.error);
 }
 
 module.exports = {

@@ -29,7 +29,7 @@ describe('GoogleApis#discover', () => {
   it('should generate all apis', done => {
     const localApis = fs.readdirSync(path.join(__dirname, '../src/apis'));
     const google = new GoogleApis();
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const g2 = google as any;
     const localDrive = google.drive('v2');
 
@@ -70,8 +70,9 @@ describe('GoogleApis#discover', () => {
       assert.strictEqual(typeof remoteDrive, 'object');
 
       for (const key in localDrive) {
+        // eslint-disable-next-line no-prototype-builtins
         if (localDrive.hasOwnProperty(key)) {
-          // tslint:disable-next-line no-any
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           assert((remoteDrive as any)[key], 'generated drive has same keys');
         }
       }

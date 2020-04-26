@@ -19,10 +19,7 @@ const plus = google.plus('v1');
 const nconf = require('nconf');
 const path = require('path');
 
-nconf
-  .argv()
-  .env()
-  .file(path.join(__dirname, 'config.json'));
+nconf.argv().env().file(path.join(__dirname, 'config.json'));
 
 // PUT your API key here or this example will return errors
 // To learn more about API keys, please see:

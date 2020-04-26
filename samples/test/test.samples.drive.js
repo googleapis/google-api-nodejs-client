@@ -65,7 +65,7 @@ describe('Drive samples', () => {
 
   it('should list all the docs', async () => {
     const scope = nock(baseUrl)
-      .get(`/drive/v3/files?pageSize=3`)
+      .get('/drive/v3/files?pageSize=3')
       .reply(200, {});
     const data = await samples.list.runSample();
     assert(data);
@@ -74,7 +74,7 @@ describe('Drive samples', () => {
 
   it('should upload a file', async () => {
     const scope = nock(baseUrl)
-      .post(`/upload/drive/v3/files?uploadType=multipart`)
+      .post('/upload/drive/v3/files?uploadType=multipart')
       .reply(200, {});
     const data = await samples.upload.runSample(someFile);
     assert(data);

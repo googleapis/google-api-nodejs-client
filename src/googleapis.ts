@@ -75,8 +75,9 @@ export class GoogleApis extends apis.GeneratedAPIs {
    */
   private addAPIs(apisToAdd: apis.GeneratedAPIs) {
     for (const apiName in apisToAdd) {
+      // eslint-disable-next-line no-prototype-builtins
       if (apisToAdd.hasOwnProperty(apiName)) {
-        // tslint:disable-next-line: no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this[apiName] = (apisToAdd as any)[apiName].bind(this);
       }
     }

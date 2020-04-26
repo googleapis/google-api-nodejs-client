@@ -39,9 +39,7 @@ describe('webmaster samples', () => {
     const path = `/webmasters/v3/sites/${encodeURIComponent(
       siteUrl
     )}/searchAnalytics/query`;
-    const scope = nock('https://www.googleapis.com')
-      .post(path)
-      .reply(200, {});
+    const scope = nock('https://www.googleapis.com').post(path).reply(200, {});
     const data = await samples.query.runSample();
     assert(data);
     scope.done();

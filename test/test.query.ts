@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, after, before, beforeEach} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {google, GoogleApis} from '../src';
@@ -48,41 +48,29 @@ describe('Query params', () => {
   });
 
   it('should not append ? with no query parameters', async () => {
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/ID')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/ID').reply(200);
     const res = await localDrive.files.get({fileId: 'ID'});
     assert.strictEqual(-1, res.config.url.indexOf('?'));
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/ID')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/ID').reply(200);
     const res2 = await remoteDrive.files.get({fileId: 'ID'});
     assert.strictEqual(-1, res2.config.url.indexOf('?'));
   });
 
   it('should be null if no object passed', async () => {
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
     const res = await localDrive.files.list();
     assert.strictEqual(Utils.getQs(res), null);
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
     const res2 = await remoteDrive.files.list();
     assert.strictEqual(Utils.getQs(res2), null);
   });
 
   it('should be null if params passed are in path', async () => {
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
     const res = await localDrive.files.get({fileId: '123'});
     assert.strictEqual(Utils.getQs(res), null);
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123')
-      .reply(200);
-    const res2 = await remoteDrive.files.get({fileId: '123'});
+    nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
+    await remoteDrive.files.get({fileId: '123'});
     assert.strictEqual(Utils.getQs(res), null);
   });
 
@@ -106,17 +94,13 @@ describe('Query params', () => {
   });
 
   it('should be set if params passed are unknown params', async () => {
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123?madeThisUp=hello')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123?madeThisUp=hello').reply(200);
     const res = await localDrive.files.get({
       fileId: '123',
       madeThisUp: 'hello',
     });
     assert.strictEqual(Utils.getQs(res), 'madeThisUp=hello');
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123?madeThisUp=hello')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123?madeThisUp=hello').reply(200);
     const res2 = await remoteDrive.files.get({
       fileId: '123',
       madeThisUp: 'hello',
@@ -125,14 +109,10 @@ describe('Query params', () => {
   });
 
   it('should be set if params passed are aliased names', async () => {
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123?resource=hello')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123?resource=hello').reply(200);
     const res = await localDrive.files.get({fileId: '123', resource_: 'hello'});
     assert.strictEqual(Utils.getQs(res), 'resource=hello');
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123?resource=hello')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123?resource=hello').reply(200);
     const res2 = await remoteDrive.files.get({
       fileId: '123',
       resource_: 'hello',
@@ -226,15 +206,11 @@ describe('Query params', () => {
     );
     oauth2client.credentials = {access_token: 'abc123'};
 
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
     const res = await localDrive.files.get({fileId: '123', auth: oauth2client});
     assert.strictEqual(Utils.getQs(res), null);
 
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123').reply(200);
     const res2 = await remoteDrive.files.get({
       fileId: '123',
       auth: oauth2client,
