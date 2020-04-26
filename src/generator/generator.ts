@@ -233,7 +233,6 @@ export class Generator {
       ? {}
       : {'X-User-Ip': '0.0.0.0'};
     const ignore = require('../../../ignore.json').ignore as string[];
-    console.log(ignore);
     const res = await this.request<Schemas>({url: discoveryUrl, headers});
     const apis = res.data.items;
     const queue = new Q({concurrency: 10});
