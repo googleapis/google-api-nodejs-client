@@ -19,8 +19,11 @@ import {resolve} from 'path';
 
 export abstract class Utils {
   static getQs(res: GaxiosResponse) {
-    const query = new URL(res.config.url!).searchParams;
-    return query ? query.toString() : null;
+    let query = new URL(res.config.url!).search;
+    if (query.startsWith('?')) {
+      query = query.slice(1);
+    }
+    return query || null;
   }
 
   static getPath(res: GaxiosResponse) {
