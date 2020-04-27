@@ -13,15 +13,23 @@
 
 'use strict';
 
+const path = require('path');
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const jobService = google.jobs({
-  version: 'v3',
-  auth: sampleClient.oAuth2Client,
-});
+const jobService = google.jobs('v3');
 
 async function runSample() {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: [
+      'https://www.googleapis.com/auth/jobs',
+      'https://www.googleapis.com/auth/cloud-platform',
+    ],
+  });
+  google.options({auth});
+
   const projectId = await google.auth.getProjectId();
   const res = await jobService.projects.companies.create({
     parent: `project/${projectId}`,
@@ -37,14 +45,6 @@ async function runSample() {
 }
 
 if (module === require.main) {
-  const scopes = [
-    'https://www.googleapis.com/auth/jobs',
-    'https://www.googleapis.com/auth/cloud-platform',
-  ];
-  sampleClient.authenticate(scopes).then(runSample).catch(console.error);
+  runSample().catch(console.error);
 }
-
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

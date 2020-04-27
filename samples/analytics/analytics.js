@@ -14,12 +14,10 @@
 'use strict';
 
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const path = require('path');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const analytics = google.analytics({
-  version: 'v3',
-  auth: sampleClient.oAuth2Client,
-});
+const analytics = google.analytics('v3');
 
 // Custom Goals must exist prior to being used as an objectiveMetric
 const objectiveMetric = 'ga:goal1Completions';
@@ -37,6 +35,13 @@ const variations = [
 ];
 
 async function runSample() {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: 'https://www.googleapis.com/auth/analytics',
+  });
+  google.options({auth});
+
   const res = await analytics.management.experiments.insert({
     accountId: 'your-accountId',
     webPropertyId: 'your-webPropertyId',
@@ -53,9 +58,7 @@ async function runSample() {
   return res.data;
 }
 
-const scopes = ['https://www.googleapis.com/auth/analytics'];
-
-sampleClient
-  .authenticate(scopes)
-  .then(() => runSample())
-  .catch(console.error);
+if (module === require.main) {
+  runSample().catch(console.error);
+}
+module.exports = runSample;

@@ -19,20 +19,27 @@ const nock = require('nock');
 const os = require('os');
 const path = require('path');
 const {describe, it, afterEach} = require('mocha');
+const proxyquire = require('proxyquire');
+const {google} = require('googleapis');
 
 nock.disableNetConnect();
 
 const samples = {
-  download: require('../drive/download'),
-  export: require('../drive/export'),
-  list: require('../drive/list'),
-  upload: require('../drive/upload'),
+  download: {path: '../drive/download'},
+  export: {path: '../drive/export'},
+  list: {path: '../drive/list'},
+  upload: {path: '../drive/upload'},
 };
 
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
+for (const sample of Object.values(samples)) {
+  sample.runSample = proxyquire(sample.path, {
+    '@google-cloud/local-auth': {
+      authenticate: async () => {
+        const client = new google.auth.OAuth2();
+        client.credentials = {access_token: 'not-a-token'};
+      },
+    },
+  });
 }
 
 const someFile = path.join(__dirname, '../../test/fixtures/public.pem');

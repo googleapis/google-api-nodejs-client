@@ -16,19 +16,26 @@
 const assert = require('assert');
 const nock = require('nock');
 const {describe, it, afterEach} = require('mocha');
+const proxyquire = require('proxyquire');
+const {google} = require('googleapis');
 
 const baseUrl = 'https://sheets.googleapis.com';
 
 nock.disableNetConnect();
 
 const samples = {
-  append: require('../sheets/append'),
+  append: {path: '../sheets/append'},
 };
 
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
+for (const sample of Object.values(samples)) {
+  sample.runSample = proxyquire(sample.path, {
+    '@google-cloud/local-auth': {
+      authenticate: async () => {
+        const client = new google.auth.OAuth2();
+        client.credentials = {access_token: 'not-a-token'};
+      },
+    },
+  });
 }
 
 describe('sheets samples', () => {
