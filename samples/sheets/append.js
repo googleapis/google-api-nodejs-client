@@ -13,15 +13,24 @@
 
 'use strict';
 
+const path = require('path');
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const sheets = google.sheets({
-  version: 'v4',
-  auth: sampleClient.oAuth2Client,
-});
+const sheets = google.sheets('v4');
 
 async function runSample(spreadsheetId, range) {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: [
+      'https://www.googleapis.com/auth/drive',
+      'https://www.googleapis.com/auth/drive.file',
+      'https://www.googleapis.com/auth/spreadsheets',
+    ],
+  });
+  google.options({auth});
+
   const res = await sheets.spreadsheets.values.append({
     spreadsheetId,
     range,
@@ -37,21 +46,9 @@ async function runSample(spreadsheetId, range) {
   return res.data;
 }
 
-const scopes = [
-  'https://www.googleapis.com/auth/drive',
-  'https://www.googleapis.com/auth/drive.file',
-  'https://www.googleapis.com/auth/spreadsheets',
-];
-
 if (module === require.main) {
   const [spreadsheetId, range] = process.argv.slice(2);
-  sampleClient
-    .authenticate(scopes)
-    .then(() => runSample(spreadsheetId, range))
-    .catch(console.error);
+  runSample(spreadsheetId, range).catch(console.error);
 }
 
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

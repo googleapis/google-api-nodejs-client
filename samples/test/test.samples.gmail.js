@@ -16,20 +16,27 @@
 const assert = require('assert');
 const nock = require('nock');
 const {describe, it, afterEach} = require('mocha');
+const proxyquire = require('proxyquire');
+const {google} = require('googleapis');
 
 nock.disableNetConnect();
 
 const samples = {
-  list: require('../gmail/list'),
-  labels: require('../gmail/labels'),
-  watch: require('../gmail/watch'),
-  send: require('../gmail/send'),
+  list: {path: '../gmail/list'},
+  labels: {path: '../gmail/labels'},
+  watch: {path: '../gmail/watch'},
+  send: {path: '../gmail/send'},
 };
 
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
+for (const sample of Object.values(samples)) {
+  sample.runSample = proxyquire(sample.path, {
+    '@google-cloud/local-auth': {
+      authenticate: async () => {
+        const client = new google.auth.OAuth2();
+        client.credentials = {access_token: 'not-a-token'};
+      },
+    },
+  });
 }
 
 const baseUrl = 'https://www.googleapis.com';

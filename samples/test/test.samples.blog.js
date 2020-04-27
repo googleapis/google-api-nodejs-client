@@ -16,22 +16,23 @@
 const assert = require('assert');
 const nock = require('nock');
 const {describe, it, afterEach} = require('mocha');
+const proxyquire = require('proxyquire');
+const {google} = require('googleapis');
 
 nock.disableNetConnect();
 
-const samples = {
-  post: require('../blogger/insert'),
-};
-
 const baseUrl = 'https://blogger.googleapis.com';
 
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
-}
-
 describe('blogger samples', () => {
+  const insert = proxyquire('../blogger/insert', {
+    '@google-cloud/local-auth': {
+      authenticate: async () => {
+        const client = new google.auth.OAuth2();
+        client.credentials = {access_token: 'not-a-token'};
+      },
+    },
+  });
+
   afterEach(() => {
     nock.cleanAll();
   });
@@ -40,7 +41,7 @@ describe('blogger samples', () => {
     const scope = nock(baseUrl)
       .post('/v3/blogs/4340475495955554224/posts')
       .reply(200, {});
-    const data = await samples.post.runSample();
+    const data = await insert();
     assert(data);
     scope.done();
   });

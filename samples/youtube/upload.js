@@ -18,19 +18,26 @@
  */
 
 const fs = require('fs');
+const path = require('path');
 const readline = require('readline');
-
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
+const {authenticate} = require('@google-cloud/local-auth');
 
 // initialize the Youtube API library
-const youtube = google.youtube({
-  version: 'v3',
-  auth: sampleClient.oAuth2Client,
-});
+const youtube = google.youtube('v3');
 
 // very basic example of uploading a video to youtube
 async function runSample(fileName) {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: [
+      'https://www.googleapis.com/auth/youtube.upload',
+      'https://www.googleapis.com/auth/youtube',
+    ],
+  });
+  google.options({auth});
+
   const fileSize = fs.statSync(fileName).size;
   const res = await youtube.videos.insert(
     {
@@ -65,20 +72,9 @@ async function runSample(fileName) {
   return res.data;
 }
 
-const scopes = [
-  'https://www.googleapis.com/auth/youtube.upload',
-  'https://www.googleapis.com/auth/youtube',
-];
-
 if (module === require.main) {
   const fileName = process.argv[2];
-  sampleClient
-    .authenticate(scopes)
-    .then(() => runSample(fileName))
-    .catch(console.error);
+  runSample(fileName).catch(console.error);
 }
 
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

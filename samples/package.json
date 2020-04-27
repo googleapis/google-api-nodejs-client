@@ -14,10 +14,11 @@
     "test": "mocha"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "@google-cloud/local-auth": "^0.1.0",
+    "express": "^4.17.1",
     "googleapis": "^49.0.0",
     "nconf": "^0.10.0",
-    "open": "^7.0.0",
+    "open": "^7.0.3",
     "server-destroy": "^1.0.1",
     "uuid": "^7.0.0"
   },
@@ -25,6 +26,7 @@
     "chai": "^4.2.0",
     "execa": "^4.0.0",
     "mocha": "^7.0.0",
-    "nock": "^12.0.0"
+    "nock": "^12.0.0",
+    "proxyquire": "^2.1.3"
   }
 }

@@ -13,16 +13,20 @@
 
 'use strict';
 
+const path = require('path');
 const {google} = require('googleapis');
-const util = require('util');
-const sampleClient = require('../sampleclient');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const docs = google.docs({
-  version: 'v1',
-  auth: sampleClient.oAuth2Client,
-});
+const docs = google.docs('v1');
 
 async function runSample() {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: 'https://www.googleapis.com/auth/documents',
+  });
+  google.options({auth});
+
   // The initial call to create the doc will have a title but no content.
   // This is a limitation of the underlying API.
   const createResponse = await docs.documents.create({
@@ -32,16 +36,17 @@ async function runSample() {
   });
   console.log(createResponse.data);
 
-  // now that we created the doc, let's add content using the 
+  // now that we created the doc, let's add content using the
   // documentId returned from the create call.
   const updateResponse = await docs.documents.batchUpdate({
     documentId: createResponse.data.documentId,
     requestBody: {
-      requests: [{
+      requests: [
+        {
         insertText: {
           // The first text inserted into the document must create a paragraph,
-          // which can't be done with the `location` property.  Use the 
-          // `endOfSegmentLocation` instead, which assumes the Body if 
+          // which can't be done with the `location` property.  Use the
+          // `endOfSegmentLocation` instead, which assumes the Body if
           // unspecified.
           endOfSegmentLocation: {},
           text: 'Hello there!'
@@ -53,18 +58,7 @@ async function runSample() {
   return updateResponse.data;
 }
 
-const scopes = [
-  'https://www.googleapis.com/auth/documents',
-];
-
 if (module === require.main) {
-  sampleClient
-    .authenticate(scopes)
-    .then(runSample)
-    .catch(console.error);
+  runSample().catch(console.error);
 }
-
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

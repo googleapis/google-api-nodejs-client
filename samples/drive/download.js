@@ -14,18 +14,30 @@
 'use strict';
 
 const {google} = require('googleapis');
-const sampleClient = require('../sampleclient');
 const fs = require('fs');
 const os = require('os');
 const uuid = require('uuid');
 const path = require('path');
+const {authenticate} = require('@google-cloud/local-auth');
 
-const drive = google.drive({
-  version: 'v3',
-  auth: sampleClient.oAuth2Client,
-});
+const drive = google.drive('v3');
 
 async function runSample(fileId) {
+  // Obtain user credentials to use for the request
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
+    scopes: [
+      'https://www.googleapis.com/auth/drive',
+      'https://www.googleapis.com/auth/drive.appdata',
+      'https://www.googleapis.com/auth/drive.file',
+      'https://www.googleapis.com/auth/drive.metadata',
+      'https://www.googleapis.com/auth/drive.metadata.readonly',
+      'https://www.googleapis.com/auth/drive.photos.readonly',
+      'https://www.googleapis.com/auth/drive.readonly',
+    ],
+  });
+  google.options({auth});
+
   // For converting document formats, and for downloading template
   // documents, see the method drive.files.export():
   // https://developers.google.com/drive/api/v3/manage-downloads
@@ -60,29 +72,11 @@ async function runSample(fileId) {
     });
 }
 
-// if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
   if (process.argv.length !== 3) {
     throw new Error('Usage: node samples/drive/download.js $FILE_ID');
   }
   const fileId = process.argv[2];
-  const scopes = [
-    'https://www.googleapis.com/auth/drive',
-    'https://www.googleapis.com/auth/drive.appdata',
-    'https://www.googleapis.com/auth/drive.file',
-    'https://www.googleapis.com/auth/drive.metadata',
-    'https://www.googleapis.com/auth/drive.metadata.readonly',
-    'https://www.googleapis.com/auth/drive.photos.readonly',
-    'https://www.googleapis.com/auth/drive.readonly',
-  ];
-  sampleClient
-    .authenticate(scopes)
-    .then(() => runSample(fileId))
-    .catch(console.error);
+  runSample(fileId).catch(console.error);
 }
-
-// export functions for testing purposes
-module.exports = {
-  runSample,
-  client: sampleClient.oAuth2Client,
-};
+module.exports = runSample;

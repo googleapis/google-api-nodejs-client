@@ -16,21 +16,28 @@
 const assert = require('assert');
 const nock = require('nock');
 const {describe, it, afterEach} = require('mocha');
+const {google} = require('googleapis');
+const proxyquire = require('proxyquire');
 
 nock.disableNetConnect();
 
 const samples = {
-  create: require('../docs/create'),
-  get: require('../docs/get'),
+  create: {path: '../docs/create'},
+  get: {path: '../docs/get'},
 };
 
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
-}
-
 const baseUrl = 'https://docs.googleapis.com';
+
+for (const sample of Object.values(samples)) {
+  sample.runSample = proxyquire(sample.path, {
+    '@google-cloud/local-auth': {
+      authenticate: async () => {
+        const client = new google.auth.OAuth2();
+        client.credentials = {access_token: 'not-a-token'};
+      },
+    },
+  });
+}
 
 describe('docs samples', () => {
   afterEach(() => {
