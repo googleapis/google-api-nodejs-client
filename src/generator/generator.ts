@@ -241,7 +241,8 @@ export class Generator {
       apis.map(api => {
         return async () => {
           // look at ignore.json to find a list of APIs to ignore
-          if (ignore.indexOf(api.id) >= 0) {
+          if (ignore.includes(api.id)) {
+            this.log(`Skipping API ${api.id}`);
             return;
           }
           this.log(`Generating API for ${api.id}...`);
