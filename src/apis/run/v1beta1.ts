@@ -12,13 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
+
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -26,13 +32,6 @@ import {
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
 
 export namespace run_v1beta1 {
   export interface Options extends GlobalOptions {

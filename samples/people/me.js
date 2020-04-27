@@ -37,8 +37,5 @@ const scopes = [
 ];
 
 if (module === require.main) {
-  sampleClient
-    .authenticate(scopes)
-    .then(runSample)
-    .catch(console.error);
+  sampleClient.authenticate(scopes).then(runSample).catch(console.error);
 }

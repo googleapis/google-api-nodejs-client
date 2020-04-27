@@ -12,13 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/class-name-casing */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable no-irregular-whitespace */
+
 import {
   OAuth2Client,
   JWT,
   Compute,
   UserRefreshClient,
-} from 'google-auth-library';
-import {
+  GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
   MethodOptions,
@@ -26,13 +32,6 @@ import {
   BodyResponseCallback,
   APIRequestContext,
 } from 'googleapis-common';
-import {GaxiosPromise} from 'gaxios';
-
-// tslint:disable: no-any
-// tslint:disable: class-name
-// tslint:disable: variable-name
-// tslint:disable: jsdoc-format
-// tslint:disable: no-namespace
 
 export namespace policytroubleshooter_v1 {
   export interface Options extends GlobalOptions {
@@ -148,7 +147,9 @@ export namespace policytroubleshooter_v1 {
      * Indicates whether each member in the binding includes the member specified in the request, either directly or indirectly. Each key identifies a member in the binding, and each value indicates whether the member in the binding includes the member in the request.  For example, suppose that a binding includes the following members:  * `user:alice@example.com` * `group:product-eng@example.com`  You want to troubleshoot access for `user:bob@example.com`. This user is a member of the group `group:product-eng@example.com`.  For the first member in the binding, the key is `user:alice@example.com`, and the `membership` field in the value is set to `MEMBERSHIP_NOT_INCLUDED`.  For the second member in the binding, the key is `group:product-eng@example.com`, and the `membership` field in the value is set to `MEMBERSHIP_INCLUDED`.
      */
     memberships?: {
-      [key: string]: Schema$GoogleCloudPolicytroubleshooterV1BindingExplanationAnnotatedMembership;
+      [
+        key: string
+      ]: Schema$GoogleCloudPolicytroubleshooterV1BindingExplanationAnnotatedMembership;
     } | null;
     /**
      * The relevance of this binding to the overall determination for the entire policy.

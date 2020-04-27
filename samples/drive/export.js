@@ -46,10 +46,7 @@ async function runSample() {
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
   const scopes = ['https://www.googleapis.com/auth/drive.readonly'];
-  sampleClient
-    .authenticate(scopes)
-    .then(runSample)
-    .catch(console.error);
+  sampleClient.authenticate(scopes).then(runSample).catch(console.error);
 }
 
 // export functions for testing purposes

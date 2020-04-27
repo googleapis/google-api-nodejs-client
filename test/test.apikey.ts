@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, before, after, beforeEach} from 'mocha';
 import {OAuth2Client} from 'google-auth-library';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
@@ -22,25 +22,19 @@ import {drive_v2, GoogleApis, blogger_v3} from '../src';
 import {Utils} from './utils';
 
 async function testGet(drive: APIEndpoint) {
-  nock(Utils.baseUrl)
-    .get('/drive/v2/files/123?key=APIKEY')
-    .reply(200);
+  nock(Utils.baseUrl).get('/drive/v2/files/123?key=APIKEY').reply(200);
   const res = await drive.files.get({fileId: '123', auth: 'APIKEY'});
   assert.strictEqual(Utils.getQs(res), 'key=APIKEY');
 }
 
 async function testParams2(drive: APIEndpoint) {
-  nock(Utils.baseUrl)
-    .get('/drive/v2/files/123?key=API%20KEY')
-    .reply(200);
+  nock(Utils.baseUrl).get('/drive/v2/files/123?key=API%20KEY').reply(200);
   const res = await drive.files.get({fileId: '123', auth: 'API KEY'});
   assert.strictEqual(Utils.getQs(res), 'key=API%20KEY');
 }
 
 async function testKeyParam(drive: APIEndpoint) {
-  nock(Utils.baseUrl)
-    .get('/drive/v2/files/123?key=abc123')
-    .reply(200);
+  nock(Utils.baseUrl).get('/drive/v2/files/123?key=abc123').reply(200);
   const res = await drive.files.get({
     fileId: '123',
     auth: 'API KEY',

@@ -12,19 +12,22 @@
 // limitations under the License.
 
 import {GaxiosResponse} from 'gaxios';
-import * as url from 'url';
+import {URL} from 'url';
 import {GoogleApis} from '../src';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
 
 export abstract class Utils {
   static getQs(res: GaxiosResponse) {
-    const query = url.parse(res.config.url!).query;
-    return query ? query.toString() : null;
+    let query = new URL(res.config.url!).search;
+    if (query.startsWith('?')) {
+      query = query.slice(1);
+    }
+    return query || null;
   }
 
   static getPath(res: GaxiosResponse) {
-    return url.parse(res.config.url!).path!;
+    return new URL(res.config.url!).pathname!;
   }
 
   static getDiscoveryUrl(name: string, version: string) {
@@ -46,7 +49,7 @@ export abstract class Utils {
     );
   }
 
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static loadApi<T = any>(
     google: GoogleApis,
     name: string,
@@ -56,7 +59,7 @@ export abstract class Utils {
     return (google.discoverAPI(
       Utils.getDiscoveryUrl(name, version),
       options
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ) as any) as T;
   }
 

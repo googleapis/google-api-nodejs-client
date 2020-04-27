@@ -17,12 +17,14 @@ import * as mv from 'mv';
 import {ncp} from 'ncp';
 import {promisify} from 'util';
 import * as tmp from 'tmp';
+import {describe, it, afterEach} from 'mocha';
 
 const mvp = promisify(mv);
 const ncpp = promisify(ncp);
 const keep = !!process.env.GANC_KEEP_TEMPDIRS;
 const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
 const stagingPath = stagingDir.name;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require('../../package.json');
 const spawnOpts: cp.SpawnSyncOptions = {stdio: 'inherit', shell: true};
 
@@ -30,7 +32,7 @@ const spawnOpts: cp.SpawnSyncOptions = {stdio: 'inherit', shell: true};
  * Create a staging directory with temp fixtures used to test on a fresh application.
  */
 describe('kitchen sink', async () => {
-  it('should be able to use the d.ts', async function() {
+  it('should be able to use the d.ts', async function () {
     this.retries(3);
     console.log(`${__filename} staging area: ${stagingPath}`);
     cp.spawnSync('npm', ['pack'], spawnOpts);

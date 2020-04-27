@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, beforeEach, after} from 'mocha';
 import * as nock from 'nock';
 import {URL} from 'url';
 import {GoogleApis} from '../src';
@@ -20,9 +20,7 @@ import {Utils} from './utils';
 
 function createNock(path?: string) {
   const p = path ? path : '/drive/v2/files/woot';
-  nock(Utils.baseUrl)
-    .get(p)
-    .reply(200);
+  nock(Utils.baseUrl).get(p).reply(200);
 }
 
 describe('Options', () => {
@@ -63,9 +61,7 @@ describe('Options', () => {
     const google = new GoogleApis();
     google.options({params: {myParam: '123'}});
     const drive = google.drive('v2');
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123?myParam=123')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
     const res = await drive.files.get({fileId: '123'});
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call
@@ -82,10 +78,8 @@ describe('Options', () => {
     nock.enableNetConnect();
     const d = await Utils.loadApi(google, 'drive', 'v2');
     nock.disableNetConnect();
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/123?myParam=123')
-      .reply(200);
-    // tslint:disable-next-line no-any
+    nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const res3 = await (d as any).files.get({fileId: '123'});
     // If the default param handling is broken, query might be undefined,
     // thus concealing the assertion message with some generic "cannot
@@ -133,9 +127,7 @@ describe('Options', () => {
     const google = new GoogleApis();
     const drive = google.drive('v3');
     const host = 'https://myproxy.com';
-    nock(host)
-      .get('/drive/v3/files/woot')
-      .reply(200);
+    nock(host).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get(
       {fileId: 'woot'},
       {url: 'https://myproxy.com/drive/v3/files/{fileId}', timeout: 12345}
@@ -176,9 +168,7 @@ describe('Options', () => {
     const drive = google.drive('v3');
     const fileId = 'woot';
     const rootUrl = 'https://myrooturl.com';
-    nock(rootUrl)
-      .get('/drive/v3/files/woot')
-      .reply(200);
+    nock(rootUrl).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get({fileId}, {rootUrl});
     assert.strictEqual(
       res.config.url,
@@ -186,10 +176,8 @@ describe('Options', () => {
       'Request used overridden rootUrl with trailing slash.'
     );
 
-    nock(rootUrl)
-      .get('/drive/v3/files/woot')
-      .reply(200);
-    const res2 = await drive.files.get({fileId}, {rootUrl});
+    nock(rootUrl).get('/drive/v3/files/woot').reply(200);
+    await drive.files.get({fileId}, {rootUrl});
     assert.strictEqual(
       res.config.url,
       'https://myrooturl.com/drive/v3/files/woot',
@@ -198,9 +186,7 @@ describe('Options', () => {
   });
 
   it('should allow overriding validateStatus', async () => {
-    const scope = nock(Utils.baseUrl)
-      .get('/drive/v2/files')
-      .reply(500);
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
     const google = new GoogleApis();
     const drive = google.drive('v2');
     const res = await drive.files.list({}, {validateStatus: () => true});

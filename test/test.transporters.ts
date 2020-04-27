@@ -13,17 +13,17 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, after, before, beforeEach} from 'mocha';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {AuthPlus} from '../src/googleapis';
-import {GoogleApis, google} from '../src';
+import {GoogleApis} from '../src';
 import {Utils} from './utils';
 
 async function testHeaders(drive: APIEndpoint) {
   const req = nock(Utils.baseUrl)
     .post('/drive/v2/files/a/comments')
-    .reply(200, function() {
+    .reply(200, function () {
       const headers = this.req.headers;
       // ensure that the x-goog-user-project is loaded from default credentials:
       assert.strictEqual(headers['x-goog-user-project'][0], 'my-quota-project');
@@ -80,9 +80,7 @@ function getAuthClientMock() {
 }
 
 async function testContentType(drive: APIEndpoint) {
-  nock(Utils.baseUrl)
-    .post('/drive/v2/files/a/comments')
-    .reply(200);
+  nock(Utils.baseUrl).post('/drive/v2/files/a/comments').reply(200);
   const res = await drive.comments.insert({
     fileId: 'a',
     resource: {content: 'hello '},
@@ -103,9 +101,7 @@ async function testGzip(drive: APIEndpoint) {
 }
 
 async function testBody(drive: APIEndpoint) {
-  const scope = nock(Utils.baseUrl)
-    .get('/drive/v2/files')
-    .reply(200);
+  const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(200);
   const res = await drive.files.list();
   scope.done();
   assert.strictEqual(res.config.headers['content-type'], undefined);
@@ -113,9 +109,7 @@ async function testBody(drive: APIEndpoint) {
 }
 
 async function testBodyDelete(drive: APIEndpoint) {
-  const scope = nock(Utils.baseUrl)
-    .delete('/drive/v2/files/test')
-    .reply(200);
+  const scope = nock(Utils.baseUrl).delete('/drive/v2/files/test').reply(200);
   const res = await drive.files.delete({fileId: 'test'});
   scope.done();
   assert.strictEqual(res.config.headers['content-type'], undefined);
@@ -255,9 +249,7 @@ describe('Transporters', () => {
   });
 
   it('should return 304 responses as success', async () => {
-    const scope = nock(Utils.baseUrl)
-      .get('/drive/v2/files')
-      .reply(304);
+    const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(304);
     const res = await localDrive.files.list();
     assert.strictEqual(res.status, 304);
     scope.done();

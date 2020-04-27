@@ -41,10 +41,7 @@ if (module === require.main) {
     'https://www.googleapis.com/auth/jobs',
     'https://www.googleapis.com/auth/cloud-platform',
   ];
-  sampleClient
-    .authenticate(scopes)
-    .then(runSample)
-    .catch(console.error);
+  sampleClient.authenticate(scopes).then(runSample).catch(console.error);
 }
 
 module.exports = {

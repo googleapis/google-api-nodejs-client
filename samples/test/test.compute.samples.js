@@ -1,4 +1,4 @@
-// Copyright 2019, Google, LLC.
+// Copyright 2019 Google, LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -13,13 +13,13 @@
 
 'use strict';
 
-const {assert} = require('chai');
+const assert = require('assert');
 const execa = require('execa');
 const {describe, it} = require('mocha');
 
 describe('Compute samples', () => {
   it('should list all the VMs', async () => {
     const res = execa.sync('node compute/listVMs.js', {shell: true});
-    assert.match(res.stdout, /VMs:/);
+    assert.ok(/VMs:/.test(res.stdout));
   });
 });

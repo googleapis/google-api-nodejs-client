@@ -22,18 +22,13 @@ module.exports = {
     template: './node_modules/jsdoc-fresh',
     recurse: true,
     verbose: true,
-    destination: './docs/'
+    destination: './docs/',
   },
-  plugins: [
-    'plugins/markdown',
-    'jsdoc-region-tag'
-  ],
+  plugins: ['plugins/markdown', 'jsdoc-region-tag'],
   source: {
     excludePattern: '(^|\\/|\\\\)[._]',
-    include: [
-      'src',
-    ],
-    includePattern: '\\.js$'
+    include: ['src'],
+    includePattern: '\\.js$',
   },
   templates: {
     copyright: 'Copyright 2019 Google, LLC.',
@@ -42,10 +37,10 @@ module.exports = {
     systemName: 'googleapis',
     theme: 'lumen',
     default: {
-      outputSourceFiles: false
-    }
+      outputSourceFiles: false,
+    },
   },
   markdown: {
-    idInHeadings: true
-  }
+    idInHeadings: true,
+  },
 };

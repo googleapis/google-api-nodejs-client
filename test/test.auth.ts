@@ -12,16 +12,13 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, after, beforeEach, before} from 'mocha';
 import {OAuth2Client} from 'google-auth-library';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 
 import {GoogleApis} from '../src';
-
 import {Utils} from './utils';
-
-const assertRejects = require('assert-rejects');
 
 const googleapis = new GoogleApis();
 
@@ -47,12 +44,12 @@ describe('JWT client', () => {
 
 describe('Compute client', () => {
   it('should create a computeclient', () => {
-    const compute = new googleapis.auth.Compute();
+    new googleapis.auth.Compute();
   });
 });
 
 async function testNoTokens(blogger: APIEndpoint, client: OAuth2Client) {
-  await assertRejects(
+  await assert.rejects(
     blogger.pages.get({blogId: '123', pageId: '123', auth: client}),
     /No access, refresh token or API key is set./
   );
@@ -68,9 +65,7 @@ async function testExpired(
   oauth2client: OAuth2Client,
   now: number
 ) {
-  nock(Utils.baseUrl)
-    .get('/drive/v2/files/wat')
-    .reply(200);
+  nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
   await drive.files.get({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
   assert.notStrictEqual(expiryDate, undefined);
@@ -86,9 +81,7 @@ async function testNoAccessToken(
   oauth2client: OAuth2Client,
   now: number
 ) {
-  nock(Utils.baseUrl)
-    .get('/drive/v2/files/wat')
-    .reply(200);
+  nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
   await drive.files.get({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
   assert.notStrictEqual(expiryDate, undefined);
@@ -199,6 +192,7 @@ describe('OAuth2 client', () => {
       expiry_date: twoSecondsAgo,
     };
     await testExpired(remoteDrive, oauth2client, now);
+    scope.done();
   });
 
   it('should make request if access token not expired', async () => {
@@ -219,9 +213,7 @@ describe('OAuth2 client', () => {
       expiry_date: tenMinutesFromNow,
     };
 
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/wat')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
     await localDrive.files.get({fileId: 'wat', auth: oauth2client});
     assert.strictEqual(
       JSON.stringify(oauth2client.credentials),
@@ -249,9 +241,7 @@ describe('OAuth2 client', () => {
       expiry_date: tenMinutesFromNow,
     };
 
-    nock(Utils.baseUrl)
-      .get('/drive/v2/files/wat')
-      .reply(200);
+    nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
     await remoteDrive.files.get({fileId: 'wat', auth: oauth2client});
     assert.strictEqual(
       JSON.stringify(oauth2client.credentials),
@@ -284,6 +274,7 @@ describe('OAuth2 client', () => {
     now = new Date().getTime();
     oauth2client.credentials = {refresh_token: 'abc'};
     await testNoAccessToken(remoteDrive, oauth2client, now);
+    scope.done();
   });
 
   describe('revokeCredentials()', () => {
@@ -310,7 +301,7 @@ describe('OAuth2 client', () => {
         REDIRECT_URI
       );
       oauth2client.credentials = {refresh_token: 'abc'};
-      await assertRejects(
+      await assert.rejects(
         oauth2client.revokeCredentials(),
         /Error: No access token to revoke./
       );
@@ -336,6 +327,7 @@ describe('OAuth2 client', () => {
       const res = await oauth2client.getToken('code here');
       assert(res.tokens.expiry_date! >= now + 10 * 1000);
       assert(res.tokens.expiry_date! <= now + 15 * 1000);
+      scope.done();
     });
   });
 

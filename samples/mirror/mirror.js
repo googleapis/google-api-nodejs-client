@@ -33,7 +33,4 @@ const scopes = [
   'https://www.googleapis.com/auth/glass.location',
 ];
 
-sampleClient
-  .authenticate(scopes)
-  .then(runSample)
-  .catch(console.error);
+sampleClient.authenticate(scopes).then(runSample).catch(console.error);

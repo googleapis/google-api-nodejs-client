@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import {describe, it, before, beforeEach, after} from 'mocha';
 import {GaxiosResponse} from 'gaxios';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
@@ -113,9 +113,7 @@ describe('Path params', () => {
 
   it('should be put in URL of path', done => {
     const p = '/drive/v2/files/abc123';
-    nock(Utils.baseUrl)
-      .get(p)
-      .reply(200);
+    nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
       {fileId: 'abc123'},
       (err: Error, res: GaxiosResponse) => {
@@ -123,9 +121,7 @@ describe('Path params', () => {
           return done(err);
         }
         assert.strictEqual(res.config.url, Utils.baseUrl + p);
-        nock(Utils.baseUrl)
-          .get(p)
-          .reply(200);
+        nock(Utils.baseUrl).get(p).reply(200);
         remoteDrive.files.get(
           {fileId: 'abc123'},
           (err2: Error, res2: GaxiosResponse) => {
@@ -142,9 +138,7 @@ describe('Path params', () => {
 
   it('should be put in URL of pathname', done => {
     const p = '/drive/v2/files/123abc';
-    nock(Utils.baseUrl)
-      .get(p)
-      .reply(200);
+    nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
       {fileId: '123abc'},
       (err: Error, res: GaxiosResponse) => {
@@ -152,63 +146,45 @@ describe('Path params', () => {
           return done(err);
         }
         assert.strictEqual(Utils.getPath(res), p);
-        nock(Utils.baseUrl)
-          .get(p)
-          .reply(200);
-        remoteDrive.files.get(
-          {fileId: '123abc'},
-          (err2: Error, res2: GaxiosResponse) => {
-            if (err2) {
-              return done(err2);
-            }
-            assert.strictEqual(Utils.getPath(res), p);
-            done();
+        nock(Utils.baseUrl).get(p).reply(200);
+        remoteDrive.files.get({fileId: '123abc'}, (err2: Error) => {
+          if (err2) {
+            return done(err2);
           }
-        );
+          assert.strictEqual(Utils.getPath(res), p);
+          done();
+        });
       }
     );
   });
 
   it('should be urlencoded', done => {
     const p = `/drive/v2/files/${encodeURIComponent('p@ram')}`;
-    nock(Utils.baseUrl)
-      .get(p)
-      .reply(200);
+    nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
       {fileId: 'p@ram'},
       (err: Error, res: GaxiosResponse) => {
         if (err) {
           return done(err);
         }
-        const parm = Utils.getPath(res)
-          .split('/')
-          .pop();
+        const parm = Utils.getPath(res).split('/').pop();
         assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
-        nock(Utils.baseUrl)
-          .get(p)
-          .reply(200);
-        remoteDrive.files.get(
-          {fileId: 'p@ram'},
-          (err2: Error, res2: GaxiosResponse) => {
-            if (err2) {
-              return done(err2);
-            }
-            const parm = Utils.getPath(res)
-              .split('/')
-              .pop();
-            assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
-            done();
+        nock(Utils.baseUrl).get(p).reply(200);
+        remoteDrive.files.get({fileId: 'p@ram'}, (err2: Error) => {
+          if (err2) {
+            return done(err2);
           }
-        );
+          const parm = Utils.getPath(res).split('/').pop();
+          assert.strictEqual(decodeURIComponent(parm!), 'p@ram');
+          done();
+        });
       }
     );
   });
 
   it('should keep query params null if only path params', done => {
     const p = '/drive/v2/files/123abc';
-    nock(Utils.baseUrl)
-      .get(p)
-      .reply(200);
+    nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
       {fileId: '123abc'},
       (err: Error, res: GaxiosResponse) => {
@@ -216,9 +192,7 @@ describe('Path params', () => {
           return done(err);
         }
         assert.strictEqual(Utils.getQs(res), null);
-        nock(Utils.baseUrl)
-          .get(p)
-          .reply(200);
+        nock(Utils.baseUrl).get(p).reply(200);
         remoteDrive.files.get(
           {fileId: '123abc'},
           (err2: Error, res2: GaxiosResponse) => {
@@ -235,9 +209,7 @@ describe('Path params', () => {
 
   it('should keep query params as is', done => {
     const p = '/drive/v2/files/123abc?hello=world';
-    nock(Utils.baseUrl)
-      .get(p)
-      .reply(200);
+    nock(Utils.baseUrl).get(p).reply(200);
     localDrive.files.get(
       {fileId: '123abc', hello: 'world'},
       (err: Error, res: GaxiosResponse) => {
@@ -245,12 +217,10 @@ describe('Path params', () => {
           return done(err);
         }
         assert.strictEqual(Utils.getQs(res), 'hello=world');
-        nock(Utils.baseUrl)
-          .get(p)
-          .reply(200);
+        nock(Utils.baseUrl).get(p).reply(200);
         remoteDrive.files.get(
           {fileId: '123abc', hello: 'world'},
-          (err2: Error, res2: GaxiosResponse) => {
+          (err2: Error) => {
             if (err2) {
               return done(err2);
             }

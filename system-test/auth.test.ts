@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {expect} from 'chai';
+import * as assert from 'assert';
+import {describe, it} from 'mocha';
 import {google} from '../src';
 const compute = google.compute('v1');
 
@@ -28,15 +29,15 @@ describe('google.auth', async () => {
         project: projectId,
       });
       const vms = result.data;
-      expect(vms.kind).to.be.a('string');
+      assert.strictEqual(typeof vms.kind, 'string');
     });
 
     it('uses projectId from cached client', async () => {
-      const authClient = await google.auth.getClient({
+      await google.auth.getClient({
         projectId: 'foo-project-id',
       });
       const projectId = await google.auth.getProjectId();
-      expect(projectId).to.equal('foo-project-id');
+      assert.strictEqual(projectId, 'foo-project-id');
     });
 
     it('uses the last configured client settings', async () => {
@@ -50,7 +51,7 @@ describe('google.auth', async () => {
         project: projectId,
       });
       const vms = result.data;
-      expect(vms.kind).to.be.a('string');
+      assert.strictEqual(typeof vms.kind, 'string');
     });
   });
 
@@ -66,7 +67,7 @@ describe('google.auth', async () => {
         project: projectId,
       });
       const vms = result.data;
-      expect(vms.kind).to.be.a('string');
+      assert.strictEqual(typeof vms.kind, 'string');
     });
   });
 });

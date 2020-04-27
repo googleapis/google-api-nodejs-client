@@ -1,16 +1,18 @@
 {
+  "name": "googleapis",
+  "version": "49.0.0",
+  "repository": "googleapis/google-api-nodejs-client",
   "license": "Apache-2.0",
-  "dependencies": {
-    "google-auth-library": "^6.0.0",
-    "googleapis-common": "^4.0.0"
+  "description": "Google APIs Client Library for Node.js",
+  "main": "./build/src/index.js",
+  "types": "./build/src/index.d.ts",
+  "engines": {
+    "node": ">=10"
   },
   "files": [
     "build/src",
     "!build/src/**/*.map"
   ],
-  "repository": "googleapis/google-api-nodejs-client",
-  "name": "googleapis",
-  "version": "49.0.0",
   "scripts": {
     "pretest": "npm run compile",
     "prepare": "npm run compile",
@@ -19,11 +21,11 @@
     "docs": "node build/src/generator/docs",
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm link ../ && pwd && npm test",
-    "lint": "gts check && eslint 'samples/**/*.js'",
+    "lint": "gts check",
     "compile": "tsc -p .",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
-    "fix": "eslint --fix '**/*.js' && gts fix",
+    "fix": "gts fix",
     "pregenerate": "npm run build-tools",
     "generate": "node build/src/generator/generate.js",
     "postgenerate": "npm run fix",
@@ -40,15 +42,12 @@
     "client",
     "client library"
   ],
-  "description": "Google APIs Client Library for Node.js",
-  "main": "./build/src/index.js",
-  "types": "./build/src/index.d.ts",
-  "engines": {
-    "node": ">=10"
+  "dependencies": {
+    "google-auth-library": "^6.0.0",
+    "googleapis-common": "^4.1.0"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.10",
-    "@types/chai": "^4.1.7",
     "@types/execa": "^0.9.0",
     "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^1.0.0",
@@ -61,16 +60,11 @@
     "@types/rimraf": "^3.0.0",
     "@types/tmp": "^0.1.0",
     "@types/url-template": "^2.0.28",
-    "assert-rejects": "^1.0.0",
     "c8": "^7.0.0",
-    "chai": "^4.2.0",
     "codecov": "^3.4.0",
-    "eslint": "^6.0.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-prettier": "^3.1.0",
     "execa": "^4.0.0",
-    "gts": "^1.1.0",
+    "gaxios": "^3.0.3",
+    "gts": "^2.0.0",
     "js-green-licenses": "^1.0.0",
     "linkinator": "^2.0.0",
     "minimist": "^1.2.5",
@@ -85,6 +79,6 @@
     "rimraf": "^3.0.0",
     "server-destroy": "^1.0.1",
     "tmp": "^0.2.0",
-    "typescript": "3.6.4"
+    "typescript": "^3.8.3"
   }
 }
