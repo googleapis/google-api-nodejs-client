@@ -232,6 +232,7 @@ export class Generator {
     const headers: Headers = this.options.includePrivate
       ? {}
       : {'X-User-Ip': '0.0.0.0'};
+    const ignore = require('../../../ignore.json').ignore as string[];
     const res = await this.request<Schemas>({url: discoveryUrl, headers});
     const apis = res.data.items;
     const queue = new Q({concurrency: 10});
@@ -239,7 +240,12 @@ export class Generator {
     queue.addAll(
       apis.map(api => {
         return async () => {
-          this.log('Generating API for %s...', api.id);
+          // look at ignore.json to find a list of APIs to ignore
+          if (ignore.includes(api.id)) {
+            this.log(`Skipping API ${api.id}`);
+            return;
+          }
+          this.log(`Generating API for ${api.id}...`);
           this.logResult(
             api.discoveryRestUrl,
             'Attempting first generateAPI call...'
