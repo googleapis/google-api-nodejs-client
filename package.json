@@ -58,7 +58,7 @@
     "@types/nunjucks": "^3.1.1",
     "@types/qs": "^6.5.3",
     "@types/rimraf": "^3.0.0",
-    "@types/tmp": "^0.1.0",
+    "@types/tmp": "^0.2.0",
     "@types/url-template": "^2.0.28",
     "c8": "^7.0.0",
     "codecov": "^3.4.0",
