@@ -33,7 +33,9 @@
     "docs-test": "linkinator docs",
     "predocs-test": "npm run docs",
     "submit-prs": "node build/src/generator/synth.js",
-    "prelint": "cd samples; npm link ../; npm i"
+    "prelint": "cd samples; npm link ../; npm i",
+    "predownload": "npm run build-tools",
+    "download": "node build/src/generator/download.js"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -59,6 +61,7 @@
     "@types/nunjucks": "^3.1.1",
     "@types/qs": "^6.5.3",
     "@types/rimraf": "^3.0.0",
+    "@types/sinon": "^9.0.0",
     "@types/tmp": "^0.2.0",
     "@types/url-template": "^2.0.28",
     "c8": "^7.0.0",
@@ -79,6 +82,7 @@
     "p-queue": "^6.0.0",
     "rimraf": "^3.0.0",
     "server-destroy": "^1.0.1",
+    "sinon": "^9.0.2",
     "tmp": "^0.2.0",
     "typescript": "^3.8.3"
   }

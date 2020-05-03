@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import * as fs from 'fs';
-import {GaxiosOptions, Headers} from 'gaxios';
+import {GaxiosOptions} from 'gaxios';
 import {DefaultTransporter} from 'google-auth-library';
 import {
   FragmentResponse,
@@ -29,9 +29,11 @@ import * as path from 'path';
 import {URL} from 'url';
 import * as util from 'util';
 import Q from 'p-queue';
+import {downloadDiscoveryDocs} from './download';
 
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
+const readFile = util.promisify(fs.readFile);
 
 const FRAGMENT_URL =
   'https://storage.googleapis.com/apisnippets-staging/public/';
@@ -228,14 +230,23 @@ export class Generator {
   /**
    * Generate all APIs and write to files.
    */
-  async generateAllAPIs(discoveryUrl: string) {
-    const headers: Headers = this.options.includePrivate
-      ? {}
-      : {'X-User-Ip': '0.0.0.0'};
+  async generateAllAPIs(discoveryUrl: string, useCache: boolean) {
     const ignore = require('../../../ignore.json').ignore as string[];
-    const res = await this.request<Schemas>({url: discoveryUrl, headers});
-    const apis = res.data.items;
-    const queue = new Q({concurrency: 10});
+    const discoveryPath = path.join(__dirname, '../../../discovery');
+    if (useCache) {
+      console.log('Reading from cache...');
+    } else {
+      await downloadDiscoveryDocs({
+        includePrivate: this.options.includePrivate,
+        discoveryUrl,
+        downloadPath: discoveryPath,
+      });
+    }
+
+    const indexPath = path.join(discoveryPath, 'index.json');
+    const file = await readFile(indexPath, 'utf8');
+    const apis = (JSON.parse(file) as Schemas).items;
+    const queue = new Q({concurrency: 25});
     console.log(`Generating ${apis.length} APIs...`);
     queue.addAll(
       apis.map(api => {
@@ -251,7 +262,11 @@ export class Generator {
             'Attempting first generateAPI call...'
           );
           try {
-            await this.generateAPI(api.discoveryRestUrl);
+            const apiPath = path.join(
+              discoveryPath,
+              api.id.replace(':', '-') + '.json'
+            );
+            await this.generateAPI(apiPath);
             this.logResult(api.discoveryRestUrl, 'GenerateAPI call success!');
           } catch (e) {
             this.logResult(
@@ -410,18 +425,21 @@ export class Generator {
    * @param apiDiscoveryUri URL or filename of discovery doc for API
    */
   async generateAPI(apiDiscoveryUrl: string) {
-    const parts = new URL(apiDiscoveryUrl);
-    if (apiDiscoveryUrl && !parts.protocol) {
-      this.log('Reading from file ' + apiDiscoveryUrl);
-      const file = await util.promisify(fs.readFile)(apiDiscoveryUrl, {
-        encoding: 'utf-8',
-      });
+    let parts: URL;
+    try {
+      parts = new URL(apiDiscoveryUrl);
+    } catch (e) {
+      // 🤷‍♂️
+    }
+    if (apiDiscoveryUrl && !parts!) {
+      this.log(`Reading from file ${apiDiscoveryUrl}`);
+      const file = await readFile(apiDiscoveryUrl, 'utf-8');
       await this.generate(apiDiscoveryUrl, JSON.parse(file));
     } else {
-      this.logResult(apiDiscoveryUrl, 'Starting discovery doc request...');
       this.logResult(apiDiscoveryUrl, apiDiscoveryUrl);
-      const res = await this.request<Schema>({url: apiDiscoveryUrl});
-      await this.generate(apiDiscoveryUrl, res.data);
+      const file = await readFile(apiDiscoveryUrl, 'utf8');
+      const data = JSON.parse(file) as Schema;
+      await this.generate(apiDiscoveryUrl, data);
     }
   }
 
