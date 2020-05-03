@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -123,7 +122,7 @@ export namespace composer_v1beta1 {
      */
     description?: string | null;
     /**
-     * IP address or range, defined using CIDR notation, of requests that this rule applies to. You can use the wildcard character &quot;*&quot; to match all IPs equivalent to &quot;0/0&quot; and &quot;::/0&quot; together. Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32`           or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.   &lt;p&gt;IP range prefixes should be properly truncated. For example, `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.
+     * IP address or range, defined using CIDR notation, of requests that this rule applies to. Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32`           or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.   &lt;p&gt;IP range prefixes should be properly truncated. For example, `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.
      */
     value?: string | null;
   }

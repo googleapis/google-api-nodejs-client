@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -276,7 +275,7 @@ export namespace games_v1 {
    */
   export interface Schema$AchievementUpdateMultipleResponse {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateListResponse.
+     * Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateMultipleResponse.
      */
     kind?: string | null;
     /**
@@ -1205,7 +1204,6 @@ export namespace games_v1 {
      * The ID of the player.
      */
     playerId?: string | null;
-    playerStattus?: string | null;
     /**
      * The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
      */
@@ -2832,7 +2830,6 @@ export namespace games_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2912,7 +2909,6 @@ export namespace games_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
      * @param {().AchievementUpdateMultipleRequest} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3077,10 +3073,6 @@ export namespace games_v1 {
      * The ID of the achievement used by this method.
      */
     achievementId?: string;
-    /**
-     * Override used only by built-in games in Play Games application.
-     */
-    builtinGameId?: string;
   }
   export interface Params$Resource$Achievements$Updatemultiple
     extends StandardParameters {
@@ -3088,11 +3080,6 @@ export namespace games_v1 {
      * Auth client or API Key for the request
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Override used only by built-in games in Play Games application.
-     */
-    builtinGameId?: string;
 
     /**
      * Request body metadata
@@ -3188,7 +3175,6 @@ export namespace games_v1 {
      * @memberOf! ()
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.builtinGameId Override used only by built-in games in Play Games application.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3359,11 +3345,6 @@ export namespace games_v1 {
      * Auth client or API Key for the request
      */
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Override used only by built-in games in Play Games application.
-     */
-    builtinGameId?: string;
   }
   export interface Params$Resource$Applications$Verify
     extends StandardParameters {

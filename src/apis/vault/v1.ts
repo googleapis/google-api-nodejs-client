@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -143,7 +142,7 @@ export namespace vault_v1 {
    */
   export interface Schema$AddHeldAccountsRequest {
     /**
-     * Account ids to identify which accounts to add. Only account_ids or only emails should be specified, but not both.
+     * Account IDs to identify which accounts to add. Only account_ids or only emails should be specified, but not both.
      */
     accountIds?: string[] | null;
     /**
@@ -634,7 +633,7 @@ export namespace vault_v1 {
    */
   export interface Schema$MatterPermission {
     /**
-     * The account id, as provided by &lt;a href=&quot;https://developers.google.com/admin-sdk/&quot;&gt;Admin SDK&lt;/a&gt;.
+     * The account ID, as provided by &lt;a href=&quot;https://developers.google.com/admin-sdk/&quot;&gt;Admin SDK&lt;/a&gt;.
      */
     accountId?: string | null;
     /**
@@ -725,7 +724,7 @@ export namespace vault_v1 {
    */
   export interface Schema$RemoveHeldAccountsRequest {
     /**
-     * Account ids to identify HeldAccounts to remove.
+     * Account IDs to identify HeldAccounts to remove.
      */
     accountIds?: string[] | null;
   }
@@ -773,7 +772,7 @@ export namespace vault_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. The matter id of the associated matter. The server does not look at this field during create and always uses matter id in the URL.
+     * Output only. The matter ID of the associated matter. The server does not look at this field during create and always uses matter id in the URL.
      */
     matterId?: string | null;
     /**
@@ -790,7 +789,7 @@ export namespace vault_v1 {
    */
   export interface Schema$SharedDriveInfo {
     /**
-     * List of Shared drive ids, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
+     * List of Shared drive IDs, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
      */
     sharedDriveIds?: string[] | null;
   }
@@ -816,7 +815,7 @@ export namespace vault_v1 {
    */
   export interface Schema$TeamDriveInfo {
     /**
-     * List of Team Drive ids, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
+     * List of Team Drive IDs, as provided by &lt;a href=&quot;https://developers.google.com/drive&quot;&gt;Drive API&lt;/a&gt;.
      */
     teamDriveIds?: string[] | null;
   }
@@ -1508,7 +1507,7 @@ export namespace vault_v1 {
 
     /**
      * vault.matters.update
-     * @desc Updates the specified matter. This updates only the name and description of the matter, identified by matter id. Changes to any other fields are ignored. Returns the default view of the matter.
+     * @desc Updates the specified matter. This updates only the name and description of the matter, identified by matter ID. Changes to any other fields are ignored. Returns the default view of the matter.
      * @alias vault.matters.update
      * @memberOf! ()
      *
@@ -3094,7 +3093,7 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be created.
+     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be created.
      * @param {().SavedQuery} params.requestBody Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3169,8 +3168,8 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be deleted.
-     * @param {string} params.savedQueryId Id of the saved query to be deleted.
+     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be deleted.
+     * @param {string} params.savedQueryId ID of the saved query to be deleted.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3241,8 +3240,8 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter id of the parent matter for which the saved query is to be retrieved.
-     * @param {string} params.savedQueryId Id of the saved query to be retrieved.
+     * @param {string} params.matterId The matter ID of the parent matter for which the saved query is to be retrieved.
+     * @param {string} params.savedQueryId ID of the saved query to be retrieved.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3315,7 +3314,7 @@ export namespace vault_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.matterId The matter id of the parent matter for which the saved queries are to be retrieved.
+     * @param {string} params.matterId The matter ID of the parent matter for which the saved queries are to be retrieved.
      * @param {integer=} params.pageSize The maximum number of saved queries to return.
      * @param {string=} params.pageToken The pagination token as returned in the previous response. An empty token means start from the beginning.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3395,7 +3394,7 @@ export namespace vault_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The matter id of the parent matter for which the saved query is to be created.
+     * The matter ID of the parent matter for which the saved query is to be created.
      */
     matterId?: string;
 
@@ -3412,11 +3411,11 @@ export namespace vault_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The matter id of the parent matter for which the saved query is to be deleted.
+     * The matter ID of the parent matter for which the saved query is to be deleted.
      */
     matterId?: string;
     /**
-     * Id of the saved query to be deleted.
+     * ID of the saved query to be deleted.
      */
     savedQueryId?: string;
   }
@@ -3428,11 +3427,11 @@ export namespace vault_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The matter id of the parent matter for which the saved query is to be retrieved.
+     * The matter ID of the parent matter for which the saved query is to be retrieved.
      */
     matterId?: string;
     /**
-     * Id of the saved query to be retrieved.
+     * ID of the saved query to be retrieved.
      */
     savedQueryId?: string;
   }
@@ -3444,7 +3443,7 @@ export namespace vault_v1 {
     auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
 
     /**
-     * The matter id of the parent matter for which the saved queries are to be retrieved.
+     * The matter ID of the parent matter for which the saved queries are to be retrieved.
      */
     matterId?: string;
     /**

@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -15,30 +15,18 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {dialogflow_v2} from './v2';
-import {dialogflow_v2beta1} from './v2beta1';
 
 export const VERSIONS = {
   v2: dialogflow_v2.Dialogflow,
-  v2beta1: dialogflow_v2beta1.Dialogflow,
 };
 
 export function dialogflow(version: 'v2'): dialogflow_v2.Dialogflow;
 export function dialogflow(
   options: dialogflow_v2.Options
 ): dialogflow_v2.Dialogflow;
-export function dialogflow(version: 'v2beta1'): dialogflow_v2beta1.Dialogflow;
-export function dialogflow(
-  options: dialogflow_v2beta1.Options
-): dialogflow_v2beta1.Dialogflow;
-export function dialogflow<
-  T = dialogflow_v2.Dialogflow | dialogflow_v2beta1.Dialogflow
->(
+export function dialogflow<T = dialogflow_v2.Dialogflow>(
   this: GoogleConfigurable,
-  versionOrOptions:
-    | 'v2'
-    | dialogflow_v2.Options
-    | 'v2beta1'
-    | dialogflow_v2beta1.Options
+  versionOrOptions: 'v2' | dialogflow_v2.Options
 ) {
   return getAPI<T>('dialogflow', versionOrOptions, VERSIONS, this);
 }

@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -195,11 +194,11 @@ export namespace adsensehost_v4_1 {
      * The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
      */
     colors?: {
-      url?: string;
-      title?: string;
+      background?: string;
       border?: string;
       text?: string;
-      background?: string;
+      title?: string;
+      url?: string;
     } | null;
     /**
      * The style of the corners in the ad (deprecated: never populated, ignored).
@@ -243,10 +242,10 @@ export namespace adsensehost_v4_1 {
      * Settings specific to WAP mobile content ads (AFMC - deprecated).
      */
     mobileContentAdsSettings?: {
-      scriptingLanguage?: string;
-      type?: string;
       markupLanguage?: string;
+      scriptingLanguage?: string;
       size?: string;
+      type?: string;
     } | null;
     /**
      * Name of this ad unit.
@@ -357,7 +356,7 @@ export namespace adsensehost_v4_1 {
     /**
      * The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
      */
-    headers?: Array<{name?: string; type?: string; currency?: string}> | null;
+    headers?: Array<{currency?: string; name?: string; type?: string}> | null;
     /**
      * Kind this is, in this case adsensehost#report.
      */

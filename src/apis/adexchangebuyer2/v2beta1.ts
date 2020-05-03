@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -1750,7 +1749,7 @@ export namespace adexchangebuyer2_v2beta1 {
     updateTime?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  Represents a publisher profile in Marketplace.  All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
+   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources.  Represents a publisher profile (https://support.google.com/admanager/answer/6035806?hl=en) in Marketplace.  All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
    */
   export interface Schema$PublisherProfile {
     /**
@@ -1777,6 +1776,10 @@ export namespace adexchangebuyer2_v2beta1 {
      * URL to publisher&#39;s Google+ page.
      */
     googlePlusUrl?: string | null;
+    /**
+     * Indicates if this profile is the parent profile of the seller. A parent profile represents all the inventory from the seller, as opposed to child profile that is created to brand a portion of inventory. One seller should have only one parent publisher profile, and can have multiple child profiles. Publisher profiles for the same seller will have same value of field google.ads.adexchange.buyer.v2beta1.PublisherProfile.seller. See https://support.google.com/admanager/answer/6035806?hl=en for details.
+     */
+    isParent?: boolean | null;
     /**
      * A Google public URL to the logo for this publisher profile. The logo is stored as a PNG, JPG, or GIF image.
      */

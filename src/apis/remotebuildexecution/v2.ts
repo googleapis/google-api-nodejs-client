@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -943,6 +942,19 @@ export namespace remotebuildexecution_v2 {
     acceleratorType?: string | null;
   }
   /**
+   * Autoscale defines the autoscaling policy of a worker pool.
+   */
+  export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAutoscale {
+    /**
+     * The maximal number of workers. Must be equal to or greater than min_size.
+     */
+    maxSize?: string | null;
+    /**
+     * The minimal number of workers. Must be greater than 0.
+     */
+    minSize?: string | null;
+  }
+  /**
    * The request used for `CreateInstance`.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest {
@@ -1140,6 +1152,10 @@ export namespace remotebuildexecution_v2 {
    * A worker pool resource in the Remote Build Execution API.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool {
+    /**
+     * The autoscale policy to apply on a pool.
+     */
+    autoscale?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaAutoscale;
     /**
      * WorkerPool resource name formatted as: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]/workerpools/[POOL_ID]`. name should not be populated when creating a worker pool since it is provided in the `poolId` field.
      */

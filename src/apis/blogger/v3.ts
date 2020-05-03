@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -156,14 +155,14 @@ export namespace blogger_v3 {
     /**
      * The container of pages in this blog.
      */
-    pages?: {totalItems?: number; selfLink?: string} | null;
+    pages?: {selfLink?: string; totalItems?: number} | null;
     /**
      * The container of posts in this blog.
      */
     posts?: {
-      totalItems?: number;
       items?: Schema$Post[];
       selfLink?: string;
+      totalItems?: number;
     } | null;
     /**
      * RFC 3339 date-time when this blog was published.
@@ -246,9 +245,9 @@ export namespace blogger_v3 {
      */
     author?: {
       displayName?: string;
-      url?: string;
       id?: string;
       image?: {url?: string};
+      url?: string;
     } | null;
     /**
      * Data about the blog containing this comment.
@@ -318,10 +317,10 @@ export namespace blogger_v3 {
      * The author of this Page.
      */
     author?: {
-      url?: string;
+      displayName?: string;
       id?: string;
       image?: {url?: string};
-      displayName?: string;
+      url?: string;
     } | null;
     /**
      * Data about the blog containing this Page.
@@ -405,10 +404,10 @@ export namespace blogger_v3 {
      * The author of this Post.
      */
     author?: {
-      url?: string;
+      displayName?: string;
       id?: string;
       image?: {url?: string};
-      displayName?: string;
+      url?: string;
     } | null;
     /**
      * Data about the blog containing this Post.
@@ -446,10 +445,10 @@ export namespace blogger_v3 {
      * The location for geotagged posts.
      */
     location?: {
-      name?: string;
-      span?: string;
       lat?: number;
       lng?: number;
+      name?: string;
+      span?: string;
     } | null;
     /**
      * RFC 3339 date-time when this Post was published.

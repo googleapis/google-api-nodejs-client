@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -143,7 +142,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     initialState?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#achievementConfiguration&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#achievementConfiguration`.
      */
     kind?: string | null;
     /**
@@ -172,7 +171,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     iconUrl?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#achievementConfigurationDetail&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#achievementConfigurationDetail`.
      */
     kind?: string | null;
     /**
@@ -197,7 +196,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     items?: Schema$AchievementConfiguration[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#achievementConfigurationListResponse&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#achievementConfigurationListResponse`.
      */
     kind?: string | null;
     /**
@@ -264,7 +263,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     imageType?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#imageConfiguration&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#imageConfiguration`.
      */
     kind?: string | null;
     /**
@@ -289,7 +288,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     id?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#leaderboardConfiguration&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#leaderboardConfiguration`.
      */
     kind?: string | null;
     /**
@@ -319,7 +318,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     iconUrl?: string | null;
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#leaderboardConfigurationDetail&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#leaderboardConfigurationDetail`.
      */
     kind?: string | null;
     /**
@@ -344,7 +343,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     items?: Schema$LeaderboardConfiguration[];
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#leaderboardConfigurationListResponse&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#leaderboardConfigurationListResponse`.
      */
     kind?: string | null;
     /**
@@ -357,7 +356,7 @@ export namespace gamesConfiguration_v1configuration {
    */
   export interface Schema$LocalizedString {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#localizedString&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#localizedString`.
      */
     kind?: string | null;
     /**
@@ -374,7 +373,7 @@ export namespace gamesConfiguration_v1configuration {
    */
   export interface Schema$LocalizedStringBundle {
     /**
-     * Uniquely identifies the type of this resource. Value is always the fixed string &lt;code&gt;gamesConfiguration#localizedStringBundle&lt;/code&gt;.
+     * Uniquely identifies the type of this resource. Value is always the fixed string `gamesConfiguration#localizedStringBundle`.
      */
     kind?: string | null;
     /**
@@ -622,7 +621,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified <code>maxResults</code>.
+     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -839,7 +838,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     applicationId?: string;
     /**
-     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified <code>maxResults</code>.
+     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
      */
     maxResults?: number;
     /**
@@ -1230,7 +1229,7 @@ export namespace gamesConfiguration_v1configuration {
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified <code>maxResults</code>.
+     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1447,7 +1446,7 @@ export namespace gamesConfiguration_v1configuration {
      */
     applicationId?: string;
     /**
-     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified <code>maxResults</code>.
+     * The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
      */
     maxResults?: number;
     /**
