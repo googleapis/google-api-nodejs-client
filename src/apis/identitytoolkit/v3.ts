@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -1140,8 +1139,8 @@ export namespace identitytoolkit_v3 {
     providerUserInfo?: Array<{
       displayName?: string;
       federatedId?: string;
-      providerId?: string;
       photoUrl?: string;
+      providerId?: string;
     }> | null;
     /**
      * If idToken is STS id token, then this field will be refresh token.
@@ -1188,7 +1187,7 @@ export namespace identitytoolkit_v3 {
     /**
      * The error encountered while processing the account info.
      */
-    error?: Array<{message?: string; index?: number}> | null;
+    error?: Array<{index?: number; message?: string}> | null;
     /**
      * The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
      */
@@ -1254,14 +1253,14 @@ export namespace identitytoolkit_v3 {
      * The IDP of the user.
      */
     providerUserInfo?: Array<{
-      photoUrl?: string;
+      displayName?: string;
       email?: string;
       federatedId?: string;
-      providerId?: string;
-      screenName?: string;
-      displayName?: string;
       phoneNumber?: string;
+      photoUrl?: string;
+      providerId?: string;
       rawId?: string;
+      screenName?: string;
     }> | null;
     /**
      * The user&#39;s plain text password.

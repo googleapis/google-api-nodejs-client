@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -2295,7 +2294,7 @@ export namespace compute_v1 {
      */
     labelFingerprint?: string | null;
     /**
-     * Labels to apply to this ExternalVpnGateway resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
+     * Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -3894,7 +3893,7 @@ export namespace compute_v1 {
      */
     namedPorts?: Schema$NamedPort[];
     /**
-     * The URL of the network to which all instances in the instance group belong.
+     * [Output Only] The URL of the network to which all instances in the instance group belong. If your instance has multiple network interfaces, then the network and subnetwork fields only refer to the network and subnet used by your primary interface (nic0).
      */
     network?: string | null;
     /**
@@ -3910,7 +3909,7 @@ export namespace compute_v1 {
      */
     size?: number | null;
     /**
-     * [Output Only] The URL of the subnetwork to which all instances in the instance group belong.
+     * [Output Only] The URL of the subnetwork to which all instances in the instance group belong. If your instance has multiple network interfaces, then the network and subnetwork fields only refer to the network and subnet used by your primary interface (nic0).
      */
     subnetwork?: string | null;
     /**
@@ -6135,9 +6134,17 @@ export namespace compute_v1 {
      */
     exportCustomRoutes?: boolean | null;
     /**
+     * Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always exported to peers and are not controlled by this field.
+     */
+    exportSubnetRoutesWithPublicIp?: boolean | null;
+    /**
      * Whether to import the custom routes from peer network.
      */
     importCustomRoutes?: boolean | null;
+    /**
+     * Whether subnet routes with public IP range are imported. The default value is false. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always imported from peers and are not controlled by this field.
+     */
+    importSubnetRoutesWithPublicIp?: boolean | null;
     /**
      * Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
@@ -9145,6 +9152,10 @@ export namespace compute_v1 {
      */
     description?: string | null;
     /**
+     * [Output Only] Expire time of the certificate. RFC3339
+     */
+    expireTime?: string | null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      */
     id?: string | null;
@@ -9152,6 +9163,10 @@ export namespace compute_v1 {
      * [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
      */
     kind?: string | null;
+    /**
+     * Configuration and status of a managed SSL certificate.
+     */
+    managed?: Schema$SslCertificateManagedSslCertificate;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
@@ -9168,6 +9183,18 @@ export namespace compute_v1 {
      * [Output only] Server-defined URL for the resource.
      */
     selfLink?: string | null;
+    /**
+     * Configuration and status of a self-managed SSL certificate.
+     */
+    selfManaged?: Schema$SslCertificateSelfManagedSslCertificate;
+    /**
+     * [Output Only] Domains associated with the certificate via Subject Alternative Name.
+     */
+    subjectAlternativeNames?: string[] | null;
+    /**
+     * (Optional) Specifies the type of SSL certificate, either &quot;SELF_MANAGED&quot; or &quot;MANAGED&quot;. If not specified, the certificate is self-managed and the fields certificate and private_key are used.
+     */
+    type?: string | null;
   }
   export interface Schema$SslCertificateAggregatedList {
     /**
@@ -9231,6 +9258,36 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Configuration and status of a managed SSL certificate.
+   */
+  export interface Schema$SslCertificateManagedSslCertificate {
+    /**
+     * The domains for which a managed SSL certificate will be generated. Currently only single-domain certs are supported.
+     */
+    domains?: string[] | null;
+    /**
+     * [Output only] Detailed statuses of the domains specified for managed certificate resource.
+     */
+    domainStatus?: {[key: string]: string} | null;
+    /**
+     * [Output only] Status of the managed certificate resource.
+     */
+    status?: string | null;
+  }
+  /**
+   * Configuration and status of a self-managed SSL certificate.
+   */
+  export interface Schema$SslCertificateSelfManagedSslCertificate {
+    /**
+     * A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     */
+    certificate?: string | null;
+    /**
+     * A write-only private key in PEM format. Only insert requests will include this field.
+     */
+    privateKey?: string | null;
   }
   export interface Schema$SslCertificatesScopedList {
     /**
@@ -10837,7 +10894,7 @@ export namespace compute_v1 {
      */
     labelFingerprint?: string | null;
     /**
-     * Labels to apply to this VpnGateway resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
+     * Labels for this resource. These can only be added or modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -10857,7 +10914,7 @@ export namespace compute_v1 {
      */
     selfLink?: string | null;
     /**
-     * [Output Only] A list of interfaces on this VPN gateway.
+     * A list of interfaces on this VPN gateway.
      */
     vpnInterfaces?: Schema$VpnGatewayVpnGatewayInterface[];
   }
@@ -11007,7 +11064,7 @@ export namespace compute_v1 {
      */
     id?: number | null;
     /**
-     * The external IP address for this VPN gateway interface.
+     * [Output Only] The external IP address for this VPN gateway interface.
      */
     ipAddress?: string | null;
   }
@@ -15572,7 +15629,7 @@ export namespace compute_v1 {
 
     /**
      * compute.backendServices.getHealth
-     * @desc Gets the most recent health check results for this BackendService.
+     * @desc Gets the most recent health check results for this BackendService.  Example request body:  { "group": "/zones/us-east1-b/instanceGroups/lb-backend-example" }
      * @example
      * * // BEFORE RUNNING:
      * // ---------------
@@ -46147,7 +46204,7 @@ export namespace compute_v1 {
 
     /**
      * compute.nodeGroups.patch
-     * @desc Patch the node group.
+     * @desc Updates the specified node group.
      * @alias compute.nodeGroups.patch
      * @memberOf! ()
      *

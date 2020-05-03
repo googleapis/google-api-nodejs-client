@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -191,6 +190,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -225,6 +228,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1beta2_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -336,6 +343,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -392,6 +403,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -670,6 +685,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -704,6 +723,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -815,6 +838,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -871,6 +898,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -1149,6 +1180,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1p2beta1_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -1183,6 +1218,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -1294,6 +1333,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -1350,6 +1393,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.
@@ -1623,6 +1670,10 @@ export namespace videointelligence_v1p3beta1 {
      * The tracks detected from the input video, including recognized celebrities and other detected faces in the video.
      */
     celebrityTracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_CelebrityTrack[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * The annotation result of a celebrity face track. RecognizedCelebrity field could be empty if the face track does not have any matched celebrities.
@@ -1696,6 +1747,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for EXPLICIT_CONTENT_DETECTION.
@@ -1731,6 +1786,10 @@ export namespace videointelligence_v1p3beta1 {
      * The face tracks with attributes.
      */
     tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for FACE_DETECTION.
@@ -1769,6 +1828,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for LABEL_DETECTION.
@@ -1905,6 +1968,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for OBJECT_TRACKING.
@@ -1936,6 +2003,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected tracks of a person.
      */
     tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for PERSON_DETECTION.
@@ -2106,6 +2177,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Config for TEXT_DETECTION.
@@ -2450,6 +2525,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video frames where explicit content was detected.
      */
     frames?: Schema$GoogleCloudVideointelligenceV1_ExplicitContentFrame[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -2484,6 +2563,10 @@ export namespace videointelligence_v1p3beta1 {
      * All video segments where a label was detected.
      */
     segments?: Schema$GoogleCloudVideointelligenceV1_LabelSegment[];
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -2595,6 +2678,10 @@ export namespace videointelligence_v1p3beta1 {
      * Streaming mode ONLY. In streaming mode, we do not know the end time of a tracked object before it is completed. Hence, there is no VideoSegment info returned. Instead, we provide a unique identifiable integer track_id so that the customers can correlate the results of the ongoing ObjectTrackAnnotation of the same track_id over time.
      */
     trackId?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotations for object detection and tracking. This field stores per frame location, time offset, and confidence.
@@ -2651,6 +2738,10 @@ export namespace videointelligence_v1p3beta1 {
      * The detected text.
      */
     text?: string | null;
+    /**
+     * Feature version.
+     */
+    version?: string | null;
   }
   /**
    * Video frame level annotation results for text annotation (OCR). Contains information regarding timestamp and bounding box locations for the frames containing detected OCR text snippets.

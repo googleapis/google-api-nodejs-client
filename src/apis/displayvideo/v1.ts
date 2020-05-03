@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -336,7 +335,7 @@ export namespace displayvideo_v1 {
     negative?: boolean | null;
   }
   /**
-   * Details for assigned app category targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_APP_CATEGORY`.
+   * Details for assigned app category targeting option. This will be populated in the app_category_details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_APP_CATEGORY`.
    */
   export interface Schema$AppCategoryAssignedTargetingOptionDetails {
     /**
@@ -353,7 +352,7 @@ export namespace displayvideo_v1 {
     targetingOptionId?: string | null;
   }
   /**
-   * Represents a targetable collection of apps. A collection lets you target dynamic groups of related apps that are maintained by the platform, for example `All Apps/Google Play/Games`. This will be populated in the app_category field when targeting_type is `TARGETING_TYPE_APP_CATEGORY`.
+   * Represents a targetable collection of apps. A collection lets you target dynamic groups of related apps that are maintained by the platform, for example `All Apps/Google Play/Games`. This will be populated in the app_category_details field when targeting_type is `TARGETING_TYPE_APP_CATEGORY`.
    */
   export interface Schema$AppCategoryTargetingOptionDetails {
     /**
@@ -678,13 +677,13 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$BulkEditLineItemAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options that have been successfully created.
+     * The list of assigned targeting options that have been successfully created.  This list will be absent if empty.
      */
     createdAssignedTargetingOptions?: Schema$AssignedTargetingOption[];
   }
   export interface Schema$BulkListLineItemAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options.
+     * The list of assigned targeting options.  This list will be absent if empty.
      */
     assignedTargetingOptions?: Schema$AssignedTargetingOption[];
     /**
@@ -1427,7 +1426,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$DigitalContentLabelTargetingOptionDetails {
     /**
-     * Output only. An enum for the content label brand safety tiers. Values from content-labels.txt. Must be kept in sync with //contentads/bidder/proto/video_ratings.proto
+     * Output only. An enum for the content label brand safety tiers.
      */
     contentRatingTier?: string | null;
   }
@@ -1595,7 +1594,7 @@ export namespace displayvideo_v1 {
     status?: string | null;
   }
   /**
-   * Represents a targetable exchange. This will be populated in the exchange_details field of a TargetingOption when targeting_type is `TAREGTING_TYPE_EXCHANGE`.
+   * Represents a targetable exchange. This will be populated in the exchange_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_EXCHANGE`.
    */
   export interface Schema$ExchangeTargetingOptionDetails {
     /**
@@ -2354,7 +2353,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListAdvertisersResponse {
     /**
-     * The list of advertisers.
+     * The list of advertisers.  This list will be absent if empty.
      */
     advertisers?: Schema$Advertiser[];
     /**
@@ -2364,7 +2363,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListCampaignsResponse {
     /**
-     * The list of campaigns.
+     * The list of campaigns.  This list will be absent if empty.
      */
     campaigns?: Schema$Campaign[];
     /**
@@ -2374,7 +2373,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListChannelsResponse {
     /**
-     * The list of channels.
+     * The list of channels.  This list will be absent if empty.
      */
     channels?: Schema$Channel[];
     /**
@@ -2384,7 +2383,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListCombinedAudiencesResponse {
     /**
-     * The list of combined audiences.
+     * The list of combined audiences.  This list will be absent if empty.
      */
     combinedAudiences?: Schema$CombinedAudience[];
     /**
@@ -2394,7 +2393,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListCreativesResponse {
     /**
-     * The list of creatives.
+     * The list of creatives.  This list will be absent if empty.
      */
     creatives?: Schema$Creative[];
     /**
@@ -2404,7 +2403,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListCustomListsResponse {
     /**
-     * The list of custom lists.
+     * The list of custom lists.  This list will be absent if empty.
      */
     customLists?: Schema$CustomList[];
     /**
@@ -2414,7 +2413,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListFirstAndThirdPartyAudiencesResponse {
     /**
-     * The list of first and third party audiences.
+     * The list of first and third party audiences. Audience size properties will not be included.  This list will be absent if empty.
      */
     firstAndThirdPartyAudiences?: Schema$FirstAndThirdPartyAudience[];
     /**
@@ -2424,7 +2423,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListGoogleAudiencesResponse {
     /**
-     * The list of Google audiences.
+     * The list of Google audiences.  This list will be absent if empty.
      */
     googleAudiences?: Schema$GoogleAudience[];
     /**
@@ -2434,7 +2433,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListInsertionOrdersResponse {
     /**
-     * The list of insertion orders.
+     * The list of insertion orders.  This list will be absent if empty.
      */
     insertionOrders?: Schema$InsertionOrder[];
     /**
@@ -2447,7 +2446,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListInventorySourceGroupsResponse {
     /**
-     * The list of inventory source groups.
+     * The list of inventory source groups.  This list will be absent if empty.
      */
     inventorySourceGroups?: Schema$InventorySourceGroup[];
     /**
@@ -2457,7 +2456,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListInventorySourcesResponse {
     /**
-     * The list of inventory sources.
+     * The list of inventory sources.  This list will be absent if empty.
      */
     inventorySources?: Schema$InventorySource[];
     /**
@@ -2470,7 +2469,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListLineItemAssignedTargetingOptionsResponse {
     /**
-     * The list of assigned targeting options.
+     * The list of assigned targeting options.  This list will be absent if empty.
      */
     assignedTargetingOptions?: Schema$AssignedTargetingOption[];
     /**
@@ -2480,7 +2479,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListLineItemsResponse {
     /**
-     * The list of line items.
+     * The list of line items.  This list will be absent if empty.
      */
     lineItems?: Schema$LineItem[];
     /**
@@ -2490,7 +2489,7 @@ export namespace displayvideo_v1 {
   }
   export interface Schema$ListLocationListsResponse {
     /**
-     * The list of location lists.
+     * The list of location lists.  This list will be absent if empty.
      */
     locationLists?: Schema$LocationList[];
     /**
@@ -2503,7 +2502,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ListNegativeKeywordListsResponse {
     /**
-     * The list of negative keyword lists.
+     * The list of negative keyword lists.  This list will be absent if empty.
      */
     negativeKeywordLists?: Schema$NegativeKeywordList[];
     /**
@@ -2520,7 +2519,7 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The list of targeting options.
+     * The list of targeting options.  This list will be absent if empty.
      */
     targetingOptions?: Schema$TargetingOption[];
   }
@@ -2699,7 +2698,7 @@ export namespace displayvideo_v1 {
     targetingOptionId?: string | null;
   }
   /**
-   * Represents a targetable operating system. This will be populated in the operating_system_details field of a TargetingOption when targeting_type is `TAREGTING_TYPE_OPERATING_SYSTEM`.
+   * Represents a targetable operating system. This will be populated in the operating_system_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_OPERATING_SYSTEM`.
    */
   export interface Schema$OperatingSystemTargetingOptionDetails {
     /**
@@ -3041,7 +3040,7 @@ export namespace displayvideo_v1 {
     targetingOptionId?: string | null;
   }
   /**
-   * Represents a targetable sub-exchange. This will be populated in the sub_exchange_details field of a TargetingOption when targeting_type is `TAREGTING_TYPE_SUB_EXCHANGE`.
+   * Represents a targetable sub-exchange. This will be populated in the sub_exchange_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_SUB_EXCHANGE`.
    */
   export interface Schema$SubExchangeTargetingOptionDetails {
     /**
@@ -3360,7 +3359,7 @@ export namespace displayvideo_v1 {
     videoPlayerSize?: string | null;
   }
   /**
-   * Assigned viewability targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_VIEWABILITY`.
+   * Assigned viewability targeting option details. This will be populated in the viewability_details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_VIEWABILITY`.
    */
   export interface Schema$ViewabilityAssignedTargetingOptionDetails {
     /**
@@ -3373,7 +3372,7 @@ export namespace displayvideo_v1 {
     viewability?: string | null;
   }
   /**
-   * Represents a targetable viewability. This will be populated in the details field of a TargetingOption when targeting_type is `TARGETING_TYPE_VIEWABILITY`.
+   * Represents a targetable viewability. This will be populated in the viewability_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_VIEWABILITY`.
    */
   export interface Schema$ViewabilityTargetingOptionDetails {
     /**
@@ -5396,7 +5395,7 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser to list insertion orders for.
-     * @param {string=} params.filter Allows filtering by insertion order properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `entityStatus`  Examples:  * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" or entityStatus="ENTITY_STATUS_PAUSED")`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering by insertion order properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `entityStatus`  Examples:  * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")`  The length of this field should be no more than 500 characters.
      * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus"  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrders` method. If not specified, the first page of results will be returned.
@@ -5611,7 +5610,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by insertion order properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `entityStatus`  Examples:  * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" or entityStatus="ENTITY_STATUS_PAUSED")`  The length of this field should be no more than 500 characters.
+     * Allows filtering by insertion order properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `entityStatus`  Examples:  * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")`  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -6092,7 +6091,7 @@ export namespace displayvideo_v1 {
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Required. The ID of the advertiser to list line items for.
-     * @param {string=} params.filter Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`.  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" or entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
+     * @param {string=} params.filter Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`.  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
      * @param {string=} params.orderBy Field by which to sort the list. Acceptable values are:  * "displayName" (default) * "entityStatus"  The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      * @param {integer=} params.pageSize Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
@@ -6353,7 +6352,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`.  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" or entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
+     * Allows filtering by line item properties.  Supported syntax:  * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields:     - `campaignId`     - `insertionOrderId`     - `entityStatus`     - `lineItemType`.  Examples:  * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"`  The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**

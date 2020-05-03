@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -427,15 +426,15 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Training options used by this training run. These options are mutable for subsequent training runs. Default values are explicitly stored for options not specified in the input query of the first training run. For subsequent training runs, any option not explicitly specified in the input query will be copied from the previous training run.
      */
     trainingOptions?: {
-      l1Reg?: number;
-      maxIteration?: string;
-      learnRate?: number;
-      minRelProgress?: number;
-      l2Reg?: number;
-      learnRateStrategy?: string;
-      warmStart?: boolean;
-      lineSearchInitLearnRate?: number;
       earlyStop?: boolean;
+      l1Reg?: number;
+      l2Reg?: number;
+      learnRate?: number;
+      learnRateStrategy?: string;
+      lineSearchInitLearnRate?: number;
+      maxIteration?: string;
+      minRelProgress?: number;
+      warmStart?: boolean;
     } | null;
   }
   /**
@@ -571,13 +570,13 @@ export namespace bigquery_v2 {
      * [Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
      */
     access?: Array<{
-      specialGroup?: string;
-      role?: string;
-      view?: Schema$TableReference;
-      groupByEmail?: string;
       domain?: string;
-      userByEmail?: string;
+      groupByEmail?: string;
       iamMember?: string;
+      role?: string;
+      specialGroup?: string;
+      userByEmail?: string;
+      view?: Schema$TableReference;
     }> | null;
     /**
      * [Output-only] The time when this dataset was created, in milliseconds since the epoch.
@@ -638,12 +637,12 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
+      datasetReference?: Schema$DatasetReference;
+      friendlyName?: string;
+      id?: string;
       kind?: string;
       labels?: {[key: string]: string};
-      datasetReference?: Schema$DatasetReference;
-      id?: string;
       location?: string;
-      friendlyName?: string;
     }> | null;
     /**
      * A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -1421,15 +1420,15 @@ export namespace bigquery_v2 {
      * List of jobs that were requested.
      */
     jobs?: Array<{
+      configuration?: Schema$JobConfiguration;
+      errorResult?: Schema$ErrorProto;
+      id?: string;
       jobReference?: Schema$JobReference;
-      status?: Schema$JobStatus;
+      kind?: string;
       state?: string;
       statistics?: Schema$JobStatistics;
-      id?: string;
-      configuration?: Schema$JobConfiguration;
+      status?: Schema$JobStatus;
       user_email?: string;
-      errorResult?: Schema$ErrorProto;
-      kind?: string;
     }> | null;
     /**
      * The resource type of the response.
@@ -1783,9 +1782,9 @@ export namespace bigquery_v2 {
      * [Output-only, Beta] Model options used for the first training run. These options are immutable for subsequent training runs. Default values are used for any options not specified in the input query.
      */
     modelOptions?: {
-      modelType?: string;
       labels?: string[];
       lossType?: string;
+      modelType?: string;
     } | null;
     /**
      * [Output-only, Beta] Information about ml training runs, each training run comprises of multiple iterations and there may be multiple training runs for the model if warm start is used or if a user decides to continue a previously cancelled query.
@@ -1837,9 +1836,9 @@ export namespace bigquery_v2 {
      */
     projects?: Array<{
       friendlyName?: string;
-      numericId?: string;
-      kind?: string;
       id?: string;
+      kind?: string;
+      numericId?: string;
       projectReference?: Schema$ProjectReference;
     }> | null;
     /**
@@ -1876,8 +1875,8 @@ export namespace bigquery_v2 {
      * [Optional] The types of the fields of this struct, in order, if this is a struct.
      */
     structTypes?: Array<{
-      name?: string;
       description?: string;
+      name?: string;
       type?: Schema$QueryParameterType;
     }> | null;
     /**
@@ -2029,7 +2028,7 @@ export namespace bigquery_v2 {
     /**
      * [TrustedTester] [Required] Defines the ranges for range partitioning.
      */
-    range?: {interval?: string; start?: string; end?: string} | null;
+    range?: {end?: string; interval?: string; start?: string} | null;
   }
   /**
    * Evaluation metrics used by weighted-ALS models specified by feedback_type=implicit.
@@ -2475,18 +2474,18 @@ export namespace bigquery_v2 {
      * Tables in the requested dataset.
      */
     tables?: Array<{
-      view?: {useLegacySql?: boolean};
+      clustering?: Schema$Clustering;
       creationTime?: string;
-      rangePartitioning?: Schema$RangePartitioning;
+      expirationTime?: string;
+      friendlyName?: string;
       id?: string;
+      kind?: string;
+      labels?: {[key: string]: string};
+      rangePartitioning?: Schema$RangePartitioning;
       tableReference?: Schema$TableReference;
       timePartitioning?: Schema$TimePartitioning;
-      friendlyName?: string;
-      labels?: {[key: string]: string};
       type?: string;
-      clustering?: Schema$Clustering;
-      expirationTime?: string;
-      kind?: string;
+      view?: {useLegacySql?: boolean};
     }> | null;
     /**
      * The total number of tables in the dataset.

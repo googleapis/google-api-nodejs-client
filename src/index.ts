@@ -1,17 +1,15 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {GoogleApis} from './googleapis';
@@ -126,7 +124,6 @@ export {deploymentmanager_v2beta} from './apis/deploymentmanager/v2beta';
 export {dfareporting_v3_3} from './apis/dfareporting/v3.3';
 export {dfareporting_v3_4} from './apis/dfareporting/v3.4';
 export {dialogflow_v2} from './apis/dialogflow/v2';
-export {dialogflow_v2beta1} from './apis/dialogflow/v2beta1';
 export {digitalassetlinks_v1} from './apis/digitalassetlinks/v1';
 export {discovery_v1} from './apis/discovery/v1';
 export {displayvideo_v1} from './apis/displayvideo/v1';

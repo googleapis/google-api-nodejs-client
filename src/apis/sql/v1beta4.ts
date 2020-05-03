@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -620,8 +619,8 @@ export namespace sql_v1beta4 {
      */
     sqlExportOptions?: {
       mysqlExportOptions?: {masterData?: number};
-      tables?: string[];
       schemaOnly?: boolean;
+      tables?: string[];
     } | null;
     /**
      * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form &lt;code&gt;gs: //bucketName/fileName&lt;/code&gt;. If the file already exists, the requests // succeeds, but the operation fails. If &lt;code&gt;fileType&lt;/code&gt; is // &lt;code&gt;SQL&lt;/code&gt; and the filename ends with .gz, the contents are // compressed.
@@ -709,8 +708,8 @@ export namespace sql_v1beta4 {
     bakImportOptions?: {
       encryptionOptions?: {
         certPath?: string;
-        pvkPath?: string;
         pvkPassword?: string;
+        pvkPath?: string;
       };
     } | null;
     /**

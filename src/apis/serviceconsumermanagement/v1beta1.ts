@@ -1,10 +1,9 @@
-// Copyright 2019 Google LLC
-//
+// Copyright 2020 Google LLC
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -1350,11 +1349,11 @@ export namespace serviceconsumermanagement_v1beta1 {
   /**
    * Response message for the `EnableConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
-  export interface Schema$V1beta1EnableConsumerResponse {}
+  export interface Schema$V1Beta1EnableConsumerResponse {}
   /**
    * Response message for the `EnableConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
-  export interface Schema$V1Beta1EnableConsumerResponse {}
+  export interface Schema$V1beta1EnableConsumerResponse {}
   /**
    * Response message for the `GenerateDefaultIdentity` method.  This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
@@ -1504,11 +1503,11 @@ export namespace serviceconsumermanagement_v1beta1 {
   /**
    * Response message for the `RefreshConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
-  export interface Schema$V1beta1RefreshConsumerResponse {}
+  export interface Schema$V1Beta1RefreshConsumerResponse {}
   /**
    * Response message for the `RefreshConsumer` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
-  export interface Schema$V1Beta1RefreshConsumerResponse {}
+  export interface Schema$V1beta1RefreshConsumerResponse {}
   /**
    * Response message for the `RemoveVisibilityLabels` method. This response message is assigned to the `response` field of the returned Operation when that operation is done.
    */
