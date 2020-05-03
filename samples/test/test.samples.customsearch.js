@@ -23,7 +23,7 @@ const samples = {
   list: require('../customsearch/customsearch'),
 };
 
-const baseUrl = 'https://customsearch.googleapis.com';
+const baseUrl = 'https://www.googleapis.com';
 
 describe('customsearch samples', () => {
   afterEach(() => {

@@ -546,4 +546,4 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [codecovimg]: https://codecov.io/github/googleapis/google-api-nodejs-client/coverage.svg?branch=master
 [codecov]: https://codecov.io/github/googleapis/google-api-nodejs-client?branch=master
 [downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
-[downloads]: https://nodei.co/npm/googleapis/
+[downloads]: https://www.npmjs.com/package/googleapis
