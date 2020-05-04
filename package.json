@@ -19,6 +19,7 @@
     "test": "c8 mocha build/test",
     "predocs": "npm run build-tools",
     "docs": "node build/src/generator/docs",
+    "presystem-test": "npm run compile",
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm link ../ && pwd && npm test",
     "lint": "gts check",

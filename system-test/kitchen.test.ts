@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import * as cp from 'child_process';
+import * as path from 'path';
 import * as mv from 'mv';
 import {ncp} from 'ncp';
 import {promisify} from 'util';
@@ -32,19 +33,21 @@ const spawnOpts: cp.SpawnSyncOptions = {stdio: 'inherit', shell: true};
  * Create a staging directory with temp fixtures used to test on a fresh application.
  */
 describe('kitchen sink', async () => {
-  it('should be able to use the d.ts', async function () {
-    this.retries(3);
+  it('should be able to use the d.ts', async () => {
     console.log(`${__filename} staging area: ${stagingPath}`);
     cp.spawnSync('npm', ['pack'], spawnOpts);
-    const tarball = `${pkg.name}-${pkg.version}.tgz`;
-    await (mvp as Function)(tarball, `${stagingPath}/googleapis.tgz`);
+    const tarball = path.join(
+      __dirname,
+      `../../${pkg.name}-${pkg.version}.tgz`
+    );
+    await mvp(tarball, `${stagingPath}/googleapis.tgz`);
     await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
     cp.spawnSync(
       'npm',
       ['install'],
       Object.assign({cwd: `${stagingPath}/`}, spawnOpts)
     );
-  }).timeout(80000);
+  }).timeout(160000);
 
   /**
    * CLEAN UP - remove the staging directory when done.
