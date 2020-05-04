@@ -29,6 +29,7 @@ import * as path from 'path';
 import {URL} from 'url';
 import * as util from 'util';
 import Q from 'p-queue';
+import * as prettier from 'prettier';
 import {downloadDiscoveryDocs} from './download';
 
 const writeFile = util.promisify(fs.writeFile);
@@ -274,6 +275,7 @@ export class Generator {
               `GenerateAPI call failed with error: ${e}, moving on.`
             );
             console.error(`Failed to generate API: ${api.id}`);
+            console.error(e);
             console.log(
               api.id +
                 '\n-----------\n' +
@@ -316,41 +318,26 @@ export class Generator {
           const desc = metadata.filter(x => x.name === file)[0].description;
           // generate the index.ts
           const apiIdxPath = path.join(apisPath, file, 'index.ts');
-          const result = this.env.render('api-index.njk', {
-            name: file,
-            api: apis[file],
-          });
-          await writeFile(apiIdxPath, result);
+          const apiIndexData = {name: file, api: apis[file]};
+          await this.render('api-index.njk', apiIndexData, apiIdxPath);
           // generate the package.json
           const pkgPath = path.join(apisPath, file, 'package.json');
-          const pkgResult = this.env.render('package.json.njk', {
-            name: file,
-            desc,
-          });
-          await writeFile(pkgPath, pkgResult);
+          const packageData = {name: file, desc};
+          await this.render('package.json.njk', packageData, pkgPath);
           // generate the README.md
           const rdPath = path.join(apisPath, file, 'README.md');
-          const rdResult = this.env.render('README.md.njk', {name: file, desc});
-          await writeFile(rdPath, rdResult);
+          await this.render('README.md.njk', {name: file, desc}, rdPath);
           // generate the tsconfig.json
           const tsPath = path.join(apisPath, file, 'tsconfig.json');
-          const tsResult = this.env.render('tsconfig.json.njk');
-          await writeFile(tsPath, tsResult);
+          await this.render('tsconfig.json.njk', {}, tsPath);
           // generate the webpack.config.js
           const wpPath = path.join(apisPath, file, 'webpack.config.js');
-          const wpResult = this.env.render('webpack.config.js.njk', {
-            name: file,
-          });
-          await writeFile(wpPath, wpResult);
+          await this.render('webpack.config.js.njk', {name: file}, wpPath);
         }
       }
     }
-
-    const result = this.env.render('index.njk', {apis});
-    await writeFile(indexPath, result, {encoding: 'utf8'});
-
-    const res2 = this.env.render('root-index.njk', {apis});
-    await writeFile(rootIndexPath, res2, {encoding: 'utf8'});
+    await this.render('index.njk', {apis}, indexPath);
+    await this.render('root-index.njk', {apis}, rootIndexPath);
   }
 
   /**
@@ -460,16 +447,28 @@ export class Generator {
       schema.name,
       schema.version + '.ts'
     );
-    this.logResult(apiDiscoveryUrl, 'Generating templates...');
-    this.logResult(apiDiscoveryUrl, 'Step 1...');
+    this.logResult(apiDiscoveryUrl, 'Downloading snippets...');
     await Promise.all(tasks.map(t => t()));
-    this.logResult(apiDiscoveryUrl, 'Step 2...');
-    const contents = this.env.render(API_TEMPLATE, {api: schema});
+    this.logResult(apiDiscoveryUrl, 'Generating APIs...');
     await mkdirp(path.dirname(exportFilename));
-    this.logResult(apiDiscoveryUrl, 'Step 3...');
-    await writeFile(exportFilename, contents, {encoding: 'utf8'});
+    await this.render(API_TEMPLATE, {api: schema}, exportFilename);
     this.logResult(apiDiscoveryUrl, 'Template generation complete.');
     return exportFilename;
+  }
+
+  /**
+   * Render a nunjucks template, format it, and write to disk
+   */
+  private async render(templatePath: string, data: {}, outputPath: string) {
+    let output = this.env.render(templatePath, data);
+    output = prettier.format(output, {
+      bracketSpacing: false,
+      singleQuote: true,
+      trailingComma: 'es5',
+      arrowParens: 'avoid',
+      parser: 'typescript',
+    });
+    await writeFile(outputPath, output, {encoding: 'utf8'});
   }
 }
 
