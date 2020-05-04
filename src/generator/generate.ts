@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as minimist from 'minimist';
+import * as minimist from 'yargs-parser';
 import * as path from 'path';
 import * as rimraf from 'rimraf';
 import * as util from 'util';
