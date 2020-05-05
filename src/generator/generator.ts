@@ -419,7 +419,7 @@ export class Generator {
       // 🤷‍♂️
     }
     if (apiDiscoveryUrl && !parts!) {
-      this.log(`Reading from file ${apiDiscoveryUrl}`);
+      this.log(`Reading from file ${path.relative('.', apiDiscoveryUrl)}`);
       const file = await readFile(apiDiscoveryUrl, 'utf-8');
       await this.generate(apiDiscoveryUrl, JSON.parse(file));
     } else {
@@ -461,13 +461,16 @@ export class Generator {
    */
   private async render(templatePath: string, data: {}, outputPath: string) {
     let output = this.env.render(templatePath, data);
-    output = prettier.format(output, {
-      bracketSpacing: false,
-      singleQuote: true,
-      trailingComma: 'es5',
-      arrowParens: 'avoid',
-      parser: 'typescript',
-    });
+    const ext = path.extname(outputPath);
+    if (ext === '.js' || ext === '.ts') {
+      output = prettier.format(output, {
+        bracketSpacing: false,
+        singleQuote: true,
+        trailingComma: 'es5',
+        arrowParens: 'avoid',
+        parser: 'typescript',
+      });
+    }
     await writeFile(outputPath, output, {encoding: 'utf8'});
   }
 }

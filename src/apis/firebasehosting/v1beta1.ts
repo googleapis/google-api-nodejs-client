@@ -155,27 +155,6 @@ export namespace firebasehosting_v1beta1 {
     token?: string | null;
   }
   /**
-   * The request sent to CloneVersion.
-   */
-  export interface Schema$CloneVersionRequest {
-    /**
-     * If provided, only paths that do not match any of the regexes in this list will be included in the new version.
-     */
-    exclude?: Schema$PathFilter;
-    /**
-     * If true, immediately finalize the version after cloning is complete.
-     */
-    finalize?: boolean | null;
-    /**
-     * If provided, only paths that match one or more regexes in this list will be included in the new version.
-     */
-    include?: Schema$PathFilter;
-    /**
-     * Required. The name of the version to be cloned, in the format: `sites/{site}/versions/{version}`
-     */
-    sourceVersion?: string | null;
-  }
-  /**
    * A configured rewrite that directs requests to a Cloud Run service. If the Cloud Run service does not exist when setting or updating your Firebase Hosting configuration, then the request fails. Any errors from the Cloud Run service are passed to the end user (for example, if you delete a service, any requests directed to that service receive a `404` error).
    */
   export interface Schema$CloudRunRewrite {
@@ -366,15 +345,6 @@ export namespace firebasehosting_v1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A representation of filter path.
-   */
-  export interface Schema$PathFilter {
-    /**
-     * An array of regexes to filter by.
-     */
-    regexes?: string[] | null;
-  }
-  /**
    * The request to populate a Version&#39;s Files.
    */
   export interface Schema$PopulateVersionFilesRequest {
@@ -521,6 +491,10 @@ export namespace firebasehosting_v1beta1 {
    * A `SiteConfig` contains metadata associated with a specific site that controls Firebase Hosting serving behavior
    */
   export interface Schema$SiteConfig {
+    /**
+     * Whether or not web requests made by site visitors are logged via Cloud Logging.
+     */
+    cloudLoggingEnabled?: boolean | null;
     /**
      * The number of FINALIZED versions that will be held for a site before automatic deletion. When a new version is deployed, content for versions in storage in excess of this number will be deleted, and will no longer be billed for storage usage. Oldest versions will be deleted first; sites are created with an unlimited number of max_versions by default.
      */
@@ -1790,82 +1764,6 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.versions.clone
-     * @desc Creates a new version on the target site using the content of the specified version.
-     * @alias firebasehosting.projects.sites.versions.clone
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The target site where the cloned version will reside, in the format: `sites/{site}`
-     * @param {().CloneVersionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    clone(
-      params?: Params$Resource$Projects$Sites$Versions$Clone,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    clone(
-      params: Params$Resource$Projects$Sites$Versions$Clone,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    clone(
-      params: Params$Resource$Projects$Sites$Versions$Clone,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    clone(callback: BodyResponseCallback<Schema$Operation>): void;
-    clone(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Sites$Versions$Clone
-        | BodyResponseCallback<Schema$Operation>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Sites$Versions$Clone;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Sites$Versions$Clone;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://firebasehosting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/versions:clone').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * firebasehosting.projects.sites.versions.create
      * @desc Creates a new version for a site.
      * @alias firebasehosting.projects.sites.versions.create
@@ -2249,23 +2147,6 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Sites$Versions$Clone
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. The target site where the cloned version will reside, in the format: `sites/{site}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CloneVersionRequest;
-  }
   export interface Params$Resource$Projects$Sites$Versions$Create
     extends StandardParameters {
     /**
@@ -3543,82 +3424,6 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.versions.clone
-     * @desc Creates a new version on the target site using the content of the specified version.
-     * @alias firebasehosting.sites.versions.clone
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The target site where the cloned version will reside, in the format: `sites/{site}`
-     * @param {().CloneVersionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    clone(
-      params?: Params$Resource$Sites$Versions$Clone,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    clone(
-      params: Params$Resource$Sites$Versions$Clone,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    clone(
-      params: Params$Resource$Sites$Versions$Clone,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    clone(callback: BodyResponseCallback<Schema$Operation>): void;
-    clone(
-      paramsOrCallback?:
-        | Params$Resource$Sites$Versions$Clone
-        | BodyResponseCallback<Schema$Operation>,
-      optionsOrCallback?:
-        | MethodOptions
-        | BodyResponseCallback<Schema$Operation>,
-      callback?: BodyResponseCallback<Schema$Operation>
-    ): void | GaxiosPromise<Schema$Operation> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Sites$Versions$Clone;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Sites$Versions$Clone;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://firebasehosting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+parent}/versions:clone').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(parameters, callback);
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * firebasehosting.sites.versions.create
      * @desc Creates a new version for a site.
      * @alias firebasehosting.sites.versions.create
@@ -4002,23 +3807,6 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Sites$Versions$Clone
-    extends StandardParameters {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string | OAuth2Client | JWT | Compute | UserRefreshClient;
-
-    /**
-     * Required. The target site where the cloned version will reside, in the format: `sites/{site}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CloneVersionRequest;
-  }
   export interface Params$Resource$Sites$Versions$Create
     extends StandardParameters {
     /**

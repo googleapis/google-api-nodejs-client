@@ -810,7 +810,7 @@
       }
     }
   },
-  "revision": "20200424",
+  "revision": "20200428",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {

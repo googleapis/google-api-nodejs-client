@@ -279,7 +279,7 @@
       }
     }
   },
-  "revision": "20200430",
+  "revision": "20200502",
   "rootUrl": "https://libraryagent.googleapis.com/",
   "schemas": {
     "GoogleExampleLibraryagentV1Book": {
