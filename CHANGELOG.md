@@ -4,6 +4,30 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [50.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v49.0.0...v50.0.0) (2020-05-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to gts@2 (#2062)
+* run the generator (#2053)
+
+### Features
+
+* add Blunderbussconfig ([#2065](https://www.github.com/googleapis/google-api-nodejs-client/issues/2065)) ([e293188](https://www.github.com/googleapis/google-api-nodejs-client/commit/e293188add17f32c2d11fa06df917f2374f84ac4))
+* run the generator ([#2053](https://www.github.com/googleapis/google-api-nodejs-client/issues/2053)) ([1124249](https://www.github.com/googleapis/google-api-nodejs-client/commit/1124249d4c7efc3fe52d48f3f489715db2acd6b9))
+* run the generator ([#2081](https://www.github.com/googleapis/google-api-nodejs-client/issues/2081)) ([0c06d1c](https://www.github.com/googleapis/google-api-nodejs-client/commit/0c06d1cc8eea8a0a937436d571d14a9a462647ff))
+
+
+### Bug Fixes
+
+* **deps:** update dependency uuid to v8 ([#2069](https://www.github.com/googleapis/google-api-nodejs-client/issues/2069)) ([8f2454c](https://www.github.com/googleapis/google-api-nodejs-client/commit/8f2454c06d4e1de087482e5e6f84c2d11603f868))
+
+
+### Build System
+
+* upgrade to gts@2 ([#2062](https://www.github.com/googleapis/google-api-nodejs-client/issues/2062)) ([0b8d04c](https://www.github.com/googleapis/google-api-nodejs-client/commit/0b8d04cbb87f7b7f779de035ef02e18f66c12f18))
+
 ## [49.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v48.0.0...v49.0.0) (2020-04-15)
 
 
