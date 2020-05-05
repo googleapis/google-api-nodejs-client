@@ -13,6 +13,7 @@
 
 import * as assert from 'assert';
 import {describe, it, before, beforeEach, after} from 'mocha';
+import {execSync} from 'child_process';
 import {APIEndpoint} from 'googleapis-common';
 import * as nock from 'nock';
 import {GoogleApis} from '../src';
@@ -216,6 +217,10 @@ describe('Clients', () => {
       -1,
       'Default param not found in query'
     );
+  });
+
+  it('should pass eslint for a given client', () => {
+    execSync('npx eslint --no-ignore src/apis/youtube/*.ts');
   });
 
   after(() => {
