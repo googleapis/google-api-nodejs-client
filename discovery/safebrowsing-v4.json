@@ -259,7 +259,7 @@
       }
     }
   },
-  "revision": "20200427",
+  "revision": "20200502",
   "rootUrl": "https://safebrowsing.googleapis.com/",
   "schemas": {
     "Checksum": {

@@ -530,31 +530,6 @@
             },
             "versions": {
               "methods": {
-                "clone": {
-                  "description": "Creates a new version on the target site using the content\nof the specified version.",
-                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/versions:clone",
-                  "httpMethod": "POST",
-                  "id": "firebasehosting.projects.sites.versions.clone",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The target site where the cloned version will reside,\nin the format: `sites/{site}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/sites/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+parent}/versions:clone",
-                  "request": {
-                    "$ref": "CloneVersionRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  }
-                },
                 "create": {
                   "description": "Creates a new version for a site.",
                   "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/versions",
@@ -657,7 +632,13 @@
                   "path": "v1beta1/{+parent}/versions",
                   "response": {
                     "$ref": "ListVersionsResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/firebase",
+                    "https://www.googleapis.com/auth/firebase.readonly"
+                  ]
                 },
                 "patch": {
                   "description": "Updates the specified metadata for a version. Note that this method will\nfail with `FAILED_PRECONDITION` in the event of an invalid state\ntransition. The only valid transition for a version is currently from a\n`CREATED` status to a `FINALIZED` status.\nUse [`DeleteVersion`](../sites.versions/delete) to set the status of a\nversion to `DELETED`.",
@@ -1166,31 +1147,6 @@
         },
         "versions": {
           "methods": {
-            "clone": {
-              "description": "Creates a new version on the target site using the content\nof the specified version.",
-              "flatPath": "v1beta1/sites/{sitesId}/versions:clone",
-              "httpMethod": "POST",
-              "id": "firebasehosting.sites.versions.clone",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The target site where the cloned version will reside,\nin the format: `sites/{site}`",
-                  "location": "path",
-                  "pattern": "^sites/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+parent}/versions:clone",
-              "request": {
-                "$ref": "CloneVersionRequest"
-              },
-              "response": {
-                "$ref": "Operation"
-              }
-            },
             "create": {
               "description": "Creates a new version for a site.",
               "flatPath": "v1beta1/sites/{sitesId}/versions",
@@ -1293,7 +1249,13 @@
               "path": "v1beta1/{+parent}/versions",
               "response": {
                 "$ref": "ListVersionsResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only",
+                "https://www.googleapis.com/auth/firebase",
+                "https://www.googleapis.com/auth/firebase.readonly"
+              ]
             },
             "patch": {
               "description": "Updates the specified metadata for a version. Note that this method will\nfail with `FAILED_PRECONDITION` in the event of an invalid state\ntransition. The only valid transition for a version is currently from a\n`CREATED` status to a `FINALIZED` status.\nUse [`DeleteVersion`](../sites.versions/delete) to set the status of a\nversion to `DELETED`.",
@@ -1419,7 +1381,7 @@
       }
     }
   },
-  "revision": "20200409",
+  "revision": "20200430",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -1462,29 +1424,6 @@
         },
         "token": {
           "description": "The token to serve at the specified URL path to satisfy the certificate\nchallenge.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "CloneVersionRequest": {
-      "description": "The request sent to CloneVersion.",
-      "id": "CloneVersionRequest",
-      "properties": {
-        "exclude": {
-          "$ref": "PathFilter",
-          "description": "If provided, only paths that do not match any of the regexes in this\nlist will be included in the new version."
-        },
-        "finalize": {
-          "description": "If true, immediately finalize the version after cloning is complete.",
-          "type": "boolean"
-        },
-        "include": {
-          "$ref": "PathFilter",
-          "description": "If provided, only paths that match one or more regexes in this list\nwill be included in the new version."
-        },
-        "sourceVersion": {
-          "description": "Required. The name of the version to be cloned, in the format:\n`sites/{site}/versions/{version}`",
           "type": "string"
         }
       },
@@ -1792,20 +1731,6 @@
       },
       "type": "object"
     },
-    "PathFilter": {
-      "description": "A representation of filter path.",
-      "id": "PathFilter",
-      "properties": {
-        "regexes": {
-          "description": "An array of regexes to filter by.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "PopulateVersionFilesRequest": {
       "description": "The request to populate a Version's Files.",
       "id": "PopulateVersionFilesRequest",
@@ -2015,6 +1940,10 @@
       "description": "A `SiteConfig` contains metadata associated with a specific site that\ncontrols Firebase Hosting serving behavior",
       "id": "SiteConfig",
       "properties": {
+        "cloudLoggingEnabled": {
+          "description": "Whether or not web requests made by site visitors are logged via Cloud\nLogging.",
+          "type": "boolean"
+        },
         "maxVersions": {
           "description": "The number of FINALIZED versions that will be held for a site before\nautomatic deletion. When a new version is deployed, content for versions\nin storage in excess of this number will be deleted, and will no longer be\nbilled for storage usage. Oldest versions will be deleted first; sites are\ncreated with an unlimited number of max_versions by default.",
           "format": "int64",

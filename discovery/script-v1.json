@@ -822,7 +822,7 @@
       }
     }
   },
-  "revision": "20200423",
+  "revision": "20200424",
   "rootUrl": "https://script.googleapis.com/",
   "schemas": {
     "Content": {
